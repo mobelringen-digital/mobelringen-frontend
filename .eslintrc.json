@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "@graphcommerce/eslint-config-pwa",
+    "prettier"
+  ],
+  "parserOptions": {
+    "project": ["./tsconfig.json"],
+    "tsconfigRootDir": "."
+  },
+  "ignorePatterns": [".next", "types/**/*.ts", "*.gql.ts", "*.graphql"]
+}
