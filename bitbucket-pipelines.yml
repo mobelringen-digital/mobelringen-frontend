@@ -1,0 +1,11 @@
+image: node:16.16.0
+pipelines:
+  branches:
+    main:
+      - step:
+          name: Install Vercel CLI, Pull Vercel Environment Information, Build Project Artifacts and Deploy Project Artifacts to Vercel
+          script:
+            - npm install --global vercel
+            - vercel pull --yes --environment=production --token=IvnpRMqG2LaGtn7uBcdEWmWh
+            - vercel build --prod --token=IvnpRMqG2LaGtn7uBcdEWmWh
+            - vercel deploy --prebuilt --prod --token=IvnpRMqG2LaGtn7uBcdEWmWh
