@@ -21,6 +21,10 @@ const config = {
     url: true,
     gallery: true,
     content: true,
+    recaptcha: false,
+  },
+  debug: {
+    pluginStatus: true,
   },
 }
 

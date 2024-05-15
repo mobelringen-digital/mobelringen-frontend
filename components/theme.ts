@@ -12,74 +12,104 @@ import {
   MuiChip,
   MuiButtonInline,
   NextLink,
-} from '@graphcommerce/next-ui'
-import { createTheme, Theme, alpha, LinkProps } from '@mui/material'
-import { Components, PaletteOptions } from '@mui/material/styles'
+} from "@graphcommerce/next-ui";
+import {
+  createTheme,
+  Theme,
+  alpha,
+  LinkProps,
+  Components,
+} from "@mui/material";
+import { PaletteOptions } from "@mui/material/styles";
 
 const lightPalette: PaletteOptions = {
-  mode: 'light',
+  mode: "light",
   primary: {
-    main: '#47C489',
-    contrastText: '#ffffff',
-    dark: '#47C489',
+    main: "#FF3E3E",
+    contrastText: "#3F1414",
+    dark: "#3F1414",
+    light: "#7F2828",
   },
   secondary: {
-    main: '#006bff',
-    light: '#d1e4ff',
-    contrastText: '#ffffff',
+    main: "#FFDBD2",
+    light: "#FEF0E5",
+    dark: "#FAD0C5",
+    contrastText: "#3F1414",
+  },
+  success: {
+    main: "#39A627",
+    light: "#DFF5D5",
+    dark: "#1D780E",
+  },
+  warning: {
+    main: "#F7B200",
+    light: "#FFECBA",
+    dark: "#8B6400",
+  },
+  error: {
+    main: "#C82B2B",
+    light: "#FFE7E5",
   },
   background: {
-    default: '#F9F9FA',
-    paper: '#ffffff',
-    image: '#ffffff',
+    default: "#F8F4F1",
+    paper: "#ffffff",
+    image: "#ffffff",
   },
-  divider: '#00000015',
-  success: {
-    main: '#01d26a',
+  grey: {
+    50: "#F8F4F1",
+    100: "#F0EBE5",
+    200: "#E6DFD6",
   },
+  black: "#1A1110",
+  "dark-grey": {
+    main: "#E1DDDA",
+    light: "#F1EFEE",
+    dark: "#786E6D",
+  },
+  divider: "#00000015",
   action: {
     hoverOpacity: 0.12,
   },
   text: {
-    primary: '#0F0F10',
-    secondary: '#03031755',
-    disabled: '#03031735',
+    primary: "#1A1110",
+    secondary: "#03031755",
+    disabled: "#03031735",
   },
-}
+};
 
-const darkPalette: PaletteOptions = {
-  mode: 'dark',
-  primary: {
-    main: '#62C7B0',
-    contrastText: '#ffffff',
-    dark: '#62C7B0',
-  },
-  secondary: {
-    main: '#62C7B0',
-    light: '#62C7B0',
-    contrastText: '#ffffff',
-  },
-  background: {
-    default: '#001727',
-    paper: '#15293B',
-    image: '#ffffff',
-  },
-  divider: '#ffffff30',
-  success: {
-    main: '#01D26A',
-  },
-  action: {
-    hoverOpacity: 0.16,
-  },
-  text: {
-    primary: '#ffffff',
-    secondary: '#ffffff80',
-    disabled: '#ffffff30',
-  },
-}
+// const darkPalette: PaletteOptions = {
+//   mode: "dark",
+//   primary: {
+//     main: "#62C7B0",
+//     contrastText: "#ffffff",
+//     dark: "#62C7B0",
+//   },
+//   secondary: {
+//     main: "#62C7B0",
+//     light: "#62C7B0",
+//     contrastText: "#ffffff",
+//   },
+//   background: {
+//     default: "#001727",
+//     paper: "#15293B",
+//     image: "#ffffff",
+//   },
+//   divider: "#ffffff30",
+//   success: {
+//     main: "#01D26A",
+//   },
+//   action: {
+//     hoverOpacity: 0.16,
+//   },
+//   text: {
+//     primary: "#ffffff",
+//     secondary: "#ffffff80",
+//     disabled: "#ffffff30",
+//   },
+// };
 
 const fontSize = (from: number, to: number) =>
-  breakpointVal('fontSize', from, to, themeBaseDefaults.breakpoints.values)
+  breakpointVal("fontSize", from, to, themeBaseDefaults.breakpoints.values);
 
 // Create a theme instance.
 const createThemeWithPalette = (palette: PaletteOptions) =>
@@ -89,40 +119,40 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
     shape: { borderRadius: 3 },
     typography: {
       fontFamily:
-        '-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji',
+        "-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji",
       // @see docs typography.md
       h1: {
-        ...fontSize(28, 64),
+        ...fontSize(36, 48),
         fontWeight: 700,
         fontVariationSettings: "'wght' 660",
         lineHeight: 1.22,
       },
       h2: {
-        ...fontSize(25, 40),
+        ...fontSize(28, 36),
         fontWeight: 700,
         fontVariationSettings: "'wght' 630",
         lineHeight: 1.35,
       },
       h3: {
-        ...fontSize(22, 30),
+        ...fontSize(24, 28),
         fontWeight: 700,
         fontVariationSettings: "'wght' 660",
         lineHeight: 1.55,
       },
       h4: {
-        ...fontSize(18, 26),
+        ...fontSize(18, 20),
         fontWeight: 550,
         fontVariationSettings: "'wght' 550",
         lineHeight: 1.55,
       },
       h5: {
-        ...fontSize(17, 20),
+        ...fontSize(14, 16),
         fontWeight: 650,
         fontVariationSettings: "'wght' 650",
         lineHeight: 1.55,
       },
       h6: {
-        ...fontSize(17, 20),
+        ...fontSize(12, 14),
         fontWeight: 550,
         fontVariationSettings: "'wght' 510",
         lineHeight: 1.8,
@@ -135,7 +165,7 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
       },
       fontWeightBold: 600,
       body1: {
-        ...fontSize(14, 18),
+        ...fontSize(14, 16),
         lineHeight: 1.7,
       },
       subtitle2: {
@@ -145,7 +175,7 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
         lineHeight: 1.7,
       },
       body2: {
-        ...fontSize(13, 15),
+        ...fontSize(16, 18),
         lineHeight: 1.7,
       },
       caption: {
@@ -159,7 +189,16 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
         fontWeight: 500,
         letterSpacing: 1,
         lineHeight: 1.2,
-        textTransform: 'uppercase',
+        textTransform: "uppercase",
+      },
+    },
+    breakpoints: {
+      values: {
+        xs: 0,
+        sm: 460,
+        md: 960,
+        lg: 1240,
+        xl: 1920,
       },
     },
     spacings: {
@@ -176,28 +215,30 @@ const createThemeWithPalette = (palette: PaletteOptions) =>
       vertical: responsiveVal(10, 30),
     },
     appShell: {
-      headerHeightSm: '46px',
-      headerHeightMd: '100px',
-      appBarHeightMd: '80px',
-      appBarInnerHeightMd: '46px',
+      headerHeightSm: "46px",
+      headerHeightMd: "100px",
+      appBarHeightMd: "80px",
+      appBarInnerHeightMd: "46px",
     },
-  })
+  });
 
 // todo: move most of the styles to the graphcommerce library while still allowing for extensibility.
 const createOverrides = (theme: Theme): Components<Theme> => ({
   MuiCssBaseline: {
     styleOverrides: {
       body: {
-        overflowY: 'scroll',
+        overflowY: "scroll",
       },
-      '::selection': { background: alpha(theme.palette.primary.main, 0.6) },
-      '::-moz-selection': { background: alpha(theme.palette.primary.main, 0.6) },
-      '#__next': {
-        position: 'relative',
+      "::selection": { background: alpha(theme.palette.primary.main, 0.6) },
+      "::-moz-selection": {
+        background: alpha(theme.palette.primary.main, 0.6),
       },
-      'picture img': {
-        filter: 'brightness(1.03)',
-        willChange: 'filter',
+      "#__next": {
+        position: "relative",
+      },
+      "picture img": {
+        filter: "brightness(1.03)",
+        willChange: "filter",
       },
     },
   },
@@ -214,7 +255,7 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
         style: {
           paddingLeft: theme.page.horizontal,
           paddingRight: theme.page.horizontal,
-          [theme.breakpoints.up('sm')]: {
+          [theme.breakpoints.up("sm")]: {
             paddingLeft: theme.page.horizontal,
             paddingRight: theme.page.horizontal,
           },
@@ -226,53 +267,56 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
   MuiInputBase: {
     styleOverrides: {
       root: {
-        fontSize: '16px', // https://css-tricks.com/16px-or-larger-text-prevents-ios-form-zoom/
+        fontSize: "16px", // https://css-tricks.com/16px-or-larger-text-prevents-ios-form-zoom/
       },
     },
   },
 
   MuiButton: {
-    defaultProps: { color: 'inherit' },
+    defaultProps: { color: "inherit" },
     variants: [
       ...MuiButtonResponsive,
       ...MuiButtonPill,
       ...MuiButtonInline,
       {
-        props: { variant: 'contained', color: 'inherit' },
+        props: { variant: "contained", color: "inherit" },
         style: { backgroundColor: theme.palette.background.paper },
       },
       {
-        props: { variant: 'outlined' },
+        props: { variant: "outlined" },
         style: {
           ...breakpointVal(
-            'borderRadius',
+            "borderRadius",
             theme.shape.borderRadius * 2,
             theme.shape.borderRadius * 3,
-            theme.breakpoints.values,
+            theme.breakpoints.values
           ),
         },
       },
       {
-        props: { variant: 'text' },
-        style: { borderRadius: '99em' },
+        props: { variant: "text" },
+        style: { borderRadius: "99em" },
       },
       {
-        props: { variant: 'inline' },
-        style: { borderRadius: '99em' },
+        props: { variant: "inline" },
+        style: { borderRadius: "99em" },
       },
       {
-        props: { color: 'primary' },
+        props: { color: "primary" },
         style: {
-          '&:not(.Mui-disabled)': {
-            boxShadow: 'none',
+          "&:not(.Mui-disabled)": {
+            boxShadow: "none",
           },
+          "&:hover": {
+            backgroundColor: theme.palette.primary.light,
+          }
         },
       },
       {
-        props: { color: 'secondary' },
+        props: { color: "secondary" },
         style: {
-          '&:not(.Mui-disabled)': {
-            boxShadow: 'none',
+          "&:not(.Mui-disabled)": {
+            boxShadow: "none",
           },
         },
       },
@@ -282,24 +326,24 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
   MuiFab: {
     styleOverrides: {
       root: {
-        '&.MuiFab-default': {
+        "&.MuiFab-default": {
           backgroundColor: theme.palette.background.paper,
-          '&:hover': {
+          "&:hover": {
             backgroundColor: theme.palette.background.paper,
           },
           color: theme.palette.text.primary,
         },
       },
       colorInherit: {
-        backgroundColor: 'inherit',
-        '&:hover, &:focus': {
-          backgroundColor: 'inherit',
+        backgroundColor: "inherit",
+        "&:hover, &:focus": {
+          backgroundColor: "inherit",
         },
-        boxShadow: 'none',
+        boxShadow: "none",
       },
       extended: {
         fontWeight: 400,
-        textTransform: 'none',
+        textTransform: "none",
       },
     },
 
@@ -307,15 +351,15 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
   },
 
   MuiTextField: {
-    defaultProps: { color: 'secondary' },
+    defaultProps: { color: "secondary" },
     styleOverrides: {
       root: {
-        '& .MuiOutlinedInput-root': {
+        "& .MuiOutlinedInput-root": {
           ...breakpointVal(
-            'borderRadius',
+            "borderRadius",
             theme.shape.borderRadius * 1.5,
             theme.shape.borderRadius * 2,
-            theme.breakpoints.values,
+            theme.breakpoints.values
           ),
         },
       },
@@ -338,13 +382,13 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
     styleOverrides: {
       colorPrimary: {
         color: theme.palette.text.disabled,
-        '&.Mui-checked': {
+        "&.Mui-checked": {
           color: theme.palette.primary.main,
         },
       },
       colorSecondary: {
         color: theme.palette.text.disabled,
-        '&.Mui-checked': {
+        "&.Mui-checked": {
           color: theme.palette.secondary.main,
         },
       },
@@ -352,7 +396,7 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
 
     variants: [
       {
-        props: { size: 'medium' },
+        props: { size: "medium" },
         style: {
           padding: 7,
         },
@@ -385,10 +429,10 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
       thickness: 2,
     },
   },
-})
+});
 
-export const lightTheme = createThemeWithPalette(lightPalette)
-lightTheme.components = createOverrides(lightTheme) as Components
+export const lightTheme = createThemeWithPalette(lightPalette);
+lightTheme.components = createOverrides(lightTheme) as Components;
 
-export const darkTheme = createThemeWithPalette(darkPalette)
-darkTheme.components = createOverrides(darkTheme) as Components
+// export const darkTheme = createThemeWithPalette(darkPalette);
+// darkTheme.components = createOverrides(darkTheme) as Components;

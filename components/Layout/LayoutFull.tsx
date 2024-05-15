@@ -15,7 +15,6 @@ import {
   IconSvg,
   DesktopNavItem,
   MenuFabItem,
-  DarkLightModeMenuSecondaryItem,
 } from '@graphcommerce/next-ui'
 import { i18n } from '@lingui/core'
 import { Trans } from '@lingui/react'
@@ -102,7 +101,6 @@ export function LayoutFull(props: LayoutFullProps) {
             <WishlistMenuFabItem key='wishlist' icon={<IconSvg src={iconHeart} size='medium' />}>
               <Trans id='Wishlist' />
             </WishlistMenuFabItem>,
-            <DarkLightModeMenuSecondaryItem key='darkmode' />,
           ]}
         >
           <MenuFabItem href='/'>

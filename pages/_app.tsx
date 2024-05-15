@@ -3,12 +3,11 @@ import { GraphQLProvider } from '@graphcommerce/graphql'
 import { GlobalHead } from '@graphcommerce/magento-store'
 import {
   CssAndFramerMotionProvider,
-  DarkLightModeThemeProvider,
   PageLoadIndicator,
 } from '@graphcommerce/next-ui'
-import { CssBaseline } from '@mui/material'
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { AppProps } from 'next/app'
-import { lightTheme, darkTheme } from '../components/theme'
+import { lightTheme } from '../components/theme'
 import { I18nProvider } from '../lib/i18n/I18nProvider'
 
 export default function ThemedApp(props: AppProps) {
@@ -19,12 +18,12 @@ export default function ThemedApp(props: AppProps) {
     <CssAndFramerMotionProvider {...props}>
       <I18nProvider key={locale} locale={locale}>
         <GraphQLProvider {...props}>
-          <DarkLightModeThemeProvider light={lightTheme} dark={darkTheme}>
+          <ThemeProvider theme={lightTheme}>
             <GlobalHead />
             <CssBaseline />
             <PageLoadIndicator />
             <FramerNextPages {...props} />
-          </DarkLightModeThemeProvider>
+          </ThemeProvider>
         </GraphQLProvider>
       </I18nProvider>
     </CssAndFramerMotionProvider>

@@ -4,8 +4,7 @@
     "prettier"
   ],
   "parserOptions": {
-    "project": ["./tsconfig.json"],
-    "tsconfigRootDir": "."
+    "project": ["tsconfig.json"]
   },
-  "ignorePatterns": [".next", "types/**/*.ts", "*.gql.ts", "*.graphql"]
+  "ignorePatterns": [".next", "types/**/*.ts", "**/*.gql.ts", "**/*.graphql", "**/*.js"]
 }
