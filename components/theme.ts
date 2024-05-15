@@ -20,7 +20,7 @@ import {
   LinkProps,
   Components,
 } from "@mui/material";
-import { PaletteOptions } from "@mui/material/styles";
+import { PaletteOptions } from "@mui/material/styles/createPalette";
 
 const lightPalette: PaletteOptions = {
   mode: "light",
@@ -59,12 +59,6 @@ const lightPalette: PaletteOptions = {
     50: "#F8F4F1",
     100: "#F0EBE5",
     200: "#E6DFD6",
-  },
-  black: "#1A1110",
-  "dark-grey": {
-    main: "#E1DDDA",
-    light: "#F1EFEE",
-    dark: "#786E6D",
   },
   divider: "#00000015",
   action: {
@@ -114,8 +108,8 @@ const fontSize = (from: number, to: number) =>
 // Create a theme instance.
 const createThemeWithPalette = (palette: PaletteOptions) =>
   createTheme({
-    palette,
     ...themeBaseDefaults,
+    palette,
     shape: { borderRadius: 3 },
     typography: {
       fontFamily:
@@ -309,7 +303,7 @@ const createOverrides = (theme: Theme): Components<Theme> => ({
           },
           "&:hover": {
             backgroundColor: theme.palette.primary.light,
-          }
+          },
         },
       },
       {
