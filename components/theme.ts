@@ -60,6 +60,11 @@ const lightPalette: PaletteOptions = {
     100: "#F0EBE5",
     200: "#E6DFD6",
   },
+  darkGrey: {
+    main: "#E1DDDA",
+    light: "#F1EFEE",
+    dark: "#786E6D",
+  },
   divider: "#00000015",
   action: {
     hoverOpacity: 0.12,
@@ -70,37 +75,6 @@ const lightPalette: PaletteOptions = {
     disabled: "#03031735",
   },
 };
-
-// const darkPalette: PaletteOptions = {
-//   mode: "dark",
-//   primary: {
-//     main: "#62C7B0",
-//     contrastText: "#ffffff",
-//     dark: "#62C7B0",
-//   },
-//   secondary: {
-//     main: "#62C7B0",
-//     light: "#62C7B0",
-//     contrastText: "#ffffff",
-//   },
-//   background: {
-//     default: "#001727",
-//     paper: "#15293B",
-//     image: "#ffffff",
-//   },
-//   divider: "#ffffff30",
-//   success: {
-//     main: "#01D26A",
-//   },
-//   action: {
-//     hoverOpacity: 0.16,
-//   },
-//   text: {
-//     primary: "#ffffff",
-//     secondary: "#ffffff80",
-//     disabled: "#ffffff30",
-//   },
-// };
 
 const fontSize = (from: number, to: number) =>
   breakpointVal("fontSize", from, to, themeBaseDefaults.breakpoints.values);
