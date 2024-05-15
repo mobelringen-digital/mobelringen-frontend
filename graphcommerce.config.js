@@ -22,10 +22,7 @@ const config = {
     gallery: true,
     content: true,
     recaptcha: false,
-  },
-  debug: {
-    pluginStatus: true,
-  },
+  }
 }
 
 module.exports = config

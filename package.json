@@ -108,5 +108,13 @@
   "browserslist": [
     "> 1% in alt-EU",
     "not IE 11"
-  ]
+  ],
+  "prettier": "@graphcommerce/prettier-config-pwa",
+  "eslintConfig": {
+    "extends": "@graphcommerce/eslint-config-pwa",
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "ignorePatterns": [".next", "types/**/*.ts", "**/*.gql.ts", "**/*.graphql", "**/*.js"]
+  }
 }
