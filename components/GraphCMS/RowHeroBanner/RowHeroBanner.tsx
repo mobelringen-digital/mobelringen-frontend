@@ -4,9 +4,9 @@ import { VideoBanner } from "./components/VideoBanner";
 import { ImageBanner } from "./components/ImageBanner";
 
 export function RowHeroBanner(props: RowHeroBannerFragment) {
-  if (props.heroAsset.mimeType !== "video/mp4") {
-    return <ImageBanner {...props} />;
+  if (props.heroAsset.mimeType?.includes("video/")) {
+    return <VideoBanner {...props} />;
   }
 
-  return <VideoBanner {...props} />;
+  return <ImageBanner {...props} />;
 }
