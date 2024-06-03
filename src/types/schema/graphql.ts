@@ -1,0 +1,22845 @@
+/* eslint-disable */
+import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
+export type Maybe<T> = T | null;
+export type InputMaybe<T> = Maybe<T>;
+export type Exact<T extends { [key: string]: unknown }> = {
+  [K in keyof T]: T[K];
+};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
+export type MakeEmpty<
+  T extends { [key: string]: unknown },
+  K extends keyof T,
+> = { [_ in K]?: never };
+export type Incremental<T> =
+  | T
+  | {
+      [P in keyof T]?: P extends " $fragmentName" | "__typename" ? T[P] : never;
+    };
+/** All built-in and custom scalars, mapped to their actual values */
+export type Scalars = {
+  ID: { input: string; output: string };
+  String: { input: string; output: string };
+  Boolean: { input: boolean; output: boolean };
+  Int: { input: number; output: number };
+  Float: { input: number; output: number };
+  /** A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard for representation of dates using the Gregorian calendar. */
+  Date: { input: any; output: any };
+  /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the date-timeformat outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representationof dates and times using the Gregorian calendar. */
+  DateTime: { input: any; output: any };
+  Hex: { input: any; output: any };
+  /** Raw JSON value */
+  Json: { input: any; output: any };
+  /** The Long scalar type represents non-fractional signed whole numeric values. Long can represent values between -(2^63) and 2^63 - 1. */
+  Long: { input: any; output: any };
+  RGBAHue: { input: any; output: any };
+  RGBATransparency: { input: any; output: any };
+  /** Slate-compatible RichText AST */
+  RichTextAST: { input: any; output: any };
+};
+
+/** Defines the bundle products to add to the cart. */
+export type AddBundleProductsToCartInput = {
+  /** The ID of the cart. */
+  cart_id: Scalars["String"]["input"];
+  /** An array of bundle products to add. */
+  cart_items: Array<InputMaybe<BundleProductCartItemInput>>;
+};
+
+/** Contains details about the cart after adding bundle products. */
+export type AddBundleProductsToCartOutput = {
+  __typename?: "AddBundleProductsToCartOutput";
+  /** The cart after adding products. */
+  cart: Cart;
+};
+
+/** Defines the configurable products to add to the cart. */
+export type AddConfigurableProductsToCartInput = {
+  /** The ID of the cart. */
+  cart_id: Scalars["String"]["input"];
+  /** An array of configurable products to add. */
+  cart_items: Array<InputMaybe<ConfigurableProductCartItemInput>>;
+};
+
+/** Contains details about the cart after adding configurable products. */
+export type AddConfigurableProductsToCartOutput = {
+  __typename?: "AddConfigurableProductsToCartOutput";
+  /** The cart after adding products. */
+  cart: Cart;
+};
+
+export type AddDownloadableProductsToCartInput = {
+  /** The ID of the cart. */
+  cart_id: Scalars["String"]["input"];
+  /** An array of downloadable products to add. */
+  cart_items: Array<InputMaybe<DownloadableProductCartItemInput>>;
+};
+
+/** Contains details about the cart after adding downloadable products. */
+export type AddDownloadableProductsToCartOutput = {
+  __typename?: "AddDownloadableProductsToCartOutput";
+  /** The cart after adding products. */
+  cart: Cart;
+};
+
+/** Defines an item to add to the gift registry. */
+export type AddGiftRegistryItemInput = {
+  /** An array of options the customer has entered. */
+  entered_options?: InputMaybe<Array<InputMaybe<EnteredOptionInput>>>;
+  /** A brief note about the item. */
+  note?: InputMaybe<Scalars["String"]["input"]>;
+  /** For complex product types, the SKU of the parent product. */
+  parent_sku?: InputMaybe<Scalars["String"]["input"]>;
+  /** The quantity of the product to add. */
+  quantity: Scalars["Float"]["input"];
+  /** An array of strings corresponding to options the customer has selected. */
+  selected_options?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** The SKU of the product to add to the gift registry. */
+  sku: Scalars["String"]["input"];
+};
+
+/** Defines a new registrant. */
+export type AddGiftRegistryRegistrantInput = {
+  /** Additional attributes specified as a code-value pair. */
+  dynamic_attributes?: InputMaybe<
+    Array<InputMaybe<GiftRegistryDynamicAttributeInput>>
+  >;
+  /** The email address of the registrant. */
+  email: Scalars["String"]["input"];
+  /** The first name of the registrant. */
+  firstname: Scalars["String"]["input"];
+  /** The last name of the registrant. */
+  lastname: Scalars["String"]["input"];
+};
+
+/** Contains the results of a request to add registrants. */
+export type AddGiftRegistryRegistrantsOutput = {
+  __typename?: "AddGiftRegistryRegistrantsOutput";
+  /** The gift registry after adding registrants. */
+  gift_registry?: Maybe<GiftRegistry>;
+};
+
+/** Contains details about the cart after adding products to it. */
+export type AddProductsToCartOutput = {
+  __typename?: "AddProductsToCartOutput";
+  /** The cart after products have been added. */
+  cart: Cart;
+  /** Contains errors encountered while adding an item to the cart. */
+  user_errors: Array<Maybe<CartUserInputError>>;
+};
+
+/** Contains products to add to an existing compare list. */
+export type AddProductsToCompareListInput = {
+  /** An array of product IDs to add to the compare list. */
+  products: Array<InputMaybe<Scalars["ID"]["input"]>>;
+  /** The unique identifier of the compare list to modify. */
+  uid: Scalars["ID"]["input"];
+};
+
+/** Contains the customer's wish list and any errors encountered. */
+export type AddProductsToWishlistOutput = {
+  __typename?: "AddProductsToWishlistOutput";
+  /** An array of errors encountered while adding products to a wish list. */
+  user_errors: Array<Maybe<WishListUserInputError>>;
+  /** Contains the wish list with all items that were successfully added. */
+  wishlist: Wishlist;
+};
+
+/** Defines a return comment. */
+export type AddReturnCommentInput = {
+  /** The text added to the return request. */
+  comment_text: Scalars["String"]["input"];
+  /** The unique ID for a `Return` object. */
+  return_uid: Scalars["ID"]["input"];
+};
+
+/** Contains details about the return request. */
+export type AddReturnCommentOutput = {
+  __typename?: "AddReturnCommentOutput";
+  /** The modified return. */
+  return?: Maybe<Return>;
+};
+
+/** Defines tracking information to be added to the return. */
+export type AddReturnTrackingInput = {
+  /** The unique ID for a `ReturnShippingCarrier` object. */
+  carrier_uid: Scalars["ID"]["input"];
+  /** The unique ID for a `Returns` object. */
+  return_uid: Scalars["ID"]["input"];
+  /** The shipping tracking number for this return request. */
+  tracking_number: Scalars["String"]["input"];
+};
+
+/** Contains the response after adding tracking information. */
+export type AddReturnTrackingOutput = {
+  __typename?: "AddReturnTrackingOutput";
+  /** Details about the modified return. */
+  return?: Maybe<Return>;
+  /** Details about shipping for a return. */
+  return_shipping_tracking?: Maybe<ReturnShippingTracking>;
+};
+
+/** Defines the simple and group products to add to the cart. */
+export type AddSimpleProductsToCartInput = {
+  /** The unique ID of a `Cart` object. */
+  cart_id: Scalars["String"]["input"];
+  /** An array of simple and group items to add. */
+  cart_items: Array<InputMaybe<SimpleProductCartItemInput>>;
+};
+
+/** Contains details about the cart after adding simple or group products. */
+export type AddSimpleProductsToCartOutput = {
+  __typename?: "AddSimpleProductsToCartOutput";
+  /** The cart after adding products. */
+  cart: Cart;
+};
+
+/** Defines the virtual products to add to the cart. */
+export type AddVirtualProductsToCartInput = {
+  /** The unique ID of a `Cart` object. */
+  cart_id: Scalars["String"]["input"];
+  /** An array of virtual products to add. */
+  cart_items: Array<InputMaybe<VirtualProductCartItemInput>>;
+};
+
+/** Contains details about the cart after adding virtual products. */
+export type AddVirtualProductsToCartOutput = {
+  __typename?: "AddVirtualProductsToCartOutput";
+  /** The cart after adding products. */
+  cart: Cart;
+};
+
+/** Contains the resultant wish list and any error information. */
+export type AddWishlistItemsToCartOutput = {
+  __typename?: "AddWishlistItemsToCartOutput";
+  /** An array of errors encountered while adding products to the customer's cart. */
+  add_wishlist_items_to_cart_user_errors: Array<
+    Maybe<WishlistCartUserInputError>
+  >;
+  /** Indicates whether the attempt to add items to the customer's cart was successful. */
+  status: Scalars["Boolean"]["output"];
+  /** Contains the wish list with all items that were successfully added. */
+  wishlist: Wishlist;
+};
+
+export type Aggregate = {
+  __typename?: "Aggregate";
+  count: Scalars["Int"]["output"];
+};
+
+/** Contains information for each filterable option (such as price, category `UID`, and custom attributes). */
+export type Aggregation = {
+  __typename?: "Aggregation";
+  /** Attribute code of the aggregation group. */
+  attribute_code: Scalars["String"]["output"];
+  /** The number of options in the aggregation group. */
+  count?: Maybe<Scalars["Int"]["output"]>;
+  /** The attribute frontend input type model. */
+  frontend_input?: Maybe<Scalars["String"]["output"]>;
+  /** Whether the aggregation has more values to be displayed. */
+  has_more?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The aggregation display name. */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /** Array of options for the aggregation. */
+  options?: Maybe<Array<Maybe<AggregationOption>>>;
+  /** The relative position of the attribute in a layered navigation block. */
+  position?: Maybe<Scalars["Int"]["output"]>;
+  /** Whether the aggregation has an html attribute rel="nofollow" to be displayed at filter links of current attribute in Layered Navigation. */
+  rel_nofollow?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+/** An implementation of `AggregationOptionInterface`. */
+export type AggregationOption = AggregationOptionInterface & {
+  __typename?: "AggregationOption";
+  /** The number of items that match the aggregation option. */
+  count?: Maybe<Scalars["Int"]["output"]>;
+  /** The display label for an aggregation option. */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /** The internal ID that represents the value of the option. */
+  value: Scalars["String"]["output"];
+};
+
+/** Defines aggregation option fields. */
+export type AggregationOptionInterface = {
+  /** The number of items that match the aggregation option. */
+  count?: Maybe<Scalars["Int"]["output"]>;
+  /** The display label for an aggregation option. */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /** The internal ID that represents the value of the option. */
+  value: Scalars["String"]["output"];
+};
+
+/** Filter category aggregations in layered navigation. */
+export type AggregationsCategoryFilterInput = {
+  /** Indicates whether to include only direct subcategories or all children categories at all levels. */
+  includeDirectChildrenOnly?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** An input object that specifies the filters used in product aggregations. */
+export type AggregationsFilterInput = {
+  /** Filter category aggregations in layered navigation. */
+  category?: InputMaybe<AggregationsCategoryFilterInput>;
+};
+
+/** Contains the applied coupon code. */
+export type AppliedCoupon = {
+  __typename?: "AppliedCoupon";
+  /** The coupon code the shopper applied to the card. */
+  code: Scalars["String"]["output"];
+};
+
+/** Contains an applied gift card with applied and remaining balance. */
+export type AppliedGiftCard = {
+  __typename?: "AppliedGiftCard";
+  /** The amount applied to the current cart. */
+  applied_balance?: Maybe<Money>;
+  /** The gift card account code. */
+  code?: Maybe<Scalars["String"]["output"]>;
+  /** The remaining balance on the gift card. */
+  current_balance?: Maybe<Money>;
+  /** The expiration date of the gift card. */
+  expiration_date?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Contains the applied and current balances. */
+export type AppliedStoreCredit = {
+  __typename?: "AppliedStoreCredit";
+  /** The applied store credit balance to the current cart. */
+  applied_balance?: Maybe<Money>;
+  /** The current balance remaining on store credit. */
+  current_balance?: Maybe<Money>;
+  /** Indicates whether store credits are enabled. If the feature is disabled, then the current balance will not be returned. */
+  enabled?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+/** Specifies the coupon code to apply to the cart. */
+export type ApplyCouponToCartInput = {
+  /** The unique ID of a `Cart` object. */
+  cart_id: Scalars["String"]["input"];
+  /** A valid coupon code. */
+  coupon_code: Scalars["String"]["input"];
+};
+
+/** Contains details about the cart after applying a coupon. */
+export type ApplyCouponToCartOutput = {
+  __typename?: "ApplyCouponToCartOutput";
+  /** The cart after applying a coupon. */
+  cart: Cart;
+};
+
+/** Defines the input required to run the `applyGiftCardToCart` mutation. */
+export type ApplyGiftCardToCartInput = {
+  /** The unique ID that identifies the customer's cart. */
+  cart_id: Scalars["String"]["input"];
+  /** The gift card code to be applied to the cart. */
+  gift_card_code: Scalars["String"]["input"];
+};
+
+/** Defines the possible output for the `applyGiftCardToCart` mutation. */
+export type ApplyGiftCardToCartOutput = {
+  __typename?: "ApplyGiftCardToCartOutput";
+  /** Describes the contents of the specified shopping cart. */
+  cart: Cart;
+};
+
+/** Contains the customer cart. */
+export type ApplyRewardPointsToCartOutput = {
+  __typename?: "ApplyRewardPointsToCartOutput";
+  /** The customer cart after reward points are applied. */
+  cart: Cart;
+};
+
+/** Defines the input required to run the `applyStoreCreditToCart` mutation. */
+export type ApplyStoreCreditToCartInput = {
+  /** The unique ID that identifies the customer's cart. */
+  cart_id: Scalars["String"]["input"];
+};
+
+/** Defines the possible output for the `applyStoreCreditToCart` mutation. */
+export type ApplyStoreCreditToCartOutput = {
+  __typename?: "ApplyStoreCreditToCartOutput";
+  /** The contents of the specified shopping cart. */
+  cart: Cart;
+};
+
+/** AreaInput defines the parameters which will be used for filter by specified location. */
+export type AreaInput = {
+  /** The radius for the search in KM. */
+  radius: Scalars["Int"]["input"];
+  /** The country code where search must be performed. Required parameter together with region, city or postcode. */
+  search_term: Scalars["String"]["input"];
+};
+
+/** Asset system model */
+export type Asset = Entity &
+  Node & {
+    __typename?: "Asset";
+    bannerImageBanner: Array<Banner>;
+    /** The time the document was created */
+    createdAt: Scalars["DateTime"]["output"];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    /** Get the document in other stages */
+    documentInStages: Array<Asset>;
+    /** The file name */
+    fileName: Scalars["String"]["output"];
+    /** The file handle */
+    handle: Scalars["String"]["output"];
+    /** The height of the file */
+    height?: Maybe<Scalars["Float"]["output"]>;
+    /** List of Asset versions */
+    history: Array<Version>;
+    /** The unique identifier */
+    id: Scalars["ID"]["output"];
+    /** System Locale field */
+    locale: Locale;
+    /** Get the other localizations for this document */
+    localizations: Array<Asset>;
+    /** The mime type of the file */
+    mimeType?: Maybe<Scalars["String"]["output"]>;
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    scheduledIn: Array<ScheduledOperation>;
+    /** The file size */
+    size?: Maybe<Scalars["Float"]["output"]>;
+    /** System stage field */
+    stage: Stage;
+    /** The time the document was updated */
+    updatedAt: Scalars["DateTime"]["output"];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+    /** Returns information you need to upload the asset. The type of upload is dependant on what you pass into asset creations as upload type. */
+    upload?: Maybe<AssetUpload>;
+    /** Get the url for the asset with provided transformations applied. */
+    url: Scalars["String"]["output"];
+    /** The file width */
+    width?: Maybe<Scalars["Float"]["output"]>;
+  };
+
+/** Asset system model */
+export type AssetBannerImageBannerArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<BannerOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<BannerWhereInput>;
+};
+
+/** Asset system model */
+export type AssetCreatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+/** Asset system model */
+export type AssetCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+/** Asset system model */
+export type AssetDocumentInStagesArgs = {
+  includeCurrent?: Scalars["Boolean"]["input"];
+  inheritLocale?: Scalars["Boolean"]["input"];
+  stages?: Array<Stage>;
+};
+
+/** Asset system model */
+export type AssetHistoryArgs = {
+  limit?: Scalars["Int"]["input"];
+  skip?: Scalars["Int"]["input"];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+/** Asset system model */
+export type AssetLocalizationsArgs = {
+  includeCurrent?: Scalars["Boolean"]["input"];
+  locales?: Array<Locale>;
+};
+
+/** Asset system model */
+export type AssetPublishedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+/** Asset system model */
+export type AssetPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+/** Asset system model */
+export type AssetScheduledInArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+/** Asset system model */
+export type AssetUpdatedAtArgs = {
+  variation?: SystemDateTimeFieldVariation;
+};
+
+/** Asset system model */
+export type AssetUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+/** Asset system model */
+export type AssetUrlArgs = {
+  transformation?: InputMaybe<AssetTransformationInput>;
+};
+
+export type AssetConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: AssetWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type AssetConnection = {
+  __typename?: "AssetConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<AssetEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type AssetCreateInput = {
+  bannerImageBanner?: InputMaybe<BannerCreateManyInlineInput>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  fileName?: InputMaybe<Scalars["String"]["input"]>;
+  imageImageLink?: InputMaybe<ImageLinkCreateManyInlineInput>;
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: InputMaybe<AssetCreateLocalizationsInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Optionally the system can upload a file for you, for that you need to provide a publicly accessible url */
+  uploadUrl?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type AssetCreateLocalizationDataInput = {
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  fileName?: InputMaybe<Scalars["String"]["input"]>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Optionally the system can upload a file for you, for that you need to provide a publicly accessible url */
+  uploadUrl?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type AssetCreateLocalizationInput = {
+  /** Localization input */
+  data: AssetCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type AssetCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: InputMaybe<Array<AssetCreateLocalizationInput>>;
+};
+
+export type AssetCreateManyInlineInput = {
+  /** Connect multiple existing Asset documents */
+  connect?: InputMaybe<Array<AssetWhereUniqueInput>>;
+  /** Create and connect multiple existing Asset documents */
+  create?: InputMaybe<Array<AssetCreateInput>>;
+};
+
+export type AssetCreateOneInlineInput = {
+  /** Connect one existing Asset document */
+  connect?: InputMaybe<AssetWhereUniqueInput>;
+  /** Create and connect one Asset document */
+  create?: InputMaybe<AssetCreateInput>;
+};
+
+/** An edge in a connection. */
+export type AssetEdge = {
+  __typename?: "AssetEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: Asset;
+};
+
+/** Identifies documents */
+export type AssetManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<AssetWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<AssetWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<AssetWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  bannerImageBanner_every?: InputMaybe<BannerWhereInput>;
+  bannerImageBanner_none?: InputMaybe<BannerWhereInput>;
+  bannerImageBanner_some?: InputMaybe<BannerWhereInput>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<AssetWhereStageInput>;
+  documentInStages_none?: InputMaybe<AssetWhereStageInput>;
+  documentInStages_some?: InputMaybe<AssetWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+  upload?: InputMaybe<AssetUploadWhereInput>;
+};
+
+export enum AssetOrderByInput {
+  CreatedAtAsc = "createdAt_ASC",
+  CreatedAtDesc = "createdAt_DESC",
+  FileNameAsc = "fileName_ASC",
+  FileNameDesc = "fileName_DESC",
+  HandleAsc = "handle_ASC",
+  HandleDesc = "handle_DESC",
+  HeightAsc = "height_ASC",
+  HeightDesc = "height_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  MimeTypeAsc = "mimeType_ASC",
+  MimeTypeDesc = "mimeType_DESC",
+  PublishedAtAsc = "publishedAt_ASC",
+  PublishedAtDesc = "publishedAt_DESC",
+  SizeAsc = "size_ASC",
+  SizeDesc = "size_DESC",
+  UpdatedAtAsc = "updatedAt_ASC",
+  UpdatedAtDesc = "updatedAt_DESC",
+  WidthAsc = "width_ASC",
+  WidthDesc = "width_DESC",
+}
+
+/** Identifies documents */
+export type AssetSingleRelationWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<AssetSingleRelationWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<AssetSingleRelationWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<AssetSingleRelationWhereInput>>;
+  upload?: InputMaybe<AssetUploadWhereInput>;
+};
+
+/** Transformations for Assets */
+export type AssetTransformationInput = {
+  document?: InputMaybe<DocumentTransformationInput>;
+  image?: InputMaybe<ImageTransformationInput>;
+  /** Pass true if you want to validate the passed transformation parameters */
+  validateOptions?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type AssetUpdateInput = {
+  bannerImageBanner?: InputMaybe<BannerUpdateManyInlineInput>;
+  fileName?: InputMaybe<Scalars["String"]["input"]>;
+  imageImageLink?: InputMaybe<ImageLinkUpdateManyInlineInput>;
+  /** Manage document localizations */
+  localizations?: InputMaybe<AssetUpdateLocalizationsInput>;
+  /** Use this to define if its a reupload for the asset */
+  reUpload?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Optionally the system can upload a file for you, for that you need to provide a publicly accessible url */
+  uploadUrl?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type AssetUpdateLocalizationDataInput = {
+  fileName?: InputMaybe<Scalars["String"]["input"]>;
+  /** Use this to define if its a reupload for the asset */
+  reUpload?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Optionally the system can upload a file for you, for that you need to provide a publicly accessible url */
+  uploadUrl?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type AssetUpdateLocalizationInput = {
+  data: AssetUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type AssetUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: InputMaybe<Array<AssetCreateLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: InputMaybe<Array<Locale>>;
+  /** Localizations to update */
+  update?: InputMaybe<Array<AssetUpdateLocalizationInput>>;
+  upsert?: InputMaybe<Array<AssetUpsertLocalizationInput>>;
+};
+
+export type AssetUpdateManyInlineInput = {
+  /** Connect multiple existing Asset documents */
+  connect?: InputMaybe<Array<AssetConnectInput>>;
+  /** Create and connect multiple Asset documents */
+  create?: InputMaybe<Array<AssetCreateInput>>;
+  /** Delete multiple Asset documents */
+  delete?: InputMaybe<Array<AssetWhereUniqueInput>>;
+  /** Disconnect multiple Asset documents */
+  disconnect?: InputMaybe<Array<AssetWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing Asset documents */
+  set?: InputMaybe<Array<AssetWhereUniqueInput>>;
+  /** Update multiple Asset documents */
+  update?: InputMaybe<Array<AssetUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Asset documents */
+  upsert?: InputMaybe<Array<AssetUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type AssetUpdateManyInput = {
+  /** No fields in updateMany data input */
+  _?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type AssetUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: AssetUpdateManyInput;
+  /** Document search */
+  where: AssetWhereInput;
+};
+
+export type AssetUpdateOneInlineInput = {
+  /** Connect existing Asset document */
+  connect?: InputMaybe<AssetWhereUniqueInput>;
+  /** Create and connect one Asset document */
+  create?: InputMaybe<AssetCreateInput>;
+  /** Delete currently connected Asset document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected Asset document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single Asset document */
+  update?: InputMaybe<AssetUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Asset document */
+  upsert?: InputMaybe<AssetUpsertWithNestedWhereUniqueInput>;
+};
+
+export type AssetUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: AssetUpdateInput;
+  /** Unique document search */
+  where: AssetWhereUniqueInput;
+};
+
+/** Asset Upload */
+export type AssetUpload = {
+  __typename?: "AssetUpload";
+  /** Asset Upload Error */
+  error?: Maybe<AssetUploadError>;
+  /** Expiry Timestamp */
+  expiresAt?: Maybe<Scalars["DateTime"]["output"]>;
+  /** Asset Request Data for upload */
+  requestPostData?: Maybe<AssetUploadRequestPostData>;
+  /** Asset Request Data for upload */
+  status?: Maybe<AssetUploadStatus>;
+};
+
+/** Represents asset upload error */
+export type AssetUploadError = {
+  __typename?: "AssetUploadError";
+  code: Scalars["String"]["output"];
+  message: Scalars["String"]["output"];
+};
+
+/** Asset Upload Request Post Data */
+export type AssetUploadRequestPostData = {
+  __typename?: "AssetUploadRequestPostData";
+  /** The algorithm to use in the form field. This value should be passed in the `X-Amz-Algorithm` form field. */
+  algorithm: Scalars["String"]["output"];
+  /** The credential to use in the form field. This value should be passed in the `X-Amz-Credential` form field. */
+  credential: Scalars["String"]["output"];
+  /** The date the request was signed, formatted as YYYYMMDDTHHMMSSZ. This value should be passed in the `X-Amz-Date` header. */
+  date: Scalars["String"]["output"];
+  /** The key to use in the form field. This value should be passed in the `Key` form field. */
+  key: Scalars["String"]["output"];
+  /** The policy to use in the form field. This value should be passed in the `Policy` form field. */
+  policy: Scalars["String"]["output"];
+  /** The security token to use in the form field. This field is optional only pass it if its not null. This value should be passed in the `X-Amz-Security-Token` form field if not null. */
+  securityToken?: Maybe<Scalars["String"]["output"]>;
+  /** The signature to use in the form field. This value should be passed in the `X-Amz-Signature` form field. */
+  signature: Scalars["String"]["output"];
+  /** The URL to which the file should be uploaded with a POST request. */
+  url: Scalars["String"]["output"];
+};
+
+/** System Asset Upload Status */
+export enum AssetUploadStatus {
+  AssetCreatePending = "ASSET_CREATE_PENDING",
+  AssetErrorUpload = "ASSET_ERROR_UPLOAD",
+  AssetUpdatePending = "ASSET_UPDATE_PENDING",
+  AssetUploadComplete = "ASSET_UPLOAD_COMPLETE",
+}
+
+/** Identifies documents */
+export type AssetUploadWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<AssetUploadWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<AssetUploadWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<AssetUploadWhereInput>>;
+  expiresAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  expiresAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  expiresAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  expiresAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  expiresAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  expiresAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  expiresAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  expiresAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  status?: InputMaybe<AssetUploadStatus>;
+  /** All values that are contained in given list. */
+  status_in?: InputMaybe<Array<InputMaybe<AssetUploadStatus>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  status_not?: InputMaybe<AssetUploadStatus>;
+  /** All values that are not contained in given list. */
+  status_not_in?: InputMaybe<Array<InputMaybe<AssetUploadStatus>>>;
+};
+
+/** Identifies documents */
+export type AssetUploadWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<AssetUploadWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<AssetUploadWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<AssetUploadWhereInput>>;
+  expiresAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  expiresAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  expiresAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  expiresAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  expiresAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  expiresAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  expiresAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  expiresAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  status?: InputMaybe<AssetUploadStatus>;
+  /** All values that are contained in given list. */
+  status_in?: InputMaybe<Array<InputMaybe<AssetUploadStatus>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  status_not?: InputMaybe<AssetUploadStatus>;
+  /** All values that are not contained in given list. */
+  status_not_in?: InputMaybe<Array<InputMaybe<AssetUploadStatus>>>;
+};
+
+export type AssetUpsertInput = {
+  /** Create document if it didn't exist */
+  create: AssetCreateInput;
+  /** Update document if it exists */
+  update: AssetUpdateInput;
+};
+
+export type AssetUpsertLocalizationInput = {
+  create: AssetCreateLocalizationDataInput;
+  locale: Locale;
+  update: AssetUpdateLocalizationDataInput;
+};
+
+export type AssetUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: AssetUpsertInput;
+  /** Unique document search */
+  where: AssetWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type AssetWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Identifies documents */
+export type AssetWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<AssetWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<AssetWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<AssetWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  bannerImageBanner_every?: InputMaybe<BannerWhereInput>;
+  bannerImageBanner_none?: InputMaybe<BannerWhereInput>;
+  bannerImageBanner_some?: InputMaybe<BannerWhereInput>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<AssetWhereStageInput>;
+  documentInStages_none?: InputMaybe<AssetWhereStageInput>;
+  documentInStages_some?: InputMaybe<AssetWhereStageInput>;
+  fileName?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  fileName_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  fileName_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  fileName_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  fileName_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  fileName_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  fileName_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  fileName_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  fileName_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  fileName_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  handle?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  handle_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  handle_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  handle_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  handle_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  handle_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  handle_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  handle_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  handle_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  handle_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  height?: InputMaybe<Scalars["Float"]["input"]>;
+  /** All values greater than the given value. */
+  height_gt?: InputMaybe<Scalars["Float"]["input"]>;
+  /** All values greater than or equal the given value. */
+  height_gte?: InputMaybe<Scalars["Float"]["input"]>;
+  /** All values that are contained in given list. */
+  height_in?: InputMaybe<Array<InputMaybe<Scalars["Float"]["input"]>>>;
+  /** All values less than the given value. */
+  height_lt?: InputMaybe<Scalars["Float"]["input"]>;
+  /** All values less than or equal the given value. */
+  height_lte?: InputMaybe<Scalars["Float"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  height_not?: InputMaybe<Scalars["Float"]["input"]>;
+  /** All values that are not contained in given list. */
+  height_not_in?: InputMaybe<Array<InputMaybe<Scalars["Float"]["input"]>>>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  mimeType?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  mimeType_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  mimeType_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  mimeType_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  mimeType_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  mimeType_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  mimeType_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  mimeType_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  mimeType_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  mimeType_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  size?: InputMaybe<Scalars["Float"]["input"]>;
+  /** All values greater than the given value. */
+  size_gt?: InputMaybe<Scalars["Float"]["input"]>;
+  /** All values greater than or equal the given value. */
+  size_gte?: InputMaybe<Scalars["Float"]["input"]>;
+  /** All values that are contained in given list. */
+  size_in?: InputMaybe<Array<InputMaybe<Scalars["Float"]["input"]>>>;
+  /** All values less than the given value. */
+  size_lt?: InputMaybe<Scalars["Float"]["input"]>;
+  /** All values less than or equal the given value. */
+  size_lte?: InputMaybe<Scalars["Float"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  size_not?: InputMaybe<Scalars["Float"]["input"]>;
+  /** All values that are not contained in given list. */
+  size_not_in?: InputMaybe<Array<InputMaybe<Scalars["Float"]["input"]>>>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+  upload?: InputMaybe<AssetUploadWhereInput>;
+  width?: InputMaybe<Scalars["Float"]["input"]>;
+  /** All values greater than the given value. */
+  width_gt?: InputMaybe<Scalars["Float"]["input"]>;
+  /** All values greater than or equal the given value. */
+  width_gte?: InputMaybe<Scalars["Float"]["input"]>;
+  /** All values that are contained in given list. */
+  width_in?: InputMaybe<Array<InputMaybe<Scalars["Float"]["input"]>>>;
+  /** All values less than the given value. */
+  width_lt?: InputMaybe<Scalars["Float"]["input"]>;
+  /** All values less than or equal the given value. */
+  width_lte?: InputMaybe<Scalars["Float"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  width_not?: InputMaybe<Scalars["Float"]["input"]>;
+  /** All values that are not contained in given list. */
+  width_not_in?: InputMaybe<Array<InputMaybe<Scalars["Float"]["input"]>>>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type AssetWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<AssetWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<AssetWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<AssetWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<AssetWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References Asset record uniquely */
+export type AssetWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+/** Contains the results of the request to assign a compare list. */
+export type AssignCompareListToCustomerOutput = {
+  __typename?: "AssignCompareListToCustomerOutput";
+  /** The contents of the customer's compare list. */
+  compare_list?: Maybe<CompareList>;
+  /** Indicates whether the compare list was successfully assigned to the customer. */
+  result: Scalars["Boolean"]["output"];
+};
+
+/** Contains details about the attribute, including the code and type. */
+export type Attribute = {
+  __typename?: "Attribute";
+  /** The unique identifier for an attribute code. This value should be in lowercase letters without spaces. */
+  attribute_code?: Maybe<Scalars["String"]["output"]>;
+  /** Attribute options list. */
+  attribute_options?: Maybe<Array<Maybe<AttributeOption>>>;
+  /** The data type of the attribute. */
+  attribute_type?: Maybe<Scalars["String"]["output"]>;
+  /** The type of entity that defines the attribute. */
+  entity_type?: Maybe<Scalars["String"]["output"]>;
+  /** The frontend input type of the attribute. */
+  input_type?: Maybe<Scalars["String"]["output"]>;
+  /** Details about the storefront properties configured for the attribute. */
+  storefront_properties?: Maybe<StorefrontProperties>;
+};
+
+/** Defines the attribute characteristics to search for the `attribute_code` and `entity_type` to search. */
+export type AttributeInput = {
+  /** The unique identifier for an attribute code. This value should be in lowercase letters without spaces. */
+  attribute_code?: InputMaybe<Scalars["String"]["input"]>;
+  /** The type of entity that defines the attribute. */
+  entity_type?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Defines an attribute option. */
+export type AttributeOption = {
+  __typename?: "AttributeOption";
+  /** The label assigned to the attribute option. */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /** The attribute option value. */
+  value?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Describes a payment method that the shopper can use to pay for the order. */
+export type AvailablePaymentMethod = {
+  __typename?: "AvailablePaymentMethod";
+  /** The payment method code. */
+  code: Scalars["String"]["output"];
+  /** If the payment method is an online integration */
+  is_deferred: Scalars["Boolean"]["output"];
+  /** The payment method title. */
+  title: Scalars["String"]["output"];
+};
+
+/** Contains details about the possible shipping methods and carriers. */
+export type AvailableShippingMethod = {
+  __typename?: "AvailableShippingMethod";
+  /** The cost of shipping using this shipping method. */
+  amount: Money;
+  /** Indicates whether this shipping method can be applied to the cart. */
+  available: Scalars["Boolean"]["output"];
+  /** @deprecated The field should not be used on the storefront. */
+  base_amount?: Maybe<Money>;
+  /** A string that identifies a commercial carrier or an offline shipping method. */
+  carrier_code: Scalars["String"]["output"];
+  /** The label for the carrier code. */
+  carrier_title: Scalars["String"]["output"];
+  /** Describes an error condition. */
+  error_message?: Maybe<Scalars["String"]["output"]>;
+  /** A shipping method code associated with a carrier. The value could be null if no method is available. */
+  method_code?: Maybe<Scalars["String"]["output"]>;
+  /** The label for the shipping method code. The value could be null if no method is available. */
+  method_title?: Maybe<Scalars["String"]["output"]>;
+  /** The cost of shipping using this shipping method, excluding tax. */
+  price_excl_tax: Money;
+  /** The cost of shipping using this shipping method, including tax. */
+  price_incl_tax: Money;
+};
+
+export type Banner = Entity &
+  Node & {
+    __typename?: "Banner";
+    alt?: Maybe<Scalars["String"]["output"]>;
+    bannerImage?: Maybe<Asset>;
+    /** The time the document was created */
+    createdAt: Scalars["DateTime"]["output"];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    /** Get the document in other stages */
+    documentInStages: Array<Banner>;
+    /** List of Banner versions */
+    history: Array<Version>;
+    /** The unique identifier */
+    id: Scalars["ID"]["output"];
+    identify?: Maybe<Scalars["String"]["output"]>;
+    pages: Array<Page>;
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    scheduledIn: Array<ScheduledOperation>;
+    /** System stage field */
+    stage: Stage;
+    /** The time the document was updated */
+    updatedAt: Scalars["DateTime"]["output"];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+  };
+
+export type BannerBannerImageArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  where?: InputMaybe<AssetSingleRelationWhereInput>;
+};
+
+export type BannerCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type BannerDocumentInStagesArgs = {
+  includeCurrent?: Scalars["Boolean"]["input"];
+  inheritLocale?: Scalars["Boolean"]["input"];
+  stages?: Array<Stage>;
+};
+
+export type BannerHistoryArgs = {
+  limit?: Scalars["Int"]["input"];
+  skip?: Scalars["Int"]["input"];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+export type BannerPagesArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<PageWhereInput>;
+};
+
+export type BannerPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type BannerScheduledInArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+export type BannerUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type BannerConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: BannerWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type BannerConnection = {
+  __typename?: "BannerConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<BannerEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type BannerCreateInput = {
+  alt?: InputMaybe<Scalars["String"]["input"]>;
+  bannerImage?: InputMaybe<AssetCreateOneInlineInput>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  pages?: InputMaybe<PageCreateManyInlineInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+};
+
+export type BannerCreateManyInlineInput = {
+  /** Connect multiple existing Banner documents */
+  connect?: InputMaybe<Array<BannerWhereUniqueInput>>;
+  /** Create and connect multiple existing Banner documents */
+  create?: InputMaybe<Array<BannerCreateInput>>;
+};
+
+export type BannerCreateOneInlineInput = {
+  /** Connect one existing Banner document */
+  connect?: InputMaybe<BannerWhereUniqueInput>;
+  /** Create and connect one Banner document */
+  create?: InputMaybe<BannerCreateInput>;
+};
+
+/** An edge in a connection. */
+export type BannerEdge = {
+  __typename?: "BannerEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: Banner;
+};
+
+/** Identifies documents */
+export type BannerManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BannerWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BannerWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BannerWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  alt?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  alt_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  alt_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  alt_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  alt_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  alt_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  alt_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  alt_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  alt_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  alt_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  bannerImage?: InputMaybe<AssetWhereInput>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<BannerWhereStageInput>;
+  documentInStages_none?: InputMaybe<BannerWhereStageInput>;
+  documentInStages_some?: InputMaybe<BannerWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  identify_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  pages_every?: InputMaybe<PageWhereInput>;
+  pages_none?: InputMaybe<PageWhereInput>;
+  pages_some?: InputMaybe<PageWhereInput>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum BannerOrderByInput {
+  AltAsc = "alt_ASC",
+  AltDesc = "alt_DESC",
+  CreatedAtAsc = "createdAt_ASC",
+  CreatedAtDesc = "createdAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  IdentifyAsc = "identify_ASC",
+  IdentifyDesc = "identify_DESC",
+  PublishedAtAsc = "publishedAt_ASC",
+  PublishedAtDesc = "publishedAt_DESC",
+  UpdatedAtAsc = "updatedAt_ASC",
+  UpdatedAtDesc = "updatedAt_DESC",
+}
+
+export type BannerUpdateInput = {
+  alt?: InputMaybe<Scalars["String"]["input"]>;
+  bannerImage?: InputMaybe<AssetUpdateOneInlineInput>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  pages?: InputMaybe<PageUpdateManyInlineInput>;
+};
+
+export type BannerUpdateManyInlineInput = {
+  /** Connect multiple existing Banner documents */
+  connect?: InputMaybe<Array<BannerConnectInput>>;
+  /** Create and connect multiple Banner documents */
+  create?: InputMaybe<Array<BannerCreateInput>>;
+  /** Delete multiple Banner documents */
+  delete?: InputMaybe<Array<BannerWhereUniqueInput>>;
+  /** Disconnect multiple Banner documents */
+  disconnect?: InputMaybe<Array<BannerWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing Banner documents */
+  set?: InputMaybe<Array<BannerWhereUniqueInput>>;
+  /** Update multiple Banner documents */
+  update?: InputMaybe<Array<BannerUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Banner documents */
+  upsert?: InputMaybe<Array<BannerUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type BannerUpdateManyInput = {
+  alt?: InputMaybe<Scalars["String"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type BannerUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: BannerUpdateManyInput;
+  /** Document search */
+  where: BannerWhereInput;
+};
+
+export type BannerUpdateOneInlineInput = {
+  /** Connect existing Banner document */
+  connect?: InputMaybe<BannerWhereUniqueInput>;
+  /** Create and connect one Banner document */
+  create?: InputMaybe<BannerCreateInput>;
+  /** Delete currently connected Banner document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected Banner document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single Banner document */
+  update?: InputMaybe<BannerUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Banner document */
+  upsert?: InputMaybe<BannerUpsertWithNestedWhereUniqueInput>;
+};
+
+export type BannerUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: BannerUpdateInput;
+  /** Unique document search */
+  where: BannerWhereUniqueInput;
+};
+
+export type BannerUpsertInput = {
+  /** Create document if it didn't exist */
+  create: BannerCreateInput;
+  /** Update document if it exists */
+  update: BannerUpdateInput;
+};
+
+export type BannerUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: BannerUpsertInput;
+  /** Unique document search */
+  where: BannerWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type BannerWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Identifies documents */
+export type BannerWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BannerWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BannerWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BannerWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  alt?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  alt_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  alt_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  alt_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  alt_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  alt_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  alt_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  alt_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  alt_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  alt_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  bannerImage?: InputMaybe<AssetWhereInput>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<BannerWhereStageInput>;
+  documentInStages_none?: InputMaybe<BannerWhereStageInput>;
+  documentInStages_some?: InputMaybe<BannerWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  identify_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  pages_every?: InputMaybe<PageWhereInput>;
+  pages_none?: InputMaybe<PageWhereInput>;
+  pages_some?: InputMaybe<PageWhereInput>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type BannerWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BannerWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BannerWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BannerWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<BannerWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References Banner record uniquely */
+export type BannerWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+export enum BatchMutationStatus {
+  /** @deprecated  */
+  Failure = "FAILURE",
+  /** @deprecated  */
+  MixedResults = "MIXED_RESULTS",
+  /** @deprecated  */
+  Success = "SUCCESS",
+}
+
+export type BatchPayload = {
+  __typename?: "BatchPayload";
+  /** The number of nodes that have been affected by the Batch operation. */
+  count: Scalars["Long"]["output"];
+};
+
+/** Defines the billing address. */
+export type BillingAddressInput = {
+  /** Defines a billing address. */
+  address?: InputMaybe<CartAddressInput>;
+  /** An ID from the customer's address book that uniquely identifies the address to be used for billing. */
+  customer_address_id?: InputMaybe<Scalars["Int"]["input"]>;
+  /** Indicates whether to set the billing address to be the same as the existing shipping address on the cart. */
+  same_as_shipping?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Indicates whether to set the shipping address to be the same as this billing address. */
+  use_for_shipping?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Contains details about the billing address. */
+export type BillingCartAddress = CartAddressInterface & {
+  __typename?: "BillingCartAddress";
+  /** The city specified for the billing or shipping address. */
+  city: Scalars["String"]["output"];
+  /** The company specified for the billing or shipping address. */
+  company?: Maybe<Scalars["String"]["output"]>;
+  /** An object containing the country label and code. */
+  country: CartAddressCountry;
+  /** @deprecated The field is used only in shipping address. */
+  customer_notes?: Maybe<Scalars["String"]["output"]>;
+  /** The first name of the customer or guest. */
+  firstname: Scalars["String"]["output"];
+  /** The last name of the customer or guest. */
+  lastname: Scalars["String"]["output"];
+  /** The ZIP or postal code of the billing or shipping address. */
+  postcode?: Maybe<Scalars["String"]["output"]>;
+  /** An object containing the region label and code. */
+  region?: Maybe<CartAddressRegion>;
+  /** An array containing the street for the billing or shipping address. */
+  street: Array<Maybe<Scalars["String"]["output"]>>;
+  /** The telephone number for the billing or shipping address. */
+  telephone?: Maybe<Scalars["String"]["output"]>;
+  /** The unique id of the customer address. */
+  uid: Scalars["String"]["output"];
+  /** The VAT company number for billing or shipping address. */
+  vat_id?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type BraintreeCcVaultInput = {
+  device_data?: InputMaybe<Scalars["String"]["input"]>;
+  public_hash: Scalars["String"]["input"];
+};
+
+export type BraintreeInput = {
+  /** Contains a fingerprint provided by Braintree JS SDK and should be sent with sale transaction details to the Braintree payment gateway. */
+  device_data?: InputMaybe<Scalars["String"]["input"]>;
+  /** States whether an entered by a customer credit/debit card should be tokenized for later usage. Required only if Vault is enabled for Braintree payment integration. */
+  is_active_payment_token_enabler: Scalars["Boolean"]["input"];
+  /** The one-time payment token generated by Braintree payment gateway based on card details. Required field to make sale transaction. */
+  payment_method_nonce: Scalars["String"]["input"];
+};
+
+export type Brand = {
+  __typename?: "Brand";
+  brand_image_url?: Maybe<Scalars["String"]["output"]>;
+  name?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Contains details about an individual category that comprises a breadcrumb. */
+export type Breadcrumb = {
+  __typename?: "Breadcrumb";
+  /**
+   * The ID of the category.
+   * @deprecated Use `category_uid` instead.
+   */
+  category_id?: Maybe<Scalars["Int"]["output"]>;
+  /** The category level. */
+  category_level?: Maybe<Scalars["Int"]["output"]>;
+  /** The display name of the category. */
+  category_name?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `Breadcrumb` object. */
+  category_uid: Scalars["ID"]["output"];
+  /** The URL key of the category. */
+  category_url_key?: Maybe<Scalars["String"]["output"]>;
+  /** The URL path of the category. */
+  category_url_path?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** An implementation for bundle product cart items. */
+export type BundleCartItem = CartItemInterface & {
+  __typename?: "BundleCartItem";
+  /** The list of available gift wrapping options for the cart item. */
+  available_gift_wrapping: Array<Maybe<GiftWrapping>>;
+  /** An array containing the bundle options the shopper selected. */
+  bundle_options: Array<Maybe<SelectedBundleOption>>;
+  /** An array containing the customizable options the shopper selected. */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>;
+  /** An array of errors encountered while loading the cart item */
+  errors?: Maybe<Array<Maybe<CartItemError>>>;
+  /** The entered gift message for the cart item */
+  gift_message?: Maybe<GiftMessage>;
+  /** The selected gift wrapping for the cart item. */
+  gift_wrapping?: Maybe<GiftWrapping>;
+  /** @deprecated Use `uid` instead. */
+  id: Scalars["String"]["output"];
+  /** Indicates whether the product is available in the store */
+  is_in_store?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Contains details about the price of the item, including taxes and discounts. */
+  prices?: Maybe<CartItemPrices>;
+  /** Details about an item in the cart. */
+  product: ProductInterface;
+  /** The quantity of this item in the cart. */
+  quantity: Scalars["Float"]["output"];
+  /** The unique ID for a `CartItemInterface` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Defines bundle product options for `CreditMemoItemInterface`. */
+export type BundleCreditMemoItem = CreditMemoItemInterface & {
+  __typename?: "BundleCreditMemoItem";
+  /** A list of bundle options that are assigned to a bundle product that is part of a credit memo. */
+  bundle_options?: Maybe<Array<Maybe<ItemSelectedBundleOption>>>;
+  /** Details about the final discount amount for the base product, including discounts on options. */
+  discounts?: Maybe<Array<Maybe<Discount>>>;
+  /** The unique ID for a `CreditMemoItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** The order item the credit memo is applied to. */
+  order_item?: Maybe<OrderItemInterface>;
+  /** The name of the base product. */
+  product_name?: Maybe<Scalars["String"]["output"]>;
+  /** The sale price for the base product, including selected options. */
+  product_sale_price: Money;
+  /** The SKU of the base product. */
+  product_sku: Scalars["String"]["output"];
+  /** The number of refunded items. */
+  quantity_refunded?: Maybe<Scalars["Float"]["output"]>;
+};
+
+/** Defines bundle product options for `InvoiceItemInterface`. */
+export type BundleInvoiceItem = InvoiceItemInterface & {
+  __typename?: "BundleInvoiceItem";
+  /** A list of bundle options that are assigned to an invoiced bundle product. */
+  bundle_options?: Maybe<Array<Maybe<ItemSelectedBundleOption>>>;
+  /** Information about the final discount amount for the base product, including discounts on options. */
+  discounts?: Maybe<Array<Maybe<Discount>>>;
+  /** The unique ID for an `InvoiceItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** Details about an individual order item. */
+  order_item?: Maybe<OrderItemInterface>;
+  /** The name of the base product. */
+  product_name?: Maybe<Scalars["String"]["output"]>;
+  /** The sale price for the base product including selected options. */
+  product_sale_price: Money;
+  /** The SKU of the base product. */
+  product_sku: Scalars["String"]["output"];
+  /** The number of invoiced items. */
+  quantity_invoiced?: Maybe<Scalars["Float"]["output"]>;
+};
+
+/** Defines an individual item within a bundle product. */
+export type BundleItem = {
+  __typename?: "BundleItem";
+  /**
+   * An ID assigned to each type of item in a bundle product.
+   * @deprecated Use `uid` instead
+   */
+  option_id?: Maybe<Scalars["Int"]["output"]>;
+  /** An array of additional options for this bundle item. */
+  options?: Maybe<Array<Maybe<BundleItemOption>>>;
+  /** A number indicating the sequence order of this item compared to the other bundle items. */
+  position?: Maybe<Scalars["Int"]["output"]>;
+  /** The range of prices for the product */
+  price_range: PriceRange;
+  /** Indicates whether the item must be included in the bundle. */
+  required?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The SKU of the bundle product. */
+  sku?: Maybe<Scalars["String"]["output"]>;
+  /** The display name of the item. */
+  title?: Maybe<Scalars["String"]["output"]>;
+  /** The input type that the customer uses to select the item. Examples include radio button and checkbox. */
+  type?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `BundleItem` object. */
+  uid?: Maybe<Scalars["ID"]["output"]>;
+};
+
+/** Defines the characteristics that comprise a specific bundle item and its options. */
+export type BundleItemOption = {
+  __typename?: "BundleItemOption";
+  /** Indicates whether the customer can change the number of items for this option. */
+  can_change_quantity?: Maybe<Scalars["Boolean"]["output"]>;
+  /**
+   * The ID assigned to the bundled item option.
+   * @deprecated Use `uid` instead
+   */
+  id?: Maybe<Scalars["Int"]["output"]>;
+  /** Indicates whether this option is the default option. */
+  is_default?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The text that identifies the bundled item option. */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /** When a bundle item contains multiple options, the relative position of this option compared to the other options. */
+  position?: Maybe<Scalars["Int"]["output"]>;
+  /** The price of the selected option. */
+  price?: Maybe<Scalars["Float"]["output"]>;
+  /** One of FIXED, PERCENT, or DYNAMIC. */
+  price_type?: Maybe<PriceTypeEnum>;
+  /** Contains details about this product option. */
+  product?: Maybe<ProductInterface>;
+  /**
+   * Indicates the quantity of this specific bundle item.
+   * @deprecated Use `quantity` instead.
+   */
+  qty?: Maybe<Scalars["Float"]["output"]>;
+  /** The quantity of this specific bundle item. */
+  quantity?: Maybe<Scalars["Float"]["output"]>;
+  /** The unique ID for a `BundleItemOption` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Defines the input for a bundle option. */
+export type BundleOptionInput = {
+  /** The ID of the option. */
+  id: Scalars["Int"]["input"];
+  /** The number of the selected item to add to the cart. */
+  quantity: Scalars["Float"]["input"];
+  /** An array with the chosen value of the option. */
+  value: Array<InputMaybe<Scalars["String"]["input"]>>;
+};
+
+/** Defines bundle product options for `OrderItemInterface`. */
+export type BundleOrderItem = OrderItemInterface & {
+  __typename?: "BundleOrderItem";
+  /** A list of bundle options that are assigned to the bundle product. */
+  bundle_options?: Maybe<Array<Maybe<ItemSelectedBundleOption>>>;
+  /** The final discount information for the product. */
+  discounts?: Maybe<Array<Maybe<Discount>>>;
+  /** Indicates whether the order item is eligible to be in a return request. */
+  eligible_for_return?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The entered option for the base product, such as a logo or image. */
+  entered_options?: Maybe<Array<Maybe<OrderItemOption>>>;
+  /** The selected gift message for the order item */
+  gift_message?: Maybe<GiftMessage>;
+  /** The selected gift wrapping for the order item. */
+  gift_wrapping?: Maybe<GiftWrapping>;
+  /** The unique ID for an `OrderItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** The name of the base product. */
+  product_name?: Maybe<Scalars["String"]["output"]>;
+  /** The sale price of the base product, including selected options. */
+  product_sale_price: Money;
+  /** The SKU of the base product. */
+  product_sku: Scalars["String"]["output"];
+  /** The type of product, such as simple, configurable, etc. */
+  product_type?: Maybe<Scalars["String"]["output"]>;
+  /** URL key of the base product. */
+  product_url_key?: Maybe<Scalars["String"]["output"]>;
+  /** The number of canceled items. */
+  quantity_canceled?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of invoiced items. */
+  quantity_invoiced?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of units ordered for this item. */
+  quantity_ordered?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of refunded items. */
+  quantity_refunded?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of returned items. */
+  quantity_returned?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of shipped items. */
+  quantity_shipped?: Maybe<Scalars["Float"]["output"]>;
+  /** The selected options for the base product, such as color or size. */
+  selected_options?: Maybe<Array<Maybe<OrderItemOption>>>;
+  /** The status of the order item. */
+  status?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Defines basic features of a bundle product and contains multiple BundleItems. */
+export type BundleProduct = CustomizableProductInterface &
+  PhysicalProductInterface &
+  ProductInterface &
+  RoutableInterface & {
+    __typename?: "BundleProduct";
+    /** @deprecated Use the `custom_attributes` field instead. */
+    addable_to_cart?: Maybe<Scalars["Int"]["output"]>;
+    /**
+     * The attribute set assigned to the product.
+     * @deprecated The field should not be used on the storefront.
+     */
+    attribute_set_id?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    brand?: Maybe<Scalars["String"]["output"]>;
+    /** The relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled. */
+    canonical_url?: Maybe<Scalars["String"]["output"]>;
+    /** The categories assigned to a product. */
+    categories?: Maybe<Array<Maybe<CategoryInterface>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    color?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    configuration?: Maybe<Scalars["String"]["output"]>;
+    /** The product's country of origin. */
+    country_of_manufacture?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * Timestamp indicating when the product was created.
+     * @deprecated The field should not be used on the storefront.
+     */
+    created_at?: Maybe<Scalars["String"]["output"]>;
+    /** An array of cross-sell products. */
+    crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    delivery_promise?: Maybe<Scalars["String"]["output"]>;
+    /** Detailed information about the product. The value can include simple HTML tags. */
+    description?: Maybe<ComplexTextValue>;
+    /** Indicates whether the bundle product has a dynamic price. */
+    dynamic_price?: Maybe<Scalars["Boolean"]["output"]>;
+    /** Indicates whether the bundle product has a dynamic SKU. */
+    dynamic_sku?: Maybe<Scalars["Boolean"]["output"]>;
+    /** Indicates whether the bundle product has a dynamically calculated weight. */
+    dynamic_weight?: Maybe<Scalars["Boolean"]["output"]>;
+    /** Indicates whether a gift message is available. */
+    gift_message_available?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * The ID number assigned to the product.
+     * @deprecated Use the `uid` field instead.
+     */
+    id?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    ifsite?: Maybe<Scalars["String"]["output"]>;
+    /** The relative path to the main image on the product page. */
+    image?: Maybe<ProductImage>;
+    /** Indicates whether the product can be returned. */
+    is_returnable?: Maybe<Scalars["String"]["output"]>;
+    /** An array containing information about individual bundle items. */
+    items?: Maybe<Array<Maybe<BundleItem>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    maintenance_description?: Maybe<Scalars["String"]["output"]>;
+    /** A number representing the product's manufacturer. */
+    manufacturer?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_1?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_2?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_depth?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_diameter?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_gross_weight?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_height?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_length?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_seat_height?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_thickness?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_volume?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_width?: Maybe<Scalars["String"]["output"]>;
+    /** An array of media gallery objects. */
+    media_gallery?: Maybe<Array<Maybe<MediaGalleryInterface>>>;
+    /**
+     * An array of MediaGalleryEntry objects.
+     * @deprecated Use `media_gallery` instead.
+     */
+    media_gallery_entries?: Maybe<Array<Maybe<MediaGalleryEntry>>>;
+    /** A brief overview of the product for search results listings, maximum 255 characters. */
+    meta_description?: Maybe<Scalars["String"]["output"]>;
+    /** A comma-separated list of keywords that are visible only to search engines. */
+    meta_keyword?: Maybe<Scalars["String"]["output"]>;
+    /** A string that is displayed in the title bar and tab of the browser and in search results lists. */
+    meta_title?: Maybe<Scalars["String"]["output"]>;
+    /** The product name. Customers use this name to identify the product. */
+    name?: Maybe<Scalars["String"]["output"]>;
+    /** The beginning date for new product listings, and determines if the product is featured as a new product. */
+    new_from_date?: Maybe<Scalars["String"]["output"]>;
+    /** The end date for new product listings. */
+    new_to_date?: Maybe<Scalars["String"]["output"]>;
+    /** Product stock only x left count */
+    only_x_left_in_stock?: Maybe<Scalars["Float"]["output"]>;
+    /** An array of options for a customizable product. */
+    options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>;
+    /** If the product has multiple options, determines where they appear on the product page. */
+    options_container?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * Indicates the price of an item.
+     * @deprecated Use `price_range` for product price information.
+     */
+    price?: Maybe<ProductPrices>;
+    /** The range of prices for the product */
+    price_range: PriceRange;
+    /** An array of `TierPrice` objects. */
+    price_tiers?: Maybe<Array<Maybe<TierPrice>>>;
+    /** One of PRICE_RANGE or AS_LOW_AS. */
+    price_view?: Maybe<PriceViewEnum>;
+    productBrand?: Maybe<Brand>;
+    /** Get product labels. */
+    productLabel?: Maybe<Label>;
+    /** An array of `ProductLinks` objects. */
+    product_links?: Maybe<Array<Maybe<ProductLinksInterface>>>;
+    /** The average of all the ratings given to the product. */
+    rating_summary: Scalars["Float"]["output"];
+    /** Contains 0 when there is no redirect error. A value of 301 indicates the URL of the requested resource has been changed permanently, while a value of 302 indicates a temporary redirect. */
+    redirect_code: Scalars["Int"]["output"];
+    /** An array of related products. */
+    related_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** The internal relative URL. If the specified URL is a redirect, the query returns the redirected URL, not the original. */
+    relative_url?: Maybe<Scalars["String"]["output"]>;
+    /** The total count of all the reviews given to the product. */
+    review_count: Scalars["Int"]["output"];
+    /** The list of products reviews. */
+    reviews: ProductReviews;
+    /** Products from the same series */
+    series?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    series_group?: Maybe<Scalars["String"]["output"]>;
+    /** Indicates whether to ship bundle items together or individually. */
+    ship_bundle_items?: Maybe<ShipBundleItemsEnum>;
+    /** A short description of the product. Its use depends on the theme. */
+    short_description?: Maybe<ComplexTextValue>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    size_filter?: Maybe<Scalars["String"]["output"]>;
+    /** A number or code assigned to a product to identify the product, options, price, and manufacturer. */
+    sku?: Maybe<Scalars["String"]["output"]>;
+    /** The relative path to the small image, which is used on catalog pages. */
+    small_image?: Maybe<ProductImage>;
+    /**
+     * The beginning date that a product has a special price.
+     * @deprecated The field should not be used on the storefront.
+     */
+    special_from_date?: Maybe<Scalars["String"]["output"]>;
+    /** The discounted price of the product. */
+    special_price?: Maybe<Scalars["Float"]["output"]>;
+    /** The end date for a product with a special price. */
+    special_to_date?: Maybe<Scalars["String"]["output"]>;
+    /** Indicates whether the product is staged for a future campaign. */
+    staged: Scalars["Boolean"]["output"];
+    /** Stock status of the product */
+    stock_status?: Maybe<ProductStockStatus>;
+    /** An array containing information about all the stores with product quantities. */
+    stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
+    /** The file name of a swatch image. */
+    swatch_image?: Maybe<Scalars["String"]["output"]>;
+    /** The relative path to the product's thumbnail image. */
+    thumbnail?: Maybe<ProductImage>;
+    /**
+     * The price when tier pricing is in effect and the items purchased threshold has been reached.
+     * @deprecated Use `price_tiers` for product tier price information.
+     */
+    tier_price?: Maybe<Scalars["Float"]["output"]>;
+    /**
+     * An array of ProductTierPrices objects.
+     * @deprecated Use `price_tiers` for product tier price information.
+     */
+    tier_prices?: Maybe<Array<Maybe<ProductTierPrices>>>;
+    /** One of PRODUCT, CATEGORY, or CMS_PAGE. */
+    type?: Maybe<UrlRewriteEntityTypeEnum>;
+    /**
+     * One of simple, virtual, bundle, downloadable, grouped, or configurable.
+     * @deprecated Use `__typename` instead.
+     */
+    type_id?: Maybe<Scalars["String"]["output"]>;
+    /** The unique ID for a `ProductInterface` object. */
+    uid: Scalars["ID"]["output"];
+    /**
+     * Timestamp indicating when the product was updated.
+     * @deprecated The field should not be used on the storefront.
+     */
+    updated_at?: Maybe<Scalars["String"]["output"]>;
+    /** An array of up-sell products. */
+    upsell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** The part of the URL that identifies the product */
+    url_key?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use product's `canonical_url` or url rewrites instead */
+    url_path?: Maybe<Scalars["String"]["output"]>;
+    /** URL rewrites list */
+    url_rewrites?: Maybe<Array<Maybe<UrlRewrite>>>;
+    /** The part of the product URL that is appended after the url key */
+    url_suffix?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    webshopavailable?: Maybe<Scalars["Int"]["output"]>;
+    /**
+     * An array of websites in which the product is available.
+     * @deprecated The field should not be used on the storefront.
+     */
+    websites?: Maybe<Array<Maybe<Website>>>;
+    /** The weight of the item, in units defined by the store. */
+    weight?: Maybe<Scalars["Float"]["output"]>;
+  };
+
+/** Defines basic features of a bundle product and contains multiple BundleItems. */
+export type BundleProductReviewsArgs = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+/** Defines a single bundle product. */
+export type BundleProductCartItemInput = {
+  /** A mandatory array of options for the bundle product, including each chosen option and specified quantity. */
+  bundle_options: Array<InputMaybe<BundleOptionInput>>;
+  /** The ID and value of the option. */
+  customizable_options?: InputMaybe<Array<InputMaybe<CustomizableOptionInput>>>;
+  /** The quantity and SKU of the bundle product. */
+  data: CartItemInput;
+};
+
+/** Defines bundle product options for `ShipmentItemInterface`. */
+export type BundleShipmentItem = ShipmentItemInterface & {
+  __typename?: "BundleShipmentItem";
+  /** A list of bundle options that are assigned to a shipped product. */
+  bundle_options?: Maybe<Array<Maybe<ItemSelectedBundleOption>>>;
+  /** The unique ID for a `ShipmentItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** The order item associated with the shipment item. */
+  order_item?: Maybe<OrderItemInterface>;
+  /** The name of the base product. */
+  product_name?: Maybe<Scalars["String"]["output"]>;
+  /** The sale price for the base product. */
+  product_sale_price: Money;
+  /** The SKU of the base product. */
+  product_sku: Scalars["String"]["output"];
+  /** The number of shipped items. */
+  quantity_shipped: Scalars["Float"]["output"];
+};
+
+/** Defines bundle product options for `WishlistItemInterface`. */
+export type BundleWishlistItem = WishlistItemInterface & {
+  __typename?: "BundleWishlistItem";
+  /** The date and time the item was added to the wish list. */
+  added_at: Scalars["String"]["output"];
+  /** An array containing information about the selected bundle items. */
+  bundle_options?: Maybe<Array<Maybe<SelectedBundleOption>>>;
+  /** Custom options selected for the wish list item. */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>;
+  /** The description of the item. */
+  description?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `WishlistItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** Product details of the wish list item. */
+  product?: Maybe<ProductInterface>;
+  /** The quantity of this wish list item. */
+  quantity: Scalars["Float"]["output"];
+};
+
+/** Contains the contents and other details about a guest or customer cart. */
+export type Cart = {
+  __typename?: "Cart";
+  /** @deprecated Use `applied_coupons` instead. */
+  applied_coupon?: Maybe<AppliedCoupon>;
+  /** An array of `AppliedCoupon` objects. Each object contains the `code` text attribute, which specifies the coupon code. */
+  applied_coupons?: Maybe<Array<Maybe<AppliedCoupon>>>;
+  /** An array of gift card items applied to the cart. */
+  applied_gift_cards?: Maybe<Array<Maybe<AppliedGiftCard>>>;
+  /** The amount of reward points applied to the cart. */
+  applied_reward_points?: Maybe<RewardPointsAmount>;
+  /** Store credit information applied to the cart. */
+  applied_store_credit?: Maybe<AppliedStoreCredit>;
+  /** The list of available gift wrapping options for the cart. */
+  available_gift_wrappings: Array<Maybe<GiftWrapping>>;
+  /** An array of available payment methods. */
+  available_payment_methods?: Maybe<Array<Maybe<AvailablePaymentMethod>>>;
+  /** The billing address assigned to the cart. */
+  billing_address?: Maybe<BillingCartAddress>;
+  /** The email address of the guest or customer. */
+  email?: Maybe<Scalars["String"]["output"]>;
+  /** The entered gift message for the cart */
+  gift_message?: Maybe<GiftMessage>;
+  /** Indicates whether the shopper requested gift receipt for the cart. */
+  gift_receipt_included: Scalars["Boolean"]["output"];
+  /** The selected gift wrapping for the cart. */
+  gift_wrapping?: Maybe<GiftWrapping>;
+  /** The unique ID for a `Cart` object. */
+  id: Scalars["ID"]["output"];
+  /** Indicates whether the cart contains only virtual products. */
+  is_virtual: Scalars["Boolean"]["output"];
+  /** An array of products that have been added to the cart. */
+  items?: Maybe<Array<Maybe<CartItemInterface>>>;
+  /** Pricing details for the quote. */
+  prices?: Maybe<CartPrices>;
+  /** Indicates whether the shopper requested a printed card for the cart. */
+  printed_card_included: Scalars["Boolean"]["output"];
+  /** Indicates which payment method was applied to the cart. */
+  selected_payment_method?: Maybe<SelectedPaymentMethod>;
+  /** An array of shipping addresses assigned to the cart. */
+  shipping_addresses: Array<Maybe<ShippingCartAddress>>;
+  /** The total number of items in the cart. */
+  total_quantity: Scalars["Float"]["output"];
+};
+
+/** Contains details the country in a billing or shipping address. */
+export type CartAddressCountry = {
+  __typename?: "CartAddressCountry";
+  /** The country code. */
+  code: Scalars["String"]["output"];
+  /** The display label for the country. */
+  label: Scalars["String"]["output"];
+};
+
+/** Defines the billing or shipping address to be applied to the cart. */
+export type CartAddressInput = {
+  /** The city specified for the billing or shipping address. */
+  city: Scalars["String"]["input"];
+  /** The company specified for the billing or shipping address. */
+  company?: InputMaybe<Scalars["String"]["input"]>;
+  /** The country code and label for the billing or shipping address. */
+  country_code: Scalars["String"]["input"];
+  /** The first name of the customer or guest. */
+  firstname: Scalars["String"]["input"];
+  /** The last name of the customer or guest. */
+  lastname: Scalars["String"]["input"];
+  /** The ZIP or postal code of the billing or shipping address. */
+  postcode?: InputMaybe<Scalars["String"]["input"]>;
+  /** A string that defines the state or province of the billing or shipping address. */
+  region?: InputMaybe<Scalars["String"]["input"]>;
+  /** An integer that defines the state or province of the billing or shipping address. */
+  region_id?: InputMaybe<Scalars["Int"]["input"]>;
+  /** Determines whether to save the address in the customer's address book. The default value is true. */
+  save_in_address_book?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** An array containing the street for the billing or shipping address. */
+  street: Array<InputMaybe<Scalars["String"]["input"]>>;
+  /** The telephone number for the billing or shipping address. */
+  telephone?: InputMaybe<Scalars["String"]["input"]>;
+  /** The VAT company number for billing or shipping address. */
+  vat_id?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type CartAddressInterface = {
+  /** The city specified for the billing or shipping address. */
+  city: Scalars["String"]["output"];
+  /** The company specified for the billing or shipping address. */
+  company?: Maybe<Scalars["String"]["output"]>;
+  /** An object containing the country label and code. */
+  country: CartAddressCountry;
+  /** The first name of the customer or guest. */
+  firstname: Scalars["String"]["output"];
+  /** The last name of the customer or guest. */
+  lastname: Scalars["String"]["output"];
+  /** The ZIP or postal code of the billing or shipping address. */
+  postcode?: Maybe<Scalars["String"]["output"]>;
+  /** An object containing the region label and code. */
+  region?: Maybe<CartAddressRegion>;
+  /** An array containing the street for the billing or shipping address. */
+  street: Array<Maybe<Scalars["String"]["output"]>>;
+  /** The telephone number for the billing or shipping address. */
+  telephone?: Maybe<Scalars["String"]["output"]>;
+  /** The unique id of the customer address. */
+  uid: Scalars["String"]["output"];
+  /** The VAT company number for billing or shipping address. */
+  vat_id?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Contains details about the region in a billing or shipping address. */
+export type CartAddressRegion = {
+  __typename?: "CartAddressRegion";
+  /** The state or province code. */
+  code?: Maybe<Scalars["String"]["output"]>;
+  /** The display label for the region. */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a pre-defined region. */
+  region_id?: Maybe<Scalars["Int"]["output"]>;
+};
+
+/** Contains information about discounts applied to the cart. */
+export type CartDiscount = {
+  __typename?: "CartDiscount";
+  /** The amount of the discount applied to the item. */
+  amount: Money;
+  /** The description of the discount. */
+  label: Array<Maybe<Scalars["String"]["output"]>>;
+};
+
+export type CartItemError = {
+  __typename?: "CartItemError";
+  /** An error code that describes the error encountered */
+  code: CartItemErrorType;
+  /** A localized error message */
+  message: Scalars["String"]["output"];
+};
+
+export enum CartItemErrorType {
+  /** @deprecated  */
+  ItemIncrements = "ITEM_INCREMENTS",
+  /** @deprecated  */
+  ItemQty = "ITEM_QTY",
+  /** @deprecated  */
+  Undefined = "UNDEFINED",
+}
+
+/** Defines an item to be added to the cart. */
+export type CartItemInput = {
+  /** An array of entered options for the base product, such as personalization text. */
+  entered_options?: InputMaybe<Array<InputMaybe<EnteredOptionInput>>>;
+  /** For a child product, the SKU of its parent product. */
+  parent_sku?: InputMaybe<Scalars["String"]["input"]>;
+  /** The amount or number of an item to add. */
+  quantity: Scalars["Float"]["input"];
+  /** The selected options for the base product, such as color or size, using the unique ID for an object such as `CustomizableRadioOption`, `CustomizableDropDownOption`, or `ConfigurableProductOptionsValues`. */
+  selected_options?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** The SKU of the product. */
+  sku: Scalars["String"]["input"];
+};
+
+/** An interface for products in a cart. */
+export type CartItemInterface = {
+  /** An array of errors encountered while loading the cart item */
+  errors?: Maybe<Array<Maybe<CartItemError>>>;
+  /** @deprecated Use `uid` instead. */
+  id: Scalars["String"]["output"];
+  /** Indicates whether the product is available in the store */
+  is_in_store?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Contains details about the price of the item, including taxes and discounts. */
+  prices?: Maybe<CartItemPrices>;
+  /** Details about an item in the cart. */
+  product: ProductInterface;
+  /** The quantity of this item in the cart. */
+  quantity: Scalars["Float"]["output"];
+  /** The unique ID for a `CartItemInterface` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Contains details about the price of the item, including taxes and discounts. */
+export type CartItemPrices = {
+  __typename?: "CartItemPrices";
+  /** An array of discounts to be applied to the cart item. */
+  discounts?: Maybe<Array<Maybe<Discount>>>;
+  /** An array of FPTs applied to the cart item. */
+  fixed_product_taxes?: Maybe<Array<Maybe<FixedProductTax>>>;
+  /** The price of the item before any discounts were applied. The price that might include tax, depending on the configured display settings for cart. */
+  price: Money;
+  /** The price of the item before any discounts were applied. The price that might include tax, depending on the configured display settings for cart. */
+  price_including_tax: Money;
+  /** The value of the price multiplied by the quantity of the item. */
+  row_total: Money;
+  /** The value of `row_total` plus the tax applied to the item. */
+  row_total_including_tax: Money;
+  /** The total of all discounts applied to the item. */
+  total_item_discount?: Maybe<Money>;
+};
+
+/** Deprecated: The `ShippingCartAddress.cart_items` field now returns `CartItemInterface`. */
+export type CartItemQuantity = {
+  __typename?: "CartItemQuantity";
+  /** @deprecated The `ShippingCartAddress.cart_items` field now returns `CartItemInterface`. */
+  cart_item_id: Scalars["Int"]["output"];
+  /** @deprecated The `ShippingCartAddress.cart_items` field now returns `CartItemInterface`. */
+  quantity: Scalars["Float"]["output"];
+};
+
+/** Contains details about the price of a selected customizable value. */
+export type CartItemSelectedOptionValuePrice = {
+  __typename?: "CartItemSelectedOptionValuePrice";
+  /** Indicates whether the price type is fixed, percent, or dynamic. */
+  type: PriceTypeEnum;
+  /** A string that describes the unit of the value. */
+  units: Scalars["String"]["output"];
+  /** A price value. */
+  value: Scalars["Float"]["output"];
+};
+
+/** A single item to be updated. */
+export type CartItemUpdateInput = {
+  /** Deprecated. Use `cart_item_uid` instead. */
+  cart_item_id?: InputMaybe<Scalars["Int"]["input"]>;
+  /** The unique ID for a `CartItemInterface` object. */
+  cart_item_uid?: InputMaybe<Scalars["ID"]["input"]>;
+  /** An array that defines customizable options for the product. */
+  customizable_options?: InputMaybe<Array<InputMaybe<CustomizableOptionInput>>>;
+  /** Gift message details for the cart item */
+  gift_message?: InputMaybe<GiftMessageInput>;
+  /** The unique ID for a `GiftWrapping` object to be used for the cart item. */
+  gift_wrapping_id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** The new quantity of the item. */
+  quantity?: InputMaybe<Scalars["Float"]["input"]>;
+};
+
+/** Contains details about the final price of items in the cart, including discount and tax information. */
+export type CartPrices = {
+  __typename?: "CartPrices";
+  /** An array containing the names and amounts of taxes applied to each item in the cart. */
+  applied_taxes?: Maybe<Array<Maybe<CartTaxItem>>>;
+  /** @deprecated Use discounts instead. */
+  discount?: Maybe<CartDiscount>;
+  /** An array containing cart rule discounts, store credit and gift cards applied to the cart. */
+  discounts?: Maybe<Array<Maybe<Discount>>>;
+  /** The list of prices for the selected gift options. */
+  gift_options?: Maybe<GiftOptionsPrices>;
+  /** The total, including discounts, taxes, shipping, and other fees. */
+  grand_total?: Maybe<Money>;
+  /** The subtotal without any applied taxes. */
+  subtotal_excluding_tax?: Maybe<Money>;
+  /** The subtotal including any applied taxes. */
+  subtotal_including_tax?: Maybe<Money>;
+  /** The subtotal with any discounts applied, but not taxes. */
+  subtotal_with_discount_excluding_tax?: Maybe<Money>;
+};
+
+/** Contains tax information about an item in the cart. */
+export type CartTaxItem = {
+  __typename?: "CartTaxItem";
+  /** The amount of tax applied to the item. */
+  amount: Money;
+  /** The description of the tax. */
+  label: Scalars["String"]["output"];
+};
+
+/** An error encountered while adding an item to the the cart. */
+export type CartUserInputError = {
+  __typename?: "CartUserInputError";
+  /** A cart-specific error code. */
+  code: CartUserInputErrorType;
+  /** A localized error message. */
+  message: Scalars["String"]["output"];
+};
+
+export enum CartUserInputErrorType {
+  /** @deprecated  */
+  InsufficientStock = "INSUFFICIENT_STOCK",
+  /** @deprecated  */
+  NotSalable = "NOT_SALABLE",
+  /** @deprecated  */
+  PermissionDenied = "PERMISSION_DENIED",
+  /** @deprecated  */
+  ProductNotFound = "PRODUCT_NOT_FOUND",
+  /** @deprecated  */
+  Undefined = "UNDEFINED",
+}
+
+/** Defines the filters to be used in the search. A filter contains at least one attribute, a comparison operator, and the value that is being searched for. */
+export type CategoryFilterInput = {
+  /** Filter by the unique category ID for a `CategoryInterface` object. */
+  category_uid?: InputMaybe<FilterEqualTypeInput>;
+  /** Deprecated: use 'category_uid' to filter uniquely identifiers of categories. */
+  ids?: InputMaybe<FilterEqualTypeInput>;
+  /** Filter by the display name of the category. */
+  name?: InputMaybe<FilterMatchTypeInput>;
+  /** Filter by the unique parent category ID for a `CategoryInterface` object. */
+  parent_category_uid?: InputMaybe<FilterEqualTypeInput>;
+  /** Filter by the unique parent category ID for a `CategoryInterface` object. */
+  parent_id?: InputMaybe<FilterEqualTypeInput>;
+  /** Filter by the part of the URL that identifies the category. */
+  url_key?: InputMaybe<FilterEqualTypeInput>;
+  /** Filter by the URL path for the category. */
+  url_path?: InputMaybe<FilterEqualTypeInput>;
+};
+
+/** Contains the full set of attributes that can be returned in a category search. */
+export type CategoryInterface = {
+  automatic_sorting?: Maybe<Scalars["String"]["output"]>;
+  available_sort_by?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
+  /** An array of breadcrumb items. */
+  breadcrumbs?: Maybe<Array<Maybe<Breadcrumb>>>;
+  c4_id?: Maybe<Scalars["Int"]["output"]>;
+  canonical_category?: Maybe<Scalars["String"]["output"]>;
+  /** The relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Categories' is enabled. */
+  canonical_url?: Maybe<Scalars["String"]["output"]>;
+  channable_cat_disable_export?: Maybe<Scalars["Int"]["output"]>;
+  children_count?: Maybe<Scalars["String"]["output"]>;
+  /** Contains a category CMS block. */
+  cms_block?: Maybe<CmsBlock>;
+  /**
+   * The timestamp indicating when the category was created.
+   * @deprecated The field should not be used on the storefront.
+   */
+  created_at?: Maybe<Scalars["String"]["output"]>;
+  custom_layout_update_file?: Maybe<Scalars["String"]["output"]>;
+  /** The attribute to use for sorting. */
+  default_sort_by?: Maybe<Scalars["String"]["output"]>;
+  /** An optional description of the category. */
+  description?: Maybe<Scalars["String"]["output"]>;
+  display_mode?: Maybe<Scalars["String"]["output"]>;
+  enable_add_to_cart?: Maybe<Scalars["Int"]["output"]>;
+  enable_read_more?: Maybe<Scalars["Int"]["output"]>;
+  filter_price_range?: Maybe<Scalars["Float"]["output"]>;
+  generate_root_category_subtree?: Maybe<Scalars["Int"]["output"]>;
+  /** Contains category hero hotspots */
+  hero_hotspots?: Maybe<Array<Maybe<Hero_Hotspot>>>;
+  icon?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * An ID that uniquely identifies the category.
+   * @deprecated Use `uid` instead.
+   */
+  id?: Maybe<Scalars["Int"]["output"]>;
+  image?: Maybe<Scalars["String"]["output"]>;
+  include_in_menu?: Maybe<Scalars["Int"]["output"]>;
+  is_anchor?: Maybe<Scalars["Int"]["output"]>;
+  is_displayed_in_autocomplete?: Maybe<Scalars["Int"]["output"]>;
+  is_virtual_category?: Maybe<Scalars["Int"]["output"]>;
+  landing_page?: Maybe<Scalars["Int"]["output"]>;
+  /** The depth of the category within the tree. */
+  level?: Maybe<Scalars["Int"]["output"]>;
+  m3_category_code?: Maybe<Scalars["String"]["output"]>;
+  meta_description?: Maybe<Scalars["String"]["output"]>;
+  meta_keywords?: Maybe<Scalars["String"]["output"]>;
+  meta_title?: Maybe<Scalars["String"]["output"]>;
+  /** The display name of the category. */
+  name?: Maybe<Scalars["String"]["output"]>;
+  /** The full category path. */
+  path?: Maybe<Scalars["String"]["output"]>;
+  /** The category path within the store. */
+  path_in_store?: Maybe<Scalars["String"]["output"]>;
+  /** The position of the category relative to other categories at the same level in tree. */
+  position?: Maybe<Scalars["Int"]["output"]>;
+  /** The number of products in the category that are marked as visible. By default, in complex products, parent products are visible, but their child products are not. */
+  product_count?: Maybe<Scalars["Int"]["output"]>;
+  /** The list of products assigned to the category. */
+  products?: Maybe<CategoryProducts>;
+  show_category_boxes?: Maybe<Scalars["Int"]["output"]>;
+  /** Indicates whether the category is staged for a future campaign. */
+  staged: Scalars["Boolean"]["output"];
+  thumbnail?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `CategoryInterface` object. */
+  uid: Scalars["ID"]["output"];
+  /**
+   * The timestamp indicating when the category was updated.
+   * @deprecated The field should not be used on the storefront.
+   */
+  updated_at?: Maybe<Scalars["String"]["output"]>;
+  /** The URL key assigned to the category. */
+  url_key?: Maybe<Scalars["String"]["output"]>;
+  /** The URL path assigned to the category. */
+  url_path?: Maybe<Scalars["String"]["output"]>;
+  /** The part of the category URL that is appended after the url key */
+  url_suffix?: Maybe<Scalars["String"]["output"]>;
+  use_name_in_product_search?: Maybe<Scalars["Int"]["output"]>;
+  use_store_positions?: Maybe<Scalars["Int"]["output"]>;
+  use_thumbnails_for_category_boxes?: Maybe<Scalars["Int"]["output"]>;
+  video_url?: Maybe<Scalars["String"]["output"]>;
+  virtual_category_root?: Maybe<Scalars["Int"]["output"]>;
+};
+
+/** Contains the full set of attributes that can be returned in a category search. */
+export type CategoryInterfaceProductsArgs = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+  sort?: InputMaybe<ProductAttributeSortInput>;
+};
+
+/** Contains details about the products assigned to a category. */
+export type CategoryProducts = {
+  __typename?: "CategoryProducts";
+  /** An array of products that are assigned to the category. */
+  items?: Maybe<Array<Maybe<ProductInterface>>>;
+  /** Pagination metadata. */
+  page_info?: Maybe<SearchResultPageInfo>;
+  /** The number of products in the category that are marked as visible. By default, in complex products, parent products are visible, but their child products are not. */
+  total_count?: Maybe<Scalars["Int"]["output"]>;
+};
+
+/** Contains a collection of `CategoryTree` objects and pagination information. */
+export type CategoryResult = {
+  __typename?: "CategoryResult";
+  /** A list of categories that match the filter criteria. */
+  items?: Maybe<Array<Maybe<CategoryTree>>>;
+  /** An object that includes the `page_info` and `currentPage` values specified in the query. */
+  page_info?: Maybe<SearchResultPageInfo>;
+  /** The total number of categories that match the criteria. */
+  total_count?: Maybe<Scalars["Int"]["output"]>;
+};
+
+/** Contains the hierarchy of categories. */
+export type CategoryTree = CategoryInterface &
+  RoutableInterface & {
+    __typename?: "CategoryTree";
+    automatic_sorting?: Maybe<Scalars["String"]["output"]>;
+    available_sort_by?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
+    /** An array of breadcrumb items. */
+    breadcrumbs?: Maybe<Array<Maybe<Breadcrumb>>>;
+    c4_id?: Maybe<Scalars["Int"]["output"]>;
+    canonical_category?: Maybe<Scalars["String"]["output"]>;
+    /** The relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Categories' is enabled. */
+    canonical_url?: Maybe<Scalars["String"]["output"]>;
+    channable_cat_disable_export?: Maybe<Scalars["Int"]["output"]>;
+    /** A tree of child categories. */
+    children?: Maybe<Array<Maybe<CategoryTree>>>;
+    children_count?: Maybe<Scalars["String"]["output"]>;
+    /** Contains a category CMS block. */
+    cms_block?: Maybe<CmsBlock>;
+    /**
+     * The timestamp indicating when the category was created.
+     * @deprecated The field should not be used on the storefront.
+     */
+    created_at?: Maybe<Scalars["String"]["output"]>;
+    custom_layout_update_file?: Maybe<Scalars["String"]["output"]>;
+    /** The attribute to use for sorting. */
+    default_sort_by?: Maybe<Scalars["String"]["output"]>;
+    /** An optional description of the category. */
+    description?: Maybe<Scalars["String"]["output"]>;
+    display_mode?: Maybe<Scalars["String"]["output"]>;
+    enable_add_to_cart?: Maybe<Scalars["Int"]["output"]>;
+    enable_read_more?: Maybe<Scalars["Int"]["output"]>;
+    filter_price_range?: Maybe<Scalars["Float"]["output"]>;
+    generate_root_category_subtree?: Maybe<Scalars["Int"]["output"]>;
+    /** Contains category hero hotspots */
+    hero_hotspots?: Maybe<Array<Maybe<Hero_Hotspot>>>;
+    icon?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * An ID that uniquely identifies the category.
+     * @deprecated Use `uid` instead.
+     */
+    id?: Maybe<Scalars["Int"]["output"]>;
+    image?: Maybe<Scalars["String"]["output"]>;
+    include_in_menu?: Maybe<Scalars["Int"]["output"]>;
+    is_anchor?: Maybe<Scalars["Int"]["output"]>;
+    is_displayed_in_autocomplete?: Maybe<Scalars["Int"]["output"]>;
+    is_virtual_category?: Maybe<Scalars["Int"]["output"]>;
+    landing_page?: Maybe<Scalars["Int"]["output"]>;
+    /** The depth of the category within the tree. */
+    level?: Maybe<Scalars["Int"]["output"]>;
+    m3_category_code?: Maybe<Scalars["String"]["output"]>;
+    meta_description?: Maybe<Scalars["String"]["output"]>;
+    meta_keywords?: Maybe<Scalars["String"]["output"]>;
+    meta_title?: Maybe<Scalars["String"]["output"]>;
+    /** The display name of the category. */
+    name?: Maybe<Scalars["String"]["output"]>;
+    /** The full category path. */
+    path?: Maybe<Scalars["String"]["output"]>;
+    /** The category path within the store. */
+    path_in_store?: Maybe<Scalars["String"]["output"]>;
+    /** The position of the category relative to other categories at the same level in tree. */
+    position?: Maybe<Scalars["Int"]["output"]>;
+    /** The number of products in the category that are marked as visible. By default, in complex products, parent products are visible, but their child products are not. */
+    product_count?: Maybe<Scalars["Int"]["output"]>;
+    /** The list of products assigned to the category. */
+    products?: Maybe<CategoryProducts>;
+    /** Contains 0 when there is no redirect error. A value of 301 indicates the URL of the requested resource has been changed permanently, while a value of 302 indicates a temporary redirect. */
+    redirect_code: Scalars["Int"]["output"];
+    /** The internal relative URL. If the specified URL is a redirect, the query returns the redirected URL, not the original. */
+    relative_url?: Maybe<Scalars["String"]["output"]>;
+    show_category_boxes?: Maybe<Scalars["Int"]["output"]>;
+    /** Indicates whether the category is staged for a future campaign. */
+    staged: Scalars["Boolean"]["output"];
+    thumbnail?: Maybe<Scalars["String"]["output"]>;
+    /** One of PRODUCT, CATEGORY, or CMS_PAGE. */
+    type?: Maybe<UrlRewriteEntityTypeEnum>;
+    /** The unique ID for a `CategoryInterface` object. */
+    uid: Scalars["ID"]["output"];
+    /**
+     * The timestamp indicating when the category was updated.
+     * @deprecated The field should not be used on the storefront.
+     */
+    updated_at?: Maybe<Scalars["String"]["output"]>;
+    /** The URL key assigned to the category. */
+    url_key?: Maybe<Scalars["String"]["output"]>;
+    /** The URL path assigned to the category. */
+    url_path?: Maybe<Scalars["String"]["output"]>;
+    /** The part of the category URL that is appended after the url key */
+    url_suffix?: Maybe<Scalars["String"]["output"]>;
+    use_name_in_product_search?: Maybe<Scalars["Int"]["output"]>;
+    use_store_positions?: Maybe<Scalars["Int"]["output"]>;
+    use_thumbnails_for_category_boxes?: Maybe<Scalars["Int"]["output"]>;
+    video_url?: Maybe<Scalars["String"]["output"]>;
+    virtual_category_root?: Maybe<Scalars["Int"]["output"]>;
+  };
+
+/** Contains the hierarchy of categories. */
+export type CategoryTreeProductsArgs = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+  sort?: InputMaybe<ProductAttributeSortInput>;
+};
+
+/** Defines details about an individual checkout agreement. */
+export type CheckoutAgreement = {
+  __typename?: "CheckoutAgreement";
+  /** The ID for a checkout agreement. */
+  agreement_id: Scalars["Int"]["output"];
+  /** The checkbox text for the checkout agreement. */
+  checkbox_text: Scalars["String"]["output"];
+  /** Required. The text of the agreement. */
+  content: Scalars["String"]["output"];
+  /** The height of the text box where the Terms and Conditions statement appears during checkout. */
+  content_height?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether the `content` text is in HTML format. */
+  is_html: Scalars["Boolean"]["output"];
+  /** Indicates whether agreements are accepted automatically or manually. */
+  mode: CheckoutAgreementMode;
+  /** The name given to the condition. */
+  name: Scalars["String"]["output"];
+};
+
+/** Indicates how agreements are accepted. */
+export enum CheckoutAgreementMode {
+  /**
+   * Conditions are automatically accepted upon checkout.
+   * @deprecated
+   */
+  Auto = "AUTO",
+  /**
+   * Shoppers must manually accept the conditions to place an order.
+   * @deprecated
+   */
+  Manual = "MANUAL",
+}
+
+/** An error encountered while adding an item to the cart. */
+export type CheckoutUserInputError = {
+  __typename?: "CheckoutUserInputError";
+  /** An error code that is specific to Checkout. */
+  code: CheckoutUserInputErrorCodes;
+  /** A localized error message. */
+  message: Scalars["String"]["output"];
+  /** The path to the input field that caused an error. See the GraphQL specification about path errors for details: http://spec.graphql.org/draft/#sec-Errors */
+  path: Array<Maybe<Scalars["String"]["output"]>>;
+};
+
+export enum CheckoutUserInputErrorCodes {
+  /** @deprecated  */
+  InsufficientStock = "INSUFFICIENT_STOCK",
+  /** @deprecated  */
+  NotSalable = "NOT_SALABLE",
+  /** @deprecated  */
+  ProductNotFound = "PRODUCT_NOT_FOUND",
+  /** @deprecated  */
+  ReorderNotAvailable = "REORDER_NOT_AVAILABLE",
+  /** @deprecated  */
+  Undefined = "UNDEFINED",
+}
+
+/** Contains details about a specific CMS block. */
+export type CmsBlock = {
+  __typename?: "CmsBlock";
+  /** The content of the CMS block in raw HTML. */
+  content?: Maybe<Scalars["String"]["output"]>;
+  /** The CMS block identifier. */
+  identifier?: Maybe<Scalars["String"]["output"]>;
+  /** The title assigned to the CMS block. */
+  title?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Contains an array CMS block items. */
+export type CmsBlocks = {
+  __typename?: "CmsBlocks";
+  /** An array of CMS blocks. */
+  items?: Maybe<Array<Maybe<CmsBlock>>>;
+};
+
+/** Contains details about a CMS page. */
+export type CmsPage = RoutableInterface & {
+  __typename?: "CmsPage";
+  /** The content of the CMS page in raw HTML. */
+  content?: Maybe<Scalars["String"]["output"]>;
+  /** The heading that displays at the top of the CMS page. */
+  content_heading?: Maybe<Scalars["String"]["output"]>;
+  /** The ID of a CMS page. */
+  identifier?: Maybe<Scalars["String"]["output"]>;
+  /** A brief description of the page for search results listings. */
+  meta_description?: Maybe<Scalars["String"]["output"]>;
+  /** A brief description of the page for search results listings. */
+  meta_keywords?: Maybe<Scalars["String"]["output"]>;
+  /** A page title that is indexed by search engines and appears in search results listings. */
+  meta_title?: Maybe<Scalars["String"]["output"]>;
+  /** The design layout of the page, indicating the number of columns and navigation features used on the page. */
+  page_layout?: Maybe<Scalars["String"]["output"]>;
+  /** Contains 0 when there is no redirect error. A value of 301 indicates the URL of the requested resource has been changed permanently, while a value of 302 indicates a temporary redirect. */
+  redirect_code: Scalars["Int"]["output"];
+  /** The internal relative URL. If the specified URL is a redirect, the query returns the redirected URL, not the original. */
+  relative_url?: Maybe<Scalars["String"]["output"]>;
+  /** The name that appears in the breadcrumb trail navigation and in the browser title bar and tab. */
+  title?: Maybe<Scalars["String"]["output"]>;
+  /** One of PRODUCT, CATEGORY, or CMS_PAGE. */
+  type?: Maybe<UrlRewriteEntityTypeEnum>;
+  /** The URL key of the CMS page, which is often based on the `content_heading`. */
+  url_key?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Representing a color value comprising of HEX, RGBA and css color values */
+export type Color = {
+  __typename?: "Color";
+  css: Scalars["String"]["output"];
+  hex: Scalars["Hex"]["output"];
+  rgba: Rgba;
+};
+
+/** Accepts either HEX or RGBA color value. At least one of hex or rgba value should be passed. If both are passed RGBA is used. */
+export type ColorInput = {
+  hex?: InputMaybe<Scalars["Hex"]["input"]>;
+  rgba?: InputMaybe<RgbaInput>;
+};
+
+export type ColorSwatchData = SwatchDataInterface & {
+  __typename?: "ColorSwatchData";
+  /** The value can be represented as color (HEX code), image link, or text. */
+  value?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Contains an attribute code that is used for product comparisons. */
+export type ComparableAttribute = {
+  __typename?: "ComparableAttribute";
+  /** An attribute code that is enabled for product comparisons. */
+  code: Scalars["String"]["output"];
+  /** The label of the attribute code. */
+  label: Scalars["String"]["output"];
+};
+
+/** Defines an object used to iterate through items for product comparisons. */
+export type ComparableItem = {
+  __typename?: "ComparableItem";
+  /** An array of product attributes that can be used to compare products. */
+  attributes: Array<Maybe<ProductAttribute>>;
+  /** Details about a product in a compare list. */
+  product: ProductInterface;
+  /** The unique ID of an item in a compare list. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Contains iterable information such as the array of items, the count, and attributes that represent the compare list. */
+export type CompareList = {
+  __typename?: "CompareList";
+  /** An array of attributes that can be used for comparing products. */
+  attributes?: Maybe<Array<Maybe<ComparableAttribute>>>;
+  /** The number of items in the compare list. */
+  item_count: Scalars["Int"]["output"];
+  /** An array of products to compare. */
+  items?: Maybe<Array<Maybe<ComparableItem>>>;
+  /** The unique ID assigned to the compare list. */
+  uid: Scalars["ID"]["output"];
+};
+
+export type ComplexTextValue = {
+  __typename?: "ComplexTextValue";
+  /** Text that can contain HTML tags. */
+  html: Scalars["String"]["output"];
+};
+
+/** Contains details about a configurable product attribute option. */
+export type ConfigurableAttributeOption = {
+  __typename?: "ConfigurableAttributeOption";
+  /** The ID assigned to the attribute. */
+  code?: Maybe<Scalars["String"]["output"]>;
+  /** A string that describes the configurable attribute option. */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `ConfigurableAttributeOption` object. */
+  uid: Scalars["ID"]["output"];
+  /** A unique index number assigned to the configurable product option. */
+  value_index?: Maybe<Scalars["Int"]["output"]>;
+};
+
+/** An implementation for configurable product cart items. */
+export type ConfigurableCartItem = CartItemInterface & {
+  __typename?: "ConfigurableCartItem";
+  /** The list of available gift wrapping options for the cart item. */
+  available_gift_wrapping: Array<Maybe<GiftWrapping>>;
+  /** An array containing the configuranle options the shopper selected. */
+  configurable_options: Array<Maybe<SelectedConfigurableOption>>;
+  /** Product details of the cart item. */
+  configured_variant: ProductInterface;
+  /** An array containing the customizable options the shopper selected. */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>;
+  /** An array of errors encountered while loading the cart item */
+  errors?: Maybe<Array<Maybe<CartItemError>>>;
+  /** The entered gift message for the cart item */
+  gift_message?: Maybe<GiftMessage>;
+  /** The selected gift wrapping for the cart item. */
+  gift_wrapping?: Maybe<GiftWrapping>;
+  /** @deprecated Use `uid` instead. */
+  id: Scalars["String"]["output"];
+  /** Indicates whether the product is available in the store */
+  is_in_store?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Contains details about the price of the item, including taxes and discounts. */
+  prices?: Maybe<CartItemPrices>;
+  /** Details about an item in the cart. */
+  product: ProductInterface;
+  /** The quantity of this item in the cart. */
+  quantity: Scalars["Float"]["output"];
+  /** The unique ID for a `CartItemInterface` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Describes configurable options that have been selected and can be selected as a result of the previous selections. */
+export type ConfigurableOptionAvailableForSelection = {
+  __typename?: "ConfigurableOptionAvailableForSelection";
+  /** An attribute code that uniquely identifies a configurable option. */
+  attribute_code: Scalars["String"]["output"];
+  /** An array of selectable option value IDs. */
+  option_value_uids: Array<Maybe<Scalars["ID"]["output"]>>;
+};
+
+/** Defines basic features of a configurable product and its simple product variants. */
+export type ConfigurableProduct = CustomizableProductInterface &
+  PhysicalProductInterface &
+  ProductInterface &
+  RoutableInterface & {
+    __typename?: "ConfigurableProduct";
+    /** @deprecated Use the `custom_attributes` field instead. */
+    addable_to_cart?: Maybe<Scalars["Int"]["output"]>;
+    /**
+     * The attribute set assigned to the product.
+     * @deprecated The field should not be used on the storefront.
+     */
+    attribute_set_id?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    brand?: Maybe<Scalars["String"]["output"]>;
+    /** The relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled. */
+    canonical_url?: Maybe<Scalars["String"]["output"]>;
+    /** The categories assigned to a product. */
+    categories?: Maybe<Array<Maybe<CategoryInterface>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    color?: Maybe<Scalars["Int"]["output"]>;
+    /** An array of options for the configurable product. */
+    configurable_options?: Maybe<Array<Maybe<ConfigurableProductOptions>>>;
+    /** An array of media gallery items and other details about selected configurable product options as well as details about remaining selectable options. */
+    configurable_product_options_selection?: Maybe<ConfigurableProductOptionsSelection>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    configuration?: Maybe<Scalars["String"]["output"]>;
+    /** The product's country of origin. */
+    country_of_manufacture?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * Timestamp indicating when the product was created.
+     * @deprecated The field should not be used on the storefront.
+     */
+    created_at?: Maybe<Scalars["String"]["output"]>;
+    /** An array of cross-sell products. */
+    crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    delivery_promise?: Maybe<Scalars["String"]["output"]>;
+    /** Detailed information about the product. The value can include simple HTML tags. */
+    description?: Maybe<ComplexTextValue>;
+    /** Indicates whether a gift message is available. */
+    gift_message_available?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * The ID number assigned to the product.
+     * @deprecated Use the `uid` field instead.
+     */
+    id?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    ifsite?: Maybe<Scalars["String"]["output"]>;
+    /** The relative path to the main image on the product page. */
+    image?: Maybe<ProductImage>;
+    /** Indicates whether the product can be returned. */
+    is_returnable?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    maintenance_description?: Maybe<Scalars["String"]["output"]>;
+    /** A number representing the product's manufacturer. */
+    manufacturer?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_1?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_2?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_depth?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_diameter?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_gross_weight?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_height?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_length?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_seat_height?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_thickness?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_volume?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_width?: Maybe<Scalars["String"]["output"]>;
+    /** An array of media gallery objects. */
+    media_gallery?: Maybe<Array<Maybe<MediaGalleryInterface>>>;
+    /**
+     * An array of MediaGalleryEntry objects.
+     * @deprecated Use `media_gallery` instead.
+     */
+    media_gallery_entries?: Maybe<Array<Maybe<MediaGalleryEntry>>>;
+    /** A brief overview of the product for search results listings, maximum 255 characters. */
+    meta_description?: Maybe<Scalars["String"]["output"]>;
+    /** A comma-separated list of keywords that are visible only to search engines. */
+    meta_keyword?: Maybe<Scalars["String"]["output"]>;
+    /** A string that is displayed in the title bar and tab of the browser and in search results lists. */
+    meta_title?: Maybe<Scalars["String"]["output"]>;
+    /** The product name. Customers use this name to identify the product. */
+    name?: Maybe<Scalars["String"]["output"]>;
+    /** The beginning date for new product listings, and determines if the product is featured as a new product. */
+    new_from_date?: Maybe<Scalars["String"]["output"]>;
+    /** The end date for new product listings. */
+    new_to_date?: Maybe<Scalars["String"]["output"]>;
+    /** Product stock only x left count */
+    only_x_left_in_stock?: Maybe<Scalars["Float"]["output"]>;
+    /** An array of options for a customizable product. */
+    options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>;
+    /** If the product has multiple options, determines where they appear on the product page. */
+    options_container?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * Indicates the price of an item.
+     * @deprecated Use `price_range` for product price information.
+     */
+    price?: Maybe<ProductPrices>;
+    /** The range of prices for the product */
+    price_range: PriceRange;
+    /** An array of `TierPrice` objects. */
+    price_tiers?: Maybe<Array<Maybe<TierPrice>>>;
+    productBrand?: Maybe<Brand>;
+    /** Get product labels. */
+    productLabel?: Maybe<Label>;
+    /** An array of `ProductLinks` objects. */
+    product_links?: Maybe<Array<Maybe<ProductLinksInterface>>>;
+    /** The average of all the ratings given to the product. */
+    rating_summary: Scalars["Float"]["output"];
+    /** Contains 0 when there is no redirect error. A value of 301 indicates the URL of the requested resource has been changed permanently, while a value of 302 indicates a temporary redirect. */
+    redirect_code: Scalars["Int"]["output"];
+    /** An array of related products. */
+    related_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** The internal relative URL. If the specified URL is a redirect, the query returns the redirected URL, not the original. */
+    relative_url?: Maybe<Scalars["String"]["output"]>;
+    /** The total count of all the reviews given to the product. */
+    review_count: Scalars["Int"]["output"];
+    /** The list of products reviews. */
+    reviews: ProductReviews;
+    /** Products from the same series */
+    series?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    series_group?: Maybe<Scalars["String"]["output"]>;
+    /** A short description of the product. Its use depends on the theme. */
+    short_description?: Maybe<ComplexTextValue>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    size_filter?: Maybe<Scalars["String"]["output"]>;
+    /** A number or code assigned to a product to identify the product, options, price, and manufacturer. */
+    sku?: Maybe<Scalars["String"]["output"]>;
+    /** The relative path to the small image, which is used on catalog pages. */
+    small_image?: Maybe<ProductImage>;
+    /**
+     * The beginning date that a product has a special price.
+     * @deprecated The field should not be used on the storefront.
+     */
+    special_from_date?: Maybe<Scalars["String"]["output"]>;
+    /** The discounted price of the product. */
+    special_price?: Maybe<Scalars["Float"]["output"]>;
+    /** The end date for a product with a special price. */
+    special_to_date?: Maybe<Scalars["String"]["output"]>;
+    /** Indicates whether the product is staged for a future campaign. */
+    staged: Scalars["Boolean"]["output"];
+    /** Stock status of the product */
+    stock_status?: Maybe<ProductStockStatus>;
+    /** An array containing information about all the stores with product quantities. */
+    stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
+    /** The file name of a swatch image. */
+    swatch_image?: Maybe<Scalars["String"]["output"]>;
+    /** The relative path to the product's thumbnail image. */
+    thumbnail?: Maybe<ProductImage>;
+    /**
+     * The price when tier pricing is in effect and the items purchased threshold has been reached.
+     * @deprecated Use `price_tiers` for product tier price information.
+     */
+    tier_price?: Maybe<Scalars["Float"]["output"]>;
+    /**
+     * An array of ProductTierPrices objects.
+     * @deprecated Use `price_tiers` for product tier price information.
+     */
+    tier_prices?: Maybe<Array<Maybe<ProductTierPrices>>>;
+    /** One of PRODUCT, CATEGORY, or CMS_PAGE. */
+    type?: Maybe<UrlRewriteEntityTypeEnum>;
+    /**
+     * One of simple, virtual, bundle, downloadable, grouped, or configurable.
+     * @deprecated Use `__typename` instead.
+     */
+    type_id?: Maybe<Scalars["String"]["output"]>;
+    /** The unique ID for a `ProductInterface` object. */
+    uid: Scalars["ID"]["output"];
+    /**
+     * Timestamp indicating when the product was updated.
+     * @deprecated The field should not be used on the storefront.
+     */
+    updated_at?: Maybe<Scalars["String"]["output"]>;
+    /** An array of up-sell products. */
+    upsell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** The part of the URL that identifies the product */
+    url_key?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use product's `canonical_url` or url rewrites instead */
+    url_path?: Maybe<Scalars["String"]["output"]>;
+    /** URL rewrites list */
+    url_rewrites?: Maybe<Array<Maybe<UrlRewrite>>>;
+    /** The part of the product URL that is appended after the url key */
+    url_suffix?: Maybe<Scalars["String"]["output"]>;
+    /** An array of simple product variants. */
+    variants?: Maybe<Array<Maybe<ConfigurableVariant>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    webshopavailable?: Maybe<Scalars["Int"]["output"]>;
+    /**
+     * An array of websites in which the product is available.
+     * @deprecated The field should not be used on the storefront.
+     */
+    websites?: Maybe<Array<Maybe<Website>>>;
+    /** The weight of the item, in units defined by the store. */
+    weight?: Maybe<Scalars["Float"]["output"]>;
+  };
+
+/** Defines basic features of a configurable product and its simple product variants. */
+export type ConfigurableProductConfigurable_Product_Options_SelectionArgs = {
+  configurableOptionValueUids?: InputMaybe<Array<Scalars["ID"]["input"]>>;
+};
+
+/** Defines basic features of a configurable product and its simple product variants. */
+export type ConfigurableProductReviewsArgs = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export type ConfigurableProductCartItemInput = {
+  /** The ID and value of the option. */
+  customizable_options?: InputMaybe<Array<InputMaybe<CustomizableOptionInput>>>;
+  /** The quantity and SKU of the configurable product. */
+  data: CartItemInput;
+  /** The SKU of the parent configurable product. */
+  parent_sku?: InputMaybe<Scalars["String"]["input"]>;
+  /** Deprecated. Use `CartItemInput.sku` instead. */
+  variant_sku?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Contains details about configurable product options. */
+export type ConfigurableProductOption = {
+  __typename?: "ConfigurableProductOption";
+  /** An attribute code that uniquely identifies a configurable option. */
+  attribute_code: Scalars["String"]["output"];
+  /** The display name of the option. */
+  label: Scalars["String"]["output"];
+  /** The unique ID of the configurable option. */
+  uid: Scalars["ID"]["output"];
+  /** An array of values that are applicable for this option. */
+  values?: Maybe<Array<Maybe<ConfigurableProductOptionValue>>>;
+};
+
+/** Defines a value for a configurable product option. */
+export type ConfigurableProductOptionValue = {
+  __typename?: "ConfigurableProductOptionValue";
+  /** Indicates whether the product is available with this selected option. */
+  is_available: Scalars["Boolean"]["output"];
+  /** Indicates whether the value is the default. */
+  is_use_default: Scalars["Boolean"]["output"];
+  /** The display name of the value. */
+  label: Scalars["String"]["output"];
+  /** The URL assigned to the thumbnail of the swatch image. */
+  swatch?: Maybe<SwatchDataInterface>;
+  /** The unique ID of the value. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Defines configurable attributes for the specified product. */
+export type ConfigurableProductOptions = {
+  __typename?: "ConfigurableProductOptions";
+  /** A string that identifies the attribute. */
+  attribute_code?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * The ID assigned to the attribute.
+   * @deprecated Use `attribute_uid` instead.
+   */
+  attribute_id?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * The ID assigned to the attribute.
+   * @deprecated Use `attribute_uid` instead.
+   */
+  attribute_id_v2?: Maybe<Scalars["Int"]["output"]>;
+  /** The unique ID for an `Attribute` object. */
+  attribute_uid: Scalars["ID"]["output"];
+  /**
+   * The configurable option ID number assigned by the system.
+   * @deprecated Use `uid` instead.
+   */
+  id?: Maybe<Scalars["Int"]["output"]>;
+  /** A displayed string that describes the configurable product option. */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /** A number that indicates the order in which the attribute is displayed. */
+  position?: Maybe<Scalars["Int"]["output"]>;
+  /**
+   * This is the same as a product's `id` field.
+   * @deprecated `product_id` is not needed and can be obtained from its parent.
+   */
+  product_id?: Maybe<Scalars["Int"]["output"]>;
+  /** The unique ID for a `ConfigurableProductOptions` object. */
+  uid: Scalars["ID"]["output"];
+  /** Indicates whether the option is the default. */
+  use_default?: Maybe<Scalars["Boolean"]["output"]>;
+  /** An array that defines the `value_index` codes assigned to the configurable product. */
+  values?: Maybe<Array<Maybe<ConfigurableProductOptionsValues>>>;
+};
+
+/** Contains metadata corresponding to the selected configurable options. */
+export type ConfigurableProductOptionsSelection = {
+  __typename?: "ConfigurableProductOptionsSelection";
+  /** An array of all possible configurable options. */
+  configurable_options?: Maybe<Array<Maybe<ConfigurableProductOption>>>;
+  /** Product images and videos corresponding to the specified configurable options selection. */
+  media_gallery?: Maybe<Array<Maybe<MediaGalleryInterface>>>;
+  /** The configurable options available for further selection based on the current selection. */
+  options_available_for_selection?: Maybe<
+    Array<Maybe<ConfigurableOptionAvailableForSelection>>
+  >;
+  /** A variant represented by the specified configurable options selection. The value is expected to be null until selections are made for each configurable option. */
+  variant?: Maybe<SimpleProduct>;
+};
+
+/** Contains the index number assigned to a configurable product option. */
+export type ConfigurableProductOptionsValues = {
+  __typename?: "ConfigurableProductOptionsValues";
+  /** The label of the product on the default store. */
+  default_label?: Maybe<Scalars["String"]["output"]>;
+  /** The label of the product. */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /** The label of the product on the current store. */
+  store_label?: Maybe<Scalars["String"]["output"]>;
+  /** Swatch data for a configurable product option. */
+  swatch_data?: Maybe<SwatchDataInterface>;
+  /** The unique ID for a `ConfigurableProductOptionsValues` object. */
+  uid?: Maybe<Scalars["ID"]["output"]>;
+  /** Indicates whether to use the default_label. */
+  use_default_value?: Maybe<Scalars["Boolean"]["output"]>;
+  /**
+   * A unique index number assigned to the configurable product option.
+   * @deprecated Use `uid` instead.
+   */
+  value_index?: Maybe<Scalars["Int"]["output"]>;
+};
+
+/** Contains all the simple product variants of a configurable product. */
+export type ConfigurableVariant = {
+  __typename?: "ConfigurableVariant";
+  /** An array of configurable attribute options. */
+  attributes?: Maybe<Array<Maybe<ConfigurableAttributeOption>>>;
+  /** An array of linked simple products. */
+  product?: Maybe<SimpleProduct>;
+};
+
+/** A configurable product wish list item. */
+export type ConfigurableWishlistItem = WishlistItemInterface & {
+  __typename?: "ConfigurableWishlistItem";
+  /** The date and time the item was added to the wish list. */
+  added_at: Scalars["String"]["output"];
+  /**
+   * The SKU of the simple product corresponding to a set of selected configurable options.
+   * @deprecated Use `ConfigurableWishlistItem.configured_variant.sku` instead.
+   */
+  child_sku: Scalars["String"]["output"];
+  /** An array of selected configurable options. */
+  configurable_options?: Maybe<Array<Maybe<SelectedConfigurableOption>>>;
+  /** Product details of the selected variant. The value is null if some options are not configured. */
+  configured_variant?: Maybe<ProductInterface>;
+  /** Custom options selected for the wish list item. */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>;
+  /** The description of the item. */
+  description?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `WishlistItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** Product details of the wish list item. */
+  product?: Maybe<ProductInterface>;
+  /** The quantity of this wish list item. */
+  quantity: Scalars["Float"]["output"];
+};
+
+export type ConnectPositionInput = {
+  /** Connect document after specified document */
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  /** Connect document before specified document */
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  /** Connect document at last position */
+  end?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Connect document at first position */
+  start?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type Consent = {
+  __typename?: "Consent";
+  code: Scalars["String"]["output"];
+  is_required: Scalars["Boolean"]["output"];
+  label: Scalars["String"]["output"];
+  value: Scalars["Boolean"]["output"];
+};
+
+/** Contains the source and target wish lists after copying products. */
+export type CopyProductsBetweenWishlistsOutput = {
+  __typename?: "CopyProductsBetweenWishlistsOutput";
+  /** The destination wish list containing the copied products. */
+  destination_wishlist: Wishlist;
+  /** The wish list that the products were copied from. */
+  source_wishlist: Wishlist;
+  /** An array of errors encountered while copying products in a wish list. */
+  user_errors: Array<Maybe<WishListUserInputError>>;
+};
+
+export type Country = {
+  __typename?: "Country";
+  /** An array of regions within a particular country. */
+  available_regions?: Maybe<Array<Maybe<Region>>>;
+  /** The name of the country in English. */
+  full_name_english?: Maybe<Scalars["String"]["output"]>;
+  /** The name of the country in the current locale. */
+  full_name_locale?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `Country` object. */
+  id?: Maybe<Scalars["String"]["output"]>;
+  /** The three-letter abbreviation of the country, such as USA. */
+  three_letter_abbreviation?: Maybe<Scalars["String"]["output"]>;
+  /** The two-letter abbreviation of the country, such as US. */
+  two_letter_abbreviation?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** The list of country codes. */
+export enum CountryCodeEnum {
+  /**
+   * Andorra
+   * @deprecated
+   */
+  Ad = "AD",
+  /**
+   * United Arab Emirates
+   * @deprecated
+   */
+  Ae = "AE",
+  /**
+   * Afghanistan
+   * @deprecated
+   */
+  Af = "AF",
+  /**
+   * Antigua & Barbuda
+   * @deprecated
+   */
+  Ag = "AG",
+  /**
+   * Anguilla
+   * @deprecated
+   */
+  Ai = "AI",
+  /**
+   * Albania
+   * @deprecated
+   */
+  Al = "AL",
+  /**
+   * Armenia
+   * @deprecated
+   */
+  Am = "AM",
+  /**
+   * Netherlands Antilles
+   * @deprecated
+   */
+  An = "AN",
+  /**
+   * Angola
+   * @deprecated
+   */
+  Ao = "AO",
+  /**
+   * Antarctica
+   * @deprecated
+   */
+  Aq = "AQ",
+  /**
+   * Argentina
+   * @deprecated
+   */
+  Ar = "AR",
+  /**
+   * American Samoa
+   * @deprecated
+   */
+  As = "AS",
+  /**
+   * Austria
+   * @deprecated
+   */
+  At = "AT",
+  /**
+   * Australia
+   * @deprecated
+   */
+  Au = "AU",
+  /**
+   * Aruba
+   * @deprecated
+   */
+  Aw = "AW",
+  /**
+   * Åland Islands
+   * @deprecated
+   */
+  Ax = "AX",
+  /**
+   * Azerbaijan
+   * @deprecated
+   */
+  Az = "AZ",
+  /**
+   * Bosnia & Herzegovina
+   * @deprecated
+   */
+  Ba = "BA",
+  /**
+   * Barbados
+   * @deprecated
+   */
+  Bb = "BB",
+  /**
+   * Bangladesh
+   * @deprecated
+   */
+  Bd = "BD",
+  /**
+   * Belgium
+   * @deprecated
+   */
+  Be = "BE",
+  /**
+   * Burkina Faso
+   * @deprecated
+   */
+  Bf = "BF",
+  /**
+   * Bulgaria
+   * @deprecated
+   */
+  Bg = "BG",
+  /**
+   * Bahrain
+   * @deprecated
+   */
+  Bh = "BH",
+  /**
+   * Burundi
+   * @deprecated
+   */
+  Bi = "BI",
+  /**
+   * Benin
+   * @deprecated
+   */
+  Bj = "BJ",
+  /**
+   * St. Barthélemy
+   * @deprecated
+   */
+  Bl = "BL",
+  /**
+   * Bermuda
+   * @deprecated
+   */
+  Bm = "BM",
+  /**
+   * Brunei
+   * @deprecated
+   */
+  Bn = "BN",
+  /**
+   * Bolivia
+   * @deprecated
+   */
+  Bo = "BO",
+  /**
+   * Brazil
+   * @deprecated
+   */
+  Br = "BR",
+  /**
+   * Bahamas
+   * @deprecated
+   */
+  Bs = "BS",
+  /**
+   * Bhutan
+   * @deprecated
+   */
+  Bt = "BT",
+  /**
+   * Bouvet Island
+   * @deprecated
+   */
+  Bv = "BV",
+  /**
+   * Botswana
+   * @deprecated
+   */
+  Bw = "BW",
+  /**
+   * Belarus
+   * @deprecated
+   */
+  By = "BY",
+  /**
+   * Belize
+   * @deprecated
+   */
+  Bz = "BZ",
+  /**
+   * Canada
+   * @deprecated
+   */
+  Ca = "CA",
+  /**
+   * Cocos (Keeling) Islands
+   * @deprecated
+   */
+  Cc = "CC",
+  /**
+   * Congo-Kinshasa
+   * @deprecated
+   */
+  Cd = "CD",
+  /**
+   * Central African Republic
+   * @deprecated
+   */
+  Cf = "CF",
+  /**
+   * Congo-Brazzaville
+   * @deprecated
+   */
+  Cg = "CG",
+  /**
+   * Switzerland
+   * @deprecated
+   */
+  Ch = "CH",
+  /**
+   * Côte d’Ivoire
+   * @deprecated
+   */
+  Ci = "CI",
+  /**
+   * Cook Islands
+   * @deprecated
+   */
+  Ck = "CK",
+  /**
+   * Chile
+   * @deprecated
+   */
+  Cl = "CL",
+  /**
+   * Cameroon
+   * @deprecated
+   */
+  Cm = "CM",
+  /**
+   * China
+   * @deprecated
+   */
+  Cn = "CN",
+  /**
+   * Colombia
+   * @deprecated
+   */
+  Co = "CO",
+  /**
+   * Costa Rica
+   * @deprecated
+   */
+  Cr = "CR",
+  /**
+   * Cuba
+   * @deprecated
+   */
+  Cu = "CU",
+  /**
+   * Cape Verde
+   * @deprecated
+   */
+  Cv = "CV",
+  /**
+   * Christmas Island
+   * @deprecated
+   */
+  Cx = "CX",
+  /**
+   * Cyprus
+   * @deprecated
+   */
+  Cy = "CY",
+  /**
+   * Czech Republic
+   * @deprecated
+   */
+  Cz = "CZ",
+  /**
+   * Germany
+   * @deprecated
+   */
+  De = "DE",
+  /**
+   * Djibouti
+   * @deprecated
+   */
+  Dj = "DJ",
+  /**
+   * Denmark
+   * @deprecated
+   */
+  Dk = "DK",
+  /**
+   * Dominica
+   * @deprecated
+   */
+  Dm = "DM",
+  /**
+   * Dominican Republic
+   * @deprecated
+   */
+  Do = "DO",
+  /**
+   * Algeria
+   * @deprecated
+   */
+  Dz = "DZ",
+  /**
+   * Ecuador
+   * @deprecated
+   */
+  Ec = "EC",
+  /**
+   * Estonia
+   * @deprecated
+   */
+  Ee = "EE",
+  /**
+   * Egypt
+   * @deprecated
+   */
+  Eg = "EG",
+  /**
+   * Western Sahara
+   * @deprecated
+   */
+  Eh = "EH",
+  /**
+   * Eritrea
+   * @deprecated
+   */
+  Er = "ER",
+  /**
+   * Spain
+   * @deprecated
+   */
+  Es = "ES",
+  /**
+   * Ethiopia
+   * @deprecated
+   */
+  Et = "ET",
+  /**
+   * Finland
+   * @deprecated
+   */
+  Fi = "FI",
+  /**
+   * Fiji
+   * @deprecated
+   */
+  Fj = "FJ",
+  /**
+   * Falkland Islands
+   * @deprecated
+   */
+  Fk = "FK",
+  /**
+   * Micronesia
+   * @deprecated
+   */
+  Fm = "FM",
+  /**
+   * Faroe Islands
+   * @deprecated
+   */
+  Fo = "FO",
+  /**
+   * France
+   * @deprecated
+   */
+  Fr = "FR",
+  /**
+   * Gabon
+   * @deprecated
+   */
+  Ga = "GA",
+  /**
+   * United Kingdom
+   * @deprecated
+   */
+  Gb = "GB",
+  /**
+   * Grenada
+   * @deprecated
+   */
+  Gd = "GD",
+  /**
+   * Georgia
+   * @deprecated
+   */
+  Ge = "GE",
+  /**
+   * French Guiana
+   * @deprecated
+   */
+  Gf = "GF",
+  /**
+   * Guernsey
+   * @deprecated
+   */
+  Gg = "GG",
+  /**
+   * Ghana
+   * @deprecated
+   */
+  Gh = "GH",
+  /**
+   * Gibraltar
+   * @deprecated
+   */
+  Gi = "GI",
+  /**
+   * Greenland
+   * @deprecated
+   */
+  Gl = "GL",
+  /**
+   * Gambia
+   * @deprecated
+   */
+  Gm = "GM",
+  /**
+   * Guinea
+   * @deprecated
+   */
+  Gn = "GN",
+  /**
+   * Guadeloupe
+   * @deprecated
+   */
+  Gp = "GP",
+  /**
+   * Equatorial Guinea
+   * @deprecated
+   */
+  Gq = "GQ",
+  /**
+   * Greece
+   * @deprecated
+   */
+  Gr = "GR",
+  /**
+   * South Georgia & South Sandwich Islands
+   * @deprecated
+   */
+  Gs = "GS",
+  /**
+   * Guatemala
+   * @deprecated
+   */
+  Gt = "GT",
+  /**
+   * Guam
+   * @deprecated
+   */
+  Gu = "GU",
+  /**
+   * Guinea-Bissau
+   * @deprecated
+   */
+  Gw = "GW",
+  /**
+   * Guyana
+   * @deprecated
+   */
+  Gy = "GY",
+  /**
+   * Hong Kong SAR China
+   * @deprecated
+   */
+  Hk = "HK",
+  /**
+   * Heard &amp; McDonald Islands
+   * @deprecated
+   */
+  Hm = "HM",
+  /**
+   * Honduras
+   * @deprecated
+   */
+  Hn = "HN",
+  /**
+   * Croatia
+   * @deprecated
+   */
+  Hr = "HR",
+  /**
+   * Haiti
+   * @deprecated
+   */
+  Ht = "HT",
+  /**
+   * Hungary
+   * @deprecated
+   */
+  Hu = "HU",
+  /**
+   * Indonesia
+   * @deprecated
+   */
+  Id = "ID",
+  /**
+   * Ireland
+   * @deprecated
+   */
+  Ie = "IE",
+  /**
+   * Israel
+   * @deprecated
+   */
+  Il = "IL",
+  /**
+   * Isle of Man
+   * @deprecated
+   */
+  Im = "IM",
+  /**
+   * India
+   * @deprecated
+   */
+  In = "IN",
+  /**
+   * British Indian Ocean Territory
+   * @deprecated
+   */
+  Io = "IO",
+  /**
+   * Iraq
+   * @deprecated
+   */
+  Iq = "IQ",
+  /**
+   * Iran
+   * @deprecated
+   */
+  Ir = "IR",
+  /**
+   * Iceland
+   * @deprecated
+   */
+  Is = "IS",
+  /**
+   * Italy
+   * @deprecated
+   */
+  It = "IT",
+  /**
+   * Jersey
+   * @deprecated
+   */
+  Je = "JE",
+  /**
+   * Jamaica
+   * @deprecated
+   */
+  Jm = "JM",
+  /**
+   * Jordan
+   * @deprecated
+   */
+  Jo = "JO",
+  /**
+   * Japan
+   * @deprecated
+   */
+  Jp = "JP",
+  /**
+   * Kenya
+   * @deprecated
+   */
+  Ke = "KE",
+  /**
+   * Kyrgyzstan
+   * @deprecated
+   */
+  Kg = "KG",
+  /**
+   * Cambodia
+   * @deprecated
+   */
+  Kh = "KH",
+  /**
+   * Kiribati
+   * @deprecated
+   */
+  Ki = "KI",
+  /**
+   * Comoros
+   * @deprecated
+   */
+  Km = "KM",
+  /**
+   * St. Kitts & Nevis
+   * @deprecated
+   */
+  Kn = "KN",
+  /**
+   * North Korea
+   * @deprecated
+   */
+  Kp = "KP",
+  /**
+   * South Korea
+   * @deprecated
+   */
+  Kr = "KR",
+  /**
+   * Kuwait
+   * @deprecated
+   */
+  Kw = "KW",
+  /**
+   * Cayman Islands
+   * @deprecated
+   */
+  Ky = "KY",
+  /**
+   * Kazakhstan
+   * @deprecated
+   */
+  Kz = "KZ",
+  /**
+   * Laos
+   * @deprecated
+   */
+  La = "LA",
+  /**
+   * Lebanon
+   * @deprecated
+   */
+  Lb = "LB",
+  /**
+   * St. Lucia
+   * @deprecated
+   */
+  Lc = "LC",
+  /**
+   * Liechtenstein
+   * @deprecated
+   */
+  Li = "LI",
+  /**
+   * Sri Lanka
+   * @deprecated
+   */
+  Lk = "LK",
+  /**
+   * Liberia
+   * @deprecated
+   */
+  Lr = "LR",
+  /**
+   * Lesotho
+   * @deprecated
+   */
+  Ls = "LS",
+  /**
+   * Lithuania
+   * @deprecated
+   */
+  Lt = "LT",
+  /**
+   * Luxembourg
+   * @deprecated
+   */
+  Lu = "LU",
+  /**
+   * Latvia
+   * @deprecated
+   */
+  Lv = "LV",
+  /**
+   * Libya
+   * @deprecated
+   */
+  Ly = "LY",
+  /**
+   * Morocco
+   * @deprecated
+   */
+  Ma = "MA",
+  /**
+   * Monaco
+   * @deprecated
+   */
+  Mc = "MC",
+  /**
+   * Moldova
+   * @deprecated
+   */
+  Md = "MD",
+  /**
+   * Montenegro
+   * @deprecated
+   */
+  Me = "ME",
+  /**
+   * St. Martin
+   * @deprecated
+   */
+  Mf = "MF",
+  /**
+   * Madagascar
+   * @deprecated
+   */
+  Mg = "MG",
+  /**
+   * Marshall Islands
+   * @deprecated
+   */
+  Mh = "MH",
+  /**
+   * Macedonia
+   * @deprecated
+   */
+  Mk = "MK",
+  /**
+   * Mali
+   * @deprecated
+   */
+  Ml = "ML",
+  /**
+   * Myanmar (Burma)
+   * @deprecated
+   */
+  Mm = "MM",
+  /**
+   * Mongolia
+   * @deprecated
+   */
+  Mn = "MN",
+  /**
+   * Macau SAR China
+   * @deprecated
+   */
+  Mo = "MO",
+  /**
+   * Northern Mariana Islands
+   * @deprecated
+   */
+  Mp = "MP",
+  /**
+   * Martinique
+   * @deprecated
+   */
+  Mq = "MQ",
+  /**
+   * Mauritania
+   * @deprecated
+   */
+  Mr = "MR",
+  /**
+   * Montserrat
+   * @deprecated
+   */
+  Ms = "MS",
+  /**
+   * Malta
+   * @deprecated
+   */
+  Mt = "MT",
+  /**
+   * Mauritius
+   * @deprecated
+   */
+  Mu = "MU",
+  /**
+   * Maldives
+   * @deprecated
+   */
+  Mv = "MV",
+  /**
+   * Malawi
+   * @deprecated
+   */
+  Mw = "MW",
+  /**
+   * Mexico
+   * @deprecated
+   */
+  Mx = "MX",
+  /**
+   * Malaysia
+   * @deprecated
+   */
+  My = "MY",
+  /**
+   * Mozambique
+   * @deprecated
+   */
+  Mz = "MZ",
+  /**
+   * Namibia
+   * @deprecated
+   */
+  Na = "NA",
+  /**
+   * New Caledonia
+   * @deprecated
+   */
+  Nc = "NC",
+  /**
+   * Niger
+   * @deprecated
+   */
+  Ne = "NE",
+  /**
+   * Norfolk Island
+   * @deprecated
+   */
+  Nf = "NF",
+  /**
+   * Nigeria
+   * @deprecated
+   */
+  Ng = "NG",
+  /**
+   * Nicaragua
+   * @deprecated
+   */
+  Ni = "NI",
+  /**
+   * Netherlands
+   * @deprecated
+   */
+  Nl = "NL",
+  /**
+   * Norway
+   * @deprecated
+   */
+  No = "NO",
+  /**
+   * Nepal
+   * @deprecated
+   */
+  Np = "NP",
+  /**
+   * Nauru
+   * @deprecated
+   */
+  Nr = "NR",
+  /**
+   * Niue
+   * @deprecated
+   */
+  Nu = "NU",
+  /**
+   * New Zealand
+   * @deprecated
+   */
+  Nz = "NZ",
+  /**
+   * Oman
+   * @deprecated
+   */
+  Om = "OM",
+  /**
+   * Panama
+   * @deprecated
+   */
+  Pa = "PA",
+  /**
+   * Peru
+   * @deprecated
+   */
+  Pe = "PE",
+  /**
+   * French Polynesia
+   * @deprecated
+   */
+  Pf = "PF",
+  /**
+   * Papua New Guinea
+   * @deprecated
+   */
+  Pg = "PG",
+  /**
+   * Philippines
+   * @deprecated
+   */
+  Ph = "PH",
+  /**
+   * Pakistan
+   * @deprecated
+   */
+  Pk = "PK",
+  /**
+   * Poland
+   * @deprecated
+   */
+  Pl = "PL",
+  /**
+   * St. Pierre & Miquelon
+   * @deprecated
+   */
+  Pm = "PM",
+  /**
+   * Pitcairn Islands
+   * @deprecated
+   */
+  Pn = "PN",
+  /**
+   * Palestinian Territories
+   * @deprecated
+   */
+  Ps = "PS",
+  /**
+   * Portugal
+   * @deprecated
+   */
+  Pt = "PT",
+  /**
+   * Palau
+   * @deprecated
+   */
+  Pw = "PW",
+  /**
+   * Paraguay
+   * @deprecated
+   */
+  Py = "PY",
+  /**
+   * Qatar
+   * @deprecated
+   */
+  Qa = "QA",
+  /**
+   * Réunion
+   * @deprecated
+   */
+  Re = "RE",
+  /**
+   * Romania
+   * @deprecated
+   */
+  Ro = "RO",
+  /**
+   * Serbia
+   * @deprecated
+   */
+  Rs = "RS",
+  /**
+   * Russia
+   * @deprecated
+   */
+  Ru = "RU",
+  /**
+   * Rwanda
+   * @deprecated
+   */
+  Rw = "RW",
+  /**
+   * Saudi Arabia
+   * @deprecated
+   */
+  Sa = "SA",
+  /**
+   * Solomon Islands
+   * @deprecated
+   */
+  Sb = "SB",
+  /**
+   * Seychelles
+   * @deprecated
+   */
+  Sc = "SC",
+  /**
+   * Sudan
+   * @deprecated
+   */
+  Sd = "SD",
+  /**
+   * Sweden
+   * @deprecated
+   */
+  Se = "SE",
+  /**
+   * Singapore
+   * @deprecated
+   */
+  Sg = "SG",
+  /**
+   * St. Helena
+   * @deprecated
+   */
+  Sh = "SH",
+  /**
+   * Slovenia
+   * @deprecated
+   */
+  Si = "SI",
+  /**
+   * Svalbard & Jan Mayen
+   * @deprecated
+   */
+  Sj = "SJ",
+  /**
+   * Slovakia
+   * @deprecated
+   */
+  Sk = "SK",
+  /**
+   * Sierra Leone
+   * @deprecated
+   */
+  Sl = "SL",
+  /**
+   * San Marino
+   * @deprecated
+   */
+  Sm = "SM",
+  /**
+   * Senegal
+   * @deprecated
+   */
+  Sn = "SN",
+  /**
+   * Somalia
+   * @deprecated
+   */
+  So = "SO",
+  /**
+   * Suriname
+   * @deprecated
+   */
+  Sr = "SR",
+  /**
+   * São Tomé & Príncipe
+   * @deprecated
+   */
+  St = "ST",
+  /**
+   * El Salvador
+   * @deprecated
+   */
+  Sv = "SV",
+  /**
+   * Syria
+   * @deprecated
+   */
+  Sy = "SY",
+  /**
+   * Swaziland
+   * @deprecated
+   */
+  Sz = "SZ",
+  /**
+   * Turks & Caicos Islands
+   * @deprecated
+   */
+  Tc = "TC",
+  /**
+   * Chad
+   * @deprecated
+   */
+  Td = "TD",
+  /**
+   * French Southern Territories
+   * @deprecated
+   */
+  Tf = "TF",
+  /**
+   * Togo
+   * @deprecated
+   */
+  Tg = "TG",
+  /**
+   * Thailand
+   * @deprecated
+   */
+  Th = "TH",
+  /**
+   * Tajikistan
+   * @deprecated
+   */
+  Tj = "TJ",
+  /**
+   * Tokelau
+   * @deprecated
+   */
+  Tk = "TK",
+  /**
+   * Timor-Leste
+   * @deprecated
+   */
+  Tl = "TL",
+  /**
+   * Turkmenistan
+   * @deprecated
+   */
+  Tm = "TM",
+  /**
+   * Tunisia
+   * @deprecated
+   */
+  Tn = "TN",
+  /**
+   * Tonga
+   * @deprecated
+   */
+  To = "TO",
+  /**
+   * Turkey
+   * @deprecated
+   */
+  Tr = "TR",
+  /**
+   * Trinidad & Tobago
+   * @deprecated
+   */
+  Tt = "TT",
+  /**
+   * Tuvalu
+   * @deprecated
+   */
+  Tv = "TV",
+  /**
+   * Taiwan
+   * @deprecated
+   */
+  Tw = "TW",
+  /**
+   * Tanzania
+   * @deprecated
+   */
+  Tz = "TZ",
+  /**
+   * Ukraine
+   * @deprecated
+   */
+  Ua = "UA",
+  /**
+   * Uganda
+   * @deprecated
+   */
+  Ug = "UG",
+  /**
+   * U.S. Outlying Islands
+   * @deprecated
+   */
+  Um = "UM",
+  /**
+   * United States
+   * @deprecated
+   */
+  Us = "US",
+  /**
+   * Uruguay
+   * @deprecated
+   */
+  Uy = "UY",
+  /**
+   * Uzbekistan
+   * @deprecated
+   */
+  Uz = "UZ",
+  /**
+   * Vatican City
+   * @deprecated
+   */
+  Va = "VA",
+  /**
+   * St. Vincent & Grenadines
+   * @deprecated
+   */
+  Vc = "VC",
+  /**
+   * Venezuela
+   * @deprecated
+   */
+  Ve = "VE",
+  /**
+   * British Virgin Islands
+   * @deprecated
+   */
+  Vg = "VG",
+  /**
+   * U.S. Virgin Islands
+   * @deprecated
+   */
+  Vi = "VI",
+  /**
+   * Vietnam
+   * @deprecated
+   */
+  Vn = "VN",
+  /**
+   * Vanuatu
+   * @deprecated
+   */
+  Vu = "VU",
+  /**
+   * Wallis & Futuna
+   * @deprecated
+   */
+  Wf = "WF",
+  /**
+   * Samoa
+   * @deprecated
+   */
+  Ws = "WS",
+  /**
+   * Yemen
+   * @deprecated
+   */
+  Ye = "YE",
+  /**
+   * Mayotte
+   * @deprecated
+   */
+  Yt = "YT",
+  /**
+   * South Africa
+   * @deprecated
+   */
+  Za = "ZA",
+  /**
+   * Zambia
+   * @deprecated
+   */
+  Zm = "ZM",
+  /**
+   * Zimbabwe
+   * @deprecated
+   */
+  Zw = "ZW",
+}
+
+/** Contains an array of product IDs to use for creating a compare list. */
+export type CreateCompareListInput = {
+  /** An array of product IDs to add to the compare list. */
+  products?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+};
+
+/** Defines a new gift registry. */
+export type CreateGiftRegistryInput = {
+  /** Additional attributes specified as a code-value pair. */
+  dynamic_attributes?: InputMaybe<
+    Array<InputMaybe<GiftRegistryDynamicAttributeInput>>
+  >;
+  /** The name of the event. */
+  event_name: Scalars["String"]["input"];
+  /** The ID of the selected event type. */
+  gift_registry_type_uid: Scalars["ID"]["input"];
+  /** A message describing the event. */
+  message: Scalars["String"]["input"];
+  /** Indicates whether the registry is PRIVATE or PUBLIC. */
+  privacy_settings: GiftRegistryPrivacySettings;
+  /** The list of people who receive notifications about the registry. */
+  registrants: Array<InputMaybe<AddGiftRegistryRegistrantInput>>;
+  /** The shipping address for all gift registry items. */
+  shipping_address?: InputMaybe<GiftRegistryShippingAddressInput>;
+  /** Indicates whether the registry is ACTIVE or INACTIVE. */
+  status: GiftRegistryStatus;
+};
+
+/** Contains the results of a request to create a gift registry. */
+export type CreateGiftRegistryOutput = {
+  __typename?: "CreateGiftRegistryOutput";
+  /** The newly-created gift registry. */
+  gift_registry?: Maybe<GiftRegistry>;
+};
+
+/** Contains the secure information used to authorize transaction. Applies to Payflow Pro and Payments Pro payment methods. */
+export type CreatePayflowProTokenOutput = {
+  __typename?: "CreatePayflowProTokenOutput";
+  /** The RESPMSG returned by PayPal. If the `result` is `0`, then `response_message` is `Approved`. */
+  response_message: Scalars["String"]["output"];
+  /** A non-zero value if any errors occurred. */
+  result: Scalars["Int"]["output"];
+  /** The RESULT returned by PayPal. A value of `0` indicates the transaction was approved. */
+  result_code: Scalars["Int"]["output"];
+  /** A secure token generated by PayPal. */
+  secure_token: Scalars["String"]["output"];
+  /** A secure token ID generated by PayPal. */
+  secure_token_id: Scalars["String"]["output"];
+};
+
+/** Defines a new product review. */
+export type CreateProductReviewInput = {
+  /** The customer's nickname. Defaults to the customer name, if logged in. */
+  nickname: Scalars["String"]["input"];
+  /** The ratings details by category. For example, Price: 5 stars, Quality: 4 stars, etc. */
+  ratings: Array<InputMaybe<ProductReviewRatingInput>>;
+  /** The SKU of the reviewed product. */
+  sku: Scalars["String"]["input"];
+  /** The summary (title) of the review. */
+  summary: Scalars["String"]["input"];
+  /** The review text. */
+  text: Scalars["String"]["input"];
+};
+
+/** Contains the completed product review. */
+export type CreateProductReviewOutput = {
+  __typename?: "CreateProductReviewOutput";
+  /** Product review details. */
+  review: ProductReview;
+};
+
+/** Defines the name and visibility of a new wish list. */
+export type CreateWishlistInput = {
+  /** The name of the new wish list. */
+  name: Scalars["String"]["input"];
+  /** Indicates whether the wish list is public or private. */
+  visibility: WishlistVisibilityEnum;
+};
+
+/** Contains the wish list. */
+export type CreateWishlistOutput = {
+  __typename?: "CreateWishlistOutput";
+  /** The newly-created wish list */
+  wishlist: Wishlist;
+};
+
+/** Required fields for Payflow Pro and Payments Pro credit card payments. */
+export type CreditCardDetailsInput = {
+  /** The credit card expiration month. */
+  cc_exp_month: Scalars["Int"]["input"];
+  /** The credit card expiration year. */
+  cc_exp_year: Scalars["Int"]["input"];
+  /** The last 4 digits of the credit card. */
+  cc_last_4: Scalars["Int"]["input"];
+  /** The credit card type. */
+  cc_type: Scalars["String"]["input"];
+};
+
+/** Contains credit memo details. */
+export type CreditMemo = {
+  __typename?: "CreditMemo";
+  /** Comments on the credit memo. */
+  comments?: Maybe<Array<Maybe<SalesCommentItem>>>;
+  /** The unique ID for a `CreditMemo` object. */
+  id: Scalars["ID"]["output"];
+  /** An array containing details about refunded items. */
+  items?: Maybe<Array<Maybe<CreditMemoItemInterface>>>;
+  /** The sequential credit memo number. */
+  number: Scalars["String"]["output"];
+  /** Details about the total refunded amount. */
+  total?: Maybe<CreditMemoTotal>;
+};
+
+export type CreditMemoItem = CreditMemoItemInterface & {
+  __typename?: "CreditMemoItem";
+  /** Details about the final discount amount for the base product, including discounts on options. */
+  discounts?: Maybe<Array<Maybe<Discount>>>;
+  /** The unique ID for a `CreditMemoItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** The order item the credit memo is applied to. */
+  order_item?: Maybe<OrderItemInterface>;
+  /** The name of the base product. */
+  product_name?: Maybe<Scalars["String"]["output"]>;
+  /** The sale price for the base product, including selected options. */
+  product_sale_price: Money;
+  /** The SKU of the base product. */
+  product_sku: Scalars["String"]["output"];
+  /** The number of refunded items. */
+  quantity_refunded?: Maybe<Scalars["Float"]["output"]>;
+};
+
+/** Credit memo item details. */
+export type CreditMemoItemInterface = {
+  /** Details about the final discount amount for the base product, including discounts on options. */
+  discounts?: Maybe<Array<Maybe<Discount>>>;
+  /** The unique ID for a `CreditMemoItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** The order item the credit memo is applied to. */
+  order_item?: Maybe<OrderItemInterface>;
+  /** The name of the base product. */
+  product_name?: Maybe<Scalars["String"]["output"]>;
+  /** The sale price for the base product, including selected options. */
+  product_sale_price: Money;
+  /** The SKU of the base product. */
+  product_sku: Scalars["String"]["output"];
+  /** The number of refunded items. */
+  quantity_refunded?: Maybe<Scalars["Float"]["output"]>;
+};
+
+/** Contains credit memo price details. */
+export type CreditMemoTotal = {
+  __typename?: "CreditMemoTotal";
+  /** An adjustment manually applied to the order. */
+  adjustment: Money;
+  /** The final base grand total amount in the base currency. */
+  base_grand_total: Money;
+  /** The applied discounts to the credit memo. */
+  discounts?: Maybe<Array<Maybe<Discount>>>;
+  /** The final total amount, including shipping, discounts, and taxes. */
+  grand_total: Money;
+  /** Details about the shipping and handling costs for the credit memo. */
+  shipping_handling?: Maybe<ShippingHandling>;
+  /** The subtotal of the invoice, excluding shipping, discounts, and taxes. */
+  subtotal: Money;
+  /** The credit memo tax details. */
+  taxes?: Maybe<Array<Maybe<TaxItem>>>;
+  /** The shipping amount for the credit memo. */
+  total_shipping: Money;
+  /** The amount of tax applied to the credit memo. */
+  total_tax: Money;
+};
+
+export type Currency = {
+  __typename?: "Currency";
+  /** An array of three-letter currency codes accepted by the store, such as USD and EUR. */
+  available_currency_codes?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
+  /** The base currency set for the store, such as USD. */
+  base_currency_code?: Maybe<Scalars["String"]["output"]>;
+  /** The symbol for the specified base currency, such as $. */
+  base_currency_symbol?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Symbol was missed. Use `default_display_currency_code`. */
+  default_display_currecy_code?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Symbol was missed. Use `default_display_currency_code`. */
+  default_display_currecy_symbol?: Maybe<Scalars["String"]["output"]>;
+  /** The currency that is displayed by default, such as USD. */
+  default_display_currency_code?: Maybe<Scalars["String"]["output"]>;
+  /** The currency symbol that is displayed by default, such as $. */
+  default_display_currency_symbol?: Maybe<Scalars["String"]["output"]>;
+  /** An array of exchange rates for currencies defined in the store. */
+  exchange_rates?: Maybe<Array<Maybe<ExchangeRate>>>;
+};
+
+/** The list of available currency codes. */
+export enum CurrencyEnum {
+  /** @deprecated  */
+  Aed = "AED",
+  /** @deprecated  */
+  Afn = "AFN",
+  /** @deprecated  */
+  All = "ALL",
+  /** @deprecated  */
+  Amd = "AMD",
+  /** @deprecated  */
+  Ang = "ANG",
+  /** @deprecated  */
+  Aoa = "AOA",
+  /** @deprecated  */
+  Ars = "ARS",
+  /** @deprecated  */
+  Aud = "AUD",
+  /** @deprecated  */
+  Awg = "AWG",
+  /** @deprecated  */
+  Azm = "AZM",
+  /** @deprecated  */
+  Azn = "AZN",
+  /** @deprecated  */
+  Bam = "BAM",
+  /** @deprecated  */
+  Bbd = "BBD",
+  /** @deprecated  */
+  Bdt = "BDT",
+  /** @deprecated  */
+  Bgn = "BGN",
+  /** @deprecated  */
+  Bhd = "BHD",
+  /** @deprecated  */
+  Bif = "BIF",
+  /** @deprecated  */
+  Bmd = "BMD",
+  /** @deprecated  */
+  Bnd = "BND",
+  /** @deprecated  */
+  Bob = "BOB",
+  /** @deprecated  */
+  Brl = "BRL",
+  /** @deprecated  */
+  Bsd = "BSD",
+  /** @deprecated  */
+  Btn = "BTN",
+  /** @deprecated  */
+  Buk = "BUK",
+  /** @deprecated  */
+  Bwp = "BWP",
+  /** @deprecated  */
+  Byn = "BYN",
+  /** @deprecated  */
+  Bzd = "BZD",
+  /** @deprecated  */
+  Cad = "CAD",
+  /** @deprecated  */
+  Cdf = "CDF",
+  /** @deprecated  */
+  Che = "CHE",
+  /** @deprecated  */
+  Chf = "CHF",
+  /** @deprecated  */
+  Chw = "CHW",
+  /** @deprecated  */
+  Clp = "CLP",
+  /** @deprecated  */
+  Cny = "CNY",
+  /** @deprecated  */
+  Cop = "COP",
+  /** @deprecated  */
+  Crc = "CRC",
+  /** @deprecated  */
+  Cup = "CUP",
+  /** @deprecated  */
+  Cve = "CVE",
+  /** @deprecated  */
+  Czk = "CZK",
+  /** @deprecated  */
+  Djf = "DJF",
+  /** @deprecated  */
+  Dkk = "DKK",
+  /** @deprecated  */
+  Dop = "DOP",
+  /** @deprecated  */
+  Dzd = "DZD",
+  /** @deprecated  */
+  Eek = "EEK",
+  /** @deprecated  */
+  Egp = "EGP",
+  /** @deprecated  */
+  Ern = "ERN",
+  /** @deprecated  */
+  Etb = "ETB",
+  /** @deprecated  */
+  Eur = "EUR",
+  /** @deprecated  */
+  Fjd = "FJD",
+  /** @deprecated  */
+  Fkp = "FKP",
+  /** @deprecated  */
+  Gbp = "GBP",
+  /** @deprecated  */
+  Gek = "GEK",
+  /** @deprecated  */
+  Gel = "GEL",
+  /** @deprecated  */
+  Ghs = "GHS",
+  /** @deprecated  */
+  Gip = "GIP",
+  /** @deprecated  */
+  Gmd = "GMD",
+  /** @deprecated  */
+  Gnf = "GNF",
+  /** @deprecated  */
+  Gqe = "GQE",
+  /** @deprecated  */
+  Gtq = "GTQ",
+  /** @deprecated  */
+  Gyd = "GYD",
+  /** @deprecated  */
+  Hkd = "HKD",
+  /** @deprecated  */
+  Hnl = "HNL",
+  /** @deprecated  */
+  Hrk = "HRK",
+  /** @deprecated  */
+  Htg = "HTG",
+  /** @deprecated  */
+  Huf = "HUF",
+  /** @deprecated  */
+  Idr = "IDR",
+  /** @deprecated  */
+  Ils = "ILS",
+  /** @deprecated  */
+  Inr = "INR",
+  /** @deprecated  */
+  Iqd = "IQD",
+  /** @deprecated  */
+  Irr = "IRR",
+  /** @deprecated  */
+  Isk = "ISK",
+  /** @deprecated  */
+  Jmd = "JMD",
+  /** @deprecated  */
+  Jod = "JOD",
+  /** @deprecated  */
+  Jpy = "JPY",
+  /** @deprecated  */
+  Kes = "KES",
+  /** @deprecated  */
+  Kgs = "KGS",
+  /** @deprecated  */
+  Khr = "KHR",
+  /** @deprecated  */
+  Kmf = "KMF",
+  /** @deprecated  */
+  Kpw = "KPW",
+  /** @deprecated  */
+  Krw = "KRW",
+  /** @deprecated  */
+  Kwd = "KWD",
+  /** @deprecated  */
+  Kyd = "KYD",
+  /** @deprecated  */
+  Kzt = "KZT",
+  /** @deprecated  */
+  Lak = "LAK",
+  /** @deprecated  */
+  Lbp = "LBP",
+  /** @deprecated  */
+  Lkr = "LKR",
+  /** @deprecated  */
+  Lrd = "LRD",
+  /** @deprecated  */
+  Lsl = "LSL",
+  /** @deprecated  */
+  Lsm = "LSM",
+  /** @deprecated  */
+  Ltl = "LTL",
+  /** @deprecated  */
+  Lvl = "LVL",
+  /** @deprecated  */
+  Lyd = "LYD",
+  /** @deprecated  */
+  Mad = "MAD",
+  /** @deprecated  */
+  Mdl = "MDL",
+  /** @deprecated  */
+  Mga = "MGA",
+  /** @deprecated  */
+  Mkd = "MKD",
+  /** @deprecated  */
+  Mmk = "MMK",
+  /** @deprecated  */
+  Mnt = "MNT",
+  /** @deprecated  */
+  Mop = "MOP",
+  /** @deprecated  */
+  Mro = "MRO",
+  /** @deprecated  */
+  Mur = "MUR",
+  /** @deprecated  */
+  Mvr = "MVR",
+  /** @deprecated  */
+  Mwk = "MWK",
+  /** @deprecated  */
+  Mxn = "MXN",
+  /** @deprecated  */
+  Myr = "MYR",
+  /** @deprecated  */
+  Mzn = "MZN",
+  /** @deprecated  */
+  Nad = "NAD",
+  /** @deprecated  */
+  Ngn = "NGN",
+  /** @deprecated  */
+  Nic = "NIC",
+  /** @deprecated  */
+  Nok = "NOK",
+  /** @deprecated  */
+  Npr = "NPR",
+  /** @deprecated  */
+  Nzd = "NZD",
+  /** @deprecated  */
+  Omr = "OMR",
+  /** @deprecated  */
+  Pab = "PAB",
+  /** @deprecated  */
+  Pen = "PEN",
+  /** @deprecated  */
+  Pgk = "PGK",
+  /** @deprecated  */
+  Php = "PHP",
+  /** @deprecated  */
+  Pkr = "PKR",
+  /** @deprecated  */
+  Pln = "PLN",
+  /** @deprecated  */
+  Pyg = "PYG",
+  /** @deprecated  */
+  Qar = "QAR",
+  /** @deprecated  */
+  Rhd = "RHD",
+  /** @deprecated  */
+  Rol = "ROL",
+  /** @deprecated  */
+  Ron = "RON",
+  /** @deprecated  */
+  Rsd = "RSD",
+  /** @deprecated  */
+  Rub = "RUB",
+  /** @deprecated  */
+  Rwf = "RWF",
+  /** @deprecated  */
+  Sar = "SAR",
+  /** @deprecated  */
+  Sbd = "SBD",
+  /** @deprecated  */
+  Scr = "SCR",
+  /** @deprecated  */
+  Sdg = "SDG",
+  /** @deprecated  */
+  Sek = "SEK",
+  /** @deprecated  */
+  Sgd = "SGD",
+  /** @deprecated  */
+  Shp = "SHP",
+  /** @deprecated  */
+  Skk = "SKK",
+  /** @deprecated  */
+  Sll = "SLL",
+  /** @deprecated  */
+  Sos = "SOS",
+  /** @deprecated  */
+  Srd = "SRD",
+  /** @deprecated  */
+  Std = "STD",
+  /** @deprecated  */
+  Svc = "SVC",
+  /** @deprecated  */
+  Syp = "SYP",
+  /** @deprecated  */
+  Szl = "SZL",
+  /** @deprecated  */
+  Thb = "THB",
+  /** @deprecated  */
+  Tjs = "TJS",
+  /** @deprecated  */
+  Tmm = "TMM",
+  /** @deprecated  */
+  Tnd = "TND",
+  /** @deprecated  */
+  Top = "TOP",
+  /** @deprecated  */
+  Trl = "TRL",
+  /** @deprecated  */
+  Try = "TRY",
+  /** @deprecated  */
+  Ttd = "TTD",
+  /** @deprecated  */
+  Twd = "TWD",
+  /** @deprecated  */
+  Tzs = "TZS",
+  /** @deprecated  */
+  Uah = "UAH",
+  /** @deprecated  */
+  Ugx = "UGX",
+  /** @deprecated  */
+  Usd = "USD",
+  /** @deprecated  */
+  Uyu = "UYU",
+  /** @deprecated  */
+  Uzs = "UZS",
+  /** @deprecated  */
+  Veb = "VEB",
+  /** @deprecated  */
+  Vef = "VEF",
+  /** @deprecated  */
+  Vnd = "VND",
+  /** @deprecated  */
+  Vuv = "VUV",
+  /** @deprecated  */
+  Wst = "WST",
+  /** @deprecated  */
+  Xcd = "XCD",
+  /** @deprecated  */
+  Xof = "XOF",
+  /** @deprecated  */
+  Xpf = "XPF",
+  /** @deprecated  */
+  Yer = "YER",
+  /** @deprecated  */
+  Ytl = "YTL",
+  /** @deprecated  */
+  Zar = "ZAR",
+  /** @deprecated  */
+  Zmk = "ZMK",
+  /** @deprecated  */
+  Zwd = "ZWD",
+}
+
+/** Defines an array of custom attributes. */
+export type CustomAttributeMetadata = {
+  __typename?: "CustomAttributeMetadata";
+  /** An array of attributes. */
+  items?: Maybe<Array<Maybe<Attribute>>>;
+};
+
+/** Defines the customer name, addresses, and other details. */
+export type Customer = {
+  __typename?: "Customer";
+  /** An array containing the customer's shipping and billing addresses. */
+  addresses?: Maybe<Array<Maybe<CustomerAddress>>>;
+  /** Indicates whether the customer has enabled remote shopping assistance. */
+  allow_remote_shopping_assistance: Scalars["Boolean"]["output"];
+  /** The contents of the customer's compare list. */
+  compare_list?: Maybe<CompareList>;
+  /** Customer consent list. */
+  consents?: Maybe<Array<Maybe<Consent>>>;
+  /** Timestamp indicating when the account was created. */
+  created_at?: Maybe<Scalars["String"]["output"]>;
+  /** The customer's date of birth. */
+  date_of_birth?: Maybe<Scalars["String"]["output"]>;
+  /** The ID assigned to the billing address. */
+  default_billing?: Maybe<Scalars["String"]["output"]>;
+  /** The ID assigned to the shipping address. */
+  default_shipping?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * The customer's date of birth.
+   * @deprecated Use `date_of_birth` instead.
+   */
+  dob?: Maybe<Scalars["String"]["output"]>;
+  /** The customer's email address. Required. */
+  email?: Maybe<Scalars["String"]["output"]>;
+  /** The customer's first name. */
+  firstname?: Maybe<Scalars["String"]["output"]>;
+  /** The customer's gender (Male - 1, Female - 2). */
+  gender?: Maybe<Scalars["Int"]["output"]>;
+  /** Details about all of the customer's gift registries. */
+  gift_registries?: Maybe<Array<Maybe<GiftRegistry>>>;
+  /** Details about a specific gift registry. */
+  gift_registry?: Maybe<GiftRegistry>;
+  /** @deprecated Customer group should not be exposed in the storefront scenarios. */
+  group_id?: Maybe<Scalars["Int"]["output"]>;
+  /**
+   * The ID assigned to the customer.
+   * @deprecated `id` is not needed as part of `Customer`, because on the server side, it can be identified based on the customer token used for authentication. There is no need to know customer ID on the client side.
+   */
+  id?: Maybe<Scalars["Int"]["output"]>;
+  /** Indicates whether the customer is subscribed to the company's newsletter. */
+  is_subscribed?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The customer's family name. */
+  lastname?: Maybe<Scalars["String"]["output"]>;
+  /** The customer's middle name. */
+  middlename?: Maybe<Scalars["String"]["output"]>;
+  orders?: Maybe<CustomerOrders>;
+  /** An honorific, such as Dr., Mr., or Mrs. */
+  prefix?: Maybe<Scalars["String"]["output"]>;
+  /** Details about the specified return request from the unique ID for a `Return` object. */
+  return?: Maybe<Return>;
+  /** Information about the customer's return requests. */
+  returns?: Maybe<Returns>;
+  /** Contains the customer's product reviews. */
+  reviews: ProductReviews;
+  /** Customer reward points details. */
+  reward_points?: Maybe<RewardPoints>;
+  /** Store credit information applied for the logged in customer. */
+  store_credit?: Maybe<CustomerStoreCredit>;
+  /** A value such as Sr., Jr., or III. */
+  suffix?: Maybe<Scalars["String"]["output"]>;
+  /** The customer's Value-added tax (VAT) number (for corporate customers). */
+  taxvat?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * Return a customer's wish lists.
+   * @deprecated Use `Customer.wishlists` or `Customer.wishlist_v2` instead.
+   */
+  wishlist: Wishlist;
+  /** Retrieve the wish list identified by the unique ID for a `Wishlist` object. */
+  wishlist_v2?: Maybe<Wishlist>;
+  /** An array of wishlists. In Magento Open Source, customers are limited to one wish list. The number of wish lists is configurable for Adobe Commerce. */
+  wishlists: Array<Maybe<Wishlist>>;
+};
+
+/** Defines the customer name, addresses, and other details. */
+export type CustomerGift_RegistryArgs = {
+  giftRegistryUid: Scalars["ID"]["input"];
+};
+
+/** Defines the customer name, addresses, and other details. */
+export type CustomerOrdersArgs = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  filter?: InputMaybe<CustomerOrdersFilterInput>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+  scope?: InputMaybe<ScopeTypeEnum>;
+  sort?: InputMaybe<CustomerOrderSortInput>;
+};
+
+/** Defines the customer name, addresses, and other details. */
+export type CustomerReturnArgs = {
+  uid: Scalars["ID"]["input"];
+};
+
+/** Defines the customer name, addresses, and other details. */
+export type CustomerReturnsArgs = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+/** Defines the customer name, addresses, and other details. */
+export type CustomerReviewsArgs = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+/** Defines the customer name, addresses, and other details. */
+export type CustomerWishlist_V2Args = {
+  id: Scalars["ID"]["input"];
+};
+
+/** Defines the customer name, addresses, and other details. */
+export type CustomerWishlistsArgs = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+/** Contains detailed information about a customer's billing or shipping address. */
+export type CustomerAddress = {
+  __typename?: "CustomerAddress";
+  /** The customer's city or town. */
+  city?: Maybe<Scalars["String"]["output"]>;
+  /** The customer's company. */
+  company?: Maybe<Scalars["String"]["output"]>;
+  /** The customer's country. */
+  country_code?: Maybe<CountryCodeEnum>;
+  /**
+   * The customer's country.
+   * @deprecated Use `country_code` instead.
+   */
+  country_id?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Custom attributes should not be put into a container. */
+  custom_attributes?: Maybe<Array<Maybe<CustomerAddressAttribute>>>;
+  /**
+   * The customer ID
+   * @deprecated `customer_id` is not needed as part of `CustomerAddress`. The `id` is a unique identifier for the addresses.
+   */
+  customer_id?: Maybe<Scalars["Int"]["output"]>;
+  /** Indicates whether the address is the customer's default billing address. */
+  default_billing?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Indicates whether the address is the customer's default shipping address. */
+  default_shipping?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Contains any extension attributes for the address. */
+  extension_attributes?: Maybe<Array<Maybe<CustomerAddressAttribute>>>;
+  /** The customer's fax number. */
+  fax?: Maybe<Scalars["String"]["output"]>;
+  /** The first name of the person associated with the shipping/billing address. */
+  firstname?: Maybe<Scalars["String"]["output"]>;
+  /** The ID of a `CustomerAddress` object. */
+  id?: Maybe<Scalars["Int"]["output"]>;
+  /** The family name of the person associated with the shipping/billing address. */
+  lastname?: Maybe<Scalars["String"]["output"]>;
+  /** The middle name of the person associated with the shipping/billing address. */
+  middlename?: Maybe<Scalars["String"]["output"]>;
+  /** The customer's ZIP or postal code. */
+  postcode?: Maybe<Scalars["String"]["output"]>;
+  /** An honorific, such as Dr., Mr., or Mrs. */
+  prefix?: Maybe<Scalars["String"]["output"]>;
+  /** An object containing the region name, region code, and region ID. */
+  region?: Maybe<CustomerAddressRegion>;
+  /** The unique ID for a pre-defined region. */
+  region_id?: Maybe<Scalars["Int"]["output"]>;
+  /** An array of strings that define the street number and name. */
+  street?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
+  /** A value such as Sr., Jr., or III. */
+  suffix?: Maybe<Scalars["String"]["output"]>;
+  /** The customer's telephone number. */
+  telephone?: Maybe<Scalars["String"]["output"]>;
+  /** The customer's Value-added tax (VAT) number (for corporate customers). */
+  vat_id?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Specifies the attribute code and value of a customer address attribute. */
+export type CustomerAddressAttribute = {
+  __typename?: "CustomerAddressAttribute";
+  /** The name assigned to the customer address attribute. */
+  attribute_code?: Maybe<Scalars["String"]["output"]>;
+  /** The valuue assigned to the customer address attribute. */
+  value?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Specifies the attribute code and value of a customer attribute. */
+export type CustomerAddressAttributeInput = {
+  /** The name assigned to the attribute. */
+  attribute_code: Scalars["String"]["input"];
+  /** The value assigned to the attribute. */
+  value: Scalars["String"]["input"];
+};
+
+/** Contains details about a billing or shipping address. */
+export type CustomerAddressInput = {
+  /** The customer's city or town. */
+  city?: InputMaybe<Scalars["String"]["input"]>;
+  /** The customer's company. */
+  company?: InputMaybe<Scalars["String"]["input"]>;
+  /** The two-letter code representing the customer's country. */
+  country_code?: InputMaybe<CountryCodeEnum>;
+  /** Deprecated: use `country_code` instead. */
+  country_id?: InputMaybe<CountryCodeEnum>;
+  /** Deprecated: Custom attributes should not be put into container. */
+  custom_attributes?: InputMaybe<
+    Array<InputMaybe<CustomerAddressAttributeInput>>
+  >;
+  /** Indicates whether the address is the default billing address. */
+  default_billing?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Indicates whether the address is the default shipping address. */
+  default_shipping?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** The customer's fax number. */
+  fax?: InputMaybe<Scalars["String"]["input"]>;
+  /** The first name of the person associated with the billing/shipping address. */
+  firstname?: InputMaybe<Scalars["String"]["input"]>;
+  /** The family name of the person associated with the billing/shipping address. */
+  lastname?: InputMaybe<Scalars["String"]["input"]>;
+  /** The middle name of the person associated with the billing/shipping address. */
+  middlename?: InputMaybe<Scalars["String"]["input"]>;
+  /** The customer's ZIP or postal code. */
+  postcode?: InputMaybe<Scalars["String"]["input"]>;
+  /** An honorific, such as Dr., Mr., or Mrs. */
+  prefix?: InputMaybe<Scalars["String"]["input"]>;
+  /** An object containing the region name, region code, and region ID. */
+  region?: InputMaybe<CustomerAddressRegionInput>;
+  /** An array of strings that define the street number and name. */
+  street?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** A value such as Sr., Jr., or III. */
+  suffix?: InputMaybe<Scalars["String"]["input"]>;
+  /** The customer's telephone number. */
+  telephone?: InputMaybe<Scalars["String"]["input"]>;
+  /** The customer's Tax/VAT number (for corporate customers). */
+  vat_id?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Defines the customer's state or province. */
+export type CustomerAddressRegion = {
+  __typename?: "CustomerAddressRegion";
+  /** The state or province name. */
+  region?: Maybe<Scalars["String"]["output"]>;
+  /** The address region code. */
+  region_code?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a pre-defined region. */
+  region_id?: Maybe<Scalars["Int"]["output"]>;
+};
+
+/** Defines the customer's state or province. */
+export type CustomerAddressRegionInput = {
+  /** The state or province name. */
+  region?: InputMaybe<Scalars["String"]["input"]>;
+  /** The address region code. */
+  region_code?: InputMaybe<Scalars["String"]["input"]>;
+  /** The unique ID for a pre-defined region. */
+  region_id?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+/** An input object for creating a customer. */
+export type CustomerCreateInput = {
+  /** Indicates whether the customer has enabled remote shopping assistance. */
+  allow_remote_shopping_assistance?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** The customer's date of birth. */
+  date_of_birth?: InputMaybe<Scalars["String"]["input"]>;
+  /** Deprecated: Use `date_of_birth` instead. */
+  dob?: InputMaybe<Scalars["String"]["input"]>;
+  /** The customer's email address. */
+  email: Scalars["String"]["input"];
+  /** The customer's first name. */
+  firstname: Scalars["String"]["input"];
+  /** The customer's gender (Male - 1, Female - 2). */
+  gender?: InputMaybe<Scalars["Int"]["input"]>;
+  /** Indicates whether the customer is subscribed to the company's newsletter. */
+  is_subscribed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** The customer's family name. */
+  lastname: Scalars["String"]["input"];
+  /** The customer's middle name. */
+  middlename?: InputMaybe<Scalars["String"]["input"]>;
+  /** The customer's password. */
+  password?: InputMaybe<Scalars["String"]["input"]>;
+  /** An honorific, such as Dr., Mr., or Mrs. */
+  prefix?: InputMaybe<Scalars["String"]["input"]>;
+  /** A value such as Sr., Jr., or III. */
+  suffix?: InputMaybe<Scalars["String"]["input"]>;
+  /** The customer's Tax/VAT number (for corporate customers). */
+  taxvat?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Contains details about a single downloadable product. */
+export type CustomerDownloadableProduct = {
+  __typename?: "CustomerDownloadableProduct";
+  /** The date and time the purchase was made. */
+  date?: Maybe<Scalars["String"]["output"]>;
+  /** The fully qualified URL to the download file. */
+  download_url?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID assigned to the item. */
+  order_increment_id?: Maybe<Scalars["String"]["output"]>;
+  /** The remaining number of times the customer can download the product. */
+  remaining_downloads?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates when the product becomes available for download. Options are `Pending` and `Invoiced`. */
+  status?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Contains a list of downloadable products. */
+export type CustomerDownloadableProducts = {
+  __typename?: "CustomerDownloadableProducts";
+  /** An array of purchased downloadable items. */
+  items?: Maybe<Array<Maybe<CustomerDownloadableProduct>>>;
+};
+
+/** An input object that assigns or updates customer attributes. */
+export type CustomerInput = {
+  /** The customer's date of birth. */
+  date_of_birth?: InputMaybe<Scalars["String"]["input"]>;
+  /** Deprecated: Use `date_of_birth` instead. */
+  dob?: InputMaybe<Scalars["String"]["input"]>;
+  /** The customer's email address. Required when creating a customer. */
+  email?: InputMaybe<Scalars["String"]["input"]>;
+  /** The customer's first name. */
+  firstname?: InputMaybe<Scalars["String"]["input"]>;
+  /** The customer's gender (Male - 1, Female - 2). */
+  gender?: InputMaybe<Scalars["Int"]["input"]>;
+  /** Indicates whether the customer is subscribed to the company's newsletter. */
+  is_subscribed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** The customer's family name. */
+  lastname?: InputMaybe<Scalars["String"]["input"]>;
+  /** The customer's middle name. */
+  middlename?: InputMaybe<Scalars["String"]["input"]>;
+  /** The customer's password. */
+  password?: InputMaybe<Scalars["String"]["input"]>;
+  /** An honorific, such as Dr., Mr., or Mrs. */
+  prefix?: InputMaybe<Scalars["String"]["input"]>;
+  /** A value such as Sr., Jr., or III. */
+  suffix?: InputMaybe<Scalars["String"]["input"]>;
+  /** The customer's Tax/VAT number (for corporate customers). */
+  taxvat?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Contains details about each of the customer's orders. */
+export type CustomerOrder = {
+  __typename?: "CustomerOrder";
+  /** The billing address for the order. */
+  billing_address?: Maybe<OrderAddress>;
+  /** The shipping carrier for the order delivery. */
+  carrier?: Maybe<Scalars["String"]["output"]>;
+  /** Comments about the order. */
+  comments?: Maybe<Array<Maybe<SalesCommentItem>>>;
+  /** Number of products in the order. */
+  count: Scalars["Int"]["output"];
+  /** @deprecated Use the `order_date` field instead. */
+  created_at?: Maybe<Scalars["String"]["output"]>;
+  /** A list of credit memos. */
+  credit_memos?: Maybe<Array<Maybe<CreditMemo>>>;
+  /** Currency of the order. */
+  currency: Scalars["String"]["output"];
+  /** The entered gift message for the order */
+  gift_message?: Maybe<GiftMessage>;
+  /** Indicates whether the customer requested a gift receipt for the order. */
+  gift_receipt_included: Scalars["Boolean"]["output"];
+  /** The selected gift wrapping for the order. */
+  gift_wrapping?: Maybe<GiftWrapping>;
+  /** @deprecated Use the `totals.grand_total` field instead. */
+  grand_total?: Maybe<Scalars["Float"]["output"]>;
+  /** The unique ID for a `CustomerOrder` object. */
+  id: Scalars["ID"]["output"];
+  /** @deprecated Use the `id` field instead. */
+  increment_id?: Maybe<Scalars["String"]["output"]>;
+  /** A list of invoices for the order. */
+  invoices: Array<Maybe<Invoice>>;
+  /** An array containing the items purchased in this order. */
+  items: Array<Maybe<CustomerOrderItem>>;
+  /** A list of order items eligible to be in a return request. */
+  items_eligible_for_return?: Maybe<Array<Maybe<OrderItemInterface>>>;
+  /** The order number. */
+  number: Scalars["String"]["output"];
+  /** The date the order was placed. */
+  order_date: Scalars["String"]["output"];
+  /** @deprecated Use the `number` field instead. */
+  order_number: Scalars["String"]["output"];
+  /** Payment details for the order. */
+  payment_methods?: Maybe<Array<Maybe<OrderPaymentMethod>>>;
+  /** The total price of the order. */
+  price: Scalars["Float"]["output"];
+  /** Indicates whether the customer requested a printed card for the order. */
+  printed_card_included: Scalars["Boolean"]["output"];
+  /** Return requests associated with this order. */
+  returns?: Maybe<Returns>;
+  /** A list of shipments for the order. */
+  shipments?: Maybe<Array<Maybe<OrderShipment>>>;
+  /** The shipping address for the order. */
+  shipping_address?: Maybe<OrderAddress>;
+  /** The delivery method for the order. */
+  shipping_method?: Maybe<Scalars["String"]["output"]>;
+  /** The current status of the order. */
+  status: Scalars["String"]["output"];
+  /** Store name in which order purchased. */
+  store: Scalars["String"]["output"];
+  /** Details about the calculated totals for this order. */
+  total?: Maybe<OrderTotal>;
+};
+
+/** Contains details about each of the customer's orders. */
+export type CustomerOrderReturnsArgs = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export type CustomerOrderItem = {
+  __typename?: "CustomerOrderItem";
+  image: Scalars["String"]["output"];
+  link: Scalars["String"]["output"];
+  name: Scalars["String"]["output"];
+  price: Scalars["Float"]["output"];
+  quantity: Scalars["Float"]["output"];
+  sku: Scalars["String"]["output"];
+};
+
+/** CustomerOrderSortInput specifies the field to use for sorting search results and indicates whether the results are sorted in ascending or descending order. */
+export type CustomerOrderSortInput = {
+  /** This enumeration indicates whether to return results in ascending or descending order */
+  sort_direction: SortEnum;
+  /** Specifies the field to use for sorting */
+  sort_field: CustomerOrderSortableField;
+};
+
+/** Specifies the field to use for sorting */
+export enum CustomerOrderSortableField {
+  /**
+   * Sorts customer orders by created_at field
+   * @deprecated
+   */
+  CreatedAt = "CREATED_AT",
+  /**
+   * Sorts customer orders by number
+   * @deprecated
+   */
+  Number = "NUMBER",
+}
+
+/** The collection of orders that match the conditions defined in the filter. */
+export type CustomerOrders = {
+  __typename?: "CustomerOrders";
+  /** An array of customer orders. */
+  items: Array<Maybe<CustomerOrder>>;
+  /** Contains pagination metadata. */
+  page_info?: Maybe<SearchResultPageInfo>;
+  /** The total count of customer orders. */
+  total_count?: Maybe<Scalars["Int"]["output"]>;
+};
+
+/** Identifies the filter to use for filtering orders. */
+export type CustomerOrdersFilterInput = {
+  /** Filters by order number. */
+  number?: InputMaybe<FilterStringTypeInput>;
+};
+
+/** Contains details about a newly-created or updated customer. */
+export type CustomerOutput = {
+  __typename?: "CustomerOutput";
+  /** Customer details after creating or updating a customer. */
+  customer: Customer;
+};
+
+/** Contains payment tokens stored in the customer's vault. */
+export type CustomerPaymentTokens = {
+  __typename?: "CustomerPaymentTokens";
+  /** An array of payment tokens. */
+  items: Array<Maybe<PaymentToken>>;
+};
+
+/** Contains store credit information with balance and history. */
+export type CustomerStoreCredit = {
+  __typename?: "CustomerStoreCredit";
+  /** Contains the customer's store credit balance history. If the history or store credit feature is disabled, then a null value will be returned. */
+  balance_history?: Maybe<CustomerStoreCreditHistory>;
+  /** The current balance of store credit. */
+  current_balance?: Maybe<Money>;
+  /** Indicates whether store credits are enabled. If the feature is disabled, then the balance will not be returned. */
+  enabled?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+/** Contains store credit information with balance and history. */
+export type CustomerStoreCreditBalance_HistoryArgs = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+/** Lists changes to the amount of store credit available to the customer. */
+export type CustomerStoreCreditHistory = {
+  __typename?: "CustomerStoreCreditHistory";
+  /** An array containing information about changes to the store credit available to the customer. */
+  items?: Maybe<Array<Maybe<CustomerStoreCreditHistoryItem>>>;
+  /** Metadata for pagination rendering. */
+  page_info?: Maybe<SearchResultPageInfo>;
+  /** The number of items returned. */
+  total_count?: Maybe<Scalars["Int"]["output"]>;
+};
+
+/** Contains store credit history information. */
+export type CustomerStoreCreditHistoryItem = {
+  __typename?: "CustomerStoreCreditHistoryItem";
+  /** The action that was made on the store credit. */
+  action?: Maybe<Scalars["String"]["output"]>;
+  /** The store credit available to the customer as a result of this action.  */
+  actual_balance?: Maybe<Money>;
+  /** The amount added to or subtracted from the store credit as a result of this action. */
+  balance_change?: Maybe<Money>;
+  /** The date and time when the store credit change was made. */
+  date_time_changed?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Contains a customer authorization token. */
+export type CustomerToken = {
+  __typename?: "CustomerToken";
+  /** The customer authorization token. */
+  token?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** An input object for updating a customer. */
+export type CustomerUpdateInput = {
+  /** Consent */
+  accepts_analysis?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Consent */
+  accepts_data_quality?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Consent */
+  accepts_digital_campaigns?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Consent */
+  accepts_emails?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Consent */
+  accepts_sms?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Consent */
+  accepts_social_media?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Consent */
+  accepts_terms?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Consent */
+  accepts_third_parties?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Consent */
+  accepts_transactions?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Consent */
+  accepts_twin?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Indicates whether the customer has enabled remote shopping assistance. */
+  allow_remote_shopping_assistance?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** The customer's date of birth. */
+  date_of_birth?: InputMaybe<Scalars["String"]["input"]>;
+  /** Deprecated: Use `date_of_birth` instead. */
+  dob?: InputMaybe<Scalars["String"]["input"]>;
+  /** The customer's first name. */
+  firstname?: InputMaybe<Scalars["String"]["input"]>;
+  /** The customer's gender (Male - 1, Female - 2). */
+  gender?: InputMaybe<Scalars["Int"]["input"]>;
+  /** Indicates whether the customer is subscribed to the company's newsletter. */
+  is_subscribed?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** The customer's family name. */
+  lastname?: InputMaybe<Scalars["String"]["input"]>;
+  /** The customer's middle name. */
+  middlename?: InputMaybe<Scalars["String"]["input"]>;
+  /** An honorific, such as Dr., Mr., or Mrs. */
+  prefix?: InputMaybe<Scalars["String"]["input"]>;
+  /** A value such as Sr., Jr., or III. */
+  suffix?: InputMaybe<Scalars["String"]["input"]>;
+  /** The customer's Tax/VAT number (for corporate customers). */
+  taxvat?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Contains information about a text area that is defined as part of a customizable option. */
+export type CustomizableAreaOption = CustomizableOptionInterface & {
+  __typename?: "CustomizableAreaOption";
+  /**
+   * Option ID.
+   * @deprecated Use `uid` instead
+   */
+  option_id?: Maybe<Scalars["Int"]["output"]>;
+  /** The Stock Keeping Unit of the base product. */
+  product_sku?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether the option is required. */
+  required?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The order in which the option is displayed. */
+  sort_order?: Maybe<Scalars["Int"]["output"]>;
+  /** The display name for this option. */
+  title?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `CustomizableOptionInterface` object. */
+  uid: Scalars["ID"]["output"];
+  /** An object that defines a text area. */
+  value?: Maybe<CustomizableAreaValue>;
+};
+
+/** Defines the price and sku of a product whose page contains a customized text area. */
+export type CustomizableAreaValue = {
+  __typename?: "CustomizableAreaValue";
+  /** The maximum number of characters that can be entered for this customizable option. */
+  max_characters?: Maybe<Scalars["Int"]["output"]>;
+  /** The price assigned to this option. */
+  price?: Maybe<Scalars["Float"]["output"]>;
+  /** FIXED, PERCENT, or DYNAMIC. */
+  price_type?: Maybe<PriceTypeEnum>;
+  /** The Stock Keeping Unit for this option. */
+  sku?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `CustomizableAreaValue` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Contains information about a set of checkbox values that are defined as part of a customizable option. */
+export type CustomizableCheckboxOption = CustomizableOptionInterface & {
+  __typename?: "CustomizableCheckboxOption";
+  /**
+   * Option ID.
+   * @deprecated Use `uid` instead
+   */
+  option_id?: Maybe<Scalars["Int"]["output"]>;
+  /** Indicates whether the option is required. */
+  required?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The order in which the option is displayed. */
+  sort_order?: Maybe<Scalars["Int"]["output"]>;
+  /** The display name for this option. */
+  title?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `CustomizableOptionInterface` object. */
+  uid: Scalars["ID"]["output"];
+  /** An array that defines a set of checkbox values. */
+  value?: Maybe<Array<Maybe<CustomizableCheckboxValue>>>;
+};
+
+/** Defines the price and sku of a product whose page contains a customized set of checkbox values. */
+export type CustomizableCheckboxValue = {
+  __typename?: "CustomizableCheckboxValue";
+  /** The ID assigned to the value. */
+  option_type_id?: Maybe<Scalars["Int"]["output"]>;
+  /** The price assigned to this option. */
+  price?: Maybe<Scalars["Float"]["output"]>;
+  /** FIXED, PERCENT, or DYNAMIC. */
+  price_type?: Maybe<PriceTypeEnum>;
+  /** The Stock Keeping Unit for this option. */
+  sku?: Maybe<Scalars["String"]["output"]>;
+  /** The order in which the checkbox value is displayed. */
+  sort_order?: Maybe<Scalars["Int"]["output"]>;
+  /** The display name for this option. */
+  title?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `CustomizableCheckboxValue` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Contains information about a date picker that is defined as part of a customizable option. */
+export type CustomizableDateOption = CustomizableOptionInterface & {
+  __typename?: "CustomizableDateOption";
+  /**
+   * Option ID.
+   * @deprecated Use `uid` instead
+   */
+  option_id?: Maybe<Scalars["Int"]["output"]>;
+  /** The Stock Keeping Unit of the base product. */
+  product_sku?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether the option is required. */
+  required?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The order in which the option is displayed. */
+  sort_order?: Maybe<Scalars["Int"]["output"]>;
+  /** The display name for this option. */
+  title?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `CustomizableOptionInterface` object. */
+  uid: Scalars["ID"]["output"];
+  /** An object that defines a date field in a customizable option. */
+  value?: Maybe<CustomizableDateValue>;
+};
+
+/** Defines the customizable date type. */
+export enum CustomizableDateTypeEnum {
+  /** @deprecated  */
+  Date = "DATE",
+  /** @deprecated  */
+  DateTime = "DATE_TIME",
+  /** @deprecated  */
+  Time = "TIME",
+}
+
+/** Defines the price and sku of a product whose page contains a customized date picker. */
+export type CustomizableDateValue = {
+  __typename?: "CustomizableDateValue";
+  /** The price assigned to this option. */
+  price?: Maybe<Scalars["Float"]["output"]>;
+  /** FIXED, PERCENT, or DYNAMIC. */
+  price_type?: Maybe<PriceTypeEnum>;
+  /** The Stock Keeping Unit for this option. */
+  sku?: Maybe<Scalars["String"]["output"]>;
+  /** DATE, DATE_TIME or TIME */
+  type?: Maybe<CustomizableDateTypeEnum>;
+  /** The unique ID for a `CustomizableDateValue` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Contains information about a drop down menu that is defined as part of a customizable option. */
+export type CustomizableDropDownOption = CustomizableOptionInterface & {
+  __typename?: "CustomizableDropDownOption";
+  /**
+   * Option ID.
+   * @deprecated Use `uid` instead
+   */
+  option_id?: Maybe<Scalars["Int"]["output"]>;
+  /** Indicates whether the option is required. */
+  required?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The order in which the option is displayed. */
+  sort_order?: Maybe<Scalars["Int"]["output"]>;
+  /** The display name for this option. */
+  title?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `CustomizableOptionInterface` object. */
+  uid: Scalars["ID"]["output"];
+  /** An array that defines the set of options for a drop down menu. */
+  value?: Maybe<Array<Maybe<CustomizableDropDownValue>>>;
+};
+
+/** Defines the price and sku of a product whose page contains a customized drop down menu. */
+export type CustomizableDropDownValue = {
+  __typename?: "CustomizableDropDownValue";
+  /** The ID assigned to the value. */
+  option_type_id?: Maybe<Scalars["Int"]["output"]>;
+  /** The price assigned to this option. */
+  price?: Maybe<Scalars["Float"]["output"]>;
+  /** FIXED, PERCENT, or DYNAMIC. */
+  price_type?: Maybe<PriceTypeEnum>;
+  /** The Stock Keeping Unit for this option. */
+  sku?: Maybe<Scalars["String"]["output"]>;
+  /** The order in which the option is displayed. */
+  sort_order?: Maybe<Scalars["Int"]["output"]>;
+  /** The display name for this option. */
+  title?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `CustomizableDropDownValue` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Contains information about a text field that is defined as part of a customizable option. */
+export type CustomizableFieldOption = CustomizableOptionInterface & {
+  __typename?: "CustomizableFieldOption";
+  /**
+   * Option ID.
+   * @deprecated Use `uid` instead
+   */
+  option_id?: Maybe<Scalars["Int"]["output"]>;
+  /** The Stock Keeping Unit of the base product. */
+  product_sku?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether the option is required. */
+  required?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The order in which the option is displayed. */
+  sort_order?: Maybe<Scalars["Int"]["output"]>;
+  /** The display name for this option. */
+  title?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `CustomizableOptionInterface` object. */
+  uid: Scalars["ID"]["output"];
+  /** An object that defines a text field. */
+  value?: Maybe<CustomizableFieldValue>;
+};
+
+/** Defines the price and sku of a product whose page contains a customized text field. */
+export type CustomizableFieldValue = {
+  __typename?: "CustomizableFieldValue";
+  /** The maximum number of characters that can be entered for this customizable option. */
+  max_characters?: Maybe<Scalars["Int"]["output"]>;
+  /** The price of the custom value. */
+  price?: Maybe<Scalars["Float"]["output"]>;
+  /** FIXED, PERCENT, or DYNAMIC. */
+  price_type?: Maybe<PriceTypeEnum>;
+  /** The Stock Keeping Unit for this option. */
+  sku?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `CustomizableFieldValue` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Contains information about a file picker that is defined as part of a customizable option. */
+export type CustomizableFileOption = CustomizableOptionInterface & {
+  __typename?: "CustomizableFileOption";
+  /**
+   * Option ID.
+   * @deprecated Use `uid` instead
+   */
+  option_id?: Maybe<Scalars["Int"]["output"]>;
+  /** The Stock Keeping Unit of the base product. */
+  product_sku?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether the option is required. */
+  required?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The order in which the option is displayed. */
+  sort_order?: Maybe<Scalars["Int"]["output"]>;
+  /** The display name for this option. */
+  title?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `CustomizableOptionInterface` object. */
+  uid: Scalars["ID"]["output"];
+  /** An object that defines a file value. */
+  value?: Maybe<CustomizableFileValue>;
+};
+
+/** Defines the price and sku of a product whose page contains a customized file picker. */
+export type CustomizableFileValue = {
+  __typename?: "CustomizableFileValue";
+  /** The file extension to accept. */
+  file_extension?: Maybe<Scalars["String"]["output"]>;
+  /** The maximum width of an image. */
+  image_size_x?: Maybe<Scalars["Int"]["output"]>;
+  /** The maximum height of an image. */
+  image_size_y?: Maybe<Scalars["Int"]["output"]>;
+  /** The price assigned to this option. */
+  price?: Maybe<Scalars["Float"]["output"]>;
+  /** FIXED, PERCENT, or DYNAMIC. */
+  price_type?: Maybe<PriceTypeEnum>;
+  /** The Stock Keeping Unit for this option. */
+  sku?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `CustomizableFileValue` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Contains information about a multiselect that is defined as part of a customizable option. */
+export type CustomizableMultipleOption = CustomizableOptionInterface & {
+  __typename?: "CustomizableMultipleOption";
+  /**
+   * Option ID.
+   * @deprecated Use `uid` instead
+   */
+  option_id?: Maybe<Scalars["Int"]["output"]>;
+  /** Indicates whether the option is required. */
+  required?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The order in which the option is displayed. */
+  sort_order?: Maybe<Scalars["Int"]["output"]>;
+  /** The display name for this option. */
+  title?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `CustomizableOptionInterface` object. */
+  uid: Scalars["ID"]["output"];
+  /** An array that defines the set of options for a multiselect. */
+  value?: Maybe<Array<Maybe<CustomizableMultipleValue>>>;
+};
+
+/** Defines the price and sku of a product whose page contains a customized multiselect. */
+export type CustomizableMultipleValue = {
+  __typename?: "CustomizableMultipleValue";
+  /** The ID assigned to the value. */
+  option_type_id?: Maybe<Scalars["Int"]["output"]>;
+  /** The price assigned to this option. */
+  price?: Maybe<Scalars["Float"]["output"]>;
+  /** FIXED, PERCENT, or DYNAMIC. */
+  price_type?: Maybe<PriceTypeEnum>;
+  /** The Stock Keeping Unit for this option. */
+  sku?: Maybe<Scalars["String"]["output"]>;
+  /** The order in which the option is displayed. */
+  sort_order?: Maybe<Scalars["Int"]["output"]>;
+  /** The display name for this option. */
+  title?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `CustomizableMultipleValue` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Defines a customizable option. */
+export type CustomizableOptionInput = {
+  /** The customizable option ID of the product. */
+  id?: InputMaybe<Scalars["Int"]["input"]>;
+  /** The string value of the option. */
+  value_string: Scalars["String"]["input"];
+};
+
+/** Contains basic information about a customizable option. It can be implemented by several types of configurable options. */
+export type CustomizableOptionInterface = {
+  /**
+   * Option ID.
+   * @deprecated Use `uid` instead
+   */
+  option_id?: Maybe<Scalars["Int"]["output"]>;
+  /** Indicates whether the option is required. */
+  required?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The order in which the option is displayed. */
+  sort_order?: Maybe<Scalars["Int"]["output"]>;
+  /** The display name for this option. */
+  title?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `CustomizableOptionInterface` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Contains information about customizable product options. */
+export type CustomizableProductInterface = {
+  /** An array of options for a customizable product. */
+  options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>;
+};
+
+/** Contains information about a set of radio buttons that are defined as part of a customizable option. */
+export type CustomizableRadioOption = CustomizableOptionInterface & {
+  __typename?: "CustomizableRadioOption";
+  /**
+   * Option ID.
+   * @deprecated Use `uid` instead
+   */
+  option_id?: Maybe<Scalars["Int"]["output"]>;
+  /** Indicates whether the option is required. */
+  required?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The order in which the option is displayed. */
+  sort_order?: Maybe<Scalars["Int"]["output"]>;
+  /** The display name for this option. */
+  title?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `CustomizableOptionInterface` object. */
+  uid: Scalars["ID"]["output"];
+  /** An array that defines a set of radio buttons. */
+  value?: Maybe<Array<Maybe<CustomizableRadioValue>>>;
+};
+
+/** Defines the price and sku of a product whose page contains a customized set of radio buttons. */
+export type CustomizableRadioValue = {
+  __typename?: "CustomizableRadioValue";
+  /** The ID assigned to the value. */
+  option_type_id?: Maybe<Scalars["Int"]["output"]>;
+  /** The price assigned to this option. */
+  price?: Maybe<Scalars["Float"]["output"]>;
+  /** FIXED, PERCENT, or DYNAMIC. */
+  price_type?: Maybe<PriceTypeEnum>;
+  /** The Stock Keeping Unit for this option. */
+  sku?: Maybe<Scalars["String"]["output"]>;
+  /** The order in which the radio button is displayed. */
+  sort_order?: Maybe<Scalars["Int"]["output"]>;
+  /** The display name for this option. */
+  title?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `CustomizableRadioValue` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Contains the results of the request to delete a compare list. */
+export type DeleteCompareListOutput = {
+  __typename?: "DeleteCompareListOutput";
+  /** Indicates whether the compare list was successfully deleted. */
+  result: Scalars["Boolean"]["output"];
+};
+
+/** Indicates whether the request succeeded and returns the remaining customer payment tokens. */
+export type DeletePaymentTokenOutput = {
+  __typename?: "DeletePaymentTokenOutput";
+  /** A container for the customer's remaining payment tokens. */
+  customerPaymentTokens?: Maybe<CustomerPaymentTokens>;
+  /** Indicates whether the request succeeded. */
+  result: Scalars["Boolean"]["output"];
+};
+
+/** Contains the status of the request to delete a wish list and an array of the customer's remaining wish lists. */
+export type DeleteWishlistOutput = {
+  __typename?: "DeleteWishlistOutput";
+  /** Indicates whether the wish list was deleted. */
+  status: Scalars["Boolean"]["output"];
+  /** A list of undeleted wish lists. */
+  wishlists: Array<Maybe<Wishlist>>;
+};
+
+/** Defines an individual discount. A discount can be applied to the cart as a whole or to an item. */
+export type Discount = {
+  __typename?: "Discount";
+  /** The amount of the discount. */
+  amount: Money;
+  /** A description of the discount. */
+  label: Scalars["String"]["output"];
+};
+
+export enum DocumentFileTypes {
+  /** Automatically selects the best format for the image based on the browser's capabilities. */
+  AutoImage = "autoImage",
+  Avif = "avif",
+  Bmp = "bmp",
+  Gif = "gif",
+  Heic = "heic",
+  Jpg = "jpg",
+  Png = "png",
+  Svg = "svg",
+  Tiff = "tiff",
+  Webp = "webp",
+}
+
+export type DocumentOutputInput = {
+  /**
+   * Transforms a document into a desired file type.
+   * See this matrix for format support:
+   *
+   * JPG:	autoImage, bmp, gif, jpg, png, webp, tiff
+   * PNG:	autoImage, bmp, gif, jpg, png, webp, tiff, svg
+   * SVG:	autoImage, bmp, gif, jpg, png, webp, tiff
+   * WEBP:	autoImage, bmp, gif, jpg, png, webp, tiff, svg
+   * GIF:	autoImage, bmp, gif, jpg, png, webp, tiff, svg
+   * TIFF:	autoImage, bmp, gif, jpg, png, webp, tiff, svg
+   * AVIF:	autoImage, bmp, gif, jpg, png, webp, tiff, svg
+   * PDF: 	autoImage, gif, jpg, png, webp, tiff
+   */
+  format?: InputMaybe<DocumentFileTypes>;
+};
+
+/** Transformations for Documents */
+export type DocumentTransformationInput = {
+  /** Changes the output for the file. */
+  output?: InputMaybe<DocumentOutputInput>;
+};
+
+export type DocumentVersion = {
+  __typename?: "DocumentVersion";
+  createdAt: Scalars["DateTime"]["output"];
+  data?: Maybe<Scalars["Json"]["output"]>;
+  id: Scalars["ID"]["output"];
+  revision: Scalars["Int"]["output"];
+  stage: Stage;
+};
+
+/** An implementation for downloadable product cart items. */
+export type DownloadableCartItem = CartItemInterface & {
+  __typename?: "DownloadableCartItem";
+  /** An array containing the customizable options the shopper selected. */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>;
+  /** An array of errors encountered while loading the cart item */
+  errors?: Maybe<Array<Maybe<CartItemError>>>;
+  /** @deprecated Use `uid` instead. */
+  id: Scalars["String"]["output"];
+  /** Indicates whether the product is available in the store */
+  is_in_store?: Maybe<Scalars["Boolean"]["output"]>;
+  /** An array containing information about the links for the downloadable product added to the cart. */
+  links?: Maybe<Array<Maybe<DownloadableProductLinks>>>;
+  /** Contains details about the price of the item, including taxes and discounts. */
+  prices?: Maybe<CartItemPrices>;
+  /** Details about an item in the cart. */
+  product: ProductInterface;
+  /** The quantity of this item in the cart. */
+  quantity: Scalars["Float"]["output"];
+  /** An array containing information about samples of the selected downloadable product. */
+  samples?: Maybe<Array<Maybe<DownloadableProductSamples>>>;
+  /** The unique ID for a `CartItemInterface` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Defines downloadable product options for `CreditMemoItemInterface`. */
+export type DownloadableCreditMemoItem = CreditMemoItemInterface & {
+  __typename?: "DownloadableCreditMemoItem";
+  /** Details about the final discount amount for the base product, including discounts on options. */
+  discounts?: Maybe<Array<Maybe<Discount>>>;
+  /** A list of downloadable links that are refunded from the downloadable product. */
+  downloadable_links?: Maybe<Array<Maybe<DownloadableItemsLinks>>>;
+  /** The unique ID for a `CreditMemoItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** The order item the credit memo is applied to. */
+  order_item?: Maybe<OrderItemInterface>;
+  /** The name of the base product. */
+  product_name?: Maybe<Scalars["String"]["output"]>;
+  /** The sale price for the base product, including selected options. */
+  product_sale_price: Money;
+  /** The SKU of the base product. */
+  product_sku: Scalars["String"]["output"];
+  /** The number of refunded items. */
+  quantity_refunded?: Maybe<Scalars["Float"]["output"]>;
+};
+
+export enum DownloadableFileTypeEnum {
+  /** @deprecated `sample_url` serves to get the downloadable sample */
+  File = "FILE",
+  /** @deprecated `sample_url` serves to get the downloadable sample */
+  Url = "URL",
+}
+
+/** Defines downloadable product options for `InvoiceItemInterface`. */
+export type DownloadableInvoiceItem = InvoiceItemInterface & {
+  __typename?: "DownloadableInvoiceItem";
+  /** Information about the final discount amount for the base product, including discounts on options. */
+  discounts?: Maybe<Array<Maybe<Discount>>>;
+  /** A list of downloadable links that are invoiced from the downloadable product. */
+  downloadable_links?: Maybe<Array<Maybe<DownloadableItemsLinks>>>;
+  /** The unique ID for an `InvoiceItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** Details about an individual order item. */
+  order_item?: Maybe<OrderItemInterface>;
+  /** The name of the base product. */
+  product_name?: Maybe<Scalars["String"]["output"]>;
+  /** The sale price for the base product including selected options. */
+  product_sale_price: Money;
+  /** The SKU of the base product. */
+  product_sku: Scalars["String"]["output"];
+  /** The number of invoiced items. */
+  quantity_invoiced?: Maybe<Scalars["Float"]["output"]>;
+};
+
+/** Defines characteristics of the links for downloadable product. */
+export type DownloadableItemsLinks = {
+  __typename?: "DownloadableItemsLinks";
+  /** A number indicating the sort order. */
+  sort_order?: Maybe<Scalars["Int"]["output"]>;
+  /** The display name of the link. */
+  title?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `DownloadableItemsLinks` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Defines downloadable product options for `OrderItemInterface`. */
+export type DownloadableOrderItem = OrderItemInterface & {
+  __typename?: "DownloadableOrderItem";
+  /** The final discount information for the product. */
+  discounts?: Maybe<Array<Maybe<Discount>>>;
+  /** A list of downloadable links that are ordered from the downloadable product. */
+  downloadable_links?: Maybe<Array<Maybe<DownloadableItemsLinks>>>;
+  /** Indicates whether the order item is eligible to be in a return request. */
+  eligible_for_return?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The entered option for the base product, such as a logo or image. */
+  entered_options?: Maybe<Array<Maybe<OrderItemOption>>>;
+  /** The selected gift message for the order item */
+  gift_message?: Maybe<GiftMessage>;
+  /** The selected gift wrapping for the order item. */
+  gift_wrapping?: Maybe<GiftWrapping>;
+  /** The unique ID for an `OrderItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** The name of the base product. */
+  product_name?: Maybe<Scalars["String"]["output"]>;
+  /** The sale price of the base product, including selected options. */
+  product_sale_price: Money;
+  /** The SKU of the base product. */
+  product_sku: Scalars["String"]["output"];
+  /** The type of product, such as simple, configurable, etc. */
+  product_type?: Maybe<Scalars["String"]["output"]>;
+  /** URL key of the base product. */
+  product_url_key?: Maybe<Scalars["String"]["output"]>;
+  /** The number of canceled items. */
+  quantity_canceled?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of invoiced items. */
+  quantity_invoiced?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of units ordered for this item. */
+  quantity_ordered?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of refunded items. */
+  quantity_refunded?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of returned items. */
+  quantity_returned?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of shipped items. */
+  quantity_shipped?: Maybe<Scalars["Float"]["output"]>;
+  /** The selected options for the base product, such as color or size. */
+  selected_options?: Maybe<Array<Maybe<OrderItemOption>>>;
+  /** The status of the order item. */
+  status?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Defines a product that the shopper downloads. */
+export type DownloadableProduct = CustomizableProductInterface &
+  ProductInterface &
+  RoutableInterface & {
+    __typename?: "DownloadableProduct";
+    /** @deprecated Use the `custom_attributes` field instead. */
+    addable_to_cart?: Maybe<Scalars["Int"]["output"]>;
+    /**
+     * The attribute set assigned to the product.
+     * @deprecated The field should not be used on the storefront.
+     */
+    attribute_set_id?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    brand?: Maybe<Scalars["String"]["output"]>;
+    /** The relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled. */
+    canonical_url?: Maybe<Scalars["String"]["output"]>;
+    /** The categories assigned to a product. */
+    categories?: Maybe<Array<Maybe<CategoryInterface>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    color?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    configuration?: Maybe<Scalars["String"]["output"]>;
+    /** The product's country of origin. */
+    country_of_manufacture?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * Timestamp indicating when the product was created.
+     * @deprecated The field should not be used on the storefront.
+     */
+    created_at?: Maybe<Scalars["String"]["output"]>;
+    /** An array of cross-sell products. */
+    crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    delivery_promise?: Maybe<Scalars["String"]["output"]>;
+    /** Detailed information about the product. The value can include simple HTML tags. */
+    description?: Maybe<ComplexTextValue>;
+    /** An array containing information about the links for this downloadable product. */
+    downloadable_product_links?: Maybe<Array<Maybe<DownloadableProductLinks>>>;
+    /** An array containing information about samples of this downloadable product. */
+    downloadable_product_samples?: Maybe<
+      Array<Maybe<DownloadableProductSamples>>
+    >;
+    /** Indicates whether a gift message is available. */
+    gift_message_available?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * The ID number assigned to the product.
+     * @deprecated Use the `uid` field instead.
+     */
+    id?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    ifsite?: Maybe<Scalars["String"]["output"]>;
+    /** The relative path to the main image on the product page. */
+    image?: Maybe<ProductImage>;
+    /** Indicates whether the product can be returned. */
+    is_returnable?: Maybe<Scalars["String"]["output"]>;
+    /** A value of 1 indicates that each link in the array must be purchased separately. */
+    links_purchased_separately?: Maybe<Scalars["Int"]["output"]>;
+    /** The heading above the list of downloadable products. */
+    links_title?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    maintenance_description?: Maybe<Scalars["String"]["output"]>;
+    /** A number representing the product's manufacturer. */
+    manufacturer?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_1?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_2?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_depth?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_diameter?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_gross_weight?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_height?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_length?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_seat_height?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_thickness?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_volume?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_width?: Maybe<Scalars["String"]["output"]>;
+    /** An array of media gallery objects. */
+    media_gallery?: Maybe<Array<Maybe<MediaGalleryInterface>>>;
+    /**
+     * An array of MediaGalleryEntry objects.
+     * @deprecated Use `media_gallery` instead.
+     */
+    media_gallery_entries?: Maybe<Array<Maybe<MediaGalleryEntry>>>;
+    /** A brief overview of the product for search results listings, maximum 255 characters. */
+    meta_description?: Maybe<Scalars["String"]["output"]>;
+    /** A comma-separated list of keywords that are visible only to search engines. */
+    meta_keyword?: Maybe<Scalars["String"]["output"]>;
+    /** A string that is displayed in the title bar and tab of the browser and in search results lists. */
+    meta_title?: Maybe<Scalars["String"]["output"]>;
+    /** The product name. Customers use this name to identify the product. */
+    name?: Maybe<Scalars["String"]["output"]>;
+    /** The beginning date for new product listings, and determines if the product is featured as a new product. */
+    new_from_date?: Maybe<Scalars["String"]["output"]>;
+    /** The end date for new product listings. */
+    new_to_date?: Maybe<Scalars["String"]["output"]>;
+    /** Product stock only x left count */
+    only_x_left_in_stock?: Maybe<Scalars["Float"]["output"]>;
+    /** An array of options for a customizable product. */
+    options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>;
+    /** If the product has multiple options, determines where they appear on the product page. */
+    options_container?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * Indicates the price of an item.
+     * @deprecated Use `price_range` for product price information.
+     */
+    price?: Maybe<ProductPrices>;
+    /** The range of prices for the product */
+    price_range: PriceRange;
+    /** An array of `TierPrice` objects. */
+    price_tiers?: Maybe<Array<Maybe<TierPrice>>>;
+    productBrand?: Maybe<Brand>;
+    /** Get product labels. */
+    productLabel?: Maybe<Label>;
+    /** An array of `ProductLinks` objects. */
+    product_links?: Maybe<Array<Maybe<ProductLinksInterface>>>;
+    /** The average of all the ratings given to the product. */
+    rating_summary: Scalars["Float"]["output"];
+    /** Contains 0 when there is no redirect error. A value of 301 indicates the URL of the requested resource has been changed permanently, while a value of 302 indicates a temporary redirect. */
+    redirect_code: Scalars["Int"]["output"];
+    /** An array of related products. */
+    related_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** The internal relative URL. If the specified URL is a redirect, the query returns the redirected URL, not the original. */
+    relative_url?: Maybe<Scalars["String"]["output"]>;
+    /** The total count of all the reviews given to the product. */
+    review_count: Scalars["Int"]["output"];
+    /** The list of products reviews. */
+    reviews: ProductReviews;
+    /** Products from the same series */
+    series?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    series_group?: Maybe<Scalars["String"]["output"]>;
+    /** A short description of the product. Its use depends on the theme. */
+    short_description?: Maybe<ComplexTextValue>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    size_filter?: Maybe<Scalars["String"]["output"]>;
+    /** A number or code assigned to a product to identify the product, options, price, and manufacturer. */
+    sku?: Maybe<Scalars["String"]["output"]>;
+    /** The relative path to the small image, which is used on catalog pages. */
+    small_image?: Maybe<ProductImage>;
+    /**
+     * The beginning date that a product has a special price.
+     * @deprecated The field should not be used on the storefront.
+     */
+    special_from_date?: Maybe<Scalars["String"]["output"]>;
+    /** The discounted price of the product. */
+    special_price?: Maybe<Scalars["Float"]["output"]>;
+    /** The end date for a product with a special price. */
+    special_to_date?: Maybe<Scalars["String"]["output"]>;
+    /** Indicates whether the product is staged for a future campaign. */
+    staged: Scalars["Boolean"]["output"];
+    /** Stock status of the product */
+    stock_status?: Maybe<ProductStockStatus>;
+    /** An array containing information about all the stores with product quantities. */
+    stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
+    /** The file name of a swatch image. */
+    swatch_image?: Maybe<Scalars["String"]["output"]>;
+    /** The relative path to the product's thumbnail image. */
+    thumbnail?: Maybe<ProductImage>;
+    /**
+     * The price when tier pricing is in effect and the items purchased threshold has been reached.
+     * @deprecated Use `price_tiers` for product tier price information.
+     */
+    tier_price?: Maybe<Scalars["Float"]["output"]>;
+    /**
+     * An array of ProductTierPrices objects.
+     * @deprecated Use `price_tiers` for product tier price information.
+     */
+    tier_prices?: Maybe<Array<Maybe<ProductTierPrices>>>;
+    /** One of PRODUCT, CATEGORY, or CMS_PAGE. */
+    type?: Maybe<UrlRewriteEntityTypeEnum>;
+    /**
+     * One of simple, virtual, bundle, downloadable, grouped, or configurable.
+     * @deprecated Use `__typename` instead.
+     */
+    type_id?: Maybe<Scalars["String"]["output"]>;
+    /** The unique ID for a `ProductInterface` object. */
+    uid: Scalars["ID"]["output"];
+    /**
+     * Timestamp indicating when the product was updated.
+     * @deprecated The field should not be used on the storefront.
+     */
+    updated_at?: Maybe<Scalars["String"]["output"]>;
+    /** An array of up-sell products. */
+    upsell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** The part of the URL that identifies the product */
+    url_key?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use product's `canonical_url` or url rewrites instead */
+    url_path?: Maybe<Scalars["String"]["output"]>;
+    /** URL rewrites list */
+    url_rewrites?: Maybe<Array<Maybe<UrlRewrite>>>;
+    /** The part of the product URL that is appended after the url key */
+    url_suffix?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    webshopavailable?: Maybe<Scalars["Int"]["output"]>;
+    /**
+     * An array of websites in which the product is available.
+     * @deprecated The field should not be used on the storefront.
+     */
+    websites?: Maybe<Array<Maybe<Website>>>;
+  };
+
+/** Defines a product that the shopper downloads. */
+export type DownloadableProductReviewsArgs = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+/** Defines a single downloadable product. */
+export type DownloadableProductCartItemInput = {
+  /** The ID and value of the option. */
+  customizable_options?: InputMaybe<Array<InputMaybe<CustomizableOptionInput>>>;
+  /** The quantity and SKU of the downloadable product. */
+  data: CartItemInput;
+  /** An array of objects containing the link_id of the downloadable product link. */
+  downloadable_product_links?: InputMaybe<
+    Array<InputMaybe<DownloadableProductLinksInput>>
+  >;
+};
+
+/** Defines characteristics of a downloadable product. */
+export type DownloadableProductLinks = {
+  __typename?: "DownloadableProductLinks";
+  /** @deprecated This information should not be exposed on frontend. */
+  id?: Maybe<Scalars["Int"]["output"]>;
+  /** @deprecated This information should not be exposed on frontend. */
+  is_shareable?: Maybe<Scalars["Boolean"]["output"]>;
+  /** @deprecated `sample_url` serves to get the downloadable sample */
+  link_type?: Maybe<DownloadableFileTypeEnum>;
+  /** @deprecated This information should not be exposed on frontend. */
+  number_of_downloads?: Maybe<Scalars["Int"]["output"]>;
+  /** The price of the downloadable product. */
+  price?: Maybe<Scalars["Float"]["output"]>;
+  /** @deprecated `sample_url` serves to get the downloadable sample */
+  sample_file?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated `sample_url` serves to get the downloadable sample */
+  sample_type?: Maybe<DownloadableFileTypeEnum>;
+  /** The full URL to the downloadable sample. */
+  sample_url?: Maybe<Scalars["String"]["output"]>;
+  /** A number indicating the sort order. */
+  sort_order?: Maybe<Scalars["Int"]["output"]>;
+  /** The display name of the link. */
+  title?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `DownloadableProductLinks` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Contains the link ID for the downloadable product. */
+export type DownloadableProductLinksInput = {
+  /** The unique ID of the downloadable product link. */
+  link_id: Scalars["Int"]["input"];
+};
+
+/** Defines characteristics of a downloadable product. */
+export type DownloadableProductSamples = {
+  __typename?: "DownloadableProductSamples";
+  /** @deprecated This information should not be exposed on frontend. */
+  id?: Maybe<Scalars["Int"]["output"]>;
+  /** @deprecated `sample_url` serves to get the downloadable sample */
+  sample_file?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated `sample_url` serves to get the downloadable sample */
+  sample_type?: Maybe<DownloadableFileTypeEnum>;
+  /** The full URL to the downloadable sample. */
+  sample_url?: Maybe<Scalars["String"]["output"]>;
+  /** A number indicating the sort order. */
+  sort_order?: Maybe<Scalars["Int"]["output"]>;
+  /** The display name of the sample. */
+  title?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** A downloadable product wish list item. */
+export type DownloadableWishlistItem = WishlistItemInterface & {
+  __typename?: "DownloadableWishlistItem";
+  /** The date and time the item was added to the wish list. */
+  added_at: Scalars["String"]["output"];
+  /** Custom options selected for the wish list item. */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>;
+  /** The description of the item. */
+  description?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `WishlistItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** An array containing information about the selected links. */
+  links_v2?: Maybe<Array<Maybe<DownloadableProductLinks>>>;
+  /** Product details of the wish list item. */
+  product?: Maybe<ProductInterface>;
+  /** The quantity of this wish list item. */
+  quantity: Scalars["Float"]["output"];
+  /** An array containing information about the selected samples. */
+  samples?: Maybe<Array<Maybe<DownloadableProductSamples>>>;
+};
+
+/** Contains a single dynamic block. */
+export type DynamicBlock = {
+  __typename?: "DynamicBlock";
+  /** The renderable HTML code of the dynamic block. */
+  content: ComplexTextValue;
+  /** The unique ID of a `DynamicBlock` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Indicates the locations the dynamic block can be placed. If this field is not specified, the query returns all locations. */
+export enum DynamicBlockLocationEnum {
+  /** @deprecated  */
+  Content = "CONTENT",
+  /** @deprecated  */
+  Footer = "FOOTER",
+  /** @deprecated  */
+  Header = "HEADER",
+  /** @deprecated  */
+  Left = "LEFT",
+  /** @deprecated  */
+  Right = "RIGHT",
+}
+
+/** Indicates the selected Dynamic Blocks Rotator inline widget. */
+export enum DynamicBlockTypeEnum {
+  /** @deprecated  */
+  CartPriceRuleRelated = "CART_PRICE_RULE_RELATED",
+  /** @deprecated  */
+  CatalogPriceRuleRelated = "CATALOG_PRICE_RULE_RELATED",
+  /** @deprecated  */
+  Specified = "SPECIFIED",
+}
+
+/** Contains an array of dynamic blocks. */
+export type DynamicBlocks = {
+  __typename?: "DynamicBlocks";
+  /** An array containing individual dynamic blocks. */
+  items: Array<Maybe<DynamicBlock>>;
+  /** Metadata for pagination rendering. */
+  page_info?: Maybe<SearchResultPageInfo>;
+  /** The number of returned dynamic blocks. */
+  total_count: Scalars["Int"]["output"];
+};
+
+/** Defines the dynamic block filter. The filter can identify the block type, location and IDs to return. */
+export type DynamicBlocksFilterInput = {
+  /** An array of dynamic block UIDs to filter on. */
+  dynamic_block_uids?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** An array indicating the locations the dynamic block can be placed. */
+  locations?: InputMaybe<Array<InputMaybe<DynamicBlockLocationEnum>>>;
+  /** A value indicating the type of dynamic block to filter on. */
+  type: DynamicBlockTypeEnum;
+};
+
+/** Contains details about a custom text attribute that the buyer entered. */
+export type EnteredCustomAttributeInput = {
+  /** A string that identifies the entered custom attribute. */
+  attribute_code: Scalars["String"]["input"];
+  /** The text or other entered value. */
+  value: Scalars["String"]["input"];
+};
+
+/** Defines a customer-entered option. */
+export type EnteredOptionInput = {
+  /** The unique ID for a `CustomizableOptionInterface` object, such as a `CustomizableFieldOption`, `CustomizableFileOption`, or `CustomizableAreaOption` object. */
+  uid: Scalars["ID"]["input"];
+  /** Text the customer entered. */
+  value: Scalars["String"]["input"];
+};
+
+/** An object with an ID */
+export type Entity = {
+  /** The id of the object. */
+  id: Scalars["ID"]["output"];
+  /** The Stage of an object */
+  stage: Stage;
+};
+
+/** This enumeration holds all typenames that implement the Entity interface. Components and models implement the Entity interface. */
+export enum EntityTypeName {
+  /** Asset system model */
+  Asset = "Asset",
+  Banner = "Banner",
+  ImageLink = "ImageLink",
+  Link = "Link",
+  /** This dropdown displays all categories from Magento */
+  MegaMenuCategoriesDropdown = "MegaMenuCategoriesDropdown",
+  MegaMenuDropdown = "MegaMenuDropdown",
+  Menu = "Menu",
+  Page = "Page",
+  PopularProduct = "PopularProduct",
+  /** Scheduled Operation system model */
+  ScheduledOperation = "ScheduledOperation",
+  /** Scheduled Release system model */
+  ScheduledRelease = "ScheduledRelease",
+  Setting = "Setting",
+  /** User system model */
+  User = "User",
+}
+
+/** Contains the `uid`, `relative_url`, and `type` attributes. */
+export type EntityUrl = {
+  __typename?: "EntityUrl";
+  /** @deprecated Use `relative_url` instead. */
+  canonical_url?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `ProductInterface`, `CategoryInterface`, `CmsPage`, or similar object associated with the specified URL. This could be a product, category, or CMS page UID. */
+  entity_uid?: Maybe<Scalars["ID"]["output"]>;
+  /**
+   * The ID assigned to the object associated with the specified url. This could be a product ID, category ID, or page ID.
+   * @deprecated Use `entity_uid` instead.
+   */
+  id?: Maybe<Scalars["Int"]["output"]>;
+  /** Contains 0 when there is no redirect error. A value of 301 indicates the URL of the requested resource has been changed permanently, while a value of 302 indicates a temporary redirect. */
+  redirectCode?: Maybe<Scalars["Int"]["output"]>;
+  /** The internal relative URL. If the specified URL is a redirect, the query returns the redirected URL, not the original. */
+  relative_url?: Maybe<Scalars["String"]["output"]>;
+  /** One of PRODUCT, CATEGORY, or CMS_PAGE. */
+  type?: Maybe<UrlRewriteEntityTypeEnum>;
+};
+
+/** Allows to specify input to query models and components directly */
+export type EntityWhereInput = {
+  /** The ID of an object */
+  id: Scalars["ID"]["input"];
+  locale?: InputMaybe<Locale>;
+  stage: Stage;
+  /** The Type name of an object */
+  typename: EntityTypeName;
+};
+
+export type ErrorInterface = {
+  /** The returned error message. */
+  message: Scalars["String"]["output"];
+};
+
+/** Lists the exchange rate. */
+export type ExchangeRate = {
+  __typename?: "ExchangeRate";
+  /** Specifies the store’s default currency to exchange to. */
+  currency_to?: Maybe<Scalars["String"]["output"]>;
+  /** The exchange rate for the store’s default currency. */
+  rate?: Maybe<Scalars["Float"]["output"]>;
+};
+
+/** Defines a filter that matches the input exactly. */
+export type FilterEqualTypeInput = {
+  /** Use this attribute to exactly match the specified string. For example, to filter on a specific category ID, specify a value such as `5`. */
+  eq?: InputMaybe<Scalars["String"]["input"]>;
+  /** Use this attribute to filter on an array of values. For example, to filter on category IDs 4, 5, and 6, specify a value of `["4", "5", "6"]`. */
+  in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+};
+
+/** Defines a filter that performs a fuzzy search. */
+export type FilterMatchTypeInput = {
+  /** Use this attribute to exactly match the specified string. For example, to filter on a specific SKU, specify a value such as `24-MB01`. */
+  match?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Defines a filter that matches a range of values, such as prices or dates. */
+export type FilterRangeTypeInput = {
+  /** Use this attribute to specify the lowest possible value in the range. */
+  from?: InputMaybe<Scalars["String"]["input"]>;
+  /** Use this attribute to specify the highest possible value in the range. */
+  to?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Defines a filter for an input string. */
+export type FilterStringTypeInput = {
+  /** Filters items that are exactly the same as the specified string. */
+  eq?: InputMaybe<Scalars["String"]["input"]>;
+  /** Filters items that are exactly the same as entries specified in an array of strings. */
+  in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Defines a filter that performs a fuzzy search using the specified string. */
+  match?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Defines the comparison operators that can be used in a filter. */
+export type FilterTypeInput = {
+  /** Equals. */
+  eq?: InputMaybe<Scalars["String"]["input"]>;
+  finset?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** From. Must be used with the `to` field. */
+  from?: InputMaybe<Scalars["String"]["input"]>;
+  /** Greater than. */
+  gt?: InputMaybe<Scalars["String"]["input"]>;
+  /** Greater than or equal to. */
+  gteq?: InputMaybe<Scalars["String"]["input"]>;
+  /** In. The value can contain a set of comma-separated values. */
+  in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Like. The specified value can contain % (percent signs) to allow matching of 0 or more characters. */
+  like?: InputMaybe<Scalars["String"]["input"]>;
+  /** Less than. */
+  lt?: InputMaybe<Scalars["String"]["input"]>;
+  /** Less than or equal to. */
+  lteq?: InputMaybe<Scalars["String"]["input"]>;
+  /** More than or equal to. */
+  moreq?: InputMaybe<Scalars["String"]["input"]>;
+  /** Not equal to. */
+  neq?: InputMaybe<Scalars["String"]["input"]>;
+  /** Not in. The value can contain a set of comma-separated values. */
+  nin?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Not null. */
+  notnull?: InputMaybe<Scalars["String"]["input"]>;
+  /** Is null. */
+  null?: InputMaybe<Scalars["String"]["input"]>;
+  /** To. Must be used with the `from` field. */
+  to?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** A single FPT that can be applied to a product price. */
+export type FixedProductTax = {
+  __typename?: "FixedProductTax";
+  /** The amount of the Fixed Product Tax. */
+  amount?: Maybe<Money>;
+  /** The display label assigned to the Fixed Product Tax. */
+  label?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Lists display settings for the Fixed Product Tax. */
+export enum FixedProductTaxDisplaySettings {
+  /**
+   * The displayed price does not include the FPT amount. The values of `ProductPrice.fixed_product_taxes` and the price including the FPT are displayed separately. This value corresponds to 'Excluding FPT, Including FPT description and final price.'
+   * @deprecated
+   */
+  ExcludeFptAndIncludeWithDetails = "EXCLUDE_FPT_AND_INCLUDE_WITH_DETAILS",
+  /**
+   * The displayed price does not include the FPT amount. The values from `ProductPrice.fixed_product_taxes` are not displayed. This value corresponds to 'Excluding FPT'.
+   * @deprecated
+   */
+  ExcludeFptWithoutDetails = "EXCLUDE_FPT_WITHOUT_DETAILS",
+  /**
+   * The FPT feature is not enabled. You can omit `ProductPrice.fixed_product_taxes` from your query.
+   * @deprecated
+   */
+  FptDisabled = "FPT_DISABLED",
+  /**
+   * The displayed price includes the FPT amount without displaying the `ProductPrice.fixed_product_taxes` values. This value corresponds to 'Including FPT only'.
+   * @deprecated
+   */
+  IncludeFptWithoutDetails = "INCLUDE_FPT_WITHOUT_DETAILS",
+  /**
+   * The displayed price includes the FPT amount while displaying the values of `ProductPrice.fixed_product_taxes` separately. This value corresponds to 'Including FPT and FPT description'.
+   * @deprecated
+   */
+  IncludeFptWithDetails = "INCLUDE_FPT_WITH_DETAILS",
+}
+
+/** Identifies which customer requires remote shopping assistance. */
+export type GenerateCustomerTokenAsAdminInput = {
+  /** The email address of the customer requesting remote shopping assistance. */
+  customer_email: Scalars["String"]["input"];
+};
+
+/** Contains the generated customer token. */
+export type GenerateCustomerTokenAsAdminOutput = {
+  __typename?: "GenerateCustomerTokenAsAdminOutput";
+  /** The generated customer token. */
+  customer_token: Scalars["String"]["output"];
+};
+
+/** Contains details about the gift card account. */
+export type GiftCardAccount = {
+  __typename?: "GiftCardAccount";
+  /** The balance remaining on the gift card. */
+  balance?: Maybe<Money>;
+  /** The gift card account code. */
+  code?: Maybe<Scalars["String"]["output"]>;
+  /** The expiration date of the gift card. */
+  expiration_date?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Contains the gift card code. */
+export type GiftCardAccountInput = {
+  /** The applied gift card code. */
+  gift_card_code: Scalars["String"]["input"];
+};
+
+/** Contains the value of a gift card, the website that generated the card, and related information. */
+export type GiftCardAmounts = {
+  __typename?: "GiftCardAmounts";
+  /** An internal attribute ID. */
+  attribute_id?: Maybe<Scalars["Int"]["output"]>;
+  /** The unique ID for a `GiftCardAmounts` object. */
+  uid: Scalars["ID"]["output"];
+  /** The value of the gift card. */
+  value?: Maybe<Scalars["Float"]["output"]>;
+  /**
+   * An ID that is assigned to each unique gift card amount.
+   * @deprecated Use `uid` instead
+   */
+  value_id?: Maybe<Scalars["Int"]["output"]>;
+  /** The ID of the website that generated the gift card. */
+  website_id?: Maybe<Scalars["Int"]["output"]>;
+  /** The value of the gift card. */
+  website_value?: Maybe<Scalars["Float"]["output"]>;
+};
+
+/** Contains details about a gift card that has been added to a cart. */
+export type GiftCardCartItem = CartItemInterface & {
+  __typename?: "GiftCardCartItem";
+  /** The amount and currency of the gift card. */
+  amount: Money;
+  /** An array of customizations applied to the gift card. */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>;
+  /** An array of errors encountered while loading the cart item */
+  errors?: Maybe<Array<Maybe<CartItemError>>>;
+  /** @deprecated Use `uid` instead. */
+  id: Scalars["String"]["output"];
+  /** Indicates whether the product is available in the store */
+  is_in_store?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The message from the sender to the recipient. */
+  message?: Maybe<Scalars["String"]["output"]>;
+  /** Contains details about the price of the item, including taxes and discounts. */
+  prices?: Maybe<CartItemPrices>;
+  /** Details about an item in the cart. */
+  product: ProductInterface;
+  /** The quantity of this item in the cart. */
+  quantity: Scalars["Float"]["output"];
+  /** The email address of the person receiving the gift card. */
+  recipient_email?: Maybe<Scalars["String"]["output"]>;
+  /** The name of the person receiving the gift card. */
+  recipient_name: Scalars["String"]["output"];
+  /** The email address of the sender. */
+  sender_email?: Maybe<Scalars["String"]["output"]>;
+  /** The name of the sender. */
+  sender_name: Scalars["String"]["output"];
+  /** The unique ID for a `CartItemInterface` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+export type GiftCardCreditMemoItem = CreditMemoItemInterface & {
+  __typename?: "GiftCardCreditMemoItem";
+  /** Details about the final discount amount for the base product, including discounts on options. */
+  discounts?: Maybe<Array<Maybe<Discount>>>;
+  /** Selected gift card properties for a credit memo item. */
+  gift_card?: Maybe<GiftCardItem>;
+  /** The unique ID for a `CreditMemoItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** The order item the credit memo is applied to. */
+  order_item?: Maybe<OrderItemInterface>;
+  /** The name of the base product. */
+  product_name?: Maybe<Scalars["String"]["output"]>;
+  /** The sale price for the base product, including selected options. */
+  product_sale_price: Money;
+  /** The SKU of the base product. */
+  product_sku: Scalars["String"]["output"];
+  /** The number of refunded items. */
+  quantity_refunded?: Maybe<Scalars["Float"]["output"]>;
+};
+
+export type GiftCardInvoiceItem = InvoiceItemInterface & {
+  __typename?: "GiftCardInvoiceItem";
+  /** Information about the final discount amount for the base product, including discounts on options. */
+  discounts?: Maybe<Array<Maybe<Discount>>>;
+  /** Selected gift card properties for an invoice item. */
+  gift_card?: Maybe<GiftCardItem>;
+  /** The unique ID for an `InvoiceItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** Details about an individual order item. */
+  order_item?: Maybe<OrderItemInterface>;
+  /** The name of the base product. */
+  product_name?: Maybe<Scalars["String"]["output"]>;
+  /** The sale price for the base product including selected options. */
+  product_sale_price: Money;
+  /** The SKU of the base product. */
+  product_sku: Scalars["String"]["output"];
+  /** The number of invoiced items. */
+  quantity_invoiced?: Maybe<Scalars["Float"]["output"]>;
+};
+
+/** Contains details about a gift card. */
+export type GiftCardItem = {
+  __typename?: "GiftCardItem";
+  /** The message from the sender to the recipient. */
+  message?: Maybe<Scalars["String"]["output"]>;
+  /** The email address of the receiver of a virtual gift card. */
+  recipient_email?: Maybe<Scalars["String"]["output"]>;
+  /** The name of the receiver of a physical or virtual gift card. */
+  recipient_name?: Maybe<Scalars["String"]["output"]>;
+  /** The email address of the sender of a virtual gift card. */
+  sender_email?: Maybe<Scalars["String"]["output"]>;
+  /** The name of the sender of a physical or virtual gift card. */
+  sender_name?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Contains details about the sender, recipient, and amount of a gift card. */
+export type GiftCardOptions = {
+  __typename?: "GiftCardOptions";
+  /** The amount and currency of the gift card. */
+  amount?: Maybe<Money>;
+  /** The custom amount and currency of the gift card. */
+  custom_giftcard_amount?: Maybe<Money>;
+  /** The message from the sender to the recipient. */
+  message?: Maybe<Scalars["String"]["output"]>;
+  /** The email address of the person receiving the gift card. */
+  recipient_email?: Maybe<Scalars["String"]["output"]>;
+  /** The name of the person receiving the gift card. */
+  recipient_name?: Maybe<Scalars["String"]["output"]>;
+  /** The email address of the sender. */
+  sender_email?: Maybe<Scalars["String"]["output"]>;
+  /** The name of the sender. */
+  sender_name?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type GiftCardOrderItem = OrderItemInterface & {
+  __typename?: "GiftCardOrderItem";
+  /** The final discount information for the product. */
+  discounts?: Maybe<Array<Maybe<Discount>>>;
+  /** Indicates whether the order item is eligible to be in a return request. */
+  eligible_for_return?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The entered option for the base product, such as a logo or image. */
+  entered_options?: Maybe<Array<Maybe<OrderItemOption>>>;
+  /** Selected gift card properties for an order item. */
+  gift_card?: Maybe<GiftCardItem>;
+  /** The selected gift message for the order item */
+  gift_message?: Maybe<GiftMessage>;
+  /** The selected gift wrapping for the order item. */
+  gift_wrapping?: Maybe<GiftWrapping>;
+  /** The unique ID for an `OrderItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** The name of the base product. */
+  product_name?: Maybe<Scalars["String"]["output"]>;
+  /** The sale price of the base product, including selected options. */
+  product_sale_price: Money;
+  /** The SKU of the base product. */
+  product_sku: Scalars["String"]["output"];
+  /** The type of product, such as simple, configurable, etc. */
+  product_type?: Maybe<Scalars["String"]["output"]>;
+  /** URL key of the base product. */
+  product_url_key?: Maybe<Scalars["String"]["output"]>;
+  /** The number of canceled items. */
+  quantity_canceled?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of invoiced items. */
+  quantity_invoiced?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of units ordered for this item. */
+  quantity_ordered?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of refunded items. */
+  quantity_refunded?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of returned items. */
+  quantity_returned?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of shipped items. */
+  quantity_shipped?: Maybe<Scalars["Float"]["output"]>;
+  /** The selected options for the base product, such as color or size. */
+  selected_options?: Maybe<Array<Maybe<OrderItemOption>>>;
+  /** The status of the order item. */
+  status?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Defines properties of a gift card. */
+export type GiftCardProduct = CustomizableProductInterface &
+  PhysicalProductInterface &
+  ProductInterface &
+  RoutableInterface & {
+    __typename?: "GiftCardProduct";
+    /** @deprecated Use the `custom_attributes` field instead. */
+    addable_to_cart?: Maybe<Scalars["Int"]["output"]>;
+    /** Indicates whether the customer can provide a message to accompany the gift card. */
+    allow_message?: Maybe<Scalars["Boolean"]["output"]>;
+    /** Indicates whether shoppers have the ability to set the value of the gift card. */
+    allow_open_amount?: Maybe<Scalars["Boolean"]["output"]>;
+    /**
+     * The attribute set assigned to the product.
+     * @deprecated The field should not be used on the storefront.
+     */
+    attribute_set_id?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    brand?: Maybe<Scalars["String"]["output"]>;
+    /** The relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled. */
+    canonical_url?: Maybe<Scalars["String"]["output"]>;
+    /** The categories assigned to a product. */
+    categories?: Maybe<Array<Maybe<CategoryInterface>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    color?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    configuration?: Maybe<Scalars["String"]["output"]>;
+    /** The product's country of origin. */
+    country_of_manufacture?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * Timestamp indicating when the product was created.
+     * @deprecated The field should not be used on the storefront.
+     */
+    created_at?: Maybe<Scalars["String"]["output"]>;
+    /** An array of cross-sell products. */
+    crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    delivery_promise?: Maybe<Scalars["String"]["output"]>;
+    /** Detailed information about the product. The value can include simple HTML tags. */
+    description?: Maybe<ComplexTextValue>;
+    /** An array of customizable gift card options. */
+    gift_card_options: Array<Maybe<CustomizableOptionInterface>>;
+    /** Indicates whether a gift message is available. */
+    gift_message_available?: Maybe<Scalars["String"]["output"]>;
+    /** An array that contains information about the values and ID of a gift card. */
+    giftcard_amounts?: Maybe<Array<Maybe<GiftCardAmounts>>>;
+    /** An enumeration that specifies the type of gift card. */
+    giftcard_type?: Maybe<GiftCardTypeEnum>;
+    /**
+     * The ID number assigned to the product.
+     * @deprecated Use the `uid` field instead.
+     */
+    id?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    ifsite?: Maybe<Scalars["String"]["output"]>;
+    /** The relative path to the main image on the product page. */
+    image?: Maybe<ProductImage>;
+    /** Indicates whether the customer can redeem the value on the card for cash. */
+    is_redeemable?: Maybe<Scalars["Boolean"]["output"]>;
+    /** Indicates whether the product can be returned. */
+    is_returnable?: Maybe<Scalars["String"]["output"]>;
+    /** The number of days after purchase until the gift card expires. A null value means there is no limit. */
+    lifetime?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    maintenance_description?: Maybe<Scalars["String"]["output"]>;
+    /** A number representing the product's manufacturer. */
+    manufacturer?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_1?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_2?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_depth?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_diameter?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_gross_weight?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_height?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_length?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_seat_height?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_thickness?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_volume?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_width?: Maybe<Scalars["String"]["output"]>;
+    /** An array of media gallery objects. */
+    media_gallery?: Maybe<Array<Maybe<MediaGalleryInterface>>>;
+    /**
+     * An array of MediaGalleryEntry objects.
+     * @deprecated Use `media_gallery` instead.
+     */
+    media_gallery_entries?: Maybe<Array<Maybe<MediaGalleryEntry>>>;
+    /** The maximum number of characters the gift message can contain. */
+    message_max_length?: Maybe<Scalars["Int"]["output"]>;
+    /** A brief overview of the product for search results listings, maximum 255 characters. */
+    meta_description?: Maybe<Scalars["String"]["output"]>;
+    /** A comma-separated list of keywords that are visible only to search engines. */
+    meta_keyword?: Maybe<Scalars["String"]["output"]>;
+    /** A string that is displayed in the title bar and tab of the browser and in search results lists. */
+    meta_title?: Maybe<Scalars["String"]["output"]>;
+    /** The product name. Customers use this name to identify the product. */
+    name?: Maybe<Scalars["String"]["output"]>;
+    /** The beginning date for new product listings, and determines if the product is featured as a new product. */
+    new_from_date?: Maybe<Scalars["String"]["output"]>;
+    /** The end date for new product listings. */
+    new_to_date?: Maybe<Scalars["String"]["output"]>;
+    /** Product stock only x left count */
+    only_x_left_in_stock?: Maybe<Scalars["Float"]["output"]>;
+    /** The maximum acceptable value of an open amount gift card. */
+    open_amount_max?: Maybe<Scalars["Float"]["output"]>;
+    /** The minimum acceptable value of an open amount gift card. */
+    open_amount_min?: Maybe<Scalars["Float"]["output"]>;
+    /** An array of options for a customizable product. */
+    options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>;
+    /** If the product has multiple options, determines where they appear on the product page. */
+    options_container?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * Indicates the price of an item.
+     * @deprecated Use `price_range` for product price information.
+     */
+    price?: Maybe<ProductPrices>;
+    /** The range of prices for the product */
+    price_range: PriceRange;
+    /** An array of `TierPrice` objects. */
+    price_tiers?: Maybe<Array<Maybe<TierPrice>>>;
+    productBrand?: Maybe<Brand>;
+    /** Get product labels. */
+    productLabel?: Maybe<Label>;
+    /** An array of `ProductLinks` objects. */
+    product_links?: Maybe<Array<Maybe<ProductLinksInterface>>>;
+    /** The average of all the ratings given to the product. */
+    rating_summary: Scalars["Float"]["output"];
+    /** Contains 0 when there is no redirect error. A value of 301 indicates the URL of the requested resource has been changed permanently, while a value of 302 indicates a temporary redirect. */
+    redirect_code: Scalars["Int"]["output"];
+    /** An array of related products. */
+    related_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** The internal relative URL. If the specified URL is a redirect, the query returns the redirected URL, not the original. */
+    relative_url?: Maybe<Scalars["String"]["output"]>;
+    /** The total count of all the reviews given to the product. */
+    review_count: Scalars["Int"]["output"];
+    /** The list of products reviews. */
+    reviews: ProductReviews;
+    /** Products from the same series */
+    series?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    series_group?: Maybe<Scalars["String"]["output"]>;
+    /** A short description of the product. Its use depends on the theme. */
+    short_description?: Maybe<ComplexTextValue>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    size_filter?: Maybe<Scalars["String"]["output"]>;
+    /** A number or code assigned to a product to identify the product, options, price, and manufacturer. */
+    sku?: Maybe<Scalars["String"]["output"]>;
+    /** The relative path to the small image, which is used on catalog pages. */
+    small_image?: Maybe<ProductImage>;
+    /**
+     * The beginning date that a product has a special price.
+     * @deprecated The field should not be used on the storefront.
+     */
+    special_from_date?: Maybe<Scalars["String"]["output"]>;
+    /** The discounted price of the product. */
+    special_price?: Maybe<Scalars["Float"]["output"]>;
+    /** The end date for a product with a special price. */
+    special_to_date?: Maybe<Scalars["String"]["output"]>;
+    /** Indicates whether the product is staged for a future campaign. */
+    staged: Scalars["Boolean"]["output"];
+    /** Stock status of the product */
+    stock_status?: Maybe<ProductStockStatus>;
+    /** An array containing information about all the stores with product quantities. */
+    stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
+    /** The file name of a swatch image. */
+    swatch_image?: Maybe<Scalars["String"]["output"]>;
+    /** The relative path to the product's thumbnail image. */
+    thumbnail?: Maybe<ProductImage>;
+    /**
+     * The price when tier pricing is in effect and the items purchased threshold has been reached.
+     * @deprecated Use `price_tiers` for product tier price information.
+     */
+    tier_price?: Maybe<Scalars["Float"]["output"]>;
+    /**
+     * An array of ProductTierPrices objects.
+     * @deprecated Use `price_tiers` for product tier price information.
+     */
+    tier_prices?: Maybe<Array<Maybe<ProductTierPrices>>>;
+    /** One of PRODUCT, CATEGORY, or CMS_PAGE. */
+    type?: Maybe<UrlRewriteEntityTypeEnum>;
+    /**
+     * One of simple, virtual, bundle, downloadable, grouped, or configurable.
+     * @deprecated Use `__typename` instead.
+     */
+    type_id?: Maybe<Scalars["String"]["output"]>;
+    /** The unique ID for a `ProductInterface` object. */
+    uid: Scalars["ID"]["output"];
+    /**
+     * Timestamp indicating when the product was updated.
+     * @deprecated The field should not be used on the storefront.
+     */
+    updated_at?: Maybe<Scalars["String"]["output"]>;
+    /** An array of up-sell products. */
+    upsell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** The part of the URL that identifies the product */
+    url_key?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use product's `canonical_url` or url rewrites instead */
+    url_path?: Maybe<Scalars["String"]["output"]>;
+    /** URL rewrites list */
+    url_rewrites?: Maybe<Array<Maybe<UrlRewrite>>>;
+    /** The part of the product URL that is appended after the url key */
+    url_suffix?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    webshopavailable?: Maybe<Scalars["Int"]["output"]>;
+    /**
+     * An array of websites in which the product is available.
+     * @deprecated The field should not be used on the storefront.
+     */
+    websites?: Maybe<Array<Maybe<Website>>>;
+    /** The weight of the item, in units defined by the store. */
+    weight?: Maybe<Scalars["Float"]["output"]>;
+  };
+
+/** Defines properties of a gift card. */
+export type GiftCardProductReviewsArgs = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export type GiftCardShipmentItem = ShipmentItemInterface & {
+  __typename?: "GiftCardShipmentItem";
+  /** Selected gift card properties for a shipment item. */
+  gift_card?: Maybe<GiftCardItem>;
+  /** The unique ID for a `ShipmentItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** The order item associated with the shipment item. */
+  order_item?: Maybe<OrderItemInterface>;
+  /** The name of the base product. */
+  product_name?: Maybe<Scalars["String"]["output"]>;
+  /** The sale price for the base product. */
+  product_sale_price: Money;
+  /** The SKU of the base product. */
+  product_sku: Scalars["String"]["output"];
+  /** The number of shipped items. */
+  quantity_shipped: Scalars["Float"]["output"];
+};
+
+/** Specifies the gift card type. */
+export enum GiftCardTypeEnum {
+  /** @deprecated  */
+  Combined = "COMBINED",
+  /** @deprecated  */
+  Physical = "PHYSICAL",
+  /** @deprecated  */
+  Virtual = "VIRTUAL",
+}
+
+/** A single gift card added to a wish list. */
+export type GiftCardWishlistItem = WishlistItemInterface & {
+  __typename?: "GiftCardWishlistItem";
+  /** The date and time the item was added to the wish list. */
+  added_at: Scalars["String"]["output"];
+  /** Custom options selected for the wish list item. */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>;
+  /** The description of the item. */
+  description?: Maybe<Scalars["String"]["output"]>;
+  /** Details about a gift card. */
+  gift_card_options: GiftCardOptions;
+  /** The unique ID for a `WishlistItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** Product details of the wish list item. */
+  product?: Maybe<ProductInterface>;
+  /** The quantity of this wish list item. */
+  quantity: Scalars["Float"]["output"];
+};
+
+/** Contains the text of a gift message, its sender, and recipient */
+export type GiftMessage = {
+  __typename?: "GiftMessage";
+  /** Sender name */
+  from: Scalars["String"]["output"];
+  /** Gift message text */
+  message: Scalars["String"]["output"];
+  /** Recipient name */
+  to: Scalars["String"]["output"];
+};
+
+/** Defines a gift message. */
+export type GiftMessageInput = {
+  /** The name of the sender. */
+  from: Scalars["String"]["input"];
+  /** The text of the gift message. */
+  message: Scalars["String"]["input"];
+  /** The name of the recepient. */
+  to: Scalars["String"]["input"];
+};
+
+/** Contains prices for gift wrapping options. */
+export type GiftOptionsPrices = {
+  __typename?: "GiftOptionsPrices";
+  /** Price of the gift wrapping for all individual order items. */
+  gift_wrapping_for_items?: Maybe<Money>;
+  /** Price of the gift wrapping for the whole order. */
+  gift_wrapping_for_order?: Maybe<Money>;
+  /** Price for the printed card. */
+  printed_card?: Maybe<Money>;
+};
+
+/** Contains details about a gift registry. */
+export type GiftRegistry = {
+  __typename?: "GiftRegistry";
+  /** The date on which the gift registry was created. Only the registry owner can access this attribute. */
+  created_at: Scalars["String"]["output"];
+  /** An array of attributes that define elements of the gift registry. Each attribute is specified as a code-value pair. */
+  dynamic_attributes?: Maybe<Array<Maybe<GiftRegistryDynamicAttribute>>>;
+  /** The name of the event. */
+  event_name: Scalars["String"]["output"];
+  /** An array of products added to the gift registry. */
+  items?: Maybe<Array<Maybe<GiftRegistryItemInterface>>>;
+  /** The message text the customer entered to describe the event. */
+  message: Scalars["String"]["output"];
+  /** The customer who created the gift registry. */
+  owner_name: Scalars["String"]["output"];
+  /** An enum that states whether the gift registry is PRIVATE or PUBLIC. Only the registry owner can access this attribute. */
+  privacy_settings: GiftRegistryPrivacySettings;
+  /** Contains details about each registrant for the event. */
+  registrants?: Maybe<Array<Maybe<GiftRegistryRegistrant>>>;
+  /** Contains the customer's shipping address. Only the registry owner can access this attribute. */
+  shipping_address?: Maybe<CustomerAddress>;
+  /** An enum that states whether the gift registry is ACTIVE or INACTIVE. Only the registry owner can access this attribute. */
+  status: GiftRegistryStatus;
+  /** The type of gift registry. */
+  type?: Maybe<GiftRegistryType>;
+  /** The unique ID assigned to the gift registry. */
+  uid: Scalars["ID"]["output"];
+};
+
+export type GiftRegistryDynamicAttribute =
+  GiftRegistryDynamicAttributeInterface & {
+    __typename?: "GiftRegistryDynamicAttribute";
+    /** The internal ID of the dynamic attribute. */
+    code: Scalars["ID"]["output"];
+    /** Indicates which group the dynamic attribute is a member of. */
+    group: GiftRegistryDynamicAttributeGroup;
+    /** The display name of the dynamic attribute. */
+    label: Scalars["String"]["output"];
+    /** A corresponding value for the code. */
+    value: Scalars["String"]["output"];
+  };
+
+/** Defines the group type of a gift registry dynamic attribute. */
+export enum GiftRegistryDynamicAttributeGroup {
+  /** @deprecated  */
+  DetailedInformation = "DETAILED_INFORMATION",
+  /** @deprecated  */
+  EventInformation = "EVENT_INFORMATION",
+  /** @deprecated  */
+  GeneralInformation = "GENERAL_INFORMATION",
+  /** @deprecated  */
+  PrivacySettings = "PRIVACY_SETTINGS",
+  /** @deprecated  */
+  Registrant = "REGISTRANT",
+  /** @deprecated  */
+  ShippingAddress = "SHIPPING_ADDRESS",
+}
+
+/** Defines a dynamic attribute. */
+export type GiftRegistryDynamicAttributeInput = {
+  /** A unique key for an additional attribute of the event. */
+  code: Scalars["ID"]["input"];
+  /** A string that describes a dynamic attribute. */
+  value: Scalars["String"]["input"];
+};
+
+export type GiftRegistryDynamicAttributeInterface = {
+  /** The internal ID of the dynamic attribute. */
+  code: Scalars["ID"]["output"];
+  /** The display name of the dynamic attribute. */
+  label: Scalars["String"]["output"];
+  /** A corresponding value for the code. */
+  value: Scalars["String"]["output"];
+};
+
+export type GiftRegistryDynamicAttributeMetadata =
+  GiftRegistryDynamicAttributeMetadataInterface & {
+    __typename?: "GiftRegistryDynamicAttributeMetadata";
+    /** Indicates which group the dynamic attribute a member of. */
+    attribute_group: Scalars["String"]["output"];
+    /** The internal ID of the dynamic attribute. */
+    code: Scalars["ID"]["output"];
+    /** The selected input type for this dynamic attribute. The value can be one of several static or custom types. */
+    input_type: Scalars["String"]["output"];
+    /** Indicates whether the dynamic attribute is required. */
+    is_required: Scalars["Boolean"]["output"];
+    /** The display name of the dynamic attribute. */
+    label: Scalars["String"]["output"];
+    /** The order in which to display the dynamic attribute. */
+    sort_order?: Maybe<Scalars["Int"]["output"]>;
+  };
+
+export type GiftRegistryDynamicAttributeMetadataInterface = {
+  /** Indicates which group the dynamic attribute a member of. */
+  attribute_group: Scalars["String"]["output"];
+  /** The internal ID of the dynamic attribute. */
+  code: Scalars["ID"]["output"];
+  /** The selected input type for this dynamic attribute. The value can be one of several static or custom types. */
+  input_type: Scalars["String"]["output"];
+  /** Indicates whether the dynamic attribute is required. */
+  is_required: Scalars["Boolean"]["output"];
+  /** The display name of the dynamic attribute. */
+  label: Scalars["String"]["output"];
+  /** The order in which to display the dynamic attribute. */
+  sort_order?: Maybe<Scalars["Int"]["output"]>;
+};
+
+export type GiftRegistryItem = GiftRegistryItemInterface & {
+  __typename?: "GiftRegistryItem";
+  /** The date the product was added to the gift registry. */
+  created_at: Scalars["String"]["output"];
+  /** A brief message about the gift registry item. */
+  note?: Maybe<Scalars["String"]["output"]>;
+  /** Details about the gift registry item. */
+  product?: Maybe<ProductInterface>;
+  /** The requested quantity of the product. */
+  quantity: Scalars["Float"]["output"];
+  /** The fulfilled quantity of the product. */
+  quantity_fulfilled: Scalars["Float"]["output"];
+  /** The unique ID of a gift registry item. */
+  uid: Scalars["ID"]["output"];
+};
+
+export type GiftRegistryItemInterface = {
+  /** The date the product was added to the gift registry. */
+  created_at: Scalars["String"]["output"];
+  /** A brief message about the gift registry item. */
+  note?: Maybe<Scalars["String"]["output"]>;
+  /** Details about the gift registry item. */
+  product?: Maybe<ProductInterface>;
+  /** The requested quantity of the product. */
+  quantity: Scalars["Float"]["output"];
+  /** The fulfilled quantity of the product. */
+  quantity_fulfilled: Scalars["Float"]["output"];
+  /** The unique ID of a gift registry item. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Contains the status and any errors that encountered with the customer's gift register item. */
+export type GiftRegistryItemUserErrorInterface = {
+  /** Indicates whether the attempt to move the cart items to the gift registry was successful. */
+  status: Scalars["Boolean"]["output"];
+  /** An array of errors encountered while moving items from the cart to the gift registry. */
+  user_errors: Array<Maybe<GiftRegistryItemsUserError>>;
+};
+
+/** Contains error information. */
+export type GiftRegistryItemUserErrors = GiftRegistryItemUserErrorInterface & {
+  __typename?: "GiftRegistryItemUserErrors";
+  /** Indicates whether the attempt to move the cart items to the gift registry was successful. */
+  status: Scalars["Boolean"]["output"];
+  /** An array of errors encountered while moving items from the cart to the gift registry. */
+  user_errors: Array<Maybe<GiftRegistryItemsUserError>>;
+};
+
+/** Contains details about an error that occurred when processing a gift registry item. */
+export type GiftRegistryItemsUserError = {
+  __typename?: "GiftRegistryItemsUserError";
+  /** An error code that describes the error encountered. */
+  code: GiftRegistryItemsUserErrorType;
+  /** The unique ID of the gift registry item containing an error. */
+  gift_registry_item_uid?: Maybe<Scalars["ID"]["output"]>;
+  /** The unique ID of the `GiftRegistry` object containing an error. */
+  gift_registry_uid?: Maybe<Scalars["ID"]["output"]>;
+  /** A localized error message. */
+  message: Scalars["String"]["output"];
+  /** The unique ID of the product containing an error. */
+  product_uid?: Maybe<Scalars["ID"]["output"]>;
+};
+
+/** Defines the error type. */
+export enum GiftRegistryItemsUserErrorType {
+  /**
+   * Used for exceptions like EntityNotFound.
+   * @deprecated
+   */
+  NotFound = "NOT_FOUND",
+  /**
+   * Used for handling out of stock products.
+   * @deprecated
+   */
+  OutOfStock = "OUT_OF_STOCK",
+  /**
+   * Used for other exceptions, such as database connection failures.
+   * @deprecated
+   */
+  Undefined = "UNDEFINED",
+}
+
+/** Contains details about the gift registry. */
+export type GiftRegistryOutput = GiftRegistryOutputInterface & {
+  __typename?: "GiftRegistryOutput";
+  /** The gift registry. */
+  gift_registry?: Maybe<GiftRegistry>;
+};
+
+/** Contains the customer's gift registry. */
+export type GiftRegistryOutputInterface = {
+  /** The gift registry. */
+  gift_registry?: Maybe<GiftRegistry>;
+};
+
+/** Defines the privacy setting of the gift registry. */
+export enum GiftRegistryPrivacySettings {
+  /** @deprecated  */
+  Private = "PRIVATE",
+  /** @deprecated  */
+  Public = "PUBLIC",
+}
+
+/** Contains details about a registrant. */
+export type GiftRegistryRegistrant = {
+  __typename?: "GiftRegistryRegistrant";
+  /** An array of dynamic attributes assigned to the registrant. */
+  dynamic_attributes?: Maybe<
+    Array<Maybe<GiftRegistryRegistrantDynamicAttribute>>
+  >;
+  /** The email address of the registrant. Only the registry owner can access this attribute. */
+  email: Scalars["String"]["output"];
+  /** The first name of the registrant. */
+  firstname: Scalars["String"]["output"];
+  /** The last name of the registrant. */
+  lastname: Scalars["String"]["output"];
+  /** The unique ID assigned to the registrant. */
+  uid: Scalars["ID"]["output"];
+};
+
+export type GiftRegistryRegistrantDynamicAttribute =
+  GiftRegistryDynamicAttributeInterface & {
+    __typename?: "GiftRegistryRegistrantDynamicAttribute";
+    /** The internal ID of the dynamic attribute. */
+    code: Scalars["ID"]["output"];
+    /** The display name of the dynamic attribute. */
+    label: Scalars["String"]["output"];
+    /** A corresponding value for the code. */
+    value: Scalars["String"]["output"];
+  };
+
+/** Contains the results of a gift registry search. */
+export type GiftRegistrySearchResult = {
+  __typename?: "GiftRegistrySearchResult";
+  /** The date of the event. */
+  event_date?: Maybe<Scalars["String"]["output"]>;
+  /** The title given to the event. */
+  event_title: Scalars["String"]["output"];
+  /** The URL key of the gift registry. */
+  gift_registry_uid: Scalars["ID"]["output"];
+  /** The location of the event. */
+  location?: Maybe<Scalars["String"]["output"]>;
+  /** The name of the gift registry owner. */
+  name: Scalars["String"]["output"];
+  /** The type of event being held. */
+  type?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Defines a shipping address for a gift registry. Specify either `address_data` or the `address_id`. If both are provided, validation will fail. */
+export type GiftRegistryShippingAddressInput = {
+  /** Defines the shipping address for this gift registry. */
+  address_data?: InputMaybe<CustomerAddressInput>;
+  /** The ID assigned to this customer address. */
+  address_id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+/** Defines the status of the gift registry. */
+export enum GiftRegistryStatus {
+  /** @deprecated  */
+  Active = "ACTIVE",
+  /** @deprecated  */
+  Inactive = "INACTIVE",
+}
+
+/** Contains details about a gift registry type. */
+export type GiftRegistryType = {
+  __typename?: "GiftRegistryType";
+  /** An array of attributes that define elements of the gift registry. Each attribute is specified as a code-value pair. */
+  dynamic_attributes_metadata?: Maybe<
+    Array<Maybe<GiftRegistryDynamicAttributeMetadataInterface>>
+  >;
+  /** The label assigned to the gift registry type on the Admin. */
+  label: Scalars["String"]["output"];
+  /** The unique ID assigned to the gift registry type. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Contains details about the selected or available gift wrapping options. */
+export type GiftWrapping = {
+  __typename?: "GiftWrapping";
+  /** The name of the gift wrapping design. */
+  design: Scalars["String"]["output"];
+  /**
+   * The unique ID for a `GiftWrapping` object.
+   * @deprecated Use `uid` instead
+   */
+  id: Scalars["ID"]["output"];
+  /** The preview image for a gift wrapping option. */
+  image?: Maybe<GiftWrappingImage>;
+  /** The gift wrapping price. */
+  price: Money;
+  /** The unique ID for a `GiftWrapping` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Points to an image associated with a gift wrapping option. */
+export type GiftWrappingImage = {
+  __typename?: "GiftWrappingImage";
+  /** The gift wrapping preview image label. */
+  label: Scalars["String"]["output"];
+  /** The gift wrapping preview image URL. */
+  url: Scalars["String"]["output"];
+};
+
+/** Defines a grouped product, which consists of simple standalone products that are presented as a group. */
+export type GroupedProduct = PhysicalProductInterface &
+  ProductInterface &
+  RoutableInterface & {
+    __typename?: "GroupedProduct";
+    /** @deprecated Use the `custom_attributes` field instead. */
+    addable_to_cart?: Maybe<Scalars["Int"]["output"]>;
+    /**
+     * The attribute set assigned to the product.
+     * @deprecated The field should not be used on the storefront.
+     */
+    attribute_set_id?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    brand?: Maybe<Scalars["String"]["output"]>;
+    /** The relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled. */
+    canonical_url?: Maybe<Scalars["String"]["output"]>;
+    /** The categories assigned to a product. */
+    categories?: Maybe<Array<Maybe<CategoryInterface>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    color?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    configuration?: Maybe<Scalars["String"]["output"]>;
+    /** The product's country of origin. */
+    country_of_manufacture?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * Timestamp indicating when the product was created.
+     * @deprecated The field should not be used on the storefront.
+     */
+    created_at?: Maybe<Scalars["String"]["output"]>;
+    /** An array of cross-sell products. */
+    crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    delivery_promise?: Maybe<Scalars["String"]["output"]>;
+    /** Detailed information about the product. The value can include simple HTML tags. */
+    description?: Maybe<ComplexTextValue>;
+    /** Indicates whether a gift message is available. */
+    gift_message_available?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * The ID number assigned to the product.
+     * @deprecated Use the `uid` field instead.
+     */
+    id?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    ifsite?: Maybe<Scalars["String"]["output"]>;
+    /** The relative path to the main image on the product page. */
+    image?: Maybe<ProductImage>;
+    /** Indicates whether the product can be returned. */
+    is_returnable?: Maybe<Scalars["String"]["output"]>;
+    /** An array containing grouped product items. */
+    items?: Maybe<Array<Maybe<GroupedProductItem>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    maintenance_description?: Maybe<Scalars["String"]["output"]>;
+    /** A number representing the product's manufacturer. */
+    manufacturer?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_1?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_2?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_depth?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_diameter?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_gross_weight?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_height?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_length?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_seat_height?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_thickness?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_volume?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_width?: Maybe<Scalars["String"]["output"]>;
+    /** An array of media gallery objects. */
+    media_gallery?: Maybe<Array<Maybe<MediaGalleryInterface>>>;
+    /**
+     * An array of MediaGalleryEntry objects.
+     * @deprecated Use `media_gallery` instead.
+     */
+    media_gallery_entries?: Maybe<Array<Maybe<MediaGalleryEntry>>>;
+    /** A brief overview of the product for search results listings, maximum 255 characters. */
+    meta_description?: Maybe<Scalars["String"]["output"]>;
+    /** A comma-separated list of keywords that are visible only to search engines. */
+    meta_keyword?: Maybe<Scalars["String"]["output"]>;
+    /** A string that is displayed in the title bar and tab of the browser and in search results lists. */
+    meta_title?: Maybe<Scalars["String"]["output"]>;
+    /** The product name. Customers use this name to identify the product. */
+    name?: Maybe<Scalars["String"]["output"]>;
+    /** The beginning date for new product listings, and determines if the product is featured as a new product. */
+    new_from_date?: Maybe<Scalars["String"]["output"]>;
+    /** The end date for new product listings. */
+    new_to_date?: Maybe<Scalars["String"]["output"]>;
+    /** Product stock only x left count */
+    only_x_left_in_stock?: Maybe<Scalars["Float"]["output"]>;
+    /** If the product has multiple options, determines where they appear on the product page. */
+    options_container?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * Indicates the price of an item.
+     * @deprecated Use `price_range` for product price information.
+     */
+    price?: Maybe<ProductPrices>;
+    /** The range of prices for the product */
+    price_range: PriceRange;
+    /** An array of `TierPrice` objects. */
+    price_tiers?: Maybe<Array<Maybe<TierPrice>>>;
+    productBrand?: Maybe<Brand>;
+    /** Get product labels. */
+    productLabel?: Maybe<Label>;
+    /** An array of `ProductLinks` objects. */
+    product_links?: Maybe<Array<Maybe<ProductLinksInterface>>>;
+    /** The average of all the ratings given to the product. */
+    rating_summary: Scalars["Float"]["output"];
+    /** Contains 0 when there is no redirect error. A value of 301 indicates the URL of the requested resource has been changed permanently, while a value of 302 indicates a temporary redirect. */
+    redirect_code: Scalars["Int"]["output"];
+    /** An array of related products. */
+    related_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** The internal relative URL. If the specified URL is a redirect, the query returns the redirected URL, not the original. */
+    relative_url?: Maybe<Scalars["String"]["output"]>;
+    /** The total count of all the reviews given to the product. */
+    review_count: Scalars["Int"]["output"];
+    /** The list of products reviews. */
+    reviews: ProductReviews;
+    /** Products from the same series */
+    series?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    series_group?: Maybe<Scalars["String"]["output"]>;
+    /** A short description of the product. Its use depends on the theme. */
+    short_description?: Maybe<ComplexTextValue>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    size_filter?: Maybe<Scalars["String"]["output"]>;
+    /** A number or code assigned to a product to identify the product, options, price, and manufacturer. */
+    sku?: Maybe<Scalars["String"]["output"]>;
+    /** The relative path to the small image, which is used on catalog pages. */
+    small_image?: Maybe<ProductImage>;
+    /**
+     * The beginning date that a product has a special price.
+     * @deprecated The field should not be used on the storefront.
+     */
+    special_from_date?: Maybe<Scalars["String"]["output"]>;
+    /** The discounted price of the product. */
+    special_price?: Maybe<Scalars["Float"]["output"]>;
+    /** The end date for a product with a special price. */
+    special_to_date?: Maybe<Scalars["String"]["output"]>;
+    /** Indicates whether the product is staged for a future campaign. */
+    staged: Scalars["Boolean"]["output"];
+    /** Stock status of the product */
+    stock_status?: Maybe<ProductStockStatus>;
+    /** An array containing information about all the stores with product quantities. */
+    stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
+    /** The file name of a swatch image. */
+    swatch_image?: Maybe<Scalars["String"]["output"]>;
+    /** The relative path to the product's thumbnail image. */
+    thumbnail?: Maybe<ProductImage>;
+    /**
+     * The price when tier pricing is in effect and the items purchased threshold has been reached.
+     * @deprecated Use `price_tiers` for product tier price information.
+     */
+    tier_price?: Maybe<Scalars["Float"]["output"]>;
+    /**
+     * An array of ProductTierPrices objects.
+     * @deprecated Use `price_tiers` for product tier price information.
+     */
+    tier_prices?: Maybe<Array<Maybe<ProductTierPrices>>>;
+    /** One of PRODUCT, CATEGORY, or CMS_PAGE. */
+    type?: Maybe<UrlRewriteEntityTypeEnum>;
+    /**
+     * One of simple, virtual, bundle, downloadable, grouped, or configurable.
+     * @deprecated Use `__typename` instead.
+     */
+    type_id?: Maybe<Scalars["String"]["output"]>;
+    /** The unique ID for a `ProductInterface` object. */
+    uid: Scalars["ID"]["output"];
+    /**
+     * Timestamp indicating when the product was updated.
+     * @deprecated The field should not be used on the storefront.
+     */
+    updated_at?: Maybe<Scalars["String"]["output"]>;
+    /** An array of up-sell products. */
+    upsell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** The part of the URL that identifies the product */
+    url_key?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use product's `canonical_url` or url rewrites instead */
+    url_path?: Maybe<Scalars["String"]["output"]>;
+    /** URL rewrites list */
+    url_rewrites?: Maybe<Array<Maybe<UrlRewrite>>>;
+    /** The part of the product URL that is appended after the url key */
+    url_suffix?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    webshopavailable?: Maybe<Scalars["Int"]["output"]>;
+    /**
+     * An array of websites in which the product is available.
+     * @deprecated The field should not be used on the storefront.
+     */
+    websites?: Maybe<Array<Maybe<Website>>>;
+    /** The weight of the item, in units defined by the store. */
+    weight?: Maybe<Scalars["Float"]["output"]>;
+  };
+
+/** Defines a grouped product, which consists of simple standalone products that are presented as a group. */
+export type GroupedProductReviewsArgs = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+/** Contains information about an individual grouped product item. */
+export type GroupedProductItem = {
+  __typename?: "GroupedProductItem";
+  /** The relative position of this item compared to the other group items. */
+  position?: Maybe<Scalars["Int"]["output"]>;
+  /** Details about this product option. */
+  product?: Maybe<ProductInterface>;
+  /** The quantity of this grouped product item. */
+  qty?: Maybe<Scalars["Float"]["output"]>;
+};
+
+/** A grouped product wish list item. */
+export type GroupedProductWishlistItem = WishlistItemInterface & {
+  __typename?: "GroupedProductWishlistItem";
+  /** The date and time the item was added to the wish list. */
+  added_at: Scalars["String"]["output"];
+  /** Custom options selected for the wish list item. */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>;
+  /** The description of the item. */
+  description?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `WishlistItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** Product details of the wish list item. */
+  product?: Maybe<ProductInterface>;
+  /** The quantity of this wish list item. */
+  quantity: Scalars["Float"]["output"];
+};
+
+/** Contains a set of relative URLs that PayPal uses in response to various actions during the authorization process. Magento prepends the base URL to this value to create a full URL. For example, if the full URL is https://www.example.com/path/to/page.html, the relative URL is path/to/page.html. Use this input for Payments Pro Hosted Solution payment method. */
+export type HostedProInput = {
+  /** The relative URL of the page that PayPal redirects to when the buyer cancels the transaction in order to choose a different payment method. For example, if the full URL to this page is https://www.example.com/paypal/action/cancel.html, the relative URL is paypal/action/cancel.html. */
+  cancel_url: Scalars["String"]["input"];
+  /** The relative URL of the final confirmation page that PayPal redirects to upon payment success. For example, if the full URL to this page is https://www.example.com/paypal/action/return.html, the relative URL is paypal/action/return.html. */
+  return_url: Scalars["String"]["input"];
+};
+
+/** Contains the secure URL used for the Payments Pro Hosted Solution payment method. */
+export type HostedProUrl = {
+  __typename?: "HostedProUrl";
+  /** The secure URL generated by PayPal. */
+  secure_form_url?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Contains the required input to request the secure URL for Payments Pro Hosted Solution payment. */
+export type HostedProUrlInput = {
+  /** The unique ID that identifies the shopper's cart. */
+  cart_id: Scalars["String"]["input"];
+};
+
+/** Contains target path parameters. */
+export type HttpQueryParameter = {
+  __typename?: "HttpQueryParameter";
+  /** A parameter name. */
+  name?: Maybe<Scalars["String"]["output"]>;
+  /** A parameter value. */
+  value?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type ImageBlurInput = {
+  /** The amount of blurring to apply to the image. The value must be an integer from 1 to 20. */
+  amount: Scalars["Int"]["input"];
+};
+
+/** Adds a border to the image. */
+export type ImageBorderInput = {
+  /** The background color of the border. The value must be a valid hex color code. Or one of the supported color names. */
+  background: Scalars["String"]["input"];
+  /** The color of the border. The value must be a valid hex color code. Or one of the supported color names. */
+  color: Scalars["String"]["input"];
+  /** The width of the border in pixels. The value must be an integer from 1 to 1000. */
+  width: Scalars["Int"]["input"];
+};
+
+export type ImageCompressInput = {
+  /** Preserves the metadata of the image. */
+  metadata: Scalars["Boolean"]["input"];
+};
+
+/**
+ * Crops the image to the specified dimensions.
+ * The starting points for X and Y coordinates are [0,0], aligning with the top-left corner of the image.
+ * The width and height parameters determine the size in pixels of the cropping rectangle.
+ * The output will include only the portion of the image within the designated crop area.
+ */
+export type ImageCropInput = {
+  /** The height in pixels to resize the image to. The value must be an integer from 1 to 10000. */
+  height: Scalars["Int"]["input"];
+  /** The width in pixels to resize the image to. The value must be an integer from 1 to 10000. */
+  width: Scalars["Int"]["input"];
+  /** The x coordinate of the image. The value must be an integer from 0 to 10000. */
+  x: Scalars["Int"]["input"];
+  /** The y coordinate of the image. The value must be an integer from 0 to 10000. */
+  y: Scalars["Int"]["input"];
+};
+
+export enum ImageFit {
+  /** Resizes the image to fit within the specified parameters without distorting, cropping, or changing the aspect ratio. */
+  Clip = "clip",
+  /** Resizes the image to fit the specified parameters exactly by removing any parts of the image that don't fit within the boundaries. */
+  Crop = "crop",
+  /** Resizes the image to fit within the parameters, but as opposed to 'fit:clip' will not scale the image if the image is smaller than the output size. */
+  Max = "max",
+  /** Resizes the image to fit the specified parameters exactly by scaling the image to the desired size. The aspect ratio of the image is not respected and the image can be distorted using this method. */
+  Scale = "scale",
+}
+
+export type ImageLink = Entity & {
+  __typename?: "ImageLink";
+  /** The unique identifier */
+  id: Scalars["ID"]["output"];
+  image: Asset;
+  label: Scalars["String"]["output"];
+  /** System stage field */
+  stage: Stage;
+  url: Scalars["String"]["output"];
+};
+
+export type ImageLinkImageArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  where?: InputMaybe<AssetSingleRelationWhereInput>;
+};
+
+export type ImageLinkConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: ImageLinkWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type ImageLinkConnection = {
+  __typename?: "ImageLinkConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<ImageLinkEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type ImageLinkCreateInput = {
+  image: AssetCreateOneInlineInput;
+  label: Scalars["String"]["input"];
+  url: Scalars["String"]["input"];
+};
+
+export type ImageLinkCreateManyInlineInput = {
+  /** Create and connect multiple existing ImageLink documents */
+  create?: InputMaybe<Array<ImageLinkCreateInput>>;
+};
+
+export type ImageLinkCreateOneInlineInput = {
+  /** Create and connect one ImageLink document */
+  create?: InputMaybe<ImageLinkCreateInput>;
+};
+
+export type ImageLinkCreateWithPositionInput = {
+  /** Document to create */
+  data: ImageLinkCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type ImageLinkEdge = {
+  __typename?: "ImageLinkEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: ImageLink;
+};
+
+/** Identifies documents */
+export type ImageLinkManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ImageLinkWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ImageLinkWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ImageLinkWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  image?: InputMaybe<AssetWhereInput>;
+  label?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  label_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  label_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  label_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  label_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  label_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  label_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  label_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  label_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  label_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  url?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  url_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  url_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  url_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  url_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  url_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  url_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  url_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  url_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  url_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export enum ImageLinkOrderByInput {
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  LabelAsc = "label_ASC",
+  LabelDesc = "label_DESC",
+  UrlAsc = "url_ASC",
+  UrlDesc = "url_DESC",
+}
+
+export type ImageLinkParent = MegaMenuDropdown;
+
+export type ImageLinkParentConnectInput = {
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownConnectInput>;
+};
+
+export type ImageLinkParentCreateInput = {
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownCreateInput>;
+};
+
+export type ImageLinkParentCreateManyInlineInput = {
+  /** Create and connect multiple existing ImageLinkParent documents */
+  create?: InputMaybe<Array<ImageLinkParentCreateInput>>;
+};
+
+export type ImageLinkParentCreateOneInlineInput = {
+  /** Create and connect one ImageLinkParent document */
+  create?: InputMaybe<ImageLinkParentCreateInput>;
+};
+
+export type ImageLinkParentCreateWithPositionInput = {
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownCreateWithPositionInput>;
+};
+
+export type ImageLinkParentUpdateInput = {
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateInput>;
+};
+
+export type ImageLinkParentUpdateManyInlineInput = {
+  /** Create and connect multiple ImageLinkParent component instances */
+  create?: InputMaybe<Array<ImageLinkParentCreateWithPositionInput>>;
+  /** Delete multiple ImageLinkParent documents */
+  delete?: InputMaybe<Array<ImageLinkParentWhereUniqueInput>>;
+  /** Update multiple ImageLinkParent component instances */
+  update?: InputMaybe<
+    Array<ImageLinkParentUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
+  /** Upsert multiple ImageLinkParent component instances */
+  upsert?: InputMaybe<
+    Array<ImageLinkParentUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
+};
+
+export type ImageLinkParentUpdateManyWithNestedWhereInput = {
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateManyWithNestedWhereInput>;
+};
+
+export type ImageLinkParentUpdateOneInlineInput = {
+  /** Create and connect one ImageLinkParent document */
+  create?: InputMaybe<ImageLinkParentCreateInput>;
+  /** Delete currently connected ImageLinkParent document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single ImageLinkParent document */
+  update?: InputMaybe<ImageLinkParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single ImageLinkParent document */
+  upsert?: InputMaybe<ImageLinkParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ImageLinkParentUpdateWithNestedWhereUniqueAndPositionInput = {
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type ImageLinkParentUpdateWithNestedWhereUniqueInput = {
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateWithNestedWhereUniqueInput>;
+};
+
+export type ImageLinkParentUpsertWithNestedWhereUniqueAndPositionInput = {
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpsertWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type ImageLinkParentUpsertWithNestedWhereUniqueInput = {
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ImageLinkParentWhereInput = {
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownWhereInput>;
+};
+
+export type ImageLinkParentWhereUniqueInput = {
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownWhereUniqueInput>;
+};
+
+export type ImageLinkUpdateInput = {
+  image?: InputMaybe<AssetUpdateOneInlineInput>;
+  label?: InputMaybe<Scalars["String"]["input"]>;
+  url?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type ImageLinkUpdateManyInlineInput = {
+  /** Create and connect multiple ImageLink component instances */
+  create?: InputMaybe<Array<ImageLinkCreateWithPositionInput>>;
+  /** Delete multiple ImageLink documents */
+  delete?: InputMaybe<Array<ImageLinkWhereUniqueInput>>;
+  /** Update multiple ImageLink component instances */
+  update?: InputMaybe<
+    Array<ImageLinkUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
+  /** Upsert multiple ImageLink component instances */
+  upsert?: InputMaybe<
+    Array<ImageLinkUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
+};
+
+export type ImageLinkUpdateManyInput = {
+  label?: InputMaybe<Scalars["String"]["input"]>;
+  url?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type ImageLinkUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: ImageLinkUpdateManyInput;
+  /** Document search */
+  where: ImageLinkWhereInput;
+};
+
+export type ImageLinkUpdateOneInlineInput = {
+  /** Create and connect one ImageLink document */
+  create?: InputMaybe<ImageLinkCreateInput>;
+  /** Delete currently connected ImageLink document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single ImageLink document */
+  update?: InputMaybe<ImageLinkUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single ImageLink document */
+  upsert?: InputMaybe<ImageLinkUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ImageLinkUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<ImageLinkUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: ImageLinkWhereUniqueInput;
+};
+
+export type ImageLinkUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: ImageLinkUpdateInput;
+  /** Unique document search */
+  where: ImageLinkWhereUniqueInput;
+};
+
+export type ImageLinkUpsertInput = {
+  /** Create document if it didn't exist */
+  create: ImageLinkCreateInput;
+  /** Update document if it exists */
+  update: ImageLinkUpdateInput;
+};
+
+export type ImageLinkUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<ImageLinkUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: ImageLinkWhereUniqueInput;
+};
+
+export type ImageLinkUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: ImageLinkUpsertInput;
+  /** Unique document search */
+  where: ImageLinkWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type ImageLinkWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ImageLinkWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ImageLinkWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ImageLinkWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  image?: InputMaybe<AssetWhereInput>;
+  label?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  label_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  label_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  label_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  label_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  label_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  label_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  label_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  label_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  label_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  url?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  url_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  url_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  url_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  url_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  url_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  url_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  url_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  url_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  url_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** References ImageLink record uniquely */
+export type ImageLinkWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+export type ImageQualityInput = {
+  /** The quality of the image. The value must be an integer from 1 to 100. */
+  value: Scalars["Int"]["input"];
+};
+
+export type ImageResizeInput = {
+  /** The default value for the fit parameter is fit:clip. */
+  fit?: InputMaybe<ImageFit>;
+  /** The height in pixels to resize the image to. The value must be an integer from 1 to 10000. */
+  height?: InputMaybe<Scalars["Int"]["input"]>;
+  /** The width in pixels to resize the image to. The value must be an integer from 1 to 10000. */
+  width?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export type ImageSharpenInput = {
+  /** The amount of sharpening to apply to the image. The value must be an integer from 1 to 20. */
+  amount: Scalars["Int"]["input"];
+};
+
+export type ImageSwatchData = SwatchDataInterface & {
+  __typename?: "ImageSwatchData";
+  /** The URL assigned to the thumbnail of the swatch image. */
+  thumbnail?: Maybe<Scalars["String"]["output"]>;
+  /** The value can be represented as color (HEX code), image link, or text. */
+  value?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Transformations for Images */
+export type ImageTransformationInput = {
+  /** Blurs the image. */
+  blur?: InputMaybe<ImageBlurInput>;
+  /** Adds a border to the image. */
+  border?: InputMaybe<ImageBorderInput>;
+  /** Compresses the image. */
+  compress?: InputMaybe<ImageCompressInput>;
+  /** Crops the image to the specified dimensions. */
+  crop?: InputMaybe<ImageCropInput>;
+  /**
+   * Changes the quality of the image. The value must be an integer from 1 to 100.
+   * Only supported for the following formats jpeg, jpg, webp, gif, heif, tiff, avif.
+   */
+  quality?: InputMaybe<ImageQualityInput>;
+  /** Resizes the image */
+  resize?: InputMaybe<ImageResizeInput>;
+  /** Sharpens the image. */
+  sharpen?: InputMaybe<ImageSharpenInput>;
+};
+
+/** Contains an error message when an internal error occurred. */
+export type InternalError = ErrorInterface & {
+  __typename?: "InternalError";
+  /** The returned error message. */
+  message: Scalars["String"]["output"];
+};
+
+/** Contains invoice details. */
+export type Invoice = {
+  __typename?: "Invoice";
+  /** Comments on the invoice. */
+  comments?: Maybe<Array<Maybe<SalesCommentItem>>>;
+  /** The unique ID for a `Invoice` object. */
+  id: Scalars["ID"]["output"];
+  /** Invoiced product details. */
+  items?: Maybe<Array<Maybe<InvoiceItemInterface>>>;
+  /** Sequential invoice number. */
+  number: Scalars["String"]["output"];
+  /** Invoice total amount details. */
+  total?: Maybe<InvoiceTotal>;
+};
+
+export type InvoiceItem = InvoiceItemInterface & {
+  __typename?: "InvoiceItem";
+  /** Information about the final discount amount for the base product, including discounts on options. */
+  discounts?: Maybe<Array<Maybe<Discount>>>;
+  /** The unique ID for an `InvoiceItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** Details about an individual order item. */
+  order_item?: Maybe<OrderItemInterface>;
+  /** The name of the base product. */
+  product_name?: Maybe<Scalars["String"]["output"]>;
+  /** The sale price for the base product including selected options. */
+  product_sale_price: Money;
+  /** The SKU of the base product. */
+  product_sku: Scalars["String"]["output"];
+  /** The number of invoiced items. */
+  quantity_invoiced?: Maybe<Scalars["Float"]["output"]>;
+};
+
+/** Contains detailes about invoiced items. */
+export type InvoiceItemInterface = {
+  /** Information about the final discount amount for the base product, including discounts on options. */
+  discounts?: Maybe<Array<Maybe<Discount>>>;
+  /** The unique ID for an `InvoiceItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** Details about an individual order item. */
+  order_item?: Maybe<OrderItemInterface>;
+  /** The name of the base product. */
+  product_name?: Maybe<Scalars["String"]["output"]>;
+  /** The sale price for the base product including selected options. */
+  product_sale_price: Money;
+  /** The SKU of the base product. */
+  product_sku: Scalars["String"]["output"];
+  /** The number of invoiced items. */
+  quantity_invoiced?: Maybe<Scalars["Float"]["output"]>;
+};
+
+/** Contains price details from an invoice. */
+export type InvoiceTotal = {
+  __typename?: "InvoiceTotal";
+  /** The final base grand total amount in the base currency. */
+  base_grand_total: Money;
+  /** The applied discounts to the invoice. */
+  discounts?: Maybe<Array<Maybe<Discount>>>;
+  /** The final total amount, including shipping, discounts, and taxes. */
+  grand_total: Money;
+  /** Details about the shipping and handling costs for the invoice. */
+  shipping_handling?: Maybe<ShippingHandling>;
+  /** The subtotal of the invoice, excluding shipping, discounts, and taxes. */
+  subtotal: Money;
+  /** The invoice tax details. */
+  taxes?: Maybe<Array<Maybe<TaxItem>>>;
+  /** The shipping amount for the invoice. */
+  total_shipping: Money;
+  /** The amount of tax applied to the invoice. */
+  total_tax: Money;
+};
+
+/** Contains the result of the `isEmailAvailable` query. */
+export type IsEmailAvailableOutput = {
+  __typename?: "IsEmailAvailableOutput";
+  /** Indicates whether the specified email address can be used to create a customer. */
+  is_email_available?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+/** A list of options of the selected bundle product. */
+export type ItemSelectedBundleOption = {
+  __typename?: "ItemSelectedBundleOption";
+  /**
+   * The unique ID for a `ItemSelectedBundleOption` object.
+   * @deprecated Use `uid` instead.
+   */
+  id: Scalars["ID"]["output"];
+  /** The label of the option. */
+  label: Scalars["String"]["output"];
+  /** The unique ID for a `ItemSelectedBundleOption` object. */
+  uid: Scalars["ID"]["output"];
+  /** A list of products that represent the values of the parent option. */
+  values?: Maybe<Array<Maybe<ItemSelectedBundleOptionValue>>>;
+};
+
+/** A list of values for the selected bundle product. */
+export type ItemSelectedBundleOptionValue = {
+  __typename?: "ItemSelectedBundleOptionValue";
+  /**
+   * The unique ID for a `ItemSelectedBundleOptionValue` object.
+   * @deprecated Use `uid` instead.
+   */
+  id: Scalars["ID"]["output"];
+  /** The price of the child bundle product. */
+  price: Money;
+  /** The name of the child bundle product. */
+  product_name: Scalars["String"]["output"];
+  /** The SKU of the child bundle product. */
+  product_sku: Scalars["String"]["output"];
+  /** The number of this bundle product that were ordered. */
+  quantity: Scalars["Float"]["output"];
+  /** The unique ID for a `ItemSelectedBundleOptionValue` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Contains a key-value pair. */
+export type KeyValue = {
+  __typename?: "KeyValue";
+  /** The name part of the key/value pair. */
+  name?: Maybe<Scalars["String"]["output"]>;
+  /** The value part of the key/value pair. */
+  value?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type Label = {
+  __typename?: "Label";
+  /** Custom product label. Returns array with custom label texts or empty array. */
+  custom?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
+  /** Discount product label. Returns array with status, percent, percent up to. */
+  discount?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
+  /** Is new product label. Returns boolean with true/false */
+  new?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+/** Contains information for rendering layered navigation. */
+export type LayerFilter = {
+  __typename?: "LayerFilter";
+  /**
+   * An array of filter items.
+   * @deprecated Use `Aggregation.options` instead.
+   */
+  filter_items?: Maybe<Array<Maybe<LayerFilterItemInterface>>>;
+  /**
+   * The count of filter items in filter group.
+   * @deprecated Use `Aggregation.count` instead.
+   */
+  filter_items_count?: Maybe<Scalars["Int"]["output"]>;
+  /**
+   * The name of a layered navigation filter.
+   * @deprecated Use `Aggregation.label` instead.
+   */
+  name?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * The request variable name for a filter query.
+   * @deprecated Use `Aggregation.attribute_code` instead.
+   */
+  request_var?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type LayerFilterItem = LayerFilterItemInterface & {
+  __typename?: "LayerFilterItem";
+  /**
+   * The count of items per filter.
+   * @deprecated Use `AggregationOption.count` instead.
+   */
+  items_count?: Maybe<Scalars["Int"]["output"]>;
+  /**
+   * The label for a filter.
+   * @deprecated Use `AggregationOption.label` instead.
+   */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * The value of a filter request variable to be used in query.
+   * @deprecated Use `AggregationOption.value` instead.
+   */
+  value_string?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type LayerFilterItemInterface = {
+  /**
+   * The count of items per filter.
+   * @deprecated Use `AggregationOption.count` instead.
+   */
+  items_count?: Maybe<Scalars["Int"]["output"]>;
+  /**
+   * The label for a filter.
+   * @deprecated Use `AggregationOption.label` instead.
+   */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * The value of a filter request variable to be used in query.
+   * @deprecated Use `AggregationOption.value` instead.
+   */
+  value_string?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type Link = Entity & {
+  __typename?: "Link";
+  /** The unique identifier */
+  id: Scalars["ID"]["output"];
+  label: Scalars["String"]["output"];
+  /** System stage field */
+  stage: Stage;
+  url: Scalars["String"]["output"];
+};
+
+export type LinkConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: LinkWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type LinkConnection = {
+  __typename?: "LinkConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<LinkEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type LinkCreateInput = {
+  label: Scalars["String"]["input"];
+  url: Scalars["String"]["input"];
+};
+
+export type LinkCreateManyInlineInput = {
+  /** Create and connect multiple existing Link documents */
+  create?: InputMaybe<Array<LinkCreateInput>>;
+};
+
+export type LinkCreateOneInlineInput = {
+  /** Create and connect one Link document */
+  create?: InputMaybe<LinkCreateInput>;
+};
+
+export type LinkCreateWithPositionInput = {
+  /** Document to create */
+  data: LinkCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type LinkEdge = {
+  __typename?: "LinkEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: Link;
+};
+
+/** Identifies documents */
+export type LinkManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<LinkWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<LinkWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<LinkWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  label?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  label_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  label_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  label_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  label_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  label_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  label_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  label_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  label_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  label_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  url?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  url_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  url_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  url_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  url_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  url_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  url_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  url_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  url_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  url_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export enum LinkOrderByInput {
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  LabelAsc = "label_ASC",
+  LabelDesc = "label_DESC",
+  UrlAsc = "url_ASC",
+  UrlDesc = "url_DESC",
+}
+
+export type LinkParent = MegaMenuDropdown | Menu;
+
+export type LinkParentConnectInput = {
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownConnectInput>;
+  Menu?: InputMaybe<MenuConnectInput>;
+};
+
+export type LinkParentCreateInput = {
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownCreateInput>;
+  Menu?: InputMaybe<MenuCreateInput>;
+};
+
+export type LinkParentCreateManyInlineInput = {
+  /** Connect multiple existing LinkParent documents */
+  connect?: InputMaybe<Array<LinkParentWhereUniqueInput>>;
+  /** Create and connect multiple existing LinkParent documents */
+  create?: InputMaybe<Array<LinkParentCreateInput>>;
+};
+
+export type LinkParentCreateOneInlineInput = {
+  /** Connect one existing LinkParent document */
+  connect?: InputMaybe<LinkParentWhereUniqueInput>;
+  /** Create and connect one LinkParent document */
+  create?: InputMaybe<LinkParentCreateInput>;
+};
+
+export type LinkParentUpdateInput = {
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateInput>;
+  Menu?: InputMaybe<MenuUpdateInput>;
+};
+
+export type LinkParentUpdateManyInlineInput = {
+  /** Connect multiple existing LinkParent documents */
+  connect?: InputMaybe<Array<LinkParentConnectInput>>;
+  /** Create and connect multiple LinkParent documents */
+  create?: InputMaybe<Array<LinkParentCreateInput>>;
+  /** Delete multiple LinkParent documents */
+  delete?: InputMaybe<Array<LinkParentWhereUniqueInput>>;
+  /** Disconnect multiple LinkParent documents */
+  disconnect?: InputMaybe<Array<LinkParentWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing LinkParent documents */
+  set?: InputMaybe<Array<LinkParentWhereUniqueInput>>;
+  /** Update multiple LinkParent documents */
+  update?: InputMaybe<Array<LinkParentUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple LinkParent documents */
+  upsert?: InputMaybe<Array<LinkParentUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type LinkParentUpdateManyWithNestedWhereInput = {
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateManyWithNestedWhereInput>;
+  Menu?: InputMaybe<MenuUpdateManyWithNestedWhereInput>;
+};
+
+export type LinkParentUpdateOneInlineInput = {
+  /** Connect existing LinkParent document */
+  connect?: InputMaybe<LinkParentWhereUniqueInput>;
+  /** Create and connect one LinkParent document */
+  create?: InputMaybe<LinkParentCreateInput>;
+  /** Delete currently connected LinkParent document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected LinkParent document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single LinkParent document */
+  update?: InputMaybe<LinkParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single LinkParent document */
+  upsert?: InputMaybe<LinkParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type LinkParentUpdateWithNestedWhereUniqueInput = {
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateWithNestedWhereUniqueInput>;
+  Menu?: InputMaybe<MenuUpdateWithNestedWhereUniqueInput>;
+};
+
+export type LinkParentUpsertWithNestedWhereUniqueInput = {
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpsertWithNestedWhereUniqueInput>;
+  Menu?: InputMaybe<MenuUpsertWithNestedWhereUniqueInput>;
+};
+
+export type LinkParentWhereInput = {
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownWhereInput>;
+  Menu?: InputMaybe<MenuWhereInput>;
+};
+
+export type LinkParentWhereUniqueInput = {
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownWhereUniqueInput>;
+  Menu?: InputMaybe<MenuWhereUniqueInput>;
+};
+
+export type LinkUpdateInput = {
+  label?: InputMaybe<Scalars["String"]["input"]>;
+  url?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type LinkUpdateManyInlineInput = {
+  /** Create and connect multiple Link component instances */
+  create?: InputMaybe<Array<LinkCreateWithPositionInput>>;
+  /** Delete multiple Link documents */
+  delete?: InputMaybe<Array<LinkWhereUniqueInput>>;
+  /** Update multiple Link component instances */
+  update?: InputMaybe<Array<LinkUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple Link component instances */
+  upsert?: InputMaybe<Array<LinkUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type LinkUpdateManyInput = {
+  label?: InputMaybe<Scalars["String"]["input"]>;
+  url?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type LinkUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: LinkUpdateManyInput;
+  /** Document search */
+  where: LinkWhereInput;
+};
+
+export type LinkUpdateOneInlineInput = {
+  /** Create and connect one Link document */
+  create?: InputMaybe<LinkCreateInput>;
+  /** Delete currently connected Link document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single Link document */
+  update?: InputMaybe<LinkUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Link document */
+  upsert?: InputMaybe<LinkUpsertWithNestedWhereUniqueInput>;
+};
+
+export type LinkUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<LinkUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: LinkWhereUniqueInput;
+};
+
+export type LinkUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: LinkUpdateInput;
+  /** Unique document search */
+  where: LinkWhereUniqueInput;
+};
+
+export type LinkUpsertInput = {
+  /** Create document if it didn't exist */
+  create: LinkCreateInput;
+  /** Update document if it exists */
+  update: LinkUpdateInput;
+};
+
+export type LinkUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<LinkUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: LinkWhereUniqueInput;
+};
+
+export type LinkUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: LinkUpsertInput;
+  /** Unique document search */
+  where: LinkWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type LinkWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<LinkWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<LinkWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<LinkWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  label?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  label_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  label_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  label_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  label_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  label_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  label_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  label_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  label_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  label_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  url?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  url_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  url_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  url_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  url_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  url_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  url_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  url_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  url_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  url_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** References Link record uniquely */
+export type LinkWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+/** Locale system enumeration */
+export enum Locale {
+  /** System locale */
+  En = "en",
+}
+
+/** Representing a geolocation point with latitude and longitude */
+export type Location = {
+  __typename?: "Location";
+  distance: Scalars["Float"]["output"];
+  latitude: Scalars["Float"]["output"];
+  longitude: Scalars["Float"]["output"];
+};
+
+/** Representing a geolocation point with latitude and longitude */
+export type LocationDistanceArgs = {
+  from: LocationInput;
+};
+
+/** Input for a geolocation point with latitude and longitude */
+export type LocationInput = {
+  latitude: Scalars["Float"]["input"];
+  longitude: Scalars["Float"]["input"];
+};
+
+/** Defines characteristics about images and videos associated with a specific product. */
+export type MediaGalleryEntry = {
+  __typename?: "MediaGalleryEntry";
+  /** Details about the content of the media gallery item. */
+  content?: Maybe<ProductMediaGalleryEntriesContent>;
+  /** Indicates whether the image is hidden from view. */
+  disabled?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The path of the image on the server. */
+  file?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * The identifier assigned to the object.
+   * @deprecated Use `uid` instead.
+   */
+  id?: Maybe<Scalars["Int"]["output"]>;
+  /** The alt text displayed on the storefront when the user points to the image. */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /** Either `image` or `video`. */
+  media_type?: Maybe<Scalars["String"]["output"]>;
+  /** The media item's position after it has been sorted. */
+  position?: Maybe<Scalars["Int"]["output"]>;
+  /** Array of image types. It can have the following values: image, small_image, thumbnail. */
+  types?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
+  /** The unique ID for a `MediaGalleryEntry` object. */
+  uid: Scalars["ID"]["output"];
+  /** Details about the content of a video item. */
+  video_content?: Maybe<ProductMediaGalleryEntriesVideoContent>;
+};
+
+/** Contains basic information about a product image or video. */
+export type MediaGalleryInterface = {
+  /** Indicates whether the image is hidden from view. */
+  disabled?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The label of the product image or video. */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /** The media item's position after it has been sorted. */
+  position?: Maybe<Scalars["Int"]["output"]>;
+  /** The URL of the product image or video. */
+  url?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** This dropdown displays all categories from Magento */
+export type MegaMenuCategoriesDropdown = Entity & {
+  __typename?: "MegaMenuCategoriesDropdown";
+  /** The unique identifier */
+  id: Scalars["ID"]["output"];
+  /** All categories from Magento will be displayed under this dropdown */
+  label: Scalars["String"]["output"];
+  /** System stage field */
+  stage: Stage;
+};
+
+export type MegaMenuCategoriesDropdownConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: MegaMenuCategoriesDropdownWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type MegaMenuCategoriesDropdownConnection = {
+  __typename?: "MegaMenuCategoriesDropdownConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<MegaMenuCategoriesDropdownEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type MegaMenuCategoriesDropdownCreateInput = {
+  label: Scalars["String"]["input"];
+};
+
+export type MegaMenuCategoriesDropdownCreateManyInlineInput = {
+  /** Create and connect multiple existing MegaMenuCategoriesDropdown documents */
+  create?: InputMaybe<Array<MegaMenuCategoriesDropdownCreateInput>>;
+};
+
+export type MegaMenuCategoriesDropdownCreateOneInlineInput = {
+  /** Create and connect one MegaMenuCategoriesDropdown document */
+  create?: InputMaybe<MegaMenuCategoriesDropdownCreateInput>;
+};
+
+export type MegaMenuCategoriesDropdownCreateWithPositionInput = {
+  /** Document to create */
+  data: MegaMenuCategoriesDropdownCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type MegaMenuCategoriesDropdownEdge = {
+  __typename?: "MegaMenuCategoriesDropdownEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: MegaMenuCategoriesDropdown;
+};
+
+/** Identifies documents */
+export type MegaMenuCategoriesDropdownManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<MegaMenuCategoriesDropdownWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<MegaMenuCategoriesDropdownWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<MegaMenuCategoriesDropdownWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  label?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  label_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  label_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  label_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  label_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  label_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  label_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  label_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  label_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  label_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export enum MegaMenuCategoriesDropdownOrderByInput {
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  LabelAsc = "label_ASC",
+  LabelDesc = "label_DESC",
+}
+
+export type MegaMenuCategoriesDropdownParent = Menu;
+
+export type MegaMenuCategoriesDropdownParentConnectInput = {
+  Menu?: InputMaybe<MenuConnectInput>;
+};
+
+export type MegaMenuCategoriesDropdownParentCreateInput = {
+  Menu?: InputMaybe<MenuCreateInput>;
+};
+
+export type MegaMenuCategoriesDropdownParentCreateManyInlineInput = {
+  /** Connect multiple existing MegaMenuCategoriesDropdownParent documents */
+  connect?: InputMaybe<Array<MegaMenuCategoriesDropdownParentWhereUniqueInput>>;
+  /** Create and connect multiple existing MegaMenuCategoriesDropdownParent documents */
+  create?: InputMaybe<Array<MegaMenuCategoriesDropdownParentCreateInput>>;
+};
+
+export type MegaMenuCategoriesDropdownParentCreateOneInlineInput = {
+  /** Connect one existing MegaMenuCategoriesDropdownParent document */
+  connect?: InputMaybe<MegaMenuCategoriesDropdownParentWhereUniqueInput>;
+  /** Create and connect one MegaMenuCategoriesDropdownParent document */
+  create?: InputMaybe<MegaMenuCategoriesDropdownParentCreateInput>;
+};
+
+export type MegaMenuCategoriesDropdownParentUpdateInput = {
+  Menu?: InputMaybe<MenuUpdateInput>;
+};
+
+export type MegaMenuCategoriesDropdownParentUpdateManyInlineInput = {
+  /** Connect multiple existing MegaMenuCategoriesDropdownParent documents */
+  connect?: InputMaybe<Array<MegaMenuCategoriesDropdownParentConnectInput>>;
+  /** Create and connect multiple MegaMenuCategoriesDropdownParent documents */
+  create?: InputMaybe<Array<MegaMenuCategoriesDropdownParentCreateInput>>;
+  /** Delete multiple MegaMenuCategoriesDropdownParent documents */
+  delete?: InputMaybe<Array<MegaMenuCategoriesDropdownParentWhereUniqueInput>>;
+  /** Disconnect multiple MegaMenuCategoriesDropdownParent documents */
+  disconnect?: InputMaybe<
+    Array<MegaMenuCategoriesDropdownParentWhereUniqueInput>
+  >;
+  /** Override currently-connected documents with multiple existing MegaMenuCategoriesDropdownParent documents */
+  set?: InputMaybe<Array<MegaMenuCategoriesDropdownParentWhereUniqueInput>>;
+  /** Update multiple MegaMenuCategoriesDropdownParent documents */
+  update?: InputMaybe<
+    Array<MegaMenuCategoriesDropdownParentUpdateWithNestedWhereUniqueInput>
+  >;
+  /** Upsert multiple MegaMenuCategoriesDropdownParent documents */
+  upsert?: InputMaybe<
+    Array<MegaMenuCategoriesDropdownParentUpsertWithNestedWhereUniqueInput>
+  >;
+};
+
+export type MegaMenuCategoriesDropdownParentUpdateManyWithNestedWhereInput = {
+  Menu?: InputMaybe<MenuUpdateManyWithNestedWhereInput>;
+};
+
+export type MegaMenuCategoriesDropdownParentUpdateOneInlineInput = {
+  /** Connect existing MegaMenuCategoriesDropdownParent document */
+  connect?: InputMaybe<MegaMenuCategoriesDropdownParentWhereUniqueInput>;
+  /** Create and connect one MegaMenuCategoriesDropdownParent document */
+  create?: InputMaybe<MegaMenuCategoriesDropdownParentCreateInput>;
+  /** Delete currently connected MegaMenuCategoriesDropdownParent document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected MegaMenuCategoriesDropdownParent document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single MegaMenuCategoriesDropdownParent document */
+  update?: InputMaybe<MegaMenuCategoriesDropdownParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single MegaMenuCategoriesDropdownParent document */
+  upsert?: InputMaybe<MegaMenuCategoriesDropdownParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type MegaMenuCategoriesDropdownParentUpdateWithNestedWhereUniqueInput = {
+  Menu?: InputMaybe<MenuUpdateWithNestedWhereUniqueInput>;
+};
+
+export type MegaMenuCategoriesDropdownParentUpsertWithNestedWhereUniqueInput = {
+  Menu?: InputMaybe<MenuUpsertWithNestedWhereUniqueInput>;
+};
+
+export type MegaMenuCategoriesDropdownParentWhereInput = {
+  Menu?: InputMaybe<MenuWhereInput>;
+};
+
+export type MegaMenuCategoriesDropdownParentWhereUniqueInput = {
+  Menu?: InputMaybe<MenuWhereUniqueInput>;
+};
+
+export type MegaMenuCategoriesDropdownUpdateInput = {
+  label?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type MegaMenuCategoriesDropdownUpdateManyInlineInput = {
+  /** Create and connect multiple MegaMenuCategoriesDropdown component instances */
+  create?: InputMaybe<Array<MegaMenuCategoriesDropdownCreateWithPositionInput>>;
+  /** Delete multiple MegaMenuCategoriesDropdown documents */
+  delete?: InputMaybe<Array<MegaMenuCategoriesDropdownWhereUniqueInput>>;
+  /** Update multiple MegaMenuCategoriesDropdown component instances */
+  update?: InputMaybe<
+    Array<MegaMenuCategoriesDropdownUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
+  /** Upsert multiple MegaMenuCategoriesDropdown component instances */
+  upsert?: InputMaybe<
+    Array<MegaMenuCategoriesDropdownUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
+};
+
+export type MegaMenuCategoriesDropdownUpdateManyInput = {
+  label?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type MegaMenuCategoriesDropdownUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: MegaMenuCategoriesDropdownUpdateManyInput;
+  /** Document search */
+  where: MegaMenuCategoriesDropdownWhereInput;
+};
+
+export type MegaMenuCategoriesDropdownUpdateOneInlineInput = {
+  /** Create and connect one MegaMenuCategoriesDropdown document */
+  create?: InputMaybe<MegaMenuCategoriesDropdownCreateInput>;
+  /** Delete currently connected MegaMenuCategoriesDropdown document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single MegaMenuCategoriesDropdown document */
+  update?: InputMaybe<MegaMenuCategoriesDropdownUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single MegaMenuCategoriesDropdown document */
+  upsert?: InputMaybe<MegaMenuCategoriesDropdownUpsertWithNestedWhereUniqueInput>;
+};
+
+export type MegaMenuCategoriesDropdownUpdateWithNestedWhereUniqueAndPositionInput =
+  {
+    /** Document to update */
+    data?: InputMaybe<MegaMenuCategoriesDropdownUpdateInput>;
+    /** Position in the list of existing component instances, will default to appending at the end of list */
+    position?: InputMaybe<ConnectPositionInput>;
+    /** Unique component instance search */
+    where: MegaMenuCategoriesDropdownWhereUniqueInput;
+  };
+
+export type MegaMenuCategoriesDropdownUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: MegaMenuCategoriesDropdownUpdateInput;
+  /** Unique document search */
+  where: MegaMenuCategoriesDropdownWhereUniqueInput;
+};
+
+export type MegaMenuCategoriesDropdownUpsertInput = {
+  /** Create document if it didn't exist */
+  create: MegaMenuCategoriesDropdownCreateInput;
+  /** Update document if it exists */
+  update: MegaMenuCategoriesDropdownUpdateInput;
+};
+
+export type MegaMenuCategoriesDropdownUpsertWithNestedWhereUniqueAndPositionInput =
+  {
+    /** Document to upsert */
+    data?: InputMaybe<MegaMenuCategoriesDropdownUpsertInput>;
+    /** Position in the list of existing component instances, will default to appending at the end of list */
+    position?: InputMaybe<ConnectPositionInput>;
+    /** Unique component instance search */
+    where: MegaMenuCategoriesDropdownWhereUniqueInput;
+  };
+
+export type MegaMenuCategoriesDropdownUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: MegaMenuCategoriesDropdownUpsertInput;
+  /** Unique document search */
+  where: MegaMenuCategoriesDropdownWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type MegaMenuCategoriesDropdownWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<MegaMenuCategoriesDropdownWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<MegaMenuCategoriesDropdownWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<MegaMenuCategoriesDropdownWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  label?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  label_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  label_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  label_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  label_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  label_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  label_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  label_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  label_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  label_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** References MegaMenuCategoriesDropdown record uniquely */
+export type MegaMenuCategoriesDropdownWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+export type MegaMenuDropdown = Entity & {
+  __typename?: "MegaMenuDropdown";
+  /** The unique identifier */
+  id: Scalars["ID"]["output"];
+  items: Array<MegaMenuDropdownitemsUnion>;
+  label: Scalars["String"]["output"];
+  /** System stage field */
+  stage: Stage;
+};
+
+export type MegaMenuDropdownItemsArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export type MegaMenuDropdownConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: MegaMenuDropdownWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type MegaMenuDropdownConnection = {
+  __typename?: "MegaMenuDropdownConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<MegaMenuDropdownEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type MegaMenuDropdownCreateInput = {
+  items?: InputMaybe<MegaMenuDropdownitemsUnionCreateManyInlineInput>;
+  label: Scalars["String"]["input"];
+};
+
+export type MegaMenuDropdownCreateManyInlineInput = {
+  /** Create and connect multiple existing MegaMenuDropdown documents */
+  create?: InputMaybe<Array<MegaMenuDropdownCreateInput>>;
+};
+
+export type MegaMenuDropdownCreateOneInlineInput = {
+  /** Create and connect one MegaMenuDropdown document */
+  create?: InputMaybe<MegaMenuDropdownCreateInput>;
+};
+
+export type MegaMenuDropdownCreateWithPositionInput = {
+  /** Document to create */
+  data: MegaMenuDropdownCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type MegaMenuDropdownEdge = {
+  __typename?: "MegaMenuDropdownEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: MegaMenuDropdown;
+};
+
+/** Identifies documents */
+export type MegaMenuDropdownManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<MegaMenuDropdownWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<MegaMenuDropdownWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<MegaMenuDropdownWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values in which the union is empty. */
+  items_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Matches if the modular component contains at least one connection to the item provided to the filter */
+  items_some?: InputMaybe<MegaMenuDropdownitemsUnionWhereInput>;
+  label?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  label_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  label_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  label_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  label_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  label_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  label_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  label_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  label_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  label_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export enum MegaMenuDropdownOrderByInput {
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  LabelAsc = "label_ASC",
+  LabelDesc = "label_DESC",
+}
+
+export type MegaMenuDropdownParent = Menu;
+
+export type MegaMenuDropdownParentConnectInput = {
+  Menu?: InputMaybe<MenuConnectInput>;
+};
+
+export type MegaMenuDropdownParentCreateInput = {
+  Menu?: InputMaybe<MenuCreateInput>;
+};
+
+export type MegaMenuDropdownParentCreateManyInlineInput = {
+  /** Connect multiple existing MegaMenuDropdownParent documents */
+  connect?: InputMaybe<Array<MegaMenuDropdownParentWhereUniqueInput>>;
+  /** Create and connect multiple existing MegaMenuDropdownParent documents */
+  create?: InputMaybe<Array<MegaMenuDropdownParentCreateInput>>;
+};
+
+export type MegaMenuDropdownParentCreateOneInlineInput = {
+  /** Connect one existing MegaMenuDropdownParent document */
+  connect?: InputMaybe<MegaMenuDropdownParentWhereUniqueInput>;
+  /** Create and connect one MegaMenuDropdownParent document */
+  create?: InputMaybe<MegaMenuDropdownParentCreateInput>;
+};
+
+export type MegaMenuDropdownParentUpdateInput = {
+  Menu?: InputMaybe<MenuUpdateInput>;
+};
+
+export type MegaMenuDropdownParentUpdateManyInlineInput = {
+  /** Connect multiple existing MegaMenuDropdownParent documents */
+  connect?: InputMaybe<Array<MegaMenuDropdownParentConnectInput>>;
+  /** Create and connect multiple MegaMenuDropdownParent documents */
+  create?: InputMaybe<Array<MegaMenuDropdownParentCreateInput>>;
+  /** Delete multiple MegaMenuDropdownParent documents */
+  delete?: InputMaybe<Array<MegaMenuDropdownParentWhereUniqueInput>>;
+  /** Disconnect multiple MegaMenuDropdownParent documents */
+  disconnect?: InputMaybe<Array<MegaMenuDropdownParentWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing MegaMenuDropdownParent documents */
+  set?: InputMaybe<Array<MegaMenuDropdownParentWhereUniqueInput>>;
+  /** Update multiple MegaMenuDropdownParent documents */
+  update?: InputMaybe<
+    Array<MegaMenuDropdownParentUpdateWithNestedWhereUniqueInput>
+  >;
+  /** Upsert multiple MegaMenuDropdownParent documents */
+  upsert?: InputMaybe<
+    Array<MegaMenuDropdownParentUpsertWithNestedWhereUniqueInput>
+  >;
+};
+
+export type MegaMenuDropdownParentUpdateManyWithNestedWhereInput = {
+  Menu?: InputMaybe<MenuUpdateManyWithNestedWhereInput>;
+};
+
+export type MegaMenuDropdownParentUpdateOneInlineInput = {
+  /** Connect existing MegaMenuDropdownParent document */
+  connect?: InputMaybe<MegaMenuDropdownParentWhereUniqueInput>;
+  /** Create and connect one MegaMenuDropdownParent document */
+  create?: InputMaybe<MegaMenuDropdownParentCreateInput>;
+  /** Delete currently connected MegaMenuDropdownParent document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected MegaMenuDropdownParent document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single MegaMenuDropdownParent document */
+  update?: InputMaybe<MegaMenuDropdownParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single MegaMenuDropdownParent document */
+  upsert?: InputMaybe<MegaMenuDropdownParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type MegaMenuDropdownParentUpdateWithNestedWhereUniqueInput = {
+  Menu?: InputMaybe<MenuUpdateWithNestedWhereUniqueInput>;
+};
+
+export type MegaMenuDropdownParentUpsertWithNestedWhereUniqueInput = {
+  Menu?: InputMaybe<MenuUpsertWithNestedWhereUniqueInput>;
+};
+
+export type MegaMenuDropdownParentWhereInput = {
+  Menu?: InputMaybe<MenuWhereInput>;
+};
+
+export type MegaMenuDropdownParentWhereUniqueInput = {
+  Menu?: InputMaybe<MenuWhereUniqueInput>;
+};
+
+export type MegaMenuDropdownUpdateInput = {
+  items?: InputMaybe<MegaMenuDropdownitemsUnionUpdateManyInlineInput>;
+  label?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type MegaMenuDropdownUpdateManyInlineInput = {
+  /** Create and connect multiple MegaMenuDropdown component instances */
+  create?: InputMaybe<Array<MegaMenuDropdownCreateWithPositionInput>>;
+  /** Delete multiple MegaMenuDropdown documents */
+  delete?: InputMaybe<Array<MegaMenuDropdownWhereUniqueInput>>;
+  /** Update multiple MegaMenuDropdown component instances */
+  update?: InputMaybe<
+    Array<MegaMenuDropdownUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
+  /** Upsert multiple MegaMenuDropdown component instances */
+  upsert?: InputMaybe<
+    Array<MegaMenuDropdownUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
+};
+
+export type MegaMenuDropdownUpdateManyInput = {
+  label?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type MegaMenuDropdownUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: MegaMenuDropdownUpdateManyInput;
+  /** Document search */
+  where: MegaMenuDropdownWhereInput;
+};
+
+export type MegaMenuDropdownUpdateOneInlineInput = {
+  /** Create and connect one MegaMenuDropdown document */
+  create?: InputMaybe<MegaMenuDropdownCreateInput>;
+  /** Delete currently connected MegaMenuDropdown document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single MegaMenuDropdown document */
+  update?: InputMaybe<MegaMenuDropdownUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single MegaMenuDropdown document */
+  upsert?: InputMaybe<MegaMenuDropdownUpsertWithNestedWhereUniqueInput>;
+};
+
+export type MegaMenuDropdownUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<MegaMenuDropdownUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: MegaMenuDropdownWhereUniqueInput;
+};
+
+export type MegaMenuDropdownUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: MegaMenuDropdownUpdateInput;
+  /** Unique document search */
+  where: MegaMenuDropdownWhereUniqueInput;
+};
+
+export type MegaMenuDropdownUpsertInput = {
+  /** Create document if it didn't exist */
+  create: MegaMenuDropdownCreateInput;
+  /** Update document if it exists */
+  update: MegaMenuDropdownUpdateInput;
+};
+
+export type MegaMenuDropdownUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<MegaMenuDropdownUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: MegaMenuDropdownWhereUniqueInput;
+};
+
+export type MegaMenuDropdownUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: MegaMenuDropdownUpsertInput;
+  /** Unique document search */
+  where: MegaMenuDropdownWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type MegaMenuDropdownWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<MegaMenuDropdownWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<MegaMenuDropdownWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<MegaMenuDropdownWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values in which the union is empty. */
+  items_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Matches if the modular component contains at least one connection to the item provided to the filter */
+  items_some?: InputMaybe<MegaMenuDropdownitemsUnionWhereInput>;
+  label?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  label_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  label_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  label_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  label_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  label_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  label_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  label_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  label_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  label_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** References MegaMenuDropdown record uniquely */
+export type MegaMenuDropdownWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+export type MegaMenuDropdownitemsUnion = ImageLink | Link;
+
+export type MegaMenuDropdownitemsUnionConnectInput = {
+  ImageLink?: InputMaybe<ImageLinkConnectInput>;
+  Link?: InputMaybe<LinkConnectInput>;
+};
+
+export type MegaMenuDropdownitemsUnionCreateInput = {
+  ImageLink?: InputMaybe<ImageLinkCreateInput>;
+  Link?: InputMaybe<LinkCreateInput>;
+};
+
+export type MegaMenuDropdownitemsUnionCreateManyInlineInput = {
+  /** Create and connect multiple existing MegaMenuDropdownitemsUnion documents */
+  create?: InputMaybe<Array<MegaMenuDropdownitemsUnionCreateInput>>;
+};
+
+export type MegaMenuDropdownitemsUnionCreateOneInlineInput = {
+  /** Create and connect one MegaMenuDropdownitemsUnion document */
+  create?: InputMaybe<MegaMenuDropdownitemsUnionCreateInput>;
+};
+
+export type MegaMenuDropdownitemsUnionCreateWithPositionInput = {
+  ImageLink?: InputMaybe<ImageLinkCreateWithPositionInput>;
+  Link?: InputMaybe<LinkCreateWithPositionInput>;
+};
+
+export type MegaMenuDropdownitemsUnionUpdateInput = {
+  ImageLink?: InputMaybe<ImageLinkUpdateInput>;
+  Link?: InputMaybe<LinkUpdateInput>;
+};
+
+export type MegaMenuDropdownitemsUnionUpdateManyInlineInput = {
+  /** Create and connect multiple MegaMenuDropdownitemsUnion component instances */
+  create?: InputMaybe<Array<MegaMenuDropdownitemsUnionCreateWithPositionInput>>;
+  /** Delete multiple MegaMenuDropdownitemsUnion documents */
+  delete?: InputMaybe<Array<MegaMenuDropdownitemsUnionWhereUniqueInput>>;
+  /** Update multiple MegaMenuDropdownitemsUnion component instances */
+  update?: InputMaybe<
+    Array<MegaMenuDropdownitemsUnionUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
+  /** Upsert multiple MegaMenuDropdownitemsUnion component instances */
+  upsert?: InputMaybe<
+    Array<MegaMenuDropdownitemsUnionUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
+};
+
+export type MegaMenuDropdownitemsUnionUpdateManyWithNestedWhereInput = {
+  ImageLink?: InputMaybe<ImageLinkUpdateManyWithNestedWhereInput>;
+  Link?: InputMaybe<LinkUpdateManyWithNestedWhereInput>;
+};
+
+export type MegaMenuDropdownitemsUnionUpdateOneInlineInput = {
+  /** Create and connect one MegaMenuDropdownitemsUnion document */
+  create?: InputMaybe<MegaMenuDropdownitemsUnionCreateInput>;
+  /** Delete currently connected MegaMenuDropdownitemsUnion document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single MegaMenuDropdownitemsUnion document */
+  update?: InputMaybe<MegaMenuDropdownitemsUnionUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single MegaMenuDropdownitemsUnion document */
+  upsert?: InputMaybe<MegaMenuDropdownitemsUnionUpsertWithNestedWhereUniqueInput>;
+};
+
+export type MegaMenuDropdownitemsUnionUpdateWithNestedWhereUniqueAndPositionInput =
+  {
+    ImageLink?: InputMaybe<ImageLinkUpdateWithNestedWhereUniqueAndPositionInput>;
+    Link?: InputMaybe<LinkUpdateWithNestedWhereUniqueAndPositionInput>;
+  };
+
+export type MegaMenuDropdownitemsUnionUpdateWithNestedWhereUniqueInput = {
+  ImageLink?: InputMaybe<ImageLinkUpdateWithNestedWhereUniqueInput>;
+  Link?: InputMaybe<LinkUpdateWithNestedWhereUniqueInput>;
+};
+
+export type MegaMenuDropdownitemsUnionUpsertWithNestedWhereUniqueAndPositionInput =
+  {
+    ImageLink?: InputMaybe<ImageLinkUpsertWithNestedWhereUniqueAndPositionInput>;
+    Link?: InputMaybe<LinkUpsertWithNestedWhereUniqueAndPositionInput>;
+  };
+
+export type MegaMenuDropdownitemsUnionUpsertWithNestedWhereUniqueInput = {
+  ImageLink?: InputMaybe<ImageLinkUpsertWithNestedWhereUniqueInput>;
+  Link?: InputMaybe<LinkUpsertWithNestedWhereUniqueInput>;
+};
+
+export type MegaMenuDropdownitemsUnionWhereInput = {
+  ImageLink?: InputMaybe<ImageLinkWhereInput>;
+  Link?: InputMaybe<LinkWhereInput>;
+};
+
+export type MegaMenuDropdownitemsUnionWhereUniqueInput = {
+  ImageLink?: InputMaybe<ImageLinkWhereUniqueInput>;
+  Link?: InputMaybe<LinkWhereUniqueInput>;
+};
+
+export type Menu = Entity &
+  Node & {
+    __typename?: "Menu";
+    /** The time the document was created */
+    createdAt: Scalars["DateTime"]["output"];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    /** Get the document in other stages */
+    documentInStages: Array<Menu>;
+    /** List of Menu versions */
+    history: Array<Version>;
+    /** The unique identifier */
+    id: Scalars["ID"]["output"];
+    links: Array<MenulinksUnion>;
+    menuLocation: MenuType;
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    scheduledIn: Array<ScheduledOperation>;
+    /** System stage field */
+    stage: Stage;
+    /** The time the document was updated */
+    updatedAt: Scalars["DateTime"]["output"];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+  };
+
+export type MenuCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type MenuDocumentInStagesArgs = {
+  includeCurrent?: Scalars["Boolean"]["input"];
+  inheritLocale?: Scalars["Boolean"]["input"];
+  stages?: Array<Stage>;
+};
+
+export type MenuHistoryArgs = {
+  limit?: Scalars["Int"]["input"];
+  skip?: Scalars["Int"]["input"];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+export type MenuLinksArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export type MenuPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type MenuScheduledInArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+export type MenuUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type MenuConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: MenuWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type MenuConnection = {
+  __typename?: "MenuConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<MenuEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type MenuCreateInput = {
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  links?: InputMaybe<MenulinksUnionCreateManyInlineInput>;
+  menuLocation: MenuType;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+};
+
+export type MenuCreateManyInlineInput = {
+  /** Connect multiple existing Menu documents */
+  connect?: InputMaybe<Array<MenuWhereUniqueInput>>;
+  /** Create and connect multiple existing Menu documents */
+  create?: InputMaybe<Array<MenuCreateInput>>;
+};
+
+export type MenuCreateOneInlineInput = {
+  /** Connect one existing Menu document */
+  connect?: InputMaybe<MenuWhereUniqueInput>;
+  /** Create and connect one Menu document */
+  create?: InputMaybe<MenuCreateInput>;
+};
+
+/** An edge in a connection. */
+export type MenuEdge = {
+  __typename?: "MenuEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: Menu;
+};
+
+/** Identifies documents */
+export type MenuManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<MenuWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<MenuWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<MenuWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<MenuWhereStageInput>;
+  documentInStages_none?: InputMaybe<MenuWhereStageInput>;
+  documentInStages_some?: InputMaybe<MenuWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values in which the union is empty. */
+  links_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Matches if the modular component contains at least one connection to the item provided to the filter */
+  links_some?: InputMaybe<MenulinksUnionWhereInput>;
+  menuLocation?: InputMaybe<MenuType>;
+  /** All values that are contained in given list. */
+  menuLocation_in?: InputMaybe<Array<InputMaybe<MenuType>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  menuLocation_not?: InputMaybe<MenuType>;
+  /** All values that are not contained in given list. */
+  menuLocation_not_in?: InputMaybe<Array<InputMaybe<MenuType>>>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum MenuOrderByInput {
+  CreatedAtAsc = "createdAt_ASC",
+  CreatedAtDesc = "createdAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  MenuLocationAsc = "menuLocation_ASC",
+  MenuLocationDesc = "menuLocation_DESC",
+  PublishedAtAsc = "publishedAt_ASC",
+  PublishedAtDesc = "publishedAt_DESC",
+  UpdatedAtAsc = "updatedAt_ASC",
+  UpdatedAtDesc = "updatedAt_DESC",
+}
+
+export enum MenuType {
+  FooterMenu = "FOOTER_MENU",
+  MainMenu = "MAIN_MENU",
+}
+
+export type MenuUpdateInput = {
+  links?: InputMaybe<MenulinksUnionUpdateManyInlineInput>;
+  menuLocation?: InputMaybe<MenuType>;
+};
+
+export type MenuUpdateManyInlineInput = {
+  /** Connect multiple existing Menu documents */
+  connect?: InputMaybe<Array<MenuConnectInput>>;
+  /** Create and connect multiple Menu documents */
+  create?: InputMaybe<Array<MenuCreateInput>>;
+  /** Delete multiple Menu documents */
+  delete?: InputMaybe<Array<MenuWhereUniqueInput>>;
+  /** Disconnect multiple Menu documents */
+  disconnect?: InputMaybe<Array<MenuWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing Menu documents */
+  set?: InputMaybe<Array<MenuWhereUniqueInput>>;
+  /** Update multiple Menu documents */
+  update?: InputMaybe<Array<MenuUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Menu documents */
+  upsert?: InputMaybe<Array<MenuUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type MenuUpdateManyInput = {
+  menuLocation?: InputMaybe<MenuType>;
+};
+
+export type MenuUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: MenuUpdateManyInput;
+  /** Document search */
+  where: MenuWhereInput;
+};
+
+export type MenuUpdateOneInlineInput = {
+  /** Connect existing Menu document */
+  connect?: InputMaybe<MenuWhereUniqueInput>;
+  /** Create and connect one Menu document */
+  create?: InputMaybe<MenuCreateInput>;
+  /** Delete currently connected Menu document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected Menu document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single Menu document */
+  update?: InputMaybe<MenuUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Menu document */
+  upsert?: InputMaybe<MenuUpsertWithNestedWhereUniqueInput>;
+};
+
+export type MenuUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: MenuUpdateInput;
+  /** Unique document search */
+  where: MenuWhereUniqueInput;
+};
+
+export type MenuUpsertInput = {
+  /** Create document if it didn't exist */
+  create: MenuCreateInput;
+  /** Update document if it exists */
+  update: MenuUpdateInput;
+};
+
+export type MenuUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: MenuUpsertInput;
+  /** Unique document search */
+  where: MenuWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type MenuWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Identifies documents */
+export type MenuWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<MenuWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<MenuWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<MenuWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<MenuWhereStageInput>;
+  documentInStages_none?: InputMaybe<MenuWhereStageInput>;
+  documentInStages_some?: InputMaybe<MenuWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values in which the union is empty. */
+  links_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Matches if the modular component contains at least one connection to the item provided to the filter */
+  links_some?: InputMaybe<MenulinksUnionWhereInput>;
+  menuLocation?: InputMaybe<MenuType>;
+  /** All values that are contained in given list. */
+  menuLocation_in?: InputMaybe<Array<InputMaybe<MenuType>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  menuLocation_not?: InputMaybe<MenuType>;
+  /** All values that are not contained in given list. */
+  menuLocation_not_in?: InputMaybe<Array<InputMaybe<MenuType>>>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type MenuWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<MenuWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<MenuWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<MenuWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<MenuWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References Menu record uniquely */
+export type MenuWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+export type MenulinksUnion =
+  | Link
+  | MegaMenuCategoriesDropdown
+  | MegaMenuDropdown;
+
+export type MenulinksUnionConnectInput = {
+  Link?: InputMaybe<LinkConnectInput>;
+  MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownConnectInput>;
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownConnectInput>;
+};
+
+export type MenulinksUnionCreateInput = {
+  Link?: InputMaybe<LinkCreateInput>;
+  MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownCreateInput>;
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownCreateInput>;
+};
+
+export type MenulinksUnionCreateManyInlineInput = {
+  /** Create and connect multiple existing MenulinksUnion documents */
+  create?: InputMaybe<Array<MenulinksUnionCreateInput>>;
+};
+
+export type MenulinksUnionCreateOneInlineInput = {
+  /** Create and connect one MenulinksUnion document */
+  create?: InputMaybe<MenulinksUnionCreateInput>;
+};
+
+export type MenulinksUnionCreateWithPositionInput = {
+  Link?: InputMaybe<LinkCreateWithPositionInput>;
+  MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownCreateWithPositionInput>;
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownCreateWithPositionInput>;
+};
+
+export type MenulinksUnionUpdateInput = {
+  Link?: InputMaybe<LinkUpdateInput>;
+  MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownUpdateInput>;
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateInput>;
+};
+
+export type MenulinksUnionUpdateManyInlineInput = {
+  /** Create and connect multiple MenulinksUnion component instances */
+  create?: InputMaybe<Array<MenulinksUnionCreateWithPositionInput>>;
+  /** Delete multiple MenulinksUnion documents */
+  delete?: InputMaybe<Array<MenulinksUnionWhereUniqueInput>>;
+  /** Update multiple MenulinksUnion component instances */
+  update?: InputMaybe<
+    Array<MenulinksUnionUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
+  /** Upsert multiple MenulinksUnion component instances */
+  upsert?: InputMaybe<
+    Array<MenulinksUnionUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
+};
+
+export type MenulinksUnionUpdateManyWithNestedWhereInput = {
+  Link?: InputMaybe<LinkUpdateManyWithNestedWhereInput>;
+  MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownUpdateManyWithNestedWhereInput>;
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateManyWithNestedWhereInput>;
+};
+
+export type MenulinksUnionUpdateOneInlineInput = {
+  /** Create and connect one MenulinksUnion document */
+  create?: InputMaybe<MenulinksUnionCreateInput>;
+  /** Delete currently connected MenulinksUnion document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single MenulinksUnion document */
+  update?: InputMaybe<MenulinksUnionUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single MenulinksUnion document */
+  upsert?: InputMaybe<MenulinksUnionUpsertWithNestedWhereUniqueInput>;
+};
+
+export type MenulinksUnionUpdateWithNestedWhereUniqueAndPositionInput = {
+  Link?: InputMaybe<LinkUpdateWithNestedWhereUniqueAndPositionInput>;
+  MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownUpdateWithNestedWhereUniqueAndPositionInput>;
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type MenulinksUnionUpdateWithNestedWhereUniqueInput = {
+  Link?: InputMaybe<LinkUpdateWithNestedWhereUniqueInput>;
+  MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownUpdateWithNestedWhereUniqueInput>;
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateWithNestedWhereUniqueInput>;
+};
+
+export type MenulinksUnionUpsertWithNestedWhereUniqueAndPositionInput = {
+  Link?: InputMaybe<LinkUpsertWithNestedWhereUniqueAndPositionInput>;
+  MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownUpsertWithNestedWhereUniqueAndPositionInput>;
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpsertWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type MenulinksUnionUpsertWithNestedWhereUniqueInput = {
+  Link?: InputMaybe<LinkUpsertWithNestedWhereUniqueInput>;
+  MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownUpsertWithNestedWhereUniqueInput>;
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpsertWithNestedWhereUniqueInput>;
+};
+
+export type MenulinksUnionWhereInput = {
+  Link?: InputMaybe<LinkWhereInput>;
+  MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownWhereInput>;
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownWhereInput>;
+};
+
+export type MenulinksUnionWhereUniqueInput = {
+  Link?: InputMaybe<LinkWhereUniqueInput>;
+  MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownWhereUniqueInput>;
+  MegaMenuDropdown?: InputMaybe<MegaMenuDropdownWhereUniqueInput>;
+};
+
+export enum MetaRobots {
+  IndexFollow = "INDEX_FOLLOW",
+  IndexNofollow = "INDEX_NOFOLLOW",
+  NoindexFollow = "NOINDEX_FOLLOW",
+  NoindexNofollow = "NOINDEX_NOFOLLOW",
+}
+
+/** Defines a monetary value, including a numeric value and a currency code. */
+export type Money = {
+  __typename?: "Money";
+  /** A three-letter currency code, such as USD or EUR. */
+  currency?: Maybe<CurrencyEnum>;
+  /** A number expressing a monetary value. */
+  value?: Maybe<Scalars["Float"]["output"]>;
+};
+
+/** Contains the customer's gift registry and any errors encountered. */
+export type MoveCartItemsToGiftRegistryOutput =
+  GiftRegistryItemUserErrorInterface &
+    GiftRegistryOutputInterface & {
+      __typename?: "MoveCartItemsToGiftRegistryOutput";
+      /** The gift registry. */
+      gift_registry?: Maybe<GiftRegistry>;
+      /** Indicates whether the attempt to move the cart items to the gift registry was successful. */
+      status: Scalars["Boolean"]["output"];
+      /** An array of errors encountered while moving items from the cart to the gift registry. */
+      user_errors: Array<Maybe<GiftRegistryItemsUserError>>;
+    };
+
+/** Contains the source and target wish lists after moving products. */
+export type MoveProductsBetweenWishlistsOutput = {
+  __typename?: "MoveProductsBetweenWishlistsOutput";
+  /** The destination wish list after receiving products moved from the source wish list. */
+  destination_wishlist: Wishlist;
+  /** The source wish list after moving products from it. */
+  source_wishlist: Wishlist;
+  /** An array of errors encountered while moving products to a wish list. */
+  user_errors: Array<Maybe<WishListUserInputError>>;
+};
+
+export type Mutation = {
+  __typename?: "Mutation";
+  /** Add one or more bundle products to the specified cart. We recommend using `addProductsToCart` instead. */
+  addBundleProductsToCart?: Maybe<AddBundleProductsToCartOutput>;
+  /** Add one or more configurable products to the specified cart. We recommend using `addProductsToCart` instead. */
+  addConfigurableProductsToCart?: Maybe<AddConfigurableProductsToCartOutput>;
+  /** Add one or more downloadable products to the specified cart. We recommend using `addProductsToCart` instead. */
+  addDownloadableProductsToCart?: Maybe<AddDownloadableProductsToCartOutput>;
+  /** Add registrants to the specified gift registry. */
+  addGiftRegistryRegistrants?: Maybe<AddGiftRegistryRegistrantsOutput>;
+  /** Add any type of product to the cart. */
+  addProductsToCart?: Maybe<AddProductsToCartOutput>;
+  /** Add products to the specified compare list. */
+  addProductsToCompareList?: Maybe<CompareList>;
+  /** Add one or more products to the specified wish list. This mutation supports all product types. */
+  addProductsToWishlist?: Maybe<AddProductsToWishlistOutput>;
+  /** Add a comment to an existing return. */
+  addReturnComment?: Maybe<AddReturnCommentOutput>;
+  /** Add tracking information to the return. */
+  addReturnTracking?: Maybe<AddReturnTrackingOutput>;
+  /** Add one or more simple products to the specified cart. We recommend using `addProductsToCart` instead. */
+  addSimpleProductsToCart?: Maybe<AddSimpleProductsToCartOutput>;
+  /** Add one or more virtual products to the specified cart. We recommend using `addProductsToCart` instead. */
+  addVirtualProductsToCart?: Maybe<AddVirtualProductsToCartOutput>;
+  /** Add items in the specified wishlist to the customer's cart. */
+  addWishlistItemsToCart?: Maybe<AddWishlistItemsToCartOutput>;
+  /** Apply a pre-defined coupon code to the specified cart. */
+  applyCouponToCart?: Maybe<ApplyCouponToCartOutput>;
+  /** Apply a pre-defined gift card code to the specified cart. */
+  applyGiftCardToCart?: Maybe<ApplyGiftCardToCartOutput>;
+  /** Apply all available points, up to the cart total. Partial redemption is not available. */
+  applyRewardPointsToCart?: Maybe<ApplyRewardPointsToCartOutput>;
+  /** Apply store credit to the specified cart. */
+  applyStoreCreditToCart?: Maybe<ApplyStoreCreditToCartOutput>;
+  /** Assign the specified compare list to the logged in customer. */
+  assignCompareListToCustomer?: Maybe<AssignCompareListToCustomerOutput>;
+  /** Assign a logged-in customer to the specified guest shopping cart. */
+  assignCustomerToGuestCart: Cart;
+  /** Change the password for the logged-in customer. */
+  changeCustomerPassword?: Maybe<Customer>;
+  /** Copy products from one wish list to another. The original wish list is unchanged. */
+  copyProductsBetweenWishlists?: Maybe<CopyProductsBetweenWishlistsOutput>;
+  /** Create an asset. Use the returned info to finish the creation process by uploading the asset. */
+  createAsset?: Maybe<Asset>;
+  /** Create one banner */
+  createBanner?: Maybe<Banner>;
+  /** Creates Client Token for Braintree Javascript SDK initialization. */
+  createBraintreeClientToken: Scalars["String"]["output"];
+  /** Create a new compare list. The compare list is saved for logged in customers. */
+  createCompareList?: Maybe<CompareList>;
+  /** Use `createCustomerV2` instead. */
+  createCustomer?: Maybe<CustomerOutput>;
+  /** Create a billing or shipping address for a customer or guest. */
+  createCustomerAddress?: Maybe<CustomerAddress>;
+  /** Create a customer account. */
+  createCustomerV2?: Maybe<CustomerOutput>;
+  /** Create an empty shopping cart for a guest or logged in user */
+  createEmptyCart?: Maybe<Scalars["String"]["output"]>;
+  /** Create a gift registry on behalf of the customer. */
+  createGiftRegistry?: Maybe<CreateGiftRegistryOutput>;
+  /** Create one menu */
+  createMenu?: Maybe<Menu>;
+  /** Create one page */
+  createPage?: Maybe<Page>;
+  /** Initiate a transaction and receive a token. Use this mutation for Payflow Pro and Payments Pro payment methods */
+  createPayflowProToken?: Maybe<CreatePayflowProTokenOutput>;
+  /** Initiate an Express Checkout transaction and receive a token. Use this mutation for Express Checkout and Payments Standard payment methods. */
+  createPaypalExpressToken?: Maybe<PaypalExpressTokenOutput>;
+  /** Create one popularProduct */
+  createPopularProduct?: Maybe<PopularProduct>;
+  /** Create a product review for the specified product. */
+  createProductReview: CreateProductReviewOutput;
+  /** Create one scheduledRelease */
+  createScheduledRelease?: Maybe<ScheduledRelease>;
+  /** Create one setting */
+  createSetting?: Maybe<Setting>;
+  /** Create a new wish list. */
+  createWishlist?: Maybe<CreateWishlistOutput>;
+  /** Delete one asset from _all_ existing stages. Returns deleted document. */
+  deleteAsset?: Maybe<Asset>;
+  /** Delete one banner from _all_ existing stages. Returns deleted document. */
+  deleteBanner?: Maybe<Banner>;
+  /** Delete the specified compare list. */
+  deleteCompareList?: Maybe<DeleteCompareListOutput>;
+  /** Delete customer account */
+  deleteCustomer?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Delete the billing or shipping address of a customer. */
+  deleteCustomerAddress?: Maybe<Scalars["Boolean"]["output"]>;
+  /**
+   * Delete many Asset documents
+   * @deprecated Please use the new paginated many mutation (deleteManyAssetsConnection)
+   */
+  deleteManyAssets: BatchPayload;
+  /** Delete many Asset documents, return deleted documents */
+  deleteManyAssetsConnection: AssetConnection;
+  /**
+   * Delete many Banner documents
+   * @deprecated Please use the new paginated many mutation (deleteManyBannersConnection)
+   */
+  deleteManyBanners: BatchPayload;
+  /** Delete many Banner documents, return deleted documents */
+  deleteManyBannersConnection: BannerConnection;
+  /**
+   * Delete many Menu documents
+   * @deprecated Please use the new paginated many mutation (deleteManyMenusConnection)
+   */
+  deleteManyMenus: BatchPayload;
+  /** Delete many Menu documents, return deleted documents */
+  deleteManyMenusConnection: MenuConnection;
+  /**
+   * Delete many Page documents
+   * @deprecated Please use the new paginated many mutation (deleteManyPagesConnection)
+   */
+  deleteManyPages: BatchPayload;
+  /** Delete many Page documents, return deleted documents */
+  deleteManyPagesConnection: PageConnection;
+  /**
+   * Delete many PopularProduct documents
+   * @deprecated Please use the new paginated many mutation (deleteManyPopularProductsConnection)
+   */
+  deleteManyPopularProducts: BatchPayload;
+  /** Delete many PopularProduct documents, return deleted documents */
+  deleteManyPopularProductsConnection: PopularProductConnection;
+  /**
+   * Delete many Setting documents
+   * @deprecated Please use the new paginated many mutation (deleteManySettingsConnection)
+   */
+  deleteManySettings: BatchPayload;
+  /** Delete many Setting documents, return deleted documents */
+  deleteManySettingsConnection: SettingConnection;
+  /** Delete one menu from _all_ existing stages. Returns deleted document. */
+  deleteMenu?: Maybe<Menu>;
+  /** Delete one page from _all_ existing stages. Returns deleted document. */
+  deletePage?: Maybe<Page>;
+  /** Delete a customer's payment token. */
+  deletePaymentToken?: Maybe<DeletePaymentTokenOutput>;
+  /** Delete one popularProduct from _all_ existing stages. Returns deleted document. */
+  deletePopularProduct?: Maybe<PopularProduct>;
+  /** Delete and return scheduled operation */
+  deleteScheduledOperation?: Maybe<ScheduledOperation>;
+  /** Delete one scheduledRelease from _all_ existing stages. Returns deleted document. */
+  deleteScheduledRelease?: Maybe<ScheduledRelease>;
+  /** Delete one setting from _all_ existing stages. Returns deleted document. */
+  deleteSetting?: Maybe<Setting>;
+  /** Delete the specified wish list. You cannot delete the customer's default (first) wish list. */
+  deleteWishlist?: Maybe<DeleteWishlistOutput>;
+  /** Generate a token for specified customer. */
+  generateCustomerToken?: Maybe<CustomerToken>;
+  /** Request a customer token so that an administrator can perform remote shopping assistance. */
+  generateCustomerTokenAsAdmin?: Maybe<GenerateCustomerTokenAsAdminOutput>;
+  /** Handle a payment response and save the payment in Quote. Use this mutation for Payflow Pro and Payments Pro payment methods. */
+  handlePayflowProResponse?: Maybe<PayflowProResponseOutput>;
+  /** Transfer the contents of a guest cart into the cart of a logged-in customer. */
+  mergeCarts: Cart;
+  /** Move all items from the cart to a gift registry. */
+  moveCartItemsToGiftRegistry?: Maybe<MoveCartItemsToGiftRegistryOutput>;
+  /** Move products from one wish list to another. */
+  moveProductsBetweenWishlists?: Maybe<MoveProductsBetweenWishlistsOutput>;
+  /** Convert the quote into an order. */
+  placeOrder?: Maybe<PlaceOrderOutput>;
+  /** Publish one asset */
+  publishAsset?: Maybe<Asset>;
+  /** Publish one banner */
+  publishBanner?: Maybe<Banner>;
+  /**
+   * Publish many Asset documents
+   * @deprecated Please use the new paginated many mutation (publishManyAssetsConnection)
+   */
+  publishManyAssets: BatchPayload;
+  /** Publish many Asset documents */
+  publishManyAssetsConnection: AssetConnection;
+  /**
+   * Publish many Banner documents
+   * @deprecated Please use the new paginated many mutation (publishManyBannersConnection)
+   */
+  publishManyBanners: BatchPayload;
+  /** Publish many Banner documents */
+  publishManyBannersConnection: BannerConnection;
+  /**
+   * Publish many Menu documents
+   * @deprecated Please use the new paginated many mutation (publishManyMenusConnection)
+   */
+  publishManyMenus: BatchPayload;
+  /** Publish many Menu documents */
+  publishManyMenusConnection: MenuConnection;
+  /**
+   * Publish many Page documents
+   * @deprecated Please use the new paginated many mutation (publishManyPagesConnection)
+   */
+  publishManyPages: BatchPayload;
+  /** Publish many Page documents */
+  publishManyPagesConnection: PageConnection;
+  /**
+   * Publish many PopularProduct documents
+   * @deprecated Please use the new paginated many mutation (publishManyPopularProductsConnection)
+   */
+  publishManyPopularProducts: BatchPayload;
+  /** Publish many PopularProduct documents */
+  publishManyPopularProductsConnection: PopularProductConnection;
+  /**
+   * Publish many Setting documents
+   * @deprecated Please use the new paginated many mutation (publishManySettingsConnection)
+   */
+  publishManySettings: BatchPayload;
+  /** Publish many Setting documents */
+  publishManySettingsConnection: SettingConnection;
+  /** Publish one menu */
+  publishMenu?: Maybe<Menu>;
+  /** Publish one page */
+  publishPage?: Maybe<Page>;
+  /** Publish one popularProduct */
+  publishPopularProduct?: Maybe<PopularProduct>;
+  /** Publish one setting */
+  publishSetting?: Maybe<Setting>;
+  /** Redeem a gift card for store credit. */
+  redeemGiftCardBalanceAsStoreCredit?: Maybe<GiftCardAccount>;
+  /** Remove a previously-applied coupon from the cart. The cart must contain at least one item in order to remove the coupon. */
+  removeCouponFromCart?: Maybe<RemoveCouponFromCartOutput>;
+  /** Removes a gift card from the cart. */
+  removeGiftCardFromCart?: Maybe<RemoveGiftCardFromCartOutput>;
+  /** Delete the specified gift registry. */
+  removeGiftRegistry?: Maybe<RemoveGiftRegistryOutput>;
+  /** Delete the specified items from a gift registry. */
+  removeGiftRegistryItems?: Maybe<RemoveGiftRegistryItemsOutput>;
+  /** Removes registrants from a gift registry. */
+  removeGiftRegistryRegistrants?: Maybe<RemoveGiftRegistryRegistrantsOutput>;
+  /** Delete the entire quantity of a specified item from the cart. If you remove all items from the cart, the cart continues to exist. */
+  removeItemFromCart?: Maybe<RemoveItemFromCartOutput>;
+  /** Remove products from the specified compare list. */
+  removeProductsFromCompareList?: Maybe<CompareList>;
+  /** Remove one or more products from the specified wish list. */
+  removeProductsFromWishlist?: Maybe<RemoveProductsFromWishlistOutput>;
+  /** Remove a tracked shipment from a return. */
+  removeReturnTracking?: Maybe<RemoveReturnTrackingOutput>;
+  /** Cancel the application of reward points to the cart. */
+  removeRewardPointsFromCart?: Maybe<RemoveRewardPointsFromCartOutput>;
+  /** Remove store credit that has been applied to the specified cart. */
+  removeStoreCreditFromCart?: Maybe<RemoveStoreCreditFromCartOutput>;
+  /** Add all products from a customer's previous order to the cart. */
+  reorderItems?: Maybe<ReorderItemsOutput>;
+  /** Request an email with a reset password token for the registered customer identified by the specified email. */
+  requestPasswordResetEmail?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Initiates a buyer's request to return items for replacement or refund. */
+  requestReturn?: Maybe<RequestReturnOutput>;
+  /** Reset a customer's password using the reset password token that the customer received in an email after requesting it using `requestPasswordResetEmail`. */
+  resetPassword?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Revoke the customer token. */
+  revokeCustomerToken?: Maybe<RevokeCustomerTokenOutput>;
+  /** Schedule to publish one asset */
+  schedulePublishAsset?: Maybe<Asset>;
+  /** Schedule to publish one banner */
+  schedulePublishBanner?: Maybe<Banner>;
+  /** Schedule to publish one menu */
+  schedulePublishMenu?: Maybe<Menu>;
+  /** Schedule to publish one page */
+  schedulePublishPage?: Maybe<Page>;
+  /** Schedule to publish one popularProduct */
+  schedulePublishPopularProduct?: Maybe<PopularProduct>;
+  /** Schedule to publish one setting */
+  schedulePublishSetting?: Maybe<Setting>;
+  /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishAsset?: Maybe<Asset>;
+  /** Unpublish one banner from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishBanner?: Maybe<Banner>;
+  /** Unpublish one menu from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishMenu?: Maybe<Menu>;
+  /** Unpublish one page from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishPage?: Maybe<Page>;
+  /** Unpublish one popularProduct from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishPopularProduct?: Maybe<PopularProduct>;
+  /** Unpublish one setting from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishSetting?: Maybe<Setting>;
+  /** Send a message on behalf of a customer to the specified email addresses. */
+  sendEmailToFriend?: Maybe<SendEmailToFriendOutput>;
+  /** Set the billing address on a specific cart. */
+  setBillingAddressOnCart?: Maybe<SetBillingAddressOnCartOutput>;
+  /** Set gift options, including gift messages, gift wrapping, gift receipts, and printed cards. */
+  setGiftOptionsOnCart?: Maybe<SetGiftOptionsOnCartOutput>;
+  /** Assign the email address of a guest to the cart. */
+  setGuestEmailOnCart?: Maybe<SetGuestEmailOnCartOutput>;
+  /**
+   * Set the cart payment method and convert the cart into an order.
+   * @deprecated Should use setPaymentMethodOnCart and placeOrder mutations in single request.
+   */
+  setPaymentMethodAndPlaceOrder?: Maybe<PlaceOrderOutput>;
+  /** Apply a payment method to the cart. */
+  setPaymentMethodOnCart?: Maybe<SetPaymentMethodOnCartOutput>;
+  /** Set one or more shipping addresses on a specific cart. */
+  setShippingAddressesOnCart?: Maybe<SetShippingAddressesOnCartOutput>;
+  /** Set one or more delivery methods on a cart. */
+  setShippingMethodsOnCart?: Maybe<SetShippingMethodsOnCartOutput>;
+  /** Send an email about the gift registry to a list of invitees. */
+  shareGiftRegistry?: Maybe<ShareGiftRegistryOutput>;
+  /** Subscribe the specified email to the store's newsletter. */
+  subscribeEmailToNewsletter?: Maybe<SubscribeEmailToNewsletterOutput>;
+  /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishAsset?: Maybe<Asset>;
+  /** Unpublish one banner from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishBanner?: Maybe<Banner>;
+  /**
+   * Unpublish many Asset documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyAssetsConnection)
+   */
+  unpublishManyAssets: BatchPayload;
+  /** Find many Asset documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyAssetsConnection: AssetConnection;
+  /**
+   * Unpublish many Banner documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyBannersConnection)
+   */
+  unpublishManyBanners: BatchPayload;
+  /** Find many Banner documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyBannersConnection: BannerConnection;
+  /**
+   * Unpublish many Menu documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyMenusConnection)
+   */
+  unpublishManyMenus: BatchPayload;
+  /** Find many Menu documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyMenusConnection: MenuConnection;
+  /**
+   * Unpublish many Page documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyPagesConnection)
+   */
+  unpublishManyPages: BatchPayload;
+  /** Find many Page documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyPagesConnection: PageConnection;
+  /**
+   * Unpublish many PopularProduct documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyPopularProductsConnection)
+   */
+  unpublishManyPopularProducts: BatchPayload;
+  /** Find many PopularProduct documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyPopularProductsConnection: PopularProductConnection;
+  /**
+   * Unpublish many Setting documents
+   * @deprecated Please use the new paginated many mutation (unpublishManySettingsConnection)
+   */
+  unpublishManySettings: BatchPayload;
+  /** Find many Setting documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManySettingsConnection: SettingConnection;
+  /** Unpublish one menu from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishMenu?: Maybe<Menu>;
+  /** Unpublish one page from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishPage?: Maybe<Page>;
+  /** Unpublish one popularProduct from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishPopularProduct?: Maybe<PopularProduct>;
+  /** Unpublish one setting from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishSetting?: Maybe<Setting>;
+  /** Update one asset */
+  updateAsset?: Maybe<Asset>;
+  /** Update one banner */
+  updateBanner?: Maybe<Banner>;
+  /** Modify items in the cart. */
+  updateCartItems?: Maybe<UpdateCartItemsOutput>;
+  updateCartItemsIsInStore?: Maybe<UpdateCartItemsIsInStoreOutput>;
+  /** Use `updateCustomerV2` instead. */
+  updateCustomer?: Maybe<CustomerOutput>;
+  /** Update the billing or shipping address of a customer or guest. */
+  updateCustomerAddress?: Maybe<CustomerAddress>;
+  /** Change the email address for the logged-in customer. */
+  updateCustomerEmail?: Maybe<CustomerOutput>;
+  /** Update the customer's personal information. */
+  updateCustomerV2?: Maybe<CustomerOutput>;
+  /** Update the specified gift registry. */
+  updateGiftRegistry?: Maybe<UpdateGiftRegistryOutput>;
+  /** Update the specified items in the gift registry. */
+  updateGiftRegistryItems?: Maybe<UpdateGiftRegistryItemsOutput>;
+  /** Modify the properties of one or more gift registry registrants. */
+  updateGiftRegistryRegistrants?: Maybe<UpdateGiftRegistryRegistrantsOutput>;
+  /**
+   * Update many assets
+   * @deprecated Please use the new paginated many mutation (updateManyAssetsConnection)
+   */
+  updateManyAssets: BatchPayload;
+  /** Update many Asset documents */
+  updateManyAssetsConnection: AssetConnection;
+  /**
+   * Update many banners
+   * @deprecated Please use the new paginated many mutation (updateManyBannersConnection)
+   */
+  updateManyBanners: BatchPayload;
+  /** Update many Banner documents */
+  updateManyBannersConnection: BannerConnection;
+  /**
+   * Update many menus
+   * @deprecated Please use the new paginated many mutation (updateManyMenusConnection)
+   */
+  updateManyMenus: BatchPayload;
+  /** Update many Menu documents */
+  updateManyMenusConnection: MenuConnection;
+  /**
+   * Update many pages
+   * @deprecated Please use the new paginated many mutation (updateManyPagesConnection)
+   */
+  updateManyPages: BatchPayload;
+  /** Update many Page documents */
+  updateManyPagesConnection: PageConnection;
+  /**
+   * Update many popularProducts
+   * @deprecated Please use the new paginated many mutation (updateManyPopularProductsConnection)
+   */
+  updateManyPopularProducts: BatchPayload;
+  /** Update many PopularProduct documents */
+  updateManyPopularProductsConnection: PopularProductConnection;
+  /**
+   * Update many settings
+   * @deprecated Please use the new paginated many mutation (updateManySettingsConnection)
+   */
+  updateManySettings: BatchPayload;
+  /** Update many Setting documents */
+  updateManySettingsConnection: SettingConnection;
+  /** Update one menu */
+  updateMenu?: Maybe<Menu>;
+  /** Update one page */
+  updatePage?: Maybe<Page>;
+  /** Update one popularProduct */
+  updatePopularProduct?: Maybe<PopularProduct>;
+  /** Update one or more products in the specified wish list. */
+  updateProductsInWishlist?: Maybe<UpdateProductsInWishlistOutput>;
+  /** Update one scheduledRelease */
+  updateScheduledRelease?: Maybe<ScheduledRelease>;
+  /** Update one setting */
+  updateSetting?: Maybe<Setting>;
+  /** Change the name and visibility of the specified wish list. */
+  updateWishlist?: Maybe<UpdateWishlistOutput>;
+  /** Upsert one asset */
+  upsertAsset?: Maybe<Asset>;
+  /** Upsert one banner */
+  upsertBanner?: Maybe<Banner>;
+  /** Upsert one menu */
+  upsertMenu?: Maybe<Menu>;
+  /** Upsert one page */
+  upsertPage?: Maybe<Page>;
+  /** Upsert one popularProduct */
+  upsertPopularProduct?: Maybe<PopularProduct>;
+  /** Upsert one setting */
+  upsertSetting?: Maybe<Setting>;
+};
+
+export type MutationAddBundleProductsToCartArgs = {
+  input?: InputMaybe<AddBundleProductsToCartInput>;
+};
+
+export type MutationAddConfigurableProductsToCartArgs = {
+  input?: InputMaybe<AddConfigurableProductsToCartInput>;
+};
+
+export type MutationAddDownloadableProductsToCartArgs = {
+  input?: InputMaybe<AddDownloadableProductsToCartInput>;
+};
+
+export type MutationAddGiftRegistryRegistrantsArgs = {
+  giftRegistryUid: Scalars["ID"]["input"];
+  registrants: Array<AddGiftRegistryRegistrantInput>;
+};
+
+export type MutationAddProductsToCartArgs = {
+  cartId: Scalars["String"]["input"];
+  cartItems: Array<CartItemInput>;
+};
+
+export type MutationAddProductsToCompareListArgs = {
+  input?: InputMaybe<AddProductsToCompareListInput>;
+};
+
+export type MutationAddProductsToWishlistArgs = {
+  wishlistId: Scalars["ID"]["input"];
+  wishlistItems: Array<WishlistItemInput>;
+};
+
+export type MutationAddReturnCommentArgs = {
+  input: AddReturnCommentInput;
+};
+
+export type MutationAddReturnTrackingArgs = {
+  input: AddReturnTrackingInput;
+};
+
+export type MutationAddSimpleProductsToCartArgs = {
+  input?: InputMaybe<AddSimpleProductsToCartInput>;
+};
+
+export type MutationAddVirtualProductsToCartArgs = {
+  input?: InputMaybe<AddVirtualProductsToCartInput>;
+};
+
+export type MutationAddWishlistItemsToCartArgs = {
+  wishlistId: Scalars["ID"]["input"];
+  wishlistItemIds?: InputMaybe<Array<Scalars["ID"]["input"]>>;
+};
+
+export type MutationApplyCouponToCartArgs = {
+  input?: InputMaybe<ApplyCouponToCartInput>;
+};
+
+export type MutationApplyGiftCardToCartArgs = {
+  input?: InputMaybe<ApplyGiftCardToCartInput>;
+};
+
+export type MutationApplyRewardPointsToCartArgs = {
+  cartId: Scalars["ID"]["input"];
+};
+
+export type MutationApplyStoreCreditToCartArgs = {
+  input: ApplyStoreCreditToCartInput;
+};
+
+export type MutationAssignCompareListToCustomerArgs = {
+  uid: Scalars["ID"]["input"];
+};
+
+export type MutationAssignCustomerToGuestCartArgs = {
+  cart_id: Scalars["String"]["input"];
+};
+
+export type MutationChangeCustomerPasswordArgs = {
+  currentPassword: Scalars["String"]["input"];
+  newPassword: Scalars["String"]["input"];
+};
+
+export type MutationCopyProductsBetweenWishlistsArgs = {
+  destinationWishlistUid: Scalars["ID"]["input"];
+  sourceWishlistUid: Scalars["ID"]["input"];
+  wishlistItems: Array<WishlistItemCopyInput>;
+};
+
+export type MutationCreateAssetArgs = {
+  data: AssetCreateInput;
+};
+
+export type MutationCreateBannerArgs = {
+  data: BannerCreateInput;
+};
+
+export type MutationCreateCompareListArgs = {
+  input?: InputMaybe<CreateCompareListInput>;
+};
+
+export type MutationCreateCustomerArgs = {
+  input: CustomerInput;
+};
+
+export type MutationCreateCustomerAddressArgs = {
+  input: CustomerAddressInput;
+};
+
+export type MutationCreateCustomerV2Args = {
+  input: CustomerCreateInput;
+};
+
+export type MutationCreateEmptyCartArgs = {
+  input?: InputMaybe<CreateEmptyCartInput>;
+};
+
+export type MutationCreateGiftRegistryArgs = {
+  giftRegistry: CreateGiftRegistryInput;
+};
+
+export type MutationCreateMenuArgs = {
+  data: MenuCreateInput;
+};
+
+export type MutationCreatePageArgs = {
+  data: PageCreateInput;
+};
+
+export type MutationCreatePayflowProTokenArgs = {
+  input: PayflowProTokenInput;
+};
+
+export type MutationCreatePaypalExpressTokenArgs = {
+  input: PaypalExpressTokenInput;
+};
+
+export type MutationCreatePopularProductArgs = {
+  data: PopularProductCreateInput;
+};
+
+export type MutationCreateProductReviewArgs = {
+  input: CreateProductReviewInput;
+};
+
+export type MutationCreateScheduledReleaseArgs = {
+  data: ScheduledReleaseCreateInput;
+};
+
+export type MutationCreateSettingArgs = {
+  data: SettingCreateInput;
+};
+
+export type MutationCreateWishlistArgs = {
+  input: CreateWishlistInput;
+};
+
+export type MutationDeleteAssetArgs = {
+  where: AssetWhereUniqueInput;
+};
+
+export type MutationDeleteBannerArgs = {
+  where: BannerWhereUniqueInput;
+};
+
+export type MutationDeleteCompareListArgs = {
+  uid: Scalars["ID"]["input"];
+};
+
+export type MutationDeleteCustomerAddressArgs = {
+  id: Scalars["Int"]["input"];
+};
+
+export type MutationDeleteManyAssetsArgs = {
+  where?: InputMaybe<AssetManyWhereInput>;
+};
+
+export type MutationDeleteManyAssetsConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<AssetManyWhereInput>;
+};
+
+export type MutationDeleteManyBannersArgs = {
+  where?: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationDeleteManyBannersConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationDeleteManyMenusArgs = {
+  where?: InputMaybe<MenuManyWhereInput>;
+};
+
+export type MutationDeleteManyMenusConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<MenuManyWhereInput>;
+};
+
+export type MutationDeleteManyPagesArgs = {
+  where?: InputMaybe<PageManyWhereInput>;
+};
+
+export type MutationDeleteManyPagesConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<PageManyWhereInput>;
+};
+
+export type MutationDeleteManyPopularProductsArgs = {
+  where?: InputMaybe<PopularProductManyWhereInput>;
+};
+
+export type MutationDeleteManyPopularProductsConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<PopularProductManyWhereInput>;
+};
+
+export type MutationDeleteManySettingsArgs = {
+  where?: InputMaybe<SettingManyWhereInput>;
+};
+
+export type MutationDeleteManySettingsConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<SettingManyWhereInput>;
+};
+
+export type MutationDeleteMenuArgs = {
+  where: MenuWhereUniqueInput;
+};
+
+export type MutationDeletePageArgs = {
+  where: PageWhereUniqueInput;
+};
+
+export type MutationDeletePaymentTokenArgs = {
+  public_hash: Scalars["String"]["input"];
+};
+
+export type MutationDeletePopularProductArgs = {
+  where: PopularProductWhereUniqueInput;
+};
+
+export type MutationDeleteScheduledOperationArgs = {
+  where: ScheduledOperationWhereUniqueInput;
+};
+
+export type MutationDeleteScheduledReleaseArgs = {
+  where: ScheduledReleaseWhereUniqueInput;
+};
+
+export type MutationDeleteSettingArgs = {
+  where: SettingWhereUniqueInput;
+};
+
+export type MutationDeleteWishlistArgs = {
+  wishlistId: Scalars["ID"]["input"];
+};
+
+export type MutationGenerateCustomerTokenArgs = {
+  email: Scalars["String"]["input"];
+  password: Scalars["String"]["input"];
+};
+
+export type MutationGenerateCustomerTokenAsAdminArgs = {
+  input: GenerateCustomerTokenAsAdminInput;
+};
+
+export type MutationHandlePayflowProResponseArgs = {
+  input: PayflowProResponseInput;
+};
+
+export type MutationMergeCartsArgs = {
+  destination_cart_id?: InputMaybe<Scalars["String"]["input"]>;
+  source_cart_id: Scalars["String"]["input"];
+};
+
+export type MutationMoveCartItemsToGiftRegistryArgs = {
+  cartUid: Scalars["ID"]["input"];
+  giftRegistryUid: Scalars["ID"]["input"];
+};
+
+export type MutationMoveProductsBetweenWishlistsArgs = {
+  destinationWishlistUid: Scalars["ID"]["input"];
+  sourceWishlistUid: Scalars["ID"]["input"];
+  wishlistItems: Array<WishlistItemMoveInput>;
+};
+
+export type MutationPlaceOrderArgs = {
+  input?: InputMaybe<PlaceOrderInput>;
+};
+
+export type MutationPublishAssetArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars["Boolean"]["input"]>;
+  to?: Array<Stage>;
+  where: AssetWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type MutationPublishBannerArgs = {
+  to?: Array<Stage>;
+  where: BannerWhereUniqueInput;
+};
+
+export type MutationPublishManyAssetsArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars["Boolean"]["input"]>;
+  to?: Array<Stage>;
+  where?: InputMaybe<AssetManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type MutationPublishManyAssetsConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars["Boolean"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  to?: Array<Stage>;
+  where?: InputMaybe<AssetManyWhereInput>;
+  withDefaultLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type MutationPublishManyBannersArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationPublishManyBannersConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  to?: Array<Stage>;
+  where?: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationPublishManyMenusArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<MenuManyWhereInput>;
+};
+
+export type MutationPublishManyMenusConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  to?: Array<Stage>;
+  where?: InputMaybe<MenuManyWhereInput>;
+};
+
+export type MutationPublishManyPagesArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<PageManyWhereInput>;
+};
+
+export type MutationPublishManyPagesConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  to?: Array<Stage>;
+  where?: InputMaybe<PageManyWhereInput>;
+};
+
+export type MutationPublishManyPopularProductsArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<PopularProductManyWhereInput>;
+};
+
+export type MutationPublishManyPopularProductsConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  to?: Array<Stage>;
+  where?: InputMaybe<PopularProductManyWhereInput>;
+};
+
+export type MutationPublishManySettingsArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<SettingManyWhereInput>;
+};
+
+export type MutationPublishManySettingsConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  to?: Array<Stage>;
+  where?: InputMaybe<SettingManyWhereInput>;
+};
+
+export type MutationPublishMenuArgs = {
+  to?: Array<Stage>;
+  where: MenuWhereUniqueInput;
+};
+
+export type MutationPublishPageArgs = {
+  to?: Array<Stage>;
+  where: PageWhereUniqueInput;
+};
+
+export type MutationPublishPopularProductArgs = {
+  to?: Array<Stage>;
+  where: PopularProductWhereUniqueInput;
+};
+
+export type MutationPublishSettingArgs = {
+  to?: Array<Stage>;
+  where: SettingWhereUniqueInput;
+};
+
+export type MutationRedeemGiftCardBalanceAsStoreCreditArgs = {
+  input: GiftCardAccountInput;
+};
+
+export type MutationRemoveCouponFromCartArgs = {
+  input?: InputMaybe<RemoveCouponFromCartInput>;
+};
+
+export type MutationRemoveGiftCardFromCartArgs = {
+  input?: InputMaybe<RemoveGiftCardFromCartInput>;
+};
+
+export type MutationRemoveGiftRegistryArgs = {
+  giftRegistryUid: Scalars["ID"]["input"];
+};
+
+export type MutationRemoveGiftRegistryItemsArgs = {
+  giftRegistryUid: Scalars["ID"]["input"];
+  itemsUid: Array<Scalars["ID"]["input"]>;
+};
+
+export type MutationRemoveGiftRegistryRegistrantsArgs = {
+  giftRegistryUid: Scalars["ID"]["input"];
+  registrantsUid: Array<Scalars["ID"]["input"]>;
+};
+
+export type MutationRemoveItemFromCartArgs = {
+  input?: InputMaybe<RemoveItemFromCartInput>;
+};
+
+export type MutationRemoveProductsFromCompareListArgs = {
+  input?: InputMaybe<RemoveProductsFromCompareListInput>;
+};
+
+export type MutationRemoveProductsFromWishlistArgs = {
+  wishlistId: Scalars["ID"]["input"];
+  wishlistItemsIds: Array<Scalars["ID"]["input"]>;
+};
+
+export type MutationRemoveReturnTrackingArgs = {
+  input: RemoveReturnTrackingInput;
+};
+
+export type MutationRemoveRewardPointsFromCartArgs = {
+  cartId: Scalars["ID"]["input"];
+};
+
+export type MutationRemoveStoreCreditFromCartArgs = {
+  input: RemoveStoreCreditFromCartInput;
+};
+
+export type MutationReorderItemsArgs = {
+  orderNumber: Scalars["String"]["input"];
+};
+
+export type MutationRequestPasswordResetEmailArgs = {
+  email: Scalars["String"]["input"];
+};
+
+export type MutationRequestReturnArgs = {
+  input: RequestReturnInput;
+};
+
+export type MutationResetPasswordArgs = {
+  email: Scalars["String"]["input"];
+  newPassword: Scalars["String"]["input"];
+  resetPasswordToken: Scalars["String"]["input"];
+};
+
+export type MutationSchedulePublishAssetArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  publishBase?: InputMaybe<Scalars["Boolean"]["input"]>;
+  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId?: InputMaybe<Scalars["String"]["input"]>;
+  to?: Array<Stage>;
+  where: AssetWhereUniqueInput;
+  withDefaultLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type MutationSchedulePublishBannerArgs = {
+  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId?: InputMaybe<Scalars["String"]["input"]>;
+  to?: Array<Stage>;
+  where: BannerWhereUniqueInput;
+};
+
+export type MutationSchedulePublishMenuArgs = {
+  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId?: InputMaybe<Scalars["String"]["input"]>;
+  to?: Array<Stage>;
+  where: MenuWhereUniqueInput;
+};
+
+export type MutationSchedulePublishPageArgs = {
+  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId?: InputMaybe<Scalars["String"]["input"]>;
+  to?: Array<Stage>;
+  where: PageWhereUniqueInput;
+};
+
+export type MutationSchedulePublishPopularProductArgs = {
+  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId?: InputMaybe<Scalars["String"]["input"]>;
+  to?: Array<Stage>;
+  where: PopularProductWhereUniqueInput;
+};
+
+export type MutationSchedulePublishSettingArgs = {
+  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId?: InputMaybe<Scalars["String"]["input"]>;
+  to?: Array<Stage>;
+  where: SettingWhereUniqueInput;
+};
+
+export type MutationScheduleUnpublishAssetArgs = {
+  from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId?: InputMaybe<Scalars["String"]["input"]>;
+  unpublishBase?: InputMaybe<Scalars["Boolean"]["input"]>;
+  where: AssetWhereUniqueInput;
+};
+
+export type MutationScheduleUnpublishBannerArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId?: InputMaybe<Scalars["String"]["input"]>;
+  where: BannerWhereUniqueInput;
+};
+
+export type MutationScheduleUnpublishMenuArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId?: InputMaybe<Scalars["String"]["input"]>;
+  where: MenuWhereUniqueInput;
+};
+
+export type MutationScheduleUnpublishPageArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId?: InputMaybe<Scalars["String"]["input"]>;
+  where: PageWhereUniqueInput;
+};
+
+export type MutationScheduleUnpublishPopularProductArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId?: InputMaybe<Scalars["String"]["input"]>;
+  where: PopularProductWhereUniqueInput;
+};
+
+export type MutationScheduleUnpublishSettingArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId?: InputMaybe<Scalars["String"]["input"]>;
+  where: SettingWhereUniqueInput;
+};
+
+export type MutationSendEmailToFriendArgs = {
+  input?: InputMaybe<SendEmailToFriendInput>;
+};
+
+export type MutationSetBillingAddressOnCartArgs = {
+  input?: InputMaybe<SetBillingAddressOnCartInput>;
+};
+
+export type MutationSetGiftOptionsOnCartArgs = {
+  input?: InputMaybe<SetGiftOptionsOnCartInput>;
+};
+
+export type MutationSetGuestEmailOnCartArgs = {
+  input?: InputMaybe<SetGuestEmailOnCartInput>;
+};
+
+export type MutationSetPaymentMethodAndPlaceOrderArgs = {
+  input?: InputMaybe<SetPaymentMethodAndPlaceOrderInput>;
+};
+
+export type MutationSetPaymentMethodOnCartArgs = {
+  input?: InputMaybe<SetPaymentMethodOnCartInput>;
+};
+
+export type MutationSetShippingAddressesOnCartArgs = {
+  input?: InputMaybe<SetShippingAddressesOnCartInput>;
+};
+
+export type MutationSetShippingMethodsOnCartArgs = {
+  input?: InputMaybe<SetShippingMethodsOnCartInput>;
+};
+
+export type MutationShareGiftRegistryArgs = {
+  giftRegistryUid: Scalars["ID"]["input"];
+  invitees: Array<ShareGiftRegistryInviteeInput>;
+  sender: ShareGiftRegistrySenderInput;
+};
+
+export type MutationSubscribeEmailToNewsletterArgs = {
+  email: Scalars["String"]["input"];
+};
+
+export type MutationUnpublishAssetArgs = {
+  from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars["Boolean"]["input"]>;
+  where: AssetWhereUniqueInput;
+};
+
+export type MutationUnpublishBannerArgs = {
+  from?: Array<Stage>;
+  where: BannerWhereUniqueInput;
+};
+
+export type MutationUnpublishManyAssetsArgs = {
+  from?: Array<Stage>;
+  locales?: InputMaybe<Array<Locale>>;
+  unpublishBase?: InputMaybe<Scalars["Boolean"]["input"]>;
+  where?: InputMaybe<AssetManyWhereInput>;
+};
+
+export type MutationUnpublishManyAssetsConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: InputMaybe<Stage>;
+  unpublishBase?: InputMaybe<Scalars["Boolean"]["input"]>;
+  where?: InputMaybe<AssetManyWhereInput>;
+};
+
+export type MutationUnpublishManyBannersArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationUnpublishManyBannersConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationUnpublishManyMenusArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<MenuManyWhereInput>;
+};
+
+export type MutationUnpublishManyMenusConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<MenuManyWhereInput>;
+};
+
+export type MutationUnpublishManyPagesArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<PageManyWhereInput>;
+};
+
+export type MutationUnpublishManyPagesConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<PageManyWhereInput>;
+};
+
+export type MutationUnpublishManyPopularProductsArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<PopularProductManyWhereInput>;
+};
+
+export type MutationUnpublishManyPopularProductsConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<PopularProductManyWhereInput>;
+};
+
+export type MutationUnpublishManySettingsArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<SettingManyWhereInput>;
+};
+
+export type MutationUnpublishManySettingsConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<SettingManyWhereInput>;
+};
+
+export type MutationUnpublishMenuArgs = {
+  from?: Array<Stage>;
+  where: MenuWhereUniqueInput;
+};
+
+export type MutationUnpublishPageArgs = {
+  from?: Array<Stage>;
+  where: PageWhereUniqueInput;
+};
+
+export type MutationUnpublishPopularProductArgs = {
+  from?: Array<Stage>;
+  where: PopularProductWhereUniqueInput;
+};
+
+export type MutationUnpublishSettingArgs = {
+  from?: Array<Stage>;
+  where: SettingWhereUniqueInput;
+};
+
+export type MutationUpdateAssetArgs = {
+  data: AssetUpdateInput;
+  where: AssetWhereUniqueInput;
+};
+
+export type MutationUpdateBannerArgs = {
+  data: BannerUpdateInput;
+  where: BannerWhereUniqueInput;
+};
+
+export type MutationUpdateCartItemsArgs = {
+  input?: InputMaybe<UpdateCartItemsInput>;
+};
+
+export type MutationUpdateCartItemsIsInStoreArgs = {
+  storeId: Scalars["Int"]["input"];
+};
+
+export type MutationUpdateCustomerArgs = {
+  input: CustomerInput;
+};
+
+export type MutationUpdateCustomerAddressArgs = {
+  id: Scalars["Int"]["input"];
+  input?: InputMaybe<CustomerAddressInput>;
+};
+
+export type MutationUpdateCustomerEmailArgs = {
+  email: Scalars["String"]["input"];
+  password: Scalars["String"]["input"];
+};
+
+export type MutationUpdateCustomerV2Args = {
+  input: CustomerUpdateInput;
+};
+
+export type MutationUpdateGiftRegistryArgs = {
+  giftRegistry: UpdateGiftRegistryInput;
+  giftRegistryUid: Scalars["ID"]["input"];
+};
+
+export type MutationUpdateGiftRegistryItemsArgs = {
+  giftRegistryUid: Scalars["ID"]["input"];
+  items: Array<UpdateGiftRegistryItemInput>;
+};
+
+export type MutationUpdateGiftRegistryRegistrantsArgs = {
+  giftRegistryUid: Scalars["ID"]["input"];
+  registrants: Array<UpdateGiftRegistryRegistrantInput>;
+};
+
+export type MutationUpdateManyAssetsArgs = {
+  data: AssetUpdateManyInput;
+  where?: InputMaybe<AssetManyWhereInput>;
+};
+
+export type MutationUpdateManyAssetsConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  data: AssetUpdateManyInput;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<AssetManyWhereInput>;
+};
+
+export type MutationUpdateManyBannersArgs = {
+  data: BannerUpdateManyInput;
+  where?: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationUpdateManyBannersConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  data: BannerUpdateManyInput;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationUpdateManyMenusArgs = {
+  data: MenuUpdateManyInput;
+  where?: InputMaybe<MenuManyWhereInput>;
+};
+
+export type MutationUpdateManyMenusConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  data: MenuUpdateManyInput;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<MenuManyWhereInput>;
+};
+
+export type MutationUpdateManyPagesArgs = {
+  data: PageUpdateManyInput;
+  where?: InputMaybe<PageManyWhereInput>;
+};
+
+export type MutationUpdateManyPagesConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  data: PageUpdateManyInput;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<PageManyWhereInput>;
+};
+
+export type MutationUpdateManyPopularProductsArgs = {
+  data: PopularProductUpdateManyInput;
+  where?: InputMaybe<PopularProductManyWhereInput>;
+};
+
+export type MutationUpdateManyPopularProductsConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  data: PopularProductUpdateManyInput;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<PopularProductManyWhereInput>;
+};
+
+export type MutationUpdateManySettingsArgs = {
+  data: SettingUpdateManyInput;
+  where?: InputMaybe<SettingManyWhereInput>;
+};
+
+export type MutationUpdateManySettingsConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  data: SettingUpdateManyInput;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<SettingManyWhereInput>;
+};
+
+export type MutationUpdateMenuArgs = {
+  data: MenuUpdateInput;
+  where: MenuWhereUniqueInput;
+};
+
+export type MutationUpdatePageArgs = {
+  data: PageUpdateInput;
+  where: PageWhereUniqueInput;
+};
+
+export type MutationUpdatePopularProductArgs = {
+  data: PopularProductUpdateInput;
+  where: PopularProductWhereUniqueInput;
+};
+
+export type MutationUpdateProductsInWishlistArgs = {
+  wishlistId: Scalars["ID"]["input"];
+  wishlistItems: Array<WishlistItemUpdateInput>;
+};
+
+export type MutationUpdateScheduledReleaseArgs = {
+  data: ScheduledReleaseUpdateInput;
+  where: ScheduledReleaseWhereUniqueInput;
+};
+
+export type MutationUpdateSettingArgs = {
+  data: SettingUpdateInput;
+  where: SettingWhereUniqueInput;
+};
+
+export type MutationUpdateWishlistArgs = {
+  name?: InputMaybe<Scalars["String"]["input"]>;
+  visibility?: InputMaybe<WishlistVisibilityEnum>;
+  wishlistId: Scalars["ID"]["input"];
+};
+
+export type MutationUpsertAssetArgs = {
+  upsert: AssetUpsertInput;
+  where: AssetWhereUniqueInput;
+};
+
+export type MutationUpsertBannerArgs = {
+  upsert: BannerUpsertInput;
+  where: BannerWhereUniqueInput;
+};
+
+export type MutationUpsertMenuArgs = {
+  upsert: MenuUpsertInput;
+  where: MenuWhereUniqueInput;
+};
+
+export type MutationUpsertPageArgs = {
+  upsert: PageUpsertInput;
+  where: PageWhereUniqueInput;
+};
+
+export type MutationUpsertPopularProductArgs = {
+  upsert: PopularProductUpsertInput;
+  where: PopularProductWhereUniqueInput;
+};
+
+export type MutationUpsertSettingArgs = {
+  upsert: SettingUpsertInput;
+  where: SettingWhereUniqueInput;
+};
+
+/** Contains an error message when an invalid UID was specified. */
+export type NoSuchEntityUidError = ErrorInterface & {
+  __typename?: "NoSuchEntityUidError";
+  /** The returned error message. */
+  message: Scalars["String"]["output"];
+  /** The specified invalid unique ID of an object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** An object with an ID */
+export type Node = {
+  /** The id of the object. */
+  id: Scalars["ID"]["output"];
+  /** The Stage of an object */
+  stage: Stage;
+};
+
+/** Contains the order ID. */
+export type Order = {
+  __typename?: "Order";
+  /** @deprecated Use `order_number` instead. */
+  order_id?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for an `Order` object. */
+  order_number: Scalars["String"]["output"];
+};
+
+/** Contains detailed information about an order's billing and shipping addresses. */
+export type OrderAddress = {
+  __typename?: "OrderAddress";
+  /** The city or town. */
+  city: Scalars["String"]["output"];
+  /** The customer's company. */
+  company?: Maybe<Scalars["String"]["output"]>;
+  /** The customer's country. */
+  country_code?: Maybe<CountryCodeEnum>;
+  /** The fax number. */
+  fax?: Maybe<Scalars["String"]["output"]>;
+  /** The first name of the person associated with the shipping/billing address. */
+  firstname: Scalars["String"]["output"];
+  /** The family name of the person associated with the shipping/billing address. */
+  lastname: Scalars["String"]["output"];
+  /** The middle name of the person associated with the shipping/billing address. */
+  middlename?: Maybe<Scalars["String"]["output"]>;
+  /** The customer's ZIP or postal code. */
+  postcode?: Maybe<Scalars["String"]["output"]>;
+  /** An honorific, such as Dr., Mr., or Mrs. */
+  prefix?: Maybe<Scalars["String"]["output"]>;
+  /** The state or province name. */
+  region?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `Region` object of a pre-defined region. */
+  region_id?: Maybe<Scalars["ID"]["output"]>;
+  /** An array of strings that define the street number and name. */
+  street: Array<Maybe<Scalars["String"]["output"]>>;
+  /** A value such as Sr., Jr., or III. */
+  suffix?: Maybe<Scalars["String"]["output"]>;
+  /** The telephone number. */
+  telephone?: Maybe<Scalars["String"]["output"]>;
+  /** The customer's Value-added tax (VAT) number (for corporate customers). */
+  vat_id?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type OrderItem = OrderItemInterface & {
+  __typename?: "OrderItem";
+  /** The final discount information for the product. */
+  discounts?: Maybe<Array<Maybe<Discount>>>;
+  /** Indicates whether the order item is eligible to be in a return request. */
+  eligible_for_return?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The entered option for the base product, such as a logo or image. */
+  entered_options?: Maybe<Array<Maybe<OrderItemOption>>>;
+  /** The selected gift message for the order item */
+  gift_message?: Maybe<GiftMessage>;
+  /** The selected gift wrapping for the order item. */
+  gift_wrapping?: Maybe<GiftWrapping>;
+  /** The unique ID for an `OrderItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** The name of the base product. */
+  product_name?: Maybe<Scalars["String"]["output"]>;
+  /** The sale price of the base product, including selected options. */
+  product_sale_price: Money;
+  /** The SKU of the base product. */
+  product_sku: Scalars["String"]["output"];
+  /** The type of product, such as simple, configurable, etc. */
+  product_type?: Maybe<Scalars["String"]["output"]>;
+  /** URL key of the base product. */
+  product_url_key?: Maybe<Scalars["String"]["output"]>;
+  /** The number of canceled items. */
+  quantity_canceled?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of invoiced items. */
+  quantity_invoiced?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of units ordered for this item. */
+  quantity_ordered?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of refunded items. */
+  quantity_refunded?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of returned items. */
+  quantity_returned?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of shipped items. */
+  quantity_shipped?: Maybe<Scalars["Float"]["output"]>;
+  /** The selected options for the base product, such as color or size. */
+  selected_options?: Maybe<Array<Maybe<OrderItemOption>>>;
+  /** The status of the order item. */
+  status?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Order item details. */
+export type OrderItemInterface = {
+  /** The final discount information for the product. */
+  discounts?: Maybe<Array<Maybe<Discount>>>;
+  /** Indicates whether the order item is eligible to be in a return request. */
+  eligible_for_return?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The entered option for the base product, such as a logo or image. */
+  entered_options?: Maybe<Array<Maybe<OrderItemOption>>>;
+  /** The selected gift message for the order item */
+  gift_message?: Maybe<GiftMessage>;
+  /** The selected gift wrapping for the order item. */
+  gift_wrapping?: Maybe<GiftWrapping>;
+  /** The unique ID for an `OrderItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** The name of the base product. */
+  product_name?: Maybe<Scalars["String"]["output"]>;
+  /** The sale price of the base product, including selected options. */
+  product_sale_price: Money;
+  /** The SKU of the base product. */
+  product_sku: Scalars["String"]["output"];
+  /** The type of product, such as simple, configurable, etc. */
+  product_type?: Maybe<Scalars["String"]["output"]>;
+  /** URL key of the base product. */
+  product_url_key?: Maybe<Scalars["String"]["output"]>;
+  /** The number of canceled items. */
+  quantity_canceled?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of invoiced items. */
+  quantity_invoiced?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of units ordered for this item. */
+  quantity_ordered?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of refunded items. */
+  quantity_refunded?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of returned items. */
+  quantity_returned?: Maybe<Scalars["Float"]["output"]>;
+  /** The number of shipped items. */
+  quantity_shipped?: Maybe<Scalars["Float"]["output"]>;
+  /** The selected options for the base product, such as color or size. */
+  selected_options?: Maybe<Array<Maybe<OrderItemOption>>>;
+  /** The status of the order item. */
+  status?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Represents order item options like selected or entered. */
+export type OrderItemOption = {
+  __typename?: "OrderItemOption";
+  /** The name of the option. */
+  label: Scalars["String"]["output"];
+  /** The value of the option. */
+  value: Scalars["String"]["output"];
+};
+
+/** Contains details about the payment method used to pay for the order. */
+export type OrderPaymentMethod = {
+  __typename?: "OrderPaymentMethod";
+  /** Additional data per payment method type. */
+  additional_data?: Maybe<Array<Maybe<KeyValue>>>;
+  /** The label that describes the payment method. */
+  name: Scalars["String"]["output"];
+  /** The payment method code that indicates how the order was paid for. */
+  type: Scalars["String"]["output"];
+};
+
+/** Contains order shipment details. */
+export type OrderShipment = {
+  __typename?: "OrderShipment";
+  /** Comments added to the shipment. */
+  comments?: Maybe<Array<Maybe<SalesCommentItem>>>;
+  /** The unique ID for a `OrderShipment` object. */
+  id: Scalars["ID"]["output"];
+  /** An array of items included in the shipment. */
+  items?: Maybe<Array<Maybe<ShipmentItemInterface>>>;
+  /** The sequential credit shipment number. */
+  number: Scalars["String"]["output"];
+  /** An array of shipment tracking details. */
+  tracking?: Maybe<Array<Maybe<ShipmentTracking>>>;
+};
+
+/** Contains details about the sales total amounts used to calculate the final price. */
+export type OrderTotal = {
+  __typename?: "OrderTotal";
+  /** The final base grand total amount in the base currency. */
+  base_grand_total: Money;
+  /** The applied discounts to the order. */
+  discounts?: Maybe<Array<Maybe<Discount>>>;
+  /** The final total amount, including shipping, discounts, and taxes. */
+  grand_total: Money;
+  /** Details about the shipping and handling costs for the order. */
+  shipping_handling?: Maybe<ShippingHandling>;
+  /** The subtotal of the order, excluding shipping, discounts, and taxes. */
+  subtotal: Money;
+  /** The order tax details. */
+  taxes?: Maybe<Array<Maybe<TaxItem>>>;
+  /** The gift card balance applied to the order. */
+  total_giftcard?: Maybe<Money>;
+  /** The shipping amount for the order. */
+  total_shipping: Money;
+  /** The amount of tax applied to the order. */
+  total_tax: Money;
+};
+
+export type Page = Entity &
+  Node & {
+    __typename?: "Page";
+    content: Array<PageContent>;
+    /** The time the document was created */
+    createdAt: Scalars["DateTime"]["output"];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    /** Get the document in other stages */
+    documentInStages: Array<Page>;
+    /** List of Page versions */
+    history: Array<Version>;
+    /** The unique identifier */
+    id: Scalars["ID"]["output"];
+    identify?: Maybe<Scalars["String"]["output"]>;
+    metaDescription?: Maybe<Scalars["String"]["output"]>;
+    metaRobots: MetaRobots;
+    metaTitle: Scalars["String"]["output"];
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    scheduledIn: Array<ScheduledOperation>;
+    /** System stage field */
+    stage: Stage;
+    title: Scalars["String"]["output"];
+    /** The time the document was updated */
+    updatedAt: Scalars["DateTime"]["output"];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+    url: Scalars["String"]["output"];
+  };
+
+export type PageContentArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export type PageCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type PageDocumentInStagesArgs = {
+  includeCurrent?: Scalars["Boolean"]["input"];
+  inheritLocale?: Scalars["Boolean"]["input"];
+  stages?: Array<Stage>;
+};
+
+export type PageHistoryArgs = {
+  limit?: Scalars["Int"]["input"];
+  skip?: Scalars["Int"]["input"];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+export type PagePublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type PageScheduledInArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+export type PageUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type PageConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: PageWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type PageConnection = {
+  __typename?: "PageConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<PageEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type PageContent = Banner | PopularProduct;
+
+export type PageContentConnectInput = {
+  Banner?: InputMaybe<BannerConnectInput>;
+  PopularProduct?: InputMaybe<PopularProductConnectInput>;
+};
+
+export type PageContentCreateInput = {
+  Banner?: InputMaybe<BannerCreateInput>;
+  PopularProduct?: InputMaybe<PopularProductCreateInput>;
+};
+
+export type PageContentCreateManyInlineInput = {
+  /** Connect multiple existing PageContent documents */
+  connect?: InputMaybe<Array<PageContentWhereUniqueInput>>;
+  /** Create and connect multiple existing PageContent documents */
+  create?: InputMaybe<Array<PageContentCreateInput>>;
+};
+
+export type PageContentCreateOneInlineInput = {
+  /** Connect one existing PageContent document */
+  connect?: InputMaybe<PageContentWhereUniqueInput>;
+  /** Create and connect one PageContent document */
+  create?: InputMaybe<PageContentCreateInput>;
+};
+
+export type PageContentUpdateInput = {
+  Banner?: InputMaybe<BannerUpdateInput>;
+  PopularProduct?: InputMaybe<PopularProductUpdateInput>;
+};
+
+export type PageContentUpdateManyInlineInput = {
+  /** Connect multiple existing PageContent documents */
+  connect?: InputMaybe<Array<PageContentConnectInput>>;
+  /** Create and connect multiple PageContent documents */
+  create?: InputMaybe<Array<PageContentCreateInput>>;
+  /** Delete multiple PageContent documents */
+  delete?: InputMaybe<Array<PageContentWhereUniqueInput>>;
+  /** Disconnect multiple PageContent documents */
+  disconnect?: InputMaybe<Array<PageContentWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing PageContent documents */
+  set?: InputMaybe<Array<PageContentWhereUniqueInput>>;
+  /** Update multiple PageContent documents */
+  update?: InputMaybe<Array<PageContentUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple PageContent documents */
+  upsert?: InputMaybe<Array<PageContentUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type PageContentUpdateManyWithNestedWhereInput = {
+  Banner?: InputMaybe<BannerUpdateManyWithNestedWhereInput>;
+  PopularProduct?: InputMaybe<PopularProductUpdateManyWithNestedWhereInput>;
+};
+
+export type PageContentUpdateOneInlineInput = {
+  /** Connect existing PageContent document */
+  connect?: InputMaybe<PageContentWhereUniqueInput>;
+  /** Create and connect one PageContent document */
+  create?: InputMaybe<PageContentCreateInput>;
+  /** Delete currently connected PageContent document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected PageContent document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single PageContent document */
+  update?: InputMaybe<PageContentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single PageContent document */
+  upsert?: InputMaybe<PageContentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type PageContentUpdateWithNestedWhereUniqueInput = {
+  Banner?: InputMaybe<BannerUpdateWithNestedWhereUniqueInput>;
+  PopularProduct?: InputMaybe<PopularProductUpdateWithNestedWhereUniqueInput>;
+};
+
+export type PageContentUpsertWithNestedWhereUniqueInput = {
+  Banner?: InputMaybe<BannerUpsertWithNestedWhereUniqueInput>;
+  PopularProduct?: InputMaybe<PopularProductUpsertWithNestedWhereUniqueInput>;
+};
+
+export type PageContentWhereInput = {
+  Banner?: InputMaybe<BannerWhereInput>;
+  PopularProduct?: InputMaybe<PopularProductWhereInput>;
+};
+
+export type PageContentWhereUniqueInput = {
+  Banner?: InputMaybe<BannerWhereUniqueInput>;
+  PopularProduct?: InputMaybe<PopularProductWhereUniqueInput>;
+};
+
+export type PageCreateInput = {
+  content?: InputMaybe<PageContentCreateManyInlineInput>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  metaDescription?: InputMaybe<Scalars["String"]["input"]>;
+  metaRobots: MetaRobots;
+  metaTitle: Scalars["String"]["input"];
+  title: Scalars["String"]["input"];
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  url: Scalars["String"]["input"];
+};
+
+export type PageCreateManyInlineInput = {
+  /** Connect multiple existing Page documents */
+  connect?: InputMaybe<Array<PageWhereUniqueInput>>;
+  /** Create and connect multiple existing Page documents */
+  create?: InputMaybe<Array<PageCreateInput>>;
+};
+
+export type PageCreateOneInlineInput = {
+  /** Connect one existing Page document */
+  connect?: InputMaybe<PageWhereUniqueInput>;
+  /** Create and connect one Page document */
+  create?: InputMaybe<PageCreateInput>;
+};
+
+/** An edge in a connection. */
+export type PageEdge = {
+  __typename?: "PageEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: Page;
+};
+
+/** Information about pagination in a connection. */
+export type PageInfo = {
+  __typename?: "PageInfo";
+  /** When paginating forwards, the cursor to continue. */
+  endCursor?: Maybe<Scalars["String"]["output"]>;
+  /** When paginating forwards, are there more items? */
+  hasNextPage: Scalars["Boolean"]["output"];
+  /** When paginating backwards, are there more items? */
+  hasPreviousPage: Scalars["Boolean"]["output"];
+  /** Number of items in the current page. */
+  pageSize?: Maybe<Scalars["Int"]["output"]>;
+  /** When paginating backwards, the cursor to continue. */
+  startCursor?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Identifies documents */
+export type PageManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<PageWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<PageWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<PageWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values in which the union is empty */
+  content_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Matches if the union contains at least one connection to the provided item to the filter */
+  content_some?: InputMaybe<PageContentWhereInput>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<PageWhereStageInput>;
+  documentInStages_none?: InputMaybe<PageWhereStageInput>;
+  documentInStages_some?: InputMaybe<PageWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  identify_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  metaDescription?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  metaDescription_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  metaDescription_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  metaDescription_in?: InputMaybe<
+    Array<InputMaybe<Scalars["String"]["input"]>>
+  >;
+  /** Any other value that exists and is not equal to the given value. */
+  metaDescription_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  metaDescription_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  metaDescription_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  metaDescription_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["String"]["input"]>>
+  >;
+  /** All values not starting with the given string. */
+  metaDescription_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  metaDescription_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  metaRobots?: InputMaybe<MetaRobots>;
+  /** All values that are contained in given list. */
+  metaRobots_in?: InputMaybe<Array<InputMaybe<MetaRobots>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  metaRobots_not?: InputMaybe<MetaRobots>;
+  /** All values that are not contained in given list. */
+  metaRobots_not_in?: InputMaybe<Array<InputMaybe<MetaRobots>>>;
+  metaTitle?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  metaTitle_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  metaTitle_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  metaTitle_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  metaTitle_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  metaTitle_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  metaTitle_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  metaTitle_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  metaTitle_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  metaTitle_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  title_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+  url?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  url_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  url_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  url_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  url_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  url_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  url_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  url_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  url_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  url_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export enum PageOrderByInput {
+  CreatedAtAsc = "createdAt_ASC",
+  CreatedAtDesc = "createdAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  IdentifyAsc = "identify_ASC",
+  IdentifyDesc = "identify_DESC",
+  MetaDescriptionAsc = "metaDescription_ASC",
+  MetaDescriptionDesc = "metaDescription_DESC",
+  MetaRobotsAsc = "metaRobots_ASC",
+  MetaRobotsDesc = "metaRobots_DESC",
+  MetaTitleAsc = "metaTitle_ASC",
+  MetaTitleDesc = "metaTitle_DESC",
+  PublishedAtAsc = "publishedAt_ASC",
+  PublishedAtDesc = "publishedAt_DESC",
+  TitleAsc = "title_ASC",
+  TitleDesc = "title_DESC",
+  UpdatedAtAsc = "updatedAt_ASC",
+  UpdatedAtDesc = "updatedAt_DESC",
+  UrlAsc = "url_ASC",
+  UrlDesc = "url_DESC",
+}
+
+export type PageUpdateInput = {
+  content?: InputMaybe<PageContentUpdateManyInlineInput>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  metaDescription?: InputMaybe<Scalars["String"]["input"]>;
+  metaRobots?: InputMaybe<MetaRobots>;
+  metaTitle?: InputMaybe<Scalars["String"]["input"]>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+  url?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type PageUpdateManyInlineInput = {
+  /** Connect multiple existing Page documents */
+  connect?: InputMaybe<Array<PageConnectInput>>;
+  /** Create and connect multiple Page documents */
+  create?: InputMaybe<Array<PageCreateInput>>;
+  /** Delete multiple Page documents */
+  delete?: InputMaybe<Array<PageWhereUniqueInput>>;
+  /** Disconnect multiple Page documents */
+  disconnect?: InputMaybe<Array<PageWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing Page documents */
+  set?: InputMaybe<Array<PageWhereUniqueInput>>;
+  /** Update multiple Page documents */
+  update?: InputMaybe<Array<PageUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Page documents */
+  upsert?: InputMaybe<Array<PageUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type PageUpdateManyInput = {
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  metaDescription?: InputMaybe<Scalars["String"]["input"]>;
+  metaRobots?: InputMaybe<MetaRobots>;
+  metaTitle?: InputMaybe<Scalars["String"]["input"]>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+  url?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type PageUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: PageUpdateManyInput;
+  /** Document search */
+  where: PageWhereInput;
+};
+
+export type PageUpdateOneInlineInput = {
+  /** Connect existing Page document */
+  connect?: InputMaybe<PageWhereUniqueInput>;
+  /** Create and connect one Page document */
+  create?: InputMaybe<PageCreateInput>;
+  /** Delete currently connected Page document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected Page document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single Page document */
+  update?: InputMaybe<PageUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Page document */
+  upsert?: InputMaybe<PageUpsertWithNestedWhereUniqueInput>;
+};
+
+export type PageUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: PageUpdateInput;
+  /** Unique document search */
+  where: PageWhereUniqueInput;
+};
+
+export type PageUpsertInput = {
+  /** Create document if it didn't exist */
+  create: PageCreateInput;
+  /** Update document if it exists */
+  update: PageUpdateInput;
+};
+
+export type PageUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: PageUpsertInput;
+  /** Unique document search */
+  where: PageWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type PageWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Identifies documents */
+export type PageWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<PageWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<PageWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<PageWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values in which the union is empty */
+  content_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Matches if the union contains at least one connection to the provided item to the filter */
+  content_some?: InputMaybe<PageContentWhereInput>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<PageWhereStageInput>;
+  documentInStages_none?: InputMaybe<PageWhereStageInput>;
+  documentInStages_some?: InputMaybe<PageWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  identify_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  metaDescription?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  metaDescription_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  metaDescription_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  metaDescription_in?: InputMaybe<
+    Array<InputMaybe<Scalars["String"]["input"]>>
+  >;
+  /** Any other value that exists and is not equal to the given value. */
+  metaDescription_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  metaDescription_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  metaDescription_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  metaDescription_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["String"]["input"]>>
+  >;
+  /** All values not starting with the given string. */
+  metaDescription_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  metaDescription_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  metaRobots?: InputMaybe<MetaRobots>;
+  /** All values that are contained in given list. */
+  metaRobots_in?: InputMaybe<Array<InputMaybe<MetaRobots>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  metaRobots_not?: InputMaybe<MetaRobots>;
+  /** All values that are not contained in given list. */
+  metaRobots_not_in?: InputMaybe<Array<InputMaybe<MetaRobots>>>;
+  metaTitle?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  metaTitle_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  metaTitle_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  metaTitle_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  metaTitle_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  metaTitle_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  metaTitle_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  metaTitle_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  metaTitle_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  metaTitle_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  title_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+  url?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  url_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  url_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  url_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  url_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  url_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  url_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  url_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  url_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  url_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type PageWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<PageWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<PageWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<PageWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<PageWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References Page record uniquely */
+export type PageWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+/** Contains required input for Payflow Express Checkout payments. */
+export type PayflowExpressInput = {
+  /** The unique ID of the PayPal user. */
+  payer_id: Scalars["String"]["input"];
+  /** The token returned by the createPaypalExpressToken mutation. */
+  token: Scalars["String"]["input"];
+};
+
+/** A set of relative URLs that PayPal uses in response to various actions during the authorization process. Adobe Commerce prepends the base URL to this value to create a full URL. For example, if the full URL is https://www.example.com/path/to/page.html, the relative URL is path/to/page.html. Use this input for Payflow Link and Payments Advanced payment methods. */
+export type PayflowLinkInput = {
+  /** The relative URL of the page that PayPal redirects to when the buyer cancels the transaction in order to choose a different payment method. If the full URL to this page is https://www.example.com/paypal/action/cancel.html, the relative URL is paypal/action/cancel.html. */
+  cancel_url: Scalars["String"]["input"];
+  /** The relative URL of the transaction error page that PayPal redirects to upon payment error. If the full URL to this page is https://www.example.com/paypal/action/error.html, the relative URL is paypal/action/error.html. */
+  error_url: Scalars["String"]["input"];
+  /** The relative URL of the order confirmation page that PayPal redirects to when the payment is successful and additional confirmation is not needed. If the full URL to this page is https://www.example.com/paypal/action/return.html, the relative URL is paypal/action/return.html. */
+  return_url: Scalars["String"]["input"];
+};
+
+/** Indicates the mode for payment. Applies to the Payflow Link and Payments Advanced payment methods. */
+export enum PayflowLinkMode {
+  /** @deprecated  */
+  Live = "LIVE",
+  /** @deprecated  */
+  Test = "TEST",
+}
+
+/** Contains information used to generate PayPal iframe for transaction. Applies to Payflow Link and Payments Advanced payment methods. */
+export type PayflowLinkToken = {
+  __typename?: "PayflowLinkToken";
+  /** The mode for the Payflow transaction. */
+  mode?: Maybe<PayflowLinkMode>;
+  /** The PayPal URL used for requesting a Payflow form. */
+  paypal_url?: Maybe<Scalars["String"]["output"]>;
+  /** The secure token generated by PayPal. */
+  secure_token?: Maybe<Scalars["String"]["output"]>;
+  /** The secure token ID generated by PayPal. */
+  secure_token_id?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Contains information required to fetch payment token information for the Payflow Link and Payments Advanced payment methods. */
+export type PayflowLinkTokenInput = {
+  /** The unique ID that identifies the customer's cart. */
+  cart_id: Scalars["String"]["input"];
+};
+
+/** Contains input for the Payflow Pro and Payments Pro payment methods. */
+export type PayflowProInput = {
+  /** Required input for credit card related information. */
+  cc_details: CreditCardDetailsInput;
+  /** Indicates whether details about the shopper's credit/debit card should be tokenized for later usage. Required only if Vault is enabled for the PayPal Payflow Pro payment integration. */
+  is_active_payment_token_enabler?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Input required to complete payment. Applies to Payflow Pro and Payments Pro payment methods. */
+export type PayflowProResponseInput = {
+  /** The unique ID that identifies the shopper's cart. */
+  cart_id: Scalars["String"]["input"];
+  /** The payload returned from PayPal. */
+  paypal_payload: Scalars["String"]["input"];
+};
+
+export type PayflowProResponseOutput = {
+  __typename?: "PayflowProResponseOutput";
+  /** The cart with the updated selected payment method. */
+  cart: Cart;
+};
+
+/** Contains the secure information used to authorize transaction. Applies to Payflow Pro and Payments Pro payment methods. */
+export type PayflowProToken = {
+  __typename?: "PayflowProToken";
+  /** The RESPMSG returned by PayPal. If the `result` is `0`, then `response_message` is `Approved`. */
+  response_message: Scalars["String"]["output"];
+  /** A non-zero value if any errors occurred. */
+  result: Scalars["Int"]["output"];
+  /** The RESULT returned by PayPal. A value of `0` indicates the transaction was approved. */
+  result_code: Scalars["Int"]["output"];
+  /** A secure token generated by PayPal. */
+  secure_token: Scalars["String"]["output"];
+  /** A secure token ID generated by PayPal. */
+  secure_token_id: Scalars["String"]["output"];
+};
+
+/** Contains input required to fetch payment token information for the Payflow Pro and Payments Pro payment methods. */
+export type PayflowProTokenInput = {
+  /** The unique ID that identifies the shopper's cart. */
+  cart_id: Scalars["String"]["input"];
+  /** A set of relative URLs that PayPal uses for callback. */
+  urls: PayflowProUrlInput;
+};
+
+/** Contains a set of relative URLs that PayPal uses in response to various actions during the authorization process. Magento prepends the base URL to this value to create a full URL. For example, if the full URL is https://www.example.com/path/to/page.html, the relative URL is path/to/page.html. Use this input for the Payflow Pro and Payment Pro payment methods. */
+export type PayflowProUrlInput = {
+  /** The relative URL of the page that PayPal redirects to when the buyer cancels the transaction in order to choose a different payment method. If the full URL to this page is https://www.example.com/paypal/action/cancel.html, the relative URL is paypal/action/cancel.html. */
+  cancel_url: Scalars["String"]["input"];
+  /** The relative URL of the transaction error page that PayPal redirects to upon payment error. If the full URL to this page is https://www.example.com/paypal/action/error.html, the relative URL is paypal/action/error.html. */
+  error_url: Scalars["String"]["input"];
+  /** The relative URL of the final confirmation page that PayPal redirects to upon payment success. If the full URL to this page is https://www.example.com/paypal/action/return.html, the relative URL is paypal/action/return.html. */
+  return_url: Scalars["String"]["input"];
+};
+
+/** Defines the payment method. */
+export type PaymentMethodInput = {
+  braintree?: InputMaybe<BraintreeInput>;
+  braintree_cc_vault?: InputMaybe<BraintreeCcVaultInput>;
+  /** The internal name for the payment method. */
+  code: Scalars["String"]["input"];
+  /** Required input for PayPal Hosted pro payments. */
+  hosted_pro?: InputMaybe<HostedProInput>;
+  /** Required input for Payflow Express Checkout payments. */
+  payflow_express?: InputMaybe<PayflowExpressInput>;
+  /** Required input for PayPal Payflow Link and Payments Advanced payments. */
+  payflow_link?: InputMaybe<PayflowLinkInput>;
+  /** Required input for PayPal Payflow Pro and Payment Pro payments. */
+  payflowpro?: InputMaybe<PayflowProInput>;
+  /** Required input for PayPal Payflow Pro vault payments. */
+  payflowpro_cc_vault?: InputMaybe<VaultTokenInput>;
+  /** Required input for Express Checkout and Payments Standard payments. */
+  paypal_express?: InputMaybe<PaypalExpressInput>;
+  /** The purchase order number. Optional for most payment methods. */
+  purchase_order_number?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** The stored payment method available to the customer. */
+export type PaymentToken = {
+  __typename?: "PaymentToken";
+  /** A description of the stored account details. */
+  details?: Maybe<Scalars["String"]["output"]>;
+  /** The payment method code associated with the token. */
+  payment_method_code: Scalars["String"]["output"];
+  /** The public hash of the token. */
+  public_hash: Scalars["String"]["output"];
+  /** Specifies the payment token type. */
+  type: PaymentTokenTypeEnum;
+};
+
+/** The list of available payment token types. */
+export enum PaymentTokenTypeEnum {
+  /**
+   * phpcs:ignore Magento2.GraphQL.ValidArgumentName
+   * @deprecated
+   */
+  Account = "account",
+  /**
+   * phpcs:ignore Magento2.GraphQL.ValidArgumentName
+   * @deprecated
+   */
+  Card = "card",
+}
+
+/** Contains required input for Express Checkout and Payments Standard payments. */
+export type PaypalExpressInput = {
+  /** The unique ID of the PayPal user. */
+  payer_id: Scalars["String"]["input"];
+  /** The token returned by the `createPaypalExpressToken` mutation. */
+  token: Scalars["String"]["input"];
+};
+
+/** Deprecated. Use `PaypalExpressTokenOutput` instead. */
+export type PaypalExpressToken = {
+  __typename?: "PaypalExpressToken";
+  /**
+   * A set of URLs that allow the buyer to authorize payment and adjust checkout details.
+   * @deprecated Use `PaypalExpressTokenOutput.paypal_urls` instead.
+   */
+  paypal_urls?: Maybe<PaypalExpressUrlList>;
+  /**
+   * The token returned by PayPal.
+   * @deprecated Use `PaypalExpressTokenOutput.token` instead.
+   */
+  token?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Defines the attributes required to receive a payment token for Express Checkout and Payments Standard payment methods. */
+export type PaypalExpressTokenInput = {
+  /** The unique ID that identifies the customer's cart. */
+  cart_id: Scalars["String"]["input"];
+  /** The payment method code. */
+  code: Scalars["String"]["input"];
+  /** Indicates whether the buyer selected the quick checkout button. The default value is false. */
+  express_button?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** A set of relative URLs that PayPal uses in response to various actions during the authorization process. */
+  urls: PaypalExpressUrlsInput;
+  /** Indicates whether the buyer clicked the PayPal credit button. The default value is false. */
+  use_paypal_credit?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Contains the token returned by PayPal and a set of URLs that allow the buyer to authorize payment and adjust checkout details. Applies to Express Checkout and Payments Standard payment methods. */
+export type PaypalExpressTokenOutput = {
+  __typename?: "PaypalExpressTokenOutput";
+  /** A set of URLs that allow the buyer to authorize payment and adjust checkout details. */
+  paypal_urls?: Maybe<PaypalExpressUrlList>;
+  /** The token returned by PayPal. */
+  token?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Contains a set of URLs that allow the buyer to authorize payment and adjust checkout details for Express Checkout and Payments Standard transactions. */
+export type PaypalExpressUrlList = {
+  __typename?: "PaypalExpressUrlList";
+  /** The PayPal URL that allows the buyer to edit their checkout details. */
+  edit?: Maybe<Scalars["String"]["output"]>;
+  /** The URL to the PayPal login page. */
+  start?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Contains a set of relative URLs that PayPal uses in response to various actions during the authorization process. Magento prepends the base URL to this value to create a full URL. For example, if the full URL is https://www.example.com/path/to/page.html, the relative URL is path/to/page.html. Use this input for Express Checkout and Payments Standard payment methods. */
+export type PaypalExpressUrlsInput = {
+  /** The relative URL of the page that PayPal redirects to when the buyer cancels the transaction in order to choose a different payment method. If the full URL to this page is https://www.example.com/paypal/action/cancel.html, the relative URL is paypal/action/cancel.html. */
+  cancel_url: Scalars["String"]["input"];
+  /** The relative URL of the page that PayPal redirects to when the payment has been put on hold for additional review. This condition mostly applies to ACH transactions, and is not applicable to most PayPal solutions. If the full URL to this page is https://www.example.com/paypal/action/success_pending.html, the relative URL is paypal/action/success_pending.html. */
+  pending_url?: InputMaybe<Scalars["String"]["input"]>;
+  /** The relative URL of the final confirmation page that PayPal redirects to upon payment success. If the full URL to this page is https://www.example.com/paypal/action/return.html, the relative URL is paypal/action/return.html. */
+  return_url: Scalars["String"]["input"];
+  /** The relative URL of the order confirmation page that PayPal redirects to when the payment is successful and additional confirmation is not needed. Not applicable to most PayPal solutions. If the full URL to this page is https://www.example.com/paypal/action/success.html, the relative URL is paypal/action/success.html. */
+  success_url?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Contains attributes specific to tangible products. */
+export type PhysicalProductInterface = {
+  /** The weight of the item, in units defined by the store. */
+  weight?: Maybe<Scalars["Float"]["output"]>;
+};
+
+/** Defines Pickup Location information. */
+export type PickupLocation = {
+  __typename?: "PickupLocation";
+  city?: Maybe<Scalars["String"]["output"]>;
+  contact_name?: Maybe<Scalars["String"]["output"]>;
+  country_id?: Maybe<Scalars["String"]["output"]>;
+  description?: Maybe<Scalars["String"]["output"]>;
+  email?: Maybe<Scalars["String"]["output"]>;
+  fax?: Maybe<Scalars["String"]["output"]>;
+  latitude?: Maybe<Scalars["Float"]["output"]>;
+  longitude?: Maybe<Scalars["Float"]["output"]>;
+  name?: Maybe<Scalars["String"]["output"]>;
+  phone?: Maybe<Scalars["String"]["output"]>;
+  pickup_location_code?: Maybe<Scalars["String"]["output"]>;
+  postcode?: Maybe<Scalars["String"]["output"]>;
+  region?: Maybe<Scalars["String"]["output"]>;
+  region_id?: Maybe<Scalars["Int"]["output"]>;
+  street?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** PickupLocationFilterInput defines the list of attributes and filters for the search. */
+export type PickupLocationFilterInput = {
+  /** Filter by city. */
+  city?: InputMaybe<FilterTypeInput>;
+  /** Filter by country. */
+  country_id?: InputMaybe<FilterTypeInput>;
+  /** Filter by pickup location name. */
+  name?: InputMaybe<FilterTypeInput>;
+  /** Filter by pickup location code. */
+  pickup_location_code?: InputMaybe<FilterTypeInput>;
+  /** Filter by postcode. */
+  postcode?: InputMaybe<FilterTypeInput>;
+  /** Filter by region. */
+  region?: InputMaybe<FilterTypeInput>;
+  /** Filter by region id. */
+  region_id?: InputMaybe<FilterTypeInput>;
+  /** Filter by street. */
+  street?: InputMaybe<FilterTypeInput>;
+};
+
+/** PickupLocationSortInput specifies attribute to use for sorting search results and indicates whether the results are sorted in ascending or descending order. */
+export type PickupLocationSortInput = {
+  /** City where pickup location is placed. */
+  city?: InputMaybe<SortEnum>;
+  /** Name of the contact person. */
+  contact_name?: InputMaybe<SortEnum>;
+  /** Id of the country in two letters. */
+  country_id?: InputMaybe<SortEnum>;
+  /** Description of the pickup location. */
+  description?: InputMaybe<SortEnum>;
+  /** Distance to the address, requested by distance filter. Applicable only with distance filter. If distance sort order is present, all other sort orders will be ignored. */
+  distance?: InputMaybe<SortEnum>;
+  /** Contact email of the pickup location. */
+  email?: InputMaybe<SortEnum>;
+  /** Contact fax of the pickup location. */
+  fax?: InputMaybe<SortEnum>;
+  /** Geographic latitude where pickup location is placed. */
+  latitude?: InputMaybe<SortEnum>;
+  /** Geographic longitude where pickup location is placed. */
+  longitude?: InputMaybe<SortEnum>;
+  /** The pickup location name. Customer use this to identify the pickup location. */
+  name?: InputMaybe<SortEnum>;
+  /** Contact phone number of the pickup location. */
+  phone?: InputMaybe<SortEnum>;
+  /** A code assigned to pickup location to identify the source. */
+  pickup_location_code?: InputMaybe<SortEnum>;
+  /** Postcode where pickup location is placed. */
+  postcode?: InputMaybe<SortEnum>;
+  /** Name of the region. */
+  region?: InputMaybe<SortEnum>;
+  /** Id of the region. */
+  region_id?: InputMaybe<SortEnum>;
+  /** Street where pickup location is placed. */
+  street?: InputMaybe<SortEnum>;
+};
+
+/** Top level object returned in a pickup locations search. */
+export type PickupLocations = {
+  __typename?: "PickupLocations";
+  /** An array of pickup locations that match the specific search request. */
+  items?: Maybe<Array<Maybe<PickupLocation>>>;
+  /** An object that includes the page_info and currentPage values specified in the query. */
+  page_info?: Maybe<SearchResultPageInfo>;
+  /** The number of products returned. */
+  total_count?: Maybe<Scalars["Int"]["output"]>;
+};
+
+/** Specifies the quote to be converted to an order. */
+export type PlaceOrderInput = {
+  /** The unique ID of a `Cart` object. */
+  cart_id: Scalars["String"]["input"];
+};
+
+/** Contains the results of the request to place an order. */
+export type PlaceOrderOutput = {
+  __typename?: "PlaceOrderOutput";
+  /** The ID of the order. */
+  order: Order;
+};
+
+export type PopularProduct = Entity &
+  Node & {
+    __typename?: "PopularProduct";
+    categoryId?: Maybe<Scalars["String"]["output"]>;
+    /** The time the document was created */
+    createdAt: Scalars["DateTime"]["output"];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    /** Get the document in other stages */
+    documentInStages: Array<PopularProduct>;
+    /** List of PopularProduct versions */
+    history: Array<Version>;
+    /** The unique identifier */
+    id: Scalars["ID"]["output"];
+    identify: Scalars["String"]["output"];
+    pages: Array<Page>;
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    scheduledIn: Array<ScheduledOperation>;
+    /** System stage field */
+    stage: Stage;
+    /** The time the document was updated */
+    updatedAt: Scalars["DateTime"]["output"];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+  };
+
+export type PopularProductCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type PopularProductDocumentInStagesArgs = {
+  includeCurrent?: Scalars["Boolean"]["input"];
+  inheritLocale?: Scalars["Boolean"]["input"];
+  stages?: Array<Stage>;
+};
+
+export type PopularProductHistoryArgs = {
+  limit?: Scalars["Int"]["input"];
+  skip?: Scalars["Int"]["input"];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+export type PopularProductPagesArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<PageWhereInput>;
+};
+
+export type PopularProductPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type PopularProductScheduledInArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+export type PopularProductUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type PopularProductConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: PopularProductWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type PopularProductConnection = {
+  __typename?: "PopularProductConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<PopularProductEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type PopularProductCreateInput = {
+  categoryId?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  identify: Scalars["String"]["input"];
+  pages?: InputMaybe<PageCreateManyInlineInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+};
+
+export type PopularProductCreateManyInlineInput = {
+  /** Connect multiple existing PopularProduct documents */
+  connect?: InputMaybe<Array<PopularProductWhereUniqueInput>>;
+  /** Create and connect multiple existing PopularProduct documents */
+  create?: InputMaybe<Array<PopularProductCreateInput>>;
+};
+
+export type PopularProductCreateOneInlineInput = {
+  /** Connect one existing PopularProduct document */
+  connect?: InputMaybe<PopularProductWhereUniqueInput>;
+  /** Create and connect one PopularProduct document */
+  create?: InputMaybe<PopularProductCreateInput>;
+};
+
+/** An edge in a connection. */
+export type PopularProductEdge = {
+  __typename?: "PopularProductEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: PopularProduct;
+};
+
+/** Identifies documents */
+export type PopularProductManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<PopularProductWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<PopularProductWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<PopularProductWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  categoryId?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  categoryId_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  categoryId_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  categoryId_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  categoryId_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  categoryId_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  categoryId_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  categoryId_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  categoryId_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  categoryId_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<PopularProductWhereStageInput>;
+  documentInStages_none?: InputMaybe<PopularProductWhereStageInput>;
+  documentInStages_some?: InputMaybe<PopularProductWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  identify_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  pages_every?: InputMaybe<PageWhereInput>;
+  pages_none?: InputMaybe<PageWhereInput>;
+  pages_some?: InputMaybe<PageWhereInput>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum PopularProductOrderByInput {
+  CategoryIdAsc = "categoryId_ASC",
+  CategoryIdDesc = "categoryId_DESC",
+  CreatedAtAsc = "createdAt_ASC",
+  CreatedAtDesc = "createdAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  IdentifyAsc = "identify_ASC",
+  IdentifyDesc = "identify_DESC",
+  PublishedAtAsc = "publishedAt_ASC",
+  PublishedAtDesc = "publishedAt_DESC",
+  UpdatedAtAsc = "updatedAt_ASC",
+  UpdatedAtDesc = "updatedAt_DESC",
+}
+
+export type PopularProductUpdateInput = {
+  categoryId?: InputMaybe<Scalars["String"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  pages?: InputMaybe<PageUpdateManyInlineInput>;
+};
+
+export type PopularProductUpdateManyInlineInput = {
+  /** Connect multiple existing PopularProduct documents */
+  connect?: InputMaybe<Array<PopularProductConnectInput>>;
+  /** Create and connect multiple PopularProduct documents */
+  create?: InputMaybe<Array<PopularProductCreateInput>>;
+  /** Delete multiple PopularProduct documents */
+  delete?: InputMaybe<Array<PopularProductWhereUniqueInput>>;
+  /** Disconnect multiple PopularProduct documents */
+  disconnect?: InputMaybe<Array<PopularProductWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing PopularProduct documents */
+  set?: InputMaybe<Array<PopularProductWhereUniqueInput>>;
+  /** Update multiple PopularProduct documents */
+  update?: InputMaybe<Array<PopularProductUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple PopularProduct documents */
+  upsert?: InputMaybe<Array<PopularProductUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type PopularProductUpdateManyInput = {
+  categoryId?: InputMaybe<Scalars["String"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type PopularProductUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: PopularProductUpdateManyInput;
+  /** Document search */
+  where: PopularProductWhereInput;
+};
+
+export type PopularProductUpdateOneInlineInput = {
+  /** Connect existing PopularProduct document */
+  connect?: InputMaybe<PopularProductWhereUniqueInput>;
+  /** Create and connect one PopularProduct document */
+  create?: InputMaybe<PopularProductCreateInput>;
+  /** Delete currently connected PopularProduct document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected PopularProduct document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single PopularProduct document */
+  update?: InputMaybe<PopularProductUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single PopularProduct document */
+  upsert?: InputMaybe<PopularProductUpsertWithNestedWhereUniqueInput>;
+};
+
+export type PopularProductUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: PopularProductUpdateInput;
+  /** Unique document search */
+  where: PopularProductWhereUniqueInput;
+};
+
+export type PopularProductUpsertInput = {
+  /** Create document if it didn't exist */
+  create: PopularProductCreateInput;
+  /** Update document if it exists */
+  update: PopularProductUpdateInput;
+};
+
+export type PopularProductUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: PopularProductUpsertInput;
+  /** Unique document search */
+  where: PopularProductWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type PopularProductWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Identifies documents */
+export type PopularProductWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<PopularProductWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<PopularProductWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<PopularProductWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  categoryId?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  categoryId_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  categoryId_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  categoryId_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  categoryId_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  categoryId_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  categoryId_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  categoryId_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  categoryId_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  categoryId_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<PopularProductWhereStageInput>;
+  documentInStages_none?: InputMaybe<PopularProductWhereStageInput>;
+  documentInStages_some?: InputMaybe<PopularProductWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  identify_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  pages_every?: InputMaybe<PageWhereInput>;
+  pages_none?: InputMaybe<PageWhereInput>;
+  pages_some?: InputMaybe<PageWhereInput>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type PopularProductWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<PopularProductWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<PopularProductWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<PopularProductWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<PopularProductWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References PopularProduct record uniquely */
+export type PopularProductWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+/** Deprecated. Use `ProductPrice` instead. Defines the price of a product as well as any tax-related adjustments. */
+export type Price = {
+  __typename?: "Price";
+  /**
+   * An array that provides information about tax, weee, or weee_tax adjustments.
+   * @deprecated Use `ProductPrice` instead.
+   */
+  adjustments?: Maybe<Array<Maybe<PriceAdjustment>>>;
+  /**
+   * The price of a product plus a three-letter currency code.
+   * @deprecated Use `ProductPrice` instead.
+   */
+  amount?: Maybe<Money>;
+};
+
+/** Deprecated. Taxes will be included or excluded in the price. Defines the amount of money to apply as an adjustment, the type of adjustment to apply, and whether the item is included or excluded from the adjustment. */
+export type PriceAdjustment = {
+  __typename?: "PriceAdjustment";
+  /** The amount of the price adjustment and its currency code. */
+  amount?: Maybe<Money>;
+  /**
+   * Indicates whether the adjustment involves tax, weee, or weee_tax.
+   * @deprecated `PriceAdjustment` is deprecated.
+   */
+  code?: Maybe<PriceAdjustmentCodesEnum>;
+  /**
+   * Indicates whether the entity described by the code attribute is included or excluded from the adjustment.
+   * @deprecated `PriceAdjustment` is deprecated.
+   */
+  description?: Maybe<PriceAdjustmentDescriptionEnum>;
+};
+
+/** `PriceAdjustment.code` is deprecated. */
+export enum PriceAdjustmentCodesEnum {
+  /** @deprecated `PriceAdjustmentCodesEnum` is deprecated. Tax is included or excluded in the price. Tax is not shown separately in Catalog. */
+  Tax = "TAX",
+  /** @deprecated WEEE code is deprecated. Use `fixed_product_taxes.label` instead. */
+  Weee = "WEEE",
+  /** @deprecated Use `fixed_product_taxes` instead.  Tax is included or excluded in price. The tax is not shown separtely in Catalog. */
+  WeeeTax = "WEEE_TAX",
+}
+
+/** `PriceAdjustmentDescriptionEnum` is deprecated. States whether a price adjustment is included or excluded. */
+export enum PriceAdjustmentDescriptionEnum {
+  /** @deprecated  */
+  Excluded = "EXCLUDED",
+  /** @deprecated  */
+  Included = "INCLUDED",
+}
+
+/** Contains the price range for a product. If the product has a single price, the minimum and maximum price will be the same. */
+export type PriceRange = {
+  __typename?: "PriceRange";
+  /** The highest possible price for the product. */
+  maximum_price?: Maybe<ProductPrice>;
+  /** The lowest possible price for the product. */
+  minimum_price: ProductPrice;
+};
+
+/** Defines the price type. */
+export enum PriceTypeEnum {
+  /** @deprecated  */
+  Dynamic = "DYNAMIC",
+  /** @deprecated  */
+  Fixed = "FIXED",
+  /** @deprecated  */
+  Percent = "PERCENT",
+}
+
+/** Defines whether a bundle product's price is displayed as the lowest possible value or as a range. */
+export enum PriceViewEnum {
+  /** @deprecated  */
+  AsLowAs = "AS_LOW_AS",
+  /** @deprecated  */
+  PriceRange = "PRICE_RANGE",
+}
+
+/** Contains a product attribute code and value. */
+export type ProductAttribute = {
+  __typename?: "ProductAttribute";
+  /** The unique identifier for a product attribute code. */
+  code: Scalars["String"]["output"];
+  /** The display value of the attribute. */
+  value: Scalars["String"]["output"];
+};
+
+/** Defines the filters to be used in the search. A filter contains at least one attribute, a comparison operator, and the value that is being searched for. */
+export type ProductAttributeFilterInput = {
+  /** Attribute label: Addable to Cart */
+  addable_to_cart?: InputMaybe<FilterEqualTypeInput>;
+  /** Attribute label: Brand */
+  brand?: InputMaybe<FilterEqualTypeInput>;
+  /** Deprecated: use `category_uid` to filter product by category ID. */
+  category_id?: InputMaybe<FilterEqualTypeInput>;
+  /** Filter product by the unique ID for a `CategoryInterface` object. */
+  category_uid?: InputMaybe<FilterEqualTypeInput>;
+  /** Attribute label: Farge */
+  color?: InputMaybe<FilterEqualTypeInput>;
+  /** Attribute label: Beskrivelse */
+  description?: InputMaybe<FilterMatchTypeInput>;
+  /** Attribute label: Produktnavn */
+  name?: InputMaybe<FilterMatchTypeInput>;
+  /** Attribute label: Price */
+  price?: InputMaybe<FilterRangeTypeInput>;
+  /** Attribute label: Short Description */
+  short_description?: InputMaybe<FilterMatchTypeInput>;
+  /** Attribute label: Size Filter */
+  size_filter?: InputMaybe<FilterMatchTypeInput>;
+  /** Attribute label: Artikkelnummer (M3) */
+  sku?: InputMaybe<FilterEqualTypeInput>;
+  /** The part of the URL that identifies the product */
+  url_key?: InputMaybe<FilterEqualTypeInput>;
+};
+
+/** Specifies the attribute to use for sorting search results and indicates whether the results are sorted in ascending or descending order. It's possible to sort products using searchable attributes with enabled 'Use in Filter Options' option */
+export type ProductAttributeSortInput = {
+  /** Attribute label: Produktnavn */
+  name?: InputMaybe<SortEnum>;
+  /** Sort by the position assigned to each product. */
+  position?: InputMaybe<SortEnum>;
+  /** Attribute label: Price */
+  price?: InputMaybe<SortEnum>;
+  /** Sort by the search relevance score (default). */
+  relevance?: InputMaybe<SortEnum>;
+};
+
+/** Contains the discount applied to a product price. */
+export type ProductDiscount = {
+  __typename?: "ProductDiscount";
+  /** The actual value of the discount. */
+  amount_off?: Maybe<Scalars["Float"]["output"]>;
+  /** The discount expressed a percentage. */
+  percent_off?: Maybe<Scalars["Float"]["output"]>;
+};
+
+/** ProductFilterInput is deprecated, use @ProductAttributeFilterInput instead. ProductFilterInput defines the filters to be used in the search. A filter contains at least one attribute, a comparison operator, and the value that is being searched for. */
+export type ProductFilterInput = {
+  /** The category ID the product belongs to. */
+  category_id?: InputMaybe<FilterTypeInput>;
+  /** The product's country of origin. */
+  country_of_manufacture?: InputMaybe<FilterTypeInput>;
+  /** The timestamp indicating when the product was created. */
+  created_at?: InputMaybe<FilterTypeInput>;
+  /** The name of a custom layout. */
+  custom_layout?: InputMaybe<FilterTypeInput>;
+  /** XML code that is applied as a layout update to the product page. */
+  custom_layout_update?: InputMaybe<FilterTypeInput>;
+  /** Detailed information about the product. The value can include simple HTML tags. */
+  description?: InputMaybe<FilterTypeInput>;
+  /** Indicates whether a gift message is available. */
+  gift_message_available?: InputMaybe<FilterTypeInput>;
+  /** Indicates whether additional attributes have been created for the product. */
+  has_options?: InputMaybe<FilterTypeInput>;
+  /** The relative path to the main image on the product page. */
+  image?: InputMaybe<FilterTypeInput>;
+  /** The label assigned to a product image. */
+  image_label?: InputMaybe<FilterTypeInput>;
+  /** Indicates whether the product can be returned. */
+  is_returnable?: InputMaybe<FilterTypeInput>;
+  /** A number representing the product's manufacturer. */
+  manufacturer?: InputMaybe<FilterTypeInput>;
+  /** The numeric maximal price of the product. Do not include the currency code. */
+  max_price?: InputMaybe<FilterTypeInput>;
+  /** A brief overview of the product for search results listings, maximum 255 characters. */
+  meta_description?: InputMaybe<FilterTypeInput>;
+  /** A comma-separated list of keywords that are visible only to search engines. */
+  meta_keyword?: InputMaybe<FilterTypeInput>;
+  /** A string that is displayed in the title bar and tab of the browser and in search results lists. */
+  meta_title?: InputMaybe<FilterTypeInput>;
+  /** The numeric minimal price of the product. Do not include the currency code. */
+  min_price?: InputMaybe<FilterTypeInput>;
+  /** The product name. Customers use this name to identify the product. */
+  name?: InputMaybe<FilterTypeInput>;
+  /** The beginning date for new product listings, and determines if the product is featured as a new product. */
+  news_from_date?: InputMaybe<FilterTypeInput>;
+  /** The end date for new product listings. */
+  news_to_date?: InputMaybe<FilterTypeInput>;
+  /** If the product has multiple options, determines where they appear on the product page. */
+  options_container?: InputMaybe<FilterTypeInput>;
+  /** The keyword required to perform a logical OR comparison. */
+  or?: InputMaybe<ProductFilterInput>;
+  /** The price of an item. */
+  price?: InputMaybe<FilterTypeInput>;
+  /** Indicates whether the product has required options. */
+  required_options?: InputMaybe<FilterTypeInput>;
+  /** A short description of the product. Its use depends on the theme. */
+  short_description?: InputMaybe<FilterTypeInput>;
+  /** A number or code assigned to a product to identify the product, options, price, and manufacturer. */
+  sku?: InputMaybe<FilterTypeInput>;
+  /** The relative path to the small image, which is used on catalog pages. */
+  small_image?: InputMaybe<FilterTypeInput>;
+  /** The label assigned to a product's small image. */
+  small_image_label?: InputMaybe<FilterTypeInput>;
+  /** The beginning date that a product has a special price. */
+  special_from_date?: InputMaybe<FilterTypeInput>;
+  /** The discounted price of the product. Do not include the currency code. */
+  special_price?: InputMaybe<FilterTypeInput>;
+  /** The end date that a product has a special price. */
+  special_to_date?: InputMaybe<FilterTypeInput>;
+  /** The file name of a swatch image. */
+  swatch_image?: InputMaybe<FilterTypeInput>;
+  /** The relative path to the product's thumbnail image. */
+  thumbnail?: InputMaybe<FilterTypeInput>;
+  /** The label assigned to a product's thumbnail image. */
+  thumbnail_label?: InputMaybe<FilterTypeInput>;
+  /** The price when tier pricing is in effect and the items purchased threshold has been reached. */
+  tier_price?: InputMaybe<FilterTypeInput>;
+  /** The timestamp indicating when the product was updated. */
+  updated_at?: InputMaybe<FilterTypeInput>;
+  /** The part of the URL that identifies the product */
+  url_key?: InputMaybe<FilterTypeInput>;
+  url_path?: InputMaybe<FilterTypeInput>;
+  /** The weight of the item, in units defined by the store. */
+  weight?: InputMaybe<FilterTypeInput>;
+};
+
+/** Contains product image information, including the image URL and label. */
+export type ProductImage = MediaGalleryInterface & {
+  __typename?: "ProductImage";
+  /** Indicates whether the image is hidden from view. */
+  disabled?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The label of the product image or video. */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /** The media item's position after it has been sorted. */
+  position?: Maybe<Scalars["Int"]["output"]>;
+  /** The URL of the product image or video. */
+  url?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Product Information used for Pickup Locations search. */
+export type ProductInfoInput = {
+  /** Product SKU. */
+  sku: Scalars["String"]["input"];
+};
+
+/** The ProductInterface contains attributes that are common to all types of products. Note that descriptions may not be available for custom and EAV attributes. */
+export type ProductInterface = {
+  /** @deprecated Use the `custom_attributes` field instead. */
+  addable_to_cart?: Maybe<Scalars["Int"]["output"]>;
+  /**
+   * The attribute set assigned to the product.
+   * @deprecated The field should not be used on the storefront.
+   */
+  attribute_set_id?: Maybe<Scalars["Int"]["output"]>;
+  /** @deprecated Use the `custom_attributes` field instead. */
+  brand?: Maybe<Scalars["String"]["output"]>;
+  /** The relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled. */
+  canonical_url?: Maybe<Scalars["String"]["output"]>;
+  /** The categories assigned to a product. */
+  categories?: Maybe<Array<Maybe<CategoryInterface>>>;
+  /** @deprecated Use the `custom_attributes` field instead. */
+  color?: Maybe<Scalars["Int"]["output"]>;
+  /** @deprecated Use the `custom_attributes` field instead. */
+  configuration?: Maybe<Scalars["String"]["output"]>;
+  /** The product's country of origin. */
+  country_of_manufacture?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * Timestamp indicating when the product was created.
+   * @deprecated The field should not be used on the storefront.
+   */
+  created_at?: Maybe<Scalars["String"]["output"]>;
+  /** An array of cross-sell products. */
+  crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+  /** @deprecated Use the `custom_attributes` field instead. */
+  delivery_promise?: Maybe<Scalars["String"]["output"]>;
+  /** Detailed information about the product. The value can include simple HTML tags. */
+  description?: Maybe<ComplexTextValue>;
+  /** Indicates whether a gift message is available. */
+  gift_message_available?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * The ID number assigned to the product.
+   * @deprecated Use the `uid` field instead.
+   */
+  id?: Maybe<Scalars["Int"]["output"]>;
+  /** @deprecated Use the `custom_attributes` field instead. */
+  ifsite?: Maybe<Scalars["String"]["output"]>;
+  /** The relative path to the main image on the product page. */
+  image?: Maybe<ProductImage>;
+  /** Indicates whether the product can be returned. */
+  is_returnable?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use the `custom_attributes` field instead. */
+  maintenance_description?: Maybe<Scalars["String"]["output"]>;
+  /** A number representing the product's manufacturer. */
+  manufacturer?: Maybe<Scalars["Int"]["output"]>;
+  /** @deprecated Use the `custom_attributes` field instead. */
+  measurement_1?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use the `custom_attributes` field instead. */
+  measurement_2?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use the `custom_attributes` field instead. */
+  measurement_depth?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use the `custom_attributes` field instead. */
+  measurement_diameter?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use the `custom_attributes` field instead. */
+  measurement_gross_weight?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use the `custom_attributes` field instead. */
+  measurement_height?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use the `custom_attributes` field instead. */
+  measurement_length?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use the `custom_attributes` field instead. */
+  measurement_seat_height?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use the `custom_attributes` field instead. */
+  measurement_thickness?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use the `custom_attributes` field instead. */
+  measurement_volume?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use the `custom_attributes` field instead. */
+  measurement_width?: Maybe<Scalars["String"]["output"]>;
+  /** An array of media gallery objects. */
+  media_gallery?: Maybe<Array<Maybe<MediaGalleryInterface>>>;
+  /**
+   * An array of MediaGalleryEntry objects.
+   * @deprecated Use `media_gallery` instead.
+   */
+  media_gallery_entries?: Maybe<Array<Maybe<MediaGalleryEntry>>>;
+  /** A brief overview of the product for search results listings, maximum 255 characters. */
+  meta_description?: Maybe<Scalars["String"]["output"]>;
+  /** A comma-separated list of keywords that are visible only to search engines. */
+  meta_keyword?: Maybe<Scalars["String"]["output"]>;
+  /** A string that is displayed in the title bar and tab of the browser and in search results lists. */
+  meta_title?: Maybe<Scalars["String"]["output"]>;
+  /** The product name. Customers use this name to identify the product. */
+  name?: Maybe<Scalars["String"]["output"]>;
+  /** The beginning date for new product listings, and determines if the product is featured as a new product. */
+  new_from_date?: Maybe<Scalars["String"]["output"]>;
+  /** The end date for new product listings. */
+  new_to_date?: Maybe<Scalars["String"]["output"]>;
+  /** Product stock only x left count */
+  only_x_left_in_stock?: Maybe<Scalars["Float"]["output"]>;
+  /** If the product has multiple options, determines where they appear on the product page. */
+  options_container?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * Indicates the price of an item.
+   * @deprecated Use `price_range` for product price information.
+   */
+  price?: Maybe<ProductPrices>;
+  /** The range of prices for the product */
+  price_range: PriceRange;
+  /** An array of `TierPrice` objects. */
+  price_tiers?: Maybe<Array<Maybe<TierPrice>>>;
+  productBrand?: Maybe<Brand>;
+  /** Get product labels. */
+  productLabel?: Maybe<Label>;
+  /** An array of `ProductLinks` objects. */
+  product_links?: Maybe<Array<Maybe<ProductLinksInterface>>>;
+  /** The average of all the ratings given to the product. */
+  rating_summary: Scalars["Float"]["output"];
+  /** An array of related products. */
+  related_products?: Maybe<Array<Maybe<ProductInterface>>>;
+  /** The total count of all the reviews given to the product. */
+  review_count: Scalars["Int"]["output"];
+  /** The list of products reviews. */
+  reviews: ProductReviews;
+  /** Products from the same series */
+  series?: Maybe<Array<Maybe<ProductInterface>>>;
+  /** @deprecated Use the `custom_attributes` field instead. */
+  series_group?: Maybe<Scalars["String"]["output"]>;
+  /** A short description of the product. Its use depends on the theme. */
+  short_description?: Maybe<ComplexTextValue>;
+  /** @deprecated Use the `custom_attributes` field instead. */
+  size_filter?: Maybe<Scalars["String"]["output"]>;
+  /** A number or code assigned to a product to identify the product, options, price, and manufacturer. */
+  sku?: Maybe<Scalars["String"]["output"]>;
+  /** The relative path to the small image, which is used on catalog pages. */
+  small_image?: Maybe<ProductImage>;
+  /**
+   * The beginning date that a product has a special price.
+   * @deprecated The field should not be used on the storefront.
+   */
+  special_from_date?: Maybe<Scalars["String"]["output"]>;
+  /** The discounted price of the product. */
+  special_price?: Maybe<Scalars["Float"]["output"]>;
+  /** The end date for a product with a special price. */
+  special_to_date?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether the product is staged for a future campaign. */
+  staged: Scalars["Boolean"]["output"];
+  /** Stock status of the product */
+  stock_status?: Maybe<ProductStockStatus>;
+  /** An array containing information about all the stores with product quantities. */
+  stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
+  /** The file name of a swatch image. */
+  swatch_image?: Maybe<Scalars["String"]["output"]>;
+  /** The relative path to the product's thumbnail image. */
+  thumbnail?: Maybe<ProductImage>;
+  /**
+   * The price when tier pricing is in effect and the items purchased threshold has been reached.
+   * @deprecated Use `price_tiers` for product tier price information.
+   */
+  tier_price?: Maybe<Scalars["Float"]["output"]>;
+  /**
+   * An array of ProductTierPrices objects.
+   * @deprecated Use `price_tiers` for product tier price information.
+   */
+  tier_prices?: Maybe<Array<Maybe<ProductTierPrices>>>;
+  /**
+   * One of simple, virtual, bundle, downloadable, grouped, or configurable.
+   * @deprecated Use `__typename` instead.
+   */
+  type_id?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `ProductInterface` object. */
+  uid: Scalars["ID"]["output"];
+  /**
+   * Timestamp indicating when the product was updated.
+   * @deprecated The field should not be used on the storefront.
+   */
+  updated_at?: Maybe<Scalars["String"]["output"]>;
+  /** An array of up-sell products. */
+  upsell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+  /** The part of the URL that identifies the product */
+  url_key?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use product's `canonical_url` or url rewrites instead */
+  url_path?: Maybe<Scalars["String"]["output"]>;
+  /** URL rewrites list */
+  url_rewrites?: Maybe<Array<Maybe<UrlRewrite>>>;
+  /** The part of the product URL that is appended after the url key */
+  url_suffix?: Maybe<Scalars["String"]["output"]>;
+  /** @deprecated Use the `custom_attributes` field instead. */
+  webshopavailable?: Maybe<Scalars["Int"]["output"]>;
+  /**
+   * An array of websites in which the product is available.
+   * @deprecated The field should not be used on the storefront.
+   */
+  websites?: Maybe<Array<Maybe<Website>>>;
+};
+
+/** The ProductInterface contains attributes that are common to all types of products. Note that descriptions may not be available for custom and EAV attributes. */
+export type ProductInterfaceReviewsArgs = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+/** Contains information about product stocks in stores. */
+export type ProductInterfaceStoreItem = {
+  __typename?: "ProductInterfaceStoreItem";
+  /** Store address.  */
+  address?: Maybe<Scalars["String"]["output"]>;
+  /** Store external id. */
+  external_id?: Maybe<Scalars["Int"]["output"]>;
+  /** Store name.  */
+  name?: Maybe<Scalars["String"]["output"]>;
+  /** The amount of product in store. */
+  qty?: Maybe<Scalars["Int"]["output"]>;
+};
+
+/** An implementation of `ProductLinksInterface`. */
+export type ProductLinks = ProductLinksInterface & {
+  __typename?: "ProductLinks";
+  /** One of related, associated, upsell, or crosssell. */
+  link_type?: Maybe<Scalars["String"]["output"]>;
+  /** The SKU of the linked product. */
+  linked_product_sku?: Maybe<Scalars["String"]["output"]>;
+  /** The type of linked product (simple, virtual, bundle, downloadable, grouped, configurable). */
+  linked_product_type?: Maybe<Scalars["String"]["output"]>;
+  /** The position within the list of product links. */
+  position?: Maybe<Scalars["Int"]["output"]>;
+  /** The identifier of the linked product. */
+  sku?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Contains information about linked products, including the link type and product type of each item. */
+export type ProductLinksInterface = {
+  /** One of related, associated, upsell, or crosssell. */
+  link_type?: Maybe<Scalars["String"]["output"]>;
+  /** The SKU of the linked product. */
+  linked_product_sku?: Maybe<Scalars["String"]["output"]>;
+  /** The type of linked product (simple, virtual, bundle, downloadable, grouped, configurable). */
+  linked_product_type?: Maybe<Scalars["String"]["output"]>;
+  /** The position within the list of product links. */
+  position?: Maybe<Scalars["Int"]["output"]>;
+  /** The identifier of the linked product. */
+  sku?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Contains an image in base64 format and basic information about the image. */
+export type ProductMediaGalleryEntriesContent = {
+  __typename?: "ProductMediaGalleryEntriesContent";
+  /** The image in base64 format. */
+  base64_encoded_data?: Maybe<Scalars["String"]["output"]>;
+  /** The file name of the image. */
+  name?: Maybe<Scalars["String"]["output"]>;
+  /** The MIME type of the file, such as image/png. */
+  type?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Contains a link to a video file and basic information about the video. */
+export type ProductMediaGalleryEntriesVideoContent = {
+  __typename?: "ProductMediaGalleryEntriesVideoContent";
+  /** Must be external-video. */
+  media_type?: Maybe<Scalars["String"]["output"]>;
+  /** A description of the video. */
+  video_description?: Maybe<Scalars["String"]["output"]>;
+  /** Optional data about the video. */
+  video_metadata?: Maybe<Scalars["String"]["output"]>;
+  /** Describes the video source. */
+  video_provider?: Maybe<Scalars["String"]["output"]>;
+  /** The title of the video. */
+  video_title?: Maybe<Scalars["String"]["output"]>;
+  /** The URL to the video. */
+  video_url?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Represents a product price. */
+export type ProductPrice = {
+  __typename?: "ProductPrice";
+  /** The price discount. Represents the difference between the regular and final price. */
+  discount?: Maybe<ProductDiscount>;
+  /** The final price of the product after applying discounts. */
+  final_price: Money;
+  /** An array of the multiple Fixed Product Taxes that can be applied to a product price. */
+  fixed_product_taxes?: Maybe<Array<Maybe<FixedProductTax>>>;
+  /** The regular price of the product. */
+  regular_price: Money;
+};
+
+/** Deprecated. Use `PriceRange` instead. Contains the regular price of an item, as well as its minimum and maximum prices. Only composite products, which include bundle, configurable, and grouped products, can contain a minimum and maximum price. */
+export type ProductPrices = {
+  __typename?: "ProductPrices";
+  /**
+   * The highest possible final price for all the options defined within a composite product. If you are specifying a price range, this would be the `to` value.
+   * @deprecated Use `PriceRange.maximum_price` instead.
+   */
+  maximalPrice?: Maybe<Price>;
+  /**
+   * The lowest possible final price for all the options defined within a composite product. If you are specifying a price range, this would be the `from` value.
+   * @deprecated Use `PriceRange.minimum_price` instead.
+   */
+  minimalPrice?: Maybe<Price>;
+  /**
+   * The base price of a product.
+   * @deprecated Use `regular_price` from `PriceRange.minimum_price` or `PriceRange.maximum_price` instead.
+   */
+  regularPrice?: Maybe<Price>;
+};
+
+/** Contains details of a product review. */
+export type ProductReview = {
+  __typename?: "ProductReview";
+  /** The average of all ratings for this product. */
+  average_rating: Scalars["Float"]["output"];
+  /** The date the review was created. */
+  created_at: Scalars["String"]["output"];
+  /** The customer's nickname. Defaults to the customer name, if logged in. */
+  nickname: Scalars["String"]["output"];
+  /** The reviewed product. */
+  product: ProductInterface;
+  /** An array of ratings by rating category, such as quality, price, and value. */
+  ratings_breakdown: Array<Maybe<ProductReviewRating>>;
+  /** The summary (title) of the review. */
+  summary: Scalars["String"]["output"];
+  /** The review text. */
+  text: Scalars["String"]["output"];
+};
+
+/** Contains data about a single aspect of a product review. */
+export type ProductReviewRating = {
+  __typename?: "ProductReviewRating";
+  /** The label assigned to an aspect of a product that is being rated, such as quality or price. */
+  name: Scalars["String"]["output"];
+  /** The rating value given by customer. By default, possible values range from 1 to 5. */
+  value: Scalars["String"]["output"];
+};
+
+/** Contains the reviewer's rating for a single aspect of a review. */
+export type ProductReviewRatingInput = {
+  /** An encoded rating ID. */
+  id: Scalars["String"]["input"];
+  /** An encoded rating value ID. */
+  value_id: Scalars["String"]["input"];
+};
+
+/** Contains details about a single aspect of a product review. */
+export type ProductReviewRatingMetadata = {
+  __typename?: "ProductReviewRatingMetadata";
+  /** An encoded rating ID. */
+  id: Scalars["String"]["output"];
+  /** The label assigned to an aspect of a product that is being rated, such as quality or price. */
+  name: Scalars["String"]["output"];
+  /** List of product review ratings sorted by position. */
+  values: Array<Maybe<ProductReviewRatingValueMetadata>>;
+};
+
+/** Contains details about a single value in a product review. */
+export type ProductReviewRatingValueMetadata = {
+  __typename?: "ProductReviewRatingValueMetadata";
+  /** A ratings scale, such as the number of stars awarded. */
+  value: Scalars["String"]["output"];
+  /** An encoded rating value ID. */
+  value_id: Scalars["String"]["output"];
+};
+
+/** Contains an array of metadata about each aspect of a product review. */
+export type ProductReviewRatingsMetadata = {
+  __typename?: "ProductReviewRatingsMetadata";
+  /** An array of product reviews sorted by position. */
+  items: Array<Maybe<ProductReviewRatingMetadata>>;
+};
+
+/** Contains an array of product reviews. */
+export type ProductReviews = {
+  __typename?: "ProductReviews";
+  /** An array of product reviews. */
+  items: Array<Maybe<ProductReview>>;
+  /** Metadata for pagination rendering. */
+  page_info: SearchResultPageInfo;
+};
+
+/** Deprecated. Use `ProductAttributeSortInput` instead. Specifies the attribute to use for sorting search results and indicates whether the results are sorted in ascending or descending order. */
+export type ProductSortInput = {
+  /** The product's country of origin. */
+  country_of_manufacture?: InputMaybe<SortEnum>;
+  /** The timestamp indicating when the product was created. */
+  created_at?: InputMaybe<SortEnum>;
+  /** The name of a custom layout. */
+  custom_layout?: InputMaybe<SortEnum>;
+  /** XML code that is applied as a layout update to the product page. */
+  custom_layout_update?: InputMaybe<SortEnum>;
+  /** Detailed information about the product. The value can include simple HTML tags. */
+  description?: InputMaybe<SortEnum>;
+  /** Indicates whether a gift message is available. */
+  gift_message_available?: InputMaybe<SortEnum>;
+  /** Indicates whether additional attributes have been created for the product. */
+  has_options?: InputMaybe<SortEnum>;
+  /** The relative path to the main image on the product page. */
+  image?: InputMaybe<SortEnum>;
+  /** The label assigned to a product image. */
+  image_label?: InputMaybe<SortEnum>;
+  /** Indicates whether the product can be returned. */
+  is_returnable?: InputMaybe<SortEnum>;
+  /** A number representing the product's manufacturer. */
+  manufacturer?: InputMaybe<SortEnum>;
+  /** A brief overview of the product for search results listings, maximum 255 characters. */
+  meta_description?: InputMaybe<SortEnum>;
+  /** A comma-separated list of keywords that are visible only to search engines. */
+  meta_keyword?: InputMaybe<SortEnum>;
+  /** A string that is displayed in the title bar and tab of the browser and in search results lists. */
+  meta_title?: InputMaybe<SortEnum>;
+  /** The product name. Customers use this name to identify the product. */
+  name?: InputMaybe<SortEnum>;
+  /** The beginning date for new product listings, and determines if the product is featured as a new product. */
+  news_from_date?: InputMaybe<SortEnum>;
+  /** The end date for new product listings. */
+  news_to_date?: InputMaybe<SortEnum>;
+  /** If the product has multiple options, determines where they appear on the product page. */
+  options_container?: InputMaybe<SortEnum>;
+  /** The price of the item. */
+  price?: InputMaybe<SortEnum>;
+  /** Indicates whether the product has required options. */
+  required_options?: InputMaybe<SortEnum>;
+  /** A short description of the product. Its use depends on the theme. */
+  short_description?: InputMaybe<SortEnum>;
+  /** A number or code assigned to a product to identify the product, options, price, and manufacturer. */
+  sku?: InputMaybe<SortEnum>;
+  /** The relative path to the small image, which is used on catalog pages. */
+  small_image?: InputMaybe<SortEnum>;
+  /** The label assigned to a product's small image. */
+  small_image_label?: InputMaybe<SortEnum>;
+  /** The beginning date that a product has a special price. */
+  special_from_date?: InputMaybe<SortEnum>;
+  /** The discounted price of the product. */
+  special_price?: InputMaybe<SortEnum>;
+  /** The end date that a product has a special price. */
+  special_to_date?: InputMaybe<SortEnum>;
+  /** Indicates the criteria to sort swatches. */
+  swatch_image?: InputMaybe<SortEnum>;
+  /** The relative path to the product's thumbnail image. */
+  thumbnail?: InputMaybe<SortEnum>;
+  /** The label assigned to a product's thumbnail image. */
+  thumbnail_label?: InputMaybe<SortEnum>;
+  /** The price when tier pricing is in effect and the items purchased threshold has been reached. */
+  tier_price?: InputMaybe<SortEnum>;
+  /** The timestamp indicating when the product was updated. */
+  updated_at?: InputMaybe<SortEnum>;
+  /** The part of the URL that identifies the product */
+  url_key?: InputMaybe<SortEnum>;
+  url_path?: InputMaybe<SortEnum>;
+  /** The weight of the item, in units defined by the store. */
+  weight?: InputMaybe<SortEnum>;
+};
+
+/** This enumeration states whether a product stock status is in stock or out of stock */
+export enum ProductStockStatus {
+  /** @deprecated  */
+  InStock = "IN_STOCK",
+  /** @deprecated  */
+  OutOfStock = "OUT_OF_STOCK",
+}
+
+/** Deprecated. Use `TierPrice` instead. Defines a tier price, which is a quantity discount offered to a specific customer group. */
+export type ProductTierPrices = {
+  __typename?: "ProductTierPrices";
+  /**
+   * The ID of the customer group.
+   * @deprecated Not relevant for the storefront.
+   */
+  customer_group_id?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * The percentage discount of the item.
+   * @deprecated Use `TierPrice.discount` instead.
+   */
+  percentage_value?: Maybe<Scalars["Float"]["output"]>;
+  /**
+   * The number of items that must be purchased to qualify for tier pricing.
+   * @deprecated Use `TierPrice.quantity` instead.
+   */
+  qty?: Maybe<Scalars["Float"]["output"]>;
+  /**
+   * The price of the fixed price item.
+   * @deprecated Use `TierPrice.final_price` instead.
+   */
+  value?: Maybe<Scalars["Float"]["output"]>;
+  /**
+   * The ID assigned to the website.
+   * @deprecated Not relevant for the storefront.
+   */
+  website_id?: Maybe<Scalars["Float"]["output"]>;
+};
+
+/** Contains information about a product video. */
+export type ProductVideo = MediaGalleryInterface & {
+  __typename?: "ProductVideo";
+  /** Indicates whether the image is hidden from view. */
+  disabled?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The label of the product image or video. */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /** The media item's position after it has been sorted. */
+  position?: Maybe<Scalars["Int"]["output"]>;
+  /** The URL of the product image or video. */
+  url?: Maybe<Scalars["String"]["output"]>;
+  /** Contains a `ProductMediaGalleryEntriesVideoContent` object. */
+  video_content?: Maybe<ProductMediaGalleryEntriesVideoContent>;
+};
+
+/** Contains the results of a `products` query. */
+export type Products = {
+  __typename?: "Products";
+  /** A bucket that contains the attribute code and label for each filterable option. */
+  aggregations?: Maybe<Array<Maybe<Aggregation>>>;
+  /**
+   * Layered navigation filters array.
+   * @deprecated Use `aggregations` instead.
+   */
+  filters?: Maybe<Array<Maybe<LayerFilter>>>;
+  /** An array of products that match the specified search criteria. */
+  items?: Maybe<Array<Maybe<ProductInterface>>>;
+  /** An object that includes the page_info and currentPage values specified in the query. */
+  page_info?: Maybe<SearchResultPageInfo>;
+  /** An object that includes the default sort field and all available sort fields. */
+  sort_fields?: Maybe<SortFields>;
+  /** An array of search suggestions for case when search query have no results. */
+  suggestions?: Maybe<Array<Maybe<SearchSuggestion>>>;
+  /** The number of products that are marked as visible. By default, in complex products, parent products are visible, but their child products are not. */
+  total_count?: Maybe<Scalars["Int"]["output"]>;
+};
+
+/** Contains the results of a `products` query. */
+export type ProductsAggregationsArgs = {
+  filter?: InputMaybe<AggregationsFilterInput>;
+};
+
+export type PublishLocaleInput = {
+  /** Locales to publish */
+  locale: Locale;
+  /** Stages to publish selected locales to */
+  stages: Array<Stage>;
+};
+
+export type Query = {
+  __typename?: "Query";
+  /** Retrieve a single asset */
+  asset?: Maybe<Asset>;
+  /** Retrieve document version */
+  assetVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple assets */
+  assets: Array<Asset>;
+  /** Retrieve multiple assets using the Relay connection interface */
+  assetsConnection: AssetConnection;
+  /** Get a list of available store views and their config information. */
+  availableStores?: Maybe<Array<Maybe<StoreConfig>>>;
+  /** Retrieve a single banner */
+  banner?: Maybe<Banner>;
+  /** Retrieve document version */
+  bannerVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple banners */
+  banners: Array<Banner>;
+  /** Retrieve multiple banners using the Relay connection interface */
+  bannersConnection: BannerConnection;
+  /** Get best selling products by category */
+  bestSellingProductsByCategory?: Maybe<Array<Maybe<ProductInterface>>>;
+  /** Return information about the specified shopping cart. */
+  cart?: Maybe<Cart>;
+  /** Return a list of categories that match the specified filter. */
+  categories?: Maybe<CategoryResult>;
+  /**
+   * Search for categories that match the criteria specified in the `search` and `filter` attributes.
+   * @deprecated Use `categories` instead.
+   */
+  category?: Maybe<CategoryTree>;
+  /**
+   * Return an array of categories based on the specified filters.
+   * @deprecated Use `categories` instead.
+   */
+  categoryList?: Maybe<Array<Maybe<CategoryTree>>>;
+  /** Return Terms and Conditions configuration information. */
+  checkoutAgreements?: Maybe<Array<Maybe<CheckoutAgreement>>>;
+  /** Return information about CMS blocks. */
+  cmsBlocks?: Maybe<CmsBlocks>;
+  /** Return details about a CMS page. */
+  cmsPage?: Maybe<CmsPage>;
+  /** Return products that have been added to the specified compare list. */
+  compareList?: Maybe<CompareList>;
+  /** The countries query provides information for all countries. */
+  countries?: Maybe<Array<Maybe<Country>>>;
+  /** The countries query provides information for a single country. */
+  country?: Maybe<Country>;
+  /** Return information about the store's currency. */
+  currency?: Maybe<Currency>;
+  /** Return the attribute type, given an attribute code and entity type. */
+  customAttributeMetadata?: Maybe<CustomAttributeMetadata>;
+  /** Return detailed information about a customer account. */
+  customer?: Maybe<Customer>;
+  /** Return information about the customer's shopping cart. */
+  customerCart: Cart;
+  /** Return a list of downloadable products the customer has purchased. */
+  customerDownloadableProducts?: Maybe<CustomerDownloadableProducts>;
+  /** @deprecated Use the `customer` query instead. */
+  customerOrders?: Maybe<CustomerOrders>;
+  /** Return a list of customer payment tokens stored in the vault. */
+  customerPaymentTokens?: Maybe<CustomerPaymentTokens>;
+  /** Return a list of dynamic blocks filtered by type, location, or UIDs. */
+  dynamicBlocks: DynamicBlocks;
+  /** Fetches an object given its ID */
+  entities?: Maybe<Array<Entity>>;
+  /** Retrieve the secure PayPal URL for a Payments Pro Hosted Solution transaction. */
+  getHostedProUrl?: Maybe<HostedProUrl>;
+  /** Retrieve payment credentials for a transaction. Use this query for Payflow Link and Payments Advanced payment methods. */
+  getPayflowLinkToken?: Maybe<PayflowLinkToken>;
+  /** Return details about a specific gift card. */
+  giftCardAccount?: Maybe<GiftCardAccount>;
+  /** Return the specified gift registry. Some details will not be available to guests. */
+  giftRegistry?: Maybe<GiftRegistry>;
+  /** Search for gift registries by specifying a registrant email address. */
+  giftRegistryEmailSearch?: Maybe<Array<Maybe<GiftRegistrySearchResult>>>;
+  /** Search for gift registries by specifying a registry URL key. */
+  giftRegistryIdSearch?: Maybe<Array<Maybe<GiftRegistrySearchResult>>>;
+  /** Search for gift registries by specifying the registrant name and registry type ID. */
+  giftRegistryTypeSearch?: Maybe<Array<Maybe<GiftRegistrySearchResult>>>;
+  /** Get a list of available gift registry types. */
+  giftRegistryTypes?: Maybe<Array<Maybe<GiftRegistryType>>>;
+  /** Check whether the specified email has already been used to create a customer account. */
+  isEmailAvailable?: Maybe<IsEmailAvailableOutput>;
+  /** Retrieve a single menu */
+  menu?: Maybe<Menu>;
+  /** Retrieve document version */
+  menuVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple menus */
+  menus: Array<Menu>;
+  /** Retrieve multiple menus using the Relay connection interface */
+  menusConnection: MenuConnection;
+  /** Fetches an object given its ID */
+  node?: Maybe<Node>;
+  /** Retrieve a single page */
+  page?: Maybe<Page>;
+  /** Retrieve document version */
+  pageVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple pages */
+  pages: Array<Page>;
+  /** Retrieve multiple pages using the Relay connection interface */
+  pagesConnection: PageConnection;
+  /** The pickup locations query searches for locations that match the search request requirements. */
+  pickupLocations?: Maybe<PickupLocations>;
+  /** Retrieve a single popularProduct */
+  popularProduct?: Maybe<PopularProduct>;
+  /** Retrieve document version */
+  popularProductVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple popularProducts */
+  popularProducts: Array<PopularProduct>;
+  /** Retrieve multiple popularProducts using the Relay connection interface */
+  popularProductsConnection: PopularProductConnection;
+  productBrand?: Maybe<Brand>;
+  /** Return the active ratings attributes and the values each rating can have. */
+  productReviewRatingsMetadata: ProductReviewRatingsMetadata;
+  /** Search for products that match the criteria specified in the `search` and `filter` attributes. */
+  products?: Maybe<Products>;
+  /** Return the full details for a specified product, category, or CMS page. */
+  route?: Maybe<RoutableInterface>;
+  /** Retrieve a single scheduledOperation */
+  scheduledOperation?: Maybe<ScheduledOperation>;
+  /** Retrieve multiple scheduledOperations */
+  scheduledOperations: Array<ScheduledOperation>;
+  /** Retrieve multiple scheduledOperations using the Relay connection interface */
+  scheduledOperationsConnection: ScheduledOperationConnection;
+  /** Retrieve a single scheduledRelease */
+  scheduledRelease?: Maybe<ScheduledRelease>;
+  /** Retrieve multiple scheduledReleases */
+  scheduledReleases: Array<ScheduledRelease>;
+  /** Retrieve multiple scheduledReleases using the Relay connection interface */
+  scheduledReleasesConnection: ScheduledReleaseConnection;
+  /** Retrieve a single setting */
+  setting?: Maybe<Setting>;
+  /** Retrieve document version */
+  settingVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple settings */
+  settings: Array<Setting>;
+  /** Retrieve multiple settings using the Relay connection interface */
+  settingsConnection: SettingConnection;
+  /** The snowdogMenuNodes query returns information about active nodes of a menu */
+  snowdogMenuNodes?: Maybe<SnowdogMenuNodes>;
+  /** The snowdogMenus query returns information about active menus */
+  snowdogMenus?: Maybe<SnowdogMenus>;
+  /** Return details about the store's configuration. */
+  storeConfig?: Maybe<StoreConfig>;
+  /**
+   * Return the relative URL for a specified product, category or CMS page.
+   * @deprecated Use the `route` query instead.
+   */
+  urlResolver?: Maybe<EntityUrl>;
+  /** Retrieve a single user */
+  user?: Maybe<User>;
+  /** Retrieve multiple users */
+  users: Array<User>;
+  /** Retrieve multiple users using the Relay connection interface */
+  usersConnection: UserConnection;
+  /** The viewMoreFilter query searches for all values of a given filter name in a specific context. */
+  viewMoreFilter?: Maybe<ViewMoreResult>;
+  /**
+   * Return the contents of a customer's wish list.
+   * @deprecated Moved under `Customer.wishlist`.
+   */
+  wishlist?: Maybe<WishlistOutput>;
+};
+
+export type QueryAssetArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: AssetWhereUniqueInput;
+};
+
+export type QueryAssetVersionArgs = {
+  where: VersionWhereInput;
+};
+
+export type QueryAssetsArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<AssetOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<AssetWhereInput>;
+};
+
+export type QueryAssetsConnectionArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<AssetOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<AssetWhereInput>;
+};
+
+export type QueryAvailableStoresArgs = {
+  useCurrentGroup?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type QueryBannerArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: BannerWhereUniqueInput;
+};
+
+export type QueryBannerVersionArgs = {
+  where: VersionWhereInput;
+};
+
+export type QueryBannersArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<BannerOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<BannerWhereInput>;
+};
+
+export type QueryBannersConnectionArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<BannerOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<BannerWhereInput>;
+};
+
+export type QueryBestSellingProductsByCategoryArgs = {
+  categoryId: Scalars["Int"]["input"];
+};
+
+export type QueryCartArgs = {
+  cart_id: Scalars["String"]["input"];
+};
+
+export type QueryCategoriesArgs = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  filters?: InputMaybe<CategoryFilterInput>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export type QueryCategoryArgs = {
+  id?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export type QueryCategoryListArgs = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  filters?: InputMaybe<CategoryFilterInput>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export type QueryCmsBlocksArgs = {
+  identifiers?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+};
+
+export type QueryCmsPageArgs = {
+  id?: InputMaybe<Scalars["Int"]["input"]>;
+  identifier?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type QueryCompareListArgs = {
+  uid: Scalars["ID"]["input"];
+};
+
+export type QueryCountryArgs = {
+  id?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type QueryCustomAttributeMetadataArgs = {
+  attributes: Array<AttributeInput>;
+};
+
+export type QueryDynamicBlocksArgs = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  input?: InputMaybe<DynamicBlocksFilterInput>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export type QueryEntitiesArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  where: Array<EntityWhereInput>;
+};
+
+export type QueryGetHostedProUrlArgs = {
+  input: HostedProUrlInput;
+};
+
+export type QueryGetPayflowLinkTokenArgs = {
+  input: PayflowLinkTokenInput;
+};
+
+export type QueryGiftCardAccountArgs = {
+  input: GiftCardAccountInput;
+};
+
+export type QueryGiftRegistryArgs = {
+  giftRegistryUid: Scalars["ID"]["input"];
+};
+
+export type QueryGiftRegistryEmailSearchArgs = {
+  email: Scalars["String"]["input"];
+};
+
+export type QueryGiftRegistryIdSearchArgs = {
+  giftRegistryUid: Scalars["ID"]["input"];
+};
+
+export type QueryGiftRegistryTypeSearchArgs = {
+  firstName: Scalars["String"]["input"];
+  giftRegistryTypeUid?: InputMaybe<Scalars["ID"]["input"]>;
+  lastName: Scalars["String"]["input"];
+};
+
+export type QueryIsEmailAvailableArgs = {
+  email: Scalars["String"]["input"];
+};
+
+export type QueryMenuArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: MenuWhereUniqueInput;
+};
+
+export type QueryMenuVersionArgs = {
+  where: VersionWhereInput;
+};
+
+export type QueryMenusArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<MenuOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<MenuWhereInput>;
+};
+
+export type QueryMenusConnectionArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<MenuOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<MenuWhereInput>;
+};
+
+export type QueryNodeArgs = {
+  id: Scalars["ID"]["input"];
+  locales?: Array<Locale>;
+  stage?: Stage;
+};
+
+export type QueryPageArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: PageWhereUniqueInput;
+};
+
+export type QueryPageVersionArgs = {
+  where: VersionWhereInput;
+};
+
+export type QueryPagesArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<PageOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<PageWhereInput>;
+};
+
+export type QueryPagesConnectionArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<PageOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<PageWhereInput>;
+};
+
+export type QueryPickupLocationsArgs = {
+  area?: InputMaybe<AreaInput>;
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  filters?: InputMaybe<PickupLocationFilterInput>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+  productsInfo?: InputMaybe<Array<InputMaybe<ProductInfoInput>>>;
+  sort?: InputMaybe<PickupLocationSortInput>;
+};
+
+export type QueryPopularProductArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: PopularProductWhereUniqueInput;
+};
+
+export type QueryPopularProductVersionArgs = {
+  where: VersionWhereInput;
+};
+
+export type QueryPopularProductsArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<PopularProductOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<PopularProductWhereInput>;
+};
+
+export type QueryPopularProductsConnectionArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<PopularProductOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<PopularProductWhereInput>;
+};
+
+export type QueryProductBrandArgs = {
+  sku?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type QueryProductsArgs = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  filter?: InputMaybe<ProductAttributeFilterInput>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+  search?: InputMaybe<Scalars["String"]["input"]>;
+  sort?: InputMaybe<ProductAttributeSortInput>;
+};
+
+export type QueryRouteArgs = {
+  url: Scalars["String"]["input"];
+};
+
+export type QueryScheduledOperationArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: ScheduledOperationWhereUniqueInput;
+};
+
+export type QueryScheduledOperationsArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<ScheduledOperationOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+export type QueryScheduledOperationsConnectionArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<ScheduledOperationOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+export type QueryScheduledReleaseArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: ScheduledReleaseWhereUniqueInput;
+};
+
+export type QueryScheduledReleasesArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<ScheduledReleaseOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<ScheduledReleaseWhereInput>;
+};
+
+export type QueryScheduledReleasesConnectionArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<ScheduledReleaseOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<ScheduledReleaseWhereInput>;
+};
+
+export type QuerySettingArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: SettingWhereUniqueInput;
+};
+
+export type QuerySettingVersionArgs = {
+  where: VersionWhereInput;
+};
+
+export type QuerySettingsArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<SettingOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<SettingWhereInput>;
+};
+
+export type QuerySettingsConnectionArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<SettingOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<SettingWhereInput>;
+};
+
+export type QuerySnowdogMenuNodesArgs = {
+  identifier: Scalars["String"]["input"];
+};
+
+export type QuerySnowdogMenusArgs = {
+  identifiers?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+};
+
+export type QueryUrlResolverArgs = {
+  url: Scalars["String"]["input"];
+};
+
+export type QueryUserArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: UserWhereUniqueInput;
+};
+
+export type QueryUsersArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<UserOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<UserWhereInput>;
+};
+
+export type QueryUsersConnectionArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<UserOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<UserWhereInput>;
+};
+
+export type QueryViewMoreFilterArgs = {
+  filter?: InputMaybe<ProductAttributeFilterInput>;
+  filterName: Scalars["String"]["input"];
+  search?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
+export type Rgba = {
+  __typename?: "RGBA";
+  a: Scalars["RGBATransparency"]["output"];
+  b: Scalars["RGBAHue"]["output"];
+  g: Scalars["RGBAHue"]["output"];
+  r: Scalars["RGBAHue"]["output"];
+};
+
+/** Input type representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
+export type RgbaInput = {
+  a: Scalars["RGBATransparency"]["input"];
+  b: Scalars["RGBAHue"]["input"];
+  g: Scalars["RGBAHue"]["input"];
+  r: Scalars["RGBAHue"]["input"];
+};
+
+export type Region = {
+  __typename?: "Region";
+  /** The two-letter code for the region, such as TX for Texas. */
+  code?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `Region` object. */
+  id?: Maybe<Scalars["Int"]["output"]>;
+  /** The name of the region, such as Texas. */
+  name?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Specifies the cart from which to remove a coupon. */
+export type RemoveCouponFromCartInput = {
+  /** The unique ID of a `Cart` object. */
+  cart_id: Scalars["String"]["input"];
+};
+
+/** Contains details about the cart after removing a coupon. */
+export type RemoveCouponFromCartOutput = {
+  __typename?: "RemoveCouponFromCartOutput";
+  /** The cart after removing a coupon. */
+  cart?: Maybe<Cart>;
+};
+
+/** Defines the input required to run the `removeGiftCardFromCart` mutation. */
+export type RemoveGiftCardFromCartInput = {
+  /** The unique ID that identifies the customer's cart. */
+  cart_id: Scalars["String"]["input"];
+  /** The gift card code to be removed to the cart. */
+  gift_card_code: Scalars["String"]["input"];
+};
+
+/** Defines the possible output for the `removeGiftCardFromCart` mutation. */
+export type RemoveGiftCardFromCartOutput = {
+  __typename?: "RemoveGiftCardFromCartOutput";
+  /** The contents of the specified shopping cart. */
+  cart: Cart;
+};
+
+/** Contains the results of a request to remove an item from a gift registry. */
+export type RemoveGiftRegistryItemsOutput = {
+  __typename?: "RemoveGiftRegistryItemsOutput";
+  /** The gift registry after removing items. */
+  gift_registry?: Maybe<GiftRegistry>;
+};
+
+/** Contains the results of a request to delete a gift registry. */
+export type RemoveGiftRegistryOutput = {
+  __typename?: "RemoveGiftRegistryOutput";
+  /** Indicates whether the gift registry was successfully deleted. */
+  success: Scalars["Boolean"]["output"];
+};
+
+/** Contains the results of a request to delete a registrant. */
+export type RemoveGiftRegistryRegistrantsOutput = {
+  __typename?: "RemoveGiftRegistryRegistrantsOutput";
+  /** The gift registry after deleting registrants. */
+  gift_registry?: Maybe<GiftRegistry>;
+};
+
+/** Specifies which items to remove from the cart. */
+export type RemoveItemFromCartInput = {
+  /** The unique ID of a `Cart` object. */
+  cart_id: Scalars["String"]["input"];
+  /** Deprecated. Use `cart_item_uid` instead. */
+  cart_item_id?: InputMaybe<Scalars["Int"]["input"]>;
+  /** Required field. The unique ID for a `CartItemInterface` object. */
+  cart_item_uid?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+/** Contains details about the cart after removing an item. */
+export type RemoveItemFromCartOutput = {
+  __typename?: "RemoveItemFromCartOutput";
+  /** The cart after removing an item. */
+  cart: Cart;
+};
+
+/** Defines which products to remove from a compare list. */
+export type RemoveProductsFromCompareListInput = {
+  /** An array of product IDs to remove from the compare list. */
+  products: Array<InputMaybe<Scalars["ID"]["input"]>>;
+  /** The unique identifier of the compare list to modify. */
+  uid: Scalars["ID"]["input"];
+};
+
+/** Contains the customer's wish list and any errors encountered. */
+export type RemoveProductsFromWishlistOutput = {
+  __typename?: "RemoveProductsFromWishlistOutput";
+  /** An array of errors encountered while deleting products from a wish list. */
+  user_errors: Array<Maybe<WishListUserInputError>>;
+  /** Contains the wish list with after items were successfully deleted. */
+  wishlist: Wishlist;
+};
+
+/** Defines the tracking information to delete. */
+export type RemoveReturnTrackingInput = {
+  /** The unique ID for a `ReturnShippingTracking` object. */
+  return_shipping_tracking_uid: Scalars["ID"]["input"];
+};
+
+/** Contains the response after deleting tracking information. */
+export type RemoveReturnTrackingOutput = {
+  __typename?: "RemoveReturnTrackingOutput";
+  /** Contains details about the modified return. */
+  return?: Maybe<Return>;
+};
+
+/** Contains the customer cart. */
+export type RemoveRewardPointsFromCartOutput = {
+  __typename?: "RemoveRewardPointsFromCartOutput";
+  /** The customer cart after reward points are removed. */
+  cart: Cart;
+};
+
+/** Defines the input required to run the `removeStoreCreditFromCart` mutation. */
+export type RemoveStoreCreditFromCartInput = {
+  /** The unique ID that identifies the customer's cart. */
+  cart_id: Scalars["String"]["input"];
+};
+
+/** Defines the possible output for the `removeStoreCreditFromCart` mutation. */
+export type RemoveStoreCreditFromCartOutput = {
+  __typename?: "RemoveStoreCreditFromCartOutput";
+  /** The contents of the specified shopping cart. */
+  cart: Cart;
+};
+
+/** Contains the cart and any errors after adding products. */
+export type ReorderItemsOutput = {
+  __typename?: "ReorderItemsOutput";
+  /** Detailed information about the customer's cart. */
+  cart: Cart;
+  /** An array of reordering errors. */
+  userInputErrors: Array<Maybe<CheckoutUserInputError>>;
+};
+
+/** Contains information needed to start a return request. */
+export type RequestReturnInput = {
+  /** Text the buyer entered that describes the reason for the refund request. */
+  comment_text?: InputMaybe<Scalars["String"]["input"]>;
+  /** The email address the buyer enters to receive notifications about the status of the return. */
+  contact_email?: InputMaybe<Scalars["String"]["input"]>;
+  /** An array of items to be returned. */
+  items: Array<InputMaybe<RequestReturnItemInput>>;
+  /** The unique ID for a `Order` object. */
+  order_uid: Scalars["ID"]["input"];
+};
+
+/** Contains details about an item to be returned. */
+export type RequestReturnItemInput = {
+  /** Details about a custom attribute that was entered. */
+  entered_custom_attributes?: InputMaybe<
+    Array<InputMaybe<EnteredCustomAttributeInput>>
+  >;
+  /** The unique ID for a `OrderItemInterface` object. */
+  order_item_uid: Scalars["ID"]["input"];
+  /** The quantity of the item to be returned. */
+  quantity_to_return: Scalars["Float"]["input"];
+  /** An array of selected custom option IDs associated with the item to be returned. For example, the IDs for the selected color and size of a configurable product. */
+  selected_custom_attributes?: InputMaybe<
+    Array<InputMaybe<SelectedCustomAttributeInput>>
+  >;
+};
+
+/** Contains the response to a return request. */
+export type RequestReturnOutput = {
+  __typename?: "RequestReturnOutput";
+  /** Details about a single return request. */
+  return?: Maybe<Return>;
+  /** An array of return requests. */
+  returns?: Maybe<Returns>;
+};
+
+/** Contains the response to a return request. */
+export type RequestReturnOutputReturnsArgs = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+/** Contains details about a return. */
+export type Return = {
+  __typename?: "Return";
+  /** A list of shipping carriers available for returns. */
+  available_shipping_carriers?: Maybe<Array<Maybe<ReturnShippingCarrier>>>;
+  /** A list of comments posted for the return request. */
+  comments?: Maybe<Array<Maybe<ReturnComment>>>;
+  /** The date the return was requested. */
+  created_at: Scalars["String"]["output"];
+  /** Data from the customer who created the return request. */
+  customer: ReturnCustomer;
+  /** A list of items being returned. */
+  items?: Maybe<Array<Maybe<ReturnItem>>>;
+  /** A human-readable return number. */
+  number: Scalars["String"]["output"];
+  /** The order associated with the return. */
+  order?: Maybe<CustomerOrder>;
+  /** Shipping information for the return. */
+  shipping?: Maybe<ReturnShipping>;
+  /** The status of the return request. */
+  status?: Maybe<ReturnStatus>;
+  /** The unique ID for a `Return` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Contains details about a return comment. */
+export type ReturnComment = {
+  __typename?: "ReturnComment";
+  /** The name or author who posted the comment. */
+  author_name: Scalars["String"]["output"];
+  /** The date and time the comment was posted. */
+  created_at: Scalars["String"]["output"];
+  /** The contents of the comment. */
+  text: Scalars["String"]["output"];
+  /** The unique ID for a `ReturnComment` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Contains details about a `ReturnCustomerAttribute` object. */
+export type ReturnCustomAttribute = {
+  __typename?: "ReturnCustomAttribute";
+  /** A description of the attribute. */
+  label: Scalars["String"]["output"];
+  /** The unique ID for a `ReturnCustomAttribute` object. */
+  uid: Scalars["ID"]["output"];
+  /** A JSON-encoded value of the attribute. */
+  value: Scalars["String"]["output"];
+};
+
+/** The customer information for the return. */
+export type ReturnCustomer = {
+  __typename?: "ReturnCustomer";
+  /** The email address of the customer. */
+  email: Scalars["String"]["output"];
+  /** The first name of the customer. */
+  firstname?: Maybe<Scalars["String"]["output"]>;
+  /** The last name of the customer. */
+  lastname?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Contains details about a product being returned. */
+export type ReturnItem = {
+  __typename?: "ReturnItem";
+  /** Return item custom attributes that are visible on the storefront. */
+  custom_attributes?: Maybe<Array<Maybe<ReturnCustomAttribute>>>;
+  /** Provides access to the product being returned, including information about selected and entered options. */
+  order_item: OrderItemInterface;
+  /** The quantity of the item the merchant authorized to be returned. */
+  quantity: Scalars["Float"]["output"];
+  /** The quantity of the item requested to be returned. */
+  request_quantity: Scalars["Float"]["output"];
+  /** The return status of the item. */
+  status: ReturnItemStatus;
+  /** The unique ID for a `ReturnItem` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+export enum ReturnItemStatus {
+  /** @deprecated  */
+  Approved = "APPROVED",
+  /** @deprecated  */
+  Authorized = "AUTHORIZED",
+  /** @deprecated  */
+  Denied = "DENIED",
+  /** @deprecated  */
+  Pending = "PENDING",
+  /** @deprecated  */
+  Received = "RECEIVED",
+  /** @deprecated  */
+  Rejected = "REJECTED",
+}
+
+/** Contains details about the return shipping address. */
+export type ReturnShipping = {
+  __typename?: "ReturnShipping";
+  /** The merchant-defined return shipping address. */
+  address?: Maybe<ReturnShippingAddress>;
+  /** The unique ID for a `ReturnShippingTracking` object. If a single UID is specified, the array contains a single tracking record. Otherwise, array contains all tracking information. */
+  tracking?: Maybe<Array<Maybe<ReturnShippingTracking>>>;
+};
+
+/** Contains details about the return shipping address. */
+export type ReturnShippingTrackingArgs = {
+  uid?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+/** Contains details about the shipping address used for receiving returned items. */
+export type ReturnShippingAddress = {
+  __typename?: "ReturnShippingAddress";
+  /** The city for product returns. */
+  city: Scalars["String"]["output"];
+  /** The merchant's contact person. */
+  contact_name?: Maybe<Scalars["String"]["output"]>;
+  /** An object that defines the country for product returns. */
+  country: Country;
+  /** The postal code for product returns. */
+  postcode: Scalars["String"]["output"];
+  /** An object that defines the state or province for product returns. */
+  region: Region;
+  /** The street address for product returns. */
+  street: Array<Maybe<Scalars["String"]["output"]>>;
+  /** The telephone number for product returns. */
+  telephone?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Contains details about the carrier on a return. */
+export type ReturnShippingCarrier = {
+  __typename?: "ReturnShippingCarrier";
+  /** A description of the shipping carrier. */
+  label: Scalars["String"]["output"];
+  /** The unique ID for a `ReturnShippingCarrier` object assigned to the shipping carrier. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Contains shipping and tracking details. */
+export type ReturnShippingTracking = {
+  __typename?: "ReturnShippingTracking";
+  /** Contains details of a shipping carrier. */
+  carrier: ReturnShippingCarrier;
+  /** Details about the status of a shipment. */
+  status?: Maybe<ReturnShippingTrackingStatus>;
+  /** A tracking number assigned by the carrier. */
+  tracking_number: Scalars["String"]["output"];
+  /** The unique ID for a `ReturnShippingTracking` object assigned to the tracking item. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Contains the status of a shipment. */
+export type ReturnShippingTrackingStatus = {
+  __typename?: "ReturnShippingTrackingStatus";
+  /** Text that describes the status. */
+  text: Scalars["String"]["output"];
+  /** Indicates whether the status type is informational or an error. */
+  type: ReturnShippingTrackingStatusType;
+};
+
+export enum ReturnShippingTrackingStatusType {
+  /** @deprecated  */
+  Error = "ERROR",
+  /** @deprecated  */
+  Information = "INFORMATION",
+}
+
+export enum ReturnStatus {
+  /** @deprecated  */
+  Approved = "APPROVED",
+  /** @deprecated  */
+  Authorized = "AUTHORIZED",
+  /** @deprecated  */
+  Closed = "CLOSED",
+  /** @deprecated  */
+  Denied = "DENIED",
+  /** @deprecated  */
+  PartiallyApproved = "PARTIALLY_APPROVED",
+  /** @deprecated  */
+  PartiallyAuthorized = "PARTIALLY_AUTHORIZED",
+  /** @deprecated  */
+  PartiallyReceived = "PARTIALLY_RECEIVED",
+  /** @deprecated  */
+  PartiallyRejected = "PARTIALLY_REJECTED",
+  /** @deprecated  */
+  Pending = "PENDING",
+  /** @deprecated  */
+  ProcessedAndClosed = "PROCESSED_AND_CLOSED",
+  /** @deprecated  */
+  Received = "RECEIVED",
+  /** @deprecated  */
+  Rejected = "REJECTED",
+}
+
+/** Contains a list of customer return requests. */
+export type Returns = {
+  __typename?: "Returns";
+  /** A list of return requests. */
+  items?: Maybe<Array<Maybe<Return>>>;
+  /** Pagination metadata. */
+  page_info?: Maybe<SearchResultPageInfo>;
+  /** The total number of return requests. */
+  total_count?: Maybe<Scalars["Int"]["output"]>;
+};
+
+/** Contains the result of a request to revoke a customer token. */
+export type RevokeCustomerTokenOutput = {
+  __typename?: "RevokeCustomerTokenOutput";
+  /** The result of a request to revoke a customer token. */
+  result: Scalars["Boolean"]["output"];
+};
+
+/** Contains details about a customer's reward points. */
+export type RewardPoints = {
+  __typename?: "RewardPoints";
+  /** The current balance of reward points. */
+  balance?: Maybe<RewardPointsAmount>;
+  /** The balance history of reward points. If the ability for customers to view the balance history has been disabled in the Admin, this field will be set to null. */
+  balance_history?: Maybe<Array<Maybe<RewardPointsBalanceHistoryItem>>>;
+  /** The current exchange rates for reward points. */
+  exchange_rates?: Maybe<RewardPointsExchangeRates>;
+  /** The subscription status of emails related to reward points. */
+  subscription_status?: Maybe<RewardPointsSubscriptionStatus>;
+};
+
+export type RewardPointsAmount = {
+  __typename?: "RewardPointsAmount";
+  /** The reward points amount in store currency. */
+  money: Money;
+  /** The reward points amount in points. */
+  points: Scalars["Float"]["output"];
+};
+
+/** Contain details about the reward points transaction. */
+export type RewardPointsBalanceHistoryItem = {
+  __typename?: "RewardPointsBalanceHistoryItem";
+  /** The award points balance after the completion of the transaction. */
+  balance?: Maybe<RewardPointsAmount>;
+  /** The reason the balance changed. */
+  change_reason: Scalars["String"]["output"];
+  /** The date of the transaction. */
+  date: Scalars["String"]["output"];
+  /** The number of points added or deducted in the transaction. */
+  points_change: Scalars["Float"]["output"];
+};
+
+/** Lists the reward points exchange rates. The values depend on the customer group. */
+export type RewardPointsExchangeRates = {
+  __typename?: "RewardPointsExchangeRates";
+  /** How many points are earned for a given amount spent. */
+  earning?: Maybe<RewardPointsRate>;
+  /** How many points must be redeemed to get a given amount of currency discount at the checkout. */
+  redemption?: Maybe<RewardPointsRate>;
+};
+
+/** Contains details about customer's reward points rate. */
+export type RewardPointsRate = {
+  __typename?: "RewardPointsRate";
+  /** The money value for the exchange rate. For earnings, this is the amount spent to earn the specified points. For redemption, this is the amount of money the number of points represents. */
+  currency_amount: Scalars["Float"]["output"];
+  /** The number of points for an exchange rate. For earnings, this is the number of points earned. For redemption, this is the number of points needed for redemption. */
+  points: Scalars["Float"]["output"];
+};
+
+/** Indicates whether the customer subscribes to reward points emails. */
+export type RewardPointsSubscriptionStatus = {
+  __typename?: "RewardPointsSubscriptionStatus";
+  /** Indicates whether the customer subscribes to 'Reward points balance updates' emails. */
+  balance_updates: RewardPointsSubscriptionStatusesEnum;
+  /** Indicates whether the customer subscribes to 'Reward points expiration notifications' emails. */
+  points_expiration_notifications: RewardPointsSubscriptionStatusesEnum;
+};
+
+export enum RewardPointsSubscriptionStatusesEnum {
+  /** @deprecated  */
+  NotSubscribed = "NOT_SUBSCRIBED",
+  /** @deprecated  */
+  Subscribed = "SUBSCRIBED",
+}
+
+/** Custom type representing a rich text value comprising of raw rich text ast, html, markdown and text values */
+export type RichText = {
+  __typename?: "RichText";
+  /** Returns HTMl representation */
+  html: Scalars["String"]["output"];
+  /** Returns Markdown representation */
+  markdown: Scalars["String"]["output"];
+  /** Returns AST representation */
+  raw: Scalars["RichTextAST"]["output"];
+  /** Returns plain-text contents of RichText */
+  text: Scalars["String"]["output"];
+};
+
+/** Routable entities serve as the model for a rendered page. */
+export type RoutableInterface = {
+  /** Contains 0 when there is no redirect error. A value of 301 indicates the URL of the requested resource has been changed permanently, while a value of 302 indicates a temporary redirect. */
+  redirect_code: Scalars["Int"]["output"];
+  /** The internal relative URL. If the specified URL is a redirect, the query returns the redirected URL, not the original. */
+  relative_url?: Maybe<Scalars["String"]["output"]>;
+  /** One of PRODUCT, CATEGORY, or CMS_PAGE. */
+  type?: Maybe<UrlRewriteEntityTypeEnum>;
+};
+
+/** Contains details about a comment. */
+export type SalesCommentItem = {
+  __typename?: "SalesCommentItem";
+  /** The text of the message. */
+  message: Scalars["String"]["output"];
+  /** The timestamp of the comment. */
+  timestamp: Scalars["String"]["output"];
+};
+
+export type SalesItemInterface = {
+  __typename?: "SalesItemInterface";
+  /** The entered gift message for the order item */
+  gift_message?: Maybe<GiftMessage>;
+};
+
+/** Scheduled Operation system model */
+export type ScheduledOperation = Entity &
+  Node & {
+    __typename?: "ScheduledOperation";
+    affectedDocuments: Array<ScheduledOperationAffectedDocument>;
+    /** The time the document was created */
+    createdAt: Scalars["DateTime"]["output"];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    /** Operation description */
+    description?: Maybe<Scalars["String"]["output"]>;
+    /** Get the document in other stages */
+    documentInStages: Array<ScheduledOperation>;
+    /** Operation error message */
+    errorMessage?: Maybe<Scalars["String"]["output"]>;
+    /** The unique identifier */
+    id: Scalars["ID"]["output"];
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    /** Raw operation payload including all details, this field is subject to change */
+    rawPayload: Scalars["Json"]["output"];
+    /** The release this operation is scheduled for */
+    release?: Maybe<ScheduledRelease>;
+    /** System stage field */
+    stage: Stage;
+    /** operation Status */
+    status: ScheduledOperationStatus;
+    /** The time the document was updated */
+    updatedAt: Scalars["DateTime"]["output"];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+  };
+
+/** Scheduled Operation system model */
+export type ScheduledOperationAffectedDocumentsArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+/** Scheduled Operation system model */
+export type ScheduledOperationCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+/** Scheduled Operation system model */
+export type ScheduledOperationDocumentInStagesArgs = {
+  includeCurrent?: Scalars["Boolean"]["input"];
+  inheritLocale?: Scalars["Boolean"]["input"];
+  stages?: Array<Stage>;
+};
+
+/** Scheduled Operation system model */
+export type ScheduledOperationPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+/** Scheduled Operation system model */
+export type ScheduledOperationReleaseArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+/** Scheduled Operation system model */
+export type ScheduledOperationUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type ScheduledOperationAffectedDocument =
+  | Asset
+  | Banner
+  | Menu
+  | Page
+  | PopularProduct
+  | Setting;
+
+export type ScheduledOperationConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: ScheduledOperationWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type ScheduledOperationConnection = {
+  __typename?: "ScheduledOperationConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<ScheduledOperationEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type ScheduledOperationCreateManyInlineInput = {
+  /** Connect multiple existing ScheduledOperation documents */
+  connect?: InputMaybe<Array<ScheduledOperationWhereUniqueInput>>;
+};
+
+export type ScheduledOperationCreateOneInlineInput = {
+  /** Connect one existing ScheduledOperation document */
+  connect?: InputMaybe<ScheduledOperationWhereUniqueInput>;
+};
+
+/** An edge in a connection. */
+export type ScheduledOperationEdge = {
+  __typename?: "ScheduledOperationEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: ScheduledOperation;
+};
+
+/** Identifies documents */
+export type ScheduledOperationManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ScheduledOperationWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ScheduledOperationWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ScheduledOperationWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  description?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  description_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  description_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  description_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  description_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  description_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  description_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  description_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["String"]["input"]>>
+  >;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  description_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  errorMessage?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  errorMessage_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  errorMessage_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  errorMessage_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  errorMessage_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  errorMessage_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  errorMessage_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  errorMessage_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["String"]["input"]>>
+  >;
+  /** All values not starting with the given string. */
+  errorMessage_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  errorMessage_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  /** All values containing the given json path. */
+  rawPayload_json_path_exists?: InputMaybe<Scalars["String"]["input"]>;
+  /**
+   * Recursively tries to find the provided JSON scalar value inside the field.
+   * It does use an exact match when comparing values.
+   * If you pass `null` as value the filter will be ignored.
+   * Note: This filter fails if you try to look for a non scalar JSON value!
+   */
+  rawPayload_value_recursive?: InputMaybe<Scalars["Json"]["input"]>;
+  release?: InputMaybe<ScheduledReleaseWhereInput>;
+  status?: InputMaybe<ScheduledOperationStatus>;
+  /** All values that are contained in given list. */
+  status_in?: InputMaybe<Array<InputMaybe<ScheduledOperationStatus>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  status_not?: InputMaybe<ScheduledOperationStatus>;
+  /** All values that are not contained in given list. */
+  status_not_in?: InputMaybe<Array<InputMaybe<ScheduledOperationStatus>>>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum ScheduledOperationOrderByInput {
+  CreatedAtAsc = "createdAt_ASC",
+  CreatedAtDesc = "createdAt_DESC",
+  DescriptionAsc = "description_ASC",
+  DescriptionDesc = "description_DESC",
+  ErrorMessageAsc = "errorMessage_ASC",
+  ErrorMessageDesc = "errorMessage_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  PublishedAtAsc = "publishedAt_ASC",
+  PublishedAtDesc = "publishedAt_DESC",
+  StatusAsc = "status_ASC",
+  StatusDesc = "status_DESC",
+  UpdatedAtAsc = "updatedAt_ASC",
+  UpdatedAtDesc = "updatedAt_DESC",
+}
+
+/** System Scheduled Operation Status */
+export enum ScheduledOperationStatus {
+  Canceled = "CANCELED",
+  Completed = "COMPLETED",
+  Failed = "FAILED",
+  InProgress = "IN_PROGRESS",
+  Pending = "PENDING",
+}
+
+export type ScheduledOperationUpdateManyInlineInput = {
+  /** Connect multiple existing ScheduledOperation documents */
+  connect?: InputMaybe<Array<ScheduledOperationConnectInput>>;
+  /** Disconnect multiple ScheduledOperation documents */
+  disconnect?: InputMaybe<Array<ScheduledOperationWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing ScheduledOperation documents */
+  set?: InputMaybe<Array<ScheduledOperationWhereUniqueInput>>;
+};
+
+export type ScheduledOperationUpdateOneInlineInput = {
+  /** Connect existing ScheduledOperation document */
+  connect?: InputMaybe<ScheduledOperationWhereUniqueInput>;
+  /** Disconnect currently connected ScheduledOperation document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Identifies documents */
+export type ScheduledOperationWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ScheduledOperationWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ScheduledOperationWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ScheduledOperationWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  description?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  description_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  description_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  description_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  description_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  description_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  description_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  description_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["String"]["input"]>>
+  >;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  description_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  errorMessage?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  errorMessage_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  errorMessage_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  errorMessage_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  errorMessage_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  errorMessage_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  errorMessage_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  errorMessage_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["String"]["input"]>>
+  >;
+  /** All values not starting with the given string. */
+  errorMessage_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  errorMessage_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  /** All values containing the given json path. */
+  rawPayload_json_path_exists?: InputMaybe<Scalars["String"]["input"]>;
+  /**
+   * Recursively tries to find the provided JSON scalar value inside the field.
+   * It does use an exact match when comparing values.
+   * If you pass `null` as value the filter will be ignored.
+   * Note: This filter fails if you try to look for a non scalar JSON value!
+   */
+  rawPayload_value_recursive?: InputMaybe<Scalars["Json"]["input"]>;
+  release?: InputMaybe<ScheduledReleaseWhereInput>;
+  status?: InputMaybe<ScheduledOperationStatus>;
+  /** All values that are contained in given list. */
+  status_in?: InputMaybe<Array<InputMaybe<ScheduledOperationStatus>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  status_not?: InputMaybe<ScheduledOperationStatus>;
+  /** All values that are not contained in given list. */
+  status_not_in?: InputMaybe<Array<InputMaybe<ScheduledOperationStatus>>>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** References ScheduledOperation record uniquely */
+export type ScheduledOperationWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+/** Scheduled Release system model */
+export type ScheduledRelease = Entity &
+  Node & {
+    __typename?: "ScheduledRelease";
+    /** The time the document was created */
+    createdAt: Scalars["DateTime"]["output"];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    /** Release description */
+    description?: Maybe<Scalars["String"]["output"]>;
+    /** Get the document in other stages */
+    documentInStages: Array<ScheduledRelease>;
+    /** Release error message */
+    errorMessage?: Maybe<Scalars["String"]["output"]>;
+    /** The unique identifier */
+    id: Scalars["ID"]["output"];
+    /** Whether scheduled release should be run */
+    isActive: Scalars["Boolean"]["output"];
+    /** Whether scheduled release is implicit */
+    isImplicit: Scalars["Boolean"]["output"];
+    /** Operations to run with this release */
+    operations: Array<ScheduledOperation>;
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    /** Release date and time */
+    releaseAt?: Maybe<Scalars["DateTime"]["output"]>;
+    /** System stage field */
+    stage: Stage;
+    /** Release Status */
+    status: ScheduledReleaseStatus;
+    /** Release Title */
+    title?: Maybe<Scalars["String"]["output"]>;
+    /** The time the document was updated */
+    updatedAt: Scalars["DateTime"]["output"];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+  };
+
+/** Scheduled Release system model */
+export type ScheduledReleaseCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+/** Scheduled Release system model */
+export type ScheduledReleaseDocumentInStagesArgs = {
+  includeCurrent?: Scalars["Boolean"]["input"];
+  inheritLocale?: Scalars["Boolean"]["input"];
+  stages?: Array<Stage>;
+};
+
+/** Scheduled Release system model */
+export type ScheduledReleaseOperationsArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<ScheduledOperationOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+/** Scheduled Release system model */
+export type ScheduledReleasePublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+/** Scheduled Release system model */
+export type ScheduledReleaseUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type ScheduledReleaseConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: ScheduledReleaseWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type ScheduledReleaseConnection = {
+  __typename?: "ScheduledReleaseConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<ScheduledReleaseEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type ScheduledReleaseCreateInput = {
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  description?: InputMaybe<Scalars["String"]["input"]>;
+  errorMessage?: InputMaybe<Scalars["String"]["input"]>;
+  isActive?: InputMaybe<Scalars["Boolean"]["input"]>;
+  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+};
+
+export type ScheduledReleaseCreateManyInlineInput = {
+  /** Connect multiple existing ScheduledRelease documents */
+  connect?: InputMaybe<Array<ScheduledReleaseWhereUniqueInput>>;
+  /** Create and connect multiple existing ScheduledRelease documents */
+  create?: InputMaybe<Array<ScheduledReleaseCreateInput>>;
+};
+
+export type ScheduledReleaseCreateOneInlineInput = {
+  /** Connect one existing ScheduledRelease document */
+  connect?: InputMaybe<ScheduledReleaseWhereUniqueInput>;
+  /** Create and connect one ScheduledRelease document */
+  create?: InputMaybe<ScheduledReleaseCreateInput>;
+};
+
+/** An edge in a connection. */
+export type ScheduledReleaseEdge = {
+  __typename?: "ScheduledReleaseEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: ScheduledRelease;
+};
+
+/** Identifies documents */
+export type ScheduledReleaseManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ScheduledReleaseWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ScheduledReleaseWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ScheduledReleaseWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  description?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  description_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  description_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  description_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  description_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  description_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  description_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  description_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["String"]["input"]>>
+  >;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  description_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  errorMessage?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  errorMessage_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  errorMessage_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  errorMessage_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  errorMessage_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  errorMessage_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  errorMessage_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  errorMessage_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["String"]["input"]>>
+  >;
+  /** All values not starting with the given string. */
+  errorMessage_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  errorMessage_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  isActive?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  isActive_not?: InputMaybe<Scalars["Boolean"]["input"]>;
+  isImplicit?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  isImplicit_not?: InputMaybe<Scalars["Boolean"]["input"]>;
+  operations_every?: InputMaybe<ScheduledOperationWhereInput>;
+  operations_none?: InputMaybe<ScheduledOperationWhereInput>;
+  operations_some?: InputMaybe<ScheduledOperationWhereInput>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  releaseAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  releaseAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  releaseAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  releaseAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  releaseAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  releaseAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  releaseAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  status?: InputMaybe<ScheduledReleaseStatus>;
+  /** All values that are contained in given list. */
+  status_in?: InputMaybe<Array<InputMaybe<ScheduledReleaseStatus>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  status_not?: InputMaybe<ScheduledReleaseStatus>;
+  /** All values that are not contained in given list. */
+  status_not_in?: InputMaybe<Array<InputMaybe<ScheduledReleaseStatus>>>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  title_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum ScheduledReleaseOrderByInput {
+  CreatedAtAsc = "createdAt_ASC",
+  CreatedAtDesc = "createdAt_DESC",
+  DescriptionAsc = "description_ASC",
+  DescriptionDesc = "description_DESC",
+  ErrorMessageAsc = "errorMessage_ASC",
+  ErrorMessageDesc = "errorMessage_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  IsActiveAsc = "isActive_ASC",
+  IsActiveDesc = "isActive_DESC",
+  IsImplicitAsc = "isImplicit_ASC",
+  IsImplicitDesc = "isImplicit_DESC",
+  PublishedAtAsc = "publishedAt_ASC",
+  PublishedAtDesc = "publishedAt_DESC",
+  ReleaseAtAsc = "releaseAt_ASC",
+  ReleaseAtDesc = "releaseAt_DESC",
+  StatusAsc = "status_ASC",
+  StatusDesc = "status_DESC",
+  TitleAsc = "title_ASC",
+  TitleDesc = "title_DESC",
+  UpdatedAtAsc = "updatedAt_ASC",
+  UpdatedAtDesc = "updatedAt_DESC",
+}
+
+/** System Scheduled Release Status */
+export enum ScheduledReleaseStatus {
+  Completed = "COMPLETED",
+  Failed = "FAILED",
+  InProgress = "IN_PROGRESS",
+  Pending = "PENDING",
+}
+
+export type ScheduledReleaseUpdateInput = {
+  description?: InputMaybe<Scalars["String"]["input"]>;
+  errorMessage?: InputMaybe<Scalars["String"]["input"]>;
+  isActive?: InputMaybe<Scalars["Boolean"]["input"]>;
+  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type ScheduledReleaseUpdateManyInlineInput = {
+  /** Connect multiple existing ScheduledRelease documents */
+  connect?: InputMaybe<Array<ScheduledReleaseConnectInput>>;
+  /** Create and connect multiple ScheduledRelease documents */
+  create?: InputMaybe<Array<ScheduledReleaseCreateInput>>;
+  /** Delete multiple ScheduledRelease documents */
+  delete?: InputMaybe<Array<ScheduledReleaseWhereUniqueInput>>;
+  /** Disconnect multiple ScheduledRelease documents */
+  disconnect?: InputMaybe<Array<ScheduledReleaseWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing ScheduledRelease documents */
+  set?: InputMaybe<Array<ScheduledReleaseWhereUniqueInput>>;
+  /** Update multiple ScheduledRelease documents */
+  update?: InputMaybe<Array<ScheduledReleaseUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple ScheduledRelease documents */
+  upsert?: InputMaybe<Array<ScheduledReleaseUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type ScheduledReleaseUpdateManyInput = {
+  description?: InputMaybe<Scalars["String"]["input"]>;
+  errorMessage?: InputMaybe<Scalars["String"]["input"]>;
+  isActive?: InputMaybe<Scalars["Boolean"]["input"]>;
+  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type ScheduledReleaseUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: ScheduledReleaseUpdateManyInput;
+  /** Document search */
+  where: ScheduledReleaseWhereInput;
+};
+
+export type ScheduledReleaseUpdateOneInlineInput = {
+  /** Connect existing ScheduledRelease document */
+  connect?: InputMaybe<ScheduledReleaseWhereUniqueInput>;
+  /** Create and connect one ScheduledRelease document */
+  create?: InputMaybe<ScheduledReleaseCreateInput>;
+  /** Delete currently connected ScheduledRelease document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected ScheduledRelease document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single ScheduledRelease document */
+  update?: InputMaybe<ScheduledReleaseUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single ScheduledRelease document */
+  upsert?: InputMaybe<ScheduledReleaseUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ScheduledReleaseUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: ScheduledReleaseUpdateInput;
+  /** Unique document search */
+  where: ScheduledReleaseWhereUniqueInput;
+};
+
+export type ScheduledReleaseUpsertInput = {
+  /** Create document if it didn't exist */
+  create: ScheduledReleaseCreateInput;
+  /** Update document if it exists */
+  update: ScheduledReleaseUpdateInput;
+};
+
+export type ScheduledReleaseUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: ScheduledReleaseUpsertInput;
+  /** Unique document search */
+  where: ScheduledReleaseWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type ScheduledReleaseWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ScheduledReleaseWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ScheduledReleaseWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ScheduledReleaseWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  description?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  description_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  description_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  description_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  description_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  description_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  description_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  description_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["String"]["input"]>>
+  >;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  description_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  errorMessage?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  errorMessage_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  errorMessage_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  errorMessage_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  errorMessage_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  errorMessage_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  errorMessage_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  errorMessage_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["String"]["input"]>>
+  >;
+  /** All values not starting with the given string. */
+  errorMessage_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  errorMessage_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  isActive?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  isActive_not?: InputMaybe<Scalars["Boolean"]["input"]>;
+  isImplicit?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  isImplicit_not?: InputMaybe<Scalars["Boolean"]["input"]>;
+  operations_every?: InputMaybe<ScheduledOperationWhereInput>;
+  operations_none?: InputMaybe<ScheduledOperationWhereInput>;
+  operations_some?: InputMaybe<ScheduledOperationWhereInput>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  releaseAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  releaseAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  releaseAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  releaseAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  releaseAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  releaseAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  releaseAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  status?: InputMaybe<ScheduledReleaseStatus>;
+  /** All values that are contained in given list. */
+  status_in?: InputMaybe<Array<InputMaybe<ScheduledReleaseStatus>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  status_not?: InputMaybe<ScheduledReleaseStatus>;
+  /** All values that are not contained in given list. */
+  status_not_in?: InputMaybe<Array<InputMaybe<ScheduledReleaseStatus>>>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  title_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** References ScheduledRelease record uniquely */
+export type ScheduledReleaseWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+/** This enumeration defines the scope type for customer orders. */
+export enum ScopeTypeEnum {
+  /** @deprecated  */
+  Global = "GLOBAL",
+  /** @deprecated  */
+  Store = "STORE",
+  /** @deprecated  */
+  Website = "WEBSITE",
+}
+
+/** Provides navigation for the query response. */
+export type SearchResultPageInfo = {
+  __typename?: "SearchResultPageInfo";
+  /** The specific page to return. */
+  current_page?: Maybe<Scalars["Int"]["output"]>;
+  is_spellchecked?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The maximum number of items to return per page of results. */
+  page_size?: Maybe<Scalars["Int"]["output"]>;
+  /** The total number of pages in the response. */
+  total_pages?: Maybe<Scalars["Int"]["output"]>;
+};
+
+/** A string that contains search suggestion */
+export type SearchSuggestion = {
+  __typename?: "SearchSuggestion";
+  /** The search suggestion of existing product. */
+  search: Scalars["String"]["output"];
+};
+
+/** Contains details about a selected bundle option. */
+export type SelectedBundleOption = {
+  __typename?: "SelectedBundleOption";
+  /** @deprecated Use `uid` instead */
+  id: Scalars["Int"]["output"];
+  /** The display name of the selected bundle product option. */
+  label: Scalars["String"]["output"];
+  /** The type of selected bundle product option. */
+  type: Scalars["String"]["output"];
+  /** The unique ID for a `SelectedBundleOption` object */
+  uid: Scalars["ID"]["output"];
+  /** An array of selected bundle option values. */
+  values: Array<Maybe<SelectedBundleOptionValue>>;
+};
+
+/** Contains details about a value for a selected bundle option. */
+export type SelectedBundleOptionValue = {
+  __typename?: "SelectedBundleOptionValue";
+  /** Use `uid` instead */
+  id: Scalars["Int"]["output"];
+  /** The display name of the value for the selected bundle product option. */
+  label: Scalars["String"]["output"];
+  /** The price of the value for the selected bundle product option. */
+  price: Scalars["Float"]["output"];
+  /** The quantity of the value for the selected bundle product option. */
+  quantity: Scalars["Float"]["output"];
+  /** The unique ID for a `SelectedBundleOptionValue` object */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Contains details about a selected configurable option. */
+export type SelectedConfigurableOption = {
+  __typename?: "SelectedConfigurableOption";
+  /** The unique ID for a `ConfigurableProductOptions` object. */
+  configurable_product_option_uid: Scalars["ID"]["output"];
+  /** The unique ID for a `ConfigurableProductOptionsValues` object. */
+  configurable_product_option_value_uid: Scalars["ID"]["output"];
+  /** @deprecated Use `SelectedConfigurableOption.configurable_product_option_uid` instead. */
+  id: Scalars["Int"]["output"];
+  /** The display text for the option. */
+  option_label: Scalars["String"]["output"];
+  /** @deprecated Use `SelectedConfigurableOption.configurable_product_option_value_uid` instead. */
+  value_id: Scalars["Int"]["output"];
+  /** The display name of the selected configurable option. */
+  value_label: Scalars["String"]["output"];
+};
+
+/** Contains details about an attribute the buyer selected. */
+export type SelectedCustomAttributeInput = {
+  /** A string that identifies the selected attribute. */
+  attribute_code: Scalars["String"]["input"];
+  /** The unique ID for a `CustomAttribute` object of a selected custom attribute. */
+  value: Scalars["ID"]["input"];
+};
+
+/** Identifies a customized product that has been placed in a cart. */
+export type SelectedCustomizableOption = {
+  __typename?: "SelectedCustomizableOption";
+  /** The unique ID for a specific `CustomizableOptionInterface` object, such as a `CustomizableFieldOption`, `CustomizableFileOption`, or `CustomizableAreaOption` object. */
+  customizable_option_uid: Scalars["ID"]["output"];
+  /** @deprecated Use `SelectedCustomizableOption.customizable_option_uid` instead. */
+  id: Scalars["Int"]["output"];
+  /** Indicates whether the customizable option is required. */
+  is_required: Scalars["Boolean"]["output"];
+  /** The display name of the selected customizable option. */
+  label: Scalars["String"]["output"];
+  /** A value indicating the order to display this option. */
+  sort_order: Scalars["Int"]["output"];
+  /** The type of `CustomizableOptionInterface` object. */
+  type: Scalars["String"]["output"];
+  /** An array of selectable values. */
+  values: Array<Maybe<SelectedCustomizableOptionValue>>;
+};
+
+/** Identifies the value of the selected customized option. */
+export type SelectedCustomizableOptionValue = {
+  __typename?: "SelectedCustomizableOptionValue";
+  /** The unique ID for a value object that corresponds to the object represented by the `customizable_option_uid` attribute. */
+  customizable_option_value_uid: Scalars["ID"]["output"];
+  /** @deprecated Use `SelectedCustomizableOptionValue.customizable_option_value_uid` instead. */
+  id: Scalars["Int"]["output"];
+  /** The display name of the selected value. */
+  label: Scalars["String"]["output"];
+  /** The price of the selected customizable value. */
+  price: CartItemSelectedOptionValuePrice;
+  /** The text identifying the selected value. */
+  value: Scalars["String"]["output"];
+};
+
+/** Describes the payment method the shopper selected. */
+export type SelectedPaymentMethod = {
+  __typename?: "SelectedPaymentMethod";
+  /** The payment method code. */
+  code: Scalars["String"]["output"];
+  /** The purchase order number. */
+  purchase_order_number?: Maybe<Scalars["String"]["output"]>;
+  /** The payment method title. */
+  title: Scalars["String"]["output"];
+};
+
+/** Contains details about the selected shipping method and carrier. */
+export type SelectedShippingMethod = {
+  __typename?: "SelectedShippingMethod";
+  /** The cost of shipping using this shipping method. */
+  amount: Money;
+  /** @deprecated The field should not be used on the storefront. */
+  base_amount?: Maybe<Money>;
+  /** A string that identifies a commercial carrier or an offline shipping method. */
+  carrier_code: Scalars["String"]["output"];
+  /** The label for the carrier code. */
+  carrier_title: Scalars["String"]["output"];
+  /** A shipping method code associated with a carrier. */
+  method_code: Scalars["String"]["output"];
+  /** The label for the method code. */
+  method_title: Scalars["String"]["output"];
+  /** The cost of shipping using this shipping method, excluding tax. */
+  price_excl_tax: Money;
+  /** The cost of shipping using this shipping method, including tax. */
+  price_incl_tax: Money;
+};
+
+/** Defines the referenced product and the email sender and recipients. */
+export type SendEmailToFriendInput = {
+  /** The ID of the product that the sender is referencing. */
+  product_id: Scalars["Int"]["input"];
+  /** An array containing information about each recipient. */
+  recipients: Array<InputMaybe<SendEmailToFriendRecipientInput>>;
+  /** Information about the customer and the content of the message. */
+  sender: SendEmailToFriendSenderInput;
+};
+
+/** Contains information about the sender and recipients. */
+export type SendEmailToFriendOutput = {
+  __typename?: "SendEmailToFriendOutput";
+  /** An array containing information about each recipient. */
+  recipients?: Maybe<Array<Maybe<SendEmailToFriendRecipient>>>;
+  /** Information about the customer and the content of the message. */
+  sender?: Maybe<SendEmailToFriendSender>;
+};
+
+/** An output object that contains information about the recipient. */
+export type SendEmailToFriendRecipient = {
+  __typename?: "SendEmailToFriendRecipient";
+  /** The email address of the recipient. */
+  email: Scalars["String"]["output"];
+  /** The name of the recipient. */
+  name: Scalars["String"]["output"];
+};
+
+/** Contains details about a recipient. */
+export type SendEmailToFriendRecipientInput = {
+  /** The email address of the recipient. */
+  email: Scalars["String"]["input"];
+  /** The name of the recipient. */
+  name: Scalars["String"]["input"];
+};
+
+/** An output object that contains information about the sender. */
+export type SendEmailToFriendSender = {
+  __typename?: "SendEmailToFriendSender";
+  /** The email address of the sender. */
+  email: Scalars["String"]["output"];
+  /** The text of the message to be sent. */
+  message: Scalars["String"]["output"];
+  /** The name of the sender. */
+  name: Scalars["String"]["output"];
+};
+
+/** Contains details about the sender. */
+export type SendEmailToFriendSenderInput = {
+  /** The email address of the sender. */
+  email: Scalars["String"]["input"];
+  /** The text of the message to be sent. */
+  message: Scalars["String"]["input"];
+  /** The name of the sender. */
+  name: Scalars["String"]["input"];
+};
+
+/** Contains details about the configuration of the Email to a Friend feature. */
+export type SendFriendConfiguration = {
+  __typename?: "SendFriendConfiguration";
+  /** Indicates whether the Email to a Friend feature is enabled. */
+  enabled_for_customers: Scalars["Boolean"]["output"];
+  /** Indicates whether the Email to a Friend feature is enabled for guests. */
+  enabled_for_guests: Scalars["Boolean"]["output"];
+};
+
+/** Sets the billing address. */
+export type SetBillingAddressOnCartInput = {
+  /** The billing address. */
+  billing_address: BillingAddressInput;
+  /** The unique ID of a `Cart` object. */
+  cart_id: Scalars["String"]["input"];
+};
+
+/** Contains details about the cart after setting the billing address. */
+export type SetBillingAddressOnCartOutput = {
+  __typename?: "SetBillingAddressOnCartOutput";
+  /** The cart after setting the billing address. */
+  cart: Cart;
+};
+
+/** Defines the gift options applied to the cart. */
+export type SetGiftOptionsOnCartInput = {
+  /** The unique ID that identifies the shopper's cart. */
+  cart_id: Scalars["String"]["input"];
+  /** Gift message details for the cart. */
+  gift_message?: InputMaybe<GiftMessageInput>;
+  /** Whether customer requested gift receipt for the cart. */
+  gift_receipt_included: Scalars["Boolean"]["input"];
+  /** The unique ID for a `GiftWrapping` object to be used for the cart. */
+  gift_wrapping_id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** Whether customer requested printed card for the cart. */
+  printed_card_included: Scalars["Boolean"]["input"];
+};
+
+/** Contains the cart after gift options have been applied. */
+export type SetGiftOptionsOnCartOutput = {
+  __typename?: "SetGiftOptionsOnCartOutput";
+  /** The modified cart object. */
+  cart: Cart;
+};
+
+/** Defines the guest email and cart. */
+export type SetGuestEmailOnCartInput = {
+  /** The unique ID of a `Cart` object. */
+  cart_id: Scalars["String"]["input"];
+  /** The email address of the guest. */
+  email: Scalars["String"]["input"];
+};
+
+/** Contains details about the cart after setting the email of a guest. */
+export type SetGuestEmailOnCartOutput = {
+  __typename?: "SetGuestEmailOnCartOutput";
+  /** The cart after setting the guest email. */
+  cart: Cart;
+};
+
+/** Applies a payment method to the quote. */
+export type SetPaymentMethodAndPlaceOrderInput = {
+  /** The unique ID of a `Cart` object. */
+  cart_id: Scalars["String"]["input"];
+  /** The payment method data to apply to the cart. */
+  payment_method: PaymentMethodInput;
+};
+
+/** Applies a payment method to the cart. */
+export type SetPaymentMethodOnCartInput = {
+  /** The unique ID of a `Cart` object. */
+  cart_id: Scalars["String"]["input"];
+  /** The payment method data to apply to the cart. */
+  payment_method: PaymentMethodInput;
+};
+
+/** Contains details about the cart after setting the payment method. */
+export type SetPaymentMethodOnCartOutput = {
+  __typename?: "SetPaymentMethodOnCartOutput";
+  /** The cart after setting the payment method. */
+  cart: Cart;
+};
+
+/** Specifies an array of addresses to use for shipping. */
+export type SetShippingAddressesOnCartInput = {
+  /** The unique ID of a `Cart` object. */
+  cart_id: Scalars["String"]["input"];
+  /** An array of shipping addresses. */
+  shipping_addresses: Array<InputMaybe<ShippingAddressInput>>;
+};
+
+/** Contains details about the cart after setting the shipping addresses. */
+export type SetShippingAddressesOnCartOutput = {
+  __typename?: "SetShippingAddressesOnCartOutput";
+  /** The cart after setting the shipping addresses. */
+  cart: Cart;
+};
+
+/** Applies one or shipping methods to the cart. */
+export type SetShippingMethodsOnCartInput = {
+  /** The unique ID of a `Cart` object. */
+  cart_id: Scalars["String"]["input"];
+  /** An array of shipping methods. */
+  shipping_methods: Array<InputMaybe<ShippingMethodInput>>;
+};
+
+/** Contains details about the cart after setting the shipping methods. */
+export type SetShippingMethodsOnCartOutput = {
+  __typename?: "SetShippingMethodsOnCartOutput";
+  /** The cart after setting the shipping methods. */
+  cart: Cart;
+};
+
+export type Setting = Entity &
+  Node & {
+    __typename?: "Setting";
+    /** The time the document was created */
+    createdAt: Scalars["DateTime"]["output"];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    /** Get the document in other stages */
+    documentInStages: Array<Setting>;
+    /** List of Setting versions */
+    history: Array<Version>;
+    /** The unique identifier */
+    id: Scalars["ID"]["output"];
+    key: SettingKey;
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    scheduledIn: Array<ScheduledOperation>;
+    /** System stage field */
+    stage: Stage;
+    /** The time the document was updated */
+    updatedAt: Scalars["DateTime"]["output"];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+    value: Scalars["String"]["output"];
+  };
+
+export type SettingCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type SettingDocumentInStagesArgs = {
+  includeCurrent?: Scalars["Boolean"]["input"];
+  inheritLocale?: Scalars["Boolean"]["input"];
+  stages?: Array<Stage>;
+};
+
+export type SettingHistoryArgs = {
+  limit?: Scalars["Int"]["input"];
+  skip?: Scalars["Int"]["input"];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+export type SettingPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type SettingScheduledInArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+export type SettingUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type SettingConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: SettingWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type SettingConnection = {
+  __typename?: "SettingConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<SettingEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type SettingCreateInput = {
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  key: SettingKey;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  value: Scalars["String"]["input"];
+};
+
+export type SettingCreateManyInlineInput = {
+  /** Connect multiple existing Setting documents */
+  connect?: InputMaybe<Array<SettingWhereUniqueInput>>;
+  /** Create and connect multiple existing Setting documents */
+  create?: InputMaybe<Array<SettingCreateInput>>;
+};
+
+export type SettingCreateOneInlineInput = {
+  /** Connect one existing Setting document */
+  connect?: InputMaybe<SettingWhereUniqueInput>;
+  /** Create and connect one Setting document */
+  create?: InputMaybe<SettingCreateInput>;
+};
+
+/** An edge in a connection. */
+export type SettingEdge = {
+  __typename?: "SettingEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: Setting;
+};
+
+export enum SettingKey {
+  PhoneNumber = "PHONE_NUMBER",
+}
+
+/** Identifies documents */
+export type SettingManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<SettingWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<SettingWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<SettingWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<SettingWhereStageInput>;
+  documentInStages_none?: InputMaybe<SettingWhereStageInput>;
+  documentInStages_some?: InputMaybe<SettingWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  key?: InputMaybe<SettingKey>;
+  /** All values that are contained in given list. */
+  key_in?: InputMaybe<Array<InputMaybe<SettingKey>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  key_not?: InputMaybe<SettingKey>;
+  /** All values that are not contained in given list. */
+  key_not_in?: InputMaybe<Array<InputMaybe<SettingKey>>>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+  value?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  value_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  value_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  value_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  value_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  value_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  value_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  value_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  value_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  value_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export enum SettingOrderByInput {
+  CreatedAtAsc = "createdAt_ASC",
+  CreatedAtDesc = "createdAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  KeyAsc = "key_ASC",
+  KeyDesc = "key_DESC",
+  PublishedAtAsc = "publishedAt_ASC",
+  PublishedAtDesc = "publishedAt_DESC",
+  UpdatedAtAsc = "updatedAt_ASC",
+  UpdatedAtDesc = "updatedAt_DESC",
+  ValueAsc = "value_ASC",
+  ValueDesc = "value_DESC",
+}
+
+export type SettingUpdateInput = {
+  key?: InputMaybe<SettingKey>;
+  value?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type SettingUpdateManyInlineInput = {
+  /** Connect multiple existing Setting documents */
+  connect?: InputMaybe<Array<SettingConnectInput>>;
+  /** Create and connect multiple Setting documents */
+  create?: InputMaybe<Array<SettingCreateInput>>;
+  /** Delete multiple Setting documents */
+  delete?: InputMaybe<Array<SettingWhereUniqueInput>>;
+  /** Disconnect multiple Setting documents */
+  disconnect?: InputMaybe<Array<SettingWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing Setting documents */
+  set?: InputMaybe<Array<SettingWhereUniqueInput>>;
+  /** Update multiple Setting documents */
+  update?: InputMaybe<Array<SettingUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Setting documents */
+  upsert?: InputMaybe<Array<SettingUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type SettingUpdateManyInput = {
+  value?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type SettingUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: SettingUpdateManyInput;
+  /** Document search */
+  where: SettingWhereInput;
+};
+
+export type SettingUpdateOneInlineInput = {
+  /** Connect existing Setting document */
+  connect?: InputMaybe<SettingWhereUniqueInput>;
+  /** Create and connect one Setting document */
+  create?: InputMaybe<SettingCreateInput>;
+  /** Delete currently connected Setting document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected Setting document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single Setting document */
+  update?: InputMaybe<SettingUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Setting document */
+  upsert?: InputMaybe<SettingUpsertWithNestedWhereUniqueInput>;
+};
+
+export type SettingUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: SettingUpdateInput;
+  /** Unique document search */
+  where: SettingWhereUniqueInput;
+};
+
+export type SettingUpsertInput = {
+  /** Create document if it didn't exist */
+  create: SettingCreateInput;
+  /** Update document if it exists */
+  update: SettingUpdateInput;
+};
+
+export type SettingUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: SettingUpsertInput;
+  /** Unique document search */
+  where: SettingWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type SettingWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Identifies documents */
+export type SettingWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<SettingWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<SettingWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<SettingWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<SettingWhereStageInput>;
+  documentInStages_none?: InputMaybe<SettingWhereStageInput>;
+  documentInStages_some?: InputMaybe<SettingWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  key?: InputMaybe<SettingKey>;
+  /** All values that are contained in given list. */
+  key_in?: InputMaybe<Array<InputMaybe<SettingKey>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  key_not?: InputMaybe<SettingKey>;
+  /** All values that are not contained in given list. */
+  key_not_in?: InputMaybe<Array<InputMaybe<SettingKey>>>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+  value?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  value_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  value_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  value_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  value_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  value_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  value_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  value_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  value_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  value_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type SettingWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<SettingWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<SettingWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<SettingWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<SettingWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References Setting record uniquely */
+export type SettingWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  key?: InputMaybe<SettingKey>;
+};
+
+/** Defines a gift registry invitee. */
+export type ShareGiftRegistryInviteeInput = {
+  /** The email address of the gift registry invitee. */
+  email: Scalars["String"]["input"];
+  /** The name of the gift registry invitee. */
+  name: Scalars["String"]["input"];
+};
+
+/** Contains the results of a request to share a gift registry. */
+export type ShareGiftRegistryOutput = {
+  __typename?: "ShareGiftRegistryOutput";
+  /** Indicates whether the gift registry was successfully shared. */
+  is_shared: Scalars["Boolean"]["output"];
+};
+
+/** Defines the sender of an invitation to view a gift registry. */
+export type ShareGiftRegistrySenderInput = {
+  /** A brief message from the sender. */
+  message: Scalars["String"]["input"];
+  /** The sender of the gift registry invitation. */
+  name: Scalars["String"]["input"];
+};
+
+/** Defines whether bundle items must be shipped together. */
+export enum ShipBundleItemsEnum {
+  /** @deprecated  */
+  Separately = "SEPARATELY",
+  /** @deprecated  */
+  Together = "TOGETHER",
+}
+
+export type ShipmentItem = ShipmentItemInterface & {
+  __typename?: "ShipmentItem";
+  /** The unique ID for a `ShipmentItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** The order item associated with the shipment item. */
+  order_item?: Maybe<OrderItemInterface>;
+  /** The name of the base product. */
+  product_name?: Maybe<Scalars["String"]["output"]>;
+  /** The sale price for the base product. */
+  product_sale_price: Money;
+  /** The SKU of the base product. */
+  product_sku: Scalars["String"]["output"];
+  /** The number of shipped items. */
+  quantity_shipped: Scalars["Float"]["output"];
+};
+
+/** Order shipment item details. */
+export type ShipmentItemInterface = {
+  /** The unique ID for a `ShipmentItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** The order item associated with the shipment item. */
+  order_item?: Maybe<OrderItemInterface>;
+  /** The name of the base product. */
+  product_name?: Maybe<Scalars["String"]["output"]>;
+  /** The sale price for the base product. */
+  product_sale_price: Money;
+  /** The SKU of the base product. */
+  product_sku: Scalars["String"]["output"];
+  /** The number of shipped items. */
+  quantity_shipped: Scalars["Float"]["output"];
+};
+
+/** Contains order shipment tracking details. */
+export type ShipmentTracking = {
+  __typename?: "ShipmentTracking";
+  /** The shipping carrier for the order delivery. */
+  carrier: Scalars["String"]["output"];
+  /** The tracking number of the order shipment. */
+  number?: Maybe<Scalars["String"]["output"]>;
+  /** The shipment tracking title. */
+  title: Scalars["String"]["output"];
+};
+
+/** Defines a single shipping address. */
+export type ShippingAddressInput = {
+  /** Defines a shipping address. */
+  address?: InputMaybe<CartAddressInput>;
+  /** An ID from the customer's address book that uniquely identifies the address to be used for shipping. */
+  customer_address_id?: InputMaybe<Scalars["Int"]["input"]>;
+  /** Text provided by the shopper. */
+  customer_notes?: InputMaybe<Scalars["String"]["input"]>;
+  /** The code of Pickup Location which will be used for In-Store Pickup. */
+  pickup_location_code?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Contains shipping addresses and methods. */
+export type ShippingCartAddress = CartAddressInterface & {
+  __typename?: "ShippingCartAddress";
+  /** An array that lists the shipping methods that can be applied to the cart. */
+  available_shipping_methods?: Maybe<Array<Maybe<AvailableShippingMethod>>>;
+  /** @deprecated Use `cart_items_v2` instead. */
+  cart_items?: Maybe<Array<Maybe<CartItemQuantity>>>;
+  /** An array that lists the items in the cart. */
+  cart_items_v2?: Maybe<Array<Maybe<CartItemInterface>>>;
+  /** The city specified for the billing or shipping address. */
+  city: Scalars["String"]["output"];
+  /** The company specified for the billing or shipping address. */
+  company?: Maybe<Scalars["String"]["output"]>;
+  /** An object containing the country label and code. */
+  country: CartAddressCountry;
+  /** Text provided by the shopper. */
+  customer_notes?: Maybe<Scalars["String"]["output"]>;
+  /** The first name of the customer or guest. */
+  firstname: Scalars["String"]["output"];
+  /** @deprecated This information should not be exposed on the frontend. */
+  items_weight?: Maybe<Scalars["Float"]["output"]>;
+  /** The last name of the customer or guest. */
+  lastname: Scalars["String"]["output"];
+  pickup_location_code?: Maybe<Scalars["String"]["output"]>;
+  /** The ZIP or postal code of the billing or shipping address. */
+  postcode?: Maybe<Scalars["String"]["output"]>;
+  /** An object containing the region label and code. */
+  region?: Maybe<CartAddressRegion>;
+  /** An object that describes the selected shipping method. */
+  selected_shipping_method?: Maybe<SelectedShippingMethod>;
+  /** An array containing the street for the billing or shipping address. */
+  street: Array<Maybe<Scalars["String"]["output"]>>;
+  /** The telephone number for the billing or shipping address. */
+  telephone?: Maybe<Scalars["String"]["output"]>;
+  /** The unique id of the customer address. */
+  uid: Scalars["String"]["output"];
+  /** The VAT company number for billing or shipping address. */
+  vat_id?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Defines an individual shipping discount. This discount can be applied to shipping. */
+export type ShippingDiscount = {
+  __typename?: "ShippingDiscount";
+  /** The amount of the discount. */
+  amount: Money;
+};
+
+/** Contains details about shipping and handling costs. */
+export type ShippingHandling = {
+  __typename?: "ShippingHandling";
+  /** The shipping amount, excluding tax. */
+  amount_excluding_tax?: Maybe<Money>;
+  /** The shipping amount, including tax. */
+  amount_including_tax?: Maybe<Money>;
+  /** The applied discounts to the shipping. */
+  discounts?: Maybe<Array<Maybe<ShippingDiscount>>>;
+  /** Details about taxes applied for shipping. */
+  taxes?: Maybe<Array<Maybe<TaxItem>>>;
+  /** The total amount for shipping. */
+  total_amount: Money;
+};
+
+/** Defines the shipping carrier and method. */
+export type ShippingMethodInput = {
+  /** A string that identifies a commercial carrier or an offline delivery method. */
+  carrier_code: Scalars["String"]["input"];
+  /** A string that indicates which service a commercial carrier will use to ship items. For offline delivery methods, this value is similar to the label displayed on the checkout page. */
+  method_code: Scalars["String"]["input"];
+};
+
+/** An implementation for simple product cart items. */
+export type SimpleCartItem = CartItemInterface & {
+  __typename?: "SimpleCartItem";
+  /** The list of available gift wrapping options for the cart item. */
+  available_gift_wrapping: Array<Maybe<GiftWrapping>>;
+  /** An array containing the customizable options the shopper selected. */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>;
+  /** An array of errors encountered while loading the cart item */
+  errors?: Maybe<Array<Maybe<CartItemError>>>;
+  /** The entered gift message for the cart item */
+  gift_message?: Maybe<GiftMessage>;
+  /** The selected gift wrapping for the cart item. */
+  gift_wrapping?: Maybe<GiftWrapping>;
+  /** @deprecated Use `uid` instead. */
+  id: Scalars["String"]["output"];
+  /** Indicates whether the product is available in the store */
+  is_in_store?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Contains details about the price of the item, including taxes and discounts. */
+  prices?: Maybe<CartItemPrices>;
+  /** Details about an item in the cart. */
+  product: ProductInterface;
+  /** The quantity of this item in the cart. */
+  quantity: Scalars["Float"]["output"];
+  /** The unique ID for a `CartItemInterface` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Defines a simple product, which is tangible and is usually sold in single units or in fixed quantities. */
+export type SimpleProduct = CustomizableProductInterface &
+  PhysicalProductInterface &
+  ProductInterface &
+  RoutableInterface & {
+    __typename?: "SimpleProduct";
+    /** @deprecated Use the `custom_attributes` field instead. */
+    addable_to_cart?: Maybe<Scalars["Int"]["output"]>;
+    /**
+     * The attribute set assigned to the product.
+     * @deprecated The field should not be used on the storefront.
+     */
+    attribute_set_id?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    brand?: Maybe<Scalars["String"]["output"]>;
+    /** The relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled. */
+    canonical_url?: Maybe<Scalars["String"]["output"]>;
+    /** The categories assigned to a product. */
+    categories?: Maybe<Array<Maybe<CategoryInterface>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    color?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    configuration?: Maybe<Scalars["String"]["output"]>;
+    /** The product's country of origin. */
+    country_of_manufacture?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * Timestamp indicating when the product was created.
+     * @deprecated The field should not be used on the storefront.
+     */
+    created_at?: Maybe<Scalars["String"]["output"]>;
+    /** An array of cross-sell products. */
+    crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    delivery_promise?: Maybe<Scalars["String"]["output"]>;
+    /** Detailed information about the product. The value can include simple HTML tags. */
+    description?: Maybe<ComplexTextValue>;
+    /** Indicates whether a gift message is available. */
+    gift_message_available?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * The ID number assigned to the product.
+     * @deprecated Use the `uid` field instead.
+     */
+    id?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    ifsite?: Maybe<Scalars["String"]["output"]>;
+    /** The relative path to the main image on the product page. */
+    image?: Maybe<ProductImage>;
+    /** Indicates whether the product can be returned. */
+    is_returnable?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    maintenance_description?: Maybe<Scalars["String"]["output"]>;
+    /** A number representing the product's manufacturer. */
+    manufacturer?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_1?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_2?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_depth?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_diameter?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_gross_weight?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_height?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_length?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_seat_height?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_thickness?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_volume?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_width?: Maybe<Scalars["String"]["output"]>;
+    /** An array of media gallery objects. */
+    media_gallery?: Maybe<Array<Maybe<MediaGalleryInterface>>>;
+    /**
+     * An array of MediaGalleryEntry objects.
+     * @deprecated Use `media_gallery` instead.
+     */
+    media_gallery_entries?: Maybe<Array<Maybe<MediaGalleryEntry>>>;
+    /** A brief overview of the product for search results listings, maximum 255 characters. */
+    meta_description?: Maybe<Scalars["String"]["output"]>;
+    /** A comma-separated list of keywords that are visible only to search engines. */
+    meta_keyword?: Maybe<Scalars["String"]["output"]>;
+    /** A string that is displayed in the title bar and tab of the browser and in search results lists. */
+    meta_title?: Maybe<Scalars["String"]["output"]>;
+    /** The product name. Customers use this name to identify the product. */
+    name?: Maybe<Scalars["String"]["output"]>;
+    /** The beginning date for new product listings, and determines if the product is featured as a new product. */
+    new_from_date?: Maybe<Scalars["String"]["output"]>;
+    /** The end date for new product listings. */
+    new_to_date?: Maybe<Scalars["String"]["output"]>;
+    /** Product stock only x left count */
+    only_x_left_in_stock?: Maybe<Scalars["Float"]["output"]>;
+    /** An array of options for a customizable product. */
+    options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>;
+    /** If the product has multiple options, determines where they appear on the product page. */
+    options_container?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * Indicates the price of an item.
+     * @deprecated Use `price_range` for product price information.
+     */
+    price?: Maybe<ProductPrices>;
+    /** The range of prices for the product */
+    price_range: PriceRange;
+    /** An array of `TierPrice` objects. */
+    price_tiers?: Maybe<Array<Maybe<TierPrice>>>;
+    productBrand?: Maybe<Brand>;
+    /** Get product labels. */
+    productLabel?: Maybe<Label>;
+    /** An array of `ProductLinks` objects. */
+    product_links?: Maybe<Array<Maybe<ProductLinksInterface>>>;
+    /** The average of all the ratings given to the product. */
+    rating_summary: Scalars["Float"]["output"];
+    /** Contains 0 when there is no redirect error. A value of 301 indicates the URL of the requested resource has been changed permanently, while a value of 302 indicates a temporary redirect. */
+    redirect_code: Scalars["Int"]["output"];
+    /** An array of related products. */
+    related_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** The internal relative URL. If the specified URL is a redirect, the query returns the redirected URL, not the original. */
+    relative_url?: Maybe<Scalars["String"]["output"]>;
+    /** The total count of all the reviews given to the product. */
+    review_count: Scalars["Int"]["output"];
+    /** The list of products reviews. */
+    reviews: ProductReviews;
+    /** Products from the same series */
+    series?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    series_group?: Maybe<Scalars["String"]["output"]>;
+    /** A short description of the product. Its use depends on the theme. */
+    short_description?: Maybe<ComplexTextValue>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    size_filter?: Maybe<Scalars["String"]["output"]>;
+    /** A number or code assigned to a product to identify the product, options, price, and manufacturer. */
+    sku?: Maybe<Scalars["String"]["output"]>;
+    /** The relative path to the small image, which is used on catalog pages. */
+    small_image?: Maybe<ProductImage>;
+    /**
+     * The beginning date that a product has a special price.
+     * @deprecated The field should not be used on the storefront.
+     */
+    special_from_date?: Maybe<Scalars["String"]["output"]>;
+    /** The discounted price of the product. */
+    special_price?: Maybe<Scalars["Float"]["output"]>;
+    /** The end date for a product with a special price. */
+    special_to_date?: Maybe<Scalars["String"]["output"]>;
+    /** Indicates whether the product is staged for a future campaign. */
+    staged: Scalars["Boolean"]["output"];
+    /** Stock status of the product */
+    stock_status?: Maybe<ProductStockStatus>;
+    /** An array containing information about all the stores with product quantities. */
+    stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
+    /** The file name of a swatch image. */
+    swatch_image?: Maybe<Scalars["String"]["output"]>;
+    /** The relative path to the product's thumbnail image. */
+    thumbnail?: Maybe<ProductImage>;
+    /**
+     * The price when tier pricing is in effect and the items purchased threshold has been reached.
+     * @deprecated Use `price_tiers` for product tier price information.
+     */
+    tier_price?: Maybe<Scalars["Float"]["output"]>;
+    /**
+     * An array of ProductTierPrices objects.
+     * @deprecated Use `price_tiers` for product tier price information.
+     */
+    tier_prices?: Maybe<Array<Maybe<ProductTierPrices>>>;
+    /** One of PRODUCT, CATEGORY, or CMS_PAGE. */
+    type?: Maybe<UrlRewriteEntityTypeEnum>;
+    /**
+     * One of simple, virtual, bundle, downloadable, grouped, or configurable.
+     * @deprecated Use `__typename` instead.
+     */
+    type_id?: Maybe<Scalars["String"]["output"]>;
+    /** The unique ID for a `ProductInterface` object. */
+    uid: Scalars["ID"]["output"];
+    /**
+     * Timestamp indicating when the product was updated.
+     * @deprecated The field should not be used on the storefront.
+     */
+    updated_at?: Maybe<Scalars["String"]["output"]>;
+    /** An array of up-sell products. */
+    upsell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** The part of the URL that identifies the product */
+    url_key?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use product's `canonical_url` or url rewrites instead */
+    url_path?: Maybe<Scalars["String"]["output"]>;
+    /** URL rewrites list */
+    url_rewrites?: Maybe<Array<Maybe<UrlRewrite>>>;
+    /** The part of the product URL that is appended after the url key */
+    url_suffix?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    webshopavailable?: Maybe<Scalars["Int"]["output"]>;
+    /**
+     * An array of websites in which the product is available.
+     * @deprecated The field should not be used on the storefront.
+     */
+    websites?: Maybe<Array<Maybe<Website>>>;
+    /** The weight of the item, in units defined by the store. */
+    weight?: Maybe<Scalars["Float"]["output"]>;
+  };
+
+/** Defines a simple product, which is tangible and is usually sold in single units or in fixed quantities. */
+export type SimpleProductReviewsArgs = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+/** Defines a single product to add to the cart. */
+export type SimpleProductCartItemInput = {
+  /** An array that defines customizable options for the product. */
+  customizable_options?: InputMaybe<Array<InputMaybe<CustomizableOptionInput>>>;
+  /** An object containing the `sku`, `quantity`, and other relevant information about the product. */
+  data: CartItemInput;
+};
+
+/** Contains a simple product wish list item. */
+export type SimpleWishlistItem = WishlistItemInterface & {
+  __typename?: "SimpleWishlistItem";
+  /** The date and time the item was added to the wish list. */
+  added_at: Scalars["String"]["output"];
+  /** Custom options selected for the wish list item. */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>;
+  /** The description of the item. */
+  description?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `WishlistItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** Product details of the wish list item. */
+  product?: Maybe<ProductInterface>;
+  /** The quantity of this wish list item. */
+  quantity: Scalars["Float"]["output"];
+};
+
+/** SnowdogMenu defines all menu information */
+export type SnowdogMenu = {
+  __typename?: "SnowdogMenu";
+  /** Menu creation time */
+  creation_time: Scalars["String"]["output"];
+  /** Menu CSS class */
+  css_class?: Maybe<Scalars["String"]["output"]>;
+  /** Menu identifier */
+  identifier: Scalars["String"]["output"];
+  /** Menu ID */
+  menu_id: Scalars["Int"]["output"];
+  /** Menu nodes */
+  nodes?: Maybe<SnowdogMenuNodes>;
+  /** Menu title */
+  title: Scalars["String"]["output"];
+  /** Menu update time */
+  update_time: Scalars["String"]["output"];
+};
+
+/** Snowdog menu CMS page node type */
+export type SnowdogMenuCmsPageNode = SnowdogMenuNodeContentFieldInterface &
+  SnowdogMenuNodeInterface & {
+    __typename?: "SnowdogMenuCmsPageNode";
+    /** Node additional data */
+    additional_data?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
+    /** Node classes */
+    classes?: Maybe<Scalars["String"]["output"]>;
+    /** Node content */
+    content?: Maybe<Scalars["String"]["output"]>;
+    /** Node creation time */
+    creation_time: Scalars["String"]["output"];
+    /** Node level */
+    level: Scalars["Int"]["output"];
+    /** Menu ID */
+    menu_id: Scalars["Int"]["output"];
+    /** Node ID */
+    node_id: Scalars["Int"]["output"];
+    /** Node template */
+    node_template?: Maybe<Scalars["String"]["output"]>;
+    /** Node parent ID */
+    parent_id?: Maybe<Scalars["Int"]["output"]>;
+    /** Node position */
+    position: Scalars["Int"]["output"];
+    /** Node submenu template */
+    submenu_template?: Maybe<Scalars["String"]["output"]>;
+    /** Node title */
+    title?: Maybe<Scalars["String"]["output"]>;
+    /** Node type */
+    type: Scalars["String"]["output"];
+    /** Node update time */
+    update_time: Scalars["String"]["output"];
+    /** Returns the url key when available */
+    url_key?: Maybe<Scalars["String"]["output"]>;
+  };
+
+/** Snowdog menu custom URL node type */
+export type SnowdogMenuCustomUrlNode = SnowdogMenuCustomUrlNodeInterface &
+  SnowdogMenuNodeContentFieldInterface &
+  SnowdogMenuNodeImageFieldInterface &
+  SnowdogMenuNodeInterface & {
+    __typename?: "SnowdogMenuCustomUrlNode";
+    /** Node additional data */
+    additional_data?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
+    /** Node classes */
+    classes?: Maybe<Scalars["String"]["output"]>;
+    /** Node content */
+    content?: Maybe<Scalars["String"]["output"]>;
+    /** Node creation time */
+    creation_time: Scalars["String"]["output"];
+    /** Node image */
+    image?: Maybe<Scalars["String"]["output"]>;
+    /** Node image alt text */
+    image_alt_text?: Maybe<Scalars["String"]["output"]>;
+    /** Node level */
+    level: Scalars["Int"]["output"];
+    /** Menu ID */
+    menu_id: Scalars["Int"]["output"];
+    /** Node ID */
+    node_id: Scalars["Int"]["output"];
+    /** Node template */
+    node_template?: Maybe<Scalars["String"]["output"]>;
+    /** Node parent ID */
+    parent_id?: Maybe<Scalars["Int"]["output"]>;
+    /** Node position */
+    position: Scalars["Int"]["output"];
+    /** Node submenu template */
+    submenu_template?: Maybe<Scalars["String"]["output"]>;
+    /** Node target (false for '_self', true for '_blank') */
+    target: Scalars["Boolean"]["output"];
+    /** Node title */
+    title?: Maybe<Scalars["String"]["output"]>;
+    /** Node type */
+    type: Scalars["String"]["output"];
+    /** Node update time */
+    update_time: Scalars["String"]["output"];
+    /** Returns the url key when available */
+    url_key?: Maybe<Scalars["String"]["output"]>;
+  };
+
+/** SnowdogMenuCustomUrlNodeInterface contains custom URL nodes specific fields */
+export type SnowdogMenuCustomUrlNodeInterface = {
+  /** Node target (false for '_self', true for '_blank') */
+  target: Scalars["Boolean"]["output"];
+};
+
+/** Snowdog menu default node type */
+export type SnowdogMenuNode = SnowdogMenuNodeContentFieldInterface &
+  SnowdogMenuNodeImageFieldInterface &
+  SnowdogMenuNodeInterface & {
+    __typename?: "SnowdogMenuNode";
+    /** Node additional data */
+    additional_data?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
+    /** Node classes */
+    classes?: Maybe<Scalars["String"]["output"]>;
+    /** Node content */
+    content?: Maybe<Scalars["String"]["output"]>;
+    /** Node creation time */
+    creation_time: Scalars["String"]["output"];
+    /** Node image */
+    image?: Maybe<Scalars["String"]["output"]>;
+    /** Node image alt text */
+    image_alt_text?: Maybe<Scalars["String"]["output"]>;
+    /** Node level */
+    level: Scalars["Int"]["output"];
+    /** Menu ID */
+    menu_id: Scalars["Int"]["output"];
+    /** Node ID */
+    node_id: Scalars["Int"]["output"];
+    /** Node template */
+    node_template?: Maybe<Scalars["String"]["output"]>;
+    /** Node parent ID */
+    parent_id?: Maybe<Scalars["Int"]["output"]>;
+    /** Node position */
+    position: Scalars["Int"]["output"];
+    /** Node submenu template */
+    submenu_template?: Maybe<Scalars["String"]["output"]>;
+    /** Node title */
+    title?: Maybe<Scalars["String"]["output"]>;
+    /** Node type */
+    type: Scalars["String"]["output"];
+    /** Node update time */
+    update_time: Scalars["String"]["output"];
+    /** Returns the url key when available */
+    url_key?: Maybe<Scalars["String"]["output"]>;
+  };
+
+/** SnowdogMenuNodeContentFieldsInterface defines node content field */
+export type SnowdogMenuNodeContentFieldInterface = {
+  /** Node content */
+  content?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** SnowdogMenuNodeContentFieldsInterface defines node image fields */
+export type SnowdogMenuNodeImageFieldInterface = {
+  /** Node image */
+  image?: Maybe<Scalars["String"]["output"]>;
+  /** Node image alt text */
+  image_alt_text?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** SnowdogMenuNodeInterface contains the fields that are common to all types of nodes */
+export type SnowdogMenuNodeInterface = {
+  /** Node additional data */
+  additional_data?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
+  /** Node classes */
+  classes?: Maybe<Scalars["String"]["output"]>;
+  /** Node creation time */
+  creation_time: Scalars["String"]["output"];
+  /** Node level */
+  level: Scalars["Int"]["output"];
+  /** Menu ID */
+  menu_id: Scalars["Int"]["output"];
+  /** Node ID */
+  node_id: Scalars["Int"]["output"];
+  /** Node template */
+  node_template?: Maybe<Scalars["String"]["output"]>;
+  /** Node parent ID */
+  parent_id?: Maybe<Scalars["Int"]["output"]>;
+  /** Node position */
+  position: Scalars["Int"]["output"];
+  /** Node submenu template */
+  submenu_template?: Maybe<Scalars["String"]["output"]>;
+  /** Node title */
+  title?: Maybe<Scalars["String"]["output"]>;
+  /** Node type */
+  type: Scalars["String"]["output"];
+  /** Node update time */
+  update_time: Scalars["String"]["output"];
+  /** Returns the url key when available */
+  url_key?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Menu nodes information */
+export type SnowdogMenuNodes = {
+  __typename?: "SnowdogMenuNodes";
+  /** An array of menu nodes */
+  items?: Maybe<Array<Maybe<SnowdogMenuNodeInterface>>>;
+};
+
+/** Snowdog menu wrapper node type */
+export type SnowdogMenuWrapperNode = SnowdogMenuNodeInterface & {
+  __typename?: "SnowdogMenuWrapperNode";
+  /** Node additional data */
+  additional_data?: Maybe<Array<Maybe<Scalars["String"]["output"]>>>;
+  /** Node classes */
+  classes?: Maybe<Scalars["String"]["output"]>;
+  /** Node creation time */
+  creation_time: Scalars["String"]["output"];
+  /** Node level */
+  level: Scalars["Int"]["output"];
+  /** Menu ID */
+  menu_id: Scalars["Int"]["output"];
+  /** Node ID */
+  node_id: Scalars["Int"]["output"];
+  /** Node template */
+  node_template?: Maybe<Scalars["String"]["output"]>;
+  /** Node parent ID */
+  parent_id?: Maybe<Scalars["Int"]["output"]>;
+  /** Node position */
+  position: Scalars["Int"]["output"];
+  /** Node submenu template */
+  submenu_template?: Maybe<Scalars["String"]["output"]>;
+  /** Node title */
+  title?: Maybe<Scalars["String"]["output"]>;
+  /** Node type */
+  type: Scalars["String"]["output"];
+  /** Node update time */
+  update_time: Scalars["String"]["output"];
+  /** Returns the url key when available */
+  url_key?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Menus information */
+export type SnowdogMenus = {
+  __typename?: "SnowdogMenus";
+  /** An array of menus */
+  items: Array<Maybe<SnowdogMenu>>;
+};
+
+/** Indicates whether to return results in ascending or descending order. */
+export enum SortEnum {
+  /** @deprecated  */
+  Asc = "ASC",
+  /** @deprecated  */
+  Desc = "DESC",
+}
+
+/** Defines a possible sort field. */
+export type SortField = {
+  __typename?: "SortField";
+  /** The label of the sort field. */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /** The attribute code of the sort field. */
+  value?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Contains a default value for sort fields and all available sort fields. */
+export type SortFields = {
+  __typename?: "SortFields";
+  /** The default sort field value. */
+  default?: Maybe<Scalars["String"]["output"]>;
+  /** An array of possible sort fields. */
+  options?: Maybe<Array<Maybe<SortField>>>;
+};
+
+/** Stage system enumeration */
+export enum Stage {
+  /** The Draft is the default stage for all your content. */
+  Draft = "DRAFT",
+  /** The Published stage is where you can publish your content to. */
+  Published = "PUBLISHED",
+}
+
+/** Contains information about a store's configuration. */
+export type StoreConfig = {
+  __typename?: "StoreConfig";
+  /** Contains scripts that must be included in the HTML before the closing `<body>` tag. */
+  absolute_footer?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates if the gift sender has the option to send a gift receipt. Possible values: 1 (Yes) and 0 (No). */
+  allow_gift_receipt?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether gift wrapping can be added for the entire order. Possible values: 1 (Yes) and 0 (No). */
+  allow_gift_wrapping_on_order?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether gift wrapping can be added for individual order items. Possible values: 1 (Yes) and 0 (No). */
+  allow_gift_wrapping_on_order_items?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether guest users can write product reviews. Possible values: 1 (Yes) and 0 (No). */
+  allow_guests_to_write_product_reviews?: Maybe<Scalars["String"]["output"]>;
+  /** The value of the Allow Gift Messages for Order Items option */
+  allow_items?: Maybe<Scalars["String"]["output"]>;
+  /** The value of the Allow Gift Messages on Order Level option */
+  allow_order?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates if a printed card can accompany an order. Possible values: 1 (Yes) and 0 (No). */
+  allow_printed_card?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether to enable autocomplete on login and forgot password forms. */
+  autocomplete_on_storefront?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The base currency code. */
+  base_currency_code?: Maybe<Scalars["String"]["output"]>;
+  /** A fully-qualified URL that is used to create relative links to the `base_url`. */
+  base_link_url?: Maybe<Scalars["String"]["output"]>;
+  /** The fully-qualified URL that specifies the location of media files. */
+  base_media_url?: Maybe<Scalars["String"]["output"]>;
+  /** The fully-qualified URL that specifies the location of static view files. */
+  base_static_url?: Maybe<Scalars["String"]["output"]>;
+  /** The store’s fully-qualified base URL. */
+  base_url?: Maybe<Scalars["String"]["output"]>;
+  /** Braintree cc vault status. */
+  braintree_cc_vault_active?: Maybe<Scalars["String"]["output"]>;
+  /** Brands category id */
+  brands_category?: Maybe<Scalars["Int"]["output"]>;
+  /** Indicates if gift wrapping prices are displayed on the Shopping Cart page. Possible values: 1 (Yes) and 0 (No). */
+  cart_gift_wrapping?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates if printed card prices are displayed on the Shopping Cart page. Possible values: 1 (Yes) and 0 (No). */
+  cart_printed_card?: Maybe<Scalars["String"]["output"]>;
+  /** The default sort order of the search results list. */
+  catalog_default_sort_by?: Maybe<Scalars["String"]["output"]>;
+  /** Corresponds to the 'Display Prices In Product Lists' field in the Admin. It indicates how FPT information is displayed on category pages. */
+  category_fixed_product_tax_display_setting?: Maybe<FixedProductTaxDisplaySettings>;
+  /** The suffix applied to category pages, such as `.htm` or `.html`. */
+  category_url_suffix?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether only specific countries can use this payment method. */
+  check_money_order_enable_for_specific_countries?: Maybe<
+    Scalars["Boolean"]["output"]
+  >;
+  /** Indicates whether the Check/Money Order payment method is enabled. */
+  check_money_order_enabled?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The name of the party to whom the check must be payable. */
+  check_money_order_make_check_payable_to?: Maybe<Scalars["String"]["output"]>;
+  /** The maximum order amount required to qualify for the Check/Money Order payment method. */
+  check_money_order_max_order_total?: Maybe<Scalars["String"]["output"]>;
+  /** The minimum order amount required to qualify for the Check/Money Order payment method. */
+  check_money_order_min_order_total?: Maybe<Scalars["String"]["output"]>;
+  /** The status of new orders placed using the Check/Money Order payment method. */
+  check_money_order_new_order_status?: Maybe<Scalars["String"]["output"]>;
+  /** A comma-separated list of specific countries allowed to use the Check/Money Order payment method. */
+  check_money_order_payment_from_specific_countries?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** The full street address or PO Box where the checks are mailed. */
+  check_money_order_send_check_to?: Maybe<Scalars["String"]["output"]>;
+  /** A number indicating the position of the Check/Money Order payment method in the list of available payment methods during checkout. */
+  check_money_order_sort_order?: Maybe<Scalars["Int"]["output"]>;
+  /** The title of the Check/Money Order payment method displayed on the storefront. */
+  check_money_order_title?: Maybe<Scalars["String"]["output"]>;
+  /** The name of the CMS page that identifies the home page for the store. */
+  cms_home_page?: Maybe<Scalars["String"]["output"]>;
+  /** A specific CMS page that displays when cookies are not enabled for the browser. */
+  cms_no_cookies?: Maybe<Scalars["String"]["output"]>;
+  /** A specific CMS page that displays when a 404 'Page Not Found' error occurs. */
+  cms_no_route?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * A code assigned to the store to identify it.
+   * @deprecated Use `store_code` instead.
+   */
+  code?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether the `parent` or child (`itself`) thumbnail should be used in the cart for configurable products. */
+  configurable_thumbnail_source?: Maybe<Scalars["String"]["output"]>;
+  /** The copyright statement that appears at the bottom of each page. */
+  copyright?: Maybe<Scalars["String"]["output"]>;
+  /** The description that provides a summary of your site for search engine listings. It should not be more than 160 characters in length. */
+  default_description?: Maybe<Scalars["String"]["output"]>;
+  /** The default display currency code. */
+  default_display_currency_code?: Maybe<Scalars["String"]["output"]>;
+  /** A series of keywords that describe your store, each separated by a comma. */
+  default_keywords?: Maybe<Scalars["String"]["output"]>;
+  /** The title that appears at the title bar of each page when viewed in a browser. */
+  default_title?: Maybe<Scalars["String"]["output"]>;
+  /** Controls the display of the demo store notice at the top of the page. Options: 0 (No) or 1 (Yes). */
+  demonotice?: Maybe<Scalars["Int"]["output"]>;
+  /** Indicates whether customers can have multiple wish lists. Possible values: 1 (Yes) and 0 (No). */
+  enable_multiple_wishlists?: Maybe<Scalars["String"]["output"]>;
+  /** The landing page that is associated with the base URL. */
+  front?: Maybe<Scalars["String"]["output"]>;
+  /** The default number of products per page in Grid View. */
+  grid_per_page?: Maybe<Scalars["Int"]["output"]>;
+  /** A list of numbers that define how many products can be displayed in Grid View. */
+  grid_per_page_values?: Maybe<Scalars["String"]["output"]>;
+  /** Scripts that must be included in the HTML before the closing `<head>` tag. */
+  head_includes?: Maybe<Scalars["String"]["output"]>;
+  /** The small graphic image (favicon) that appears in the address bar and tab of the browser. */
+  head_shortcut_icon?: Maybe<Scalars["String"]["output"]>;
+  /** The path to the logo that appears in the header. */
+  header_logo_src?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * The ID number assigned to the store.
+   * @deprecated Use `store_code` instead.
+   */
+  id?: Maybe<Scalars["Int"]["output"]>;
+  /** Indicates whether the store view has been designated as the default within the store group. */
+  is_default_store?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Indicates whether the store group has been designated as the default within the website. */
+  is_default_store_group?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The format of the search results list. */
+  list_mode?: Maybe<Scalars["String"]["output"]>;
+  /** The default number of products per page in List View. */
+  list_per_page?: Maybe<Scalars["Int"]["output"]>;
+  /** A list of numbers that define how many products can be displayed in List View. */
+  list_per_page_values?: Maybe<Scalars["String"]["output"]>;
+  /** The store locale. */
+  locale?: Maybe<Scalars["String"]["output"]>;
+  /** The Alt text that is associated with the logo. */
+  logo_alt?: Maybe<Scalars["String"]["output"]>;
+  /** The height of the logo image, in pixels. */
+  logo_height?: Maybe<Scalars["Int"]["output"]>;
+  /** The width of the logo image, in pixels. */
+  logo_width?: Maybe<Scalars["Int"]["output"]>;
+  /** Indicates whether reward points functionality is enabled. Possible values: 1 (Enabled) and 0 (Disabled). */
+  magento_reward_general_is_enabled?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether reward points functionality is enabled on the storefront. Possible values: 1 (Enabled) and 0 (Disabled). */
+  magento_reward_general_is_enabled_on_front?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** The minimum point balance customers must have before they can redeem them. A null value indicates no minimum. */
+  magento_reward_general_min_points_balance?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** When enabled, customers can see a detailed history of their reward points. Possible values: 1 (Enabled) and 0 (Disabled). */
+  magento_reward_general_publish_history?: Maybe<Scalars["String"]["output"]>;
+  /** The number of points for a referral when an invitee registers on the site. */
+  magento_reward_points_invitation_customer?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** The maximum number of registration referrals that will qualify for rewards. A null value indicates no limit. */
+  magento_reward_points_invitation_customer_limit?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** The number of points for a referral, when an invitee places their first order on the site. */
+  magento_reward_points_invitation_order?: Maybe<Scalars["String"]["output"]>;
+  /** The number of order conversions that can earn points for the customer who sends the invitation. A null value indicates no limit. */
+  magento_reward_points_invitation_order_limit?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** The number of points earned by registered customers who subscribe to a newsletter. */
+  magento_reward_points_newsletter?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates customers earn points for shopping according to the reward point exchange rate. In Luma, this also controls whether to show a message in the shopping cart about the rewards points earned for the purchase, as well as the customer’s current reward point balance. */
+  magento_reward_points_order?: Maybe<Scalars["String"]["output"]>;
+  /** The number of points customer gets for registering. */
+  magento_reward_points_register?: Maybe<Scalars["String"]["output"]>;
+  /** The number of points for writing a review. */
+  magento_reward_points_review?: Maybe<Scalars["String"]["output"]>;
+  /** The maximum number of reviews that will qualify for the rewards. A null value indicates no limit. */
+  magento_reward_points_review_limit?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether wishlists are enabled (1) or disabled (0). */
+  magento_wishlist_general_is_enabled?: Maybe<Scalars["String"]["output"]>;
+  /** If multiple wish lists are enabled, the maximum number of wish lists the customer can have. */
+  maximum_number_of_wishlists?: Maybe<Scalars["String"]["output"]>;
+  /** The minimum number of characters required for a valid password. */
+  minimum_password_length?: Maybe<Scalars["String"]["output"]>;
+  /** The default page that displays when a 404 'Page not Found' error occurs. */
+  no_route?: Maybe<Scalars["String"]["output"]>;
+  /** Payflow Pro vault status. */
+  payment_payflowpro_cc_vault_active?: Maybe<Scalars["String"]["output"]>;
+  /** The default price of a printed card that accompanies an order. */
+  printed_card_price?: Maybe<Scalars["String"]["output"]>;
+  /** Corresponds to the 'Display Prices On Product View Page' field in the Admin. It indicates how FPT information is displayed on product pages. */
+  product_fixed_product_tax_display_setting?: Maybe<FixedProductTaxDisplaySettings>;
+  /** Indicates whether product reviews are enabled. Possible values: 1 (Yes) and 0 (No). */
+  product_reviews_enabled?: Maybe<Scalars["String"]["output"]>;
+  /** The suffix applied to product pages, such as `.htm` or `.html`. */
+  product_url_suffix?: Maybe<Scalars["String"]["output"]>;
+  /** The number of different character classes (lowercase, uppercase, digits, special characters) required in a password. */
+  required_character_classes_number?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether RMA is enabled on the storefront. Possible values: enabled/disabled. */
+  returns_enabled: Scalars["String"]["output"];
+  /**
+   * The ID of the root category.
+   * @deprecated Use `root_category_uid` instead.
+   */
+  root_category_id?: Maybe<Scalars["Int"]["output"]>;
+  /** The unique ID for a `CategoryInterface` object. */
+  root_category_uid?: Maybe<Scalars["ID"]["output"]>;
+  /** Corresponds to the 'Display Prices In Sales Modules' field in the Admin. It indicates how FPT information is displayed on cart, checkout, and order pages. */
+  sales_fixed_product_tax_display_setting?: Maybe<FixedProductTaxDisplaySettings>;
+  /** Indicates if gift wrapping prices are displayed on the Orders page. Possible values: 1 (Yes) and 0 (No). */
+  sales_gift_wrapping?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates if printed card prices are displayed on the Orders page. Possible values: 1 (Yes) and 0 (No). */
+  sales_printed_card?: Maybe<Scalars["String"]["output"]>;
+  /** A secure fully-qualified URL that is used to create relative links to the `base_url`. */
+  secure_base_link_url?: Maybe<Scalars["String"]["output"]>;
+  /** The secure fully-qualified URL that specifies the location of media files. */
+  secure_base_media_url?: Maybe<Scalars["String"]["output"]>;
+  /** The secure fully-qualified URL that specifies the location of static view files. */
+  secure_base_static_url?: Maybe<Scalars["String"]["output"]>;
+  /** The store’s fully-qualified secure base URL. */
+  secure_base_url?: Maybe<Scalars["String"]["output"]>;
+  /** Email to a Friend configuration. */
+  send_friend?: Maybe<SendFriendConfiguration>;
+  /** Indicates whether a breadcrumb trail appears on all CMS pages in the catalog. 0 (No) or 1 (Yes). */
+  show_cms_breadcrumbs?: Maybe<Scalars["Int"]["output"]>;
+  /** The unique ID of the store view. In the Admin, this is called the Store View Code. When making a GraphQL call, assign this value to the `Store` header to provide the scope. */
+  store_code?: Maybe<Scalars["ID"]["output"]>;
+  /** The unique ID assigned to the store group. In the Admin, this is called the Store Name. */
+  store_group_code?: Maybe<Scalars["ID"]["output"]>;
+  /** The label assigned to the store group. */
+  store_group_name?: Maybe<Scalars["String"]["output"]>;
+  /** The label assigned to the store view. */
+  store_name?: Maybe<Scalars["String"]["output"]>;
+  /** The store view sort order. */
+  store_sort_order?: Maybe<Scalars["Int"]["output"]>;
+  /** The time zone of the store. */
+  timezone?: Maybe<Scalars["String"]["output"]>;
+  /** A prefix that appears before the title to create a two- or three-part title. */
+  title_prefix?: Maybe<Scalars["String"]["output"]>;
+  /** The character that separates the category name and subcategory in the browser title bar. */
+  title_separator?: Maybe<Scalars["String"]["output"]>;
+  /** A suffix that appears after the title to create a two- or three-part title. */
+  title_suffix?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether the store code should be used in the URL. */
+  use_store_in_url?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The unique ID for the website. */
+  website_code?: Maybe<Scalars["ID"]["output"]>;
+  /**
+   * The ID number assigned to the website store.
+   * @deprecated The field should not be used on the storefront.
+   */
+  website_id?: Maybe<Scalars["Int"]["output"]>;
+  /** The label assigned to the website. */
+  website_name?: Maybe<Scalars["String"]["output"]>;
+  /** The unit of weight. */
+  weight_unit?: Maybe<Scalars["String"]["output"]>;
+  /** Text that appears in the header of the page and includes the name of the logged in customer. */
+  welcome?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether only specific countries can use this payment method. */
+  zero_subtotal_enable_for_specific_countries?: Maybe<
+    Scalars["Boolean"]["output"]
+  >;
+  /** Indicates whether the Zero Subtotal payment method is enabled. */
+  zero_subtotal_enabled?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The status of new orders placed using the Zero Subtotal payment method. */
+  zero_subtotal_new_order_status?: Maybe<Scalars["String"]["output"]>;
+  /** When the new order status is 'Processing', this can be set to `authorize_capture` to automatically invoice all items that have a zero balance. */
+  zero_subtotal_payment_action?: Maybe<Scalars["String"]["output"]>;
+  /** A comma-separated list of specific countries allowed to use the Zero Subtotal payment method. */
+  zero_subtotal_payment_from_specific_countries?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** A number indicating the position of the Zero Subtotal payment method in the list of available payment methods during checkout. */
+  zero_subtotal_sort_order?: Maybe<Scalars["Int"]["output"]>;
+  /** The title of the Zero Subtotal payment method displayed on the storefront. */
+  zero_subtotal_title?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Indicates where an attribute can be displayed. */
+export type StorefrontProperties = {
+  __typename?: "StorefrontProperties";
+  /** The relative position of the attribute in the layered navigation block. */
+  position?: Maybe<Scalars["Int"]["output"]>;
+  /** Indicates whether the attribute is filterable with results, without results, or not at all. */
+  use_in_layered_navigation?: Maybe<UseInLayeredNavigationOptions>;
+  /** Indicates whether the attribute is displayed in product listings. */
+  use_in_product_listing?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Indicates whether the attribute can be used in layered navigation on search results pages. */
+  use_in_search_results_layered_navigation?: Maybe<
+    Scalars["Boolean"]["output"]
+  >;
+  /** Indicates whether the attribute is displayed on product pages. */
+  visible_on_catalog_pages?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+/** Contains the result of the `subscribeEmailToNewsletter` operation. */
+export type SubscribeEmailToNewsletterOutput = {
+  __typename?: "SubscribeEmailToNewsletterOutput";
+  /** The status of the subscription request. */
+  status?: Maybe<SubscriptionStatusesEnum>;
+};
+
+/** Indicates the status of the request. */
+export enum SubscriptionStatusesEnum {
+  /** @deprecated  */
+  NotActive = "NOT_ACTIVE",
+  /** @deprecated  */
+  Subscribed = "SUBSCRIBED",
+  /** @deprecated  */
+  Unconfirmed = "UNCONFIRMED",
+  /** @deprecated  */
+  Unsubscribed = "UNSUBSCRIBED",
+}
+
+/** Describes the swatch type and a value. */
+export type SwatchData = {
+  __typename?: "SwatchData";
+  /** The type of swatch filter item: 1 - text; 2 - image. */
+  type?: Maybe<Scalars["String"]["output"]>;
+  /** The value for the swatch item. It could be text or an image link. */
+  value?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type SwatchDataInterface = {
+  /** The value can be represented as color (HEX code), image link, or text. */
+  value?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type SwatchLayerFilterItem = LayerFilterItemInterface &
+  SwatchLayerFilterItemInterface & {
+    __typename?: "SwatchLayerFilterItem";
+    /**
+     * The count of items per filter.
+     * @deprecated Use `AggregationOption.count` instead.
+     */
+    items_count?: Maybe<Scalars["Int"]["output"]>;
+    /**
+     * The label for a filter.
+     * @deprecated Use `AggregationOption.label` instead.
+     */
+    label?: Maybe<Scalars["String"]["output"]>;
+    /** Data required to render a swatch filter item. */
+    swatch_data?: Maybe<SwatchData>;
+    /**
+     * The value of a filter request variable to be used in query.
+     * @deprecated Use `AggregationOption.value` instead.
+     */
+    value_string?: Maybe<Scalars["String"]["output"]>;
+  };
+
+export type SwatchLayerFilterItemInterface = {
+  /** Data required to render a swatch filter item. */
+  swatch_data?: Maybe<SwatchData>;
+};
+
+export enum SystemDateTimeFieldVariation {
+  Base = "BASE",
+  Combined = "COMBINED",
+  Localization = "LOCALIZATION",
+}
+
+/** Contains tax item details. */
+export type TaxItem = {
+  __typename?: "TaxItem";
+  /** The amount of tax applied to the item. */
+  amount: Money;
+  /** The rate used to calculate the tax. */
+  rate: Scalars["Float"]["output"];
+  /** A title that describes the tax. */
+  title: Scalars["String"]["output"];
+};
+
+export type TextSwatchData = SwatchDataInterface & {
+  __typename?: "TextSwatchData";
+  /** The value can be represented as color (HEX code), image link, or text. */
+  value?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Defines a price based on the quantity purchased. */
+export type TierPrice = {
+  __typename?: "TierPrice";
+  /** The price discount that this tier represents. */
+  discount?: Maybe<ProductDiscount>;
+  /** The price of the product at this tier. */
+  final_price?: Maybe<Money>;
+  /** The minimum number of items that must be purchased to qualify for this price tier. */
+  quantity?: Maybe<Scalars["Float"]["output"]>;
+};
+
+export type UnpublishLocaleInput = {
+  /** Locales to unpublish */
+  locale: Locale;
+  /** Stages to unpublish selected locales from */
+  stages: Array<Stage>;
+};
+
+/** Modifies the specified items in the cart. */
+export type UpdateCartItemsInput = {
+  /** The unique ID of a `Cart` object. */
+  cart_id: Scalars["String"]["input"];
+  /** An array of items to be updated. */
+  cart_items: Array<InputMaybe<CartItemUpdateInput>>;
+};
+
+export type UpdateCartItemsIsInStoreOutput = {
+  __typename?: "UpdateCartItemsIsInStoreOutput";
+  message?: Maybe<Scalars["String"]["output"]>;
+  success?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+/** Contains details about the cart after updating items. */
+export type UpdateCartItemsOutput = {
+  __typename?: "UpdateCartItemsOutput";
+  /** The cart after updating products. */
+  cart: Cart;
+};
+
+/** Defines updates to a `GiftRegistry` object. */
+export type UpdateGiftRegistryInput = {
+  /** Additional attributes specified as a code-value pair. Unspecified dynamic attributes are not changed. */
+  dynamic_attributes?: InputMaybe<
+    Array<InputMaybe<GiftRegistryDynamicAttributeInput>>
+  >;
+  /** The updated name of the event. */
+  event_name?: InputMaybe<Scalars["String"]["input"]>;
+  /** The updated message describing the event. */
+  message?: InputMaybe<Scalars["String"]["input"]>;
+  /** Indicates whether the gift registry is PRIVATE or PUBLIC. */
+  privacy_settings?: InputMaybe<GiftRegistryPrivacySettings>;
+  /** The updated shipping address for all gift registry items. */
+  shipping_address?: InputMaybe<GiftRegistryShippingAddressInput>;
+  /** Indicates whether the gift registry is ACTIVE or INACTIVE. */
+  status?: InputMaybe<GiftRegistryStatus>;
+};
+
+/** Defines updates to an item in a gift registry. */
+export type UpdateGiftRegistryItemInput = {
+  /** The unique ID of a `giftRegistryItem` object. */
+  gift_registry_item_uid: Scalars["ID"]["input"];
+  /** The updated description of the item. */
+  note?: InputMaybe<Scalars["String"]["input"]>;
+  /** The updated quantity of the gift registry item. */
+  quantity: Scalars["Float"]["input"];
+};
+
+/** Contains the results of a request to update gift registry items. */
+export type UpdateGiftRegistryItemsOutput = {
+  __typename?: "UpdateGiftRegistryItemsOutput";
+  /** The gift registry after updating updating items. */
+  gift_registry?: Maybe<GiftRegistry>;
+};
+
+/** Contains the results of a request to update a gift registry. */
+export type UpdateGiftRegistryOutput = {
+  __typename?: "UpdateGiftRegistryOutput";
+  /** The updated gift registry. */
+  gift_registry?: Maybe<GiftRegistry>;
+};
+
+/** Defines updates to an existing registrant. */
+export type UpdateGiftRegistryRegistrantInput = {
+  /** As a result of the update, only the values of provided attributes will be affected. If the attribute is missing in the request, its value will not be changed. */
+  dynamic_attributes?: InputMaybe<
+    Array<InputMaybe<GiftRegistryDynamicAttributeInput>>
+  >;
+  /** The updated email address of the registrant. */
+  email?: InputMaybe<Scalars["String"]["input"]>;
+  /** The updated first name of the registrant. */
+  firstname?: InputMaybe<Scalars["String"]["input"]>;
+  /** The unique ID of a `giftRegistryRegistrant` object. */
+  gift_registry_registrant_uid: Scalars["ID"]["input"];
+  /** The updated last name of the registrant. */
+  lastname?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Contains the results a request to update registrants. */
+export type UpdateGiftRegistryRegistrantsOutput = {
+  __typename?: "UpdateGiftRegistryRegistrantsOutput";
+  /** The gift registry after updating registrants. */
+  gift_registry?: Maybe<GiftRegistry>;
+};
+
+/** Contains the customer's wish list and any errors encountered. */
+export type UpdateProductsInWishlistOutput = {
+  __typename?: "UpdateProductsInWishlistOutput";
+  /** An array of errors encountered while updating products in a wish list. */
+  user_errors: Array<Maybe<WishListUserInputError>>;
+  /** Contains the wish list with all items that were successfully updated. */
+  wishlist: Wishlist;
+};
+
+/** Contains the name and visibility of an updated wish list. */
+export type UpdateWishlistOutput = {
+  __typename?: "UpdateWishlistOutput";
+  /** The wish list name. */
+  name: Scalars["String"]["output"];
+  /** The unique ID of a `Wishlist` object. */
+  uid: Scalars["ID"]["output"];
+  /** Indicates whether the wish list is public or private. */
+  visibility: WishlistVisibilityEnum;
+};
+
+/** Contains URL rewrite details. */
+export type UrlRewrite = {
+  __typename?: "UrlRewrite";
+  /** An array of request parameters. */
+  parameters?: Maybe<Array<Maybe<HttpQueryParameter>>>;
+  /** The request URL. */
+  url?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** This enumeration defines the entity type. */
+export enum UrlRewriteEntityTypeEnum {
+  /** @deprecated  */
+  Category = "CATEGORY",
+  /** @deprecated  */
+  CmsPage = "CMS_PAGE",
+  /** @deprecated  */
+  Product = "PRODUCT",
+}
+
+/** Defines whether the attribute is filterable in layered navigation. */
+export enum UseInLayeredNavigationOptions {
+  /** @deprecated  */
+  FilterableNoResult = "FILTERABLE_NO_RESULT",
+  /** @deprecated  */
+  FilterableWithResults = "FILTERABLE_WITH_RESULTS",
+  /** @deprecated  */
+  No = "NO",
+}
+
+/** User system model */
+export type User = Entity &
+  Node & {
+    __typename?: "User";
+    /** The time the document was created */
+    createdAt: Scalars["DateTime"]["output"];
+    /** Get the document in other stages */
+    documentInStages: Array<User>;
+    /** The unique identifier */
+    id: Scalars["ID"]["output"];
+    /** Flag to determine if user is active or not */
+    isActive: Scalars["Boolean"]["output"];
+    /** User Kind. Can be either MEMBER, PAT or PUBLIC */
+    kind: UserKind;
+    /** The username */
+    name: Scalars["String"]["output"];
+    /** Profile Picture url */
+    picture?: Maybe<Scalars["String"]["output"]>;
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+    /** System stage field */
+    stage: Stage;
+    /** The time the document was updated */
+    updatedAt: Scalars["DateTime"]["output"];
+  };
+
+/** User system model */
+export type UserDocumentInStagesArgs = {
+  includeCurrent?: Scalars["Boolean"]["input"];
+  inheritLocale?: Scalars["Boolean"]["input"];
+  stages?: Array<Stage>;
+};
+
+export type UserConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: UserWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type UserConnection = {
+  __typename?: "UserConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<UserEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type UserCreateManyInlineInput = {
+  /** Connect multiple existing User documents */
+  connect?: InputMaybe<Array<UserWhereUniqueInput>>;
+};
+
+export type UserCreateOneInlineInput = {
+  /** Connect one existing User document */
+  connect?: InputMaybe<UserWhereUniqueInput>;
+};
+
+/** An edge in a connection. */
+export type UserEdge = {
+  __typename?: "UserEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: User;
+};
+
+/** System User Kind */
+export enum UserKind {
+  AppToken = "APP_TOKEN",
+  Member = "MEMBER",
+  Pat = "PAT",
+  Public = "PUBLIC",
+  Webhook = "WEBHOOK",
+}
+
+/** Identifies documents */
+export type UserManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<UserWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<UserWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<UserWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  documentInStages_every?: InputMaybe<UserWhereStageInput>;
+  documentInStages_none?: InputMaybe<UserWhereStageInput>;
+  documentInStages_some?: InputMaybe<UserWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  isActive?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  isActive_not?: InputMaybe<Scalars["Boolean"]["input"]>;
+  kind?: InputMaybe<UserKind>;
+  /** All values that are contained in given list. */
+  kind_in?: InputMaybe<Array<InputMaybe<UserKind>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  kind_not?: InputMaybe<UserKind>;
+  /** All values that are not contained in given list. */
+  kind_not_in?: InputMaybe<Array<InputMaybe<UserKind>>>;
+  name?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  name_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  name_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  name_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  name_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  name_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  name_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  name_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  picture?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  picture_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  picture_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  picture_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  picture_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  picture_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  picture_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  picture_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  picture_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  picture_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+};
+
+export enum UserOrderByInput {
+  CreatedAtAsc = "createdAt_ASC",
+  CreatedAtDesc = "createdAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  IsActiveAsc = "isActive_ASC",
+  IsActiveDesc = "isActive_DESC",
+  KindAsc = "kind_ASC",
+  KindDesc = "kind_DESC",
+  NameAsc = "name_ASC",
+  NameDesc = "name_DESC",
+  PictureAsc = "picture_ASC",
+  PictureDesc = "picture_DESC",
+  PublishedAtAsc = "publishedAt_ASC",
+  PublishedAtDesc = "publishedAt_DESC",
+  UpdatedAtAsc = "updatedAt_ASC",
+  UpdatedAtDesc = "updatedAt_DESC",
+}
+
+export type UserUpdateManyInlineInput = {
+  /** Connect multiple existing User documents */
+  connect?: InputMaybe<Array<UserConnectInput>>;
+  /** Disconnect multiple User documents */
+  disconnect?: InputMaybe<Array<UserWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing User documents */
+  set?: InputMaybe<Array<UserWhereUniqueInput>>;
+};
+
+export type UserUpdateOneInlineInput = {
+  /** Connect existing User document */
+  connect?: InputMaybe<UserWhereUniqueInput>;
+  /** Disconnect currently connected User document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type UserWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Identifies documents */
+export type UserWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<UserWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<UserWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<UserWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  documentInStages_every?: InputMaybe<UserWhereStageInput>;
+  documentInStages_none?: InputMaybe<UserWhereStageInput>;
+  documentInStages_some?: InputMaybe<UserWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  isActive?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  isActive_not?: InputMaybe<Scalars["Boolean"]["input"]>;
+  kind?: InputMaybe<UserKind>;
+  /** All values that are contained in given list. */
+  kind_in?: InputMaybe<Array<InputMaybe<UserKind>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  kind_not?: InputMaybe<UserKind>;
+  /** All values that are not contained in given list. */
+  kind_not_in?: InputMaybe<Array<InputMaybe<UserKind>>>;
+  name?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  name_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  name_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  name_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  name_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  name_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  name_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  name_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  picture?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  picture_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  picture_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  picture_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  picture_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  picture_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  picture_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  picture_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  picture_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  picture_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type UserWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<UserWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<UserWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<UserWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<UserWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References User record uniquely */
+export type UserWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+/** Contains required input for payment methods with Vault support. */
+export type VaultTokenInput = {
+  /** The public hash of the payment token. */
+  public_hash: Scalars["String"]["input"];
+};
+
+export type Version = {
+  __typename?: "Version";
+  createdAt: Scalars["DateTime"]["output"];
+  id: Scalars["ID"]["output"];
+  revision: Scalars["Int"]["output"];
+  stage: Stage;
+};
+
+export type VersionWhereInput = {
+  id: Scalars["ID"]["input"];
+  revision: Scalars["Int"]["input"];
+  stage: Stage;
+};
+
+/** The Products object is the top-level object returned in a product search. */
+export type ViewMoreResult = {
+  __typename?: "ViewMoreResult";
+  /** Layered navigation aggregations. */
+  aggregations?: Maybe<Array<Maybe<Aggregation>>>;
+};
+
+/** An implementation for virtual product cart items. */
+export type VirtualCartItem = CartItemInterface & {
+  __typename?: "VirtualCartItem";
+  /** An array containing customizable options the shopper selected. */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>;
+  /** An array of errors encountered while loading the cart item */
+  errors?: Maybe<Array<Maybe<CartItemError>>>;
+  /** @deprecated Use `uid` instead. */
+  id: Scalars["String"]["output"];
+  /** Indicates whether the product is available in the store */
+  is_in_store?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Contains details about the price of the item, including taxes and discounts. */
+  prices?: Maybe<CartItemPrices>;
+  /** Details about an item in the cart. */
+  product: ProductInterface;
+  /** The quantity of this item in the cart. */
+  quantity: Scalars["Float"]["output"];
+  /** The unique ID for a `CartItemInterface` object. */
+  uid: Scalars["ID"]["output"];
+};
+
+/** Defines a virtual product, which is a non-tangible product that does not require shipping and is not kept in inventory. */
+export type VirtualProduct = CustomizableProductInterface &
+  ProductInterface &
+  RoutableInterface & {
+    __typename?: "VirtualProduct";
+    /** @deprecated Use the `custom_attributes` field instead. */
+    addable_to_cart?: Maybe<Scalars["Int"]["output"]>;
+    /**
+     * The attribute set assigned to the product.
+     * @deprecated The field should not be used on the storefront.
+     */
+    attribute_set_id?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    brand?: Maybe<Scalars["String"]["output"]>;
+    /** The relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled. */
+    canonical_url?: Maybe<Scalars["String"]["output"]>;
+    /** The categories assigned to a product. */
+    categories?: Maybe<Array<Maybe<CategoryInterface>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    color?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    configuration?: Maybe<Scalars["String"]["output"]>;
+    /** The product's country of origin. */
+    country_of_manufacture?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * Timestamp indicating when the product was created.
+     * @deprecated The field should not be used on the storefront.
+     */
+    created_at?: Maybe<Scalars["String"]["output"]>;
+    /** An array of cross-sell products. */
+    crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    delivery_promise?: Maybe<Scalars["String"]["output"]>;
+    /** Detailed information about the product. The value can include simple HTML tags. */
+    description?: Maybe<ComplexTextValue>;
+    /** Indicates whether a gift message is available. */
+    gift_message_available?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * The ID number assigned to the product.
+     * @deprecated Use the `uid` field instead.
+     */
+    id?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    ifsite?: Maybe<Scalars["String"]["output"]>;
+    /** The relative path to the main image on the product page. */
+    image?: Maybe<ProductImage>;
+    /** Indicates whether the product can be returned. */
+    is_returnable?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    maintenance_description?: Maybe<Scalars["String"]["output"]>;
+    /** A number representing the product's manufacturer. */
+    manufacturer?: Maybe<Scalars["Int"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_1?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_2?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_depth?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_diameter?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_gross_weight?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_height?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_length?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_seat_height?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_thickness?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_volume?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    measurement_width?: Maybe<Scalars["String"]["output"]>;
+    /** An array of media gallery objects. */
+    media_gallery?: Maybe<Array<Maybe<MediaGalleryInterface>>>;
+    /**
+     * An array of MediaGalleryEntry objects.
+     * @deprecated Use `media_gallery` instead.
+     */
+    media_gallery_entries?: Maybe<Array<Maybe<MediaGalleryEntry>>>;
+    /** A brief overview of the product for search results listings, maximum 255 characters. */
+    meta_description?: Maybe<Scalars["String"]["output"]>;
+    /** A comma-separated list of keywords that are visible only to search engines. */
+    meta_keyword?: Maybe<Scalars["String"]["output"]>;
+    /** A string that is displayed in the title bar and tab of the browser and in search results lists. */
+    meta_title?: Maybe<Scalars["String"]["output"]>;
+    /** The product name. Customers use this name to identify the product. */
+    name?: Maybe<Scalars["String"]["output"]>;
+    /** The beginning date for new product listings, and determines if the product is featured as a new product. */
+    new_from_date?: Maybe<Scalars["String"]["output"]>;
+    /** The end date for new product listings. */
+    new_to_date?: Maybe<Scalars["String"]["output"]>;
+    /** Product stock only x left count */
+    only_x_left_in_stock?: Maybe<Scalars["Float"]["output"]>;
+    /** An array of options for a customizable product. */
+    options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>;
+    /** If the product has multiple options, determines where they appear on the product page. */
+    options_container?: Maybe<Scalars["String"]["output"]>;
+    /**
+     * Indicates the price of an item.
+     * @deprecated Use `price_range` for product price information.
+     */
+    price?: Maybe<ProductPrices>;
+    /** The range of prices for the product */
+    price_range: PriceRange;
+    /** An array of `TierPrice` objects. */
+    price_tiers?: Maybe<Array<Maybe<TierPrice>>>;
+    productBrand?: Maybe<Brand>;
+    /** Get product labels. */
+    productLabel?: Maybe<Label>;
+    /** An array of `ProductLinks` objects. */
+    product_links?: Maybe<Array<Maybe<ProductLinksInterface>>>;
+    /** The average of all the ratings given to the product. */
+    rating_summary: Scalars["Float"]["output"];
+    /** Contains 0 when there is no redirect error. A value of 301 indicates the URL of the requested resource has been changed permanently, while a value of 302 indicates a temporary redirect. */
+    redirect_code: Scalars["Int"]["output"];
+    /** An array of related products. */
+    related_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** The internal relative URL. If the specified URL is a redirect, the query returns the redirected URL, not the original. */
+    relative_url?: Maybe<Scalars["String"]["output"]>;
+    /** The total count of all the reviews given to the product. */
+    review_count: Scalars["Int"]["output"];
+    /** The list of products reviews. */
+    reviews: ProductReviews;
+    /** Products from the same series */
+    series?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    series_group?: Maybe<Scalars["String"]["output"]>;
+    /** A short description of the product. Its use depends on the theme. */
+    short_description?: Maybe<ComplexTextValue>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    size_filter?: Maybe<Scalars["String"]["output"]>;
+    /** A number or code assigned to a product to identify the product, options, price, and manufacturer. */
+    sku?: Maybe<Scalars["String"]["output"]>;
+    /** The relative path to the small image, which is used on catalog pages. */
+    small_image?: Maybe<ProductImage>;
+    /**
+     * The beginning date that a product has a special price.
+     * @deprecated The field should not be used on the storefront.
+     */
+    special_from_date?: Maybe<Scalars["String"]["output"]>;
+    /** The discounted price of the product. */
+    special_price?: Maybe<Scalars["Float"]["output"]>;
+    /** The end date for a product with a special price. */
+    special_to_date?: Maybe<Scalars["String"]["output"]>;
+    /** Indicates whether the product is staged for a future campaign. */
+    staged: Scalars["Boolean"]["output"];
+    /** Stock status of the product */
+    stock_status?: Maybe<ProductStockStatus>;
+    /** An array containing information about all the stores with product quantities. */
+    stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
+    /** The file name of a swatch image. */
+    swatch_image?: Maybe<Scalars["String"]["output"]>;
+    /** The relative path to the product's thumbnail image. */
+    thumbnail?: Maybe<ProductImage>;
+    /**
+     * The price when tier pricing is in effect and the items purchased threshold has been reached.
+     * @deprecated Use `price_tiers` for product tier price information.
+     */
+    tier_price?: Maybe<Scalars["Float"]["output"]>;
+    /**
+     * An array of ProductTierPrices objects.
+     * @deprecated Use `price_tiers` for product tier price information.
+     */
+    tier_prices?: Maybe<Array<Maybe<ProductTierPrices>>>;
+    /** One of PRODUCT, CATEGORY, or CMS_PAGE. */
+    type?: Maybe<UrlRewriteEntityTypeEnum>;
+    /**
+     * One of simple, virtual, bundle, downloadable, grouped, or configurable.
+     * @deprecated Use `__typename` instead.
+     */
+    type_id?: Maybe<Scalars["String"]["output"]>;
+    /** The unique ID for a `ProductInterface` object. */
+    uid: Scalars["ID"]["output"];
+    /**
+     * Timestamp indicating when the product was updated.
+     * @deprecated The field should not be used on the storefront.
+     */
+    updated_at?: Maybe<Scalars["String"]["output"]>;
+    /** An array of up-sell products. */
+    upsell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** The part of the URL that identifies the product */
+    url_key?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use product's `canonical_url` or url rewrites instead */
+    url_path?: Maybe<Scalars["String"]["output"]>;
+    /** URL rewrites list */
+    url_rewrites?: Maybe<Array<Maybe<UrlRewrite>>>;
+    /** The part of the product URL that is appended after the url key */
+    url_suffix?: Maybe<Scalars["String"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    webshopavailable?: Maybe<Scalars["Int"]["output"]>;
+    /**
+     * An array of websites in which the product is available.
+     * @deprecated The field should not be used on the storefront.
+     */
+    websites?: Maybe<Array<Maybe<Website>>>;
+  };
+
+/** Defines a virtual product, which is a non-tangible product that does not require shipping and is not kept in inventory. */
+export type VirtualProductReviewsArgs = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+/** Defines a single product to add to the cart. */
+export type VirtualProductCartItemInput = {
+  /** An array that defines customizable options for the product. */
+  customizable_options?: InputMaybe<Array<InputMaybe<CustomizableOptionInput>>>;
+  /** An object containing the `sku`, `quantity`, and other relevant information about the product. */
+  data: CartItemInput;
+};
+
+/** Contains a virtual product wish list item. */
+export type VirtualWishlistItem = WishlistItemInterface & {
+  __typename?: "VirtualWishlistItem";
+  /** The date and time the item was added to the wish list. */
+  added_at: Scalars["String"]["output"];
+  /** Custom options selected for the wish list item. */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>;
+  /** The description of the item. */
+  description?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `WishlistItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** Product details of the wish list item. */
+  product?: Maybe<ProductInterface>;
+  /** The quantity of this wish list item. */
+  quantity: Scalars["Float"]["output"];
+};
+
+/** Deprecated. It should not be used on the storefront. Contains information about a website. */
+export type Website = {
+  __typename?: "Website";
+  /**
+   * A code assigned to the website to identify it.
+   * @deprecated The field should not be used on the storefront.
+   */
+  code?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * The default group ID of the website.
+   * @deprecated The field should not be used on the storefront.
+   */
+  default_group_id?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * The ID number assigned to the website.
+   * @deprecated The field should not be used on the storefront.
+   */
+  id?: Maybe<Scalars["Int"]["output"]>;
+  /**
+   * Indicates whether this is the default website.
+   * @deprecated The field should not be used on the storefront.
+   */
+  is_default?: Maybe<Scalars["Boolean"]["output"]>;
+  /**
+   * The website name. Websites use this name to identify it easier.
+   * @deprecated The field should not be used on the storefront.
+   */
+  name?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * The attribute to use for sorting websites.
+   * @deprecated The field should not be used on the storefront.
+   */
+  sort_order?: Maybe<Scalars["Int"]["output"]>;
+};
+
+/** An error encountered while performing operations with WishList. */
+export type WishListUserInputError = {
+  __typename?: "WishListUserInputError";
+  /** A wish list-specific error code. */
+  code: WishListUserInputErrorType;
+  /** A localized error message. */
+  message: Scalars["String"]["output"];
+};
+
+/** A list of possible error types. */
+export enum WishListUserInputErrorType {
+  /** @deprecated  */
+  ProductNotFound = "PRODUCT_NOT_FOUND",
+  /** @deprecated  */
+  Undefined = "UNDEFINED",
+}
+
+/** Contains a customer wish list. */
+export type Wishlist = {
+  __typename?: "Wishlist";
+  /** The unique ID for a `Wishlist` object. */
+  id?: Maybe<Scalars["ID"]["output"]>;
+  /** @deprecated Use the `items_v2` field instead. */
+  items?: Maybe<Array<Maybe<WishlistItem>>>;
+  /** The number of items in the wish list. */
+  items_count?: Maybe<Scalars["Int"]["output"]>;
+  /** An array of items in the customer's wish list. */
+  items_v2?: Maybe<WishlistItems>;
+  /** The name of the wish list. */
+  name?: Maybe<Scalars["String"]["output"]>;
+  /** An encrypted code that Magento uses to link to the wish list. */
+  sharing_code?: Maybe<Scalars["String"]["output"]>;
+  /** The time of the last modification to the wish list. */
+  updated_at?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether the wish list is public or private. */
+  visibility: WishlistVisibilityEnum;
+};
+
+/** Contains a customer wish list. */
+export type WishlistItems_V2Args = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+/** Contains details about errors encountered when a customer added wish list items to the cart. */
+export type WishlistCartUserInputError = {
+  __typename?: "WishlistCartUserInputError";
+  /** An error code that describes the error encountered. */
+  code: WishlistCartUserInputErrorType;
+  /** A localized error message. */
+  message: Scalars["String"]["output"];
+  /** The unique ID of the `Wishlist` object containing an error. */
+  wishlistId: Scalars["ID"]["output"];
+  /** The unique ID of the wish list item containing an error. */
+  wishlistItemId: Scalars["ID"]["output"];
+};
+
+/** A list of possible error types. */
+export enum WishlistCartUserInputErrorType {
+  /** @deprecated  */
+  InsufficientStock = "INSUFFICIENT_STOCK",
+  /** @deprecated  */
+  NotSalable = "NOT_SALABLE",
+  /** @deprecated  */
+  ProductNotFound = "PRODUCT_NOT_FOUND",
+  /** @deprecated  */
+  Undefined = "UNDEFINED",
+}
+
+/** Contains details about a wish list item. */
+export type WishlistItem = {
+  __typename?: "WishlistItem";
+  /** The time when the customer added the item to the wish list. */
+  added_at?: Maybe<Scalars["String"]["output"]>;
+  /** The customer's comment about this item. */
+  description?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `WishlistItem` object. */
+  id?: Maybe<Scalars["Int"]["output"]>;
+  /** Details about the wish list item. */
+  product?: Maybe<ProductInterface>;
+  /** The quantity of this wish list item */
+  qty?: Maybe<Scalars["Float"]["output"]>;
+};
+
+/** Specifies the IDs of items to copy and their quantities. */
+export type WishlistItemCopyInput = {
+  /** The quantity of this item to copy to the destination wish list. This value can't be greater than the quantity in the source wish list. */
+  quantity?: InputMaybe<Scalars["Float"]["input"]>;
+  /** The unique ID of the `WishlistItemInterface` object to be copied. */
+  wishlist_item_id: Scalars["ID"]["input"];
+};
+
+/** Defines the items to add to a wish list. */
+export type WishlistItemInput = {
+  /** An array of options that the customer entered. */
+  entered_options?: InputMaybe<Array<InputMaybe<EnteredOptionInput>>>;
+  /** For complex product types, the SKU of the parent product. */
+  parent_sku?: InputMaybe<Scalars["String"]["input"]>;
+  /** The amount or number of items to add. */
+  quantity: Scalars["Float"]["input"];
+  /** An array of strings corresponding to options the customer selected. */
+  selected_options?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** The SKU of the product to add. For complex product types, specify the child product SKU. */
+  sku: Scalars["String"]["input"];
+};
+
+/** The interface for wish list items. */
+export type WishlistItemInterface = {
+  /** The date and time the item was added to the wish list. */
+  added_at: Scalars["String"]["output"];
+  /** Custom options selected for the wish list item. */
+  customizable_options: Array<Maybe<SelectedCustomizableOption>>;
+  /** The description of the item. */
+  description?: Maybe<Scalars["String"]["output"]>;
+  /** The unique ID for a `WishlistItemInterface` object. */
+  id: Scalars["ID"]["output"];
+  /** Product details of the wish list item. */
+  product?: Maybe<ProductInterface>;
+  /** The quantity of this wish list item. */
+  quantity: Scalars["Float"]["output"];
+};
+
+/** Specifies the IDs of the items to move and their quantities. */
+export type WishlistItemMoveInput = {
+  /** The quantity of this item to move to the destination wish list. This value can't be greater than the quantity in the source wish list. */
+  quantity?: InputMaybe<Scalars["Float"]["input"]>;
+  /** The unique ID of the `WishlistItemInterface` object to be moved. */
+  wishlist_item_id: Scalars["ID"]["input"];
+};
+
+/** Defines updates to items in a wish list. */
+export type WishlistItemUpdateInput = {
+  /** Customer-entered comments about the item. */
+  description?: InputMaybe<Scalars["String"]["input"]>;
+  /** An array of options that the customer entered. */
+  entered_options?: InputMaybe<Array<InputMaybe<EnteredOptionInput>>>;
+  /** The new amount or number of this item. */
+  quantity?: InputMaybe<Scalars["Float"]["input"]>;
+  /** An array of strings corresponding to options the customer selected. */
+  selected_options?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** The unique ID for a `WishlistItemInterface` object. */
+  wishlist_item_id: Scalars["ID"]["input"];
+};
+
+/** Contains an array of items in a wish list. */
+export type WishlistItems = {
+  __typename?: "WishlistItems";
+  /** A list of items in the wish list. */
+  items: Array<Maybe<WishlistItemInterface>>;
+  /** Contains pagination metadata. */
+  page_info?: Maybe<SearchResultPageInfo>;
+};
+
+/** Deprecated: Use the `Wishlist` type instead. */
+export type WishlistOutput = {
+  __typename?: "WishlistOutput";
+  /**
+   * An array of items in the customer's wish list
+   * @deprecated Use the `Wishlist.items` field instead.
+   */
+  items?: Maybe<Array<Maybe<WishlistItem>>>;
+  /**
+   * The number of items in the wish list.
+   * @deprecated Use the `Wishlist.items_count` field instead.
+   */
+  items_count?: Maybe<Scalars["Int"]["output"]>;
+  /**
+   * When multiple wish lists are enabled, the name the customer assigns to the wishlist.
+   * @deprecated This field is related to Commerce functionality and is always `null` in Open Source.
+   */
+  name?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * An encrypted code that links to the wish list.
+   * @deprecated Use the `Wishlist.sharing_code` field instead.
+   */
+  sharing_code?: Maybe<Scalars["String"]["output"]>;
+  /**
+   * The time of the last modification to the wish list.
+   * @deprecated Use the `Wishlist.updated_at` field instead.
+   */
+  updated_at?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Defines the wish list visibility types. */
+export enum WishlistVisibilityEnum {
+  /** @deprecated  */
+  Private = "PRIVATE",
+  /** @deprecated  */
+  Public = "PUBLIC",
+}
+
+export enum _FilterKind {
+  And = "AND",
+  Not = "NOT",
+  Or = "OR",
+  Contains = "contains",
+  ContainsAll = "contains_all",
+  ContainsNone = "contains_none",
+  ContainsSome = "contains_some",
+  EndsWith = "ends_with",
+  Eq = "eq",
+  EqNot = "eq_not",
+  Gt = "gt",
+  Gte = "gte",
+  In = "in",
+  JsonPathExists = "json_path_exists",
+  JsonValueRecursive = "json_value_recursive",
+  Lt = "lt",
+  Lte = "lte",
+  NotContains = "not_contains",
+  NotEndsWith = "not_ends_with",
+  NotIn = "not_in",
+  NotStartsWith = "not_starts_with",
+  RelationalEvery = "relational_every",
+  RelationalNone = "relational_none",
+  RelationalSingle = "relational_single",
+  RelationalSome = "relational_some",
+  Search = "search",
+  StartsWith = "starts_with",
+  UnionEmpty = "union_empty",
+  UnionEvery = "union_every",
+  UnionNone = "union_none",
+  UnionSingle = "union_single",
+  UnionSome = "union_some",
+}
+
+export enum _MutationInputFieldKind {
+  Enum = "enum",
+  Relation = "relation",
+  RichText = "richText",
+  RichTextWithEmbeds = "richTextWithEmbeds",
+  Scalar = "scalar",
+  Union = "union",
+  Virtual = "virtual",
+}
+
+export enum _MutationKind {
+  Create = "create",
+  Delete = "delete",
+  DeleteMany = "deleteMany",
+  Publish = "publish",
+  PublishMany = "publishMany",
+  SchedulePublish = "schedulePublish",
+  ScheduleUnpublish = "scheduleUnpublish",
+  Unpublish = "unpublish",
+  UnpublishMany = "unpublishMany",
+  Update = "update",
+  UpdateMany = "updateMany",
+  Upsert = "upsert",
+}
+
+export enum _OrderDirection {
+  Asc = "asc",
+  Desc = "desc",
+}
+
+export enum _RelationInputCardinality {
+  Many = "many",
+  One = "one",
+}
+
+export enum _RelationInputKind {
+  Create = "create",
+  Update = "update",
+}
+
+export enum _RelationKind {
+  Regular = "regular",
+  Union = "union",
+}
+
+export enum _SystemDateTimeFieldVariation {
+  Base = "base",
+  Combined = "combined",
+  Localization = "localization",
+}
+
+/** Assigns a specific `cart_id` to the empty cart. */
+export type CreateEmptyCartInput = {
+  /** The ID to assign to the cart. */
+  cart_id?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type Hero_Hotspot = {
+  __typename?: "hero_hotspot";
+  /** Normalized coordinate from 0 to 1 */
+  normalized_coordinate_x?: Maybe<Scalars["Float"]["output"]>;
+  /** Normalized coordinate from 0 to 1 */
+  normalized_coordinate_y?: Maybe<Scalars["Float"]["output"]>;
+  product?: Maybe<ProductInterface>;
+};
+
+export type CategoryQueryVariables = Exact<{
+  filters?: InputMaybe<CategoryFilterInput>;
+}>;
+
+export type CategoryQuery = {
+  __typename?: "Query";
+  categories?: {
+    __typename?: "CategoryResult";
+    items?: Array<{
+      __typename?: "CategoryTree";
+      name?: string | null;
+      description?: string | null;
+      id?: number | null;
+      uid: string;
+      url_path?: string | null;
+      product_count?: number | null;
+      meta_title?: string | null;
+      meta_keywords?: string | null;
+      meta_description?: string | null;
+      include_in_menu?: number | null;
+      children?: Array<{
+        __typename?: "CategoryTree";
+        name?: string | null;
+        uid: string;
+        url_path?: string | null;
+        product_count?: number | null;
+        include_in_menu?: number | null;
+        children?: Array<{
+          __typename?: "CategoryTree";
+          name?: string | null;
+          uid: string;
+          url_path?: string | null;
+          product_count?: number | null;
+          include_in_menu?: number | null;
+        } | null> | null;
+      } | null> | null;
+    } | null> | null;
+  } | null;
+};
+
+export type BannerFragmentFragment = {
+  __typename: "Banner";
+  alt?: string | null;
+  identify?: string | null;
+  bannerImage?: {
+    __typename?: "Asset";
+    mimeType?: string | null;
+    url: string;
+    width?: number | null;
+  } | null;
+} & { " $fragmentName"?: "BannerFragmentFragment" };
+
+export type PopularProductsFragmentFragment = {
+  __typename: "PopularProduct";
+  id: string;
+  categoryId?: string | null;
+} & { " $fragmentName"?: "PopularProductsFragmentFragment" };
+
+export type MenuQueryVariables = Exact<{
+  where?: InputMaybe<MenuWhereInput>;
+}>;
+
+export type MenuQuery = {
+  __typename?: "Query";
+  menus: Array<{
+    __typename?: "Menu";
+    links: Array<
+      | { __typename: "Link"; label: string; url: string }
+      | { __typename: "MegaMenuCategoriesDropdown"; label: string }
+      | {
+          __typename: "MegaMenuDropdown";
+          label: string;
+          items: Array<
+            | {
+                __typename: "ImageLink";
+                label: string;
+                url: string;
+                image: { __typename?: "Asset"; url: string };
+              }
+            | { __typename: "Link"; label: string; url: string }
+          >;
+        }
+    >;
+  }>;
+};
+
+export type PagesQueryVariables = Exact<{
+  url: Scalars["String"]["input"];
+}>;
+
+export type PagesQuery = {
+  __typename?: "Query";
+  pages: Array<{
+    __typename?: "Page";
+    id: string;
+    identify?: string | null;
+    metaDescription?: string | null;
+    metaTitle: string;
+    title: string;
+    url: string;
+    content: Array<
+      | ({ __typename?: "Banner" } & {
+          " $fragmentRefs"?: { BannerFragmentFragment: BannerFragmentFragment };
+        })
+      | ({ __typename?: "PopularProduct" } & {
+          " $fragmentRefs"?: {
+            PopularProductsFragmentFragment: PopularProductsFragmentFragment;
+          };
+        })
+    >;
+  }>;
+};
+
+export type ProductImageFragmentFragment = {
+  __typename?: "ProductImage";
+  url?: string | null;
+  position?: number | null;
+  label?: string | null;
+  disabled?: boolean | null;
+} & { " $fragmentName"?: "ProductImageFragmentFragment" };
+
+export type ProductVideoFragmentFragment = {
+  __typename?: "ProductVideo";
+  disabled?: boolean | null;
+  label?: string | null;
+  position?: number | null;
+  url?: string | null;
+  video_content?: {
+    __typename?: "ProductMediaGalleryEntriesVideoContent";
+    media_type?: string | null;
+    video_description?: string | null;
+    video_metadata?: string | null;
+    video_provider?: string | null;
+    video_title?: string | null;
+    video_url?: string | null;
+  } | null;
+} & { " $fragmentName"?: "ProductVideoFragmentFragment" };
+
+export type ProductsQueryVariables = Exact<{
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+  filter?: InputMaybe<ProductAttributeFilterInput>;
+}>;
+
+export type ProductsQuery = {
+  __typename?: "Query";
+  products?: {
+    __typename?: "Products";
+    items?: Array<
+      | {
+          __typename?: "BundleProduct";
+          url_path?: string | null;
+          url_key?: string | null;
+          url_suffix?: string | null;
+          canonical_url?: string | null;
+          brand?: string | null;
+          color?: number | null;
+          configuration?: string | null;
+          country_of_manufacture?: string | null;
+          gift_message_available?: string | null;
+          id?: number | null;
+          is_returnable?: string | null;
+          manufacturer?: number | null;
+          meta_description?: string | null;
+          meta_keyword?: string | null;
+          meta_title?: string | null;
+          name?: string | null;
+          new_from_date?: string | null;
+          new_to_date?: string | null;
+          only_x_left_in_stock?: number | null;
+          options_container?: string | null;
+          rating_summary: number;
+          updated_at?: string | null;
+          uid: string;
+          type_id?: string | null;
+          tier_price?: number | null;
+          swatch_image?: string | null;
+          stock_status?: ProductStockStatus | null;
+          staged: boolean;
+          special_to_date?: string | null;
+          special_price?: number | null;
+          special_from_date?: string | null;
+          sku?: string | null;
+          size_filter?: string | null;
+          series_group?: string | null;
+          review_count: number;
+          webshopavailable?: number | null;
+          addable_to_cart?: number | null;
+          attribute_set_id?: number | null;
+          created_at?: string | null;
+          delivery_promise?: string | null;
+          ifsite?: string | null;
+          maintenance_description?: string | null;
+          description?: {
+            __typename?: "ComplexTextValue";
+            html: string;
+          } | null;
+          image?:
+            | ({ __typename?: "ProductImage" } & {
+                " $fragmentRefs"?: {
+                  ProductImageFragmentFragment: ProductImageFragmentFragment;
+                };
+              })
+            | null;
+          media_gallery?: Array<
+            | ({
+                __typename?: "ProductImage";
+                disabled?: boolean | null;
+                label?: string | null;
+                position?: number | null;
+                url?: string | null;
+              } & {
+                " $fragmentRefs"?: {
+                  ProductImageFragmentFragment: ProductImageFragmentFragment;
+                };
+              })
+            | ({
+                __typename?: "ProductVideo";
+                disabled?: boolean | null;
+                label?: string | null;
+                position?: number | null;
+                url?: string | null;
+              } & {
+                " $fragmentRefs"?: {
+                  ProductVideoFragmentFragment: ProductVideoFragmentFragment;
+                };
+              })
+            | null
+          > | null;
+          media_gallery_entries?: Array<{
+            __typename?: "MediaGalleryEntry";
+            disabled?: boolean | null;
+            file?: string | null;
+            id?: number | null;
+            label?: string | null;
+            media_type?: string | null;
+            position?: number | null;
+            types?: Array<string | null> | null;
+            uid: string;
+            content?: {
+              __typename?: "ProductMediaGalleryEntriesContent";
+              base64_encoded_data?: string | null;
+              name?: string | null;
+              type?: string | null;
+            } | null;
+            video_content?: {
+              __typename?: "ProductMediaGalleryEntriesVideoContent";
+              media_type?: string | null;
+              video_description?: string | null;
+              video_metadata?: string | null;
+              video_provider?: string | null;
+              video_title?: string | null;
+              video_url?: string | null;
+            } | null;
+          } | null> | null;
+          price_range: {
+            __typename?: "PriceRange";
+            maximum_price?: {
+              __typename?: "ProductPrice";
+              discount?: {
+                __typename?: "ProductDiscount";
+                amount_off?: number | null;
+                percent_off?: number | null;
+              } | null;
+              fixed_product_taxes?: Array<{
+                __typename?: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename?: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              regular_price: {
+                __typename?: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+            } | null;
+            minimum_price: {
+              __typename?: "ProductPrice";
+              discount?: {
+                __typename?: "ProductDiscount";
+                amount_off?: number | null;
+                percent_off?: number | null;
+              } | null;
+              fixed_product_taxes?: Array<{
+                __typename?: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename?: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              regular_price: {
+                __typename?: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+            };
+          };
+          productBrand?: {
+            __typename?: "Brand";
+            brand_image_url?: string | null;
+            name?: string | null;
+          } | null;
+          product_links?: Array<{
+            __typename?: "ProductLinks";
+            link_type?: string | null;
+            linked_product_sku?: string | null;
+            linked_product_type?: string | null;
+            position?: number | null;
+            sku?: string | null;
+          } | null> | null;
+          small_image?: {
+            __typename?: "ProductImage";
+            disabled?: boolean | null;
+            label?: string | null;
+            position?: number | null;
+            url?: string | null;
+          } | null;
+          short_description?: {
+            __typename?: "ComplexTextValue";
+            html: string;
+          } | null;
+          series?: Array<
+            | {
+                __typename?: "BundleProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "ConfigurableProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "DownloadableProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "GiftCardProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "GroupedProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "SimpleProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "VirtualProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | null
+          > | null;
+          categories?: Array<{
+            __typename?: "CategoryTree";
+            url_path?: string | null;
+            name?: string | null;
+          } | null> | null;
+        }
+      | {
+          __typename?: "ConfigurableProduct";
+          url_path?: string | null;
+          url_key?: string | null;
+          url_suffix?: string | null;
+          canonical_url?: string | null;
+          brand?: string | null;
+          color?: number | null;
+          configuration?: string | null;
+          country_of_manufacture?: string | null;
+          gift_message_available?: string | null;
+          id?: number | null;
+          is_returnable?: string | null;
+          manufacturer?: number | null;
+          meta_description?: string | null;
+          meta_keyword?: string | null;
+          meta_title?: string | null;
+          name?: string | null;
+          new_from_date?: string | null;
+          new_to_date?: string | null;
+          only_x_left_in_stock?: number | null;
+          options_container?: string | null;
+          rating_summary: number;
+          updated_at?: string | null;
+          uid: string;
+          type_id?: string | null;
+          tier_price?: number | null;
+          swatch_image?: string | null;
+          stock_status?: ProductStockStatus | null;
+          staged: boolean;
+          special_to_date?: string | null;
+          special_price?: number | null;
+          special_from_date?: string | null;
+          sku?: string | null;
+          size_filter?: string | null;
+          series_group?: string | null;
+          review_count: number;
+          webshopavailable?: number | null;
+          addable_to_cart?: number | null;
+          attribute_set_id?: number | null;
+          created_at?: string | null;
+          delivery_promise?: string | null;
+          ifsite?: string | null;
+          maintenance_description?: string | null;
+          description?: {
+            __typename?: "ComplexTextValue";
+            html: string;
+          } | null;
+          image?:
+            | ({ __typename?: "ProductImage" } & {
+                " $fragmentRefs"?: {
+                  ProductImageFragmentFragment: ProductImageFragmentFragment;
+                };
+              })
+            | null;
+          media_gallery?: Array<
+            | ({
+                __typename?: "ProductImage";
+                disabled?: boolean | null;
+                label?: string | null;
+                position?: number | null;
+                url?: string | null;
+              } & {
+                " $fragmentRefs"?: {
+                  ProductImageFragmentFragment: ProductImageFragmentFragment;
+                };
+              })
+            | ({
+                __typename?: "ProductVideo";
+                disabled?: boolean | null;
+                label?: string | null;
+                position?: number | null;
+                url?: string | null;
+              } & {
+                " $fragmentRefs"?: {
+                  ProductVideoFragmentFragment: ProductVideoFragmentFragment;
+                };
+              })
+            | null
+          > | null;
+          media_gallery_entries?: Array<{
+            __typename?: "MediaGalleryEntry";
+            disabled?: boolean | null;
+            file?: string | null;
+            id?: number | null;
+            label?: string | null;
+            media_type?: string | null;
+            position?: number | null;
+            types?: Array<string | null> | null;
+            uid: string;
+            content?: {
+              __typename?: "ProductMediaGalleryEntriesContent";
+              base64_encoded_data?: string | null;
+              name?: string | null;
+              type?: string | null;
+            } | null;
+            video_content?: {
+              __typename?: "ProductMediaGalleryEntriesVideoContent";
+              media_type?: string | null;
+              video_description?: string | null;
+              video_metadata?: string | null;
+              video_provider?: string | null;
+              video_title?: string | null;
+              video_url?: string | null;
+            } | null;
+          } | null> | null;
+          price_range: {
+            __typename?: "PriceRange";
+            maximum_price?: {
+              __typename?: "ProductPrice";
+              discount?: {
+                __typename?: "ProductDiscount";
+                amount_off?: number | null;
+                percent_off?: number | null;
+              } | null;
+              fixed_product_taxes?: Array<{
+                __typename?: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename?: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              regular_price: {
+                __typename?: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+            } | null;
+            minimum_price: {
+              __typename?: "ProductPrice";
+              discount?: {
+                __typename?: "ProductDiscount";
+                amount_off?: number | null;
+                percent_off?: number | null;
+              } | null;
+              fixed_product_taxes?: Array<{
+                __typename?: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename?: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              regular_price: {
+                __typename?: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+            };
+          };
+          productBrand?: {
+            __typename?: "Brand";
+            brand_image_url?: string | null;
+            name?: string | null;
+          } | null;
+          product_links?: Array<{
+            __typename?: "ProductLinks";
+            link_type?: string | null;
+            linked_product_sku?: string | null;
+            linked_product_type?: string | null;
+            position?: number | null;
+            sku?: string | null;
+          } | null> | null;
+          small_image?: {
+            __typename?: "ProductImage";
+            disabled?: boolean | null;
+            label?: string | null;
+            position?: number | null;
+            url?: string | null;
+          } | null;
+          short_description?: {
+            __typename?: "ComplexTextValue";
+            html: string;
+          } | null;
+          series?: Array<
+            | {
+                __typename?: "BundleProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "ConfigurableProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "DownloadableProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "GiftCardProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "GroupedProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "SimpleProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "VirtualProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | null
+          > | null;
+          categories?: Array<{
+            __typename?: "CategoryTree";
+            url_path?: string | null;
+            name?: string | null;
+          } | null> | null;
+        }
+      | {
+          __typename?: "DownloadableProduct";
+          url_path?: string | null;
+          url_key?: string | null;
+          url_suffix?: string | null;
+          canonical_url?: string | null;
+          brand?: string | null;
+          color?: number | null;
+          configuration?: string | null;
+          country_of_manufacture?: string | null;
+          gift_message_available?: string | null;
+          id?: number | null;
+          is_returnable?: string | null;
+          manufacturer?: number | null;
+          meta_description?: string | null;
+          meta_keyword?: string | null;
+          meta_title?: string | null;
+          name?: string | null;
+          new_from_date?: string | null;
+          new_to_date?: string | null;
+          only_x_left_in_stock?: number | null;
+          options_container?: string | null;
+          rating_summary: number;
+          updated_at?: string | null;
+          uid: string;
+          type_id?: string | null;
+          tier_price?: number | null;
+          swatch_image?: string | null;
+          stock_status?: ProductStockStatus | null;
+          staged: boolean;
+          special_to_date?: string | null;
+          special_price?: number | null;
+          special_from_date?: string | null;
+          sku?: string | null;
+          size_filter?: string | null;
+          series_group?: string | null;
+          review_count: number;
+          webshopavailable?: number | null;
+          addable_to_cart?: number | null;
+          attribute_set_id?: number | null;
+          created_at?: string | null;
+          delivery_promise?: string | null;
+          ifsite?: string | null;
+          maintenance_description?: string | null;
+          description?: {
+            __typename?: "ComplexTextValue";
+            html: string;
+          } | null;
+          image?:
+            | ({ __typename?: "ProductImage" } & {
+                " $fragmentRefs"?: {
+                  ProductImageFragmentFragment: ProductImageFragmentFragment;
+                };
+              })
+            | null;
+          media_gallery?: Array<
+            | ({
+                __typename?: "ProductImage";
+                disabled?: boolean | null;
+                label?: string | null;
+                position?: number | null;
+                url?: string | null;
+              } & {
+                " $fragmentRefs"?: {
+                  ProductImageFragmentFragment: ProductImageFragmentFragment;
+                };
+              })
+            | ({
+                __typename?: "ProductVideo";
+                disabled?: boolean | null;
+                label?: string | null;
+                position?: number | null;
+                url?: string | null;
+              } & {
+                " $fragmentRefs"?: {
+                  ProductVideoFragmentFragment: ProductVideoFragmentFragment;
+                };
+              })
+            | null
+          > | null;
+          media_gallery_entries?: Array<{
+            __typename?: "MediaGalleryEntry";
+            disabled?: boolean | null;
+            file?: string | null;
+            id?: number | null;
+            label?: string | null;
+            media_type?: string | null;
+            position?: number | null;
+            types?: Array<string | null> | null;
+            uid: string;
+            content?: {
+              __typename?: "ProductMediaGalleryEntriesContent";
+              base64_encoded_data?: string | null;
+              name?: string | null;
+              type?: string | null;
+            } | null;
+            video_content?: {
+              __typename?: "ProductMediaGalleryEntriesVideoContent";
+              media_type?: string | null;
+              video_description?: string | null;
+              video_metadata?: string | null;
+              video_provider?: string | null;
+              video_title?: string | null;
+              video_url?: string | null;
+            } | null;
+          } | null> | null;
+          price_range: {
+            __typename?: "PriceRange";
+            maximum_price?: {
+              __typename?: "ProductPrice";
+              discount?: {
+                __typename?: "ProductDiscount";
+                amount_off?: number | null;
+                percent_off?: number | null;
+              } | null;
+              fixed_product_taxes?: Array<{
+                __typename?: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename?: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              regular_price: {
+                __typename?: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+            } | null;
+            minimum_price: {
+              __typename?: "ProductPrice";
+              discount?: {
+                __typename?: "ProductDiscount";
+                amount_off?: number | null;
+                percent_off?: number | null;
+              } | null;
+              fixed_product_taxes?: Array<{
+                __typename?: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename?: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              regular_price: {
+                __typename?: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+            };
+          };
+          productBrand?: {
+            __typename?: "Brand";
+            brand_image_url?: string | null;
+            name?: string | null;
+          } | null;
+          product_links?: Array<{
+            __typename?: "ProductLinks";
+            link_type?: string | null;
+            linked_product_sku?: string | null;
+            linked_product_type?: string | null;
+            position?: number | null;
+            sku?: string | null;
+          } | null> | null;
+          small_image?: {
+            __typename?: "ProductImage";
+            disabled?: boolean | null;
+            label?: string | null;
+            position?: number | null;
+            url?: string | null;
+          } | null;
+          short_description?: {
+            __typename?: "ComplexTextValue";
+            html: string;
+          } | null;
+          series?: Array<
+            | {
+                __typename?: "BundleProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "ConfigurableProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "DownloadableProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "GiftCardProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "GroupedProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "SimpleProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "VirtualProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | null
+          > | null;
+          categories?: Array<{
+            __typename?: "CategoryTree";
+            url_path?: string | null;
+            name?: string | null;
+          } | null> | null;
+        }
+      | {
+          __typename?: "GiftCardProduct";
+          url_path?: string | null;
+          url_key?: string | null;
+          url_suffix?: string | null;
+          canonical_url?: string | null;
+          brand?: string | null;
+          color?: number | null;
+          configuration?: string | null;
+          country_of_manufacture?: string | null;
+          gift_message_available?: string | null;
+          id?: number | null;
+          is_returnable?: string | null;
+          manufacturer?: number | null;
+          meta_description?: string | null;
+          meta_keyword?: string | null;
+          meta_title?: string | null;
+          name?: string | null;
+          new_from_date?: string | null;
+          new_to_date?: string | null;
+          only_x_left_in_stock?: number | null;
+          options_container?: string | null;
+          rating_summary: number;
+          updated_at?: string | null;
+          uid: string;
+          type_id?: string | null;
+          tier_price?: number | null;
+          swatch_image?: string | null;
+          stock_status?: ProductStockStatus | null;
+          staged: boolean;
+          special_to_date?: string | null;
+          special_price?: number | null;
+          special_from_date?: string | null;
+          sku?: string | null;
+          size_filter?: string | null;
+          series_group?: string | null;
+          review_count: number;
+          webshopavailable?: number | null;
+          addable_to_cart?: number | null;
+          attribute_set_id?: number | null;
+          created_at?: string | null;
+          delivery_promise?: string | null;
+          ifsite?: string | null;
+          maintenance_description?: string | null;
+          description?: {
+            __typename?: "ComplexTextValue";
+            html: string;
+          } | null;
+          image?:
+            | ({ __typename?: "ProductImage" } & {
+                " $fragmentRefs"?: {
+                  ProductImageFragmentFragment: ProductImageFragmentFragment;
+                };
+              })
+            | null;
+          media_gallery?: Array<
+            | ({
+                __typename?: "ProductImage";
+                disabled?: boolean | null;
+                label?: string | null;
+                position?: number | null;
+                url?: string | null;
+              } & {
+                " $fragmentRefs"?: {
+                  ProductImageFragmentFragment: ProductImageFragmentFragment;
+                };
+              })
+            | ({
+                __typename?: "ProductVideo";
+                disabled?: boolean | null;
+                label?: string | null;
+                position?: number | null;
+                url?: string | null;
+              } & {
+                " $fragmentRefs"?: {
+                  ProductVideoFragmentFragment: ProductVideoFragmentFragment;
+                };
+              })
+            | null
+          > | null;
+          media_gallery_entries?: Array<{
+            __typename?: "MediaGalleryEntry";
+            disabled?: boolean | null;
+            file?: string | null;
+            id?: number | null;
+            label?: string | null;
+            media_type?: string | null;
+            position?: number | null;
+            types?: Array<string | null> | null;
+            uid: string;
+            content?: {
+              __typename?: "ProductMediaGalleryEntriesContent";
+              base64_encoded_data?: string | null;
+              name?: string | null;
+              type?: string | null;
+            } | null;
+            video_content?: {
+              __typename?: "ProductMediaGalleryEntriesVideoContent";
+              media_type?: string | null;
+              video_description?: string | null;
+              video_metadata?: string | null;
+              video_provider?: string | null;
+              video_title?: string | null;
+              video_url?: string | null;
+            } | null;
+          } | null> | null;
+          price_range: {
+            __typename?: "PriceRange";
+            maximum_price?: {
+              __typename?: "ProductPrice";
+              discount?: {
+                __typename?: "ProductDiscount";
+                amount_off?: number | null;
+                percent_off?: number | null;
+              } | null;
+              fixed_product_taxes?: Array<{
+                __typename?: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename?: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              regular_price: {
+                __typename?: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+            } | null;
+            minimum_price: {
+              __typename?: "ProductPrice";
+              discount?: {
+                __typename?: "ProductDiscount";
+                amount_off?: number | null;
+                percent_off?: number | null;
+              } | null;
+              fixed_product_taxes?: Array<{
+                __typename?: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename?: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              regular_price: {
+                __typename?: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+            };
+          };
+          productBrand?: {
+            __typename?: "Brand";
+            brand_image_url?: string | null;
+            name?: string | null;
+          } | null;
+          product_links?: Array<{
+            __typename?: "ProductLinks";
+            link_type?: string | null;
+            linked_product_sku?: string | null;
+            linked_product_type?: string | null;
+            position?: number | null;
+            sku?: string | null;
+          } | null> | null;
+          small_image?: {
+            __typename?: "ProductImage";
+            disabled?: boolean | null;
+            label?: string | null;
+            position?: number | null;
+            url?: string | null;
+          } | null;
+          short_description?: {
+            __typename?: "ComplexTextValue";
+            html: string;
+          } | null;
+          series?: Array<
+            | {
+                __typename?: "BundleProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "ConfigurableProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "DownloadableProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "GiftCardProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "GroupedProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "SimpleProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "VirtualProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | null
+          > | null;
+          categories?: Array<{
+            __typename?: "CategoryTree";
+            url_path?: string | null;
+            name?: string | null;
+          } | null> | null;
+        }
+      | {
+          __typename?: "GroupedProduct";
+          url_path?: string | null;
+          url_key?: string | null;
+          url_suffix?: string | null;
+          canonical_url?: string | null;
+          brand?: string | null;
+          color?: number | null;
+          configuration?: string | null;
+          country_of_manufacture?: string | null;
+          gift_message_available?: string | null;
+          id?: number | null;
+          is_returnable?: string | null;
+          manufacturer?: number | null;
+          meta_description?: string | null;
+          meta_keyword?: string | null;
+          meta_title?: string | null;
+          name?: string | null;
+          new_from_date?: string | null;
+          new_to_date?: string | null;
+          only_x_left_in_stock?: number | null;
+          options_container?: string | null;
+          rating_summary: number;
+          updated_at?: string | null;
+          uid: string;
+          type_id?: string | null;
+          tier_price?: number | null;
+          swatch_image?: string | null;
+          stock_status?: ProductStockStatus | null;
+          staged: boolean;
+          special_to_date?: string | null;
+          special_price?: number | null;
+          special_from_date?: string | null;
+          sku?: string | null;
+          size_filter?: string | null;
+          series_group?: string | null;
+          review_count: number;
+          webshopavailable?: number | null;
+          addable_to_cart?: number | null;
+          attribute_set_id?: number | null;
+          created_at?: string | null;
+          delivery_promise?: string | null;
+          ifsite?: string | null;
+          maintenance_description?: string | null;
+          description?: {
+            __typename?: "ComplexTextValue";
+            html: string;
+          } | null;
+          image?:
+            | ({ __typename?: "ProductImage" } & {
+                " $fragmentRefs"?: {
+                  ProductImageFragmentFragment: ProductImageFragmentFragment;
+                };
+              })
+            | null;
+          media_gallery?: Array<
+            | ({
+                __typename?: "ProductImage";
+                disabled?: boolean | null;
+                label?: string | null;
+                position?: number | null;
+                url?: string | null;
+              } & {
+                " $fragmentRefs"?: {
+                  ProductImageFragmentFragment: ProductImageFragmentFragment;
+                };
+              })
+            | ({
+                __typename?: "ProductVideo";
+                disabled?: boolean | null;
+                label?: string | null;
+                position?: number | null;
+                url?: string | null;
+              } & {
+                " $fragmentRefs"?: {
+                  ProductVideoFragmentFragment: ProductVideoFragmentFragment;
+                };
+              })
+            | null
+          > | null;
+          media_gallery_entries?: Array<{
+            __typename?: "MediaGalleryEntry";
+            disabled?: boolean | null;
+            file?: string | null;
+            id?: number | null;
+            label?: string | null;
+            media_type?: string | null;
+            position?: number | null;
+            types?: Array<string | null> | null;
+            uid: string;
+            content?: {
+              __typename?: "ProductMediaGalleryEntriesContent";
+              base64_encoded_data?: string | null;
+              name?: string | null;
+              type?: string | null;
+            } | null;
+            video_content?: {
+              __typename?: "ProductMediaGalleryEntriesVideoContent";
+              media_type?: string | null;
+              video_description?: string | null;
+              video_metadata?: string | null;
+              video_provider?: string | null;
+              video_title?: string | null;
+              video_url?: string | null;
+            } | null;
+          } | null> | null;
+          price_range: {
+            __typename?: "PriceRange";
+            maximum_price?: {
+              __typename?: "ProductPrice";
+              discount?: {
+                __typename?: "ProductDiscount";
+                amount_off?: number | null;
+                percent_off?: number | null;
+              } | null;
+              fixed_product_taxes?: Array<{
+                __typename?: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename?: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              regular_price: {
+                __typename?: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+            } | null;
+            minimum_price: {
+              __typename?: "ProductPrice";
+              discount?: {
+                __typename?: "ProductDiscount";
+                amount_off?: number | null;
+                percent_off?: number | null;
+              } | null;
+              fixed_product_taxes?: Array<{
+                __typename?: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename?: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              regular_price: {
+                __typename?: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+            };
+          };
+          productBrand?: {
+            __typename?: "Brand";
+            brand_image_url?: string | null;
+            name?: string | null;
+          } | null;
+          product_links?: Array<{
+            __typename?: "ProductLinks";
+            link_type?: string | null;
+            linked_product_sku?: string | null;
+            linked_product_type?: string | null;
+            position?: number | null;
+            sku?: string | null;
+          } | null> | null;
+          small_image?: {
+            __typename?: "ProductImage";
+            disabled?: boolean | null;
+            label?: string | null;
+            position?: number | null;
+            url?: string | null;
+          } | null;
+          short_description?: {
+            __typename?: "ComplexTextValue";
+            html: string;
+          } | null;
+          series?: Array<
+            | {
+                __typename?: "BundleProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "ConfigurableProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "DownloadableProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "GiftCardProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "GroupedProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "SimpleProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "VirtualProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | null
+          > | null;
+          categories?: Array<{
+            __typename?: "CategoryTree";
+            url_path?: string | null;
+            name?: string | null;
+          } | null> | null;
+        }
+      | {
+          __typename?: "SimpleProduct";
+          url_path?: string | null;
+          url_key?: string | null;
+          url_suffix?: string | null;
+          canonical_url?: string | null;
+          brand?: string | null;
+          color?: number | null;
+          configuration?: string | null;
+          country_of_manufacture?: string | null;
+          gift_message_available?: string | null;
+          id?: number | null;
+          is_returnable?: string | null;
+          manufacturer?: number | null;
+          meta_description?: string | null;
+          meta_keyword?: string | null;
+          meta_title?: string | null;
+          name?: string | null;
+          new_from_date?: string | null;
+          new_to_date?: string | null;
+          only_x_left_in_stock?: number | null;
+          options_container?: string | null;
+          rating_summary: number;
+          updated_at?: string | null;
+          uid: string;
+          type_id?: string | null;
+          tier_price?: number | null;
+          swatch_image?: string | null;
+          stock_status?: ProductStockStatus | null;
+          staged: boolean;
+          special_to_date?: string | null;
+          special_price?: number | null;
+          special_from_date?: string | null;
+          sku?: string | null;
+          size_filter?: string | null;
+          series_group?: string | null;
+          review_count: number;
+          webshopavailable?: number | null;
+          addable_to_cart?: number | null;
+          attribute_set_id?: number | null;
+          created_at?: string | null;
+          delivery_promise?: string | null;
+          ifsite?: string | null;
+          maintenance_description?: string | null;
+          description?: {
+            __typename?: "ComplexTextValue";
+            html: string;
+          } | null;
+          image?:
+            | ({ __typename?: "ProductImage" } & {
+                " $fragmentRefs"?: {
+                  ProductImageFragmentFragment: ProductImageFragmentFragment;
+                };
+              })
+            | null;
+          media_gallery?: Array<
+            | ({
+                __typename?: "ProductImage";
+                disabled?: boolean | null;
+                label?: string | null;
+                position?: number | null;
+                url?: string | null;
+              } & {
+                " $fragmentRefs"?: {
+                  ProductImageFragmentFragment: ProductImageFragmentFragment;
+                };
+              })
+            | ({
+                __typename?: "ProductVideo";
+                disabled?: boolean | null;
+                label?: string | null;
+                position?: number | null;
+                url?: string | null;
+              } & {
+                " $fragmentRefs"?: {
+                  ProductVideoFragmentFragment: ProductVideoFragmentFragment;
+                };
+              })
+            | null
+          > | null;
+          media_gallery_entries?: Array<{
+            __typename?: "MediaGalleryEntry";
+            disabled?: boolean | null;
+            file?: string | null;
+            id?: number | null;
+            label?: string | null;
+            media_type?: string | null;
+            position?: number | null;
+            types?: Array<string | null> | null;
+            uid: string;
+            content?: {
+              __typename?: "ProductMediaGalleryEntriesContent";
+              base64_encoded_data?: string | null;
+              name?: string | null;
+              type?: string | null;
+            } | null;
+            video_content?: {
+              __typename?: "ProductMediaGalleryEntriesVideoContent";
+              media_type?: string | null;
+              video_description?: string | null;
+              video_metadata?: string | null;
+              video_provider?: string | null;
+              video_title?: string | null;
+              video_url?: string | null;
+            } | null;
+          } | null> | null;
+          price_range: {
+            __typename?: "PriceRange";
+            maximum_price?: {
+              __typename?: "ProductPrice";
+              discount?: {
+                __typename?: "ProductDiscount";
+                amount_off?: number | null;
+                percent_off?: number | null;
+              } | null;
+              fixed_product_taxes?: Array<{
+                __typename?: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename?: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              regular_price: {
+                __typename?: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+            } | null;
+            minimum_price: {
+              __typename?: "ProductPrice";
+              discount?: {
+                __typename?: "ProductDiscount";
+                amount_off?: number | null;
+                percent_off?: number | null;
+              } | null;
+              fixed_product_taxes?: Array<{
+                __typename?: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename?: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              regular_price: {
+                __typename?: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+            };
+          };
+          productBrand?: {
+            __typename?: "Brand";
+            brand_image_url?: string | null;
+            name?: string | null;
+          } | null;
+          product_links?: Array<{
+            __typename?: "ProductLinks";
+            link_type?: string | null;
+            linked_product_sku?: string | null;
+            linked_product_type?: string | null;
+            position?: number | null;
+            sku?: string | null;
+          } | null> | null;
+          small_image?: {
+            __typename?: "ProductImage";
+            disabled?: boolean | null;
+            label?: string | null;
+            position?: number | null;
+            url?: string | null;
+          } | null;
+          short_description?: {
+            __typename?: "ComplexTextValue";
+            html: string;
+          } | null;
+          series?: Array<
+            | {
+                __typename?: "BundleProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "ConfigurableProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "DownloadableProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "GiftCardProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "GroupedProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "SimpleProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "VirtualProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | null
+          > | null;
+          categories?: Array<{
+            __typename?: "CategoryTree";
+            url_path?: string | null;
+            name?: string | null;
+          } | null> | null;
+        }
+      | {
+          __typename?: "VirtualProduct";
+          url_path?: string | null;
+          url_key?: string | null;
+          url_suffix?: string | null;
+          canonical_url?: string | null;
+          brand?: string | null;
+          color?: number | null;
+          configuration?: string | null;
+          country_of_manufacture?: string | null;
+          gift_message_available?: string | null;
+          id?: number | null;
+          is_returnable?: string | null;
+          manufacturer?: number | null;
+          meta_description?: string | null;
+          meta_keyword?: string | null;
+          meta_title?: string | null;
+          name?: string | null;
+          new_from_date?: string | null;
+          new_to_date?: string | null;
+          only_x_left_in_stock?: number | null;
+          options_container?: string | null;
+          rating_summary: number;
+          updated_at?: string | null;
+          uid: string;
+          type_id?: string | null;
+          tier_price?: number | null;
+          swatch_image?: string | null;
+          stock_status?: ProductStockStatus | null;
+          staged: boolean;
+          special_to_date?: string | null;
+          special_price?: number | null;
+          special_from_date?: string | null;
+          sku?: string | null;
+          size_filter?: string | null;
+          series_group?: string | null;
+          review_count: number;
+          webshopavailable?: number | null;
+          addable_to_cart?: number | null;
+          attribute_set_id?: number | null;
+          created_at?: string | null;
+          delivery_promise?: string | null;
+          ifsite?: string | null;
+          maintenance_description?: string | null;
+          description?: {
+            __typename?: "ComplexTextValue";
+            html: string;
+          } | null;
+          image?:
+            | ({ __typename?: "ProductImage" } & {
+                " $fragmentRefs"?: {
+                  ProductImageFragmentFragment: ProductImageFragmentFragment;
+                };
+              })
+            | null;
+          media_gallery?: Array<
+            | ({
+                __typename?: "ProductImage";
+                disabled?: boolean | null;
+                label?: string | null;
+                position?: number | null;
+                url?: string | null;
+              } & {
+                " $fragmentRefs"?: {
+                  ProductImageFragmentFragment: ProductImageFragmentFragment;
+                };
+              })
+            | ({
+                __typename?: "ProductVideo";
+                disabled?: boolean | null;
+                label?: string | null;
+                position?: number | null;
+                url?: string | null;
+              } & {
+                " $fragmentRefs"?: {
+                  ProductVideoFragmentFragment: ProductVideoFragmentFragment;
+                };
+              })
+            | null
+          > | null;
+          media_gallery_entries?: Array<{
+            __typename?: "MediaGalleryEntry";
+            disabled?: boolean | null;
+            file?: string | null;
+            id?: number | null;
+            label?: string | null;
+            media_type?: string | null;
+            position?: number | null;
+            types?: Array<string | null> | null;
+            uid: string;
+            content?: {
+              __typename?: "ProductMediaGalleryEntriesContent";
+              base64_encoded_data?: string | null;
+              name?: string | null;
+              type?: string | null;
+            } | null;
+            video_content?: {
+              __typename?: "ProductMediaGalleryEntriesVideoContent";
+              media_type?: string | null;
+              video_description?: string | null;
+              video_metadata?: string | null;
+              video_provider?: string | null;
+              video_title?: string | null;
+              video_url?: string | null;
+            } | null;
+          } | null> | null;
+          price_range: {
+            __typename?: "PriceRange";
+            maximum_price?: {
+              __typename?: "ProductPrice";
+              discount?: {
+                __typename?: "ProductDiscount";
+                amount_off?: number | null;
+                percent_off?: number | null;
+              } | null;
+              fixed_product_taxes?: Array<{
+                __typename?: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename?: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              regular_price: {
+                __typename?: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+            } | null;
+            minimum_price: {
+              __typename?: "ProductPrice";
+              discount?: {
+                __typename?: "ProductDiscount";
+                amount_off?: number | null;
+                percent_off?: number | null;
+              } | null;
+              fixed_product_taxes?: Array<{
+                __typename?: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename?: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              regular_price: {
+                __typename?: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+            };
+          };
+          productBrand?: {
+            __typename?: "Brand";
+            brand_image_url?: string | null;
+            name?: string | null;
+          } | null;
+          product_links?: Array<{
+            __typename?: "ProductLinks";
+            link_type?: string | null;
+            linked_product_sku?: string | null;
+            linked_product_type?: string | null;
+            position?: number | null;
+            sku?: string | null;
+          } | null> | null;
+          small_image?: {
+            __typename?: "ProductImage";
+            disabled?: boolean | null;
+            label?: string | null;
+            position?: number | null;
+            url?: string | null;
+          } | null;
+          short_description?: {
+            __typename?: "ComplexTextValue";
+            html: string;
+          } | null;
+          series?: Array<
+            | {
+                __typename?: "BundleProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "ConfigurableProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "DownloadableProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "GiftCardProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "GroupedProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "SimpleProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | {
+                __typename?: "VirtualProduct";
+                url_path?: string | null;
+                name?: string | null;
+              }
+            | null
+          > | null;
+          categories?: Array<{
+            __typename?: "CategoryTree";
+            url_path?: string | null;
+            name?: string | null;
+          } | null> | null;
+        }
+      | null
+    > | null;
+  } | null;
+};
+
+export const BannerFragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "BannerFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Banner" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "Banner" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "alt" } },
+                { kind: "Field", name: { kind: "Name", value: "identify" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "bannerImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mimeType" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<BannerFragmentFragment, unknown>;
+export const PopularProductsFragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "PopularProductsFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PopularProduct" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "PopularProduct" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "categoryId" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<PopularProductsFragmentFragment, unknown>;
+export const ProductImageFragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductImageFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductImage" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ProductImageFragmentFragment, unknown>;
+export const ProductVideoFragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductVideoFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductVideo" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "video_content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "media_type" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_description" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_metadata" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_provider" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "video_title" } },
+                { kind: "Field", name: { kind: "Name", value: "video_url" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ProductVideoFragmentFragment, unknown>;
+export const CategoryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "Category" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "filters" },
+          },
+          type: {
+            kind: "NamedType",
+            name: { kind: "Name", value: "CategoryFilterInput" },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "categories" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "filters" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "filters" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "description" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "uid" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "url_path" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "product_count" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "meta_title" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "meta_keywords" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "meta_description" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "include_in_menu" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "children" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "name" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "uid" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "url_path" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "product_count" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "include_in_menu" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "children" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "name" },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "uid" },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "url_path" },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: {
+                                      kind: "Name",
+                                      value: "product_count",
+                                    },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: {
+                                      kind: "Name",
+                                      value: "include_in_menu",
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CategoryQuery, CategoryQueryVariables>;
+export const MenuDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "Menu" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "where" },
+          },
+          type: {
+            kind: "NamedType",
+            name: { kind: "Name", value: "MenuWhereInput" },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "menus" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "where" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "links" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "Link" },
+                        },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "__typename" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "label" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "url" },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: {
+                            kind: "Name",
+                            value: "MegaMenuCategoriesDropdown",
+                          },
+                        },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "__typename" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "label" },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "MegaMenuDropdown" },
+                        },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "__typename" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "items" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "InlineFragment",
+                                    typeCondition: {
+                                      kind: "NamedType",
+                                      name: { kind: "Name", value: "Link" },
+                                    },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "__typename",
+                                          },
+                                        },
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "label",
+                                          },
+                                        },
+                                        {
+                                          kind: "Field",
+                                          name: { kind: "Name", value: "url" },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                  {
+                                    kind: "InlineFragment",
+                                    typeCondition: {
+                                      kind: "NamedType",
+                                      name: {
+                                        kind: "Name",
+                                        value: "ImageLink",
+                                      },
+                                    },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "__typename",
+                                          },
+                                        },
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "label",
+                                          },
+                                        },
+                                        {
+                                          kind: "Field",
+                                          name: { kind: "Name", value: "url" },
+                                        },
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "image",
+                                          },
+                                          selectionSet: {
+                                            kind: "SelectionSet",
+                                            selections: [
+                                              {
+                                                kind: "Field",
+                                                name: {
+                                                  kind: "Name",
+                                                  value: "url",
+                                                },
+                                              },
+                                            ],
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "label" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<MenuQuery, MenuQueryVariables>;
+export const PagesDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "Pages" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "url" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "pages" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "url" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "url" },
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "identify" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "metaDescription" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "metaTitle" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "content" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "BannerFragment" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: {
+                          kind: "Name",
+                          value: "PopularProductsFragment",
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "BannerFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Banner" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "Banner" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "alt" } },
+                { kind: "Field", name: { kind: "Name", value: "identify" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "bannerImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mimeType" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "PopularProductsFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PopularProduct" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "PopularProduct" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "categoryId" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<PagesQuery, PagesQueryVariables>;
+export const ProductsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "Products" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "pageSize" },
+          },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+          defaultValue: { kind: "IntValue", value: "12" },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "filter" },
+          },
+          type: {
+            kind: "NamedType",
+            name: { kind: "Name", value: "ProductAttributeFilterInput" },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "products" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "pageSize" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "pageSize" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "filter" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "filter" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "url_path" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "url_key" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "url_suffix" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "canonical_url" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "brand" } },
+                      { kind: "Field", name: { kind: "Name", value: "color" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "configuration" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "country_of_manufacture" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "description" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "html" },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "gift_message_available" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "FragmentSpread",
+                              name: {
+                                kind: "Name",
+                                value: "ProductImageFragment",
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "is_returnable" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "manufacturer" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "media_gallery" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "disabled" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "label" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "position" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "url" },
+                            },
+                            {
+                              kind: "InlineFragment",
+                              typeCondition: {
+                                kind: "NamedType",
+                                name: { kind: "Name", value: "ProductImage" },
+                              },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "FragmentSpread",
+                                    name: {
+                                      kind: "Name",
+                                      value: "ProductImageFragment",
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "InlineFragment",
+                              typeCondition: {
+                                kind: "NamedType",
+                                name: { kind: "Name", value: "ProductVideo" },
+                              },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "FragmentSpread",
+                                    name: {
+                                      kind: "Name",
+                                      value: "ProductVideoFragment",
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "media_gallery_entries" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "content" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: {
+                                      kind: "Name",
+                                      value: "base64_encoded_data",
+                                    },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "name" },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "type" },
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "disabled" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "file" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "id" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "label" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "media_type" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "position" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "types" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "uid" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "video_content" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "media_type" },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: {
+                                      kind: "Name",
+                                      value: "video_description",
+                                    },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: {
+                                      kind: "Name",
+                                      value: "video_metadata",
+                                    },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: {
+                                      kind: "Name",
+                                      value: "video_provider",
+                                    },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: {
+                                      kind: "Name",
+                                      value: "video_title",
+                                    },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "video_url" },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "meta_description" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "meta_keyword" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "meta_title" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "new_from_date" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "new_to_date" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "only_x_left_in_stock" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "options_container" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "price_range" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "maximum_price" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "discount" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "amount_off",
+                                          },
+                                        },
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "percent_off",
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: {
+                                      kind: "Name",
+                                      value: "fixed_product_taxes",
+                                    },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "amount",
+                                          },
+                                          selectionSet: {
+                                            kind: "SelectionSet",
+                                            selections: [
+                                              {
+                                                kind: "Field",
+                                                name: {
+                                                  kind: "Name",
+                                                  value: "currency",
+                                                },
+                                              },
+                                              {
+                                                kind: "Field",
+                                                name: {
+                                                  kind: "Name",
+                                                  value: "value",
+                                                },
+                                              },
+                                            ],
+                                          },
+                                        },
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "label",
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: {
+                                      kind: "Name",
+                                      value: "regular_price",
+                                    },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "currency",
+                                          },
+                                        },
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "value",
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "minimum_price" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "discount" },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "amount_off",
+                                          },
+                                        },
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "percent_off",
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: {
+                                      kind: "Name",
+                                      value: "fixed_product_taxes",
+                                    },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "amount",
+                                          },
+                                          selectionSet: {
+                                            kind: "SelectionSet",
+                                            selections: [
+                                              {
+                                                kind: "Field",
+                                                name: {
+                                                  kind: "Name",
+                                                  value: "currency",
+                                                },
+                                              },
+                                              {
+                                                kind: "Field",
+                                                name: {
+                                                  kind: "Name",
+                                                  value: "value",
+                                                },
+                                              },
+                                            ],
+                                          },
+                                        },
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "label",
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: {
+                                      kind: "Name",
+                                      value: "regular_price",
+                                    },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "currency",
+                                          },
+                                        },
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "value",
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "productBrand" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "brand_image_url" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "name" },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "product_links" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "link_type" },
+                            },
+                            {
+                              kind: "Field",
+                              name: {
+                                kind: "Name",
+                                value: "linked_product_sku",
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: {
+                                kind: "Name",
+                                value: "linked_product_type",
+                              },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "position" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "sku" },
+                            },
+                            {
+                              kind: "InlineFragment",
+                              typeCondition: {
+                                kind: "NamedType",
+                                name: { kind: "Name", value: "ProductLinks" },
+                              },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "link_type" },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: {
+                                      kind: "Name",
+                                      value: "linked_product_sku",
+                                    },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: {
+                                      kind: "Name",
+                                      value: "linked_product_type",
+                                    },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "position" },
+                                  },
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "sku" },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "rating_summary" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "updated_at" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "uid" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "type_id" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "tier_price" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "swatch_image" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "stock_status" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "staged" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "special_to_date" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "special_price" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "special_from_date" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "small_image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "disabled" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "label" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "position" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "url" },
+                            },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "sku" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "size_filter" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "short_description" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "html" },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "series_group" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "review_count" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "webshopavailable" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "addable_to_cart" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "attribute_set_id" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "created_at" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "delivery_promise" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "ifsite" },
+                      },
+                      {
+                        kind: "Field",
+                        name: {
+                          kind: "Name",
+                          value: "maintenance_description",
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "series" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "url_path" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "name" },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "categories" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "url_path" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "name" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductImageFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductImage" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductVideoFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductVideo" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "video_content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "media_type" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_description" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_metadata" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_provider" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "video_title" } },
+                { kind: "Field", name: { kind: "Name", value: "video_url" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ProductsQuery, ProductsQueryVariables>;

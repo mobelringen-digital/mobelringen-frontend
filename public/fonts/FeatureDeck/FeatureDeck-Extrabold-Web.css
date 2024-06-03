@@ -1,0 +1,13 @@
+@font-face {
+	font-family: 'Feature Deck Web';
+	src: url('FeatureDeck-Extrabold-Web.woff2') format('woff2'),
+		 url('FeatureDeck-Extrabold-Web.woff') format('woff');
+	font-weight: 800;
+	font-style: normal;
+	}
+
+.FeatureDeck-Extrabold-Web {
+	font-family: 'Feature Deck Web';
+	font-weight: 800;
+	font-style: normal;
+	}

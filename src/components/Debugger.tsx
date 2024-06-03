@@ -1,0 +1,25 @@
+"use client";
+import React from "react";
+
+interface Props {
+  data: any;
+}
+
+export const Debugger: React.FC<Props> = ({ data }) => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  return (
+    <>
+      <button
+        className="text-sm bg-black text-white p-2"
+        onClick={() => setIsOpen((prev) => !prev)}
+      >
+        Debugger
+      </button>
+      {isOpen ? (
+        <div className="bg-black text-white text-sm p-4">
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+        </div>
+      ) : null}
+    </>
+  );
+};

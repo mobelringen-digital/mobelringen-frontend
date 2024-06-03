@@ -1,0 +1,13 @@
+@font-face {
+	font-family: 'Feature Deck Web';
+	src: url('FeatureDeck-RegularItalic-Web.woff2') format('woff2'),
+		 url('FeatureDeck-RegularItalic-Web.woff') format('woff');
+	font-weight: 400;
+	font-style: italic;
+	}
+
+.FeatureDeck-RegularItalic-Web {
+	font-family: 'Feature Deck Web';
+	font-weight: 400;
+	font-style: italic;
+	}
