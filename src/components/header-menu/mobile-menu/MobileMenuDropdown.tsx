@@ -5,6 +5,7 @@ import React from "react";
 import cx from "classnames";
 
 import { ArrowLeftAlt } from "@/components/icons/ArrowLeftAlt";
+import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 
 interface Props {
   isActive: boolean;
@@ -23,13 +24,15 @@ export const MobileMenuDropdown: React.FC<Props> = (props) => {
         },
       )}
     >
-      <button
-        className="flex gap-1 font-bold mb-6"
-        onClick={() => props.setIsActive(false)}
-      >
-        <ArrowLeftAlt /> Tilbake
-      </button>
-      {props.children}
+      <ContainerLayout>
+        <button
+          className="flex gap-1 font-bold mb-6"
+          onClick={() => props.setIsActive(false)}
+        >
+          <ArrowLeftAlt /> Tilbake
+        </button>
+        {props.children}
+      </ContainerLayout>
     </div>
   );
 };
