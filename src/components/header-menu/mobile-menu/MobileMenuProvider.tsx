@@ -4,6 +4,8 @@ import React from "react";
 
 import cx from "classnames";
 
+import { usePathname, useSearchParams } from "next/navigation";
+
 import { CloseIcon } from "@/components/icons/CloseIcon";
 import { MenuIcon } from "@/components/icons/MenuIcon";
 import { NavigationIcon } from "@/components/icons/NavigationIcon";
@@ -15,11 +17,19 @@ interface Props {
 
 export const MobileMenuProvider: React.FC<Props> = ({ children }) => {
   const [isOpen, setIsOpen] = React.useState(false);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const handleMenuButtonClick = (e: React.MouseEvent) => {
     e.preventDefault();
     return setIsOpen((prev) => !prev);
   };
+
+  React.useEffect(() => {
+    setIsOpen(false);
+    // Listen for route changes and close the dropdown
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname, searchParams]);
 
   React.useEffect(() => {
     if (isOpen) {

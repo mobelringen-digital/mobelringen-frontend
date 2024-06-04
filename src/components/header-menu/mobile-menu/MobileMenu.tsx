@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import MobileMenuAdditionalLinks from "@/components/header-menu/mobile-menu/MobileMenuAdditionalLinks";
 import { MobileMenuBottomLinks } from "@/components/header-menu/mobile-menu/MobileMenuBottomLinks";
@@ -12,10 +12,12 @@ interface Props {
 
 export const MobileMenu: React.FC<Props> = ({ data }) => {
   return (
-    <MobileMenuProvider>
-      <MobileMenuLinks data={data} />
-      <MobileMenuAdditionalLinks />
-      <MobileMenuBottomLinks />
-    </MobileMenuProvider>
+    <Suspense>
+      <MobileMenuProvider>
+        <MobileMenuLinks data={data} />
+        <MobileMenuAdditionalLinks />
+        <MobileMenuBottomLinks />
+      </MobileMenuProvider>
+    </Suspense>
   );
 };
