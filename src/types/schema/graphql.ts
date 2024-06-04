@@ -8672,10 +8672,10 @@ export type LinkBlock = Entity & {
   __typename?: "LinkBlock";
   /** The unique identifier */
   id: Scalars["ID"]["output"];
+  label: Scalars["String"]["output"];
   links: Array<LinkBlocklinksUnion>;
   /** System stage field */
   stage: Stage;
-  title: Scalars["String"]["output"];
 };
 
 export type LinkBlockLinksArgs = {
@@ -8706,8 +8706,8 @@ export type LinkBlockConnection = {
 };
 
 export type LinkBlockCreateInput = {
+  label: Scalars["String"]["input"];
   links?: InputMaybe<LinkBlocklinksUnionCreateManyInlineInput>;
-  title: Scalars["String"]["input"];
 };
 
 export type LinkBlockCreateManyInlineInput = {
@@ -8765,36 +8765,36 @@ export type LinkBlockManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  label?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  label_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  label_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  label_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  label_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  label_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  label_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  label_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  label_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  label_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   /** All values in which the union is empty. */
   links_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
   /** Matches if the modular component contains at least one connection to the item provided to the filter */
   links_some?: InputMaybe<LinkBlocklinksUnionWhereInput>;
-  title?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values containing the given string. */
-  title_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values ending with the given string. */
-  title_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are contained in given list. */
-  title_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  title_not?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not containing the given string. */
-  title_not_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not ending with the given string */
-  title_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are not contained in given list. */
-  title_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** All values not starting with the given string. */
-  title_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values starting with the given string. */
-  title_starts_with?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export enum LinkBlockOrderByInput {
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
-  TitleAsc = "title_ASC",
-  TitleDesc = "title_DESC",
+  LabelAsc = "label_ASC",
+  LabelDesc = "label_DESC",
 }
 
 export type LinkBlockParent = Menu;
@@ -8878,8 +8878,8 @@ export type LinkBlockParentWhereUniqueInput = {
 };
 
 export type LinkBlockUpdateInput = {
+  label?: InputMaybe<Scalars["String"]["input"]>;
   links?: InputMaybe<LinkBlocklinksUnionUpdateManyInlineInput>;
-  title?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type LinkBlockUpdateManyInlineInput = {
@@ -8898,7 +8898,7 @@ export type LinkBlockUpdateManyInlineInput = {
 };
 
 export type LinkBlockUpdateManyInput = {
-  title?: InputMaybe<Scalars["String"]["input"]>;
+  label?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type LinkBlockUpdateManyWithNestedWhereInput = {
@@ -8987,29 +8987,29 @@ export type LinkBlockWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  label?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  label_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  label_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  label_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  label_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  label_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  label_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  label_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  label_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  label_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   /** All values in which the union is empty. */
   links_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
   /** Matches if the modular component contains at least one connection to the item provided to the filter */
   links_some?: InputMaybe<LinkBlocklinksUnionWhereInput>;
-  title?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values containing the given string. */
-  title_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values ending with the given string. */
-  title_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are contained in given list. */
-  title_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  title_not?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not containing the given string. */
-  title_not_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not ending with the given string */
-  title_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are not contained in given list. */
-  title_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** All values not starting with the given string. */
-  title_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values starting with the given string. */
-  title_starts_with?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 /** References LinkBlock record uniquely */
@@ -20152,7 +20152,7 @@ export type MenuQuery = {
       | {
           __typename: "LinkBlock";
           id: string;
-          title: string;
+          label: string;
           links: Array<{
             __typename: "Link";
             label: string;
@@ -22156,7 +22156,7 @@ export const MenuDocument = {
                             },
                             {
                               kind: "Field",
-                              name: { kind: "Name", value: "title" },
+                              name: { kind: "Name", value: "label" },
                             },
                             {
                               kind: "Field",

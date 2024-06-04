@@ -6,7 +6,7 @@ interface Props {
   block: {
     __typename: "LinkBlock";
     id: string;
-    title: string;
+    label: string;
     links: Array<{
       __typename: "Link";
       label: string;
@@ -25,7 +25,7 @@ export const BlockLinks: React.FC<Props> = ({ block }) => {
       className="col-span-6 lg:col-span-2 flex flex-col gap-4"
       key={block.id}
     >
-      <span className="text-sm font-bold">{block.title}</span>
+      <span className="text-sm font-bold">{block.label}</span>
       <div>
         {block.links?.map((link) => {
           if (link.__typename === "Link") {

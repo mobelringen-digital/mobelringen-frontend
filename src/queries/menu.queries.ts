@@ -7,7 +7,7 @@ export const MenuQueryDocument = graphql(`
         ... on LinkBlock {
           __typename
           id
-          title
+          label
           links {
             ... on Link {
               __typename
