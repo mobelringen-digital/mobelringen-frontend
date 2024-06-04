@@ -64,7 +64,7 @@ export const MobileMenuProvider: React.FC<Props> = ({ children }) => {
             <CloseIcon />
           </button>
         </ContainerLayout>
-        <ContainerLayout
+        <div
           className={cx(
             "fixed overflow-y-auto overflow-x-hidden p-4 left-0 top-[80px] h-[calc(100dvh-80px)] right-0 bottom-0 bg-white z-100 transition-all duration-500 ease-in-out",
             {
@@ -73,8 +73,8 @@ export const MobileMenuProvider: React.FC<Props> = ({ children }) => {
             },
           )}
         >
-          {children}
-        </ContainerLayout>
+          <ContainerLayout>{children}</ContainerLayout>
+        </div>
       </div>
     </div>
   );
