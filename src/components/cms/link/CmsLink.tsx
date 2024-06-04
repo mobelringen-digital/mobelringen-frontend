@@ -20,10 +20,10 @@ export const CmsLink: React.FC<Props> = ({ data, className }) => {
     <Link
       key={data.url}
       href={data.url}
-      className={cx("flex items-center gap-2", className)}
+      className={cx("flex items-center gap-1.5", className)}
     >
       {data.icon?.url ? (
-        <Image width={24} height={24} src={data.icon.url} alt={data.label} />
+        <Image width={18} height={18} src={data.icon.url} alt={data.label} />
       ) : null}
       <span>{data.label}</span>
     </Link>

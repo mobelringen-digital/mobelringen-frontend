@@ -14,6 +14,9 @@ export const MenuQueryDocument = graphql(`
               label
               id
               url
+              icon {
+                url
+              }
             }
           }
         }

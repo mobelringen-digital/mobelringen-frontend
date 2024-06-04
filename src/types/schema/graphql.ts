@@ -20158,6 +20158,7 @@ export type MenuQuery = {
             label: string;
             id: string;
             url: string;
+            icon?: { __typename?: "Asset"; url: string } | null;
           }>;
         }
       | { __typename: "MegaMenuCategoriesDropdown"; label: string }
@@ -22194,6 +22195,22 @@ export const MenuDocument = {
                                         {
                                           kind: "Field",
                                           name: { kind: "Name", value: "url" },
+                                        },
+                                        {
+                                          kind: "Field",
+                                          name: { kind: "Name", value: "icon" },
+                                          selectionSet: {
+                                            kind: "SelectionSet",
+                                            selections: [
+                                              {
+                                                kind: "Field",
+                                                name: {
+                                                  kind: "Name",
+                                                  value: "url",
+                                                },
+                                              },
+                                            ],
+                                          },
                                         },
                                       ],
                                     },
