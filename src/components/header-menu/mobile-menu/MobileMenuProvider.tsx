@@ -57,16 +57,14 @@ export const MobileMenuProvider: React.FC<Props> = ({ children }) => {
           },
         )}
       >
-        <ContainerLayout
-          className={cx("flex h-[80px] border-b border-b-cold-grey-dark")}
-        >
+        <ContainerLayout className={cx("flex h-[80px]")}>
           <button onClick={handleMenuButtonClick}>
             <CloseIcon />
           </button>
         </ContainerLayout>
         <div
           className={cx(
-            "fixed overflow-y-auto overflow-x-hidden p-4 left-0 top-[80px] h-[calc(100dvh-80px)] right-0 bottom-0 bg-white z-100 transition-all duration-500 ease-in-out",
+            "fixed border-t border-t-cold-grey-dark overflow-y-auto overflow-x-hidden p-4 left-0 top-[80px] h-[calc(100dvh-80px)] right-0 bottom-0 bg-white z-100 transition-all duration-500 ease-in-out",
             {
               "translate-x-0": isOpen,
               "-translate-x-full": !isOpen,
