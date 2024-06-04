@@ -6,15 +6,14 @@ import { usePathname, useSearchParams } from "next/navigation";
 
 import { DropdownArrow } from "@/components/header-menu/menu-item/DropdownArrow";
 import { DropdownContentWrapper } from "@/components/header-menu/menu-item/DropdownContentWrapper";
-import { MenuItemEntity } from "@/components/header-menu/types";
 import { useDetectOutsideClick } from "@/utils/hooks/useDetectOutsideClick";
 
 interface Props {
-  link: MenuItemEntity;
+  title: string;
   children: React.ReactNode;
 }
 
-export const DropdownMenuProvider: React.FC<Props> = ({ children, link }) => {
+export const DropdownMenuProvider: React.FC<Props> = ({ children, title }) => {
   const ref = React.useRef(null);
   const [isActive, setIsActive] = useDetectOutsideClick(ref, false);
   const pathname = usePathname();
@@ -26,17 +25,13 @@ export const DropdownMenuProvider: React.FC<Props> = ({ children, link }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname, searchParams]);
 
-  if (link.__typename !== "Link") {
-    return null;
-  }
-
   return (
     <li className="py-2" ref={ref}>
       <button
         onClick={() => setIsActive((prev) => !prev)}
         className="cursor-pointer flex items-center"
       >
-        {link.label}
+        {title}
         <DropdownArrow isActive={isActive} />
       </button>
       <DropdownContentWrapper isActive={isActive}>

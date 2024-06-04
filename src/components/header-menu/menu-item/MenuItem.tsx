@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 
-import Link from "next/link";
-
+import { CmsLink } from "@/components/cms/link/CmsLink";
 import { DropdownMenuProvider } from "@/components/header-menu/menu-item/DropdownMenuProvider";
 import { MegaMenuCategoriesDropdown } from "@/components/header-menu/menu-item/MegaMenuCategoriesDropdown/MegaMenuCategoriesDropdown";
 import { MegaMenuDropdown } from "@/components/header-menu/menu-item/MegaMenuDropdown/MegaMenuDropdown";
@@ -15,14 +14,14 @@ export const MenuItem: React.FC<Props> = ({ link }) => {
   if (link.__typename === "Link") {
     return (
       <li className="py-2">
-        <Link href={link?.url ?? "#"}>{link.label}</Link>
+        <CmsLink data={link} />
       </li>
     );
   }
 
   return (
     <Suspense>
-      <DropdownMenuProvider link={link}>
+      <DropdownMenuProvider title={link.label}>
         {link.__typename === "MegaMenuDropdown" ? (
           <MegaMenuDropdown link={link} />
         ) : null}
