@@ -45,6 +45,10 @@ const config: Config = {
       error: "#C82B2B",
     },
     extend: {
+      zIndex: {
+        "100": "100",
+        "200": "200",
+      },
       fontFamily: {
         feature: ["Feature Deck Web", "sans-serif"],
         suisse: ["Suisse Intl", "sans-serif"],

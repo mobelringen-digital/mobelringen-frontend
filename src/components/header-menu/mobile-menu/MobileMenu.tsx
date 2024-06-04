@@ -1,0 +1,21 @@
+import React from "react";
+
+import MobileMenuAdditionalLinks from "@/components/header-menu/mobile-menu/MobileMenuAdditionalLinks";
+import { MobileMenuBottomLinks } from "@/components/header-menu/mobile-menu/MobileMenuBottomLinks";
+import { MobileMenuLinks } from "@/components/header-menu/mobile-menu/MobileMenuLinks";
+import { MobileMenuProvider } from "@/components/header-menu/mobile-menu/MobileMenuProvider";
+import { MenuQuery } from "@/types";
+
+interface Props {
+  data: MenuQuery;
+}
+
+export const MobileMenu: React.FC<Props> = ({ data }) => {
+  return (
+    <MobileMenuProvider>
+      <MobileMenuLinks data={data} />
+      <MobileMenuAdditionalLinks />
+      <MobileMenuBottomLinks />
+    </MobileMenuProvider>
+  );
+};

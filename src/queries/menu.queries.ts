@@ -8,6 +8,9 @@ export const MenuQueryDocument = graphql(`
           __typename
           label
           url
+          icon {
+            url
+          }
         }
         ... on MegaMenuCategoriesDropdown {
           __typename
