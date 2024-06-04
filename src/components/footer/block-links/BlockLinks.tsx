@@ -25,6 +25,8 @@ export const BlockLinks: React.FC<Props> = ({ data }) => {
                 className="text-sm py-1 hover:underline"
                 data={link}
                 key={idx}
+                iconWidth={18}
+                iconHeight={18}
               />
             );
           }
