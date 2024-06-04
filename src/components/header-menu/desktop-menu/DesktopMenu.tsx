@@ -1,6 +1,6 @@
 import React from "react";
 
-import { MenuItem } from "@/components/header-menu/menu-item/MenuItem";
+import { MenuItem } from "@/components/header-menu/desktop-menu/MenuItem";
 import { MenuQuery } from "@/types";
 
 interface Props {

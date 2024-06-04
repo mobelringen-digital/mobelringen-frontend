@@ -1,4 +1,4 @@
-export const NavigationIcon = () => {
+export const LocationIcon = () => {
   return (
     <svg
       width="24"

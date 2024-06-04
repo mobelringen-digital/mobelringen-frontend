@@ -7,8 +7,8 @@ import cx from "classnames";
 import { usePathname, useSearchParams } from "next/navigation";
 
 import { CloseIcon } from "@/components/icons/CloseIcon";
+import { LocationIcon } from "@/components/icons/LocationIcon";
 import { MenuIcon } from "@/components/icons/MenuIcon";
-import { NavigationIcon } from "@/components/icons/NavigationIcon";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 
 interface Props {
@@ -40,12 +40,12 @@ export const MobileMenuProvider: React.FC<Props> = ({ children }) => {
   }, [isOpen]);
 
   return (
-    <div className="flex gap-1 items-center md:hidden">
+    <div className="flex gap-2 items-center md:hidden">
       <button onClick={handleMenuButtonClick}>
         <MenuIcon />
       </button>
       <button>
-        <NavigationIcon />
+        <LocationIcon />
       </button>
 
       <div

@@ -1,9 +1,9 @@
 import React, { Suspense } from "react";
 
 import { CmsLink } from "@/components/cms/link/CmsLink";
-import { DropdownMenuProvider } from "@/components/header-menu/menu-item/DropdownMenuProvider";
-import { MegaMenuCategoriesDropdown } from "@/components/header-menu/menu-item/MegaMenuCategoriesDropdown/MegaMenuCategoriesDropdown";
-import { MegaMenuDropdown } from "@/components/header-menu/menu-item/MegaMenuDropdown/MegaMenuDropdown";
+import { MegaMenuCategoriesDropdown } from "@/components/header-menu/cms-components/MegaMenuCategoriesDropdown/MegaMenuCategoriesDropdown";
+import { MegaMenuDropdown } from "@/components/header-menu/cms-components/MegaMenuDropdown/MegaMenuDropdown";
+import { DropdownMenuProvider } from "@/components/header-menu/desktop-menu/DropdownMenuProvider";
 import { MenuItemEntity } from "@/components/header-menu/types";
 import { CmsMegamenuDropdownFragment } from "@/types";
 

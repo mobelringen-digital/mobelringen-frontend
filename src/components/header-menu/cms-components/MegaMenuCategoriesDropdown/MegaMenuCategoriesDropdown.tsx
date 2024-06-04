@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { TempCategoryIcon } from "@/components/header-menu/menu-item/MegaMenuCategoriesDropdown/TempCategoryIcon";
+import { TempCategoryIcon } from "@/components/header-menu/cms-components/MegaMenuCategoriesDropdown/TempCategoryIcon";
 import { CategoryQueryDocument } from "@/queries/category.queries";
 import { CategoryQuery } from "@/types";
 import { baseMagentoClient } from "@/utils/lib/graphql";

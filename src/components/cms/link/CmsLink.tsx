@@ -38,8 +38,6 @@ export const CmsLink: React.FC<Props> = ({
             height={iconHeight}
             src={link.icon.url}
             alt={link.label}
-            objectFit="cover"
-            objectPosition="center"
           />
         ) : null}
         {link.label}

@@ -4,8 +4,8 @@ import React from "react";
 
 import { usePathname, useSearchParams } from "next/navigation";
 
-import { DropdownArrow } from "@/components/header-menu/menu-item/DropdownArrow";
-import { DropdownContentWrapper } from "@/components/header-menu/menu-item/DropdownContentWrapper";
+import { DropdownArrow } from "@/components/header-menu/desktop-menu/DropdownArrow";
+import { DropdownContentWrapper } from "@/components/header-menu/desktop-menu/DropdownContentWrapper";
 import { useDetectOutsideClick } from "@/utils/hooks/useDetectOutsideClick";
 
 interface Props {
