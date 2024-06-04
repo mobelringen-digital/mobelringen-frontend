@@ -1,11 +1,13 @@
 import React, { Suspense } from "react";
 
+import { Footer } from "@/components/footer/Footer";
 import { HeaderMenu } from "@/components/header-menu";
 import { ReactQueryClientProvider } from "@/components/ReactQueryClientProvider";
 
 import Loading from "./loading";
 
 import "./globals.css";
+
 export default async function RootLayout({
   children,
 }: Readonly<{
@@ -22,6 +24,7 @@ export default async function RootLayout({
         <body className="bg-sand font-suisse">
           <HeaderMenu />
           <Suspense fallback={<Loading />}>{children}</Suspense>
+          <Footer />
         </body>
       </html>
     </ReactQueryClientProvider>

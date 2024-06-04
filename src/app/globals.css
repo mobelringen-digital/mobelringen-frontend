@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 @layer base {
   @font-face {
     font-family: "Feature Deck Web";
@@ -172,4 +180,18 @@
     font-weight: 400;
     font-style: italic;
   }
+}
+
+#curved-corner:before {
+  content: "";
+  display: block;
+  width: 190%;
+  height: 190%;
+  position: absolute;
+  border-radius: 50%;
+}
+#curved-corner:before {
+  bottom: 0;
+  right: 0;
+  box-shadow: 50px 50px 0 0 #FFDBD2;
 }

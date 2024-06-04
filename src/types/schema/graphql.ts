@@ -6720,6 +6720,7 @@ export enum EntityTypeName {
   Banner = "Banner",
   ImageLink = "ImageLink",
   Link = "Link",
+  LinkBlock = "LinkBlock",
   /** This dropdown displays all categories from Magento */
   MegaMenuCategoriesDropdown = "MegaMenuCategoriesDropdown",
   MegaMenuDropdown = "MegaMenuDropdown",
@@ -8667,6 +8668,437 @@ export type LinkIconArgs = {
   where?: InputMaybe<AssetSingleRelationWhereInput>;
 };
 
+export type LinkBlock = Entity & {
+  __typename?: "LinkBlock";
+  /** The unique identifier */
+  id: Scalars["ID"]["output"];
+  links: Array<LinkBlocklinksUnion>;
+  /** System stage field */
+  stage: Stage;
+  title: Scalars["String"]["output"];
+};
+
+export type LinkBlockLinksArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export type LinkBlockConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: LinkBlockWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type LinkBlockConnection = {
+  __typename?: "LinkBlockConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<LinkBlockEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type LinkBlockCreateInput = {
+  links?: InputMaybe<LinkBlocklinksUnionCreateManyInlineInput>;
+  title: Scalars["String"]["input"];
+};
+
+export type LinkBlockCreateManyInlineInput = {
+  /** Create and connect multiple existing LinkBlock documents */
+  create?: InputMaybe<Array<LinkBlockCreateInput>>;
+};
+
+export type LinkBlockCreateOneInlineInput = {
+  /** Create and connect one LinkBlock document */
+  create?: InputMaybe<LinkBlockCreateInput>;
+};
+
+export type LinkBlockCreateWithPositionInput = {
+  /** Document to create */
+  data: LinkBlockCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type LinkBlockEdge = {
+  __typename?: "LinkBlockEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: LinkBlock;
+};
+
+/** Identifies documents */
+export type LinkBlockManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<LinkBlockWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<LinkBlockWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<LinkBlockWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values in which the union is empty. */
+  links_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Matches if the modular component contains at least one connection to the item provided to the filter */
+  links_some?: InputMaybe<LinkBlocklinksUnionWhereInput>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  title_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export enum LinkBlockOrderByInput {
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  TitleAsc = "title_ASC",
+  TitleDesc = "title_DESC",
+}
+
+export type LinkBlockParent = Menu;
+
+export type LinkBlockParentConnectInput = {
+  Menu?: InputMaybe<MenuConnectInput>;
+};
+
+export type LinkBlockParentCreateInput = {
+  Menu?: InputMaybe<MenuCreateInput>;
+};
+
+export type LinkBlockParentCreateManyInlineInput = {
+  /** Connect multiple existing LinkBlockParent documents */
+  connect?: InputMaybe<Array<LinkBlockParentWhereUniqueInput>>;
+  /** Create and connect multiple existing LinkBlockParent documents */
+  create?: InputMaybe<Array<LinkBlockParentCreateInput>>;
+};
+
+export type LinkBlockParentCreateOneInlineInput = {
+  /** Connect one existing LinkBlockParent document */
+  connect?: InputMaybe<LinkBlockParentWhereUniqueInput>;
+  /** Create and connect one LinkBlockParent document */
+  create?: InputMaybe<LinkBlockParentCreateInput>;
+};
+
+export type LinkBlockParentUpdateInput = {
+  Menu?: InputMaybe<MenuUpdateInput>;
+};
+
+export type LinkBlockParentUpdateManyInlineInput = {
+  /** Connect multiple existing LinkBlockParent documents */
+  connect?: InputMaybe<Array<LinkBlockParentConnectInput>>;
+  /** Create and connect multiple LinkBlockParent documents */
+  create?: InputMaybe<Array<LinkBlockParentCreateInput>>;
+  /** Delete multiple LinkBlockParent documents */
+  delete?: InputMaybe<Array<LinkBlockParentWhereUniqueInput>>;
+  /** Disconnect multiple LinkBlockParent documents */
+  disconnect?: InputMaybe<Array<LinkBlockParentWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing LinkBlockParent documents */
+  set?: InputMaybe<Array<LinkBlockParentWhereUniqueInput>>;
+  /** Update multiple LinkBlockParent documents */
+  update?: InputMaybe<Array<LinkBlockParentUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple LinkBlockParent documents */
+  upsert?: InputMaybe<Array<LinkBlockParentUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type LinkBlockParentUpdateManyWithNestedWhereInput = {
+  Menu?: InputMaybe<MenuUpdateManyWithNestedWhereInput>;
+};
+
+export type LinkBlockParentUpdateOneInlineInput = {
+  /** Connect existing LinkBlockParent document */
+  connect?: InputMaybe<LinkBlockParentWhereUniqueInput>;
+  /** Create and connect one LinkBlockParent document */
+  create?: InputMaybe<LinkBlockParentCreateInput>;
+  /** Delete currently connected LinkBlockParent document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected LinkBlockParent document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single LinkBlockParent document */
+  update?: InputMaybe<LinkBlockParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single LinkBlockParent document */
+  upsert?: InputMaybe<LinkBlockParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type LinkBlockParentUpdateWithNestedWhereUniqueInput = {
+  Menu?: InputMaybe<MenuUpdateWithNestedWhereUniqueInput>;
+};
+
+export type LinkBlockParentUpsertWithNestedWhereUniqueInput = {
+  Menu?: InputMaybe<MenuUpsertWithNestedWhereUniqueInput>;
+};
+
+export type LinkBlockParentWhereInput = {
+  Menu?: InputMaybe<MenuWhereInput>;
+};
+
+export type LinkBlockParentWhereUniqueInput = {
+  Menu?: InputMaybe<MenuWhereUniqueInput>;
+};
+
+export type LinkBlockUpdateInput = {
+  links?: InputMaybe<LinkBlocklinksUnionUpdateManyInlineInput>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type LinkBlockUpdateManyInlineInput = {
+  /** Create and connect multiple LinkBlock component instances */
+  create?: InputMaybe<Array<LinkBlockCreateWithPositionInput>>;
+  /** Delete multiple LinkBlock documents */
+  delete?: InputMaybe<Array<LinkBlockWhereUniqueInput>>;
+  /** Update multiple LinkBlock component instances */
+  update?: InputMaybe<
+    Array<LinkBlockUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
+  /** Upsert multiple LinkBlock component instances */
+  upsert?: InputMaybe<
+    Array<LinkBlockUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
+};
+
+export type LinkBlockUpdateManyInput = {
+  title?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type LinkBlockUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: LinkBlockUpdateManyInput;
+  /** Document search */
+  where: LinkBlockWhereInput;
+};
+
+export type LinkBlockUpdateOneInlineInput = {
+  /** Create and connect one LinkBlock document */
+  create?: InputMaybe<LinkBlockCreateInput>;
+  /** Delete currently connected LinkBlock document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single LinkBlock document */
+  update?: InputMaybe<LinkBlockUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single LinkBlock document */
+  upsert?: InputMaybe<LinkBlockUpsertWithNestedWhereUniqueInput>;
+};
+
+export type LinkBlockUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<LinkBlockUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: LinkBlockWhereUniqueInput;
+};
+
+export type LinkBlockUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: LinkBlockUpdateInput;
+  /** Unique document search */
+  where: LinkBlockWhereUniqueInput;
+};
+
+export type LinkBlockUpsertInput = {
+  /** Create document if it didn't exist */
+  create: LinkBlockCreateInput;
+  /** Update document if it exists */
+  update: LinkBlockUpdateInput;
+};
+
+export type LinkBlockUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<LinkBlockUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: LinkBlockWhereUniqueInput;
+};
+
+export type LinkBlockUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: LinkBlockUpsertInput;
+  /** Unique document search */
+  where: LinkBlockWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type LinkBlockWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<LinkBlockWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<LinkBlockWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<LinkBlockWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values in which the union is empty. */
+  links_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Matches if the modular component contains at least one connection to the item provided to the filter */
+  links_some?: InputMaybe<LinkBlocklinksUnionWhereInput>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  title_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** References LinkBlock record uniquely */
+export type LinkBlockWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+export type LinkBlocklinksUnion = Link;
+
+export type LinkBlocklinksUnionConnectInput = {
+  Link?: InputMaybe<LinkConnectInput>;
+};
+
+export type LinkBlocklinksUnionCreateInput = {
+  Link?: InputMaybe<LinkCreateInput>;
+};
+
+export type LinkBlocklinksUnionCreateManyInlineInput = {
+  /** Create and connect multiple existing LinkBlocklinksUnion documents */
+  create?: InputMaybe<Array<LinkBlocklinksUnionCreateInput>>;
+};
+
+export type LinkBlocklinksUnionCreateOneInlineInput = {
+  /** Create and connect one LinkBlocklinksUnion document */
+  create?: InputMaybe<LinkBlocklinksUnionCreateInput>;
+};
+
+export type LinkBlocklinksUnionCreateWithPositionInput = {
+  Link?: InputMaybe<LinkCreateWithPositionInput>;
+};
+
+export type LinkBlocklinksUnionUpdateInput = {
+  Link?: InputMaybe<LinkUpdateInput>;
+};
+
+export type LinkBlocklinksUnionUpdateManyInlineInput = {
+  /** Create and connect multiple LinkBlocklinksUnion component instances */
+  create?: InputMaybe<Array<LinkBlocklinksUnionCreateWithPositionInput>>;
+  /** Delete multiple LinkBlocklinksUnion documents */
+  delete?: InputMaybe<Array<LinkBlocklinksUnionWhereUniqueInput>>;
+  /** Update multiple LinkBlocklinksUnion component instances */
+  update?: InputMaybe<
+    Array<LinkBlocklinksUnionUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
+  /** Upsert multiple LinkBlocklinksUnion component instances */
+  upsert?: InputMaybe<
+    Array<LinkBlocklinksUnionUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
+};
+
+export type LinkBlocklinksUnionUpdateManyWithNestedWhereInput = {
+  Link?: InputMaybe<LinkUpdateManyWithNestedWhereInput>;
+};
+
+export type LinkBlocklinksUnionUpdateOneInlineInput = {
+  /** Create and connect one LinkBlocklinksUnion document */
+  create?: InputMaybe<LinkBlocklinksUnionCreateInput>;
+  /** Delete currently connected LinkBlocklinksUnion document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single LinkBlocklinksUnion document */
+  update?: InputMaybe<LinkBlocklinksUnionUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single LinkBlocklinksUnion document */
+  upsert?: InputMaybe<LinkBlocklinksUnionUpsertWithNestedWhereUniqueInput>;
+};
+
+export type LinkBlocklinksUnionUpdateWithNestedWhereUniqueAndPositionInput = {
+  Link?: InputMaybe<LinkUpdateWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type LinkBlocklinksUnionUpdateWithNestedWhereUniqueInput = {
+  Link?: InputMaybe<LinkUpdateWithNestedWhereUniqueInput>;
+};
+
+export type LinkBlocklinksUnionUpsertWithNestedWhereUniqueAndPositionInput = {
+  Link?: InputMaybe<LinkUpsertWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type LinkBlocklinksUnionUpsertWithNestedWhereUniqueInput = {
+  Link?: InputMaybe<LinkUpsertWithNestedWhereUniqueInput>;
+};
+
+export type LinkBlocklinksUnionWhereInput = {
+  Link?: InputMaybe<LinkWhereInput>;
+};
+
+export type LinkBlocklinksUnionWhereUniqueInput = {
+  Link?: InputMaybe<LinkWhereUniqueInput>;
+};
+
 export type LinkConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
   position?: InputMaybe<ConnectPositionInput>;
@@ -8795,14 +9227,16 @@ export enum LinkOrderByInput {
   UrlDesc = "url_DESC",
 }
 
-export type LinkParent = MegaMenuDropdown | Menu;
+export type LinkParent = LinkBlock | MegaMenuDropdown | Menu;
 
 export type LinkParentConnectInput = {
+  LinkBlock?: InputMaybe<LinkBlockConnectInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownConnectInput>;
   Menu?: InputMaybe<MenuConnectInput>;
 };
 
 export type LinkParentCreateInput = {
+  LinkBlock?: InputMaybe<LinkBlockCreateInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownCreateInput>;
   Menu?: InputMaybe<MenuCreateInput>;
 };
@@ -8822,6 +9256,7 @@ export type LinkParentCreateOneInlineInput = {
 };
 
 export type LinkParentUpdateInput = {
+  LinkBlock?: InputMaybe<LinkBlockUpdateInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateInput>;
   Menu?: InputMaybe<MenuUpdateInput>;
 };
@@ -8844,6 +9279,7 @@ export type LinkParentUpdateManyInlineInput = {
 };
 
 export type LinkParentUpdateManyWithNestedWhereInput = {
+  LinkBlock?: InputMaybe<LinkBlockUpdateManyWithNestedWhereInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateManyWithNestedWhereInput>;
   Menu?: InputMaybe<MenuUpdateManyWithNestedWhereInput>;
 };
@@ -8864,21 +9300,25 @@ export type LinkParentUpdateOneInlineInput = {
 };
 
 export type LinkParentUpdateWithNestedWhereUniqueInput = {
+  LinkBlock?: InputMaybe<LinkBlockUpdateWithNestedWhereUniqueInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateWithNestedWhereUniqueInput>;
   Menu?: InputMaybe<MenuUpdateWithNestedWhereUniqueInput>;
 };
 
 export type LinkParentUpsertWithNestedWhereUniqueInput = {
+  LinkBlock?: InputMaybe<LinkBlockUpsertWithNestedWhereUniqueInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpsertWithNestedWhereUniqueInput>;
   Menu?: InputMaybe<MenuUpsertWithNestedWhereUniqueInput>;
 };
 
 export type LinkParentWhereInput = {
+  LinkBlock?: InputMaybe<LinkBlockWhereInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownWhereInput>;
   Menu?: InputMaybe<MenuWhereInput>;
 };
 
 export type LinkParentWhereUniqueInput = {
+  LinkBlock?: InputMaybe<LinkBlockWhereUniqueInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownWhereUniqueInput>;
   Menu?: InputMaybe<MenuWhereUniqueInput>;
 };
@@ -10330,17 +10770,20 @@ export type MenuWhereUniqueInput = {
 
 export type MenulinksUnion =
   | Link
+  | LinkBlock
   | MegaMenuCategoriesDropdown
   | MegaMenuDropdown;
 
 export type MenulinksUnionConnectInput = {
   Link?: InputMaybe<LinkConnectInput>;
+  LinkBlock?: InputMaybe<LinkBlockConnectInput>;
   MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownConnectInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownConnectInput>;
 };
 
 export type MenulinksUnionCreateInput = {
   Link?: InputMaybe<LinkCreateInput>;
+  LinkBlock?: InputMaybe<LinkBlockCreateInput>;
   MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownCreateInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownCreateInput>;
 };
@@ -10357,12 +10800,14 @@ export type MenulinksUnionCreateOneInlineInput = {
 
 export type MenulinksUnionCreateWithPositionInput = {
   Link?: InputMaybe<LinkCreateWithPositionInput>;
+  LinkBlock?: InputMaybe<LinkBlockCreateWithPositionInput>;
   MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownCreateWithPositionInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownCreateWithPositionInput>;
 };
 
 export type MenulinksUnionUpdateInput = {
   Link?: InputMaybe<LinkUpdateInput>;
+  LinkBlock?: InputMaybe<LinkBlockUpdateInput>;
   MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownUpdateInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateInput>;
 };
@@ -10384,6 +10829,7 @@ export type MenulinksUnionUpdateManyInlineInput = {
 
 export type MenulinksUnionUpdateManyWithNestedWhereInput = {
   Link?: InputMaybe<LinkUpdateManyWithNestedWhereInput>;
+  LinkBlock?: InputMaybe<LinkBlockUpdateManyWithNestedWhereInput>;
   MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownUpdateManyWithNestedWhereInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateManyWithNestedWhereInput>;
 };
@@ -10401,36 +10847,42 @@ export type MenulinksUnionUpdateOneInlineInput = {
 
 export type MenulinksUnionUpdateWithNestedWhereUniqueAndPositionInput = {
   Link?: InputMaybe<LinkUpdateWithNestedWhereUniqueAndPositionInput>;
+  LinkBlock?: InputMaybe<LinkBlockUpdateWithNestedWhereUniqueAndPositionInput>;
   MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownUpdateWithNestedWhereUniqueAndPositionInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type MenulinksUnionUpdateWithNestedWhereUniqueInput = {
   Link?: InputMaybe<LinkUpdateWithNestedWhereUniqueInput>;
+  LinkBlock?: InputMaybe<LinkBlockUpdateWithNestedWhereUniqueInput>;
   MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownUpdateWithNestedWhereUniqueInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateWithNestedWhereUniqueInput>;
 };
 
 export type MenulinksUnionUpsertWithNestedWhereUniqueAndPositionInput = {
   Link?: InputMaybe<LinkUpsertWithNestedWhereUniqueAndPositionInput>;
+  LinkBlock?: InputMaybe<LinkBlockUpsertWithNestedWhereUniqueAndPositionInput>;
   MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownUpsertWithNestedWhereUniqueAndPositionInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpsertWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type MenulinksUnionUpsertWithNestedWhereUniqueInput = {
   Link?: InputMaybe<LinkUpsertWithNestedWhereUniqueInput>;
+  LinkBlock?: InputMaybe<LinkBlockUpsertWithNestedWhereUniqueInput>;
   MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownUpsertWithNestedWhereUniqueInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpsertWithNestedWhereUniqueInput>;
 };
 
 export type MenulinksUnionWhereInput = {
   Link?: InputMaybe<LinkWhereInput>;
+  LinkBlock?: InputMaybe<LinkBlockWhereInput>;
   MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownWhereInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownWhereInput>;
 };
 
 export type MenulinksUnionWhereUniqueInput = {
   Link?: InputMaybe<LinkWhereUniqueInput>;
+  LinkBlock?: InputMaybe<LinkBlockWhereUniqueInput>;
   MegaMenuCategoriesDropdown?: InputMaybe<MegaMenuCategoriesDropdownWhereUniqueInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownWhereUniqueInput>;
 };
@@ -19697,6 +20149,17 @@ export type MenuQuery = {
           url: string;
           icon?: { __typename?: "Asset"; url: string } | null;
         }
+      | {
+          __typename: "LinkBlock";
+          id: string;
+          title: string;
+          links: Array<{
+            __typename: "Link";
+            label: string;
+            id: string;
+            url: string;
+          }>;
+        }
       | { __typename: "MegaMenuCategoriesDropdown"; label: string }
       | {
           __typename: "MegaMenuDropdown";
@@ -21674,6 +22137,73 @@ export const MenuDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
+                      {
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "LinkBlock" },
+                        },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "__typename" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "id" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "title" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "links" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "InlineFragment",
+                                    typeCondition: {
+                                      kind: "NamedType",
+                                      name: { kind: "Name", value: "Link" },
+                                    },
+                                    selectionSet: {
+                                      kind: "SelectionSet",
+                                      selections: [
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "__typename",
+                                          },
+                                        },
+                                        {
+                                          kind: "Field",
+                                          name: {
+                                            kind: "Name",
+                                            value: "label",
+                                          },
+                                        },
+                                        {
+                                          kind: "Field",
+                                          name: { kind: "Name", value: "id" },
+                                        },
+                                        {
+                                          kind: "Field",
+                                          name: { kind: "Name", value: "url" },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
                       {
                         kind: "InlineFragment",
                         typeCondition: {

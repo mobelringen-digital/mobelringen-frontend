@@ -4,6 +4,19 @@ export const MenuQueryDocument = graphql(`
   query Menu($where: MenuWhereInput) {
     menus(where: $where) {
       links {
+        ... on LinkBlock {
+          __typename
+          id
+          title
+          links {
+            ... on Link {
+              __typename
+              label
+              id
+              url
+            }
+          }
+        }
         ... on Link {
           __typename
           label

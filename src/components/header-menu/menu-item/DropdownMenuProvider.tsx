@@ -26,6 +26,10 @@ export const DropdownMenuProvider: React.FC<Props> = ({ children, link }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname, searchParams]);
 
+  if (link.__typename !== "Link") {
+    return null;
+  }
+
   return (
     <li className="py-2" ref={ref}>
       <button
