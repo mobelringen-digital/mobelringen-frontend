@@ -28,7 +28,9 @@ export const MegaMenuDropdown: React.FC<Props> = ({ data }) => {
                 alt={item.label}
                 className="rounded-3xl transition duration-300 ease-in-out hover:shadow-xl"
               />
-              <span className="text-xl font-medium">{item.label}</span>
+              <span className="text-lg lg:text-xl font-medium">
+                {item.label}
+              </span>
             </Link>
           ) : null}
           {item.__typename === "Link" ? (

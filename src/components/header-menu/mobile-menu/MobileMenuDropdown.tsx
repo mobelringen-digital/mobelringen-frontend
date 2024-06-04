@@ -17,7 +17,7 @@ export const MobileMenuDropdown: React.FC<Props> = (props) => {
   return (
     <div
       className={cx(
-        "fixed overflow-y-auto p-4 z-200 bg-white top-0 left-0 bottom-0 right-0 transition-all duration-500 ease-in-out",
+        "fixed overflow-y-auto py-4 z-200 bg-white top-0 left-0 bottom-0 right-0 transition-all duration-500 ease-in-out",
         {
           "translate-x-0": props.isActive,
           "translate-x-full": !props.isActive,
