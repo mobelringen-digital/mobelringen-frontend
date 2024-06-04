@@ -1,7 +1,7 @@
 import { graphql } from "@/types/schema";
 
-export const PageQueryDocument = graphql(`
-  query Pages($url: String!) {
+export const CmsPagesQueryDocument = graphql(`
+  query CmsPages($url: String!) {
     pages(where: { url: $url }) {
       id
       identify

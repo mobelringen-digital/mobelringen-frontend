@@ -7,9 +7,14 @@ import { notFound } from "next/navigation";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { ProductCard } from "@/components/product/product-card";
 import { Page } from "@/modules/page";
-import { PageQueryDocument } from "@/queries/page.queries";
+import { CmsPagesQueryDocument } from "@/queries/page.queries";
 import { ProductsQueryDocument } from "@/queries/product.queries";
-import { PagesQuery, ProductsQuery, ProductsQueryVariables } from "@/types";
+import {
+  CmsPagesQuery,
+  CmsPagesQueryVariables,
+  ProductsQuery,
+  ProductsQueryVariables,
+} from "@/types";
 import { generatePrettyUrl } from "@/utils/helpers";
 import { baseHygraphClient, baseMagentoClient } from "@/utils/lib/graphql";
 
@@ -19,9 +24,12 @@ type Props = {
 };
 
 async function getPage(url: string) {
-  return await baseHygraphClient.request<PagesQuery>(PageQueryDocument, {
-    url,
-  });
+  return await baseHygraphClient.request<CmsPagesQuery, CmsPagesQueryVariables>(
+    CmsPagesQueryDocument,
+    {
+      url,
+    },
+  );
 }
 
 async function getProducts() {

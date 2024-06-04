@@ -20714,11 +20714,11 @@ export type MenuQuery = {
   }>;
 };
 
-export type PagesQueryVariables = Exact<{
+export type CmsPagesQueryVariables = Exact<{
   url: Scalars["String"]["input"];
 }>;
 
-export type PagesQuery = {
+export type CmsPagesQuery = {
   __typename?: "Query";
   pages: Array<{
     __typename?: "Page";
@@ -23189,13 +23189,13 @@ export const MenuDocument = {
     },
   ],
 } as unknown as DocumentNode<MenuQuery, MenuQueryVariables>;
-export const PagesDocument = {
+export const CmsPagesDocument = {
   kind: "Document",
   definitions: [
     {
       kind: "OperationDefinition",
       operation: "query",
-      name: { kind: "Name", value: "Pages" },
+      name: { kind: "Name", value: "CmsPages" },
       variableDefinitions: [
         {
           kind: "VariableDefinition",
@@ -23372,7 +23372,7 @@ export const PagesDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<PagesQuery, PagesQueryVariables>;
+} as unknown as DocumentNode<CmsPagesQuery, CmsPagesQueryVariables>;
 export const ProductsDocument = {
   kind: "Document",
   definitions: [

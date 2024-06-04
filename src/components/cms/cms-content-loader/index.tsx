@@ -1,14 +1,14 @@
 import React from "react";
 
 import { PopularProducts } from "@/components/cms/popular-products";
-import { PagesQuery } from "@/types";
+import { CmsPagesQuery } from "@/types";
 import { ArrayElement } from "@/utils/ts-utils";
 
 import { Banner } from "../banner";
 
 interface CmsContentProps {
   data: ArrayElement<
-    NonNullable<NonNullable<PagesQuery["pages"]>[0]>["content"]
+    NonNullable<NonNullable<CmsPagesQuery["pages"]>[0]>["content"]
   >;
 }
 

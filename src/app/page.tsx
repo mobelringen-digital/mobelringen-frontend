@@ -1,14 +1,13 @@
 import React from "react";
 
 import { Page } from "@/modules/page";
-import { PageQueryDocument } from "@/queries/page.queries";
-import { PagesQuery, PagesQueryVariables } from "@/types";
+import { CmsPagesQueryDocument } from "@/queries/page.queries";
+import { CmsPagesQuery, CmsPagesQueryVariables } from "@/types";
 import { baseHygraphClient } from "@/utils/lib/graphql";
 
-
 async function getPage() {
-  return await baseHygraphClient.request<PagesQuery, PagesQueryVariables>(
-    PageQueryDocument,
+  return await baseHygraphClient.request<CmsPagesQuery, CmsPagesQueryVariables>(
+    CmsPagesQueryDocument,
     {
       url: "/",
     },

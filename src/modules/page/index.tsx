@@ -1,10 +1,10 @@
 import React from "react";
 
 import { CmsContentLoader } from "@/components/cms/cms-content-loader";
-import { PagesQuery } from "@/types";
+import { CmsPagesQuery } from "@/types";
 
 interface Props {
-  data: PagesQuery;
+  data: CmsPagesQuery;
 }
 
 export const Page: React.FC<Props> = ({ data }) => {
