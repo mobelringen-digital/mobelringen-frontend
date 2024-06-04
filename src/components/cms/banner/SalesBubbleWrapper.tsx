@@ -1,0 +1,42 @@
+import React from "react";
+
+import cx from "classnames";
+
+import Link from "next/link";
+
+import { SalesBubble } from "@/components/cms/banner/SalesBubble";
+import { ContainerLayout } from "@/components/layouts/ContainerLayout";
+import { SalesBubbleFragment } from "@/queries/cms.queries";
+import { Position } from "@/types";
+import { FragmentType, useFragment } from "@/types/schema";
+
+interface Props {
+  data: FragmentType<typeof SalesBubbleFragment>;
+}
+
+export const SalesBubbleWrapper: React.FC<Props> = ({ data }) => {
+  const salesBubble = useFragment(SalesBubbleFragment, data);
+
+  return (
+    <div
+      className={cx(
+        "absolute bottom-0 left-0 right-0 translate-y-1/2 lg:translate-y-0 lg:bottom-[40px] w-full",
+      )}
+    >
+      <ContainerLayout
+        className={cx("flex justify-center", {
+          "lg:justify-start": salesBubble.position === Position.Left,
+          "lg:justify-end": salesBubble.position === Position.Right,
+        })}
+      >
+        {salesBubble.url ? (
+          <Link href={salesBubble.url}>
+            <SalesBubble salesBubble={salesBubble} />
+          </Link>
+        ) : (
+          <SalesBubble salesBubble={salesBubble} />
+        )}
+      </ContainerLayout>
+    </div>
+  );
+};

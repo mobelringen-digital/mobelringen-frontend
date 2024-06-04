@@ -1,7 +1,17 @@
 import { graphql } from "@/types/schema";
 
+export const SalesBubbleFragment = graphql(`
+  fragment CmsSalesBubble on SaleBubble {
+    url
+    middleLine
+    position
+    topLine
+    bottomLine
+  }
+`);
+
 export const BannerFragment = graphql(`
-  fragment BannerFragment on Banner {
+  fragment CmsBanner on Banner {
     ... on Banner {
       __typename
       alt
@@ -11,12 +21,15 @@ export const BannerFragment = graphql(`
         url
         width
       }
+      salesBubble {
+        ...CmsSalesBubble
+      }
     }
   }
 `);
 
 export const PopularProductsFragment = graphql(`
-  fragment PopularProductsFragment on PopularProduct {
+  fragment CmsPopularProducts on PopularProduct {
     ... on PopularProduct {
       __typename
       id

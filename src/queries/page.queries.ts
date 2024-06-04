@@ -10,8 +10,8 @@ export const PageQueryDocument = graphql(`
       title
       url
       content {
-        ...BannerFragment
-        ...PopularProductsFragment
+        ...CmsBanner
+        ...CmsPopularProducts
       }
     }
   }

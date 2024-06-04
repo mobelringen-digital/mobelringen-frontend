@@ -1260,6 +1260,7 @@ export type Banner = Entity &
     publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
     /** User that last published this document */
     publishedBy?: Maybe<User>;
+    salesBubble?: Maybe<SaleBubble>;
     scheduledIn: Array<ScheduledOperation>;
     /** System stage field */
     stage: Stage;
@@ -1308,6 +1309,11 @@ export type BannerPublishedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
+export type BannerSalesBubbleArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
 export type BannerScheduledInArgs = {
   after?: InputMaybe<Scalars["String"]["input"]>;
   before?: InputMaybe<Scalars["String"]["input"]>;
@@ -1347,6 +1353,7 @@ export type BannerCreateInput = {
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   identify?: InputMaybe<Scalars["String"]["input"]>;
   pages?: InputMaybe<PageCreateManyInlineInput>;
+  salesBubble?: InputMaybe<SaleBubbleCreateOneInlineInput>;
   updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
 };
 
@@ -1483,6 +1490,7 @@ export type BannerManyWhereInput = {
     Array<InputMaybe<Scalars["DateTime"]["input"]>>
   >;
   publishedBy?: InputMaybe<UserWhereInput>;
+  salesBubble?: InputMaybe<SaleBubbleWhereInput>;
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
@@ -1526,6 +1534,7 @@ export type BannerUpdateInput = {
   bannerImage?: InputMaybe<AssetUpdateOneInlineInput>;
   identify?: InputMaybe<Scalars["String"]["input"]>;
   pages?: InputMaybe<PageUpdateManyInlineInput>;
+  salesBubble?: InputMaybe<SaleBubbleUpdateOneInlineInput>;
 };
 
 export type BannerUpdateManyInlineInput = {
@@ -1709,6 +1718,7 @@ export type BannerWhereInput = {
     Array<InputMaybe<Scalars["DateTime"]["input"]>>
   >;
   publishedBy?: InputMaybe<UserWhereInput>;
+  salesBubble?: InputMaybe<SaleBubbleWhereInput>;
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
@@ -6727,6 +6737,7 @@ export enum EntityTypeName {
   Menu = "Menu",
   Page = "Page",
   PopularProduct = "PopularProduct",
+  SaleBubble = "SaleBubble",
   /** Scheduled Operation system model */
   ScheduledOperation = "ScheduledOperation",
   /** Scheduled Release system model */
@@ -13648,6 +13659,7 @@ export type PlaceOrderOutput = {
 export type PopularProduct = Entity &
   Node & {
     __typename?: "PopularProduct";
+    /** If this field is set popular products will be loaded from specific category */
     categoryId?: Maybe<Scalars["String"]["output"]>;
     /** The time the document was created */
     createdAt: Scalars["DateTime"]["output"];
@@ -14145,6 +14157,11 @@ export type PopularProductWhereStageInput = {
 export type PopularProductWhereUniqueInput = {
   id?: InputMaybe<Scalars["ID"]["input"]>;
 };
+
+export enum Position {
+  Left = "LEFT",
+  Right = "RIGHT",
+}
 
 /** Deprecated. Use `ProductPrice` instead. Defines the price of a product as well as any tax-related adjustments. */
 export type Price = {
@@ -16004,6 +16021,487 @@ export type RoutableInterface = {
   relative_url?: Maybe<Scalars["String"]["output"]>;
   /** One of PRODUCT, CATEGORY, or CMS_PAGE. */
   type?: Maybe<UrlRewriteEntityTypeEnum>;
+};
+
+export type SaleBubble = Entity & {
+  __typename?: "SaleBubble";
+  bottomLine?: Maybe<Scalars["String"]["output"]>;
+  /** The unique identifier */
+  id: Scalars["ID"]["output"];
+  middleLine: Scalars["String"]["output"];
+  position: Position;
+  /** System stage field */
+  stage: Stage;
+  topLine?: Maybe<Scalars["String"]["output"]>;
+  /** If url is set "Sale bubble" will work as ink */
+  url?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type SaleBubbleConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: SaleBubbleWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type SaleBubbleConnection = {
+  __typename?: "SaleBubbleConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<SaleBubbleEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type SaleBubbleCreateInput = {
+  bottomLine?: InputMaybe<Scalars["String"]["input"]>;
+  middleLine: Scalars["String"]["input"];
+  position: Position;
+  topLine?: InputMaybe<Scalars["String"]["input"]>;
+  url?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type SaleBubbleCreateManyInlineInput = {
+  /** Create and connect multiple existing SaleBubble documents */
+  create?: InputMaybe<Array<SaleBubbleCreateInput>>;
+};
+
+export type SaleBubbleCreateOneInlineInput = {
+  /** Create and connect one SaleBubble document */
+  create?: InputMaybe<SaleBubbleCreateInput>;
+};
+
+export type SaleBubbleCreateWithPositionInput = {
+  /** Document to create */
+  data: SaleBubbleCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type SaleBubbleEdge = {
+  __typename?: "SaleBubbleEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: SaleBubble;
+};
+
+/** Identifies documents */
+export type SaleBubbleManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<SaleBubbleWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<SaleBubbleWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<SaleBubbleWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  bottomLine?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  bottomLine_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  bottomLine_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  bottomLine_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  bottomLine_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  bottomLine_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  bottomLine_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  bottomLine_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  bottomLine_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  bottomLine_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  middleLine?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  middleLine_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  middleLine_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  middleLine_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  middleLine_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  middleLine_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  middleLine_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  middleLine_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  middleLine_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  middleLine_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  position?: InputMaybe<Position>;
+  /** All values that are contained in given list. */
+  position_in?: InputMaybe<Array<InputMaybe<Position>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  position_not?: InputMaybe<Position>;
+  /** All values that are not contained in given list. */
+  position_not_in?: InputMaybe<Array<InputMaybe<Position>>>;
+  topLine?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  topLine_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  topLine_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  topLine_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  topLine_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  topLine_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  topLine_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  topLine_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  topLine_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  topLine_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  url?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  url_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  url_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  url_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  url_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  url_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  url_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  url_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  url_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  url_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export enum SaleBubbleOrderByInput {
+  BottomLineAsc = "bottomLine_ASC",
+  BottomLineDesc = "bottomLine_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  MiddleLineAsc = "middleLine_ASC",
+  MiddleLineDesc = "middleLine_DESC",
+  PositionAsc = "position_ASC",
+  PositionDesc = "position_DESC",
+  TopLineAsc = "topLine_ASC",
+  TopLineDesc = "topLine_DESC",
+  UrlAsc = "url_ASC",
+  UrlDesc = "url_DESC",
+}
+
+export type SaleBubbleParent = Banner;
+
+export type SaleBubbleParentConnectInput = {
+  Banner?: InputMaybe<BannerConnectInput>;
+};
+
+export type SaleBubbleParentCreateInput = {
+  Banner?: InputMaybe<BannerCreateInput>;
+};
+
+export type SaleBubbleParentCreateManyInlineInput = {
+  /** Connect multiple existing SaleBubbleParent documents */
+  connect?: InputMaybe<Array<SaleBubbleParentWhereUniqueInput>>;
+  /** Create and connect multiple existing SaleBubbleParent documents */
+  create?: InputMaybe<Array<SaleBubbleParentCreateInput>>;
+};
+
+export type SaleBubbleParentCreateOneInlineInput = {
+  /** Connect one existing SaleBubbleParent document */
+  connect?: InputMaybe<SaleBubbleParentWhereUniqueInput>;
+  /** Create and connect one SaleBubbleParent document */
+  create?: InputMaybe<SaleBubbleParentCreateInput>;
+};
+
+export type SaleBubbleParentUpdateInput = {
+  Banner?: InputMaybe<BannerUpdateInput>;
+};
+
+export type SaleBubbleParentUpdateManyInlineInput = {
+  /** Connect multiple existing SaleBubbleParent documents */
+  connect?: InputMaybe<Array<SaleBubbleParentConnectInput>>;
+  /** Create and connect multiple SaleBubbleParent documents */
+  create?: InputMaybe<Array<SaleBubbleParentCreateInput>>;
+  /** Delete multiple SaleBubbleParent documents */
+  delete?: InputMaybe<Array<SaleBubbleParentWhereUniqueInput>>;
+  /** Disconnect multiple SaleBubbleParent documents */
+  disconnect?: InputMaybe<Array<SaleBubbleParentWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing SaleBubbleParent documents */
+  set?: InputMaybe<Array<SaleBubbleParentWhereUniqueInput>>;
+  /** Update multiple SaleBubbleParent documents */
+  update?: InputMaybe<Array<SaleBubbleParentUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple SaleBubbleParent documents */
+  upsert?: InputMaybe<Array<SaleBubbleParentUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type SaleBubbleParentUpdateManyWithNestedWhereInput = {
+  Banner?: InputMaybe<BannerUpdateManyWithNestedWhereInput>;
+};
+
+export type SaleBubbleParentUpdateOneInlineInput = {
+  /** Connect existing SaleBubbleParent document */
+  connect?: InputMaybe<SaleBubbleParentWhereUniqueInput>;
+  /** Create and connect one SaleBubbleParent document */
+  create?: InputMaybe<SaleBubbleParentCreateInput>;
+  /** Delete currently connected SaleBubbleParent document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected SaleBubbleParent document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single SaleBubbleParent document */
+  update?: InputMaybe<SaleBubbleParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single SaleBubbleParent document */
+  upsert?: InputMaybe<SaleBubbleParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type SaleBubbleParentUpdateWithNestedWhereUniqueInput = {
+  Banner?: InputMaybe<BannerUpdateWithNestedWhereUniqueInput>;
+};
+
+export type SaleBubbleParentUpsertWithNestedWhereUniqueInput = {
+  Banner?: InputMaybe<BannerUpsertWithNestedWhereUniqueInput>;
+};
+
+export type SaleBubbleParentWhereInput = {
+  Banner?: InputMaybe<BannerWhereInput>;
+};
+
+export type SaleBubbleParentWhereUniqueInput = {
+  Banner?: InputMaybe<BannerWhereUniqueInput>;
+};
+
+export type SaleBubbleUpdateInput = {
+  bottomLine?: InputMaybe<Scalars["String"]["input"]>;
+  middleLine?: InputMaybe<Scalars["String"]["input"]>;
+  position?: InputMaybe<Position>;
+  topLine?: InputMaybe<Scalars["String"]["input"]>;
+  url?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type SaleBubbleUpdateManyInlineInput = {
+  /** Create and connect multiple SaleBubble component instances */
+  create?: InputMaybe<Array<SaleBubbleCreateWithPositionInput>>;
+  /** Delete multiple SaleBubble documents */
+  delete?: InputMaybe<Array<SaleBubbleWhereUniqueInput>>;
+  /** Update multiple SaleBubble component instances */
+  update?: InputMaybe<
+    Array<SaleBubbleUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
+  /** Upsert multiple SaleBubble component instances */
+  upsert?: InputMaybe<
+    Array<SaleBubbleUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
+};
+
+export type SaleBubbleUpdateManyInput = {
+  bottomLine?: InputMaybe<Scalars["String"]["input"]>;
+  middleLine?: InputMaybe<Scalars["String"]["input"]>;
+  position?: InputMaybe<Position>;
+  topLine?: InputMaybe<Scalars["String"]["input"]>;
+  url?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type SaleBubbleUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: SaleBubbleUpdateManyInput;
+  /** Document search */
+  where: SaleBubbleWhereInput;
+};
+
+export type SaleBubbleUpdateOneInlineInput = {
+  /** Create and connect one SaleBubble document */
+  create?: InputMaybe<SaleBubbleCreateInput>;
+  /** Delete currently connected SaleBubble document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single SaleBubble document */
+  update?: InputMaybe<SaleBubbleUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single SaleBubble document */
+  upsert?: InputMaybe<SaleBubbleUpsertWithNestedWhereUniqueInput>;
+};
+
+export type SaleBubbleUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<SaleBubbleUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: SaleBubbleWhereUniqueInput;
+};
+
+export type SaleBubbleUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: SaleBubbleUpdateInput;
+  /** Unique document search */
+  where: SaleBubbleWhereUniqueInput;
+};
+
+export type SaleBubbleUpsertInput = {
+  /** Create document if it didn't exist */
+  create: SaleBubbleCreateInput;
+  /** Update document if it exists */
+  update: SaleBubbleUpdateInput;
+};
+
+export type SaleBubbleUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<SaleBubbleUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: SaleBubbleWhereUniqueInput;
+};
+
+export type SaleBubbleUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: SaleBubbleUpsertInput;
+  /** Unique document search */
+  where: SaleBubbleWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type SaleBubbleWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<SaleBubbleWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<SaleBubbleWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<SaleBubbleWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  bottomLine?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  bottomLine_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  bottomLine_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  bottomLine_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  bottomLine_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  bottomLine_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  bottomLine_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  bottomLine_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  bottomLine_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  bottomLine_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  middleLine?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  middleLine_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  middleLine_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  middleLine_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  middleLine_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  middleLine_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  middleLine_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  middleLine_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  middleLine_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  middleLine_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  position?: InputMaybe<Position>;
+  /** All values that are contained in given list. */
+  position_in?: InputMaybe<Array<InputMaybe<Position>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  position_not?: InputMaybe<Position>;
+  /** All values that are not contained in given list. */
+  position_not_in?: InputMaybe<Array<InputMaybe<Position>>>;
+  topLine?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  topLine_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  topLine_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  topLine_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  topLine_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  topLine_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  topLine_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  topLine_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  topLine_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  topLine_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  url?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  url_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  url_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  url_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  url_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  url_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  url_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  url_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  url_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  url_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** References SaleBubble record uniquely */
+export type SaleBubbleWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
 };
 
 /** Contains details about a comment. */
@@ -20116,7 +20614,16 @@ export type CategoryQuery = {
   } | null;
 };
 
-export type BannerFragmentFragment = {
+export type CmsSalesBubbleFragment = {
+  __typename?: "SaleBubble";
+  url?: string | null;
+  middleLine: string;
+  position: Position;
+  topLine?: string | null;
+  bottomLine?: string | null;
+} & { " $fragmentName"?: "CmsSalesBubbleFragment" };
+
+export type CmsBannerFragment = {
   __typename: "Banner";
   alt?: string | null;
   identify?: string | null;
@@ -20126,13 +20633,18 @@ export type BannerFragmentFragment = {
     url: string;
     width?: number | null;
   } | null;
-} & { " $fragmentName"?: "BannerFragmentFragment" };
+  salesBubble?:
+    | ({ __typename?: "SaleBubble" } & {
+        " $fragmentRefs"?: { CmsSalesBubbleFragment: CmsSalesBubbleFragment };
+      })
+    | null;
+} & { " $fragmentName"?: "CmsBannerFragment" };
 
-export type PopularProductsFragmentFragment = {
+export type CmsPopularProductsFragment = {
   __typename: "PopularProduct";
   id: string;
   categoryId?: string | null;
-} & { " $fragmentName"?: "PopularProductsFragmentFragment" };
+} & { " $fragmentName"?: "CmsPopularProductsFragment" };
 
 export type CmsLinkFragment = {
   __typename: "Link";
@@ -20218,11 +20730,11 @@ export type PagesQuery = {
     url: string;
     content: Array<
       | ({ __typename?: "Banner" } & {
-          " $fragmentRefs"?: { BannerFragmentFragment: BannerFragmentFragment };
+          " $fragmentRefs"?: { CmsBannerFragment: CmsBannerFragment };
         })
       | ({ __typename?: "PopularProduct" } & {
           " $fragmentRefs"?: {
-            PopularProductsFragmentFragment: PopularProductsFragmentFragment;
+            CmsPopularProductsFragment: CmsPopularProductsFragment;
           };
         })
     >;
@@ -21816,12 +22328,35 @@ export type ProductsQuery = {
   } | null;
 };
 
-export const BannerFragmentFragmentDoc = {
+export const CmsSalesBubbleFragmentDoc = {
   kind: "Document",
   definitions: [
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "BannerFragment" },
+      name: { kind: "Name", value: "CmsSalesBubble" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SaleBubble" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "topLine" } },
+          { kind: "Field", name: { kind: "Name", value: "bottomLine" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CmsSalesBubbleFragment, unknown>;
+export const CmsBannerFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsBanner" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "Banner" },
@@ -21856,20 +22391,51 @@ export const BannerFragmentFragmentDoc = {
                     ],
                   },
                 },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "salesBubble" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsSalesBubble" },
+                      },
+                    ],
+                  },
+                },
               ],
             },
           },
         ],
       },
     },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsSalesBubble" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SaleBubble" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "topLine" } },
+          { kind: "Field", name: { kind: "Name", value: "bottomLine" } },
+        ],
+      },
+    },
   ],
-} as unknown as DocumentNode<BannerFragmentFragment, unknown>;
-export const PopularProductsFragmentFragmentDoc = {
+} as unknown as DocumentNode<CmsBannerFragment, unknown>;
+export const CmsPopularProductsFragmentDoc = {
   kind: "Document",
   definitions: [
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "PopularProductsFragment" },
+      name: { kind: "Name", value: "CmsPopularProducts" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "PopularProduct" },
@@ -21896,7 +22462,7 @@ export const PopularProductsFragmentFragmentDoc = {
       },
     },
   ],
-} as unknown as DocumentNode<PopularProductsFragmentFragment, unknown>;
+} as unknown as DocumentNode<CmsPopularProductsFragment, unknown>;
 export const CmsLinkFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -22688,14 +23254,11 @@ export const PagesDocument = {
                     selections: [
                       {
                         kind: "FragmentSpread",
-                        name: { kind: "Name", value: "BannerFragment" },
+                        name: { kind: "Name", value: "CmsBanner" },
                       },
                       {
                         kind: "FragmentSpread",
-                        name: {
-                          kind: "Name",
-                          value: "PopularProductsFragment",
-                        },
+                        name: { kind: "Name", value: "CmsPopularProducts" },
                       },
                     ],
                   },
@@ -22708,7 +23271,25 @@ export const PagesDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "BannerFragment" },
+      name: { kind: "Name", value: "CmsSalesBubble" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SaleBubble" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "topLine" } },
+          { kind: "Field", name: { kind: "Name", value: "bottomLine" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsBanner" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "Banner" },
@@ -22743,6 +23324,19 @@ export const PagesDocument = {
                     ],
                   },
                 },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "salesBubble" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsSalesBubble" },
+                      },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -22751,7 +23345,7 @@ export const PagesDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "PopularProductsFragment" },
+      name: { kind: "Name", value: "CmsPopularProducts" },
       typeCondition: {
         kind: "NamedType",
         name: { kind: "Name", value: "PopularProduct" },

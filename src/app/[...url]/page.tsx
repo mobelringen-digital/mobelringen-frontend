@@ -4,6 +4,7 @@ import { Metadata } from "next";
 
 import { notFound } from "next/navigation";
 
+import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { ProductCard } from "@/components/product/product-card";
 import { Page } from "@/modules/page";
 import { PageQueryDocument } from "@/queries/page.queries";
@@ -57,7 +58,7 @@ export default async function Home({ params }: Props) {
   return (
     <>
       <Page data={data} />
-      <div className="container mx-auto">
+      <ContainerLayout>
         <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
           {productsData.products?.items?.map((product) => (
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -65,7 +66,7 @@ export default async function Home({ params }: Props) {
             <ProductCard product={product} key={product?.url_key} />
           ))}
         </div>
-      </div>
+      </ContainerLayout>
     </>
   );
 }
