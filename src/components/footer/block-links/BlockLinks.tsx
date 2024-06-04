@@ -13,7 +13,7 @@ export const BlockLinks: React.FC<Props> = ({ data }) => {
 
   return (
     <div
-      className="col-span-6 lg:col-span-2 flex flex-col gap-4"
+      className="col-span-6 lg:col-span-2 flex flex-col lg:gap-4"
       key={block.id}
     >
       <span className="text-sm font-bold">{block.label}</span>
