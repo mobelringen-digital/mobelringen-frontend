@@ -32,7 +32,7 @@ export async function MegaMenuCategoriesDropdown() {
   };
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 my-2 mx-4 lg:mx-0">
+    <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 my-2">
       {clearedCategories()?.map((category, idx) => (
         <div className="flex flex-col" key={idx}>
           <TempCategoryIcon />

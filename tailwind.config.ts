@@ -47,6 +47,7 @@ const config: Config = {
     extend: {
       zIndex: {
         "100": "100",
+        "200": "200",
       },
       fontFamily: {
         feature: ["Feature Deck Web", "sans-serif"],
