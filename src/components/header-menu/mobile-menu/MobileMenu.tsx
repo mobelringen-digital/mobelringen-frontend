@@ -1,6 +1,7 @@
 import React from "react";
 
-import { MobileMenuProvider } from "@/components/header-menu/menu-item/MobileMenuProvider";
+import MobileMenuAdditionalLinks from "@/components/header-menu/mobile-menu/MobileMenuAdditionalLinks";
+import { MobileMenuProvider } from "@/components/header-menu/mobile-menu/MobileMenuProvider";
 import { ChevronRight } from "@/components/icons/ChevronRight";
 import { MenuQuery } from "@/types";
 
@@ -23,6 +24,7 @@ export const MobileMenu: React.FC<Props> = ({ data }) => {
           );
         })}
       </ul>
+      <MobileMenuAdditionalLinks />
     </MobileMenuProvider>
   );
 };

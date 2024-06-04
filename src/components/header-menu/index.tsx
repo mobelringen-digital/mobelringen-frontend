@@ -3,7 +3,7 @@ import React from "react";
 import { Actions } from "@/components/header-menu/Actions";
 import { DesktopMenu } from "@/components/header-menu/DesktopMenu";
 import { Logo } from "@/components/header-menu/Logo";
-import { MobileMenu } from "@/components/header-menu/MobileMenu";
+import { MobileMenu } from "@/components/header-menu/mobile-menu/MobileMenu";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { MenuQueryDocument } from "@/queries/menu.queries";
 import { MenuQuery, MenuQueryVariables, MenuType } from "@/types";

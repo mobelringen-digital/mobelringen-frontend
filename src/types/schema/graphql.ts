@@ -526,6 +526,7 @@ export type AssetCreateInput = {
   bannerImageBanner?: InputMaybe<BannerCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   fileName?: InputMaybe<Scalars["String"]["input"]>;
+  iconLink?: InputMaybe<LinkCreateManyInlineInput>;
   imageImageLink?: InputMaybe<ImageLinkCreateManyInlineInput>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: InputMaybe<AssetCreateLocalizationsInput>;
@@ -716,6 +717,7 @@ export type AssetTransformationInput = {
 export type AssetUpdateInput = {
   bannerImageBanner?: InputMaybe<BannerUpdateManyInlineInput>;
   fileName?: InputMaybe<Scalars["String"]["input"]>;
+  iconLink?: InputMaybe<LinkUpdateManyInlineInput>;
   imageImageLink?: InputMaybe<ImageLinkUpdateManyInlineInput>;
   /** Manage document localizations */
   localizations?: InputMaybe<AssetUpdateLocalizationsInput>;
@@ -8650,12 +8652,19 @@ export type LayerFilterItemInterface = {
 
 export type Link = Entity & {
   __typename?: "Link";
+  icon?: Maybe<Asset>;
   /** The unique identifier */
   id: Scalars["ID"]["output"];
   label: Scalars["String"]["output"];
   /** System stage field */
   stage: Stage;
   url: Scalars["String"]["output"];
+};
+
+export type LinkIconArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  where?: InputMaybe<AssetSingleRelationWhereInput>;
 };
 
 export type LinkConnectInput = {
@@ -8676,6 +8685,7 @@ export type LinkConnection = {
 };
 
 export type LinkCreateInput = {
+  icon?: InputMaybe<AssetCreateOneInlineInput>;
   label: Scalars["String"]["input"];
   url: Scalars["String"]["input"];
 };
@@ -8716,6 +8726,7 @@ export type LinkManyWhereInput = {
   OR?: InputMaybe<Array<LinkWhereInput>>;
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars["String"]["input"]>;
+  icon?: InputMaybe<AssetWhereInput>;
   id?: InputMaybe<Scalars["ID"]["input"]>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars["ID"]["input"]>;
@@ -8873,6 +8884,7 @@ export type LinkParentWhereUniqueInput = {
 };
 
 export type LinkUpdateInput = {
+  icon?: InputMaybe<AssetUpdateOneInlineInput>;
   label?: InputMaybe<Scalars["String"]["input"]>;
   url?: InputMaybe<Scalars["String"]["input"]>;
 };
@@ -8960,6 +8972,7 @@ export type LinkWhereInput = {
   OR?: InputMaybe<Array<LinkWhereInput>>;
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars["String"]["input"]>;
+  icon?: InputMaybe<AssetWhereInput>;
   id?: InputMaybe<Scalars["ID"]["input"]>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars["ID"]["input"]>;
@@ -10116,6 +10129,7 @@ export enum MenuOrderByInput {
 export enum MenuType {
   FooterMenu = "FOOTER_MENU",
   MainMenu = "MAIN_MENU",
+  MobileMenuAdditionalLinks = "MOBILE_MENU_ADDITIONAL_LINKS",
 }
 
 export type MenuUpdateInput = {
@@ -19677,7 +19691,12 @@ export type MenuQuery = {
   menus: Array<{
     __typename?: "Menu";
     links: Array<
-      | { __typename: "Link"; label: string; url: string }
+      | {
+          __typename: "Link";
+          label: string;
+          url: string;
+          icon?: { __typename?: "Asset"; url: string } | null;
+        }
       | { __typename: "MegaMenuCategoriesDropdown"; label: string }
       | {
           __typename: "MegaMenuDropdown";
@@ -21675,6 +21694,19 @@ export const MenuDocument = {
                             {
                               kind: "Field",
                               name: { kind: "Name", value: "url" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "icon" },
+                              selectionSet: {
+                                kind: "SelectionSet",
+                                selections: [
+                                  {
+                                    kind: "Field",
+                                    name: { kind: "Name", value: "url" },
+                                  },
+                                ],
+                              },
                             },
                           ],
                         },
