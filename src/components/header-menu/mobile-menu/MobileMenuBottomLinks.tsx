@@ -27,7 +27,7 @@ const LINKS = [
 
 export const MobileMenuBottomLinks = () => {
   return (
-    <div className="fixed p-6 bottom-0 left-0 right-0">
+    <div className="fixed px-2 py-6 bottom-0 left-0 right-0">
       <ContainerLayout>
         <ul className="list-none flex justify-between items-center">
           {LINKS.map((link) => (
