@@ -31,7 +31,7 @@ export const CmsLink: React.FC<Props> = ({
       href={link.url}
       className={cx("flex items-center gap-1.5", className)}
     >
-      <div className="flex gap-1.5">
+      <div className="flex gap-1.5 items-center">
         {link.icon?.url ? (
           <Image
             width={iconWidth}
