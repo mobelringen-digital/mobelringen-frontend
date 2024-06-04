@@ -1,7 +1,6 @@
 import React from "react";
 
-import Link from "next/link";
-
+import { CmsLink } from "@/components/cms/link/CmsLink";
 import { MegaMenuCategoriesDropdown } from "@/components/header-menu/menu-item/MegaMenuCategoriesDropdown/MegaMenuCategoriesDropdown";
 import { MegaMenuDropdown } from "@/components/header-menu/menu-item/MegaMenuDropdown/MegaMenuDropdown";
 import { MobileMenuWithChildren } from "@/components/header-menu/mobile-menu/MobileMenuWithChildren";
@@ -18,18 +17,12 @@ export const MobileMenuLinks: React.FC<Props> = ({ data }) => {
       {data.menus[0].links?.map((menu, idx) => {
         if (menu.__typename === "Link") {
           return (
-            <li key={idx}>
-              <Link
-                className="flex justify-between items-center"
-                href={menu.url}
-                passHref={true}
-              >
-                <span className="text-2xl font-feature font-medium">
-                  {menu.label}
-                </span>
-                <ChevronRight />
-              </Link>
-            </li>
+            <CmsLink
+              className="flex justify-between items-center text-2xl font-feature font-medium"
+              data={menu}
+              key={idx}
+              afterIcon={<ChevronRight />}
+            />
           );
         }
 
@@ -44,7 +37,7 @@ export const MobileMenuLinks: React.FC<Props> = ({ data }) => {
         if (menu.__typename === "MegaMenuDropdown") {
           return (
             <MobileMenuWithChildren key={idx} menu={menu}>
-              <MegaMenuDropdown link={menu} />
+              <MegaMenuDropdown data={menu} />
             </MobileMenuWithChildren>
           );
         }

@@ -20134,6 +20134,45 @@ export type PopularProductsFragmentFragment = {
   categoryId?: string | null;
 } & { " $fragmentName"?: "PopularProductsFragmentFragment" };
 
+export type CmsLinkFragment = {
+  __typename: "Link";
+  label: string;
+  url: string;
+  icon?: { __typename?: "Asset"; url: string } | null;
+} & { " $fragmentName"?: "CmsLinkFragment" };
+
+export type CmsMegamenuDropdownFragment = {
+  __typename: "MegaMenuDropdown";
+  label: string;
+  items: Array<
+    | {
+        __typename: "ImageLink";
+        label: string;
+        url: string;
+        image: { __typename?: "Asset"; url: string };
+      }
+    | ({ __typename?: "Link" } & {
+        " $fragmentRefs"?: { CmsLinkFragment: CmsLinkFragment };
+      })
+  >;
+} & { " $fragmentName"?: "CmsMegamenuDropdownFragment" };
+
+export type CmsMegaMenuCategoriesDropdownFragment = {
+  __typename: "MegaMenuCategoriesDropdown";
+  label: string;
+} & { " $fragmentName"?: "CmsMegaMenuCategoriesDropdownFragment" };
+
+export type CmsLinkBlockFragment = {
+  __typename: "LinkBlock";
+  id: string;
+  label: string;
+  links: Array<
+    { __typename?: "Link" } & {
+      " $fragmentRefs"?: { CmsLinkFragment: CmsLinkFragment };
+    }
+  >;
+} & { " $fragmentName"?: "CmsLinkBlockFragment" };
+
 export type MenuQueryVariables = Exact<{
   where?: InputMaybe<MenuWhereInput>;
 }>;
@@ -20143,38 +20182,22 @@ export type MenuQuery = {
   menus: Array<{
     __typename?: "Menu";
     links: Array<
-      | {
-          __typename: "Link";
-          label: string;
-          url: string;
-          icon?: { __typename?: "Asset"; url: string } | null;
-        }
-      | {
-          __typename: "LinkBlock";
-          id: string;
-          label: string;
-          links: Array<{
-            __typename: "Link";
-            label: string;
-            id: string;
-            url: string;
-            icon?: { __typename?: "Asset"; url: string } | null;
-          }>;
-        }
-      | { __typename: "MegaMenuCategoriesDropdown"; label: string }
-      | {
-          __typename: "MegaMenuDropdown";
-          label: string;
-          items: Array<
-            | {
-                __typename: "ImageLink";
-                label: string;
-                url: string;
-                image: { __typename?: "Asset"; url: string };
-              }
-            | { __typename: "Link"; label: string; url: string }
-          >;
-        }
+      | ({ __typename?: "Link" } & {
+          " $fragmentRefs"?: { CmsLinkFragment: CmsLinkFragment };
+        })
+      | ({ __typename?: "LinkBlock" } & {
+          " $fragmentRefs"?: { CmsLinkBlockFragment: CmsLinkBlockFragment };
+        })
+      | ({ __typename?: "MegaMenuCategoriesDropdown" } & {
+          " $fragmentRefs"?: {
+            CmsMegaMenuCategoriesDropdownFragment: CmsMegaMenuCategoriesDropdownFragment;
+          };
+        })
+      | ({ __typename?: "MegaMenuDropdown" } & {
+          " $fragmentRefs"?: {
+            CmsMegamenuDropdownFragment: CmsMegamenuDropdownFragment;
+          };
+        })
     >;
   }>;
 };
@@ -21874,6 +21897,231 @@ export const PopularProductsFragmentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<PopularProductsFragmentFragment, unknown>;
+export const CmsLinkFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsLink" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Link" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CmsLinkFragment, unknown>;
+export const CmsMegamenuDropdownFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsMegamenuDropdown" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "MegaMenuDropdown" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "Link" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsLink" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "ImageLink" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "url" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsLink" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Link" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CmsMegamenuDropdownFragment, unknown>;
+export const CmsMegaMenuCategoriesDropdownFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsMegaMenuCategoriesDropdown" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "MegaMenuCategoriesDropdown" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CmsMegaMenuCategoriesDropdownFragment, unknown>;
+export const CmsLinkBlockFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsLinkBlock" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "LinkBlock" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "links" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "Link" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsLink" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsLink" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Link" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CmsLinkBlockFragment, unknown>;
 export const ProductImageFragmentFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -22148,75 +22396,8 @@ export const MenuDocument = {
                           kind: "SelectionSet",
                           selections: [
                             {
-                              kind: "Field",
-                              name: { kind: "Name", value: "__typename" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "label" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "links" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "InlineFragment",
-                                    typeCondition: {
-                                      kind: "NamedType",
-                                      name: { kind: "Name", value: "Link" },
-                                    },
-                                    selectionSet: {
-                                      kind: "SelectionSet",
-                                      selections: [
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "__typename",
-                                          },
-                                        },
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "label",
-                                          },
-                                        },
-                                        {
-                                          kind: "Field",
-                                          name: { kind: "Name", value: "id" },
-                                        },
-                                        {
-                                          kind: "Field",
-                                          name: { kind: "Name", value: "url" },
-                                        },
-                                        {
-                                          kind: "Field",
-                                          name: { kind: "Name", value: "icon" },
-                                          selectionSet: {
-                                            kind: "SelectionSet",
-                                            selections: [
-                                              {
-                                                kind: "Field",
-                                                name: {
-                                                  kind: "Name",
-                                                  value: "url",
-                                                },
-                                              },
-                                            ],
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                ],
-                              },
+                              kind: "FragmentSpread",
+                              name: { kind: "Name", value: "CmsLinkBlock" },
                             },
                           ],
                         },
@@ -22231,29 +22412,8 @@ export const MenuDocument = {
                           kind: "SelectionSet",
                           selections: [
                             {
-                              kind: "Field",
-                              name: { kind: "Name", value: "__typename" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "label" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "url" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "icon" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "url" },
-                                  },
-                                ],
-                              },
+                              kind: "FragmentSpread",
+                              name: { kind: "Name", value: "CmsLink" },
                             },
                           ],
                         },
@@ -22271,12 +22431,11 @@ export const MenuDocument = {
                           kind: "SelectionSet",
                           selections: [
                             {
-                              kind: "Field",
-                              name: { kind: "Name", value: "__typename" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "label" },
+                              kind: "FragmentSpread",
+                              name: {
+                                kind: "Name",
+                                value: "CmsMegaMenuCategoriesDropdown",
+                              },
                             },
                           ],
                         },
@@ -22291,103 +22450,164 @@ export const MenuDocument = {
                           kind: "SelectionSet",
                           selections: [
                             {
-                              kind: "Field",
-                              name: { kind: "Name", value: "__typename" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "items" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "InlineFragment",
-                                    typeCondition: {
-                                      kind: "NamedType",
-                                      name: { kind: "Name", value: "Link" },
-                                    },
-                                    selectionSet: {
-                                      kind: "SelectionSet",
-                                      selections: [
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "__typename",
-                                          },
-                                        },
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "label",
-                                          },
-                                        },
-                                        {
-                                          kind: "Field",
-                                          name: { kind: "Name", value: "url" },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                  {
-                                    kind: "InlineFragment",
-                                    typeCondition: {
-                                      kind: "NamedType",
-                                      name: {
-                                        kind: "Name",
-                                        value: "ImageLink",
-                                      },
-                                    },
-                                    selectionSet: {
-                                      kind: "SelectionSet",
-                                      selections: [
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "__typename",
-                                          },
-                                        },
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "label",
-                                          },
-                                        },
-                                        {
-                                          kind: "Field",
-                                          name: { kind: "Name", value: "url" },
-                                        },
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "image",
-                                          },
-                                          selectionSet: {
-                                            kind: "SelectionSet",
-                                            selections: [
-                                              {
-                                                kind: "Field",
-                                                name: {
-                                                  kind: "Name",
-                                                  value: "url",
-                                                },
-                                              },
-                                            ],
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                ],
+                              kind: "FragmentSpread",
+                              name: {
+                                kind: "Name",
+                                value: "CmsMegamenuDropdown",
                               },
                             },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsLink" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Link" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsLinkBlock" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "LinkBlock" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "links" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "Link" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsLink" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsMegaMenuCategoriesDropdown" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "MegaMenuCategoriesDropdown" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsMegamenuDropdown" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "MegaMenuDropdown" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "Link" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsLink" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "ImageLink" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
                             {
                               kind: "Field",
-                              name: { kind: "Name", value: "label" },
+                              name: { kind: "Name", value: "url" },
                             },
                           ],
                         },

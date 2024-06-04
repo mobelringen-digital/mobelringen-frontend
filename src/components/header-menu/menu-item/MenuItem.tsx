@@ -5,6 +5,7 @@ import { DropdownMenuProvider } from "@/components/header-menu/menu-item/Dropdow
 import { MegaMenuCategoriesDropdown } from "@/components/header-menu/menu-item/MegaMenuCategoriesDropdown/MegaMenuCategoriesDropdown";
 import { MegaMenuDropdown } from "@/components/header-menu/menu-item/MegaMenuDropdown/MegaMenuDropdown";
 import { MenuItemEntity } from "@/components/header-menu/types";
+import { CmsMegamenuDropdownFragment } from "@/types";
 
 interface Props {
   link: MenuItemEntity;
@@ -21,9 +22,9 @@ export const MenuItem: React.FC<Props> = ({ link }) => {
 
   return (
     <Suspense>
-      <DropdownMenuProvider title={link.label}>
+      <DropdownMenuProvider title={(link as CmsMegamenuDropdownFragment).label}>
         {link.__typename === "MegaMenuDropdown" ? (
-          <MegaMenuDropdown link={link} />
+          <MegaMenuDropdown data={link} />
         ) : null}
         {link.__typename === "MegaMenuCategoriesDropdown" ? (
           <MegaMenuCategoriesDropdown /> // This is a placeholder, replace it with the actual component

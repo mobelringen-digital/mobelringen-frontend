@@ -34,9 +34,9 @@ export async function FooterBlockLinks() {
           </Link>
         </p>
       </div>
-      {data.map((block) => {
+      {data.map((block, idx) => {
         if (block.__typename === "LinkBlock") {
-          return <BlockLinks block={block} key={block.id} />;
+          return <BlockLinks data={block} key={idx} />;
         }
 
         return null;

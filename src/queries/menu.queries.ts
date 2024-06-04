@@ -1,55 +1,71 @@
 import { graphql } from "@/types/schema";
 
+export const CmsLinkFragment = graphql(`
+  fragment CmsLink on Link {
+    __typename
+    label
+    url
+    icon {
+      url
+    }
+  }
+`);
+
+export const CmsMegamenuDropdownFragment = graphql(`
+  fragment CmsMegamenuDropdown on MegaMenuDropdown {
+    __typename
+    label
+    items {
+      ... on Link {
+        ...CmsLink
+      }
+      ... on ImageLink {
+        __typename
+        label
+        url
+        image {
+          url
+        }
+      }
+    }
+  }
+`);
+
+export const CmsMegaMenuCategoriesDropdownFragment = graphql(`
+  fragment CmsMegaMenuCategoriesDropdown on MegaMenuCategoriesDropdown {
+    __typename
+    label
+  }
+`);
+
+export const CmsLinkBlockFragment = graphql(`
+  fragment CmsLinkBlock on LinkBlock {
+    __typename
+    id
+    label
+    links {
+      ... on Link {
+        ...CmsLink
+      }
+    }
+  }
+`);
+
 export const MenuQueryDocument = graphql(`
   query Menu($where: MenuWhereInput) {
     menus(where: $where) {
       links {
         ... on LinkBlock {
-          __typename
-          id
-          label
-          links {
-            ... on Link {
-              __typename
-              label
-              id
-              url
-              icon {
-                url
-              }
-            }
-          }
+          ...CmsLinkBlock
         }
         ... on Link {
-          __typename
-          label
-          url
-          icon {
-            url
-          }
+          ...CmsLink
         }
         ... on MegaMenuCategoriesDropdown {
-          __typename
-          label
+          ...CmsMegaMenuCategoriesDropdown
         }
         ... on MegaMenuDropdown {
-          __typename
-          items {
-            ... on Link {
-              __typename
-              label
-              url
-            }
-            ... on ImageLink {
-              __typename
-              label
-              url
-              image {
-                url
-              }
-            }
-          }
-          label
+          ...CmsMegamenuDropdown
         }
       }
     }

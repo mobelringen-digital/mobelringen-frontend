@@ -19,7 +19,15 @@ const documents = {
     types.BannerFragmentFragmentDoc,
   "\n  fragment PopularProductsFragment on PopularProduct {\n    ... on PopularProduct {\n      __typename\n      id\n      categoryId\n    }\n  }\n":
     types.PopularProductsFragmentFragmentDoc,
-  "\n  query Menu($where: MenuWhereInput) {\n    menus(where: $where) {\n      links {\n        ... on LinkBlock {\n          __typename\n          id\n          label\n          links {\n            ... on Link {\n              __typename\n              label\n              id\n              url\n              icon {\n                url\n              }\n            }\n          }\n        }\n        ... on Link {\n          __typename\n          label\n          url\n          icon {\n            url\n          }\n        }\n        ... on MegaMenuCategoriesDropdown {\n          __typename\n          label\n        }\n        ... on MegaMenuDropdown {\n          __typename\n          items {\n            ... on Link {\n              __typename\n              label\n              url\n            }\n            ... on ImageLink {\n              __typename\n              label\n              url\n              image {\n                url\n              }\n            }\n          }\n          label\n        }\n      }\n    }\n  }\n":
+  "\n  fragment CmsLink on Link {\n    __typename\n    label\n    url\n    icon {\n      url\n    }\n  }\n":
+    types.CmsLinkFragmentDoc,
+  "\n  fragment CmsMegamenuDropdown on MegaMenuDropdown {\n    __typename\n    label\n    items {\n      ... on Link {\n        ...CmsLink\n      }\n      ... on ImageLink {\n        __typename\n        label\n        url\n        image {\n          url\n        }\n      }\n    }\n  }\n":
+    types.CmsMegamenuDropdownFragmentDoc,
+  "\n  fragment CmsMegaMenuCategoriesDropdown on MegaMenuCategoriesDropdown {\n    __typename\n    label\n  }\n":
+    types.CmsMegaMenuCategoriesDropdownFragmentDoc,
+  "\n  fragment CmsLinkBlock on LinkBlock {\n    __typename\n    id\n    label\n    links {\n      ... on Link {\n        ...CmsLink\n      }\n    }\n  }\n":
+    types.CmsLinkBlockFragmentDoc,
+  "\n  query Menu($where: MenuWhereInput) {\n    menus(where: $where) {\n      links {\n        ... on LinkBlock {\n          ...CmsLinkBlock\n        }\n        ... on Link {\n          ...CmsLink\n        }\n        ... on MegaMenuCategoriesDropdown {\n          ...CmsMegaMenuCategoriesDropdown\n        }\n        ... on MegaMenuDropdown {\n          ...CmsMegamenuDropdown\n        }\n      }\n    }\n  }\n":
     types.MenuDocument,
   "\n  query Pages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      title\n      url\n      content {\n        ...BannerFragment\n        ...PopularProductsFragment\n      }\n    }\n  }\n":
     types.PagesDocument,
@@ -67,8 +75,32 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  query Menu($where: MenuWhereInput) {\n    menus(where: $where) {\n      links {\n        ... on LinkBlock {\n          __typename\n          id\n          label\n          links {\n            ... on Link {\n              __typename\n              label\n              id\n              url\n              icon {\n                url\n              }\n            }\n          }\n        }\n        ... on Link {\n          __typename\n          label\n          url\n          icon {\n            url\n          }\n        }\n        ... on MegaMenuCategoriesDropdown {\n          __typename\n          label\n        }\n        ... on MegaMenuDropdown {\n          __typename\n          items {\n            ... on Link {\n              __typename\n              label\n              url\n            }\n            ... on ImageLink {\n              __typename\n              label\n              url\n              image {\n                url\n              }\n            }\n          }\n          label\n        }\n      }\n    }\n  }\n",
-): (typeof documents)["\n  query Menu($where: MenuWhereInput) {\n    menus(where: $where) {\n      links {\n        ... on LinkBlock {\n          __typename\n          id\n          label\n          links {\n            ... on Link {\n              __typename\n              label\n              id\n              url\n              icon {\n                url\n              }\n            }\n          }\n        }\n        ... on Link {\n          __typename\n          label\n          url\n          icon {\n            url\n          }\n        }\n        ... on MegaMenuCategoriesDropdown {\n          __typename\n          label\n        }\n        ... on MegaMenuDropdown {\n          __typename\n          items {\n            ... on Link {\n              __typename\n              label\n              url\n            }\n            ... on ImageLink {\n              __typename\n              label\n              url\n              image {\n                url\n              }\n            }\n          }\n          label\n        }\n      }\n    }\n  }\n"];
+  source: "\n  fragment CmsLink on Link {\n    __typename\n    label\n    url\n    icon {\n      url\n    }\n  }\n",
+): (typeof documents)["\n  fragment CmsLink on Link {\n    __typename\n    label\n    url\n    icon {\n      url\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment CmsMegamenuDropdown on MegaMenuDropdown {\n    __typename\n    label\n    items {\n      ... on Link {\n        ...CmsLink\n      }\n      ... on ImageLink {\n        __typename\n        label\n        url\n        image {\n          url\n        }\n      }\n    }\n  }\n",
+): (typeof documents)["\n  fragment CmsMegamenuDropdown on MegaMenuDropdown {\n    __typename\n    label\n    items {\n      ... on Link {\n        ...CmsLink\n      }\n      ... on ImageLink {\n        __typename\n        label\n        url\n        image {\n          url\n        }\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment CmsMegaMenuCategoriesDropdown on MegaMenuCategoriesDropdown {\n    __typename\n    label\n  }\n",
+): (typeof documents)["\n  fragment CmsMegaMenuCategoriesDropdown on MegaMenuCategoriesDropdown {\n    __typename\n    label\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment CmsLinkBlock on LinkBlock {\n    __typename\n    id\n    label\n    links {\n      ... on Link {\n        ...CmsLink\n      }\n    }\n  }\n",
+): (typeof documents)["\n  fragment CmsLinkBlock on LinkBlock {\n    __typename\n    id\n    label\n    links {\n      ... on Link {\n        ...CmsLink\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  query Menu($where: MenuWhereInput) {\n    menus(where: $where) {\n      links {\n        ... on LinkBlock {\n          ...CmsLinkBlock\n        }\n        ... on Link {\n          ...CmsLink\n        }\n        ... on MegaMenuCategoriesDropdown {\n          ...CmsMegaMenuCategoriesDropdown\n        }\n        ... on MegaMenuDropdown {\n          ...CmsMegamenuDropdown\n        }\n      }\n    }\n  }\n",
+): (typeof documents)["\n  query Menu($where: MenuWhereInput) {\n    menus(where: $where) {\n      links {\n        ... on LinkBlock {\n          ...CmsLinkBlock\n        }\n        ... on Link {\n          ...CmsLink\n        }\n        ... on MegaMenuCategoriesDropdown {\n          ...CmsMegaMenuCategoriesDropdown\n        }\n        ... on MegaMenuDropdown {\n          ...CmsMegamenuDropdown\n        }\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
