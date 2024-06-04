@@ -14,10 +14,11 @@ export default async function RootLayout({
   return (
     <ReactQueryClientProvider>
       <html lang="en">
-        <head>
-          <title>Mobelringen</title>
-          <meta name="robots" content="noindex,nofollow" />
-        </head>
+        <meta name="robots" content="noindex,nofollow" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, minimum-scale=1"
+        />
         <body className="bg-sand font-suisse">
           <HeaderMenu />
           <Suspense fallback={<Loading />}>{children}</Suspense>
