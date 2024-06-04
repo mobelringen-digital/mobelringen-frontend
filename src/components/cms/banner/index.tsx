@@ -16,7 +16,7 @@ export const Banner: React.FC<Props> = ({ data }) => {
 
   return (
     <div
-      className="h-[820px] max-h-screen w-full bg-no-repeat bg-cover bg-center"
+      className="h-[430px] lg:h-[820px] max-h-screen w-full bg-no-repeat bg-cover bg-center"
       style={{
         backgroundImage: `url(${bannerImage.url})`,
       }}
