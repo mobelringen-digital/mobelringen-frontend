@@ -6,7 +6,7 @@ import Link from "next/link";
 export const FooterCopyright = () => {
   return (
     <div className="flex flex-col lg:flex-row justify-center lg:justify-between items-center mt-8 text-sm">
-      <div className="flex gap-2 mb-8 lg:mb-0">
+      <div className="flex gap-2 mb-8 lg:mb-0 text-xs lg:text-sm">
         <span className="mr-6">© Møbelringen 2024</span>
         <Link href="#">Personvern</Link>
         <Link href="#">Informasjonskapsler</Link>

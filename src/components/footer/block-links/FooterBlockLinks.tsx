@@ -20,7 +20,7 @@ export async function FooterBlockLinks() {
   const data = footerBlocks.menus[0].links;
 
   return (
-    <div className="grid grid-cols-12 gap-8 border-t border-black border-opacity-20 border-b py-8 lg:py-16">
+    <div className="grid grid-cols-12 gap-4 lg:gap-8 border-t border-black border-opacity-20 border-b py-8 lg:py-16">
       <div className="col-span-12 lg:col-span-4 flex flex-col gap-4 pr-8 mb-8 lg:mb-0">
         <span className="text-sm font-bold">Kundeklubben</span>
         <p className="text-sm">
