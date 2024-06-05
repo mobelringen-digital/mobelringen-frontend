@@ -54,6 +54,7 @@ export const CmsLinkBlockFragment = graphql(`
 export const MenuQueryDocument = graphql(`
   query Menu($where: MenuWhereInput) {
     menus(where: $where) {
+      menuLocation
       links {
         ... on LinkBlock {
           ...CmsLinkBlock

@@ -3,21 +3,17 @@ import React from "react";
 import Link from "next/link";
 
 import { BlockLinks } from "@/components/footer/block-links/BlockLinks";
-import { MenuQueryDocument } from "@/queries/menu.queries";
 import { MenuQuery, MenuType } from "@/types";
-import { baseHygraphClient } from "@/utils/lib/graphql";
+import { ArrayElement } from "@/utils/ts-utils";
 
-async function getFooterBlocks() {
-  return await baseHygraphClient.request<MenuQuery>(MenuQueryDocument, {
-    where: {
-      menuLocation: MenuType.FooterMenu,
-    },
-  });
+interface Props {
+  data?: ArrayElement<MenuQuery["menus"]>;
 }
 
-export async function FooterBlockLinks() {
-  const footerBlocks = await getFooterBlocks();
-  const data = footerBlocks.menus[0].links;
+export async function FooterBlockLinks({ data }: Props) {
+  if (data?.menuLocation !== MenuType.FooterMenu) {
+    return null;
+  }
 
   return (
     <div className="grid grid-cols-12 gap-4 lg:gap-8 border-t border-black border-opacity-20 border-b py-8 lg:py-16">
@@ -34,7 +30,7 @@ export async function FooterBlockLinks() {
           </Link>
         </p>
       </div>
-      {data.map((block, idx) => {
+      {data?.links.map((block, idx) => {
         if (block.__typename === "LinkBlock") {
           return <BlockLinks data={block} key={idx} />;
         }

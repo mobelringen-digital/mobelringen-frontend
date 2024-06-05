@@ -10578,7 +10578,10 @@ export enum MenuOrderByInput {
 }
 
 export enum MenuType {
+  FooterCopyrightMenu = "FOOTER_COPYRIGHT_MENU",
+  FooterIconsMenu = "FOOTER_ICONS_MENU",
   FooterMenu = "FOOTER_MENU",
+  FooterPromoText = "FOOTER_PROMO_TEXT",
   MainMenu = "MAIN_MENU",
   MobileMenuAdditionalLinks = "MOBILE_MENU_ADDITIONAL_LINKS",
 }
@@ -16033,7 +16036,7 @@ export type SaleBubble = Entity & {
   /** System stage field */
   stage: Stage;
   topLine?: Maybe<Scalars["String"]["output"]>;
-  /** If url is set "Sale bubble" will work as ink */
+  /** If url is set "Sale bubble" will work as link */
   url?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -20693,6 +20696,7 @@ export type MenuQuery = {
   __typename?: "Query";
   menus: Array<{
     __typename?: "Menu";
+    menuLocation: MenuType;
     links: Array<
       | ({ __typename?: "Link" } & {
           " $fragmentRefs"?: { CmsLinkFragment: CmsLinkFragment };
@@ -22946,6 +22950,10 @@ export const MenuDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "menuLocation" },
+                },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "links" },
