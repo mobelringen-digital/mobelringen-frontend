@@ -20822,6 +20822,61 @@ export type ProductMediaGalleryFragment =
   | ProductMediaGallery_ProductImage_Fragment
   | ProductMediaGallery_ProductVideo_Fragment;
 
+export type ProductLabelFragment = {
+  __typename?: "Label";
+  custom?: Array<string | null> | null;
+  discount?: Array<string | null> | null;
+  new?: boolean | null;
+} & { " $fragmentName"?: "ProductLabelFragment" };
+
+export type ProductPriceRangeFragment = {
+  __typename?: "PriceRange";
+  maximum_price?: {
+    __typename?: "ProductPrice";
+    discount?: {
+      __typename?: "ProductDiscount";
+      amount_off?: number | null;
+      percent_off?: number | null;
+    } | null;
+    fixed_product_taxes?: Array<{
+      __typename?: "FixedProductTax";
+      label?: string | null;
+      amount?: {
+        __typename?: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      } | null;
+    } | null> | null;
+    regular_price: {
+      __typename?: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+  } | null;
+  minimum_price: {
+    __typename?: "ProductPrice";
+    discount?: {
+      __typename?: "ProductDiscount";
+      amount_off?: number | null;
+      percent_off?: number | null;
+    } | null;
+    fixed_product_taxes?: Array<{
+      __typename?: "FixedProductTax";
+      label?: string | null;
+      amount?: {
+        __typename?: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      } | null;
+    } | null> | null;
+    regular_price: {
+      __typename?: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+  };
+} & { " $fragmentName"?: "ProductPriceRangeFragment" };
+
 export type ProductsQueryVariables = Exact<{
   pageSize?: InputMaybe<Scalars["Int"]["input"]>;
   filter?: InputMaybe<ProductAttributeFilterInput>;
@@ -20900,51 +20955,9 @@ export type ProductsQuery = {
               })
             | null
           > | null;
-          price_range: {
-            __typename?: "PriceRange";
-            maximum_price?: {
-              __typename?: "ProductPrice";
-              discount?: {
-                __typename?: "ProductDiscount";
-                amount_off?: number | null;
-                percent_off?: number | null;
-              } | null;
-              fixed_product_taxes?: Array<{
-                __typename?: "FixedProductTax";
-                label?: string | null;
-                amount?: {
-                  __typename?: "Money";
-                  currency?: CurrencyEnum | null;
-                  value?: number | null;
-                } | null;
-              } | null> | null;
-              regular_price: {
-                __typename?: "Money";
-                currency?: CurrencyEnum | null;
-                value?: number | null;
-              };
-            } | null;
-            minimum_price: {
-              __typename?: "ProductPrice";
-              discount?: {
-                __typename?: "ProductDiscount";
-                amount_off?: number | null;
-                percent_off?: number | null;
-              } | null;
-              fixed_product_taxes?: Array<{
-                __typename?: "FixedProductTax";
-                label?: string | null;
-                amount?: {
-                  __typename?: "Money";
-                  currency?: CurrencyEnum | null;
-                  value?: number | null;
-                } | null;
-              } | null> | null;
-              regular_price: {
-                __typename?: "Money";
-                currency?: CurrencyEnum | null;
-                value?: number | null;
-              };
+          price_range: { __typename?: "PriceRange" } & {
+            " $fragmentRefs"?: {
+              ProductPriceRangeFragment: ProductPriceRangeFragment;
             };
           };
           productBrand?: {
@@ -21014,6 +21027,13 @@ export type ProductsQuery = {
             url_path?: string | null;
             name?: string | null;
           } | null> | null;
+          productLabel?:
+            | ({ __typename?: "Label" } & {
+                " $fragmentRefs"?: {
+                  ProductLabelFragment: ProductLabelFragment;
+                };
+              })
+            | null;
         }
       | {
           __typename?: "ConfigurableProduct";
@@ -21083,51 +21103,9 @@ export type ProductsQuery = {
               })
             | null
           > | null;
-          price_range: {
-            __typename?: "PriceRange";
-            maximum_price?: {
-              __typename?: "ProductPrice";
-              discount?: {
-                __typename?: "ProductDiscount";
-                amount_off?: number | null;
-                percent_off?: number | null;
-              } | null;
-              fixed_product_taxes?: Array<{
-                __typename?: "FixedProductTax";
-                label?: string | null;
-                amount?: {
-                  __typename?: "Money";
-                  currency?: CurrencyEnum | null;
-                  value?: number | null;
-                } | null;
-              } | null> | null;
-              regular_price: {
-                __typename?: "Money";
-                currency?: CurrencyEnum | null;
-                value?: number | null;
-              };
-            } | null;
-            minimum_price: {
-              __typename?: "ProductPrice";
-              discount?: {
-                __typename?: "ProductDiscount";
-                amount_off?: number | null;
-                percent_off?: number | null;
-              } | null;
-              fixed_product_taxes?: Array<{
-                __typename?: "FixedProductTax";
-                label?: string | null;
-                amount?: {
-                  __typename?: "Money";
-                  currency?: CurrencyEnum | null;
-                  value?: number | null;
-                } | null;
-              } | null> | null;
-              regular_price: {
-                __typename?: "Money";
-                currency?: CurrencyEnum | null;
-                value?: number | null;
-              };
+          price_range: { __typename?: "PriceRange" } & {
+            " $fragmentRefs"?: {
+              ProductPriceRangeFragment: ProductPriceRangeFragment;
             };
           };
           productBrand?: {
@@ -21197,6 +21175,13 @@ export type ProductsQuery = {
             url_path?: string | null;
             name?: string | null;
           } | null> | null;
+          productLabel?:
+            | ({ __typename?: "Label" } & {
+                " $fragmentRefs"?: {
+                  ProductLabelFragment: ProductLabelFragment;
+                };
+              })
+            | null;
         }
       | {
           __typename?: "DownloadableProduct";
@@ -21266,51 +21251,9 @@ export type ProductsQuery = {
               })
             | null
           > | null;
-          price_range: {
-            __typename?: "PriceRange";
-            maximum_price?: {
-              __typename?: "ProductPrice";
-              discount?: {
-                __typename?: "ProductDiscount";
-                amount_off?: number | null;
-                percent_off?: number | null;
-              } | null;
-              fixed_product_taxes?: Array<{
-                __typename?: "FixedProductTax";
-                label?: string | null;
-                amount?: {
-                  __typename?: "Money";
-                  currency?: CurrencyEnum | null;
-                  value?: number | null;
-                } | null;
-              } | null> | null;
-              regular_price: {
-                __typename?: "Money";
-                currency?: CurrencyEnum | null;
-                value?: number | null;
-              };
-            } | null;
-            minimum_price: {
-              __typename?: "ProductPrice";
-              discount?: {
-                __typename?: "ProductDiscount";
-                amount_off?: number | null;
-                percent_off?: number | null;
-              } | null;
-              fixed_product_taxes?: Array<{
-                __typename?: "FixedProductTax";
-                label?: string | null;
-                amount?: {
-                  __typename?: "Money";
-                  currency?: CurrencyEnum | null;
-                  value?: number | null;
-                } | null;
-              } | null> | null;
-              regular_price: {
-                __typename?: "Money";
-                currency?: CurrencyEnum | null;
-                value?: number | null;
-              };
+          price_range: { __typename?: "PriceRange" } & {
+            " $fragmentRefs"?: {
+              ProductPriceRangeFragment: ProductPriceRangeFragment;
             };
           };
           productBrand?: {
@@ -21380,6 +21323,13 @@ export type ProductsQuery = {
             url_path?: string | null;
             name?: string | null;
           } | null> | null;
+          productLabel?:
+            | ({ __typename?: "Label" } & {
+                " $fragmentRefs"?: {
+                  ProductLabelFragment: ProductLabelFragment;
+                };
+              })
+            | null;
         }
       | {
           __typename?: "GiftCardProduct";
@@ -21449,51 +21399,9 @@ export type ProductsQuery = {
               })
             | null
           > | null;
-          price_range: {
-            __typename?: "PriceRange";
-            maximum_price?: {
-              __typename?: "ProductPrice";
-              discount?: {
-                __typename?: "ProductDiscount";
-                amount_off?: number | null;
-                percent_off?: number | null;
-              } | null;
-              fixed_product_taxes?: Array<{
-                __typename?: "FixedProductTax";
-                label?: string | null;
-                amount?: {
-                  __typename?: "Money";
-                  currency?: CurrencyEnum | null;
-                  value?: number | null;
-                } | null;
-              } | null> | null;
-              regular_price: {
-                __typename?: "Money";
-                currency?: CurrencyEnum | null;
-                value?: number | null;
-              };
-            } | null;
-            minimum_price: {
-              __typename?: "ProductPrice";
-              discount?: {
-                __typename?: "ProductDiscount";
-                amount_off?: number | null;
-                percent_off?: number | null;
-              } | null;
-              fixed_product_taxes?: Array<{
-                __typename?: "FixedProductTax";
-                label?: string | null;
-                amount?: {
-                  __typename?: "Money";
-                  currency?: CurrencyEnum | null;
-                  value?: number | null;
-                } | null;
-              } | null> | null;
-              regular_price: {
-                __typename?: "Money";
-                currency?: CurrencyEnum | null;
-                value?: number | null;
-              };
+          price_range: { __typename?: "PriceRange" } & {
+            " $fragmentRefs"?: {
+              ProductPriceRangeFragment: ProductPriceRangeFragment;
             };
           };
           productBrand?: {
@@ -21563,6 +21471,13 @@ export type ProductsQuery = {
             url_path?: string | null;
             name?: string | null;
           } | null> | null;
+          productLabel?:
+            | ({ __typename?: "Label" } & {
+                " $fragmentRefs"?: {
+                  ProductLabelFragment: ProductLabelFragment;
+                };
+              })
+            | null;
         }
       | {
           __typename?: "GroupedProduct";
@@ -21632,51 +21547,9 @@ export type ProductsQuery = {
               })
             | null
           > | null;
-          price_range: {
-            __typename?: "PriceRange";
-            maximum_price?: {
-              __typename?: "ProductPrice";
-              discount?: {
-                __typename?: "ProductDiscount";
-                amount_off?: number | null;
-                percent_off?: number | null;
-              } | null;
-              fixed_product_taxes?: Array<{
-                __typename?: "FixedProductTax";
-                label?: string | null;
-                amount?: {
-                  __typename?: "Money";
-                  currency?: CurrencyEnum | null;
-                  value?: number | null;
-                } | null;
-              } | null> | null;
-              regular_price: {
-                __typename?: "Money";
-                currency?: CurrencyEnum | null;
-                value?: number | null;
-              };
-            } | null;
-            minimum_price: {
-              __typename?: "ProductPrice";
-              discount?: {
-                __typename?: "ProductDiscount";
-                amount_off?: number | null;
-                percent_off?: number | null;
-              } | null;
-              fixed_product_taxes?: Array<{
-                __typename?: "FixedProductTax";
-                label?: string | null;
-                amount?: {
-                  __typename?: "Money";
-                  currency?: CurrencyEnum | null;
-                  value?: number | null;
-                } | null;
-              } | null> | null;
-              regular_price: {
-                __typename?: "Money";
-                currency?: CurrencyEnum | null;
-                value?: number | null;
-              };
+          price_range: { __typename?: "PriceRange" } & {
+            " $fragmentRefs"?: {
+              ProductPriceRangeFragment: ProductPriceRangeFragment;
             };
           };
           productBrand?: {
@@ -21746,6 +21619,13 @@ export type ProductsQuery = {
             url_path?: string | null;
             name?: string | null;
           } | null> | null;
+          productLabel?:
+            | ({ __typename?: "Label" } & {
+                " $fragmentRefs"?: {
+                  ProductLabelFragment: ProductLabelFragment;
+                };
+              })
+            | null;
         }
       | {
           __typename?: "SimpleProduct";
@@ -21815,51 +21695,9 @@ export type ProductsQuery = {
               })
             | null
           > | null;
-          price_range: {
-            __typename?: "PriceRange";
-            maximum_price?: {
-              __typename?: "ProductPrice";
-              discount?: {
-                __typename?: "ProductDiscount";
-                amount_off?: number | null;
-                percent_off?: number | null;
-              } | null;
-              fixed_product_taxes?: Array<{
-                __typename?: "FixedProductTax";
-                label?: string | null;
-                amount?: {
-                  __typename?: "Money";
-                  currency?: CurrencyEnum | null;
-                  value?: number | null;
-                } | null;
-              } | null> | null;
-              regular_price: {
-                __typename?: "Money";
-                currency?: CurrencyEnum | null;
-                value?: number | null;
-              };
-            } | null;
-            minimum_price: {
-              __typename?: "ProductPrice";
-              discount?: {
-                __typename?: "ProductDiscount";
-                amount_off?: number | null;
-                percent_off?: number | null;
-              } | null;
-              fixed_product_taxes?: Array<{
-                __typename?: "FixedProductTax";
-                label?: string | null;
-                amount?: {
-                  __typename?: "Money";
-                  currency?: CurrencyEnum | null;
-                  value?: number | null;
-                } | null;
-              } | null> | null;
-              regular_price: {
-                __typename?: "Money";
-                currency?: CurrencyEnum | null;
-                value?: number | null;
-              };
+          price_range: { __typename?: "PriceRange" } & {
+            " $fragmentRefs"?: {
+              ProductPriceRangeFragment: ProductPriceRangeFragment;
             };
           };
           productBrand?: {
@@ -21929,6 +21767,13 @@ export type ProductsQuery = {
             url_path?: string | null;
             name?: string | null;
           } | null> | null;
+          productLabel?:
+            | ({ __typename?: "Label" } & {
+                " $fragmentRefs"?: {
+                  ProductLabelFragment: ProductLabelFragment;
+                };
+              })
+            | null;
         }
       | {
           __typename?: "VirtualProduct";
@@ -21998,51 +21843,9 @@ export type ProductsQuery = {
               })
             | null
           > | null;
-          price_range: {
-            __typename?: "PriceRange";
-            maximum_price?: {
-              __typename?: "ProductPrice";
-              discount?: {
-                __typename?: "ProductDiscount";
-                amount_off?: number | null;
-                percent_off?: number | null;
-              } | null;
-              fixed_product_taxes?: Array<{
-                __typename?: "FixedProductTax";
-                label?: string | null;
-                amount?: {
-                  __typename?: "Money";
-                  currency?: CurrencyEnum | null;
-                  value?: number | null;
-                } | null;
-              } | null> | null;
-              regular_price: {
-                __typename?: "Money";
-                currency?: CurrencyEnum | null;
-                value?: number | null;
-              };
-            } | null;
-            minimum_price: {
-              __typename?: "ProductPrice";
-              discount?: {
-                __typename?: "ProductDiscount";
-                amount_off?: number | null;
-                percent_off?: number | null;
-              } | null;
-              fixed_product_taxes?: Array<{
-                __typename?: "FixedProductTax";
-                label?: string | null;
-                amount?: {
-                  __typename?: "Money";
-                  currency?: CurrencyEnum | null;
-                  value?: number | null;
-                } | null;
-              } | null> | null;
-              regular_price: {
-                __typename?: "Money";
-                currency?: CurrencyEnum | null;
-                value?: number | null;
-              };
+          price_range: { __typename?: "PriceRange" } & {
+            " $fragmentRefs"?: {
+              ProductPriceRangeFragment: ProductPriceRangeFragment;
             };
           };
           productBrand?: {
@@ -22112,6 +21915,13 @@ export type ProductsQuery = {
             url_path?: string | null;
             name?: string | null;
           } | null> | null;
+          productLabel?:
+            | ({ __typename?: "Label" } & {
+                " $fragmentRefs"?: {
+                  ProductLabelFragment: ProductLabelFragment;
+                };
+              })
+            | null;
         }
       | null
     > | null;
@@ -22568,6 +22378,179 @@ export const ProductMediaGalleryFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ProductMediaGalleryFragment, unknown>;
+export const ProductLabelFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductLabel" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Label" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "custom" } },
+          { kind: "Field", name: { kind: "Name", value: "discount" } },
+          { kind: "Field", name: { kind: "Name", value: "new" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ProductLabelFragment, unknown>;
+export const ProductPriceRangeFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductPriceRange" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PriceRange" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "maximum_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "discount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount_off" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "percent_off" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "fixed_product_taxes" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "currency" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "value" },
+                            },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "regular_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "minimum_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "discount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount_off" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "percent_off" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "fixed_product_taxes" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "currency" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "value" },
+                            },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "regular_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ProductPriceRangeFragment, unknown>;
 export const CategoryDocument = {
   kind: "Document",
   definitions: [
@@ -23371,209 +23354,10 @@ export const ProductsDocument = {
                           kind: "SelectionSet",
                           selections: [
                             {
-                              kind: "Field",
-                              name: { kind: "Name", value: "maximum_price" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "discount" },
-                                    selectionSet: {
-                                      kind: "SelectionSet",
-                                      selections: [
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "amount_off",
-                                          },
-                                        },
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "percent_off",
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: {
-                                      kind: "Name",
-                                      value: "fixed_product_taxes",
-                                    },
-                                    selectionSet: {
-                                      kind: "SelectionSet",
-                                      selections: [
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "amount",
-                                          },
-                                          selectionSet: {
-                                            kind: "SelectionSet",
-                                            selections: [
-                                              {
-                                                kind: "Field",
-                                                name: {
-                                                  kind: "Name",
-                                                  value: "currency",
-                                                },
-                                              },
-                                              {
-                                                kind: "Field",
-                                                name: {
-                                                  kind: "Name",
-                                                  value: "value",
-                                                },
-                                              },
-                                            ],
-                                          },
-                                        },
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "label",
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: {
-                                      kind: "Name",
-                                      value: "regular_price",
-                                    },
-                                    selectionSet: {
-                                      kind: "SelectionSet",
-                                      selections: [
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "currency",
-                                          },
-                                        },
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "value",
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "minimum_price" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "discount" },
-                                    selectionSet: {
-                                      kind: "SelectionSet",
-                                      selections: [
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "amount_off",
-                                          },
-                                        },
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "percent_off",
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: {
-                                      kind: "Name",
-                                      value: "fixed_product_taxes",
-                                    },
-                                    selectionSet: {
-                                      kind: "SelectionSet",
-                                      selections: [
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "amount",
-                                          },
-                                          selectionSet: {
-                                            kind: "SelectionSet",
-                                            selections: [
-                                              {
-                                                kind: "Field",
-                                                name: {
-                                                  kind: "Name",
-                                                  value: "currency",
-                                                },
-                                              },
-                                              {
-                                                kind: "Field",
-                                                name: {
-                                                  kind: "Name",
-                                                  value: "value",
-                                                },
-                                              },
-                                            ],
-                                          },
-                                        },
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "label",
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: {
-                                      kind: "Name",
-                                      value: "regular_price",
-                                    },
-                                    selectionSet: {
-                                      kind: "SelectionSet",
-                                      selections: [
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "currency",
-                                          },
-                                        },
-                                        {
-                                          kind: "Field",
-                                          name: {
-                                            kind: "Name",
-                                            value: "value",
-                                          },
-                                        },
-                                      ],
-                                    },
-                                  },
-                                ],
+                              kind: "FragmentSpread",
+                              name: {
+                                kind: "Name",
+                                value: "ProductPriceRange",
                               },
                             },
                           ],
@@ -23826,6 +23610,19 @@ export const ProductsDocument = {
                           ],
                         },
                       },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "productLabel" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "FragmentSpread",
+                              name: { kind: "Name", value: "ProductLabel" },
+                            },
+                          ],
+                        },
+                      },
                     ],
                   },
                 },
@@ -23866,6 +23663,169 @@ export const ProductsDocument = {
           { kind: "Field", name: { kind: "Name", value: "label" } },
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "url" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductPriceRange" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PriceRange" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "maximum_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "discount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount_off" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "percent_off" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "fixed_product_taxes" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "currency" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "value" },
+                            },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "regular_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "minimum_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "discount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount_off" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "percent_off" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "fixed_product_taxes" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "currency" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "value" },
+                            },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "regular_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductLabel" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Label" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "custom" } },
+          { kind: "Field", name: { kind: "Name", value: "discount" } },
+          { kind: "Field", name: { kind: "Name", value: "new" } },
         ],
       },
     },

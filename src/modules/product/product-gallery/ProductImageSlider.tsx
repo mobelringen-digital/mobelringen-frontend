@@ -5,7 +5,11 @@ import Slider from "react-slick";
 import Image from "next/image";
 
 import { ProductImage } from "@/modules/product/product-gallery/ProductImage";
-import { ProductMediaGalleryFragment } from "@/types";
+import {
+  ProductLabelFragment,
+  ProductMediaGalleryFragment,
+  ProductPriceRangeFragment,
+} from "@/types";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -13,11 +17,15 @@ import "slick-carousel/slick/slick-theme.css";
 interface Props {
   gallery: readonly ProductMediaGalleryFragment[];
   setPhotoIndex: React.Dispatch<React.SetStateAction<number | null>>;
+  priceRange?: ProductPriceRangeFragment | null;
+  labels?: ProductLabelFragment | null;
 }
 
 export const ProductImageSlider: React.FC<Props> = ({
   gallery,
   setPhotoIndex,
+  labels,
+  priceRange,
 }) => {
   const settings = {
     customPaging: function (i: number) {
@@ -53,6 +61,8 @@ export const ProductImageSlider: React.FC<Props> = ({
             key={idx}
             onZoomClick={() => setPhotoIndex(idx)}
             image={item}
+            labels={labels}
+            priceRange={priceRange}
           />
         ) : null,
       )}

@@ -20,6 +20,8 @@ export const ProductPage: React.FC<Props> = ({ product }) => {
             imageData={product?.image}
             // @ts-expect-error An issue with codegen an array of fragments
             galleryData={product?.media_gallery}
+            labelData={product?.productLabel}
+            priceRangeData={product?.price_range}
           />
         </div>
         <div className="col-span-12 lg:col-span-5">

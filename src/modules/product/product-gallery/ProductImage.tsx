@@ -6,21 +6,53 @@ import { FavoriteIcon } from "@/components/icons/FavoriteIcon";
 import { ZoomIcon } from "@/components/icons/ZoomIcon";
 import {
   ProductImageFragmentFragment,
+  ProductLabelFragment,
   ProductMediaGalleryFragment,
+  ProductPriceRangeFragment,
 } from "@/types";
+import { usePriceRange } from "@/utils/hooks/usePriceRange";
 
 interface Props {
   image: ProductImageFragmentFragment | ProductMediaGalleryFragment;
+  labels?: ProductLabelFragment | null;
+  priceRange?: ProductPriceRangeFragment | null;
   onZoomClick?: () => void;
   enableZoom?: boolean;
 }
 
-export const ProductImage: React.FC<Props> = ({ onZoomClick, image }) => {
+export const ProductImage: React.FC<Props> = ({
+  onZoomClick,
+  image,
+  labels,
+  priceRange,
+}) => {
+  const { discount } = usePriceRange(priceRange);
   if (!image.url) return null;
 
   return (
     <div className="relative p-10 h-[380px] lg:h-[800px] bg-warm-grey rounded-3xl !flex justify-center items-center">
       <Image width={650} height={650} src={image.url} alt={image.label ?? ""} />
+
+      <div className="absolute top-4 right-4 flex">
+        {discount ? (
+          <span className="bg-powder-dark py-1 px-2 font-semibold uppercase text-black text-xs rounded-xl">
+            {discount}
+          </span>
+        ) : null}
+      </div>
+
+      <div className="absolute top-4 left-4 flex gap-1 items-center justify-center text-center">
+        {labels?.custom
+          ? labels.custom.map((label, idx) => (
+              <span
+                className="bg-black py-1 px-2 font-semibold uppercase text-white text-xs rounded-xl"
+                key={idx}
+              >
+                {label}
+              </span>
+            ))
+          : null}
+      </div>
 
       <div className="absolute bottom-4 right-4 flex gap-3">
         <button

@@ -35,6 +35,53 @@ export const ProductMediaGalleryFragment = graphql(`
   }
 `);
 
+export const ProductLabelFragment = graphql(`
+  fragment ProductLabel on Label {
+    custom
+    discount
+    new
+  }
+`);
+
+export const ProductPriceRangeFragment = graphql(`
+  fragment ProductPriceRange on PriceRange {
+    maximum_price {
+      discount {
+        amount_off
+        percent_off
+      }
+      fixed_product_taxes {
+        amount {
+          currency
+          value
+        }
+        label
+      }
+      regular_price {
+        currency
+        value
+      }
+    }
+    minimum_price {
+      discount {
+        amount_off
+        percent_off
+      }
+      fixed_product_taxes {
+        amount {
+          currency
+          value
+        }
+        label
+      }
+      regular_price {
+        currency
+        value
+      }
+    }
+  }
+`);
+
 export const ProductsQueryDocument = graphql(`
   query Products($pageSize: Int = 12, $filter: ProductAttributeFilterInput) {
     products(pageSize: $pageSize, filter: $filter) {
@@ -69,40 +116,7 @@ export const ProductsQueryDocument = graphql(`
         only_x_left_in_stock
         options_container
         price_range {
-          maximum_price {
-            discount {
-              amount_off
-              percent_off
-            }
-            fixed_product_taxes {
-              amount {
-                currency
-                value
-              }
-              label
-            }
-            regular_price {
-              currency
-              value
-            }
-          }
-          minimum_price {
-            discount {
-              amount_off
-              percent_off
-            }
-            fixed_product_taxes {
-              amount {
-                currency
-                value
-              }
-              label
-            }
-            regular_price {
-              currency
-              value
-            }
-          }
+          ...ProductPriceRange
         }
         productBrand {
           brand_image_url
@@ -160,6 +174,9 @@ export const ProductsQueryDocument = graphql(`
         categories {
           url_path
           name
+        }
+        productLabel {
+          ...ProductLabel
         }
       }
     }
