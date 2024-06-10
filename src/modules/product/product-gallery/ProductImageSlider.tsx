@@ -32,7 +32,7 @@ export const ProductImageSlider: React.FC<Props> = ({
       return (
         <button
           id="navigation-link"
-          className="w-[96px] h-[96px] transition-all border border-warm-grey p-2 bg-warm-grey rounded-3xl !flex justify-center items-center cursor-pointer"
+          className="w-[64px] h-[64px] lg:w-[96px] lg:h-[96px] transition-all border border-warm-grey p-2 bg-warm-grey rounded-2xl !flex justify-center items-center cursor-pointer"
         >
           <Image
             width={96}

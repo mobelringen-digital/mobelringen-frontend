@@ -4,7 +4,11 @@ import Link from "next/link";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Debugger } from "@/components/Debugger";
+import { CirclePlusIcon } from "@/components/icons/CirclePlusIcon";
+import { LocalShippingIcon } from "@/components/icons/LocalShippingIcon";
+import { StorefrontIcon } from "@/components/icons/StorefrontIcon";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
+import { StatusCircle } from "@/components/status-circle/StatusCircle";
 import { ProductGallery } from "@/modules/product/product-gallery/ProductGallery";
 import { ProductPricing } from "@/modules/product/product-pricing/ProductPricing";
 import { ProductsQuery } from "@/types";
@@ -60,6 +64,55 @@ export const ProductPage: React.FC<Props> = ({ product }) => {
           ) : null}
           <div className="mt-4">
             <ProductPricing priceRangeData={product?.price_range} />
+          </div>
+          <div className="mt-8 bg-warm-grey p-4 lg:p-8 rounded-2xl">
+            <div className="flex items-center justify-between mb-2">
+              <h4 className="text-lg lg:text-xl font-semibold">
+                Flere valgmuligheter i butikk
+              </h4>
+              <button>
+                <CirclePlusIcon />
+              </button>
+            </div>
+
+            <p className="text-sm lg:text-base font-normal">
+              Visste du at vi hjelper deg å skreddersy produkter i butikk? Les
+              mer om hvordan vi kan hjelpe deg i din butikk.
+            </p>
+          </div>
+          <div className="mt-8 bg-white p-4 lg:p-8 rounded-2xl">
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <span className="font-semibold flex gap-2 text-base">
+                  <LocalShippingIcon width={24} height={24} />
+                  Nettbutikk
+                </span>
+                <div className="flex gap-2 mt-2">
+                  <StatusCircle variant="green" className="mt-1 ml-1" />
+                  <div className="flex flex-col">
+                    <span>Tilgjengelig på nett</span>
+                    <span className="text-sm text-dark-grey">
+                      Estimert levering: 4-6 dager
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <span className="font-semibold flex gap-2 text-base">
+                  <StorefrontIcon width={24} height={24} />
+                  Klikk og hent
+                </span>
+                <div className="flex gap-2 mt-2">
+                  <StatusCircle variant="green" className="mt-1 ml-1" />
+                  <div className="flex flex-col">
+                    <span>Tilgjengelig på Lørenskog</span>
+                    <span className="text-sm text-dark-grey">
+                      Tilgjengelig i 13 butikker
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
