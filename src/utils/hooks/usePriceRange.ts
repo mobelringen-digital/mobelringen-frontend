@@ -5,15 +5,15 @@ import { ProductPriceRangeFragment } from "@/types";
 export const usePriceRange = (
   priceRange?: ProductPriceRangeFragment | null,
 ) => {
-  const currency = priceRange?.minimum_price?.final_price?.currency;
+  const currency = priceRange?.minimum_price?.final_price?.currency ?? "";
 
   const originalPrice = React.useMemo(() => {
-    return `${priceRange?.minimum_price?.regular_price?.value}${currency}`;
-  }, [priceRange?.minimum_price?.regular_price?.value, currency]);
+    return priceRange?.minimum_price?.regular_price?.value;
+  }, [priceRange?.minimum_price?.regular_price?.value]);
 
   const finalPrice = React.useMemo(() => {
-    return `${priceRange?.minimum_price?.final_price?.value}${currency}`;
-  }, [priceRange?.minimum_price?.final_price?.value, currency]);
+    return priceRange?.minimum_price?.final_price?.value;
+  }, [priceRange?.minimum_price?.final_price?.value]);
 
   const percentageDiscount = React.useMemo(() => {
     const percentOff = priceRange?.minimum_price?.discount?.percent_off;
@@ -40,5 +40,6 @@ export const usePriceRange = (
     finalPrice,
     percentageDiscount,
     amountDiscount,
+    currency,
   };
 };

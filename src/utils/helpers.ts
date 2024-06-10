@@ -18,14 +18,22 @@ export const generatePrettyUrl = (
 };
 
 export const generateProductUrl = (product: Maybe<ProductInterface>) => {
-  if (!product) {
+  if (!product?.name) {
     return "";
   }
 
-  return `/p/${product.name
+  return `/p/${generateUrl(product.name)}-${product.sku}`;
+};
+
+export const generateUrl = (name: string) => {
+  if (!name) {
+    return "";
+  }
+
+  return name
     ?.toLowerCase()
     .replace(/[^a-zA-Z ]/g, "")
-    .replaceAll(" ", "-")}-${product.sku}`;
+    .replaceAll(" ", "-");
 };
 
 export const extractProductSkuFromUrl = (
