@@ -42,6 +42,7 @@ export const ProductImageSlider: React.FC<Props> = ({
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
+    fade: true,
   };
 
   return (
