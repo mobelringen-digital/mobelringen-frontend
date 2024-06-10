@@ -1,8 +1,15 @@
-export const FavoriteIcon = () => {
+import React from "react";
+
+interface Props {
+  width?: number;
+  height?: number;
+}
+
+export const FavoriteIcon: React.FC<Props> = ({ width = 48, height = 48 }) => {
   return (
     <svg
-      width="48"
-      height="48"
+      width={width}
+      height={height}
       viewBox="0 0 48 48"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

@@ -50,7 +50,7 @@ export const ProductImageSlider: React.FC<Props> = ({
         item.url ? (
           <ProductImage
             key={idx}
-            onClick={() => setPhotoIndex(idx)}
+            onZoomClick={() => setPhotoIndex(idx)}
             image={item}
           />
         ) : null,

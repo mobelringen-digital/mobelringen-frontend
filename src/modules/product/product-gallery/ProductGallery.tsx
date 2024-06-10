@@ -30,22 +30,42 @@ export const ProductGallery: React.FC<Props> = ({ imageData, galleryData }) => {
     }
   }, [photoIndex]);
 
+  const images = React.useMemo(() => {
+    if (gallery && gallery.length > 0) {
+      return gallery.map((img) => ({
+        url: img?.url,
+        label: img?.label,
+      }));
+    }
+
+    return [
+      {
+        url: image?.url,
+        label: image?.label,
+      },
+    ];
+  }, [gallery, image?.label, image?.url]);
+
   return (
     <>
-      {gallery && gallery.length > 0 ? (
+      {images && images.length > 0 ? (
         <>
           {photoIndex !== null ? (
             <ProductLightbox
-              gallery={gallery}
+              images={images}
               photoIndex={photoIndex}
               setPhotoIndex={setPhotoIndex}
-              onCloseRequest={() => setPhotoIndex(null)}
             />
           ) : null}
-          <ProductImageSlider gallery={gallery} setPhotoIndex={setPhotoIndex} />
+          {gallery ? (
+            <ProductImageSlider
+              gallery={gallery}
+              setPhotoIndex={setPhotoIndex}
+            />
+          ) : null}
         </>
       ) : image?.url ? (
-        <ProductImage image={image} />
+        <ProductImage image={image} onZoomClick={() => setPhotoIndex(0)} />
       ) : null}
     </>
   );

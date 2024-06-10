@@ -2,35 +2,34 @@ import React from "react";
 
 import Lightbox from "react-image-lightbox";
 
-import { ProductMediaGalleryFragment } from "@/types";
-
 import "react-image-lightbox/style.css";
 
 interface Props {
-  gallery: readonly ProductMediaGalleryFragment[];
+  images: Array<{
+    url: string | null | undefined;
+    label: string | null | undefined;
+  }>;
   photoIndex: number;
   setPhotoIndex: React.Dispatch<React.SetStateAction<number | null>>;
-  onCloseRequest: () => void;
 }
 
 export const ProductLightbox: React.FC<Props> = ({
-  gallery,
+  images,
   photoIndex,
   setPhotoIndex,
-  onCloseRequest,
 }) => {
   return (
     <Lightbox
-      mainSrc={gallery?.[photoIndex].url ?? ""}
-      nextSrc={gallery?.[(photoIndex + 1) % gallery.length].url ?? ""}
+      mainSrc={images?.[photoIndex].url ?? ""}
+      nextSrc={images?.[(photoIndex + 1) % images.length].url ?? ""}
       prevSrc={
-        gallery?.[(photoIndex + gallery.length - 1) % gallery.length].url ?? ""
+        images?.[(photoIndex + images.length - 1) % images.length].url ?? ""
       }
-      onCloseRequest={onCloseRequest}
+      onCloseRequest={() => setPhotoIndex(null)}
       onMovePrevRequest={() =>
-        setPhotoIndex((photoIndex + gallery.length - 1) % gallery.length)
+        setPhotoIndex((photoIndex + images.length - 1) % images.length)
       }
-      onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % gallery.length)}
+      onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % images.length)}
     />
   );
 };
