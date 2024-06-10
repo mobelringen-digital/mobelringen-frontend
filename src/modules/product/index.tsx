@@ -38,7 +38,7 @@ export const ProductPage: React.FC<Props> = ({ product }) => {
             priceRangeData={product?.price_range}
           />
         </div>
-        <div className="col-span-12 lg:col-span-5">
+        <div className="col-span-12 lg:col-span-5 flex flex-col gap-4 lg:gap-8">
           <ProductTopInfo
             brand={product?.productBrand?.name}
             name={product?.name}

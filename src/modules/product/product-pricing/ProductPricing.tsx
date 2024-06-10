@@ -16,8 +16,8 @@ export const ProductPricing: React.FC<Props> = ({ priceRangeData }) => {
 
   if (amountDiscount) {
     return (
-      <>
-        <div className="text-xl text-red font-semibold mt-4">
+      <div className="flex flex-col">
+        <div className="text-xl text-red font-semibold">
           <FormatNumber
             value={finalPrice}
             format="currency"
@@ -34,7 +34,7 @@ export const ProductPricing: React.FC<Props> = ({ priceRangeData }) => {
             />
           </span>
         </div>
-      </>
+      </div>
     );
   }
 

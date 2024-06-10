@@ -16,7 +16,7 @@ export const ProductTopInfo: React.FC<Props> = ({
   shortDescription,
 }) => {
   return (
-    <>
+    <div className="flex flex-col">
       {brand ? (
         <Link href={`/b/${generateUrl(brand)}`}>
           <h4 className="text-lg lg:text-xl text-dark-grey font-semibold">
@@ -36,6 +36,6 @@ export const ProductTopInfo: React.FC<Props> = ({
           }}
         />
       ) : null}
-    </>
+    </div>
   );
 };

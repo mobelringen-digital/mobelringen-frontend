@@ -6,7 +6,7 @@ import { StatusCircle } from "@/components/status-circle/StatusCircle";
 
 export const PurchaseBlock = () => {
   return (
-    <div className="mt-8 bg-white p-4 lg:p-8 rounded-2xl">
+    <div className="bg-white p-4 lg:p-8 rounded-2xl">
       <div className="grid grid-cols-2 gap-4">
         <div>
           <span className="font-semibold flex items-center gap-2 text-sm lg:text-base">

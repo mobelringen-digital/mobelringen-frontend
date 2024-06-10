@@ -4,7 +4,7 @@ import { CirclePlusIcon } from "@/components/icons/CirclePlusIcon";
 
 export const MoreInTheStore = () => {
   return (
-    <div className="mt-8 bg-warm-grey p-4 lg:p-8 rounded-2xl">
+    <div className="bg-warm-grey p-4 lg:p-8 rounded-2xl">
       <div className="flex items-center justify-between mb-2">
         <h4 className="text-lg lg:text-xl font-semibold">
           Flere valgmuligheter i butikk
