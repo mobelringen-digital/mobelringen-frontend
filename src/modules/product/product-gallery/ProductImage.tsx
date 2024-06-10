@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { FavoriteIcon } from "@/components/icons/FavoriteIcon";
 import { ZoomIcon } from "@/components/icons/ZoomIcon";
+import { Label } from "@/components/label/Label";
 import {
   ProductImageFragmentFragment,
   ProductLabelFragment,
@@ -35,9 +36,7 @@ export const ProductImage: React.FC<Props> = ({
 
       <div className="absolute top-4 right-4 flex">
         {percentageDiscount ? (
-          <span className="bg-powder-dark py-1 px-2 font-semibold uppercase text-black text-xs rounded-xl">
-            {percentageDiscount}
-          </span>
+          <Label variant="powder">{percentageDiscount}</Label>
         ) : null}
       </div>
 
@@ -45,12 +44,9 @@ export const ProductImage: React.FC<Props> = ({
         {labels?.custom ? (
           <>
             {labels.custom.map((label, idx) => (
-              <span
-                className="bg-black py-1 px-2 font-semibold uppercase text-white text-xs rounded-xl"
-                key={idx}
-              >
+              <Label variant="black" key={idx}>
                 {label}
-              </span>
+              </Label>
             ))}
           </>
         ) : null}

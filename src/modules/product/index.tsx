@@ -1,6 +1,6 @@
 import React from "react";
 
-import { AddToCart } from "@/components/cart/add-to-cart/AddToCart";
+import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { ProductGallery } from "@/modules/product/product-gallery/ProductGallery";
@@ -13,7 +13,17 @@ interface Props {
 export const ProductPage: React.FC<Props> = ({ product }) => {
   return (
     <ContainerLayout>
-      <AddToCart />
+      {product?.categories ? (
+        <Breadcrumbs
+          data={product.categories
+            .filter((c) => !c?.url_path?.includes("merker"))
+            .map((cat) => ({
+              label: cat?.name ?? "",
+              url: `/c/${cat?.url_path}`,
+            }))}
+        />
+      ) : null}
+
       <div className="grid grid-cols-12 gap-4 lg:gap-16">
         <div className="col-span-12 lg:col-span-7">
           <ProductGallery

@@ -15,6 +15,12 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "mobelringen2-oazgdgy-bgqwzy7ueagk4.eu-3.magentosite.cloud",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };
