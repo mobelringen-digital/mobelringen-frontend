@@ -38,5 +38,9 @@ export const ProductPricing: React.FC<Props> = ({ priceRangeData }) => {
     );
   }
 
-  return <div className="text-xl font-semibold mt-4">{finalPrice}</div>;
+  return (
+    <div className="text-xl font-semibold mt-4">
+      <FormatNumber value={finalPrice} format="currency" suffix={currency} />
+    </div>
+  );
 };
