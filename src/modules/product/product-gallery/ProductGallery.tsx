@@ -43,10 +43,12 @@ export const ProductGallery: React.FC<Props> = ({
 
   const images = React.useMemo(() => {
     if (gallery && gallery.length > 0) {
-      return gallery.map((img) => ({
-        url: img?.url,
-        label: img?.label,
-      }));
+      return gallery
+        .filter((i) => i.__typename !== "ProductVideo")
+        .map((img) => ({
+          url: img?.url,
+          label: img?.label,
+        }));
     }
 
     return [

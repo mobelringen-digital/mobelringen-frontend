@@ -4,7 +4,9 @@ import Slider from "react-slick";
 
 import Image from "next/image";
 
+import { PlayIcon } from "@/components/icons/PlayIcon";
 import { ProductImage } from "@/modules/product/product-gallery/ProductImage";
+import { ProductVideo } from "@/modules/product/product-gallery/ProductVideo";
 import {
   ProductLabelFragment,
   ProductMediaGalleryFragment,
@@ -29,17 +31,25 @@ export const ProductImageSlider: React.FC<Props> = ({
 }) => {
   const settings = {
     customPaging: function (i: number) {
+      const item = gallery?.[i];
+
       return (
         <button
           id="navigation-link"
-          className="w-[64px] h-[64px] lg:w-[96px] lg:h-[96px] transition-all border border-warm-grey p-2 bg-warm-grey rounded-2xl !flex justify-center items-center cursor-pointer"
+          className="relative w-[64px] h-[64px] lg:w-[96px] lg:h-[96px] transition-all border border-warm-grey p-2 bg-warm-grey rounded-2xl !flex justify-center items-center cursor-pointer"
         >
           <Image
             width={96}
             height={96}
-            src={gallery?.[i].url ?? ""}
-            alt={gallery?.[i].label ?? ""}
+            src={item?.url ?? ""}
+            alt={item?.label ?? ""}
           />
+
+          {item?.__typename === "ProductVideo" ? (
+            <div className="absolute rounded-2xl inset-0 bg-black bg-opacity-70 flex items-center justify-center">
+              <PlayIcon width={35} height={35} />
+            </div>
+          ) : null}
         </button>
       );
     },
@@ -57,13 +67,21 @@ export const ProductImageSlider: React.FC<Props> = ({
     <Slider {...settings}>
       {gallery?.map((item, idx) =>
         item.url ? (
-          <ProductImage
-            key={idx}
-            onZoomClick={() => setPhotoIndex(idx)}
-            image={item}
-            labels={labels}
-            priceRange={priceRange}
-          />
+          <>
+            {item.__typename === "ProductImage" ? (
+              <ProductImage
+                key={idx}
+                onZoomClick={() => setPhotoIndex(idx)}
+                image={item}
+                labels={labels}
+                priceRange={priceRange}
+              />
+            ) : null}
+
+            {item.__typename === "ProductVideo" ? (
+              <ProductVideo videoData={item} />
+            ) : null}
+          </>
         ) : null,
       )}
     </Slider>

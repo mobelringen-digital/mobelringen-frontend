@@ -33,11 +33,11 @@ const documents = {
     types.MenuDocument,
   "\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      title\n      url\n      content {\n        ...CmsBanner\n        ...CmsPopularProducts\n      }\n    }\n  }\n":
     types.CmsPagesDocument,
-  "\n  fragment ProductImageFragment on ProductImage {\n    url\n    position\n    label\n    disabled\n  }\n":
+  "\n  fragment ProductImageFragment on ProductImage {\n    __typename\n    url\n    position\n    label\n    disabled\n  }\n":
     types.ProductImageFragmentFragmentDoc,
-  "\n  fragment ProductVideoFragment on ProductVideo {\n    disabled\n    label\n    position\n    url\n    video_content {\n      media_type\n      video_description\n      video_metadata\n      video_provider\n      video_title\n      video_url\n    }\n  }\n":
+  "\n  fragment ProductVideoFragment on ProductVideo {\n    __typename\n    disabled\n    label\n    position\n    url\n    video_content {\n      media_type\n      video_description\n      video_metadata\n      video_provider\n      video_title\n      video_url\n    }\n  }\n":
     types.ProductVideoFragmentFragmentDoc,
-  "\n  fragment ProductMediaGallery on MediaGalleryInterface {\n    disabled\n    label\n    position\n    url\n  }\n":
+  "\n  fragment ProductMediaGallery on MediaGalleryInterface {\n    __typename\n    disabled\n    label\n    position\n    url\n    ... on ProductImage {\n      ...ProductImageFragment\n    }\n    ... on ProductVideo {\n      ...ProductVideoFragment\n    }\n  }\n":
     types.ProductMediaGalleryFragmentDoc,
   "\n  fragment ProductLabel on Label {\n    custom\n    discount\n    new\n  }\n":
     types.ProductLabelFragmentDoc,
@@ -125,20 +125,20 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment ProductImageFragment on ProductImage {\n    url\n    position\n    label\n    disabled\n  }\n",
-): (typeof documents)["\n  fragment ProductImageFragment on ProductImage {\n    url\n    position\n    label\n    disabled\n  }\n"];
+  source: "\n  fragment ProductImageFragment on ProductImage {\n    __typename\n    url\n    position\n    label\n    disabled\n  }\n",
+): (typeof documents)["\n  fragment ProductImageFragment on ProductImage {\n    __typename\n    url\n    position\n    label\n    disabled\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment ProductVideoFragment on ProductVideo {\n    disabled\n    label\n    position\n    url\n    video_content {\n      media_type\n      video_description\n      video_metadata\n      video_provider\n      video_title\n      video_url\n    }\n  }\n",
-): (typeof documents)["\n  fragment ProductVideoFragment on ProductVideo {\n    disabled\n    label\n    position\n    url\n    video_content {\n      media_type\n      video_description\n      video_metadata\n      video_provider\n      video_title\n      video_url\n    }\n  }\n"];
+  source: "\n  fragment ProductVideoFragment on ProductVideo {\n    __typename\n    disabled\n    label\n    position\n    url\n    video_content {\n      media_type\n      video_description\n      video_metadata\n      video_provider\n      video_title\n      video_url\n    }\n  }\n",
+): (typeof documents)["\n  fragment ProductVideoFragment on ProductVideo {\n    __typename\n    disabled\n    label\n    position\n    url\n    video_content {\n      media_type\n      video_description\n      video_metadata\n      video_provider\n      video_title\n      video_url\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment ProductMediaGallery on MediaGalleryInterface {\n    disabled\n    label\n    position\n    url\n  }\n",
-): (typeof documents)["\n  fragment ProductMediaGallery on MediaGalleryInterface {\n    disabled\n    label\n    position\n    url\n  }\n"];
+  source: "\n  fragment ProductMediaGallery on MediaGalleryInterface {\n    __typename\n    disabled\n    label\n    position\n    url\n    ... on ProductImage {\n      ...ProductImageFragment\n    }\n    ... on ProductVideo {\n      ...ProductVideoFragment\n    }\n  }\n",
+): (typeof documents)["\n  fragment ProductMediaGallery on MediaGalleryInterface {\n    __typename\n    disabled\n    label\n    position\n    url\n    ... on ProductImage {\n      ...ProductImageFragment\n    }\n    ... on ProductVideo {\n      ...ProductVideoFragment\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

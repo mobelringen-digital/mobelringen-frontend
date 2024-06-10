@@ -20778,7 +20778,7 @@ export type CmsPagesQuery = {
 };
 
 export type ProductImageFragmentFragment = {
-  __typename?: "ProductImage";
+  __typename: "ProductImage";
   url?: string | null;
   position?: number | null;
   label?: string | null;
@@ -20786,7 +20786,7 @@ export type ProductImageFragmentFragment = {
 } & { " $fragmentName"?: "ProductImageFragmentFragment" };
 
 export type ProductVideoFragmentFragment = {
-  __typename?: "ProductVideo";
+  __typename: "ProductVideo";
   disabled?: boolean | null;
   label?: string | null;
   position?: number | null;
@@ -20802,21 +20802,29 @@ export type ProductVideoFragmentFragment = {
   } | null;
 } & { " $fragmentName"?: "ProductVideoFragmentFragment" };
 
-type ProductMediaGallery_ProductImage_Fragment = {
-  __typename?: "ProductImage";
+type ProductMediaGallery_ProductImage_Fragment = ({
+  __typename: "ProductImage";
   disabled?: boolean | null;
   label?: string | null;
   position?: number | null;
   url?: string | null;
-} & { " $fragmentName"?: "ProductMediaGallery_ProductImage_Fragment" };
+} & {
+  " $fragmentRefs"?: {
+    ProductImageFragmentFragment: ProductImageFragmentFragment;
+  };
+}) & { " $fragmentName"?: "ProductMediaGallery_ProductImage_Fragment" };
 
-type ProductMediaGallery_ProductVideo_Fragment = {
-  __typename?: "ProductVideo";
+type ProductMediaGallery_ProductVideo_Fragment = ({
+  __typename: "ProductVideo";
   disabled?: boolean | null;
   label?: string | null;
   position?: number | null;
   url?: string | null;
-} & { " $fragmentName"?: "ProductMediaGallery_ProductVideo_Fragment" };
+} & {
+  " $fragmentRefs"?: {
+    ProductVideoFragmentFragment: ProductVideoFragmentFragment;
+  };
+}) & { " $fragmentName"?: "ProductMediaGallery_ProductVideo_Fragment" };
 
 export type ProductMediaGalleryFragment =
   | ProductMediaGallery_ProductImage_Fragment
@@ -22311,6 +22319,7 @@ export const ProductImageFragmentFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "url" } },
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "label" } },
@@ -22333,6 +22342,7 @@ export const ProductVideoFragmentFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "disabled" } },
           { kind: "Field", name: { kind: "Name", value: "label" } },
           { kind: "Field", name: { kind: "Name", value: "position" } },
@@ -22379,10 +22389,103 @@ export const ProductMediaGalleryFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "disabled" } },
           { kind: "Field", name: { kind: "Name", value: "label" } },
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "ProductImage" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductImageFragment" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "ProductVideo" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductVideoFragment" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductImageFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductImage" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductVideoFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductVideo" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "video_content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "media_type" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_description" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_metadata" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_provider" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "video_title" } },
+                { kind: "Field", name: { kind: "Name", value: "video_url" } },
+              ],
+            },
+          },
         ],
       },
     },
@@ -23680,10 +23783,53 @@ export const ProductsDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "url" } },
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "label" } },
           { kind: "Field", name: { kind: "Name", value: "disabled" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductVideoFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductVideo" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "video_content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "media_type" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_description" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_metadata" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_provider" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "video_title" } },
+                { kind: "Field", name: { kind: "Name", value: "video_url" } },
+              ],
+            },
+          },
         ],
       },
     },
@@ -23697,10 +23843,43 @@ export const ProductsDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
           { kind: "Field", name: { kind: "Name", value: "disabled" } },
           { kind: "Field", name: { kind: "Name", value: "label" } },
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "ProductImage" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductImageFragment" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "ProductVideo" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductVideoFragment" },
+                },
+              ],
+            },
+          },
         ],
       },
     },

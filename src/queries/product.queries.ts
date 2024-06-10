@@ -2,6 +2,7 @@ import { graphql } from "@/types/schema";
 
 export const ProductImageFragment = graphql(`
   fragment ProductImageFragment on ProductImage {
+    __typename
     url
     position
     label
@@ -11,6 +12,7 @@ export const ProductImageFragment = graphql(`
 
 export const ProductVideoFragment = graphql(`
   fragment ProductVideoFragment on ProductVideo {
+    __typename
     disabled
     label
     position
@@ -28,10 +30,17 @@ export const ProductVideoFragment = graphql(`
 
 export const ProductMediaGalleryFragment = graphql(`
   fragment ProductMediaGallery on MediaGalleryInterface {
+    __typename
     disabled
     label
     position
     url
+    ... on ProductImage {
+      ...ProductImageFragment
+    }
+    ... on ProductVideo {
+      ...ProductVideoFragment
+    }
   }
 `);
 

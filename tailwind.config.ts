@@ -45,6 +45,10 @@ const config: Config = {
       error: "#C82B2B",
     },
     extend: {
+      borderWidth: {
+        12: "12px",
+        16: "16px",
+      },
       zIndex: {
         "100": "100",
         "200": "200",
