@@ -4,6 +4,7 @@ import Slider from "react-slick";
 
 import Image from "next/image";
 
+import { ProductImage } from "@/modules/product/product-gallery/ProductImage";
 import { ProductMediaGalleryFragment } from "@/types";
 
 import "slick-carousel/slick/slick.css";
@@ -23,7 +24,7 @@ export const ProductImageSlider: React.FC<Props> = ({
       return (
         <button
           id="navigation-link"
-          className="w-[96px] h-[96px] transition-all border-2 border-warm-grey p-2 bg-warm-grey rounded-3xl !flex justify-center items-center cursor-pointer"
+          className="w-[96px] h-[96px] transition-all border border-warm-grey p-2 bg-warm-grey rounded-3xl !flex justify-center items-center cursor-pointer"
         >
           <Image
             width={96}
@@ -45,22 +46,15 @@ export const ProductImageSlider: React.FC<Props> = ({
 
   return (
     <Slider {...settings}>
-      {gallery?.map((item, idx) => (
-        <div
-          className="p-10 bg-warm-grey rounded-3xl !flex justify-center items-center"
-          key={idx}
-        >
-          {item.url ? (
-            <Image
-              width={650}
-              height={650}
-              src={item.url}
-              alt={item.label ?? ""}
-              onClick={() => setPhotoIndex(idx)}
-            />
-          ) : null}
-        </div>
-      ))}
+      {gallery?.map((item, idx) =>
+        item.url ? (
+          <ProductImage
+            key={idx}
+            onClick={() => setPhotoIndex(idx)}
+            image={item}
+          />
+        ) : null,
+      )}
     </Slider>
   );
 };

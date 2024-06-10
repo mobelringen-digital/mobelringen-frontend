@@ -2,10 +2,9 @@
 
 import React from "react";
 
-import Image from "next/image";
-
-import { ProductImageSlider } from "@/modules/product/gallery/ProductImageSlider";
-import { ProductLightbox } from "@/modules/product/gallery/ProductLightbox";
+import { ProductImage } from "@/modules/product/product-gallery/ProductImage";
+import { ProductImageSlider } from "@/modules/product/product-gallery/ProductImageSlider";
+import { ProductLightbox } from "@/modules/product/product-gallery/ProductLightbox";
 import {
   ProductImageFragment,
   ProductMediaGalleryFragment,
@@ -45,18 +44,9 @@ export const ProductGallery: React.FC<Props> = ({ imageData, galleryData }) => {
           ) : null}
           <ProductImageSlider gallery={gallery} setPhotoIndex={setPhotoIndex} />
         </>
-      ) : (
-        <div className="p-10 bg-warm-grey rounded-3xl flex justify-center items-center">
-          {image?.url ? (
-            <Image
-              width={650}
-              height={650}
-              src={image.url}
-              alt={image.label ?? ""}
-            />
-          ) : null}
-        </div>
-      )}
+      ) : image?.url ? (
+        <ProductImage image={image} />
+      ) : null}
     </>
   );
 };

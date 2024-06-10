@@ -3,7 +3,7 @@ import React from "react";
 import { AddToCart } from "@/components/cart/add-to-cart/AddToCart";
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
-import { ProductGallery } from "@/modules/product/gallery/ProductGallery";
+import { ProductGallery } from "@/modules/product/product-gallery/ProductGallery";
 import { ProductsQuery } from "@/types";
 
 interface Props {

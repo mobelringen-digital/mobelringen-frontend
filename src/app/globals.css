@@ -16,7 +16,7 @@ body {
 }
 
 .slick-active button#navigation-link {
-  border: 2px solid #1a1110;
+  border: 1px solid #1a1110;
 }
 
 @layer base {
