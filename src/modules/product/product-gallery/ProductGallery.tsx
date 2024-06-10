@@ -44,7 +44,7 @@ export const ProductGallery: React.FC<Props> = ({ imageData, galleryData }) => {
         label: image?.label,
       },
     ];
-  }, [gallery, image?.label, image?.url]);
+  }, [gallery, image]);
 
   return (
     <>
