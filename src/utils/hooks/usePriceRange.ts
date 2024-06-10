@@ -5,43 +5,40 @@ import { ProductPriceRangeFragment } from "@/types";
 export const usePriceRange = (
   priceRange?: ProductPriceRangeFragment | null,
 ) => {
-  const singlePricingUsed =
-    priceRange?.minimum_price?.regular_price?.value ===
-    priceRange?.maximum_price?.regular_price?.value;
-  const isPercentDiscount = singlePricingUsed
-    ? priceRange?.minimum_price?.discount?.percent_off
-    : priceRange?.minimum_price?.discount?.percent_off !==
-      priceRange?.maximum_price?.discount?.percent_off;
+  const currency = priceRange?.minimum_price?.final_price?.currency;
 
-  const price = React.useMemo(() => {
-    if (singlePricingUsed) {
-      return `${priceRange?.minimum_price?.regular_price?.value}${priceRange?.minimum_price?.regular_price?.currency}`;
+  const originalPrice = React.useMemo(() => {
+    return `${priceRange?.minimum_price?.regular_price?.value}${currency}`;
+  }, [priceRange?.minimum_price?.regular_price?.value, currency]);
+
+  const finalPrice = React.useMemo(() => {
+    return `${priceRange?.minimum_price?.final_price?.value}${currency}`;
+  }, [priceRange?.minimum_price?.final_price?.value, currency]);
+
+  const percentageDiscount = React.useMemo(() => {
+    const percentOff = priceRange?.minimum_price?.discount?.percent_off;
+
+    if (percentOff) {
+      return `-${percentOff} %`;
     }
 
-    return `${priceRange?.minimum_price?.regular_price?.value}${priceRange?.minimum_price?.regular_price?.currency} - ${priceRange?.maximum_price?.regular_price?.value}${priceRange?.maximum_price?.regular_price?.currency}`;
-  }, [priceRange, singlePricingUsed]);
+    return null;
+  }, [priceRange]);
 
-  const discount = React.useMemo(() => {
-    if (
-      !priceRange?.minimum_price?.discount?.percent_off &&
-      !priceRange?.minimum_price?.discount?.amount_off
-    ) {
-      return null;
+  const amountDiscount = React.useMemo(() => {
+    const amountOff = priceRange?.minimum_price?.discount?.amount_off;
+
+    if (amountOff) {
+      return `-${amountOff}${currency}`;
     }
 
-    if (singlePricingUsed && isPercentDiscount) {
-      return `- ${priceRange?.minimum_price?.discount?.percent_off} %`;
-    }
-
-    if (singlePricingUsed && !isPercentDiscount) {
-      return `- ${priceRange?.minimum_price?.discount?.amount_off}${priceRange?.minimum_price?.regular_price?.currency}`;
-    }
-
-    return `${priceRange?.minimum_price?.discount?.percent_off} - ${priceRange?.maximum_price?.discount?.percent_off}`;
-  }, [priceRange, singlePricingUsed, isPercentDiscount]);
+    return null;
+  }, [priceRange, currency]);
 
   return {
-    price,
-    discount,
+    originalPrice,
+    finalPrice,
+    percentageDiscount,
+    amountDiscount,
   };
 };

@@ -50,6 +50,10 @@ export const ProductPriceRangeFragment = graphql(`
         amount_off
         percent_off
       }
+      final_price {
+        currency
+        value
+      }
       fixed_product_taxes {
         amount {
           currency
@@ -66,6 +70,10 @@ export const ProductPriceRangeFragment = graphql(`
       discount {
         amount_off
         percent_off
+      }
+      final_price {
+        currency
+        value
       }
       fixed_product_taxes {
         amount {

@@ -20838,6 +20838,11 @@ export type ProductPriceRangeFragment = {
       amount_off?: number | null;
       percent_off?: number | null;
     } | null;
+    final_price: {
+      __typename?: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
     fixed_product_taxes?: Array<{
       __typename?: "FixedProductTax";
       label?: string | null;
@@ -20860,6 +20865,11 @@ export type ProductPriceRangeFragment = {
       amount_off?: number | null;
       percent_off?: number | null;
     } | null;
+    final_price: {
+      __typename?: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
     fixed_product_taxes?: Array<{
       __typename?: "FixedProductTax";
       label?: string | null;
@@ -22437,6 +22447,20 @@ export const ProductPriceRangeFragmentDoc = {
                 },
                 {
                   kind: "Field",
+                  name: { kind: "Name", value: "final_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
                   name: { kind: "Name", value: "fixed_product_taxes" },
                   selectionSet: {
                     kind: "SelectionSet",
@@ -22499,6 +22523,20 @@ export const ProductPriceRangeFragmentDoc = {
                         kind: "Field",
                         name: { kind: "Name", value: "percent_off" },
                       },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "final_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
                     ],
                   },
                 },
@@ -23701,6 +23739,20 @@ export const ProductsDocument = {
                 },
                 {
                   kind: "Field",
+                  name: { kind: "Name", value: "final_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
                   name: { kind: "Name", value: "fixed_product_taxes" },
                   selectionSet: {
                     kind: "SelectionSet",
@@ -23763,6 +23815,20 @@ export const ProductsDocument = {
                         kind: "Field",
                         name: { kind: "Name", value: "percent_off" },
                       },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "final_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
                     ],
                   },
                 },

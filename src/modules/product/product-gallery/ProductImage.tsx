@@ -26,7 +26,7 @@ export const ProductImage: React.FC<Props> = ({
   labels,
   priceRange,
 }) => {
-  const { discount } = usePriceRange(priceRange);
+  const { percentageDiscount } = usePriceRange(priceRange);
   if (!image.url) return null;
 
   return (
@@ -34,24 +34,26 @@ export const ProductImage: React.FC<Props> = ({
       <Image width={650} height={650} src={image.url} alt={image.label ?? ""} />
 
       <div className="absolute top-4 right-4 flex">
-        {discount ? (
+        {percentageDiscount ? (
           <span className="bg-powder-dark py-1 px-2 font-semibold uppercase text-black text-xs rounded-xl">
-            {discount}
+            {percentageDiscount}
           </span>
         ) : null}
       </div>
 
       <div className="absolute top-4 left-4 flex gap-1 items-center justify-center text-center">
-        {labels?.custom
-          ? labels.custom.map((label, idx) => (
+        {labels?.custom ? (
+          <>
+            {labels.custom.map((label, idx) => (
               <span
                 className="bg-black py-1 px-2 font-semibold uppercase text-white text-xs rounded-xl"
                 key={idx}
               >
                 {label}
               </span>
-            ))
-          : null}
+            ))}
+          </>
+        ) : null}
       </div>
 
       <div className="absolute bottom-4 right-4 flex gap-3">
