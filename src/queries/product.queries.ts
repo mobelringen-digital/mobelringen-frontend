@@ -26,6 +26,15 @@ export const ProductVideoFragment = graphql(`
   }
 `);
 
+export const ProductMediaGalleryFragment = graphql(`
+  fragment ProductMediaGallery on MediaGalleryInterface {
+    disabled
+    label
+    position
+    url
+  }
+`);
+
 export const ProductsQueryDocument = graphql(`
   query Products($pageSize: Int = 12, $filter: ProductAttributeFilterInput) {
     products(pageSize: $pageSize, filter: $filter) {
@@ -49,39 +58,7 @@ export const ProductsQueryDocument = graphql(`
         is_returnable
         manufacturer
         media_gallery {
-          disabled
-          label
-          position
-          url
-          ... on ProductImage {
-            ...ProductImageFragment
-          }
-          ... on ProductVideo {
-            ...ProductVideoFragment
-          }
-        }
-        media_gallery_entries {
-          content {
-            base64_encoded_data
-            name
-            type
-          }
-          disabled
-          file
-          id
-          label
-          media_type
-          position
-          types
-          uid
-          video_content {
-            media_type
-            video_description
-            video_metadata
-            video_provider
-            video_title
-            video_url
-          }
+          ...ProductMediaGallery
         }
         meta_description
         meta_keyword

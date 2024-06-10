@@ -2254,6 +2254,8 @@ export type BundleProduct = CustomizableProductInterface &
     websites?: Maybe<Array<Maybe<Website>>>;
     /** The weight of the item, in units defined by the store. */
     weight?: Maybe<Scalars["Float"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    width_length?: Maybe<Scalars["Int"]["output"]>;
   };
 
 /** Defines basic features of a bundle product and contains multiple BundleItems. */
@@ -3249,6 +3251,8 @@ export type ConfigurableProduct = CustomizableProductInterface &
     websites?: Maybe<Array<Maybe<Website>>>;
     /** The weight of the item, in units defined by the store. */
     weight?: Maybe<Scalars["Float"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    width_length?: Maybe<Scalars["Int"]["output"]>;
   };
 
 /** Defines basic features of a configurable product and its simple product variants. */
@@ -6554,6 +6558,8 @@ export type DownloadableProduct = CustomizableProductInterface &
      * @deprecated The field should not be used on the storefront.
      */
     websites?: Maybe<Array<Maybe<Website>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    width_length?: Maybe<Scalars["Int"]["output"]>;
   };
 
 /** Defines a product that the shopper downloads. */
@@ -7315,6 +7321,8 @@ export type GiftCardProduct = CustomizableProductInterface &
     websites?: Maybe<Array<Maybe<Website>>>;
     /** The weight of the item, in units defined by the store. */
     weight?: Maybe<Scalars["Float"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    width_length?: Maybe<Scalars["Int"]["output"]>;
   };
 
 /** Defines properties of a gift card. */
@@ -7912,6 +7920,8 @@ export type GroupedProduct = PhysicalProductInterface &
     websites?: Maybe<Array<Maybe<Website>>>;
     /** The weight of the item, in units defined by the store. */
     weight?: Maybe<Scalars["Float"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    width_length?: Maybe<Scalars["Int"]["output"]>;
   };
 
 /** Defines a grouped product, which consists of simple standalone products that are presented as a group. */
@@ -14266,6 +14276,20 @@ export type ProductAttributeFilterInput = {
   color?: InputMaybe<FilterEqualTypeInput>;
   /** Attribute label: Beskrivelse */
   description?: InputMaybe<FilterMatchTypeInput>;
+  /** Attribute label: Depth */
+  measurement_depth?: InputMaybe<FilterMatchTypeInput>;
+  /** Attribute label: Diameter */
+  measurement_diameter?: InputMaybe<FilterMatchTypeInput>;
+  /** Attribute label: Height */
+  measurement_height?: InputMaybe<FilterMatchTypeInput>;
+  /** Attribute label: Length */
+  measurement_length?: InputMaybe<FilterMatchTypeInput>;
+  /** Attribute label: Seat Height */
+  measurement_seat_height?: InputMaybe<FilterMatchTypeInput>;
+  /** Attribute label: Thickness */
+  measurement_thickness?: InputMaybe<FilterMatchTypeInput>;
+  /** Attribute label: Width */
+  measurement_width?: InputMaybe<FilterMatchTypeInput>;
   /** Attribute label: Produktnavn */
   name?: InputMaybe<FilterMatchTypeInput>;
   /** Attribute label: Price */
@@ -14278,6 +14302,8 @@ export type ProductAttributeFilterInput = {
   sku?: InputMaybe<FilterEqualTypeInput>;
   /** The part of the URL that identifies the product */
   url_key?: InputMaybe<FilterEqualTypeInput>;
+  /** Attribute label: Bredde x Lengde */
+  width_length?: InputMaybe<FilterEqualTypeInput>;
 };
 
 /** Specifies the attribute to use for sorting search results and indicates whether the results are sorted in ascending or descending order. It's possible to sort products using searchable attributes with enabled 'Use in Filter Options' option */
@@ -14587,6 +14613,8 @@ export type ProductInterface = {
    * @deprecated The field should not be used on the storefront.
    */
   websites?: Maybe<Array<Maybe<Website>>>;
+  /** @deprecated Use the `custom_attributes` field instead. */
+  width_length?: Maybe<Scalars["Int"]["output"]>;
 };
 
 /** The ProductInterface contains attributes that are common to all types of products. Note that descriptions may not be available for custom and EAV attributes. */
@@ -18742,6 +18770,8 @@ export type SimpleProduct = CustomizableProductInterface &
     websites?: Maybe<Array<Maybe<Website>>>;
     /** The weight of the item, in units defined by the store. */
     weight?: Maybe<Scalars["Float"]["output"]>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    width_length?: Maybe<Scalars["Int"]["output"]>;
   };
 
 /** Defines a simple product, which is tangible and is usually sold in single units or in fixed quantities. */
@@ -20217,6 +20247,8 @@ export type VirtualProduct = CustomizableProductInterface &
      * @deprecated The field should not be used on the storefront.
      */
     websites?: Maybe<Array<Maybe<Website>>>;
+    /** @deprecated Use the `custom_attributes` field instead. */
+    width_length?: Maybe<Scalars["Int"]["output"]>;
   };
 
 /** Defines a virtual product, which is a non-tangible product that does not require shipping and is not kept in inventory. */
@@ -20770,6 +20802,26 @@ export type ProductVideoFragmentFragment = {
   } | null;
 } & { " $fragmentName"?: "ProductVideoFragmentFragment" };
 
+type ProductMediaGallery_ProductImage_Fragment = {
+  __typename?: "ProductImage";
+  disabled?: boolean | null;
+  label?: string | null;
+  position?: number | null;
+  url?: string | null;
+} & { " $fragmentName"?: "ProductMediaGallery_ProductImage_Fragment" };
+
+type ProductMediaGallery_ProductVideo_Fragment = {
+  __typename?: "ProductVideo";
+  disabled?: boolean | null;
+  label?: string | null;
+  position?: number | null;
+  url?: string | null;
+} & { " $fragmentName"?: "ProductMediaGallery_ProductVideo_Fragment" };
+
+export type ProductMediaGalleryFragment =
+  | ProductMediaGallery_ProductImage_Fragment
+  | ProductMediaGallery_ProductVideo_Fragment;
+
 export type ProductsQueryVariables = Exact<{
   pageSize?: InputMaybe<Scalars["Int"]["input"]>;
   filter?: InputMaybe<ProductAttributeFilterInput>;
@@ -20836,56 +20888,18 @@ export type ProductsQuery = {
               })
             | null;
           media_gallery?: Array<
-            | ({
-                __typename?: "ProductImage";
-                disabled?: boolean | null;
-                label?: string | null;
-                position?: number | null;
-                url?: string | null;
-              } & {
+            | ({ __typename?: "ProductImage" } & {
                 " $fragmentRefs"?: {
-                  ProductImageFragmentFragment: ProductImageFragmentFragment;
+                  ProductMediaGallery_ProductImage_Fragment: ProductMediaGallery_ProductImage_Fragment;
                 };
               })
-            | ({
-                __typename?: "ProductVideo";
-                disabled?: boolean | null;
-                label?: string | null;
-                position?: number | null;
-                url?: string | null;
-              } & {
+            | ({ __typename?: "ProductVideo" } & {
                 " $fragmentRefs"?: {
-                  ProductVideoFragmentFragment: ProductVideoFragmentFragment;
+                  ProductMediaGallery_ProductVideo_Fragment: ProductMediaGallery_ProductVideo_Fragment;
                 };
               })
             | null
           > | null;
-          media_gallery_entries?: Array<{
-            __typename?: "MediaGalleryEntry";
-            disabled?: boolean | null;
-            file?: string | null;
-            id?: number | null;
-            label?: string | null;
-            media_type?: string | null;
-            position?: number | null;
-            types?: Array<string | null> | null;
-            uid: string;
-            content?: {
-              __typename?: "ProductMediaGalleryEntriesContent";
-              base64_encoded_data?: string | null;
-              name?: string | null;
-              type?: string | null;
-            } | null;
-            video_content?: {
-              __typename?: "ProductMediaGalleryEntriesVideoContent";
-              media_type?: string | null;
-              video_description?: string | null;
-              video_metadata?: string | null;
-              video_provider?: string | null;
-              video_title?: string | null;
-              video_url?: string | null;
-            } | null;
-          } | null> | null;
           price_range: {
             __typename?: "PriceRange";
             maximum_price?: {
@@ -21057,56 +21071,18 @@ export type ProductsQuery = {
               })
             | null;
           media_gallery?: Array<
-            | ({
-                __typename?: "ProductImage";
-                disabled?: boolean | null;
-                label?: string | null;
-                position?: number | null;
-                url?: string | null;
-              } & {
+            | ({ __typename?: "ProductImage" } & {
                 " $fragmentRefs"?: {
-                  ProductImageFragmentFragment: ProductImageFragmentFragment;
+                  ProductMediaGallery_ProductImage_Fragment: ProductMediaGallery_ProductImage_Fragment;
                 };
               })
-            | ({
-                __typename?: "ProductVideo";
-                disabled?: boolean | null;
-                label?: string | null;
-                position?: number | null;
-                url?: string | null;
-              } & {
+            | ({ __typename?: "ProductVideo" } & {
                 " $fragmentRefs"?: {
-                  ProductVideoFragmentFragment: ProductVideoFragmentFragment;
+                  ProductMediaGallery_ProductVideo_Fragment: ProductMediaGallery_ProductVideo_Fragment;
                 };
               })
             | null
           > | null;
-          media_gallery_entries?: Array<{
-            __typename?: "MediaGalleryEntry";
-            disabled?: boolean | null;
-            file?: string | null;
-            id?: number | null;
-            label?: string | null;
-            media_type?: string | null;
-            position?: number | null;
-            types?: Array<string | null> | null;
-            uid: string;
-            content?: {
-              __typename?: "ProductMediaGalleryEntriesContent";
-              base64_encoded_data?: string | null;
-              name?: string | null;
-              type?: string | null;
-            } | null;
-            video_content?: {
-              __typename?: "ProductMediaGalleryEntriesVideoContent";
-              media_type?: string | null;
-              video_description?: string | null;
-              video_metadata?: string | null;
-              video_provider?: string | null;
-              video_title?: string | null;
-              video_url?: string | null;
-            } | null;
-          } | null> | null;
           price_range: {
             __typename?: "PriceRange";
             maximum_price?: {
@@ -21278,56 +21254,18 @@ export type ProductsQuery = {
               })
             | null;
           media_gallery?: Array<
-            | ({
-                __typename?: "ProductImage";
-                disabled?: boolean | null;
-                label?: string | null;
-                position?: number | null;
-                url?: string | null;
-              } & {
+            | ({ __typename?: "ProductImage" } & {
                 " $fragmentRefs"?: {
-                  ProductImageFragmentFragment: ProductImageFragmentFragment;
+                  ProductMediaGallery_ProductImage_Fragment: ProductMediaGallery_ProductImage_Fragment;
                 };
               })
-            | ({
-                __typename?: "ProductVideo";
-                disabled?: boolean | null;
-                label?: string | null;
-                position?: number | null;
-                url?: string | null;
-              } & {
+            | ({ __typename?: "ProductVideo" } & {
                 " $fragmentRefs"?: {
-                  ProductVideoFragmentFragment: ProductVideoFragmentFragment;
+                  ProductMediaGallery_ProductVideo_Fragment: ProductMediaGallery_ProductVideo_Fragment;
                 };
               })
             | null
           > | null;
-          media_gallery_entries?: Array<{
-            __typename?: "MediaGalleryEntry";
-            disabled?: boolean | null;
-            file?: string | null;
-            id?: number | null;
-            label?: string | null;
-            media_type?: string | null;
-            position?: number | null;
-            types?: Array<string | null> | null;
-            uid: string;
-            content?: {
-              __typename?: "ProductMediaGalleryEntriesContent";
-              base64_encoded_data?: string | null;
-              name?: string | null;
-              type?: string | null;
-            } | null;
-            video_content?: {
-              __typename?: "ProductMediaGalleryEntriesVideoContent";
-              media_type?: string | null;
-              video_description?: string | null;
-              video_metadata?: string | null;
-              video_provider?: string | null;
-              video_title?: string | null;
-              video_url?: string | null;
-            } | null;
-          } | null> | null;
           price_range: {
             __typename?: "PriceRange";
             maximum_price?: {
@@ -21499,56 +21437,18 @@ export type ProductsQuery = {
               })
             | null;
           media_gallery?: Array<
-            | ({
-                __typename?: "ProductImage";
-                disabled?: boolean | null;
-                label?: string | null;
-                position?: number | null;
-                url?: string | null;
-              } & {
+            | ({ __typename?: "ProductImage" } & {
                 " $fragmentRefs"?: {
-                  ProductImageFragmentFragment: ProductImageFragmentFragment;
+                  ProductMediaGallery_ProductImage_Fragment: ProductMediaGallery_ProductImage_Fragment;
                 };
               })
-            | ({
-                __typename?: "ProductVideo";
-                disabled?: boolean | null;
-                label?: string | null;
-                position?: number | null;
-                url?: string | null;
-              } & {
+            | ({ __typename?: "ProductVideo" } & {
                 " $fragmentRefs"?: {
-                  ProductVideoFragmentFragment: ProductVideoFragmentFragment;
+                  ProductMediaGallery_ProductVideo_Fragment: ProductMediaGallery_ProductVideo_Fragment;
                 };
               })
             | null
           > | null;
-          media_gallery_entries?: Array<{
-            __typename?: "MediaGalleryEntry";
-            disabled?: boolean | null;
-            file?: string | null;
-            id?: number | null;
-            label?: string | null;
-            media_type?: string | null;
-            position?: number | null;
-            types?: Array<string | null> | null;
-            uid: string;
-            content?: {
-              __typename?: "ProductMediaGalleryEntriesContent";
-              base64_encoded_data?: string | null;
-              name?: string | null;
-              type?: string | null;
-            } | null;
-            video_content?: {
-              __typename?: "ProductMediaGalleryEntriesVideoContent";
-              media_type?: string | null;
-              video_description?: string | null;
-              video_metadata?: string | null;
-              video_provider?: string | null;
-              video_title?: string | null;
-              video_url?: string | null;
-            } | null;
-          } | null> | null;
           price_range: {
             __typename?: "PriceRange";
             maximum_price?: {
@@ -21720,56 +21620,18 @@ export type ProductsQuery = {
               })
             | null;
           media_gallery?: Array<
-            | ({
-                __typename?: "ProductImage";
-                disabled?: boolean | null;
-                label?: string | null;
-                position?: number | null;
-                url?: string | null;
-              } & {
+            | ({ __typename?: "ProductImage" } & {
                 " $fragmentRefs"?: {
-                  ProductImageFragmentFragment: ProductImageFragmentFragment;
+                  ProductMediaGallery_ProductImage_Fragment: ProductMediaGallery_ProductImage_Fragment;
                 };
               })
-            | ({
-                __typename?: "ProductVideo";
-                disabled?: boolean | null;
-                label?: string | null;
-                position?: number | null;
-                url?: string | null;
-              } & {
+            | ({ __typename?: "ProductVideo" } & {
                 " $fragmentRefs"?: {
-                  ProductVideoFragmentFragment: ProductVideoFragmentFragment;
+                  ProductMediaGallery_ProductVideo_Fragment: ProductMediaGallery_ProductVideo_Fragment;
                 };
               })
             | null
           > | null;
-          media_gallery_entries?: Array<{
-            __typename?: "MediaGalleryEntry";
-            disabled?: boolean | null;
-            file?: string | null;
-            id?: number | null;
-            label?: string | null;
-            media_type?: string | null;
-            position?: number | null;
-            types?: Array<string | null> | null;
-            uid: string;
-            content?: {
-              __typename?: "ProductMediaGalleryEntriesContent";
-              base64_encoded_data?: string | null;
-              name?: string | null;
-              type?: string | null;
-            } | null;
-            video_content?: {
-              __typename?: "ProductMediaGalleryEntriesVideoContent";
-              media_type?: string | null;
-              video_description?: string | null;
-              video_metadata?: string | null;
-              video_provider?: string | null;
-              video_title?: string | null;
-              video_url?: string | null;
-            } | null;
-          } | null> | null;
           price_range: {
             __typename?: "PriceRange";
             maximum_price?: {
@@ -21941,56 +21803,18 @@ export type ProductsQuery = {
               })
             | null;
           media_gallery?: Array<
-            | ({
-                __typename?: "ProductImage";
-                disabled?: boolean | null;
-                label?: string | null;
-                position?: number | null;
-                url?: string | null;
-              } & {
+            | ({ __typename?: "ProductImage" } & {
                 " $fragmentRefs"?: {
-                  ProductImageFragmentFragment: ProductImageFragmentFragment;
+                  ProductMediaGallery_ProductImage_Fragment: ProductMediaGallery_ProductImage_Fragment;
                 };
               })
-            | ({
-                __typename?: "ProductVideo";
-                disabled?: boolean | null;
-                label?: string | null;
-                position?: number | null;
-                url?: string | null;
-              } & {
+            | ({ __typename?: "ProductVideo" } & {
                 " $fragmentRefs"?: {
-                  ProductVideoFragmentFragment: ProductVideoFragmentFragment;
+                  ProductMediaGallery_ProductVideo_Fragment: ProductMediaGallery_ProductVideo_Fragment;
                 };
               })
             | null
           > | null;
-          media_gallery_entries?: Array<{
-            __typename?: "MediaGalleryEntry";
-            disabled?: boolean | null;
-            file?: string | null;
-            id?: number | null;
-            label?: string | null;
-            media_type?: string | null;
-            position?: number | null;
-            types?: Array<string | null> | null;
-            uid: string;
-            content?: {
-              __typename?: "ProductMediaGalleryEntriesContent";
-              base64_encoded_data?: string | null;
-              name?: string | null;
-              type?: string | null;
-            } | null;
-            video_content?: {
-              __typename?: "ProductMediaGalleryEntriesVideoContent";
-              media_type?: string | null;
-              video_description?: string | null;
-              video_metadata?: string | null;
-              video_provider?: string | null;
-              video_title?: string | null;
-              video_url?: string | null;
-            } | null;
-          } | null> | null;
           price_range: {
             __typename?: "PriceRange";
             maximum_price?: {
@@ -22162,56 +21986,18 @@ export type ProductsQuery = {
               })
             | null;
           media_gallery?: Array<
-            | ({
-                __typename?: "ProductImage";
-                disabled?: boolean | null;
-                label?: string | null;
-                position?: number | null;
-                url?: string | null;
-              } & {
+            | ({ __typename?: "ProductImage" } & {
                 " $fragmentRefs"?: {
-                  ProductImageFragmentFragment: ProductImageFragmentFragment;
+                  ProductMediaGallery_ProductImage_Fragment: ProductMediaGallery_ProductImage_Fragment;
                 };
               })
-            | ({
-                __typename?: "ProductVideo";
-                disabled?: boolean | null;
-                label?: string | null;
-                position?: number | null;
-                url?: string | null;
-              } & {
+            | ({ __typename?: "ProductVideo" } & {
                 " $fragmentRefs"?: {
-                  ProductVideoFragmentFragment: ProductVideoFragmentFragment;
+                  ProductMediaGallery_ProductVideo_Fragment: ProductMediaGallery_ProductVideo_Fragment;
                 };
               })
             | null
           > | null;
-          media_gallery_entries?: Array<{
-            __typename?: "MediaGalleryEntry";
-            disabled?: boolean | null;
-            file?: string | null;
-            id?: number | null;
-            label?: string | null;
-            media_type?: string | null;
-            position?: number | null;
-            types?: Array<string | null> | null;
-            uid: string;
-            content?: {
-              __typename?: "ProductMediaGalleryEntriesContent";
-              base64_encoded_data?: string | null;
-              name?: string | null;
-              type?: string | null;
-            } | null;
-            video_content?: {
-              __typename?: "ProductMediaGalleryEntriesVideoContent";
-              media_type?: string | null;
-              video_description?: string | null;
-              video_metadata?: string | null;
-              video_provider?: string | null;
-              video_title?: string | null;
-              video_url?: string | null;
-            } | null;
-          } | null> | null;
           price_range: {
             __typename?: "PriceRange";
             maximum_price?: {
@@ -22760,6 +22546,28 @@ export const ProductVideoFragmentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ProductVideoFragmentFragment, unknown>;
+export const ProductMediaGalleryFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductMediaGallery" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "MediaGalleryInterface" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ProductMediaGalleryFragment, unknown>;
 export const CategoryDocument = {
   kind: "Document",
   definitions: [
@@ -23518,167 +23326,10 @@ export const ProductsDocument = {
                           kind: "SelectionSet",
                           selections: [
                             {
-                              kind: "Field",
-                              name: { kind: "Name", value: "disabled" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "label" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "position" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "url" },
-                            },
-                            {
-                              kind: "InlineFragment",
-                              typeCondition: {
-                                kind: "NamedType",
-                                name: { kind: "Name", value: "ProductImage" },
-                              },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "FragmentSpread",
-                                    name: {
-                                      kind: "Name",
-                                      value: "ProductImageFragment",
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                            {
-                              kind: "InlineFragment",
-                              typeCondition: {
-                                kind: "NamedType",
-                                name: { kind: "Name", value: "ProductVideo" },
-                              },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "FragmentSpread",
-                                    name: {
-                                      kind: "Name",
-                                      value: "ProductVideoFragment",
-                                    },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "media_gallery_entries" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "content" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    name: {
-                                      kind: "Name",
-                                      value: "base64_encoded_data",
-                                    },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "name" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "type" },
-                                  },
-                                ],
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "disabled" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "file" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "id" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "label" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "media_type" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "position" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "types" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "uid" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "video_content" },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "media_type" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: {
-                                      kind: "Name",
-                                      value: "video_description",
-                                    },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: {
-                                      kind: "Name",
-                                      value: "video_metadata",
-                                    },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: {
-                                      kind: "Name",
-                                      value: "video_provider",
-                                    },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: {
-                                      kind: "Name",
-                                      value: "video_title",
-                                    },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "video_url" },
-                                  },
-                                ],
+                              kind: "FragmentSpread",
+                              name: {
+                                kind: "Name",
+                                value: "ProductMediaGallery",
                               },
                             },
                           ],
@@ -24203,10 +23854,10 @@ export const ProductsDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ProductVideoFragment" },
+      name: { kind: "Name", value: "ProductMediaGallery" },
       typeCondition: {
         kind: "NamedType",
-        name: { kind: "Name", value: "ProductVideo" },
+        name: { kind: "Name", value: "MediaGalleryInterface" },
       },
       selectionSet: {
         kind: "SelectionSet",
@@ -24215,30 +23866,6 @@ export const ProductsDocument = {
           { kind: "Field", name: { kind: "Name", value: "label" } },
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "url" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "video_content" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "media_type" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "video_description" },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "video_metadata" },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "video_provider" },
-                },
-                { kind: "Field", name: { kind: "Name", value: "video_title" } },
-                { kind: "Field", name: { kind: "Name", value: "video_url" } },
-              ],
-            },
-          },
         ],
       },
     },

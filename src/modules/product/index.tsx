@@ -3,7 +3,7 @@ import React from "react";
 import { AddToCart } from "@/components/cart/add-to-cart/AddToCart";
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
-import { ProductImage } from "@/modules/product/ProductImage";
+import { ProductGallery } from "@/modules/product/gallery/ProductGallery";
 import { ProductsQuery } from "@/types";
 
 interface Props {
@@ -16,7 +16,11 @@ export const ProductPage: React.FC<Props> = ({ product }) => {
       <AddToCart />
       <div className="grid grid-cols-12 gap-4 lg:gap-16">
         <div className="col-span-12 lg:col-span-7">
-          {product?.image ? <ProductImage data={product?.image} /> : null}
+          <ProductGallery
+            imageData={product?.image}
+            // @ts-expect-error An issue with codegen an array of fragments
+            galleryData={product?.media_gallery}
+          />
         </div>
         <div className="col-span-12 lg:col-span-5">
           <h4 className="text-xl text-dark-grey font-semibold">

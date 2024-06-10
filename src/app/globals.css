@@ -10,6 +10,15 @@ body {
   padding: 0;
 }
 
+* {
+  min-height: 0;
+  min-width: 0;
+}
+
+.slick-active button#navigation-link {
+  border: 2px solid #1a1110;
+}
+
 @layer base {
   @font-face {
     font-family: "Feature Deck Web";
@@ -193,5 +202,5 @@ body {
 #curved-corner:before {
   bottom: 0;
   right: 0;
-  box-shadow: 50px 50px 0 0 #FFDBD2;
+  box-shadow: 50px 50px 0 0 #ffdbd2;
 }
