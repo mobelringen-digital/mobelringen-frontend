@@ -33,7 +33,7 @@ export const ProductGallery: React.FC<Props> = ({ imageData, galleryData }) => {
 
   return (
     <>
-      {gallery ? (
+      {gallery && gallery.length > 0 ? (
         <>
           {photoIndex !== null ? (
             <ProductLightbox
