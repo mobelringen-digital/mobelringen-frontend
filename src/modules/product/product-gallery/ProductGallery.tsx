@@ -48,22 +48,15 @@ export const ProductGallery: React.FC<Props> = ({ imageData, galleryData }) => {
 
   return (
     <>
-      {images && images.length > 0 ? (
-        <>
-          {photoIndex !== null ? (
-            <ProductLightbox
-              images={images}
-              photoIndex={photoIndex}
-              setPhotoIndex={setPhotoIndex}
-            />
-          ) : null}
-          {gallery ? (
-            <ProductImageSlider
-              gallery={gallery}
-              setPhotoIndex={setPhotoIndex}
-            />
-          ) : null}
-        </>
+      {photoIndex !== null ? (
+        <ProductLightbox
+          images={images}
+          photoIndex={photoIndex}
+          setPhotoIndex={setPhotoIndex}
+        />
+      ) : null}
+      {gallery && gallery.length > 0 ? (
+        <ProductImageSlider gallery={gallery} setPhotoIndex={setPhotoIndex} />
       ) : image?.url ? (
         <ProductImage image={image} onZoomClick={() => setPhotoIndex(0)} />
       ) : null}
