@@ -6,9 +6,9 @@ import cx from "classnames";
 
 import { usePathname, useSearchParams } from "next/navigation";
 
-import { CloseIcon } from "@/components/icons/CloseIcon";
-import { LocationIcon } from "@/components/icons/LocationIcon";
-import { MenuIcon } from "@/components/icons/MenuIcon";
+import { CloseIcon } from "@/components/_ui/icons/CloseIcon";
+import { LocationIcon } from "@/components/_ui/icons/LocationIcon";
+import { MenuIcon } from "@/components/_ui/icons/MenuIcon";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 
 interface Props {

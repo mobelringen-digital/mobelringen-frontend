@@ -1,6 +1,6 @@
 "use client";
 
-import { CartIcon } from "@/components/icons/CartIcon";
+import { CartIcon } from "@/components/_ui/icons/CartIcon";
 
 import { useCartQuery } from "./useCartQuery";
 

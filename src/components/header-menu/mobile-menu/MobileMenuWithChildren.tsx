@@ -2,8 +2,8 @@
 
 import React from "react";
 
+import { ChevronRight } from "@/components/_ui/icons/ChevronRight";
 import { MobileMenuDropdown } from "@/components/header-menu/mobile-menu/MobileMenuDropdown";
-import { ChevronRight } from "@/components/icons/ChevronRight";
 
 interface Props {
   menu: any;

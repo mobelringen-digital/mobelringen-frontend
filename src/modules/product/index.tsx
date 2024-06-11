@@ -4,14 +4,15 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { PurchaseBlock } from "@/modules/product/add-to-cart/PurchaseBlock";
+import { InformationAccordion } from "@/modules/product/information-accordion/InformationAccordion";
 import { MoreInTheStore } from "@/modules/product/MoreInTheStore";
 import { ProductGallery } from "@/modules/product/product-gallery/ProductGallery";
 import { ProductPricing } from "@/modules/product/product-pricing/ProductPricing";
 import { ProductTopInfo } from "@/modules/product/ProductTopInfo";
-import { ProductsQuery } from "@/types";
+import { ProductEntity } from "@/modules/product/types";
 
 interface Props {
-  product: NonNullable<NonNullable<ProductsQuery["products"]>["items"]>[0];
+  product: ProductEntity;
 }
 
 export const ProductPage: React.FC<Props> = ({ product }) => {
@@ -29,7 +30,7 @@ export const ProductPage: React.FC<Props> = ({ product }) => {
       ) : null}
 
       <div className="grid grid-cols-12 gap-4 lg:gap-16">
-        <div className="col-span-12 lg:col-span-7">
+        <div className="col-span-12 lg:col-span-7 flex flex-col gap-12">
           <ProductGallery
             imageData={product?.image}
             // @ts-expect-error An issue with codegen an array of fragments
@@ -37,6 +38,7 @@ export const ProductPage: React.FC<Props> = ({ product }) => {
             labelData={product?.productLabel}
             priceRangeData={product?.price_range}
           />
+          <InformationAccordion product={product} />
         </div>
         <div className="col-span-12 lg:col-span-5 flex flex-col gap-4 lg:gap-8">
           <ProductTopInfo

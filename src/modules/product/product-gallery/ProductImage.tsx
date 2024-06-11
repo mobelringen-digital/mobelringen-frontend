@@ -2,9 +2,9 @@ import React from "react";
 
 import Image from "next/image";
 
-import { FavoriteIcon } from "@/components/icons/FavoriteIcon";
-import { ZoomIcon } from "@/components/icons/ZoomIcon";
-import { Label } from "@/components/label/Label";
+import { FavoriteIcon } from "@/components/_ui/icons/FavoriteIcon";
+import { ZoomIcon } from "@/components/_ui/icons/ZoomIcon";
+import { Label } from "@/components/_ui/label/Label";
 import {
   ProductImageFragmentFragment,
   ProductLabelFragment,

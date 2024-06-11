@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FormatNumber } from "@/components/format-number/FormatNumber";
+import { FormatNumber } from "@/components/_ui/format-number/FormatNumber";
 import { ProductPriceRangeFragment } from "@/queries/product.queries";
 import { FragmentType, useFragment } from "@/types/schema";
 import { usePriceRange } from "@/utils/hooks/usePriceRange";

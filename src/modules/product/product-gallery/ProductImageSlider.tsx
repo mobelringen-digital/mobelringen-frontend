@@ -4,7 +4,7 @@ import Slider from "react-slick";
 
 import Image from "next/image";
 
-import { PlayIcon } from "@/components/icons/PlayIcon";
+import { PlayIcon } from "@/components/_ui/icons/PlayIcon";
 import { ProductImage } from "@/modules/product/product-gallery/ProductImage";
 import { ProductVideo } from "@/modules/product/product-gallery/ProductVideo";
 import {

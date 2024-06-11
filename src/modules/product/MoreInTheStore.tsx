@@ -1,6 +1,6 @@
 import React from "react";
 
-import { CirclePlusIcon } from "@/components/icons/CirclePlusIcon";
+import { CirclePlusIcon } from "@/components/_ui/icons/CirclePlusIcon";
 
 export const MoreInTheStore = () => {
   return (

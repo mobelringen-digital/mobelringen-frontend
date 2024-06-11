@@ -4,7 +4,7 @@ import React from "react";
 
 import cx from "classnames";
 
-import { ArrowLeftAlt } from "@/components/icons/ArrowLeftAlt";
+import { ArrowLeftAlt } from "@/components/_ui/icons/ArrowLeftAlt";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 
 interface Props {

@@ -1,8 +1,8 @@
 import React from "react";
 
-import { LocalShippingIcon } from "@/components/icons/LocalShippingIcon";
-import { StorefrontIcon } from "@/components/icons/StorefrontIcon";
-import { StatusCircle } from "@/components/status-circle/StatusCircle";
+import { LocalShippingIcon } from "@/components/_ui/icons/LocalShippingIcon";
+import { StorefrontIcon } from "@/components/_ui/icons/StorefrontIcon";
+import { StatusCircle } from "@/components/_ui/status-circle/StatusCircle";
 
 export const PurchaseBlock = () => {
   return (

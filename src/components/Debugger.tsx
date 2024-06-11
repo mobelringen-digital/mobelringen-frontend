@@ -8,7 +8,7 @@ interface Props {
 export const Debugger: React.FC<Props> = ({ data }) => {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
-    <>
+    <div className="my-16">
       <button
         className="text-sm bg-black text-white p-2"
         onClick={() => setIsOpen((prev) => !prev)}
@@ -20,6 +20,6 @@ export const Debugger: React.FC<Props> = ({ data }) => {
           <pre>{JSON.stringify(data, null, 2)}</pre>
         </div>
       ) : null}
-    </>
+    </div>
   );
 };

@@ -2,9 +2,9 @@ import React from "react";
 
 import Link from "next/link";
 
-import { FavoriteIcon } from "@/components/icons/FavoriteIcon";
-import { PersonIcon } from "@/components/icons/PersonIcon";
-import { ShoppingBagIcon } from "@/components/icons/ShoppingBagIcon";
+import { FavoriteIcon } from "@/components/_ui/icons/FavoriteIcon";
+import { PersonIcon } from "@/components/_ui/icons/PersonIcon";
+import { ShoppingBagIcon } from "@/components/_ui/icons/ShoppingBagIcon";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 
 const LINKS = [

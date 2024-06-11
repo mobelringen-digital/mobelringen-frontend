@@ -1,7 +1,7 @@
 import React from "react";
 
+import { ChevronRight } from "@/components/_ui/icons/ChevronRight";
 import { CmsLink } from "@/components/cms/link/CmsLink";
-import { ChevronRight } from "@/components/icons/ChevronRight";
 import { MenuQueryDocument } from "@/queries/menu.queries";
 import { MenuQuery, MenuType } from "@/types";
 import { baseHygraphClient } from "@/utils/lib/graphql";
