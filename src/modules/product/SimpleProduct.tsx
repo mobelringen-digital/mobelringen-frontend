@@ -1,5 +1,6 @@
 import React from "react";
 
+import { ActiveProductDataContextProvider } from "@/modules/product/active-product-data-provider/ActiveProductDataProvider";
 import { PurchaseBlock } from "@/modules/product/add-to-cart/PurchaseBlock";
 import { BaseProductLayout } from "@/modules/product/BaseProductLayout";
 import { BaseProductFragment } from "@/queries/product.queries";
@@ -15,9 +16,11 @@ export const SimpleProductPage: React.FC<Props> = ({ productData }) => {
   const baseProductData = useFragment(BaseProductFragment, product);
 
   return (
-    <BaseProductLayout
-      baseProductData={baseProductData}
-      purchaseBlock={<PurchaseBlock />}
-    />
+    <ActiveProductDataContextProvider>
+      <BaseProductLayout
+        baseProductData={baseProductData}
+        purchaseBlock={<PurchaseBlock />}
+      />
+    </ActiveProductDataContextProvider>
   );
 };
