@@ -17,7 +17,7 @@ export const Variants: React.FC<Props> = ({ variantData }) => {
   );
 
   return (
-    <div className="flex flex-wrap gap-4">
+    <div className="flex flex-wrap gap-4 justify-between lg:justify-start">
       {variants?.map((variant, idx) => <Variant variant={variant} key={idx} />)}
     </div>
   );

@@ -32,16 +32,16 @@ export const ConfigurationInfo: React.FC<Props> = ({
   );
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col gap-2">
       {options.map((option, idx) => (
-        <div key={idx} className="flex gap-2">
-          <span className="text-base font-semibold capitalize">
+        <div key={idx} className="flex flex-wrap">
+          <span className="text-sm lg:text-base font-semibold capitalize mr-1">
             {option.label}
           </span>
           {option.values
             ?.filter((v) => activeAttributes?.includes(v?.value_index))
             .map((val, index) => (
-              <span key={index} className="text-base text-dark-grey">
+              <span key={index} className="text-sm lg:text-base text-dark-grey">
                 {val?.label}
               </span>
             ))}
