@@ -38,9 +38,11 @@ export const ProductPage: React.FC<Props> = ({ product }) => {
             labelData={product?.productLabel}
             priceRangeData={product?.price_range}
           />
-          <InformationAccordion product={product} />
+          <div className="hidden lg:block">
+            <InformationAccordion product={product} />
+          </div>
         </div>
-        <div className="col-span-12 lg:col-span-5 flex flex-col gap-4 lg:gap-8">
+        <div className="col-span-12 lg:col-span-5 flex flex-col gap-8">
           <ProductTopInfo
             brand={product?.productBrand?.name}
             name={product?.name}
@@ -49,6 +51,9 @@ export const ProductPage: React.FC<Props> = ({ product }) => {
           <ProductPricing priceRangeData={product?.price_range} />
           <MoreInTheStore />
           <PurchaseBlock />
+          <div className="block lg:hidden">
+            <InformationAccordion product={product} />
+          </div>
         </div>
       </div>
       <Debugger data={product} />
