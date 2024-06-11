@@ -56,7 +56,7 @@ async function getProducts() {
   );
 }
 
-export default async function Home({ params, searchParams }: Props) {
+export default async function Home({ params }: Props) {
   const url = generatePrettyUrl(params.url, {
     removeTrailSlash: true,
   });
@@ -64,23 +64,20 @@ export default async function Home({ params, searchParams }: Props) {
   const routeData = await getRoute(url);
 
   if (routeData.route?.type === "PRODUCT") {
-    if (routeData.route.__typename === "SimpleProduct") {
+    if (
+      routeData.route.__typename === "SimpleProduct" ||
+      routeData.route.__typename === "ConfigurableProduct"
+    ) {
       if (!routeData.route.sku) {
         return notFound();
       }
-      return <Product sku={routeData.route.sku} />;
-    }
 
-    if (routeData.route.__typename === "ConfigurableProduct") {
-      if (!routeData.route.sku) {
-        return notFound();
-      }
       return <Product sku={routeData.route.sku} />;
     }
   }
 
   if (routeData.route?.type === "CATEGORY") {
-    return <Category params={params} searchParams={searchParams} />;
+    return <Category url={url} />;
   }
 
   const data = await getPage(`/${url}`);

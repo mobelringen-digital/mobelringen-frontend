@@ -2,7 +2,8 @@ import React from "react";
 
 import { notFound } from "next/navigation";
 
-import { ProductPage } from "@/modules/product";
+import { ConfigurableProductPage } from "@/modules/product/ConfigurableProduct";
+import { SimpleProductPage } from "@/modules/product/SimpleProduct";
 import { ProductsQueryDocument } from "@/queries/product.queries";
 import { ProductsQuery, ProductsQueryVariables } from "@/types";
 import { baseMagentoClient } from "@/utils/lib/graphql";
@@ -22,22 +23,21 @@ async function getProduct(sku: string) {
 
 export default async function Product({ sku }: Props) {
   const product = await getProduct(sku);
+  const productData = product.products?.items?.[0];
 
-  if (!product.products?.items?.[0]) {
+  if (!productData) {
     return notFound();
   }
 
   return (
     <>
-      <title>
-        {product.products.items[0].meta_title ??
-          product.products?.items[0].name}
-      </title>
-      <meta
-        name="description"
-        content={product.products.items[0].meta_description ?? ""}
-      />
-      <ProductPage product={product.products.items[0]} />
+      {productData.__typename === "SimpleProduct" ? (
+        <SimpleProductPage productData={productData} />
+      ) : null}
+
+      {productData.__typename === "ConfigurableProduct" ? (
+        <ConfigurableProductPage productData={productData} />
+      ) : null}
     </>
   );
 }

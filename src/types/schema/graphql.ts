@@ -20681,6 +20681,63 @@ export type CmsPopularProductsFragment = {
   categoryId?: string | null;
 } & { " $fragmentName"?: "CmsPopularProductsFragment" };
 
+export type ConfigurableProductOptionsFragment = {
+  __typename?: "ConfigurableProductOptions";
+  attribute_code?: string | null;
+  attribute_id?: string | null;
+  id?: number | null;
+  label?: string | null;
+  position?: number | null;
+  use_default?: boolean | null;
+  values?: Array<{
+    __typename?: "ConfigurableProductOptionsValues";
+    default_label?: string | null;
+    label?: string | null;
+    store_label?: string | null;
+    use_default_value?: boolean | null;
+    value_index?: number | null;
+  } | null> | null;
+} & { " $fragmentName"?: "ConfigurableProductOptionsFragment" };
+
+export type ConfigurableProductVariantsFragment = {
+  __typename: "ConfigurableVariant";
+  attributes?: Array<{
+    __typename?: "ConfigurableAttributeOption";
+    code?: string | null;
+    value_index?: number | null;
+  } | null> | null;
+  product?: {
+    __typename?: "SimpleProduct";
+    url_key?: string | null;
+    sku?: string | null;
+    image?: { __typename?: "ProductImage"; url?: string | null } | null;
+  } | null;
+} & { " $fragmentName"?: "ConfigurableProductVariantsFragment" };
+
+export type ConfigurableProductFragment = ({
+  __typename: "ConfigurableProduct";
+  configurable_options?: Array<
+    | ({ __typename?: "ConfigurableProductOptions" } & {
+        " $fragmentRefs"?: {
+          ConfigurableProductOptionsFragment: ConfigurableProductOptionsFragment;
+        };
+      })
+    | null
+  > | null;
+  variants?: Array<
+    | ({ __typename?: "ConfigurableVariant" } & {
+        " $fragmentRefs"?: {
+          ConfigurableProductVariantsFragment: ConfigurableProductVariantsFragment;
+        };
+      })
+    | null
+  > | null;
+} & {
+  " $fragmentRefs"?: {
+    BaseProduct_ConfigurableProduct_Fragment: BaseProduct_ConfigurableProduct_Fragment;
+  };
+}) & { " $fragmentName"?: "ConfigurableProductFragment" };
+
 export type CmsLinkFragment = {
   __typename: "Link";
   label: string;
@@ -20895,6 +20952,967 @@ export type ProductPriceRangeFragment = {
   };
 } & { " $fragmentName"?: "ProductPriceRangeFragment" };
 
+type BaseProduct_BundleProduct_Fragment = {
+  __typename: "BundleProduct";
+  url_key?: string | null;
+  url_suffix?: string | null;
+  canonical_url?: string | null;
+  country_of_manufacture?: string | null;
+  gift_message_available?: string | null;
+  is_returnable?: string | null;
+  manufacturer?: number | null;
+  meta_description?: string | null;
+  meta_keyword?: string | null;
+  meta_title?: string | null;
+  name?: string | null;
+  new_from_date?: string | null;
+  new_to_date?: string | null;
+  only_x_left_in_stock?: number | null;
+  options_container?: string | null;
+  rating_summary: number;
+  uid: string;
+  swatch_image?: string | null;
+  stock_status?: ProductStockStatus | null;
+  staged: boolean;
+  special_to_date?: string | null;
+  special_price?: number | null;
+  sku?: string | null;
+  review_count: number;
+  addable_to_cart?: number | null;
+  description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  image?:
+    | ({ __typename?: "ProductImage" } & {
+        " $fragmentRefs"?: {
+          ProductImageFragmentFragment: ProductImageFragmentFragment;
+        };
+      })
+    | null;
+  media_gallery?: Array<
+    | ({ __typename?: "ProductImage" } & {
+        " $fragmentRefs"?: {
+          ProductMediaGallery_ProductImage_Fragment: ProductMediaGallery_ProductImage_Fragment;
+        };
+      })
+    | ({ __typename?: "ProductVideo" } & {
+        " $fragmentRefs"?: {
+          ProductMediaGallery_ProductVideo_Fragment: ProductMediaGallery_ProductVideo_Fragment;
+        };
+      })
+    | null
+  > | null;
+  price_range: { __typename?: "PriceRange" } & {
+    " $fragmentRefs"?: { ProductPriceRangeFragment: ProductPriceRangeFragment };
+  };
+  productBrand?: {
+    __typename?: "Brand";
+    brand_image_url?: string | null;
+    name?: string | null;
+  } | null;
+  product_links?: Array<{
+    __typename?: "ProductLinks";
+    link_type?: string | null;
+    linked_product_sku?: string | null;
+    linked_product_type?: string | null;
+    position?: number | null;
+    sku?: string | null;
+  } | null> | null;
+  small_image?: {
+    __typename?: "ProductImage";
+    disabled?: boolean | null;
+    label?: string | null;
+    position?: number | null;
+    url?: string | null;
+  } | null;
+  short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  series?: Array<
+    | {
+        __typename?: "BundleProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "ConfigurableProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "DownloadableProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "GiftCardProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "GroupedProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "SimpleProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "VirtualProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | null
+  > | null;
+  categories?: Array<{
+    __typename?: "CategoryTree";
+    url_path?: string | null;
+    name?: string | null;
+  } | null> | null;
+  productLabel?:
+    | ({ __typename?: "Label" } & {
+        " $fragmentRefs"?: { ProductLabelFragment: ProductLabelFragment };
+      })
+    | null;
+} & { " $fragmentName"?: "BaseProduct_BundleProduct_Fragment" };
+
+type BaseProduct_ConfigurableProduct_Fragment = {
+  __typename: "ConfigurableProduct";
+  url_key?: string | null;
+  url_suffix?: string | null;
+  canonical_url?: string | null;
+  country_of_manufacture?: string | null;
+  gift_message_available?: string | null;
+  is_returnable?: string | null;
+  manufacturer?: number | null;
+  meta_description?: string | null;
+  meta_keyword?: string | null;
+  meta_title?: string | null;
+  name?: string | null;
+  new_from_date?: string | null;
+  new_to_date?: string | null;
+  only_x_left_in_stock?: number | null;
+  options_container?: string | null;
+  rating_summary: number;
+  uid: string;
+  swatch_image?: string | null;
+  stock_status?: ProductStockStatus | null;
+  staged: boolean;
+  special_to_date?: string | null;
+  special_price?: number | null;
+  sku?: string | null;
+  review_count: number;
+  addable_to_cart?: number | null;
+  description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  image?:
+    | ({ __typename?: "ProductImage" } & {
+        " $fragmentRefs"?: {
+          ProductImageFragmentFragment: ProductImageFragmentFragment;
+        };
+      })
+    | null;
+  media_gallery?: Array<
+    | ({ __typename?: "ProductImage" } & {
+        " $fragmentRefs"?: {
+          ProductMediaGallery_ProductImage_Fragment: ProductMediaGallery_ProductImage_Fragment;
+        };
+      })
+    | ({ __typename?: "ProductVideo" } & {
+        " $fragmentRefs"?: {
+          ProductMediaGallery_ProductVideo_Fragment: ProductMediaGallery_ProductVideo_Fragment;
+        };
+      })
+    | null
+  > | null;
+  price_range: { __typename?: "PriceRange" } & {
+    " $fragmentRefs"?: { ProductPriceRangeFragment: ProductPriceRangeFragment };
+  };
+  productBrand?: {
+    __typename?: "Brand";
+    brand_image_url?: string | null;
+    name?: string | null;
+  } | null;
+  product_links?: Array<{
+    __typename?: "ProductLinks";
+    link_type?: string | null;
+    linked_product_sku?: string | null;
+    linked_product_type?: string | null;
+    position?: number | null;
+    sku?: string | null;
+  } | null> | null;
+  small_image?: {
+    __typename?: "ProductImage";
+    disabled?: boolean | null;
+    label?: string | null;
+    position?: number | null;
+    url?: string | null;
+  } | null;
+  short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  series?: Array<
+    | {
+        __typename?: "BundleProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "ConfigurableProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "DownloadableProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "GiftCardProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "GroupedProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "SimpleProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "VirtualProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | null
+  > | null;
+  categories?: Array<{
+    __typename?: "CategoryTree";
+    url_path?: string | null;
+    name?: string | null;
+  } | null> | null;
+  productLabel?:
+    | ({ __typename?: "Label" } & {
+        " $fragmentRefs"?: { ProductLabelFragment: ProductLabelFragment };
+      })
+    | null;
+} & { " $fragmentName"?: "BaseProduct_ConfigurableProduct_Fragment" };
+
+type BaseProduct_DownloadableProduct_Fragment = {
+  __typename: "DownloadableProduct";
+  url_key?: string | null;
+  url_suffix?: string | null;
+  canonical_url?: string | null;
+  country_of_manufacture?: string | null;
+  gift_message_available?: string | null;
+  is_returnable?: string | null;
+  manufacturer?: number | null;
+  meta_description?: string | null;
+  meta_keyword?: string | null;
+  meta_title?: string | null;
+  name?: string | null;
+  new_from_date?: string | null;
+  new_to_date?: string | null;
+  only_x_left_in_stock?: number | null;
+  options_container?: string | null;
+  rating_summary: number;
+  uid: string;
+  swatch_image?: string | null;
+  stock_status?: ProductStockStatus | null;
+  staged: boolean;
+  special_to_date?: string | null;
+  special_price?: number | null;
+  sku?: string | null;
+  review_count: number;
+  addable_to_cart?: number | null;
+  description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  image?:
+    | ({ __typename?: "ProductImage" } & {
+        " $fragmentRefs"?: {
+          ProductImageFragmentFragment: ProductImageFragmentFragment;
+        };
+      })
+    | null;
+  media_gallery?: Array<
+    | ({ __typename?: "ProductImage" } & {
+        " $fragmentRefs"?: {
+          ProductMediaGallery_ProductImage_Fragment: ProductMediaGallery_ProductImage_Fragment;
+        };
+      })
+    | ({ __typename?: "ProductVideo" } & {
+        " $fragmentRefs"?: {
+          ProductMediaGallery_ProductVideo_Fragment: ProductMediaGallery_ProductVideo_Fragment;
+        };
+      })
+    | null
+  > | null;
+  price_range: { __typename?: "PriceRange" } & {
+    " $fragmentRefs"?: { ProductPriceRangeFragment: ProductPriceRangeFragment };
+  };
+  productBrand?: {
+    __typename?: "Brand";
+    brand_image_url?: string | null;
+    name?: string | null;
+  } | null;
+  product_links?: Array<{
+    __typename?: "ProductLinks";
+    link_type?: string | null;
+    linked_product_sku?: string | null;
+    linked_product_type?: string | null;
+    position?: number | null;
+    sku?: string | null;
+  } | null> | null;
+  small_image?: {
+    __typename?: "ProductImage";
+    disabled?: boolean | null;
+    label?: string | null;
+    position?: number | null;
+    url?: string | null;
+  } | null;
+  short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  series?: Array<
+    | {
+        __typename?: "BundleProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "ConfigurableProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "DownloadableProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "GiftCardProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "GroupedProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "SimpleProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "VirtualProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | null
+  > | null;
+  categories?: Array<{
+    __typename?: "CategoryTree";
+    url_path?: string | null;
+    name?: string | null;
+  } | null> | null;
+  productLabel?:
+    | ({ __typename?: "Label" } & {
+        " $fragmentRefs"?: { ProductLabelFragment: ProductLabelFragment };
+      })
+    | null;
+} & { " $fragmentName"?: "BaseProduct_DownloadableProduct_Fragment" };
+
+type BaseProduct_GiftCardProduct_Fragment = {
+  __typename: "GiftCardProduct";
+  url_key?: string | null;
+  url_suffix?: string | null;
+  canonical_url?: string | null;
+  country_of_manufacture?: string | null;
+  gift_message_available?: string | null;
+  is_returnable?: string | null;
+  manufacturer?: number | null;
+  meta_description?: string | null;
+  meta_keyword?: string | null;
+  meta_title?: string | null;
+  name?: string | null;
+  new_from_date?: string | null;
+  new_to_date?: string | null;
+  only_x_left_in_stock?: number | null;
+  options_container?: string | null;
+  rating_summary: number;
+  uid: string;
+  swatch_image?: string | null;
+  stock_status?: ProductStockStatus | null;
+  staged: boolean;
+  special_to_date?: string | null;
+  special_price?: number | null;
+  sku?: string | null;
+  review_count: number;
+  addable_to_cart?: number | null;
+  description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  image?:
+    | ({ __typename?: "ProductImage" } & {
+        " $fragmentRefs"?: {
+          ProductImageFragmentFragment: ProductImageFragmentFragment;
+        };
+      })
+    | null;
+  media_gallery?: Array<
+    | ({ __typename?: "ProductImage" } & {
+        " $fragmentRefs"?: {
+          ProductMediaGallery_ProductImage_Fragment: ProductMediaGallery_ProductImage_Fragment;
+        };
+      })
+    | ({ __typename?: "ProductVideo" } & {
+        " $fragmentRefs"?: {
+          ProductMediaGallery_ProductVideo_Fragment: ProductMediaGallery_ProductVideo_Fragment;
+        };
+      })
+    | null
+  > | null;
+  price_range: { __typename?: "PriceRange" } & {
+    " $fragmentRefs"?: { ProductPriceRangeFragment: ProductPriceRangeFragment };
+  };
+  productBrand?: {
+    __typename?: "Brand";
+    brand_image_url?: string | null;
+    name?: string | null;
+  } | null;
+  product_links?: Array<{
+    __typename?: "ProductLinks";
+    link_type?: string | null;
+    linked_product_sku?: string | null;
+    linked_product_type?: string | null;
+    position?: number | null;
+    sku?: string | null;
+  } | null> | null;
+  small_image?: {
+    __typename?: "ProductImage";
+    disabled?: boolean | null;
+    label?: string | null;
+    position?: number | null;
+    url?: string | null;
+  } | null;
+  short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  series?: Array<
+    | {
+        __typename?: "BundleProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "ConfigurableProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "DownloadableProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "GiftCardProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "GroupedProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "SimpleProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "VirtualProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | null
+  > | null;
+  categories?: Array<{
+    __typename?: "CategoryTree";
+    url_path?: string | null;
+    name?: string | null;
+  } | null> | null;
+  productLabel?:
+    | ({ __typename?: "Label" } & {
+        " $fragmentRefs"?: { ProductLabelFragment: ProductLabelFragment };
+      })
+    | null;
+} & { " $fragmentName"?: "BaseProduct_GiftCardProduct_Fragment" };
+
+type BaseProduct_GroupedProduct_Fragment = {
+  __typename: "GroupedProduct";
+  url_key?: string | null;
+  url_suffix?: string | null;
+  canonical_url?: string | null;
+  country_of_manufacture?: string | null;
+  gift_message_available?: string | null;
+  is_returnable?: string | null;
+  manufacturer?: number | null;
+  meta_description?: string | null;
+  meta_keyword?: string | null;
+  meta_title?: string | null;
+  name?: string | null;
+  new_from_date?: string | null;
+  new_to_date?: string | null;
+  only_x_left_in_stock?: number | null;
+  options_container?: string | null;
+  rating_summary: number;
+  uid: string;
+  swatch_image?: string | null;
+  stock_status?: ProductStockStatus | null;
+  staged: boolean;
+  special_to_date?: string | null;
+  special_price?: number | null;
+  sku?: string | null;
+  review_count: number;
+  addable_to_cart?: number | null;
+  description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  image?:
+    | ({ __typename?: "ProductImage" } & {
+        " $fragmentRefs"?: {
+          ProductImageFragmentFragment: ProductImageFragmentFragment;
+        };
+      })
+    | null;
+  media_gallery?: Array<
+    | ({ __typename?: "ProductImage" } & {
+        " $fragmentRefs"?: {
+          ProductMediaGallery_ProductImage_Fragment: ProductMediaGallery_ProductImage_Fragment;
+        };
+      })
+    | ({ __typename?: "ProductVideo" } & {
+        " $fragmentRefs"?: {
+          ProductMediaGallery_ProductVideo_Fragment: ProductMediaGallery_ProductVideo_Fragment;
+        };
+      })
+    | null
+  > | null;
+  price_range: { __typename?: "PriceRange" } & {
+    " $fragmentRefs"?: { ProductPriceRangeFragment: ProductPriceRangeFragment };
+  };
+  productBrand?: {
+    __typename?: "Brand";
+    brand_image_url?: string | null;
+    name?: string | null;
+  } | null;
+  product_links?: Array<{
+    __typename?: "ProductLinks";
+    link_type?: string | null;
+    linked_product_sku?: string | null;
+    linked_product_type?: string | null;
+    position?: number | null;
+    sku?: string | null;
+  } | null> | null;
+  small_image?: {
+    __typename?: "ProductImage";
+    disabled?: boolean | null;
+    label?: string | null;
+    position?: number | null;
+    url?: string | null;
+  } | null;
+  short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  series?: Array<
+    | {
+        __typename?: "BundleProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "ConfigurableProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "DownloadableProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "GiftCardProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "GroupedProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "SimpleProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "VirtualProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | null
+  > | null;
+  categories?: Array<{
+    __typename?: "CategoryTree";
+    url_path?: string | null;
+    name?: string | null;
+  } | null> | null;
+  productLabel?:
+    | ({ __typename?: "Label" } & {
+        " $fragmentRefs"?: { ProductLabelFragment: ProductLabelFragment };
+      })
+    | null;
+} & { " $fragmentName"?: "BaseProduct_GroupedProduct_Fragment" };
+
+type BaseProduct_SimpleProduct_Fragment = {
+  __typename: "SimpleProduct";
+  url_key?: string | null;
+  url_suffix?: string | null;
+  canonical_url?: string | null;
+  country_of_manufacture?: string | null;
+  gift_message_available?: string | null;
+  is_returnable?: string | null;
+  manufacturer?: number | null;
+  meta_description?: string | null;
+  meta_keyword?: string | null;
+  meta_title?: string | null;
+  name?: string | null;
+  new_from_date?: string | null;
+  new_to_date?: string | null;
+  only_x_left_in_stock?: number | null;
+  options_container?: string | null;
+  rating_summary: number;
+  uid: string;
+  swatch_image?: string | null;
+  stock_status?: ProductStockStatus | null;
+  staged: boolean;
+  special_to_date?: string | null;
+  special_price?: number | null;
+  sku?: string | null;
+  review_count: number;
+  addable_to_cart?: number | null;
+  description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  image?:
+    | ({ __typename?: "ProductImage" } & {
+        " $fragmentRefs"?: {
+          ProductImageFragmentFragment: ProductImageFragmentFragment;
+        };
+      })
+    | null;
+  media_gallery?: Array<
+    | ({ __typename?: "ProductImage" } & {
+        " $fragmentRefs"?: {
+          ProductMediaGallery_ProductImage_Fragment: ProductMediaGallery_ProductImage_Fragment;
+        };
+      })
+    | ({ __typename?: "ProductVideo" } & {
+        " $fragmentRefs"?: {
+          ProductMediaGallery_ProductVideo_Fragment: ProductMediaGallery_ProductVideo_Fragment;
+        };
+      })
+    | null
+  > | null;
+  price_range: { __typename?: "PriceRange" } & {
+    " $fragmentRefs"?: { ProductPriceRangeFragment: ProductPriceRangeFragment };
+  };
+  productBrand?: {
+    __typename?: "Brand";
+    brand_image_url?: string | null;
+    name?: string | null;
+  } | null;
+  product_links?: Array<{
+    __typename?: "ProductLinks";
+    link_type?: string | null;
+    linked_product_sku?: string | null;
+    linked_product_type?: string | null;
+    position?: number | null;
+    sku?: string | null;
+  } | null> | null;
+  small_image?: {
+    __typename?: "ProductImage";
+    disabled?: boolean | null;
+    label?: string | null;
+    position?: number | null;
+    url?: string | null;
+  } | null;
+  short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  series?: Array<
+    | {
+        __typename?: "BundleProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "ConfigurableProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "DownloadableProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "GiftCardProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "GroupedProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "SimpleProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "VirtualProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | null
+  > | null;
+  categories?: Array<{
+    __typename?: "CategoryTree";
+    url_path?: string | null;
+    name?: string | null;
+  } | null> | null;
+  productLabel?:
+    | ({ __typename?: "Label" } & {
+        " $fragmentRefs"?: { ProductLabelFragment: ProductLabelFragment };
+      })
+    | null;
+} & { " $fragmentName"?: "BaseProduct_SimpleProduct_Fragment" };
+
+type BaseProduct_VirtualProduct_Fragment = {
+  __typename: "VirtualProduct";
+  url_key?: string | null;
+  url_suffix?: string | null;
+  canonical_url?: string | null;
+  country_of_manufacture?: string | null;
+  gift_message_available?: string | null;
+  is_returnable?: string | null;
+  manufacturer?: number | null;
+  meta_description?: string | null;
+  meta_keyword?: string | null;
+  meta_title?: string | null;
+  name?: string | null;
+  new_from_date?: string | null;
+  new_to_date?: string | null;
+  only_x_left_in_stock?: number | null;
+  options_container?: string | null;
+  rating_summary: number;
+  uid: string;
+  swatch_image?: string | null;
+  stock_status?: ProductStockStatus | null;
+  staged: boolean;
+  special_to_date?: string | null;
+  special_price?: number | null;
+  sku?: string | null;
+  review_count: number;
+  addable_to_cart?: number | null;
+  description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  image?:
+    | ({ __typename?: "ProductImage" } & {
+        " $fragmentRefs"?: {
+          ProductImageFragmentFragment: ProductImageFragmentFragment;
+        };
+      })
+    | null;
+  media_gallery?: Array<
+    | ({ __typename?: "ProductImage" } & {
+        " $fragmentRefs"?: {
+          ProductMediaGallery_ProductImage_Fragment: ProductMediaGallery_ProductImage_Fragment;
+        };
+      })
+    | ({ __typename?: "ProductVideo" } & {
+        " $fragmentRefs"?: {
+          ProductMediaGallery_ProductVideo_Fragment: ProductMediaGallery_ProductVideo_Fragment;
+        };
+      })
+    | null
+  > | null;
+  price_range: { __typename?: "PriceRange" } & {
+    " $fragmentRefs"?: { ProductPriceRangeFragment: ProductPriceRangeFragment };
+  };
+  productBrand?: {
+    __typename?: "Brand";
+    brand_image_url?: string | null;
+    name?: string | null;
+  } | null;
+  product_links?: Array<{
+    __typename?: "ProductLinks";
+    link_type?: string | null;
+    linked_product_sku?: string | null;
+    linked_product_type?: string | null;
+    position?: number | null;
+    sku?: string | null;
+  } | null> | null;
+  small_image?: {
+    __typename?: "ProductImage";
+    disabled?: boolean | null;
+    label?: string | null;
+    position?: number | null;
+    url?: string | null;
+  } | null;
+  short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  series?: Array<
+    | {
+        __typename?: "BundleProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "ConfigurableProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "DownloadableProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "GiftCardProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "GroupedProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "SimpleProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | {
+        __typename?: "VirtualProduct";
+        url_key?: string | null;
+        sku?: string | null;
+        name?: string | null;
+        image?: { __typename?: "ProductImage"; url?: string | null } | null;
+      }
+    | null
+  > | null;
+  categories?: Array<{
+    __typename?: "CategoryTree";
+    url_path?: string | null;
+    name?: string | null;
+  } | null> | null;
+  productLabel?:
+    | ({ __typename?: "Label" } & {
+        " $fragmentRefs"?: { ProductLabelFragment: ProductLabelFragment };
+      })
+    | null;
+} & { " $fragmentName"?: "BaseProduct_VirtualProduct_Fragment" };
+
+export type BaseProductFragment =
+  | BaseProduct_BundleProduct_Fragment
+  | BaseProduct_ConfigurableProduct_Fragment
+  | BaseProduct_DownloadableProduct_Fragment
+  | BaseProduct_GiftCardProduct_Fragment
+  | BaseProduct_GroupedProduct_Fragment
+  | BaseProduct_SimpleProduct_Fragment
+  | BaseProduct_VirtualProduct_Fragment;
+
 export type ProductsQueryVariables = Exact<{
   pageSize?: InputMaybe<Scalars["Int"]["input"]>;
   filter?: InputMaybe<ProductAttributeFilterInput>;
@@ -20905,1042 +21923,19 @@ export type ProductsQuery = {
   products?: {
     __typename?: "Products";
     items?: Array<
-      | {
-          __typename?: "BundleProduct";
-          url_path?: string | null;
-          url_key?: string | null;
-          url_suffix?: string | null;
-          canonical_url?: string | null;
-          brand?: string | null;
-          color?: number | null;
-          configuration?: string | null;
-          country_of_manufacture?: string | null;
-          gift_message_available?: string | null;
-          id?: number | null;
-          is_returnable?: string | null;
-          manufacturer?: number | null;
-          meta_description?: string | null;
-          meta_keyword?: string | null;
-          meta_title?: string | null;
-          name?: string | null;
-          new_from_date?: string | null;
-          new_to_date?: string | null;
-          only_x_left_in_stock?: number | null;
-          options_container?: string | null;
-          rating_summary: number;
-          updated_at?: string | null;
-          uid: string;
-          type_id?: string | null;
-          tier_price?: number | null;
-          swatch_image?: string | null;
-          stock_status?: ProductStockStatus | null;
-          staged: boolean;
-          special_to_date?: string | null;
-          special_price?: number | null;
-          special_from_date?: string | null;
-          sku?: string | null;
-          size_filter?: string | null;
-          series_group?: string | null;
-          review_count: number;
-          webshopavailable?: number | null;
-          addable_to_cart?: number | null;
-          attribute_set_id?: number | null;
-          created_at?: string | null;
-          delivery_promise?: string | null;
-          ifsite?: string | null;
-          maintenance_description?: string | null;
-          description?: {
-            __typename?: "ComplexTextValue";
-            html: string;
-          } | null;
-          image?:
-            | ({ __typename?: "ProductImage" } & {
-                " $fragmentRefs"?: {
-                  ProductImageFragmentFragment: ProductImageFragmentFragment;
-                };
-              })
-            | null;
-          media_gallery?: Array<
-            | ({ __typename?: "ProductImage" } & {
-                " $fragmentRefs"?: {
-                  ProductMediaGallery_ProductImage_Fragment: ProductMediaGallery_ProductImage_Fragment;
-                };
-              })
-            | ({ __typename?: "ProductVideo" } & {
-                " $fragmentRefs"?: {
-                  ProductMediaGallery_ProductVideo_Fragment: ProductMediaGallery_ProductVideo_Fragment;
-                };
-              })
-            | null
-          > | null;
-          price_range: { __typename?: "PriceRange" } & {
-            " $fragmentRefs"?: {
-              ProductPriceRangeFragment: ProductPriceRangeFragment;
-            };
+      | { __typename?: "BundleProduct" }
+      | ({ __typename?: "ConfigurableProduct" } & {
+          " $fragmentRefs"?: {
+            ConfigurableProductFragment: ConfigurableProductFragment;
           };
-          productBrand?: {
-            __typename?: "Brand";
-            brand_image_url?: string | null;
-            name?: string | null;
-          } | null;
-          product_links?: Array<{
-            __typename?: "ProductLinks";
-            link_type?: string | null;
-            linked_product_sku?: string | null;
-            linked_product_type?: string | null;
-            position?: number | null;
-            sku?: string | null;
-          } | null> | null;
-          small_image?: {
-            __typename?: "ProductImage";
-            disabled?: boolean | null;
-            label?: string | null;
-            position?: number | null;
-            url?: string | null;
-          } | null;
-          short_description?: {
-            __typename?: "ComplexTextValue";
-            html: string;
-          } | null;
-          series?: Array<
-            | {
-                __typename?: "BundleProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "ConfigurableProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "DownloadableProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "GiftCardProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "GroupedProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "SimpleProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "VirtualProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | null
-          > | null;
-          categories?: Array<{
-            __typename?: "CategoryTree";
-            url_path?: string | null;
-            name?: string | null;
-          } | null> | null;
-          productLabel?:
-            | ({ __typename?: "Label" } & {
-                " $fragmentRefs"?: {
-                  ProductLabelFragment: ProductLabelFragment;
-                };
-              })
-            | null;
-        }
-      | {
-          __typename?: "ConfigurableProduct";
-          url_path?: string | null;
-          url_key?: string | null;
-          url_suffix?: string | null;
-          canonical_url?: string | null;
-          brand?: string | null;
-          color?: number | null;
-          configuration?: string | null;
-          country_of_manufacture?: string | null;
-          gift_message_available?: string | null;
-          id?: number | null;
-          is_returnable?: string | null;
-          manufacturer?: number | null;
-          meta_description?: string | null;
-          meta_keyword?: string | null;
-          meta_title?: string | null;
-          name?: string | null;
-          new_from_date?: string | null;
-          new_to_date?: string | null;
-          only_x_left_in_stock?: number | null;
-          options_container?: string | null;
-          rating_summary: number;
-          updated_at?: string | null;
-          uid: string;
-          type_id?: string | null;
-          tier_price?: number | null;
-          swatch_image?: string | null;
-          stock_status?: ProductStockStatus | null;
-          staged: boolean;
-          special_to_date?: string | null;
-          special_price?: number | null;
-          special_from_date?: string | null;
-          sku?: string | null;
-          size_filter?: string | null;
-          series_group?: string | null;
-          review_count: number;
-          webshopavailable?: number | null;
-          addable_to_cart?: number | null;
-          attribute_set_id?: number | null;
-          created_at?: string | null;
-          delivery_promise?: string | null;
-          ifsite?: string | null;
-          maintenance_description?: string | null;
-          description?: {
-            __typename?: "ComplexTextValue";
-            html: string;
-          } | null;
-          image?:
-            | ({ __typename?: "ProductImage" } & {
-                " $fragmentRefs"?: {
-                  ProductImageFragmentFragment: ProductImageFragmentFragment;
-                };
-              })
-            | null;
-          media_gallery?: Array<
-            | ({ __typename?: "ProductImage" } & {
-                " $fragmentRefs"?: {
-                  ProductMediaGallery_ProductImage_Fragment: ProductMediaGallery_ProductImage_Fragment;
-                };
-              })
-            | ({ __typename?: "ProductVideo" } & {
-                " $fragmentRefs"?: {
-                  ProductMediaGallery_ProductVideo_Fragment: ProductMediaGallery_ProductVideo_Fragment;
-                };
-              })
-            | null
-          > | null;
-          price_range: { __typename?: "PriceRange" } & {
-            " $fragmentRefs"?: {
-              ProductPriceRangeFragment: ProductPriceRangeFragment;
-            };
-          };
-          productBrand?: {
-            __typename?: "Brand";
-            brand_image_url?: string | null;
-            name?: string | null;
-          } | null;
-          product_links?: Array<{
-            __typename?: "ProductLinks";
-            link_type?: string | null;
-            linked_product_sku?: string | null;
-            linked_product_type?: string | null;
-            position?: number | null;
-            sku?: string | null;
-          } | null> | null;
-          small_image?: {
-            __typename?: "ProductImage";
-            disabled?: boolean | null;
-            label?: string | null;
-            position?: number | null;
-            url?: string | null;
-          } | null;
-          short_description?: {
-            __typename?: "ComplexTextValue";
-            html: string;
-          } | null;
-          series?: Array<
-            | {
-                __typename?: "BundleProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "ConfigurableProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "DownloadableProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "GiftCardProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "GroupedProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "SimpleProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "VirtualProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | null
-          > | null;
-          categories?: Array<{
-            __typename?: "CategoryTree";
-            url_path?: string | null;
-            name?: string | null;
-          } | null> | null;
-          productLabel?:
-            | ({ __typename?: "Label" } & {
-                " $fragmentRefs"?: {
-                  ProductLabelFragment: ProductLabelFragment;
-                };
-              })
-            | null;
-        }
-      | {
-          __typename?: "DownloadableProduct";
-          url_path?: string | null;
-          url_key?: string | null;
-          url_suffix?: string | null;
-          canonical_url?: string | null;
-          brand?: string | null;
-          color?: number | null;
-          configuration?: string | null;
-          country_of_manufacture?: string | null;
-          gift_message_available?: string | null;
-          id?: number | null;
-          is_returnable?: string | null;
-          manufacturer?: number | null;
-          meta_description?: string | null;
-          meta_keyword?: string | null;
-          meta_title?: string | null;
-          name?: string | null;
-          new_from_date?: string | null;
-          new_to_date?: string | null;
-          only_x_left_in_stock?: number | null;
-          options_container?: string | null;
-          rating_summary: number;
-          updated_at?: string | null;
-          uid: string;
-          type_id?: string | null;
-          tier_price?: number | null;
-          swatch_image?: string | null;
-          stock_status?: ProductStockStatus | null;
-          staged: boolean;
-          special_to_date?: string | null;
-          special_price?: number | null;
-          special_from_date?: string | null;
-          sku?: string | null;
-          size_filter?: string | null;
-          series_group?: string | null;
-          review_count: number;
-          webshopavailable?: number | null;
-          addable_to_cart?: number | null;
-          attribute_set_id?: number | null;
-          created_at?: string | null;
-          delivery_promise?: string | null;
-          ifsite?: string | null;
-          maintenance_description?: string | null;
-          description?: {
-            __typename?: "ComplexTextValue";
-            html: string;
-          } | null;
-          image?:
-            | ({ __typename?: "ProductImage" } & {
-                " $fragmentRefs"?: {
-                  ProductImageFragmentFragment: ProductImageFragmentFragment;
-                };
-              })
-            | null;
-          media_gallery?: Array<
-            | ({ __typename?: "ProductImage" } & {
-                " $fragmentRefs"?: {
-                  ProductMediaGallery_ProductImage_Fragment: ProductMediaGallery_ProductImage_Fragment;
-                };
-              })
-            | ({ __typename?: "ProductVideo" } & {
-                " $fragmentRefs"?: {
-                  ProductMediaGallery_ProductVideo_Fragment: ProductMediaGallery_ProductVideo_Fragment;
-                };
-              })
-            | null
-          > | null;
-          price_range: { __typename?: "PriceRange" } & {
-            " $fragmentRefs"?: {
-              ProductPriceRangeFragment: ProductPriceRangeFragment;
-            };
-          };
-          productBrand?: {
-            __typename?: "Brand";
-            brand_image_url?: string | null;
-            name?: string | null;
-          } | null;
-          product_links?: Array<{
-            __typename?: "ProductLinks";
-            link_type?: string | null;
-            linked_product_sku?: string | null;
-            linked_product_type?: string | null;
-            position?: number | null;
-            sku?: string | null;
-          } | null> | null;
-          small_image?: {
-            __typename?: "ProductImage";
-            disabled?: boolean | null;
-            label?: string | null;
-            position?: number | null;
-            url?: string | null;
-          } | null;
-          short_description?: {
-            __typename?: "ComplexTextValue";
-            html: string;
-          } | null;
-          series?: Array<
-            | {
-                __typename?: "BundleProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "ConfigurableProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "DownloadableProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "GiftCardProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "GroupedProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "SimpleProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "VirtualProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | null
-          > | null;
-          categories?: Array<{
-            __typename?: "CategoryTree";
-            url_path?: string | null;
-            name?: string | null;
-          } | null> | null;
-          productLabel?:
-            | ({ __typename?: "Label" } & {
-                " $fragmentRefs"?: {
-                  ProductLabelFragment: ProductLabelFragment;
-                };
-              })
-            | null;
-        }
-      | {
-          __typename?: "GiftCardProduct";
-          url_path?: string | null;
-          url_key?: string | null;
-          url_suffix?: string | null;
-          canonical_url?: string | null;
-          brand?: string | null;
-          color?: number | null;
-          configuration?: string | null;
-          country_of_manufacture?: string | null;
-          gift_message_available?: string | null;
-          id?: number | null;
-          is_returnable?: string | null;
-          manufacturer?: number | null;
-          meta_description?: string | null;
-          meta_keyword?: string | null;
-          meta_title?: string | null;
-          name?: string | null;
-          new_from_date?: string | null;
-          new_to_date?: string | null;
-          only_x_left_in_stock?: number | null;
-          options_container?: string | null;
-          rating_summary: number;
-          updated_at?: string | null;
-          uid: string;
-          type_id?: string | null;
-          tier_price?: number | null;
-          swatch_image?: string | null;
-          stock_status?: ProductStockStatus | null;
-          staged: boolean;
-          special_to_date?: string | null;
-          special_price?: number | null;
-          special_from_date?: string | null;
-          sku?: string | null;
-          size_filter?: string | null;
-          series_group?: string | null;
-          review_count: number;
-          webshopavailable?: number | null;
-          addable_to_cart?: number | null;
-          attribute_set_id?: number | null;
-          created_at?: string | null;
-          delivery_promise?: string | null;
-          ifsite?: string | null;
-          maintenance_description?: string | null;
-          description?: {
-            __typename?: "ComplexTextValue";
-            html: string;
-          } | null;
-          image?:
-            | ({ __typename?: "ProductImage" } & {
-                " $fragmentRefs"?: {
-                  ProductImageFragmentFragment: ProductImageFragmentFragment;
-                };
-              })
-            | null;
-          media_gallery?: Array<
-            | ({ __typename?: "ProductImage" } & {
-                " $fragmentRefs"?: {
-                  ProductMediaGallery_ProductImage_Fragment: ProductMediaGallery_ProductImage_Fragment;
-                };
-              })
-            | ({ __typename?: "ProductVideo" } & {
-                " $fragmentRefs"?: {
-                  ProductMediaGallery_ProductVideo_Fragment: ProductMediaGallery_ProductVideo_Fragment;
-                };
-              })
-            | null
-          > | null;
-          price_range: { __typename?: "PriceRange" } & {
-            " $fragmentRefs"?: {
-              ProductPriceRangeFragment: ProductPriceRangeFragment;
-            };
-          };
-          productBrand?: {
-            __typename?: "Brand";
-            brand_image_url?: string | null;
-            name?: string | null;
-          } | null;
-          product_links?: Array<{
-            __typename?: "ProductLinks";
-            link_type?: string | null;
-            linked_product_sku?: string | null;
-            linked_product_type?: string | null;
-            position?: number | null;
-            sku?: string | null;
-          } | null> | null;
-          small_image?: {
-            __typename?: "ProductImage";
-            disabled?: boolean | null;
-            label?: string | null;
-            position?: number | null;
-            url?: string | null;
-          } | null;
-          short_description?: {
-            __typename?: "ComplexTextValue";
-            html: string;
-          } | null;
-          series?: Array<
-            | {
-                __typename?: "BundleProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "ConfigurableProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "DownloadableProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "GiftCardProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "GroupedProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "SimpleProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "VirtualProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | null
-          > | null;
-          categories?: Array<{
-            __typename?: "CategoryTree";
-            url_path?: string | null;
-            name?: string | null;
-          } | null> | null;
-          productLabel?:
-            | ({ __typename?: "Label" } & {
-                " $fragmentRefs"?: {
-                  ProductLabelFragment: ProductLabelFragment;
-                };
-              })
-            | null;
-        }
-      | {
-          __typename?: "GroupedProduct";
-          url_path?: string | null;
-          url_key?: string | null;
-          url_suffix?: string | null;
-          canonical_url?: string | null;
-          brand?: string | null;
-          color?: number | null;
-          configuration?: string | null;
-          country_of_manufacture?: string | null;
-          gift_message_available?: string | null;
-          id?: number | null;
-          is_returnable?: string | null;
-          manufacturer?: number | null;
-          meta_description?: string | null;
-          meta_keyword?: string | null;
-          meta_title?: string | null;
-          name?: string | null;
-          new_from_date?: string | null;
-          new_to_date?: string | null;
-          only_x_left_in_stock?: number | null;
-          options_container?: string | null;
-          rating_summary: number;
-          updated_at?: string | null;
-          uid: string;
-          type_id?: string | null;
-          tier_price?: number | null;
-          swatch_image?: string | null;
-          stock_status?: ProductStockStatus | null;
-          staged: boolean;
-          special_to_date?: string | null;
-          special_price?: number | null;
-          special_from_date?: string | null;
-          sku?: string | null;
-          size_filter?: string | null;
-          series_group?: string | null;
-          review_count: number;
-          webshopavailable?: number | null;
-          addable_to_cart?: number | null;
-          attribute_set_id?: number | null;
-          created_at?: string | null;
-          delivery_promise?: string | null;
-          ifsite?: string | null;
-          maintenance_description?: string | null;
-          description?: {
-            __typename?: "ComplexTextValue";
-            html: string;
-          } | null;
-          image?:
-            | ({ __typename?: "ProductImage" } & {
-                " $fragmentRefs"?: {
-                  ProductImageFragmentFragment: ProductImageFragmentFragment;
-                };
-              })
-            | null;
-          media_gallery?: Array<
-            | ({ __typename?: "ProductImage" } & {
-                " $fragmentRefs"?: {
-                  ProductMediaGallery_ProductImage_Fragment: ProductMediaGallery_ProductImage_Fragment;
-                };
-              })
-            | ({ __typename?: "ProductVideo" } & {
-                " $fragmentRefs"?: {
-                  ProductMediaGallery_ProductVideo_Fragment: ProductMediaGallery_ProductVideo_Fragment;
-                };
-              })
-            | null
-          > | null;
-          price_range: { __typename?: "PriceRange" } & {
-            " $fragmentRefs"?: {
-              ProductPriceRangeFragment: ProductPriceRangeFragment;
-            };
-          };
-          productBrand?: {
-            __typename?: "Brand";
-            brand_image_url?: string | null;
-            name?: string | null;
-          } | null;
-          product_links?: Array<{
-            __typename?: "ProductLinks";
-            link_type?: string | null;
-            linked_product_sku?: string | null;
-            linked_product_type?: string | null;
-            position?: number | null;
-            sku?: string | null;
-          } | null> | null;
-          small_image?: {
-            __typename?: "ProductImage";
-            disabled?: boolean | null;
-            label?: string | null;
-            position?: number | null;
-            url?: string | null;
-          } | null;
-          short_description?: {
-            __typename?: "ComplexTextValue";
-            html: string;
-          } | null;
-          series?: Array<
-            | {
-                __typename?: "BundleProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "ConfigurableProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "DownloadableProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "GiftCardProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "GroupedProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "SimpleProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "VirtualProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | null
-          > | null;
-          categories?: Array<{
-            __typename?: "CategoryTree";
-            url_path?: string | null;
-            name?: string | null;
-          } | null> | null;
-          productLabel?:
-            | ({ __typename?: "Label" } & {
-                " $fragmentRefs"?: {
-                  ProductLabelFragment: ProductLabelFragment;
-                };
-              })
-            | null;
-        }
-      | {
-          __typename?: "SimpleProduct";
-          url_path?: string | null;
-          url_key?: string | null;
-          url_suffix?: string | null;
-          canonical_url?: string | null;
-          brand?: string | null;
-          color?: number | null;
-          configuration?: string | null;
-          country_of_manufacture?: string | null;
-          gift_message_available?: string | null;
-          id?: number | null;
-          is_returnable?: string | null;
-          manufacturer?: number | null;
-          meta_description?: string | null;
-          meta_keyword?: string | null;
-          meta_title?: string | null;
-          name?: string | null;
-          new_from_date?: string | null;
-          new_to_date?: string | null;
-          only_x_left_in_stock?: number | null;
-          options_container?: string | null;
-          rating_summary: number;
-          updated_at?: string | null;
-          uid: string;
-          type_id?: string | null;
-          tier_price?: number | null;
-          swatch_image?: string | null;
-          stock_status?: ProductStockStatus | null;
-          staged: boolean;
-          special_to_date?: string | null;
-          special_price?: number | null;
-          special_from_date?: string | null;
-          sku?: string | null;
-          size_filter?: string | null;
-          series_group?: string | null;
-          review_count: number;
-          webshopavailable?: number | null;
-          addable_to_cart?: number | null;
-          attribute_set_id?: number | null;
-          created_at?: string | null;
-          delivery_promise?: string | null;
-          ifsite?: string | null;
-          maintenance_description?: string | null;
-          description?: {
-            __typename?: "ComplexTextValue";
-            html: string;
-          } | null;
-          image?:
-            | ({ __typename?: "ProductImage" } & {
-                " $fragmentRefs"?: {
-                  ProductImageFragmentFragment: ProductImageFragmentFragment;
-                };
-              })
-            | null;
-          media_gallery?: Array<
-            | ({ __typename?: "ProductImage" } & {
-                " $fragmentRefs"?: {
-                  ProductMediaGallery_ProductImage_Fragment: ProductMediaGallery_ProductImage_Fragment;
-                };
-              })
-            | ({ __typename?: "ProductVideo" } & {
-                " $fragmentRefs"?: {
-                  ProductMediaGallery_ProductVideo_Fragment: ProductMediaGallery_ProductVideo_Fragment;
-                };
-              })
-            | null
-          > | null;
-          price_range: { __typename?: "PriceRange" } & {
-            " $fragmentRefs"?: {
-              ProductPriceRangeFragment: ProductPriceRangeFragment;
-            };
-          };
-          productBrand?: {
-            __typename?: "Brand";
-            brand_image_url?: string | null;
-            name?: string | null;
-          } | null;
-          product_links?: Array<{
-            __typename?: "ProductLinks";
-            link_type?: string | null;
-            linked_product_sku?: string | null;
-            linked_product_type?: string | null;
-            position?: number | null;
-            sku?: string | null;
-          } | null> | null;
-          small_image?: {
-            __typename?: "ProductImage";
-            disabled?: boolean | null;
-            label?: string | null;
-            position?: number | null;
-            url?: string | null;
-          } | null;
-          short_description?: {
-            __typename?: "ComplexTextValue";
-            html: string;
-          } | null;
-          series?: Array<
-            | {
-                __typename?: "BundleProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "ConfigurableProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "DownloadableProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "GiftCardProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "GroupedProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "SimpleProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "VirtualProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | null
-          > | null;
-          categories?: Array<{
-            __typename?: "CategoryTree";
-            url_path?: string | null;
-            name?: string | null;
-          } | null> | null;
-          productLabel?:
-            | ({ __typename?: "Label" } & {
-                " $fragmentRefs"?: {
-                  ProductLabelFragment: ProductLabelFragment;
-                };
-              })
-            | null;
-        }
-      | {
-          __typename?: "VirtualProduct";
-          url_path?: string | null;
-          url_key?: string | null;
-          url_suffix?: string | null;
-          canonical_url?: string | null;
-          brand?: string | null;
-          color?: number | null;
-          configuration?: string | null;
-          country_of_manufacture?: string | null;
-          gift_message_available?: string | null;
-          id?: number | null;
-          is_returnable?: string | null;
-          manufacturer?: number | null;
-          meta_description?: string | null;
-          meta_keyword?: string | null;
-          meta_title?: string | null;
-          name?: string | null;
-          new_from_date?: string | null;
-          new_to_date?: string | null;
-          only_x_left_in_stock?: number | null;
-          options_container?: string | null;
-          rating_summary: number;
-          updated_at?: string | null;
-          uid: string;
-          type_id?: string | null;
-          tier_price?: number | null;
-          swatch_image?: string | null;
-          stock_status?: ProductStockStatus | null;
-          staged: boolean;
-          special_to_date?: string | null;
-          special_price?: number | null;
-          special_from_date?: string | null;
-          sku?: string | null;
-          size_filter?: string | null;
-          series_group?: string | null;
-          review_count: number;
-          webshopavailable?: number | null;
-          addable_to_cart?: number | null;
-          attribute_set_id?: number | null;
-          created_at?: string | null;
-          delivery_promise?: string | null;
-          ifsite?: string | null;
-          maintenance_description?: string | null;
-          description?: {
-            __typename?: "ComplexTextValue";
-            html: string;
-          } | null;
-          image?:
-            | ({ __typename?: "ProductImage" } & {
-                " $fragmentRefs"?: {
-                  ProductImageFragmentFragment: ProductImageFragmentFragment;
-                };
-              })
-            | null;
-          media_gallery?: Array<
-            | ({ __typename?: "ProductImage" } & {
-                " $fragmentRefs"?: {
-                  ProductMediaGallery_ProductImage_Fragment: ProductMediaGallery_ProductImage_Fragment;
-                };
-              })
-            | ({ __typename?: "ProductVideo" } & {
-                " $fragmentRefs"?: {
-                  ProductMediaGallery_ProductVideo_Fragment: ProductMediaGallery_ProductVideo_Fragment;
-                };
-              })
-            | null
-          > | null;
-          price_range: { __typename?: "PriceRange" } & {
-            " $fragmentRefs"?: {
-              ProductPriceRangeFragment: ProductPriceRangeFragment;
-            };
-          };
-          productBrand?: {
-            __typename?: "Brand";
-            brand_image_url?: string | null;
-            name?: string | null;
-          } | null;
-          product_links?: Array<{
-            __typename?: "ProductLinks";
-            link_type?: string | null;
-            linked_product_sku?: string | null;
-            linked_product_type?: string | null;
-            position?: number | null;
-            sku?: string | null;
-          } | null> | null;
-          small_image?: {
-            __typename?: "ProductImage";
-            disabled?: boolean | null;
-            label?: string | null;
-            position?: number | null;
-            url?: string | null;
-          } | null;
-          short_description?: {
-            __typename?: "ComplexTextValue";
-            html: string;
-          } | null;
-          series?: Array<
-            | {
-                __typename?: "BundleProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "ConfigurableProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "DownloadableProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "GiftCardProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "GroupedProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "SimpleProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | {
-                __typename?: "VirtualProduct";
-                url_path?: string | null;
-                name?: string | null;
-              }
-            | null
-          > | null;
-          categories?: Array<{
-            __typename?: "CategoryTree";
-            url_path?: string | null;
-            name?: string | null;
-          } | null> | null;
-          productLabel?:
-            | ({ __typename?: "Label" } & {
-                " $fragmentRefs"?: {
-                  ProductLabelFragment: ProductLabelFragment;
-                };
-              })
-            | null;
-        }
+        })
+      | { __typename?: "DownloadableProduct" }
+      | { __typename?: "GiftCardProduct" }
+      | { __typename?: "GroupedProduct" }
+      | ({ __typename?: "SimpleProduct" } & {
+          " $fragmentRefs"?: { SimpleProductFragment: SimpleProductFragment };
+        })
+      | { __typename?: "VirtualProduct" }
       | null
     > | null;
   } | null;
@@ -22013,6 +22008,12 @@ export type RouteQuery = {
       }
     | null;
 };
+
+export type SimpleProductFragment = ({ __typename?: "SimpleProduct" } & {
+  " $fragmentRefs"?: {
+    BaseProduct_SimpleProduct_Fragment: BaseProduct_SimpleProduct_Fragment;
+  };
+}) & { " $fragmentName"?: "SimpleProductFragment" };
 
 export const CmsSalesBubbleFragmentDoc = {
   kind: "Document",
@@ -22149,6 +22150,1686 @@ export const CmsPopularProductsFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<CmsPopularProductsFragment, unknown>;
+export const ProductImageFragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductImageFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductImage" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ProductImageFragmentFragment, unknown>;
+export const ProductVideoFragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductVideoFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductVideo" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "video_content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "media_type" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_description" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_metadata" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_provider" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "video_title" } },
+                { kind: "Field", name: { kind: "Name", value: "video_url" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ProductVideoFragmentFragment, unknown>;
+export const ProductMediaGalleryFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductMediaGallery" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "MediaGalleryInterface" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "ProductImage" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductImageFragment" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "ProductVideo" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductVideoFragment" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductImageFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductImage" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductVideoFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductVideo" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "video_content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "media_type" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_description" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_metadata" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_provider" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "video_title" } },
+                { kind: "Field", name: { kind: "Name", value: "video_url" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ProductMediaGalleryFragment, unknown>;
+export const ProductPriceRangeFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductPriceRange" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PriceRange" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "maximum_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "discount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount_off" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "percent_off" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "final_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "fixed_product_taxes" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "currency" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "value" },
+                            },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "regular_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "minimum_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "discount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount_off" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "percent_off" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "final_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "fixed_product_taxes" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "currency" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "value" },
+                            },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "regular_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ProductPriceRangeFragment, unknown>;
+export const ProductLabelFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductLabel" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Label" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "custom" } },
+          { kind: "Field", name: { kind: "Name", value: "discount" } },
+          { kind: "Field", name: { kind: "Name", value: "new" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ProductLabelFragment, unknown>;
+export const BaseProductFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "BaseProduct" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductInterface" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "url_key" } },
+          { kind: "Field", name: { kind: "Name", value: "url_suffix" } },
+          { kind: "Field", name: { kind: "Name", value: "canonical_url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "country_of_manufacture" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "description" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "html" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "gift_message_available" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductImageFragment" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "is_returnable" } },
+          { kind: "Field", name: { kind: "Name", value: "manufacturer" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "media_gallery" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductMediaGallery" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "meta_description" } },
+          { kind: "Field", name: { kind: "Name", value: "meta_keyword" } },
+          { kind: "Field", name: { kind: "Name", value: "meta_title" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "new_from_date" } },
+          { kind: "Field", name: { kind: "Name", value: "new_to_date" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "only_x_left_in_stock" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "options_container" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "price_range" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductPriceRange" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "productBrand" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "brand_image_url" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "product_links" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "link_type" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "linked_product_sku" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "linked_product_type" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "position" } },
+                { kind: "Field", name: { kind: "Name", value: "sku" } },
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "ProductLinks" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "link_type" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "linked_product_sku" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "linked_product_type" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "position" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "sku" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "rating_summary" } },
+          { kind: "Field", name: { kind: "Name", value: "uid" } },
+          { kind: "Field", name: { kind: "Name", value: "swatch_image" } },
+          { kind: "Field", name: { kind: "Name", value: "stock_status" } },
+          { kind: "Field", name: { kind: "Name", value: "staged" } },
+          { kind: "Field", name: { kind: "Name", value: "special_to_date" } },
+          { kind: "Field", name: { kind: "Name", value: "special_price" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "small_image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "disabled" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "position" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "sku" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "short_description" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "html" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "review_count" } },
+          { kind: "Field", name: { kind: "Name", value: "addable_to_cart" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "series" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url_key" } },
+                { kind: "Field", name: { kind: "Name", value: "sku" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "categories" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url_path" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "productLabel" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductLabel" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductImageFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductImage" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductVideoFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductVideo" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "video_content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "media_type" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_description" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_metadata" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_provider" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "video_title" } },
+                { kind: "Field", name: { kind: "Name", value: "video_url" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductMediaGallery" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "MediaGalleryInterface" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "ProductImage" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductImageFragment" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "ProductVideo" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductVideoFragment" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductPriceRange" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PriceRange" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "maximum_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "discount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount_off" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "percent_off" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "final_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "fixed_product_taxes" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "currency" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "value" },
+                            },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "regular_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "minimum_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "discount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount_off" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "percent_off" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "final_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "fixed_product_taxes" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "currency" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "value" },
+                            },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "regular_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductLabel" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Label" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "custom" } },
+          { kind: "Field", name: { kind: "Name", value: "discount" } },
+          { kind: "Field", name: { kind: "Name", value: "new" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<BaseProductFragment, unknown>;
+export const ConfigurableProductOptionsFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ConfigurableProductOptions" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ConfigurableProductOptions" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "attribute_code" } },
+          { kind: "Field", name: { kind: "Name", value: "attribute_id" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "use_default" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "values" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "default_label" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "store_label" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "use_default_value" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "value_index" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ConfigurableProductOptionsFragment, unknown>;
+export const ConfigurableProductVariantsFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ConfigurableProductVariants" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ConfigurableVariant" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "attributes" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "code" } },
+                { kind: "Field", name: { kind: "Name", value: "value_index" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "product" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "url_key" } },
+                { kind: "Field", name: { kind: "Name", value: "sku" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ConfigurableProductVariantsFragment, unknown>;
+export const ConfigurableProductFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ConfigurableProduct" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ConfigurableProduct" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          {
+            kind: "FragmentSpread",
+            name: { kind: "Name", value: "BaseProduct" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "configurable_options" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ConfigurableProductOptions" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "variants" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ConfigurableProductVariants" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductImageFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductImage" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductVideoFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductVideo" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "video_content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "media_type" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_description" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_metadata" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_provider" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "video_title" } },
+                { kind: "Field", name: { kind: "Name", value: "video_url" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductMediaGallery" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "MediaGalleryInterface" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "ProductImage" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductImageFragment" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "ProductVideo" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductVideoFragment" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductPriceRange" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PriceRange" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "maximum_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "discount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount_off" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "percent_off" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "final_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "fixed_product_taxes" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "currency" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "value" },
+                            },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "regular_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "minimum_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "discount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount_off" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "percent_off" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "final_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "fixed_product_taxes" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "currency" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "value" },
+                            },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "regular_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductLabel" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Label" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "custom" } },
+          { kind: "Field", name: { kind: "Name", value: "discount" } },
+          { kind: "Field", name: { kind: "Name", value: "new" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "BaseProduct" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductInterface" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "url_key" } },
+          { kind: "Field", name: { kind: "Name", value: "url_suffix" } },
+          { kind: "Field", name: { kind: "Name", value: "canonical_url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "country_of_manufacture" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "description" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "html" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "gift_message_available" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductImageFragment" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "is_returnable" } },
+          { kind: "Field", name: { kind: "Name", value: "manufacturer" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "media_gallery" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductMediaGallery" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "meta_description" } },
+          { kind: "Field", name: { kind: "Name", value: "meta_keyword" } },
+          { kind: "Field", name: { kind: "Name", value: "meta_title" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "new_from_date" } },
+          { kind: "Field", name: { kind: "Name", value: "new_to_date" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "only_x_left_in_stock" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "options_container" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "price_range" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductPriceRange" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "productBrand" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "brand_image_url" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "product_links" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "link_type" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "linked_product_sku" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "linked_product_type" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "position" } },
+                { kind: "Field", name: { kind: "Name", value: "sku" } },
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "ProductLinks" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "link_type" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "linked_product_sku" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "linked_product_type" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "position" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "sku" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "rating_summary" } },
+          { kind: "Field", name: { kind: "Name", value: "uid" } },
+          { kind: "Field", name: { kind: "Name", value: "swatch_image" } },
+          { kind: "Field", name: { kind: "Name", value: "stock_status" } },
+          { kind: "Field", name: { kind: "Name", value: "staged" } },
+          { kind: "Field", name: { kind: "Name", value: "special_to_date" } },
+          { kind: "Field", name: { kind: "Name", value: "special_price" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "small_image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "disabled" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "position" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "sku" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "short_description" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "html" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "review_count" } },
+          { kind: "Field", name: { kind: "Name", value: "addable_to_cart" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "series" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url_key" } },
+                { kind: "Field", name: { kind: "Name", value: "sku" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "categories" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url_path" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "productLabel" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductLabel" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ConfigurableProductOptions" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ConfigurableProductOptions" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "attribute_code" } },
+          { kind: "Field", name: { kind: "Name", value: "attribute_id" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "use_default" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "values" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "default_label" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "store_label" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "use_default_value" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "value_index" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ConfigurableProductVariants" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ConfigurableVariant" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "attributes" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "code" } },
+                { kind: "Field", name: { kind: "Name", value: "value_index" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "product" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "url_key" } },
+                { kind: "Field", name: { kind: "Name", value: "sku" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ConfigurableProductFragment, unknown>;
 export const CmsLinkFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -22374,9 +24055,26 @@ export const CmsLinkBlockFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<CmsLinkBlockFragment, unknown>;
-export const ProductImageFragmentFragmentDoc = {
+export const SimpleProductFragmentDoc = {
   kind: "Document",
   definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SimpleProduct" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SimpleProduct" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "FragmentSpread",
+            name: { kind: "Name", value: "BaseProduct" },
+          },
+        ],
+      },
+    },
     {
       kind: "FragmentDefinition",
       name: { kind: "Name", value: "ProductImageFragment" },
@@ -22395,11 +24093,6 @@ export const ProductImageFragmentFragmentDoc = {
         ],
       },
     },
-  ],
-} as unknown as DocumentNode<ProductImageFragmentFragment, unknown>;
-export const ProductVideoFragmentFragmentDoc = {
-  kind: "Document",
-  definitions: [
     {
       kind: "FragmentDefinition",
       name: { kind: "Name", value: "ProductVideoFragment" },
@@ -22442,11 +24135,6 @@ export const ProductVideoFragmentFragmentDoc = {
         ],
       },
     },
-  ],
-} as unknown as DocumentNode<ProductVideoFragmentFragment, unknown>;
-export const ProductMediaGalleryFragmentDoc = {
-  kind: "Document",
-  definitions: [
     {
       kind: "FragmentDefinition",
       name: { kind: "Name", value: "ProductMediaGallery" },
@@ -22497,92 +24185,6 @@ export const ProductMediaGalleryFragmentDoc = {
         ],
       },
     },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ProductImageFragment" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "ProductImage" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "url" } },
-          { kind: "Field", name: { kind: "Name", value: "position" } },
-          { kind: "Field", name: { kind: "Name", value: "label" } },
-          { kind: "Field", name: { kind: "Name", value: "disabled" } },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ProductVideoFragment" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "ProductVideo" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "disabled" } },
-          { kind: "Field", name: { kind: "Name", value: "label" } },
-          { kind: "Field", name: { kind: "Name", value: "position" } },
-          { kind: "Field", name: { kind: "Name", value: "url" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "video_content" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "media_type" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "video_description" },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "video_metadata" },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "video_provider" },
-                },
-                { kind: "Field", name: { kind: "Name", value: "video_title" } },
-                { kind: "Field", name: { kind: "Name", value: "video_url" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<ProductMediaGalleryFragment, unknown>;
-export const ProductLabelFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ProductLabel" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "Label" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "custom" } },
-          { kind: "Field", name: { kind: "Name", value: "discount" } },
-          { kind: "Field", name: { kind: "Name", value: "new" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<ProductLabelFragment, unknown>;
-export const ProductPriceRangeFragmentDoc = {
-  kind: "Document",
-  definitions: [
     {
       kind: "FragmentDefinition",
       name: { kind: "Name", value: "ProductPriceRange" },
@@ -22758,8 +24360,253 @@ export const ProductPriceRangeFragmentDoc = {
         ],
       },
     },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductLabel" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Label" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "custom" } },
+          { kind: "Field", name: { kind: "Name", value: "discount" } },
+          { kind: "Field", name: { kind: "Name", value: "new" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "BaseProduct" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductInterface" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "url_key" } },
+          { kind: "Field", name: { kind: "Name", value: "url_suffix" } },
+          { kind: "Field", name: { kind: "Name", value: "canonical_url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "country_of_manufacture" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "description" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "html" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "gift_message_available" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductImageFragment" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "is_returnable" } },
+          { kind: "Field", name: { kind: "Name", value: "manufacturer" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "media_gallery" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductMediaGallery" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "meta_description" } },
+          { kind: "Field", name: { kind: "Name", value: "meta_keyword" } },
+          { kind: "Field", name: { kind: "Name", value: "meta_title" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "new_from_date" } },
+          { kind: "Field", name: { kind: "Name", value: "new_to_date" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "only_x_left_in_stock" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "options_container" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "price_range" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductPriceRange" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "productBrand" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "brand_image_url" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "product_links" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "link_type" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "linked_product_sku" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "linked_product_type" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "position" } },
+                { kind: "Field", name: { kind: "Name", value: "sku" } },
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "ProductLinks" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "link_type" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "linked_product_sku" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "linked_product_type" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "position" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "sku" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "rating_summary" } },
+          { kind: "Field", name: { kind: "Name", value: "uid" } },
+          { kind: "Field", name: { kind: "Name", value: "swatch_image" } },
+          { kind: "Field", name: { kind: "Name", value: "stock_status" } },
+          { kind: "Field", name: { kind: "Name", value: "staged" } },
+          { kind: "Field", name: { kind: "Name", value: "special_to_date" } },
+          { kind: "Field", name: { kind: "Name", value: "special_price" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "small_image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "disabled" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "position" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "sku" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "short_description" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "html" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "review_count" } },
+          { kind: "Field", name: { kind: "Name", value: "addable_to_cart" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "series" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url_key" } },
+                { kind: "Field", name: { kind: "Name", value: "sku" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "categories" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url_path" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "productLabel" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductLabel" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
   ],
-} as unknown as DocumentNode<ProductPriceRangeFragment, unknown>;
+} as unknown as DocumentNode<SimpleProductFragment, unknown>;
 export const CategoryDocument = {
   kind: "Document",
   definitions: [
@@ -23444,52 +25291,27 @@ export const ProductsDocument = {
                     kind: "SelectionSet",
                     selections: [
                       {
-                        kind: "Field",
-                        name: { kind: "Name", value: "url_path" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "url_key" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "url_suffix" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "canonical_url" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "brand" } },
-                      { kind: "Field", name: { kind: "Name", value: "color" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "configuration" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "country_of_manufacture" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "description" },
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "SimpleProduct" },
+                        },
                         selectionSet: {
                           kind: "SelectionSet",
                           selections: [
                             {
-                              kind: "Field",
-                              name: { kind: "Name", value: "html" },
+                              kind: "FragmentSpread",
+                              name: { kind: "Name", value: "SimpleProduct" },
                             },
                           ],
                         },
                       },
                       {
-                        kind: "Field",
-                        name: { kind: "Name", value: "gift_message_available" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "id" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "image" },
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "ConfigurableProduct" },
+                        },
                         selectionSet: {
                           kind: "SelectionSet",
                           selections: [
@@ -23497,337 +25319,8 @@ export const ProductsDocument = {
                               kind: "FragmentSpread",
                               name: {
                                 kind: "Name",
-                                value: "ProductImageFragment",
+                                value: "ConfigurableProduct",
                               },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "is_returnable" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "manufacturer" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "media_gallery" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "FragmentSpread",
-                              name: {
-                                kind: "Name",
-                                value: "ProductMediaGallery",
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "meta_description" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "meta_keyword" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "meta_title" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "name" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "new_from_date" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "new_to_date" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "only_x_left_in_stock" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "options_container" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "price_range" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "FragmentSpread",
-                              name: {
-                                kind: "Name",
-                                value: "ProductPriceRange",
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "productBrand" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "brand_image_url" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "name" },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "product_links" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "link_type" },
-                            },
-                            {
-                              kind: "Field",
-                              name: {
-                                kind: "Name",
-                                value: "linked_product_sku",
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: {
-                                kind: "Name",
-                                value: "linked_product_type",
-                              },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "position" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "sku" },
-                            },
-                            {
-                              kind: "InlineFragment",
-                              typeCondition: {
-                                kind: "NamedType",
-                                name: { kind: "Name", value: "ProductLinks" },
-                              },
-                              selectionSet: {
-                                kind: "SelectionSet",
-                                selections: [
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "link_type" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: {
-                                      kind: "Name",
-                                      value: "linked_product_sku",
-                                    },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: {
-                                      kind: "Name",
-                                      value: "linked_product_type",
-                                    },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "position" },
-                                  },
-                                  {
-                                    kind: "Field",
-                                    name: { kind: "Name", value: "sku" },
-                                  },
-                                ],
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "rating_summary" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "updated_at" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "uid" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "type_id" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "tier_price" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "swatch_image" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "stock_status" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "staged" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "special_to_date" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "special_price" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "special_from_date" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "small_image" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "disabled" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "label" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "position" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "url" },
-                            },
-                          ],
-                        },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "sku" } },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "size_filter" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "short_description" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "html" },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "series_group" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "review_count" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "webshopavailable" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "addable_to_cart" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "attribute_set_id" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "created_at" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "delivery_promise" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "ifsite" },
-                      },
-                      {
-                        kind: "Field",
-                        name: {
-                          kind: "Name",
-                          value: "maintenance_description",
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "series" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "url_path" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "name" },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "categories" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "url_path" },
-                            },
-                            {
-                              kind: "Field",
-                              name: { kind: "Name", value: "name" },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "productLabel" },
-                        selectionSet: {
-                          kind: "SelectionSet",
-                          selections: [
-                            {
-                              kind: "FragmentSpread",
-                              name: { kind: "Name", value: "ProductLabel" },
                             },
                           ],
                         },
@@ -24139,6 +25632,381 @@ export const ProductsDocument = {
           { kind: "Field", name: { kind: "Name", value: "custom" } },
           { kind: "Field", name: { kind: "Name", value: "discount" } },
           { kind: "Field", name: { kind: "Name", value: "new" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "BaseProduct" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductInterface" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "url_key" } },
+          { kind: "Field", name: { kind: "Name", value: "url_suffix" } },
+          { kind: "Field", name: { kind: "Name", value: "canonical_url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "country_of_manufacture" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "description" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "html" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "gift_message_available" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductImageFragment" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "is_returnable" } },
+          { kind: "Field", name: { kind: "Name", value: "manufacturer" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "media_gallery" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductMediaGallery" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "meta_description" } },
+          { kind: "Field", name: { kind: "Name", value: "meta_keyword" } },
+          { kind: "Field", name: { kind: "Name", value: "meta_title" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "new_from_date" } },
+          { kind: "Field", name: { kind: "Name", value: "new_to_date" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "only_x_left_in_stock" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "options_container" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "price_range" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductPriceRange" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "productBrand" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "brand_image_url" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "product_links" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "link_type" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "linked_product_sku" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "linked_product_type" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "position" } },
+                { kind: "Field", name: { kind: "Name", value: "sku" } },
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "ProductLinks" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "link_type" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "linked_product_sku" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "linked_product_type" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "position" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "sku" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "rating_summary" } },
+          { kind: "Field", name: { kind: "Name", value: "uid" } },
+          { kind: "Field", name: { kind: "Name", value: "swatch_image" } },
+          { kind: "Field", name: { kind: "Name", value: "stock_status" } },
+          { kind: "Field", name: { kind: "Name", value: "staged" } },
+          { kind: "Field", name: { kind: "Name", value: "special_to_date" } },
+          { kind: "Field", name: { kind: "Name", value: "special_price" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "small_image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "disabled" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "position" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "sku" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "short_description" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "html" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "review_count" } },
+          { kind: "Field", name: { kind: "Name", value: "addable_to_cart" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "series" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url_key" } },
+                { kind: "Field", name: { kind: "Name", value: "sku" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "categories" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url_path" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "productLabel" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductLabel" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ConfigurableProductOptions" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ConfigurableProductOptions" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "attribute_code" } },
+          { kind: "Field", name: { kind: "Name", value: "attribute_id" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "use_default" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "values" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "default_label" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "store_label" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "use_default_value" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "value_index" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ConfigurableProductVariants" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ConfigurableVariant" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "attributes" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "code" } },
+                { kind: "Field", name: { kind: "Name", value: "value_index" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "product" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "url_key" } },
+                { kind: "Field", name: { kind: "Name", value: "sku" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "SimpleProduct" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SimpleProduct" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "FragmentSpread",
+            name: { kind: "Name", value: "BaseProduct" },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ConfigurableProduct" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ConfigurableProduct" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          {
+            kind: "FragmentSpread",
+            name: { kind: "Name", value: "BaseProduct" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "configurable_options" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ConfigurableProductOptions" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "variants" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ConfigurableProductVariants" },
+                },
+              ],
+            },
+          },
         ],
       },
     },

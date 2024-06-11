@@ -3,10 +3,10 @@
 import React from "react";
 
 import { Accordion } from "@/components/_ui/accordion/Accordion";
-import { ProductEntity } from "@/modules/product/types";
+import { BaseProductFragment } from "@/types";
 
 interface Props {
-  product: ProductEntity;
+  product: BaseProductFragment;
 }
 
 export const InformationAccordion: React.FC<Props> = ({ product }) => {

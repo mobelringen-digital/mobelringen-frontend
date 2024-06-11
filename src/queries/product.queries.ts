@@ -99,101 +99,100 @@ export const ProductPriceRangeFragment = graphql(`
   }
 `);
 
+export const BaseProductFragment = graphql(`
+  fragment BaseProduct on ProductInterface {
+    __typename
+    url_key
+    url_suffix
+    canonical_url
+    country_of_manufacture
+    description {
+      html
+    }
+    gift_message_available
+    image {
+      ...ProductImageFragment
+    }
+    is_returnable
+    manufacturer
+    media_gallery {
+      ...ProductMediaGallery
+    }
+    meta_description
+    meta_keyword
+    meta_title
+    name
+    new_from_date
+    new_to_date
+    only_x_left_in_stock
+    options_container
+    price_range {
+      ...ProductPriceRange
+    }
+    productBrand {
+      brand_image_url
+      name
+    }
+    product_links {
+      link_type
+      linked_product_sku
+      linked_product_type
+      position
+      sku
+      ... on ProductLinks {
+        link_type
+        linked_product_sku
+        linked_product_type
+        position
+        sku
+      }
+    }
+    rating_summary
+    uid
+    swatch_image
+    stock_status
+    staged
+    special_to_date
+    special_price
+    small_image {
+      disabled
+      label
+      position
+      url
+    }
+    sku
+    short_description {
+      html
+    }
+    review_count
+    addable_to_cart
+    series {
+      url_key
+      sku
+      image {
+        url
+      }
+      name
+    }
+    categories {
+      url_path
+      name
+    }
+    productLabel {
+      ...ProductLabel
+    }
+  }
+`);
+
 export const ProductsQueryDocument = graphql(`
   query Products($pageSize: Int = 12, $filter: ProductAttributeFilterInput) {
     products(pageSize: $pageSize, filter: $filter) {
       items {
-        url_path
-        url_key
-        url_suffix
-        canonical_url
-        brand
-        color
-        configuration
-        country_of_manufacture
-        description {
-          html
+        ... on SimpleProduct {
+          ...SimpleProduct
         }
-        gift_message_available
-        id
-        image {
-          ...ProductImageFragment
-        }
-        is_returnable
-        manufacturer
-        media_gallery {
-          ...ProductMediaGallery
-        }
-        meta_description
-        meta_keyword
-        meta_title
-        name
-        new_from_date
-        new_to_date
-        only_x_left_in_stock
-        options_container
-        price_range {
-          ...ProductPriceRange
-        }
-        productBrand {
-          brand_image_url
-          name
-        }
-        product_links {
-          link_type
-          linked_product_sku
-          linked_product_type
-          position
-          sku
-          ... on ProductLinks {
-            link_type
-            linked_product_sku
-            linked_product_type
-            position
-            sku
-          }
-        }
-        rating_summary
-        updated_at
-        uid
-        type_id
-        tier_price
-        swatch_image
-        stock_status
-        staged
-        special_to_date
-        special_price
-        special_from_date
-        small_image {
-          disabled
-          label
-          position
-          url
-        }
-        sku
-        size_filter
-        short_description {
-          html
-        }
-        series_group
-        review_count
-        webshopavailable
-        addable_to_cart
-        attribute_set_id
-        created_at
-        delivery_promise
-        ifsite
-        maintenance_description
-        series {
-          url_path
-          name
-        }
-        categories {
-          url_path
-          name
-        }
-        productLabel {
-          ...ProductLabel
+        ... on ConfigurableProduct {
+          ...ConfigurableProduct
         }
       }
     }

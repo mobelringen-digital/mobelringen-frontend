@@ -1,7 +1,5 @@
 import React from "react";
 
-import { Metadata } from "next";
-
 import { notFound } from "next/navigation";
 
 import { CategoryPage } from "@/modules/category/category/CategoryPage";
@@ -15,8 +13,7 @@ import { generatePrettyUrl } from "@/utils/helpers";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
 type Props = {
-  params: { url: Array<string> };
-  searchParams: { [key: string]: string | string[] | undefined };
+  url: string;
 };
 
 async function getCategory(url: string) {
@@ -26,23 +23,6 @@ async function getCategory(url: string) {
       filters: { url_path: { eq: url } },
     },
   );
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const url = generatePrettyUrl(params.url, {
-    removeTrailSlash: true,
-  });
-
-  const data = await getCategory(url);
-
-  if (data.categories?.items && data.categories.items.length === 0) {
-    return notFound();
-  }
-
-  return {
-    title: data.categories?.items?.[0]?.meta_title,
-    description: data.categories?.items?.[0]?.meta_description,
-  };
 }
 
 const isLastCategoryInTree = (category: CategoryItemEntity) => {
@@ -75,10 +55,7 @@ async function getLastCategoryWithChildren(
   return category;
 }
 
-export default async function Category({ params }: Props) {
-  const url = generatePrettyUrl(params.url, {
-    removeTrailSlash: true,
-  });
+export default async function Category({ url }: Props) {
   const category = await getCategory(url);
   const currentCategory = category.categories?.items?.[0];
 
