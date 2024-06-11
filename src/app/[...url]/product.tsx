@@ -27,5 +27,17 @@ export default async function Product({ sku }: Props) {
     return notFound();
   }
 
-  return <ProductPage product={product.products.items[0]} />;
+  return (
+    <>
+      <title>
+        {product.products.items[0].meta_title ??
+          product.products?.items[0].name}
+      </title>
+      <meta
+        name="description"
+        content={product.products.items[0].meta_description ?? ""}
+      />
+      <ProductPage product={product.products.items[0]} />
+    </>
+  );
 }

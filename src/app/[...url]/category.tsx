@@ -100,6 +100,11 @@ export default async function Category({ params }: Props) {
 
   return (
     <>
+      <title>{currentCategory.meta_title ?? currentCategory.name}</title>
+      <meta
+        name="description"
+        content={currentCategory.meta_description ?? ""}
+      />
       {subCategoriesData ? (
         <SubCategoriesSelect category={subCategoriesData} url={url} />
       ) : null}
