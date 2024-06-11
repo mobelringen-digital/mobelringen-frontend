@@ -8,9 +8,15 @@ interface Props {
   variantData?: Array<
     FragmentType<typeof ConfigurableProductVariantsFragment>
   > | null;
+  selectedVariant: string | null;
+  setSelectedVariant: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-export const Variants: React.FC<Props> = ({ variantData }) => {
+export const Variants: React.FC<Props> = ({
+  variantData,
+  selectedVariant,
+  setSelectedVariant,
+}) => {
   const variants = useFragment(
     ConfigurableProductVariantsFragment,
     variantData,
@@ -18,7 +24,14 @@ export const Variants: React.FC<Props> = ({ variantData }) => {
 
   return (
     <div className="flex flex-wrap gap-4">
-      {variants?.map((variant, idx) => <Variant variant={variant} key={idx} />)}
+      {variants?.map((variant, idx) => (
+        <Variant
+          selectedVariant={selectedVariant}
+          setSelectedVariant={setSelectedVariant}
+          variant={variant}
+          key={idx}
+        />
+      ))}
     </div>
   );
 };

@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import { PurchaseBlock } from "@/modules/product/add-to-cart/PurchaseBlock";
@@ -15,14 +17,23 @@ export const ConfigurableProductPage: React.FC<Props> = ({ productData }) => {
   const product = useFragment(ConfigurableProductFragment, productData);
   const baseProductData = useFragment(BaseProductFragment, product);
 
+  const [selectedVariant, setSelectedVariant] = React.useState<string | null>(
+    null,
+  );
+
   return (
     <BaseProductLayout
       baseProductData={baseProductData}
       purchaseBlock={<PurchaseBlock />}
       configurationBlock={
         <>
-          {/*@ts-expect-error Issue with codegen array type*/}
-          <Variants variantData={product.variants} />
+          <div className="flex gap-2"> Selected: {selectedVariant}</div>
+          <Variants
+            // @ts-expect-error codegen error with array
+            variantData={product.variants}
+            selectedVariant={selectedVariant}
+            setSelectedVariant={setSelectedVariant}
+          />
         </>
       }
     />
