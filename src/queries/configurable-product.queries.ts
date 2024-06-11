@@ -2,19 +2,20 @@ import { graphql } from "@/types/schema";
 
 export const ConfigurableProductOptionsFragment = graphql(`
   fragment ConfigurableProductOptions on ConfigurableProductOptions {
-    attribute_code
-    attribute_id
-    id
-    label
-    position
-    use_default
+    __typename
     values {
       default_label
       label
       store_label
+      uid
       use_default_value
-      value_index
     }
+    attribute_code
+    attribute_uid
+    label
+    position
+    uid
+    use_default
   }
 `);
 

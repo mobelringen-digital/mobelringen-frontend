@@ -2057,6 +2057,8 @@ export type BundleProduct = CustomizableProductInterface &
     attribute_set_id?: Maybe<Scalars["Int"]["output"]>;
     /** @deprecated Use the `custom_attributes` field instead. */
     brand?: Maybe<Scalars["String"]["output"]>;
+    /** Campaign period for special product price.  */
+    campaign_period?: Maybe<Scalars["String"]["output"]>;
     /** The relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled. */
     canonical_url?: Maybe<Scalars["String"]["output"]>;
     /** The categories assigned to a product. */
@@ -3060,6 +3062,8 @@ export type ConfigurableProduct = CustomizableProductInterface &
     attribute_set_id?: Maybe<Scalars["Int"]["output"]>;
     /** @deprecated Use the `custom_attributes` field instead. */
     brand?: Maybe<Scalars["String"]["output"]>;
+    /** Campaign period for special product price.  */
+    campaign_period?: Maybe<Scalars["String"]["output"]>;
     /** The relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled. */
     canonical_url?: Maybe<Scalars["String"]["output"]>;
     /** The categories assigned to a product. */
@@ -6365,6 +6369,8 @@ export type DownloadableProduct = CustomizableProductInterface &
     attribute_set_id?: Maybe<Scalars["Int"]["output"]>;
     /** @deprecated Use the `custom_attributes` field instead. */
     brand?: Maybe<Scalars["String"]["output"]>;
+    /** Campaign period for special product price.  */
+    campaign_period?: Maybe<Scalars["String"]["output"]>;
     /** The relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled. */
     canonical_url?: Maybe<Scalars["String"]["output"]>;
     /** The categories assigned to a product. */
@@ -7120,6 +7126,8 @@ export type GiftCardProduct = CustomizableProductInterface &
     attribute_set_id?: Maybe<Scalars["Int"]["output"]>;
     /** @deprecated Use the `custom_attributes` field instead. */
     brand?: Maybe<Scalars["String"]["output"]>;
+    /** Campaign period for special product price.  */
+    campaign_period?: Maybe<Scalars["String"]["output"]>;
     /** The relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled. */
     canonical_url?: Maybe<Scalars["String"]["output"]>;
     /** The categories assigned to a product. */
@@ -7735,6 +7743,8 @@ export type GroupedProduct = PhysicalProductInterface &
     attribute_set_id?: Maybe<Scalars["Int"]["output"]>;
     /** @deprecated Use the `custom_attributes` field instead. */
     brand?: Maybe<Scalars["String"]["output"]>;
+    /** Campaign period for special product price.  */
+    campaign_period?: Maybe<Scalars["String"]["output"]>;
     /** The relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled. */
     canonical_url?: Maybe<Scalars["String"]["output"]>;
     /** The categories assigned to a product. */
@@ -14438,6 +14448,8 @@ export type ProductInterface = {
   attribute_set_id?: Maybe<Scalars["Int"]["output"]>;
   /** @deprecated Use the `custom_attributes` field instead. */
   brand?: Maybe<Scalars["String"]["output"]>;
+  /** Campaign period for special product price.  */
+  campaign_period?: Maybe<Scalars["String"]["output"]>;
   /** The relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled. */
   canonical_url?: Maybe<Scalars["String"]["output"]>;
   /** The categories assigned to a product. */
@@ -18585,6 +18597,8 @@ export type SimpleProduct = CustomizableProductInterface &
     attribute_set_id?: Maybe<Scalars["Int"]["output"]>;
     /** @deprecated Use the `custom_attributes` field instead. */
     brand?: Maybe<Scalars["String"]["output"]>;
+    /** Campaign period for special product price.  */
+    campaign_period?: Maybe<Scalars["String"]["output"]>;
     /** The relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled. */
     canonical_url?: Maybe<Scalars["String"]["output"]>;
     /** The categories assigned to a product. */
@@ -20064,6 +20078,8 @@ export type VirtualProduct = CustomizableProductInterface &
     attribute_set_id?: Maybe<Scalars["Int"]["output"]>;
     /** @deprecated Use the `custom_attributes` field instead. */
     brand?: Maybe<Scalars["String"]["output"]>;
+    /** Campaign period for special product price.  */
+    campaign_period?: Maybe<Scalars["String"]["output"]>;
     /** The relative canonical URL. This value is returned only if the system setting 'Use Canonical Link Meta Tag For Products' is enabled. */
     canonical_url?: Maybe<Scalars["String"]["output"]>;
     /** The categories assigned to a product. */
@@ -20682,20 +20698,20 @@ export type CmsPopularProductsFragment = {
 } & { " $fragmentName"?: "CmsPopularProductsFragment" };
 
 export type ConfigurableProductOptionsFragment = {
-  __typename?: "ConfigurableProductOptions";
+  __typename: "ConfigurableProductOptions";
   attribute_code?: string | null;
-  attribute_id?: string | null;
-  id?: number | null;
+  attribute_uid: string;
   label?: string | null;
   position?: number | null;
+  uid: string;
   use_default?: boolean | null;
   values?: Array<{
     __typename?: "ConfigurableProductOptionsValues";
     default_label?: string | null;
     label?: string | null;
     store_label?: string | null;
+    uid?: string | null;
     use_default_value?: boolean | null;
-    value_index?: number | null;
   } | null> | null;
 } & { " $fragmentName"?: "ConfigurableProductOptionsFragment" };
 
@@ -23084,12 +23100,7 @@ export const ConfigurableProductOptionsFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
-          { kind: "Field", name: { kind: "Name", value: "attribute_code" } },
-          { kind: "Field", name: { kind: "Name", value: "attribute_id" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "label" } },
-          { kind: "Field", name: { kind: "Name", value: "position" } },
-          { kind: "Field", name: { kind: "Name", value: "use_default" } },
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "values" },
@@ -23102,14 +23113,20 @@ export const ConfigurableProductOptionsFragmentDoc = {
                 },
                 { kind: "Field", name: { kind: "Name", value: "label" } },
                 { kind: "Field", name: { kind: "Name", value: "store_label" } },
+                { kind: "Field", name: { kind: "Name", value: "uid" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "use_default_value" },
                 },
-                { kind: "Field", name: { kind: "Name", value: "value_index" } },
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "attribute_code" } },
+          { kind: "Field", name: { kind: "Name", value: "attribute_uid" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "uid" } },
+          { kind: "Field", name: { kind: "Name", value: "use_default" } },
         ],
       },
     },
@@ -23753,12 +23770,7 @@ export const ConfigurableProductFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
-          { kind: "Field", name: { kind: "Name", value: "attribute_code" } },
-          { kind: "Field", name: { kind: "Name", value: "attribute_id" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "label" } },
-          { kind: "Field", name: { kind: "Name", value: "position" } },
-          { kind: "Field", name: { kind: "Name", value: "use_default" } },
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "values" },
@@ -23771,14 +23783,20 @@ export const ConfigurableProductFragmentDoc = {
                 },
                 { kind: "Field", name: { kind: "Name", value: "label" } },
                 { kind: "Field", name: { kind: "Name", value: "store_label" } },
+                { kind: "Field", name: { kind: "Name", value: "uid" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "use_default_value" },
                 },
-                { kind: "Field", name: { kind: "Name", value: "value_index" } },
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "attribute_code" } },
+          { kind: "Field", name: { kind: "Name", value: "attribute_uid" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "uid" } },
+          { kind: "Field", name: { kind: "Name", value: "use_default" } },
         ],
       },
     },
@@ -25874,12 +25892,7 @@ export const ProductsDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
-          { kind: "Field", name: { kind: "Name", value: "attribute_code" } },
-          { kind: "Field", name: { kind: "Name", value: "attribute_id" } },
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "label" } },
-          { kind: "Field", name: { kind: "Name", value: "position" } },
-          { kind: "Field", name: { kind: "Name", value: "use_default" } },
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "values" },
@@ -25892,14 +25905,20 @@ export const ProductsDocument = {
                 },
                 { kind: "Field", name: { kind: "Name", value: "label" } },
                 { kind: "Field", name: { kind: "Name", value: "store_label" } },
+                { kind: "Field", name: { kind: "Name", value: "uid" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "use_default_value" },
                 },
-                { kind: "Field", name: { kind: "Name", value: "value_index" } },
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "attribute_code" } },
+          { kind: "Field", name: { kind: "Name", value: "attribute_uid" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "uid" } },
+          { kind: "Field", name: { kind: "Name", value: "use_default" } },
         ],
       },
     },
