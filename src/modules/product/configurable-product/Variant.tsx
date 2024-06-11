@@ -8,10 +8,7 @@ import Image from "next/image";
 
 import { useActiveProductData } from "@/modules/product/active-product-data-provider/useActiveProductData";
 import { BaseProductFragment } from "@/queries/product.queries";
-import {
-  ConfigurableProductVariantsFragment,
-  ProductImageFragmentFragment,
-} from "@/types";
+import { ConfigurableProductVariantsFragment } from "@/types";
 import { useFragment } from "@/types/schema";
 
 interface Props {
@@ -54,10 +51,10 @@ export const Variant: React.FC<Props> = ({ variant }) => {
       )}
     >
       <Image
-        src={(variantProduct.image as ProductImageFragmentFragment)?.url ?? ""}
+        src={variantProduct.small_image?.url ?? ""}
         alt={variantProduct.sku ?? ""}
-        width={48}
-        height={48}
+        width={45}
+        height={45}
       />
     </button>
   );

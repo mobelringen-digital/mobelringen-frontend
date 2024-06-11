@@ -21,8 +21,8 @@ export const Breadcrumbs: React.FC<Props> = ({ data }) => {
         <span className="text-grey text-xs lg:text-sm">/</span>
       </li>
       {data.map((link, idx) => (
-        <>
-          <li key={idx}>
+        <React.Fragment key={idx}>
+          <li>
             <Link
               className="text-grey text-xs lg:text-sm hover:underline"
               href={link.url}
@@ -35,7 +35,7 @@ export const Breadcrumbs: React.FC<Props> = ({ data }) => {
               <span className="text-grey  text-xs lg:text-sm">/</span>
             </li>
           ) : null}
-        </>
+        </React.Fragment>
       ))}
     </ul>
   );

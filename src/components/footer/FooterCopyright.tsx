@@ -19,11 +19,13 @@ export const FooterCopyright: React.FC<Props> = ({ data }) => {
     <div className="flex flex-col lg:flex-row justify-center lg:justify-between items-center mt-8 text-sm">
       <div className="flex gap-2 mb-8 lg:mb-0 text-xs lg:text-sm">
         <span className="mr-6">© Møbelringen 2024</span>
-        {data.links.map((link, idx) =>
-          link.__typename === "Link" ? (
-            <CmsLink data={link} key={idx} className="hover:underline" />
-          ) : null,
-        )}
+        {data.links.map((link, idx) => (
+          <React.Fragment key={idx}>
+            {link.__typename === "Link" ? (
+              <CmsLink data={link} className="hover:underline" />
+            ) : null}
+          </React.Fragment>
+        ))}
       </div>
       <div className="flex items-center gap-2">
         <Image src="/logo/visa.png" alt="visa" width={48} height={16} />

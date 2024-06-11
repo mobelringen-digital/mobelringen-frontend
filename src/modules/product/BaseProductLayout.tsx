@@ -28,12 +28,12 @@ export const BaseProductLayout: React.FC<Props> = ({
   configurationBlock,
 }) => {
   const { activeProductVariant } = useActiveProductData();
-  const activeProductData = useFragment(
+  const activeProductVariantData = useFragment(
     BaseProductFragment,
     activeProductVariant.variant?.product,
   );
 
-  const product = activeProductData ?? baseProductData;
+  const product = activeProductVariantData ?? baseProductData;
 
   return (
     <ContainerLayout>

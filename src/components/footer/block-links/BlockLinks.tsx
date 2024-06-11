@@ -18,21 +18,18 @@ export const BlockLinks: React.FC<Props> = ({ data }) => {
     >
       <span className="text-sm font-bold">{block.label}</span>
       <div>
-        {block.links?.map((link, idx) => {
-          if (link.__typename === "Link") {
-            return (
+        {block.links?.map((link, idx) => (
+          <React.Fragment key={idx}>
+            {link.__typename === "Link" ? (
               <CmsLink
                 className="text-sm py-1 hover:underline"
                 data={link}
-                key={idx}
                 iconWidth={18}
                 iconHeight={18}
               />
-            );
-          }
-
-          return null;
-        })}
+            ) : null}
+          </React.Fragment>
+        ))}
       </div>
     </div>
   );

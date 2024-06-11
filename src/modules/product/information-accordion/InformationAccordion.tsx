@@ -16,7 +16,7 @@ export const InformationAccordion: React.FC<Props> = ({ product }) => {
         {
           title: "Om produktet",
           content: (
-            <div
+            <p
               dangerouslySetInnerHTML={{
                 __html: product?.description?.html ?? "",
               }}

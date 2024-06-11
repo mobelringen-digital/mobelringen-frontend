@@ -32,7 +32,7 @@ export const Accordion: React.FC<Props> = ({ data }) => {
           title={item.title}
           key={idx}
         >
-          <p className="text-sm lg:text-base font-normal">{item.content}</p>
+          <div className="text-sm lg:text-base font-normal">{item.content}</div>
         </AccordionItem>
       ))}
     </NextUIAccordion>
