@@ -21946,6 +21946,74 @@ export type ProductsQuery = {
   } | null;
 };
 
+export type RouteQueryVariables = Exact<{
+  url: Scalars["String"]["input"];
+}>;
+
+export type RouteQuery = {
+  __typename?: "Query";
+  route?:
+    | {
+        __typename?: "BundleProduct";
+        redirect_code: number;
+        relative_url?: string | null;
+        type?: UrlRewriteEntityTypeEnum | null;
+      }
+    | {
+        __typename?: "CategoryTree";
+        redirect_code: number;
+        relative_url?: string | null;
+        type?: UrlRewriteEntityTypeEnum | null;
+      }
+    | {
+        __typename?: "CmsPage";
+        redirect_code: number;
+        relative_url?: string | null;
+        type?: UrlRewriteEntityTypeEnum | null;
+      }
+    | {
+        __typename: "ConfigurableProduct";
+        name?: string | null;
+        sku?: string | null;
+        redirect_code: number;
+        relative_url?: string | null;
+        type?: UrlRewriteEntityTypeEnum | null;
+      }
+    | {
+        __typename?: "DownloadableProduct";
+        redirect_code: number;
+        relative_url?: string | null;
+        type?: UrlRewriteEntityTypeEnum | null;
+      }
+    | {
+        __typename?: "GiftCardProduct";
+        redirect_code: number;
+        relative_url?: string | null;
+        type?: UrlRewriteEntityTypeEnum | null;
+      }
+    | {
+        __typename?: "GroupedProduct";
+        redirect_code: number;
+        relative_url?: string | null;
+        type?: UrlRewriteEntityTypeEnum | null;
+      }
+    | {
+        __typename: "SimpleProduct";
+        name?: string | null;
+        sku?: string | null;
+        redirect_code: number;
+        relative_url?: string | null;
+        type?: UrlRewriteEntityTypeEnum | null;
+      }
+    | {
+        __typename?: "VirtualProduct";
+        redirect_code: number;
+        relative_url?: string | null;
+        type?: UrlRewriteEntityTypeEnum | null;
+      }
+    | null;
+};
+
 export const CmsSalesBubbleFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -24076,3 +24144,95 @@ export const ProductsDocument = {
     },
   ],
 } as unknown as DocumentNode<ProductsQuery, ProductsQueryVariables>;
+export const RouteDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "Route" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "url" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "route" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "url" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "url" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "redirect_code" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "relative_url" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "type" } },
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "SimpleProduct" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      { kind: "Field", name: { kind: "Name", value: "sku" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "ConfigurableProduct" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      { kind: "Field", name: { kind: "Name", value: "sku" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<RouteQuery, RouteQueryVariables>;

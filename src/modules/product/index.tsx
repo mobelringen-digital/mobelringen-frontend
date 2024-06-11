@@ -24,7 +24,7 @@ export const ProductPage: React.FC<Props> = ({ product }) => {
             .filter((c) => !c?.url_path?.includes("merker"))
             .map((cat) => ({
               label: cat?.name ?? "",
-              url: `/c/${cat?.url_path}`,
+              url: `/${cat?.url_path}`,
             }))}
         />
       ) : null}

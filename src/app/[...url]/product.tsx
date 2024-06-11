@@ -5,12 +5,10 @@ import { notFound } from "next/navigation";
 import { ProductPage } from "@/modules/product";
 import { ProductsQueryDocument } from "@/queries/product.queries";
 import { ProductsQuery, ProductsQueryVariables } from "@/types";
-import { extractProductSkuFromUrl } from "@/utils/helpers";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
 type Props = {
-  params: { url: string | Array<string> };
-  searchParams: { [key: string]: string | string[] | undefined };
+  sku: string;
 };
 
 async function getProduct(sku: string) {
@@ -22,8 +20,8 @@ async function getProduct(sku: string) {
   );
 }
 
-export default async function Product({ params }: Props) {
-  const product = await getProduct(extractProductSkuFromUrl(params.url));
+export default async function Product({ sku }: Props) {
+  const product = await getProduct(sku);
 
   if (!product.products?.items?.[0]) {
     return notFound();

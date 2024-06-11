@@ -14,7 +14,6 @@ import { CategoryQuery, CategoryQueryVariables } from "@/types";
 import { generatePrettyUrl } from "@/utils/helpers";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
-
 type Props = {
   params: { url: Array<string> };
   searchParams: { [key: string]: string | string[] | undefined };

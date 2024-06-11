@@ -37,7 +37,7 @@ export async function MegaMenuCategoriesDropdown() {
         <div className="flex flex-col" key={idx}>
           <TempCategoryIcon />
           <Link
-            href={`/c/${category?.url_path}` ?? "#"}
+            href={`/${category?.url_path}` ?? "#"}
             className="text-xl font-medium my-2 hover:underline"
           >
             {category?.name}
@@ -48,7 +48,7 @@ export async function MegaMenuCategoriesDropdown() {
                 <li key={index} className="text-sm">
                   <Link
                     className="hover:underline"
-                    href={`/c/${subCategory?.url_path}` ?? "#"}
+                    href={`/${subCategory?.url_path}` ?? "#"}
                   >
                     {subCategory?.name}
                   </Link>

@@ -11,7 +11,7 @@ export const generatePrettyUrl = (
   }, "");
 
   if (options?.removeTrailSlash) {
-    return newUrl.replace(/^\/|\/$/g, "");
+    return newUrl.replace(/^\/|\/$/g, "").replace(/^\/+/, "");
   }
 
   return newUrl;

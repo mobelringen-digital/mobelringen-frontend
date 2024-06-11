@@ -25,7 +25,7 @@ export const SubCategoriesSelect: React.FC<Props> = ({ category, url }) => {
     <div className="bg-cream py-[40px] border-b border-b-beige mb-12">
       <ContainerLayout>
         <Link
-          href={`/c/${category?.url_path}`}
+          href={`/${category?.url_path}`}
           className="text-5xl font-medium font-feature hover:underline"
         >
           {category?.name}
@@ -38,8 +38,8 @@ export const SubCategoriesSelect: React.FC<Props> = ({ category, url }) => {
                 <Link
                   href={
                     isCategoryActive(child)
-                      ? `/c/${category?.url_path}`
-                      : `/c/${child?.url_path}`
+                      ? `/${category?.url_path}`
+                      : `/${child?.url_path}`
                   }
                   key={child?.uid}
                   className={cx(
