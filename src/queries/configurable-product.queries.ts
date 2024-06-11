@@ -9,6 +9,7 @@ export const ConfigurableProductOptionsFragment = graphql(`
       store_label
       uid
       use_default_value
+      value_index
     }
     attribute_code
     attribute_uid
@@ -24,14 +25,12 @@ export const ConfigurableProductVariantsFragment = graphql(`
     __typename
     attributes {
       code
+      label
+      uid
       value_index
     }
     product {
-      image {
-        url
-      }
-      url_key
-      sku
+      ...BaseProduct
     }
   }
 `);

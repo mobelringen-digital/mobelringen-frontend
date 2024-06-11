@@ -7,7 +7,12 @@ import cx from "classnames";
 import Image from "next/image";
 
 import { useProductData } from "@/modules/product/product-data-provider/useProductData";
-import { ConfigurableProductVariantsFragment } from "@/types";
+import { BaseProductFragment } from "@/queries/product.queries";
+import {
+  ConfigurableProductVariantsFragment,
+  ProductImageFragmentFragment,
+} from "@/types";
+import { useFragment } from "@/types/schema";
 
 interface Props {
   variant?: ConfigurableProductVariantsFragment | null;
@@ -15,18 +20,29 @@ interface Props {
 
 export const Variant: React.FC<Props> = ({ variant }) => {
   const { setProductData, productData } = useProductData();
-  if (!variant?.product) return null;
+  const selectedProduct = useFragment(
+    BaseProductFragment,
+    productData.variant?.product,
+  );
+
+  const variantProduct = useFragment(BaseProductFragment, variant?.product);
+
+  if (!variantProduct) return null;
 
   const handleVariantSelect = () => {
-    if (!variant?.product?.sku) return;
+    if (!variantProduct.sku) return;
 
-    if (!!productData && productData.variant === variant.product.sku) {
-      return setProductData((prev) => ({ ...prev, variant: null }));
+    if (!!selectedProduct && selectedProduct?.sku === variantProduct.sku) {
+      return setProductData((prev) => ({
+        ...prev,
+        variant: null,
+        attributes: [],
+      }));
     }
 
     setProductData((prev) => ({
       ...prev,
-      variant: variant?.product?.sku as string,
+      variant: variant,
     }));
   };
 
@@ -36,17 +52,17 @@ export const Variant: React.FC<Props> = ({ variant }) => {
       className={cx(
         "w-[64px] h-[64px] bg-warm-grey p-2 flex items-center justify-center rounded-2xl",
         {
-          "border-1 border-black": variant.product.sku === productData.variant,
+          "border-1 border-black": selectedProduct?.sku === variantProduct.sku,
         },
         {
           "border-1 border-warm-grey":
-            variant.product.sku !== productData.variant,
+            selectedProduct?.sku !== variantProduct.sku,
         },
       )}
     >
       <Image
-        src={variant.product.image?.url ?? ""}
-        alt={variant.product.sku ?? ""}
+        src={(variantProduct.image as ProductImageFragmentFragment)?.url ?? ""}
+        alt={variantProduct.sku ?? ""}
         width={48}
         height={48}
       />

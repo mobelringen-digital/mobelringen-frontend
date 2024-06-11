@@ -2,6 +2,8 @@
 
 import React from "react";
 
+import { ConfigurableProductVariantsFragment } from "@/types";
+
 export interface ProductDataContextType {
   setProductData: React.Dispatch<React.SetStateAction<ProductData>>;
   productData: ProductData;
@@ -12,7 +14,7 @@ export const ProductDataContext = React.createContext<ProductDataContextType>(
 );
 
 type ProductData = {
-  variant: string | null;
+  variant?: ConfigurableProductVariantsFragment | null;
 };
 
 export const ProductDataContextProvider: React.FC<{
