@@ -13,7 +13,7 @@ export const ProductPricing: React.FC<Props> = ({ priceRange }) => {
     usePriceRange(priceRange);
 
   return (
-    <div className="mt-2 text-xs lg:text-base font-semibold flex items-center">
+    <div className="mt-4 text-xs lg:text-base font-semibold flex items-center">
       {amountDiscount ? (
         <div className="flex flex-col lg:flex-row gap-1 lg:gap-4">
           <div className="text-red">

@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { useActiveProductData } from "@/modules/product/active-product-data-provider/useActiveProductData";
+import { PurchaseBlock } from "@/modules/product/add-to-cart/PurchaseBlock";
 import { InformationAccordion } from "@/modules/product/information-accordion/InformationAccordion";
 import { MoreInTheStore } from "@/modules/product/MoreInTheStore";
 import { ProductGallery } from "@/modules/product/product-gallery/ProductGallery";
@@ -17,14 +18,12 @@ import { useFragment } from "@/types/schema";
 
 interface Props {
   baseProductData: BaseProductFragmentType;
-  purchaseBlock: React.ReactNode;
   configurationBlock?: React.ReactNode;
   productGallery?: React.ReactNode;
 }
 
 export const BaseProductLayout: React.FC<Props> = ({
   baseProductData,
-  purchaseBlock,
   configurationBlock,
 }) => {
   const { activeProductVariant } = useActiveProductData();
@@ -72,9 +71,7 @@ export const BaseProductLayout: React.FC<Props> = ({
 
           <ProductPricing priceRangeData={product?.price_range} />
           <MoreInTheStore />
-
-          {purchaseBlock}
-
+          <PurchaseBlock product={product} />
           <div className="block lg:hidden">
             <InformationAccordion product={product} />
           </div>

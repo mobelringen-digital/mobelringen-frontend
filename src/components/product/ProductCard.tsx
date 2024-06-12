@@ -22,9 +22,6 @@ interface Props {
 
 export const ProductCard: React.FC<Props> = ({ productData }) => {
   const product = useFragment(BaseProductFragment, productData);
-
-  if (!product) return null;
-
   const priceRange = useFragment(
     ProductPriceRangeFragment,
     product.price_range,
@@ -32,6 +29,8 @@ export const ProductCard: React.FC<Props> = ({ productData }) => {
   const productImage = useFragment(ProductImageFragment, product.image);
   const labels = useFragment(ProductLabelFragment, product.productLabel);
   const { percentageDiscount } = usePriceRange(priceRange);
+
+  if (!product) return null;
 
   return (
     <div className="relative flex w-full flex-col">
