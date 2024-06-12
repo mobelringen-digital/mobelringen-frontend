@@ -55,7 +55,7 @@ export const ProductImageSlider: React.FC<Props> = ({
       );
     },
     dots: true,
-    dotsClass: "!flex gap-2 mt-2",
+    dotsClass: "!flex gap-2 mt-2 flex-wrap",
     infinite: true,
     speed: 500,
     slidesToShow: 1,
