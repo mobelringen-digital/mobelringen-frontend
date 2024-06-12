@@ -39,6 +39,7 @@ export const ProductImageSlider: React.FC<Props> = ({
           className="relative w-[64px] h-[64px] lg:w-[96px] lg:h-[96px] transition-all border border-warm-grey p-2 bg-warm-grey rounded-2xl !flex justify-center items-center cursor-pointer"
         >
           <Image
+            className="object-contain w-[50px] h-[50px] lg:w-[80px] lg:h-[80px]"
             width={96}
             height={96}
             src={item?.url ?? ""}
