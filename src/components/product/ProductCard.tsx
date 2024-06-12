@@ -1,0 +1,52 @@
+import React from "react";
+
+import Link from "next/link";
+
+import { ProductImage } from "@/components/product/ProductImage";
+import { ProductInformation } from "@/components/product/ProductInformation";
+import { ProductLabels } from "@/components/product/ProductLabels";
+import { ProductPricing } from "@/components/product/ProductPricing";
+import { ProductStock } from "@/components/product/ProductStock";
+import {
+  BaseProductFragment,
+  ProductImageFragment,
+  ProductLabelFragment,
+  ProductPriceRangeFragment,
+} from "@/queries/product.queries";
+import { FragmentType, useFragment } from "@/types/schema";
+import { usePriceRange } from "@/utils/hooks/usePriceRange";
+
+interface Props {
+  productData: FragmentType<typeof BaseProductFragment>;
+}
+
+export const ProductCard: React.FC<Props> = ({ productData }) => {
+  const product = useFragment(BaseProductFragment, productData);
+
+  if (!product) return null;
+
+  const priceRange = useFragment(
+    ProductPriceRangeFragment,
+    product.price_range,
+  );
+  const productImage = useFragment(ProductImageFragment, product.image);
+  const labels = useFragment(ProductLabelFragment, product.productLabel);
+  const { percentageDiscount } = usePriceRange(priceRange);
+
+  return (
+    <div className="relative flex w-full flex-col">
+      <Link
+        className="relative flex items-center justify-center bg-warm-grey px-2 lg:px-6 py-8 lg:py-12 rounded-2xl"
+        href={`/${product.url_key}`}
+      >
+        <ProductImage productImage={productImage} />
+        <ProductLabels discount={percentageDiscount} labels={labels} />
+      </Link>
+      <div className="mt-4 px-2 pb-2 mb-2 border-b border-b-cold-grey-dark">
+        <ProductInformation product={product} />
+        <ProductPricing priceRange={priceRange} />
+      </div>
+      <ProductStock />
+    </div>
+  );
+};

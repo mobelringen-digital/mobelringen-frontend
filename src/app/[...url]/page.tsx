@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
-import { ProductCard } from "@/components/product/product-card";
+import { ProductCard } from "@/components/product/ProductCard";
 import { Page } from "@/modules/page";
 import { CmsPagesQueryDocument } from "@/queries/page.queries";
 import { ProductsQueryDocument } from "@/queries/product.queries";
@@ -89,11 +89,11 @@ export default async function Home({ params }: Props) {
 
       <ContainerLayout>
         <Debugger data={routeData} />
-        <div className="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8">
           {productsData.products?.items?.map((product) => (
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-expect-error
-            <ProductCard product={product} key={product?.url_key} />
+            <ProductCard productData={product} key={product?.url_key} />
           ))}
         </div>
       </ContainerLayout>

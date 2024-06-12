@@ -4,16 +4,35 @@ import cx from "classnames";
 
 interface Props {
   variant: keyof typeof VARIANTS;
+  size?: keyof typeof SIZINGS;
   className?: string;
 }
 
 const VARIANTS = {
   green: "bg-success",
   red: "bg-error",
+  yellow: "bg-[#FFBA07]",
 };
 
-export const StatusCircle: React.FC<Props> = ({ variant, className }) => {
+const SIZINGS = {
+  small: "w-2 h-2",
+  medium: "w-3 h-3",
+  large: "w-4 h-4",
+};
+
+export const StatusCircle: React.FC<Props> = ({
+  variant,
+  className,
+  size = "medium",
+}) => {
   return (
-    <div className={cx("w-3 h-3 rounded-full", VARIANTS[variant], className)} />
+    <div
+      className={cx(
+        "rounded-full",
+        VARIANTS[variant],
+        SIZINGS[size],
+        className,
+      )}
+    />
   );
 };
