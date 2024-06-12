@@ -3,7 +3,7 @@
 import React from "react";
 
 import { Loader } from "@/components/_ui/loader/Loader";
-import { ContainerLayout } from "@/components/layouts/ContainerLayout";
+import { LoaderInnerWrapper } from "@/components/_ui/loader/LoaderInnerWrapper";
 import { ProductCard } from "@/components/product/ProductCard";
 import { useProductsQuery } from "@/modules/category/category/useProductsQuery";
 
@@ -15,9 +15,9 @@ export const ProductsList: React.FC<Props> = ({ categoryId }) => {
 
   if (isLoading) {
     return (
-      <ContainerLayout className="flex justify-center items-center min-h-[30vh]">
+      <LoaderInnerWrapper>
         <Loader />
-      </ContainerLayout>
+      </LoaderInnerWrapper>
     );
   }
 

@@ -1,10 +1,9 @@
 import React, { Suspense } from "react";
 
+import { Loader } from "@/components/_ui/loader/Loader";
 import { Footer } from "@/components/footer/Footer";
 import { HeaderMenu } from "@/components/header-menu";
 import { Providers } from "@/components/Providers";
-
-import Loading from "./loading";
 
 import "./globals.css";
 
@@ -25,7 +24,7 @@ export default async function RootLayout({
         <Providers>
           <HeaderMenu />
           <main className="min-h-[30vh]">
-            <Suspense fallback={<Loading />}>{children}</Suspense>
+            <Suspense fallback={<Loader />}>{children}</Suspense>
           </main>
           <Footer />
         </Providers>
