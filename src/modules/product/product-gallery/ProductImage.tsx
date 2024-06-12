@@ -32,7 +32,13 @@ export const ProductImage: React.FC<Props> = ({
 
   return (
     <div className="relative p-10 h-[380px] lg:h-[800px] bg-warm-grey rounded-3xl !flex justify-center items-center">
-      <Image width={650} height={650} src={image.url} alt={image.label ?? ""} />
+      <Image
+        className="object-contain h-[340px] lg:h-[720px]"
+        width={650}
+        height={650}
+        src={image.url}
+        alt={image.label ?? ""}
+      />
 
       <div className="absolute top-4 right-4 flex">
         {percentageDiscount ? (

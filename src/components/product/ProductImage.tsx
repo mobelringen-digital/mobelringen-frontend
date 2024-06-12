@@ -13,6 +13,7 @@ export const ProductImage: React.FC<Props> = ({ productImage }) => {
     <>
       {productImage?.url ? (
         <Image
+          className="object-contain h-[200px] lg:h-[360px]"
           width={250}
           height={250}
           src={productImage.url}

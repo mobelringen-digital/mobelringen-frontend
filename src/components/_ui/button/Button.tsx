@@ -10,9 +10,9 @@ interface Props extends Omit<ButtonProps, "color"> {
 }
 
 const COLORS = {
-  primary: "bg-red text-black",
-  secondary: "bg-powder text-black",
-  tertiary: "bg-black text-white",
+  primary: "bg-red text-black hover:bg-blend-darken",
+  secondary: "bg-powder text-black hover:bg-blend-darken",
+  tertiary: "bg-black text-white  hover:bg-blend-lighten",
 } as const;
 
 export const Button: React.FC<Props> = ({
@@ -23,7 +23,7 @@ export const Button: React.FC<Props> = ({
 }) => {
   return (
     <NextUIButton
-      className={cx("rounded-2xl py-2 px-6 lg:px-8", COLORS[color], {
+      className={cx("rounded-full py-6 px-6 lg:px-8 text-base", COLORS[color], {
         "bg-cold-grey-dark text-dark-grey cursor-not-allowed": disabled,
       })}
       {...rest}
