@@ -35,8 +35,8 @@ export const ProductCard: React.FC<Props> = ({ productData }) => {
   return (
     <div className="relative flex w-full flex-col">
       <Link
-        className="relative flex items-center justify-center bg-warm-grey px-2 lg:px-6 py-8 lg:py-12 rounded-2xl"
-        href={`/${product.url_key}`}
+        className="relative flex items-center justify-center bg-warm-grey px-2 lg:px-6 py-8 lg:py-12 rounded-2xl h-[420px]"
+        href={`/${product.canonical_url}`}
       >
         <ProductImage productImage={productImage} />
         <ProductLabels discount={percentageDiscount} labels={labels} />

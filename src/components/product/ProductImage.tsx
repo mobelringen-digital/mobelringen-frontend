@@ -13,8 +13,8 @@ export const ProductImage: React.FC<Props> = ({ productImage }) => {
     <>
       {productImage?.url ? (
         <Image
-          width={280}
-          height={280}
+          width={250}
+          height={250}
           src={productImage.url}
           alt={productImage.label ?? ""}
         />

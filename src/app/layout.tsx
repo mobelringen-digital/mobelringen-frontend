@@ -24,7 +24,9 @@ export default async function RootLayout({
       <body className="bg-sand font-suisse">
         <Providers>
           <HeaderMenu />
-          <Suspense fallback={<Loading />}>{children}</Suspense>
+          <main className="min-h-[30vh]">
+            <Suspense fallback={<Loading />}>{children}</Suspense>
+          </main>
           <Footer />
         </Providers>
       </body>
