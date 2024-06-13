@@ -172,8 +172,8 @@ export const ProductsQueryDocument = graphql(`
   }
 `);
 
-export const ProductRelatedProductsDocument = graphql(`
-  query RelatedProducts(
+export const ProductSliderDataDocument = graphql(`
+  query ProductSliderData(
     $pageSize: Int = 1
     $filter: ProductAttributeFilterInput
   ) {
@@ -182,15 +182,6 @@ export const ProductRelatedProductsDocument = graphql(`
         related_products {
           ...BaseProduct
         }
-      }
-    }
-  }
-`);
-
-export const ProductSeriesDocument = graphql(`
-  query Series($pageSize: Int = 1, $filter: ProductAttributeFilterInput) {
-    products(pageSize: $pageSize, filter: $filter) {
-      items {
         series {
           ...BaseProduct
         }

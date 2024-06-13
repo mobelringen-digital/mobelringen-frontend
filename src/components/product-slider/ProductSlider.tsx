@@ -8,11 +8,11 @@ import { productSliderConfig } from "@/utils/lib/slick";
 
 interface Props {
   title: string;
-  data: Array<BaseProductFragment>;
+  data: Array<BaseProductFragment | null> | null;
 }
 
 export const ProductSlider: React.FC<Props> = ({ title, data }) => {
-  if (data.length <= 4) {
+  if (data && data.length <= 4) {
     return (
       <div className="my-28">
         <h2 className="text-2xl font-medium font-feature mb-4 lg:mb-8">
@@ -20,7 +20,13 @@ export const ProductSlider: React.FC<Props> = ({ title, data }) => {
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8">
           {data?.map((product, idx) => (
-            <ProductCard key={idx} product={product} />
+            <React.Fragment key={idx}>
+              {product &&
+              (product.__typename === "SimpleProduct" ||
+                product.__typename === "ConfigurableProduct") ? (
+                <ProductCard product={product} />
+              ) : null}
+            </React.Fragment>
           ))}
         </div>
       </div>
@@ -35,7 +41,11 @@ export const ProductSlider: React.FC<Props> = ({ title, data }) => {
       <Slider {...productSliderConfig}>
         {data?.map((product, idx: number) => (
           <div key={idx} className="w-[260px]">
-            <ProductCard product={product} />
+            {product &&
+            (product.__typename === "SimpleProduct" ||
+              product.__typename === "ConfigurableProduct") ? (
+              <ProductCard product={product} />
+            ) : null}
           </div>
         ))}
       </Slider>

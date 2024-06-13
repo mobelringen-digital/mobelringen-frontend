@@ -2,15 +2,15 @@ import React from "react";
 
 import { Loader } from "@/components/_ui/loader/Loader";
 import { LoaderInnerWrapper } from "@/components/_ui/loader/LoaderInnerWrapper";
+import { useProductSliderDataQuery } from "@/components/product/hooks/useProductSliderDataQuery";
 import { ProductSlider } from "@/components/product-slider/ProductSlider";
-import { useRelatedProductsQuery } from "@/modules/product/related-products/useRelatedProductsQuery";
 
 interface Props {
   sku?: string | null;
 }
 
 export const RelatedProducts: React.FC<Props> = ({ sku }) => {
-  const { data, isLoading } = useRelatedProductsQuery(sku);
+  const { data, isLoading } = useProductSliderDataQuery(sku);
 
   if (isLoading) {
     return (
@@ -20,13 +20,9 @@ export const RelatedProducts: React.FC<Props> = ({ sku }) => {
     );
   }
 
-  if (!data?.length) return null;
+  if (!data?.related_products) return null;
 
   return (
-    <ProductSlider
-      title="Relaterte produkter"
-      // @ts-expect-error @TODO: Fix typings
-      data={data}
-    />
+    <ProductSlider title="Relaterte produkter" data={data.related_products} />
   );
 };
