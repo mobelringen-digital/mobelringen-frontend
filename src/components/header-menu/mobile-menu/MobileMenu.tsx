@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 
-import MobileMenuAdditionalLinks from "@/components/header-menu/mobile-menu/MobileMenuAdditionalLinks";
+import MobileMenuAdditionalLinks from "@/components/header-menu/mobile-menu/additional-links/MobileMenuAdditionalLinks";
 import { MobileMenuBottomLinks } from "@/components/header-menu/mobile-menu/MobileMenuBottomLinks";
 import { MobileMenuLinks } from "@/components/header-menu/mobile-menu/MobileMenuLinks";
 import { MobileMenuProvider } from "@/components/header-menu/mobile-menu/MobileMenuProvider";

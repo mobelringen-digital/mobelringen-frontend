@@ -10679,7 +10679,6 @@ export enum MenuType {
   FooterPromoText = "FOOTER_PROMO_TEXT",
   MainMenu = "MAIN_MENU",
   MenuTopLinks = "MENU_TOP_LINKS",
-  MobileMenuAdditionalLinks = "MOBILE_MENU_ADDITIONAL_LINKS",
 }
 
 export type MenuUpdateInput = {

@@ -66,25 +66,26 @@ export const ProductImageSlider: React.FC<Props> = ({
 
   return (
     <Slider {...settings}>
-      {gallery?.map((item, idx) =>
-        item.url ? (
-          <>
-            {item.__typename === "ProductImage" ? (
-              <ProductImage
-                key={idx}
-                onZoomClick={() => setPhotoIndex(idx)}
-                image={item}
-                labels={labels}
-                priceRange={priceRange}
-              />
-            ) : null}
+      {gallery?.map((item, idx) => (
+        <React.Fragment key={idx}>
+          {item.url ? (
+            <>
+              {item.__typename === "ProductImage" ? (
+                <ProductImage
+                  onZoomClick={() => setPhotoIndex(idx)}
+                  image={item}
+                  labels={labels}
+                  priceRange={priceRange}
+                />
+              ) : null}
 
-            {item.__typename === "ProductVideo" ? (
-              <ProductVideo videoData={item} />
-            ) : null}
-          </>
-        ) : null,
-      )}
+              {item.__typename === "ProductVideo" ? (
+                <ProductVideo videoData={item} />
+              ) : null}
+            </>
+          ) : null}
+        </React.Fragment>
+      ))}
     </Slider>
   );
 };

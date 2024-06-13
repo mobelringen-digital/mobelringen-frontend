@@ -1,8 +1,8 @@
 import React from "react";
 
 import { Actions } from "@/components/header-menu/Actions";
+import { DesktopMenuAdditionalLinks } from "@/components/header-menu/desktop-menu/additional-links/DesktopMenuAdditionalLinks";
 import { DesktopMenu } from "@/components/header-menu/desktop-menu/DesktopMenu";
-import { DesktopMenuAdditionalLinks } from "@/components/header-menu/desktop-menu/DesktopMenuAdditionalLinks";
 import { Logo } from "@/components/header-menu/Logo";
 import { MobileMenu } from "@/components/header-menu/mobile-menu/MobileMenu";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
