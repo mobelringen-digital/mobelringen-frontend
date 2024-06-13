@@ -28,8 +28,8 @@ export const ProductSlider: React.FC<Props> = ({ title, data }) => {
               {product &&
               (product.__typename === "SimpleProduct" ||
                 product.__typename === "ConfigurableProduct") ? (
-                <ProductCard product={product} />
-              ) : null}
+                  <ProductCard product={product} />
+                ) : null}
             </React.Fragment>
           ))}
         </div>
@@ -48,8 +48,8 @@ export const ProductSlider: React.FC<Props> = ({ title, data }) => {
             {product &&
             (product.__typename === "SimpleProduct" ||
               product.__typename === "ConfigurableProduct") ? (
-              <ProductCard product={product} />
-            ) : null}
+                <ProductCard product={product} />
+              ) : null}
           </div>
         ))}
       </Slider>
