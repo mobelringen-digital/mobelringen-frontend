@@ -37,7 +37,7 @@ export const QuantityInput: React.FC<Props> = ({
         }}
         classNames={{
           input: "bg-sand p-0 text-center border-0 text-sm font-semibold",
-          inputWrapper: "bg-sand p-0",
+          inputWrapper: "bg-sand p-0 shadow-none",
           mainWrapper: "bg-sand p-0",
         }}
         endContent={
