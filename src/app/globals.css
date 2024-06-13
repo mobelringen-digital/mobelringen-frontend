@@ -19,6 +19,10 @@ body {
   border: 1px solid #1a1110;
 }
 
+.slick-dots .slick-active div {
+  @apply bg-black;
+}
+
 .slick-slide > div {
   margin: 0 10px;
 }
