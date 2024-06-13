@@ -70,6 +70,21 @@ const config: Config = {
     },
   },
   darkMode: "class",
-  plugins: [nextui()],
+  plugins: [
+    nextui({
+      themes: {
+        light: {
+          layout: {
+            hoverOpacity: 0, //  this value is applied as opacity-[value] when the component is hovered
+          },
+        },
+        dark: {
+          layout: {
+            hoverOpacity: 0, //  this value is applied as opacity-[value] when the component is hovered
+          },
+        },
+      },
+    }),
+  ],
 };
 export default config;

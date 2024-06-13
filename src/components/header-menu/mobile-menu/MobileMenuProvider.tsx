@@ -9,6 +9,8 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { CloseIcon } from "@/components/_ui/icons/CloseIcon";
 import { LocationIcon } from "@/components/_ui/icons/LocationIcon";
 import { MenuIcon } from "@/components/_ui/icons/MenuIcon";
+import { SearchIcon } from "@/components/_ui/icons/SearchIcon";
+import { Input } from "@/components/_ui/input/Input";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 
 interface Props {
@@ -58,9 +60,12 @@ export const MobileMenuProvider: React.FC<Props> = ({ children }) => {
         )}
       >
         <ContainerLayout className={cx("flex h-[80px]")}>
-          <button onClick={handleMenuButtonClick}>
-            <CloseIcon />
-          </button>
+          <div className="flex items-center gap-8 w-full">
+            <button onClick={handleMenuButtonClick}>
+              <CloseIcon />
+            </button>
+            <Input startContent={<SearchIcon />} placeholder="Finn produkter" />
+          </div>
         </ContainerLayout>
         <div
           className={cx(

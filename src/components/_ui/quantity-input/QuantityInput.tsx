@@ -20,13 +20,15 @@ export const QuantityInput: React.FC<Props> = ({
   ...rest
 }) => {
   return (
-    <div className="rounded-2xl bg-sand flex items-center px-2 py-1">
-      <QuantityButton onClick={onQuantityDecrement}>
-        <MinusIcon width={24} height={24} />
-      </QuantityButton>
+    <div className="rounded-2xl w-[120px] bg-sand flex items-center px-2 py-1">
       <Input
         {...rest}
-        className="flex w-10 flex-row justify-center"
+        startContent={
+          <QuantityButton onClick={onQuantityDecrement}>
+            <MinusIcon width={24} height={24} />
+          </QuantityButton>
+        }
+        className="flex flex-row justify-center"
         onChange={(e) => {
           if (isNaN(parseInt(e.target.value, 10))) {
             return;
@@ -34,14 +36,16 @@ export const QuantityInput: React.FC<Props> = ({
           onChange?.(e);
         }}
         classNames={{
-          input: "bg-sand p-0 w-10 text-center border-0 text-sm font-semibold",
-          inputWrapper: "bg-sand p-0 w-10",
-          mainWrapper: "bg-sand p-0 w-10r",
+          input: "bg-sand p-0 text-center border-0 text-sm font-semibold",
+          inputWrapper: "bg-sand p-0",
+          mainWrapper: "bg-sand p-0",
         }}
+        endContent={
+          <QuantityButton onClick={onQuantityIncrement}>
+            <PlusIcon width={24} height={24} />
+          </QuantityButton>
+        }
       />
-      <QuantityButton onClick={onQuantityIncrement}>
-        <PlusIcon width={24} height={24} />
-      </QuantityButton>
     </div>
   );
 };
