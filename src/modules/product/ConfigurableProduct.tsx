@@ -4,32 +4,21 @@ import { ActiveProductDataContextProvider } from "@/modules/product/active-produ
 import { BaseProductLayout } from "@/modules/product/BaseProductLayout";
 import { ConfigurationInfo } from "@/modules/product/configurable-product/ConfigurationInfo";
 import { Variants } from "@/modules/product/configurable-product/Variants";
-import { ConfigurableProductFragment } from "@/queries/configurable-product.queries";
-import { BaseProductFragment } from "@/queries/product.queries";
-import { FragmentType, useFragment } from "@/types/schema";
+import { ConfigurableProductFragment } from "@/types";
 
 interface Props {
-  productData: FragmentType<typeof ConfigurableProductFragment>;
+  product: ConfigurableProductFragment;
 }
 
-export const ConfigurableProductPage: React.FC<Props> = ({ productData }) => {
-  const product = useFragment(ConfigurableProductFragment, productData);
-  const baseProductData = useFragment(BaseProductFragment, product);
-
+export const ConfigurableProductPage: React.FC<Props> = ({ product }) => {
   return (
     <ActiveProductDataContextProvider>
       <BaseProductLayout
-        baseProductData={baseProductData}
+        baseProductData={product}
         configurationBlock={
           <div className="flex flex-col gap-2">
-            <ConfigurationInfo
-              // @ts-expect-error codegen error with array
-              configurableOptionsData={product.configurable_options}
-            />
-            <Variants
-              // @ts-expect-error codegen error with array
-              variantData={product.variants}
-            />
+            <ConfigurationInfo configurations={product.configurable_options} />
+            <Variants variants={product.variants} />
           </div>
         }
       />

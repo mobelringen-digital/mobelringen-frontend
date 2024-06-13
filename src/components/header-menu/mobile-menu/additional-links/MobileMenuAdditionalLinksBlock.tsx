@@ -2,18 +2,13 @@ import React from "react";
 
 import { ChevronRight } from "@/components/_ui/icons/ChevronRight";
 import { CmsLink } from "@/components/cms/link/CmsLink";
-import { CmsLinkBlockFragment } from "@/queries/menu.queries";
-import { FragmentType, useFragment } from "@/types/schema";
+import { CmsLinkBlockFragment } from "@/types";
 
 interface Props {
-  blockData: FragmentType<typeof CmsLinkBlockFragment>;
+  block: CmsLinkBlockFragment;
 }
 
-export const MobileMenuAdditionalLinksBlock: React.FC<Props> = ({
-  blockData,
-}) => {
-  const block = useFragment(CmsLinkBlockFragment, blockData);
-
+export const MobileMenuAdditionalLinksBlock: React.FC<Props> = ({ block }) => {
   return (
     <ul className="flex flex-col gap-5 py-8 border-t border-t-cold-grey-dark">
       {block.links.map((link, idx) => {
@@ -22,7 +17,7 @@ export const MobileMenuAdditionalLinksBlock: React.FC<Props> = ({
             <li key={idx}>
               <CmsLink
                 className="flex justify-between w-full"
-                data={link}
+                link={link}
                 afterIcon={<ChevronRight />}
               />
             </li>

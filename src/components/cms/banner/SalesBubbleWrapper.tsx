@@ -6,16 +6,14 @@ import Link from "next/link";
 
 import { CmsSalesBubble } from "@/components/cms/sales-bubble/CmsSalesBubble";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
-import { SalesBubbleFragment } from "@/queries/cms.queries";
-import { Position } from "@/types";
-import { FragmentType, useFragment } from "@/types/schema";
+import { CmsSalesBubbleFragment, Position } from "@/types";
 
 interface Props {
-  data: FragmentType<typeof SalesBubbleFragment>;
+  data: CmsSalesBubbleFragment;
 }
 
 export const SalesBubbleWrapper: React.FC<Props> = ({ data }) => {
-  const salesBubble = useFragment(SalesBubbleFragment, data);
+  const salesBubble = data;
 
   return (
     <div

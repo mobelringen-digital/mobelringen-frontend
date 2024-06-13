@@ -15,7 +15,7 @@ export const MenuItem: React.FC<Props> = ({ link }) => {
   if (link.__typename === "Link") {
     return (
       <li className="py-2">
-        <CmsLink data={link} />
+        <CmsLink link={link} />
       </li>
     );
   }
@@ -24,7 +24,7 @@ export const MenuItem: React.FC<Props> = ({ link }) => {
     <Suspense>
       <DropdownMenuProvider title={(link as CmsMegamenuDropdownFragment).label}>
         {link.__typename === "MegaMenuDropdown" ? (
-          <MegaMenuDropdown data={link} />
+          <MegaMenuDropdown link={link} />
         ) : null}
         {link.__typename === "MegaMenuCategoriesDropdown" ? (
           <MegaMenuCategoriesDropdown /> // This is a placeholder, replace it with the actual component

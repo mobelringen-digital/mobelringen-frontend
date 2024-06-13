@@ -7,9 +7,7 @@ import { FormatNumber } from "@/components/_ui/format-number/FormatNumber";
 import { QuantityInput } from "@/components/_ui/quantity-input/QuantityInput";
 import { useActiveProductData } from "@/modules/product/active-product-data-provider/useActiveProductData";
 import { DeliveryInfo } from "@/modules/product/add-to-cart/DeliveryInfo";
-import { ProductPriceRangeFragment } from "@/queries/product.queries";
 import { BaseProductFragment } from "@/types";
-import { useFragment } from "@/types/schema";
 import { usePriceRange } from "@/utils/hooks/usePriceRange";
 
 interface Props {
@@ -17,10 +15,7 @@ interface Props {
 }
 
 export const PurchaseBlock: React.FC<Props> = ({ product }) => {
-  const priceRange = useFragment(
-    ProductPriceRangeFragment,
-    product.price_range,
-  );
+  const priceRange = product.price_range;
   const { finalPrice, currency } = usePriceRange(priceRange);
   const [quantity, setQuantity] = React.useState(1);
   const { activeProductVariant } = useActiveProductData();

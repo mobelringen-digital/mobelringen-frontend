@@ -9,28 +9,18 @@ import { ProductInformation } from "@/components/product/ProductInformation";
 import { ProductLabels } from "@/components/product/ProductLabels";
 import { ProductPricing } from "@/components/product/ProductPricing";
 import { ProductStock } from "@/components/product/ProductStock";
-import {
-  BaseProductFragment,
-  ProductImageFragment,
-  ProductLabelFragment,
-  ProductPriceRangeFragment,
-} from "@/queries/product.queries";
-import { FragmentType, useFragment } from "@/types/schema";
+import { BaseProductFragment } from "@/types";
 import { usePriceRange } from "@/utils/hooks/usePriceRange";
 
 interface Props {
-  productData: FragmentType<typeof BaseProductFragment>;
+  product: BaseProductFragment;
   className?: string;
 }
 
-export const ProductCard: React.FC<Props> = ({ productData, className }) => {
-  const product = useFragment(BaseProductFragment, productData);
-  const priceRange = useFragment(
-    ProductPriceRangeFragment,
-    product.price_range,
-  );
-  const productImage = useFragment(ProductImageFragment, product.image);
-  const labels = useFragment(ProductLabelFragment, product.productLabel);
+export const ProductCard: React.FC<Props> = ({ product, className }) => {
+  const priceRange = product?.price_range;
+  const productImage = product?.image;
+  const labels = product?.productLabel;
   const { percentageDiscount } = usePriceRange(priceRange);
 
   if (!product) return null;

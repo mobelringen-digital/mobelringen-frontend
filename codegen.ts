@@ -9,6 +9,9 @@ const config: CodegenConfig = {
     "src/types/schema/": {
       preset: "client",
       plugins: [],
+      presetConfig: {
+        fragmentMasking: false,
+      },
     },
   },
 };

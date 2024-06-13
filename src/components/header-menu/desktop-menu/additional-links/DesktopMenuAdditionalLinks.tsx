@@ -25,13 +25,13 @@ export async function DesktopMenuAdditionalLinks() {
         {data.map((item, idx) => (
           <React.Fragment key={idx}>
             {item.__typename === "LinkBlock" ? (
-              <DesktopMenuAdditionalLinksBlock blockData={item} />
+              <DesktopMenuAdditionalLinksBlock block={item} />
             ) : null}
 
             {item.__typename === "Link" ? (
               <CmsLink
                 className="flex justify-between w-full text-xs"
-                data={item}
+                link={item}
                 iconHeight={20}
                 iconWidth={20}
               />

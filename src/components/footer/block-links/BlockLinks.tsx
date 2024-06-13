@@ -1,16 +1,13 @@
 import React from "react";
 
 import { CmsLink } from "@/components/cms/link/CmsLink";
-import { CmsLinkBlockFragment } from "@/queries/menu.queries";
-import { FragmentType, useFragment } from "@/types/schema";
+import { CmsLinkBlockFragment } from "@/types";
 
 interface Props {
-  data: FragmentType<typeof CmsLinkBlockFragment>;
+  block: CmsLinkBlockFragment;
 }
 
-export const BlockLinks: React.FC<Props> = ({ data }) => {
-  const block = useFragment(CmsLinkBlockFragment, data);
-
+export const BlockLinks: React.FC<Props> = ({ block }) => {
   return (
     <div
       className="col-span-6 lg:col-span-2 flex flex-col lg:gap-4"
@@ -23,7 +20,7 @@ export const BlockLinks: React.FC<Props> = ({ data }) => {
             {link.__typename === "Link" ? (
               <CmsLink
                 className="text-sm py-1 hover:underline"
-                data={link}
+                link={link}
                 iconWidth={18}
                 iconHeight={18}
               />

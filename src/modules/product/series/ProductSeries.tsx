@@ -4,7 +4,6 @@ import { Loader } from "@/components/_ui/loader/Loader";
 import { LoaderInnerWrapper } from "@/components/_ui/loader/LoaderInnerWrapper";
 import { ProductSlider } from "@/components/product-slider/ProductSlider";
 import { useProductSeriesQuery } from "@/modules/product/series/useProductSeriesQuery";
-import { BaseProductFragment } from "@/types";
 
 interface Props {
   sku?: string | null;
@@ -24,6 +23,10 @@ export const ProductSeries: React.FC<Props> = ({ sku }) => {
   if (!data?.length) return null;
 
   return (
-    <ProductSlider<BaseProductFragment> title="Utforsk serien" data={data} />
+    <ProductSlider
+      title="Utforsk serien"
+      // @ts-expect-error @TODO: fix typings
+      data={data}
+    />
   );
 };

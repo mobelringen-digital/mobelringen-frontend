@@ -7,9 +7,7 @@ import cx from "classnames";
 import Image from "next/image";
 
 import { useActiveProductData } from "@/modules/product/active-product-data-provider/useActiveProductData";
-import { BaseProductFragment } from "@/queries/product.queries";
 import { ConfigurableProductVariantsFragment } from "@/types";
-import { useFragment } from "@/types/schema";
 
 interface Props {
   variant?: ConfigurableProductVariantsFragment | null;
@@ -18,12 +16,8 @@ interface Props {
 export const Variant: React.FC<Props> = ({ variant }) => {
   const { setActiveProductVariant, activeProductVariant } =
     useActiveProductData();
-  const selectedProduct = useFragment(
-    BaseProductFragment,
-    activeProductVariant.variant?.product,
-  );
-
-  const variantProduct = useFragment(BaseProductFragment, variant?.product);
+  const selectedProduct = activeProductVariant.variant?.product;
+  const variantProduct = variant?.product;
 
   if (!variantProduct) return null;
 

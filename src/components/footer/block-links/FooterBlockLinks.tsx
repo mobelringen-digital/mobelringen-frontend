@@ -32,7 +32,7 @@ export async function FooterBlockLinks({ data }: Props) {
       </div>
       {data?.links.map((block, idx) => {
         if (block.__typename === "LinkBlock") {
-          return <BlockLinks data={block} key={idx} />;
+          return <BlockLinks block={block} key={idx} />;
         }
 
         return null;

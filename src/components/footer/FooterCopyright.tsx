@@ -22,7 +22,7 @@ export const FooterCopyright: React.FC<Props> = ({ data }) => {
         {data.links.map((link, idx) => (
           <React.Fragment key={idx}>
             {link.__typename === "Link" ? (
-              <CmsLink data={link} className="hover:underline" />
+              <CmsLink link={link} className="hover:underline" />
             ) : null}
           </React.Fragment>
         ))}

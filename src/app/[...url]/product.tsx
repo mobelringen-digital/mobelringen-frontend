@@ -32,11 +32,11 @@ export default async function Product({ sku }: Props) {
   return (
     <>
       {productData.__typename === "SimpleProduct" ? (
-        <SimpleProductPage productData={productData} />
+        <SimpleProductPage product={productData} />
       ) : null}
 
       {productData.__typename === "ConfigurableProduct" ? (
-        <ConfigurableProductPage productData={productData} />
+        <ConfigurableProductPage product={productData} />
       ) : null}
     </>
   );

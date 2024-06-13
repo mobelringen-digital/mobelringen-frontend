@@ -3,20 +3,15 @@ import React from "react";
 import Slider from "react-slick";
 
 import { ProductCard } from "@/components/product/ProductCard";
-import { BaseProductFragment } from "@/queries/product.queries";
-import { FragmentType } from "@/types/schema";
+import { BaseProductFragment } from "@/types";
 import { productSliderConfig } from "@/utils/lib/slick";
 
-interface Props<T> {
+interface Props {
   title: string;
-  data: Array<Partial<T | null>>;
+  data: Array<BaseProductFragment>;
 }
 
-export function ProductSlider<T>({ title, data }: Props<T>) {
-  if (!data.length) {
-    return null;
-  }
-
+export const ProductSlider: React.FC<Props> = ({ title, data }) => {
   if (data.length <= 4) {
     return (
       <div className="my-28">
@@ -25,10 +20,7 @@ export function ProductSlider<T>({ title, data }: Props<T>) {
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8">
           {data?.map((product, idx) => (
-            <ProductCard
-              key={idx}
-              productData={product as FragmentType<typeof BaseProductFragment>}
-            />
+            <ProductCard key={idx} product={product} />
           ))}
         </div>
       </div>
@@ -43,12 +35,10 @@ export function ProductSlider<T>({ title, data }: Props<T>) {
       <Slider {...productSliderConfig}>
         {data?.map((product, idx: number) => (
           <div key={idx} className="w-[260px]">
-            <ProductCard
-              productData={product as FragmentType<typeof BaseProductFragment>}
-            />
+            <ProductCard product={product} />
           </div>
         ))}
       </Slider>
     </div>
   );
-}
+};

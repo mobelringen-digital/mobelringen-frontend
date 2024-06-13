@@ -4,16 +4,13 @@ import React from "react";
 
 import Vimeo from "@u-wave/react-vimeo";
 
-import { ProductVideoFragment } from "@/queries/product.queries";
-import { FragmentType, useFragment } from "@/types/schema";
+import { ProductVideoFragmentFragment } from "@/types";
 
 interface Props {
-  videoData: FragmentType<typeof ProductVideoFragment>;
+  video: ProductVideoFragmentFragment;
 }
 
-export const ProductVideo: React.FC<Props> = ({ videoData }) => {
-  const video = useFragment(ProductVideoFragment, videoData);
-
+export const ProductVideo: React.FC<Props> = ({ video }) => {
   if (!video.video_content?.video_url) return null;
 
   return (

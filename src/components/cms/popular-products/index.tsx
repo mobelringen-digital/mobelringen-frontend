@@ -1,15 +1,14 @@
 import React from "react";
 
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
-import { PopularProductsFragment } from "@/queries/cms.queries";
-import { FragmentType, useFragment } from "@/types/schema";
+import { CmsPopularProductsFragment } from "@/types";
 
 interface Props {
-  data: FragmentType<typeof PopularProductsFragment>;
+  data: CmsPopularProductsFragment;
 }
 
 export const PopularProducts: React.FC<Props> = ({ data }) => {
-  const { categoryId } = useFragment(PopularProductsFragment, data);
+  const { categoryId } = data;
 
   return (
     <ContainerLayout className="p-4 border border-red">

@@ -4,15 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { CmsLink } from "@/components/cms/link/CmsLink";
-import { CmsMegamenuDropdownFragment } from "@/queries/menu.queries";
-import { FragmentType, useFragment } from "@/types/schema";
+import { CmsMegamenuDropdownFragment } from "@/types";
 
 interface Props {
-  data: FragmentType<typeof CmsMegamenuDropdownFragment>;
+  link: CmsMegamenuDropdownFragment;
 }
 
-export const MegaMenuDropdown: React.FC<Props> = ({ data }) => {
-  const link = useFragment(CmsMegamenuDropdownFragment, data);
+export const MegaMenuDropdown: React.FC<Props> = ({ link }) => {
   if (link?.__typename !== "MegaMenuDropdown") return null;
 
   return (
@@ -34,7 +32,7 @@ export const MegaMenuDropdown: React.FC<Props> = ({ data }) => {
             </Link>
           ) : null}
           {item.__typename === "Link" ? (
-            <CmsLink className="text-base font-medium" data={item} />
+            <CmsLink className="text-base font-medium" link={item} />
           ) : null}
         </li>
       ))}

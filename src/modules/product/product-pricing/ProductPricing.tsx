@@ -1,16 +1,14 @@
 import React from "react";
 
 import { FormatNumber } from "@/components/_ui/format-number/FormatNumber";
-import { ProductPriceRangeFragment } from "@/queries/product.queries";
-import { FragmentType, useFragment } from "@/types/schema";
+import { ProductPriceRangeFragment } from "@/types";
 import { usePriceRange } from "@/utils/hooks/usePriceRange";
 
 interface Props {
-  priceRangeData?: FragmentType<typeof ProductPriceRangeFragment> | null;
+  pricingRange?: ProductPriceRangeFragment;
 }
 
-export const ProductPricing: React.FC<Props> = ({ priceRangeData }) => {
-  const pricingRange = useFragment(ProductPriceRangeFragment, priceRangeData);
+export const ProductPricing: React.FC<Props> = ({ pricingRange }) => {
   const { finalPrice, originalPrice, amountDiscount, currency } =
     usePriceRange(pricingRange);
 

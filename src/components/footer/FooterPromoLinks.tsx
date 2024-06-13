@@ -20,7 +20,7 @@ export const FooterPromoLinks: React.FC<Props> = ({ data }) => {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 order-2 lg:order-1">
         {data.links.map((link, index) => (
           <React.Fragment key={index}>
-            {link.__typename === "Link" ? <FooterIconLink data={link} /> : null}
+            {link.__typename === "Link" ? <FooterIconLink link={link} /> : null}
           </React.Fragment>
         ))}
       </div>

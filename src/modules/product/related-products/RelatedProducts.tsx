@@ -4,7 +4,6 @@ import { Loader } from "@/components/_ui/loader/Loader";
 import { LoaderInnerWrapper } from "@/components/_ui/loader/LoaderInnerWrapper";
 import { ProductSlider } from "@/components/product-slider/ProductSlider";
 import { useRelatedProductsQuery } from "@/modules/product/related-products/useRelatedProductsQuery";
-import { BaseProductFragment } from "@/types";
 
 interface Props {
   sku?: string | null;
@@ -24,8 +23,9 @@ export const RelatedProducts: React.FC<Props> = ({ sku }) => {
   if (!data?.length) return null;
 
   return (
-    <ProductSlider<BaseProductFragment>
+    <ProductSlider
       title="Relaterte produkter"
+      // @ts-expect-error @TODO: Fix typings
       data={data}
     />
   );

@@ -24,8 +24,12 @@ export const ProductsList: React.FC<Props> = ({ categoryId }) => {
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8">
       {data?.map((product, idx) => (
-        // @ts-expect-error codegen error with array
-        <ProductCard key={idx} productData={product} />
+        <React.Fragment key={idx}>
+          {product?.__typename === "SimpleProduct" ||
+          product?.__typename === "ConfigurableProduct" ? (
+            <ProductCard key={idx} product={product} />
+          ) : null}
+        </React.Fragment>
       ))}
     </div>
   );

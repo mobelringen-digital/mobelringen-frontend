@@ -17,7 +17,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 interface Props {
-  gallery: readonly ProductMediaGalleryFragment[];
+  gallery?: Array<ProductMediaGalleryFragment | null> | null;
   setPhotoIndex: React.Dispatch<React.SetStateAction<number | null>>;
   priceRange?: ProductPriceRangeFragment | null;
   labels?: ProductLabelFragment | null;
@@ -68,7 +68,7 @@ export const ProductImageSlider: React.FC<Props> = ({
     <Slider {...settings}>
       {gallery?.map((item, idx) => (
         <React.Fragment key={idx}>
-          {item.url ? (
+          {item?.url ? (
             <>
               {item.__typename === "ProductImage" ? (
                 <ProductImage
@@ -80,7 +80,7 @@ export const ProductImageSlider: React.FC<Props> = ({
               ) : null}
 
               {item.__typename === "ProductVideo" ? (
-                <ProductVideo videoData={item} />
+                <ProductVideo video={item} />
               ) : null}
             </>
           ) : null}

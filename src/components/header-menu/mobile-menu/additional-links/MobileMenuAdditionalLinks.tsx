@@ -24,13 +24,13 @@ export default async function MobileMenuAdditionalLinks() {
       {data.map((item, idx) => (
         <React.Fragment key={idx}>
           {item.__typename === "LinkBlock" ? (
-            <MobileMenuAdditionalLinksBlock blockData={item} />
+            <MobileMenuAdditionalLinksBlock block={item} />
           ) : null}
 
           {item.__typename === "Link" ? (
             <CmsLink
               className="flex justify-between w-full"
-              data={item}
+              link={item}
               afterIcon={<ChevronRight />}
             />
           ) : null}

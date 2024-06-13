@@ -1,15 +1,14 @@
 import React from "react";
 
 import { SalesBubbleWrapper } from "@/components/cms/banner/SalesBubbleWrapper";
-import { BannerFragment } from "@/queries/cms.queries";
-import { FragmentType, useFragment } from "@/types/schema";
+import { CmsBannerFragment } from "@/types";
 
 interface Props {
-  data: FragmentType<typeof BannerFragment>;
+  data: CmsBannerFragment;
 }
 
 export const Banner: React.FC<Props> = ({ data }) => {
-  const { bannerImage, salesBubble } = useFragment(BannerFragment, data);
+  const { bannerImage, salesBubble } = data;
 
   if (!bannerImage) {
     return null;

@@ -6,32 +6,26 @@ import { ProductImage } from "@/modules/product/product-gallery/ProductImage";
 import { ProductImageSlider } from "@/modules/product/product-gallery/ProductImageSlider";
 import { ProductLightbox } from "@/modules/product/product-gallery/ProductLightbox";
 import {
-  ProductImageFragment,
+  ProductImageFragmentFragment,
   ProductLabelFragment,
   ProductMediaGalleryFragment,
   ProductPriceRangeFragment,
-} from "@/queries/product.queries";
-import { FragmentType, useFragment } from "@/types/schema";
+} from "@/types";
 
 interface Props {
-  imageData?: FragmentType<typeof ProductImageFragment> | null;
-  galleryData?: Array<FragmentType<typeof ProductMediaGalleryFragment>> | null;
-  labelData?: FragmentType<typeof ProductLabelFragment> | null;
-  priceRangeData?: FragmentType<typeof ProductPriceRangeFragment> | null;
+  image?: ProductImageFragmentFragment | null;
+  gallery?: Array<ProductMediaGalleryFragment | null> | null;
+  labels?: ProductLabelFragment | null;
+  priceRange?: ProductPriceRangeFragment | null;
 }
 
 export const ProductGallery: React.FC<Props> = ({
-  imageData,
-  galleryData,
-  labelData,
-  priceRangeData,
+  image,
+  gallery,
+  labels,
+  priceRange,
 }) => {
   const [photoIndex, setPhotoIndex] = React.useState<number | null>(null);
-
-  const image = useFragment(ProductImageFragment, imageData);
-  const gallery = useFragment(ProductMediaGalleryFragment, galleryData);
-  const labels = useFragment(ProductLabelFragment, labelData);
-  const priceRange = useFragment(ProductPriceRangeFragment, priceRangeData);
 
   React.useEffect(() => {
     if (photoIndex !== null) {
@@ -44,7 +38,7 @@ export const ProductGallery: React.FC<Props> = ({
   const images = React.useMemo(() => {
     if (gallery && gallery.length > 0) {
       return gallery
-        .filter((i) => i.__typename !== "ProductVideo")
+        .filter((i) => i?.__typename !== "ProductVideo")
         .map((img) => ({
           url: img?.url,
           label: img?.label,

@@ -1,21 +1,13 @@
 import React from "react";
 
 import { Variant } from "@/modules/product/configurable-product/Variant";
-import { ConfigurableProductVariantsFragment } from "@/queries/configurable-product.queries";
-import { FragmentType, useFragment } from "@/types/schema";
+import { ConfigurableProductVariantsFragment } from "@/types";
 
 interface Props {
-  variantData?: Array<
-    FragmentType<typeof ConfigurableProductVariantsFragment>
-  > | null;
+  variants?: Array<ConfigurableProductVariantsFragment | null> | null;
 }
 
-export const Variants: React.FC<Props> = ({ variantData }) => {
-  const variants = useFragment(
-    ConfigurableProductVariantsFragment,
-    variantData,
-  );
-
+export const Variants: React.FC<Props> = ({ variants }) => {
   return (
     <div className="flex flex-wrap gap-4 justify-between lg:justify-start">
       {variants?.map((variant, idx) => <Variant variant={variant} key={idx} />)}

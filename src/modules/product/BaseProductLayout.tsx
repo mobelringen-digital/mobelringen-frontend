@@ -14,9 +14,7 @@ import { ProductPricing } from "@/modules/product/product-pricing/ProductPricing
 import { ProductTopInfo } from "@/modules/product/ProductTopInfo";
 import { RelatedProducts } from "@/modules/product/related-products/RelatedProducts";
 import { ProductSeries } from "@/modules/product/series/ProductSeries";
-import { BaseProductFragment } from "@/queries/product.queries";
 import { BaseProductFragment as BaseProductFragmentType } from "@/types";
-import { useFragment } from "@/types/schema";
 
 interface Props {
   baseProductData: BaseProductFragmentType;
@@ -29,12 +27,8 @@ export const BaseProductLayout: React.FC<Props> = ({
   configurationBlock,
 }) => {
   const { activeProductVariant } = useActiveProductData();
-  const activeProductVariantData = useFragment(
-    BaseProductFragment,
-    activeProductVariant.variant?.product,
-  );
 
-  const product = activeProductVariantData ?? baseProductData;
+  const product = activeProductVariant.variant?.product ?? baseProductData;
 
   return (
     <ContainerLayout>
@@ -52,11 +46,10 @@ export const BaseProductLayout: React.FC<Props> = ({
       <div className="grid grid-cols-12 gap-4 lg:gap-16">
         <div className="col-span-12 lg:col-span-7 flex flex-col gap-12">
           <ProductGallery
-            imageData={product?.image}
-            // @ts-expect-error An issue with codegen an array of fragments
-            galleryData={product?.media_gallery}
-            labelData={product?.productLabel}
-            priceRangeData={product?.price_range}
+            image={product?.image}
+            gallery={product?.media_gallery}
+            labels={product?.productLabel}
+            priceRange={product?.price_range}
           />
           <div className="hidden lg:block">
             <InformationAccordion product={product} />
@@ -71,7 +64,7 @@ export const BaseProductLayout: React.FC<Props> = ({
 
           {configurationBlock}
 
-          <ProductPricing priceRangeData={product?.price_range} />
+          <ProductPricing pricingRange={product?.price_range} />
           <MoreInTheStore />
           <PurchaseBlock product={product} />
           <div className="block lg:hidden">

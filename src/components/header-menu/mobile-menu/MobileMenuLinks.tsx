@@ -19,7 +19,7 @@ export const MobileMenuLinks: React.FC<Props> = ({ data }) => {
           return (
             <CmsLink
               className="flex justify-between items-center text-2xl font-feature font-medium"
-              data={menu}
+              link={menu}
               key={idx}
               afterIcon={<ChevronRight />}
             />
@@ -37,7 +37,7 @@ export const MobileMenuLinks: React.FC<Props> = ({ data }) => {
         if (menu.__typename === "MegaMenuDropdown") {
           return (
             <MobileMenuWithChildren key={idx} menu={menu}>
-              <MegaMenuDropdown data={menu} />
+              <MegaMenuDropdown link={menu} />
             </MobileMenuWithChildren>
           );
         }

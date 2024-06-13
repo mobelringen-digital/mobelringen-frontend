@@ -5,11 +5,10 @@ import cx from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 
-import { CmsLinkFragment } from "@/queries/menu.queries";
-import { FragmentType, useFragment } from "@/types/schema";
+import { CmsLinkFragment } from "@/types";
 
 interface Props {
-  data: FragmentType<typeof CmsLinkFragment>;
+  link: CmsLinkFragment;
   className?: string;
   afterIcon?: React.ReactNode;
   iconWidth?: number;
@@ -17,14 +16,12 @@ interface Props {
 }
 
 export const CmsLink: React.FC<Props> = ({
-  data,
+  link,
   className,
   afterIcon,
   iconWidth = 24,
   iconHeight = 24,
 }) => {
-  const link = useFragment(CmsLinkFragment, data);
-
   return (
     <Link
       key={link.url}
