@@ -19,6 +19,13 @@ body {
   border: 1px solid #1a1110;
 }
 
+.slick-slide > div {
+  margin: 0 10px;
+}
+.slick-list {
+  margin: 0 -10px;
+}
+
 @layer base {
   @font-face {
     font-family: "Feature Deck Web";
