@@ -23,10 +23,10 @@ body {
   @apply bg-black;
 }
 
-.slick-slide > div {
+.product-slider .slick-slide > div {
   margin: 0 10px;
 }
-.slick-list {
+.product-slider .slick-list {
   margin: 0 -10px;
 }
 
