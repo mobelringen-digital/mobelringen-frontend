@@ -20,7 +20,7 @@ export async function DesktopMenuAdditionalLinks() {
   const data = items.menus[0].links;
 
   return (
-    <ContainerLayout className="py-2 hidden lg:block bg-sand">
+    <ContainerLayout className="py-2 hidden lg:block">
       <div className="flex items-center justify-between">
         {data.map((item, idx) => (
           <React.Fragment key={idx}>
