@@ -21,14 +21,14 @@ export const Accordion: React.FC<Props> = ({ data }) => {
   return (
     <NextUIAccordion
       defaultExpandedKeys={["0"]}
-      className="border-t-1 border-b-1 px-0 border-dark-grey border-opacity-30"
+      className="border-t-1 px-0 border-dark-grey border-opacity-20"
     >
       {data.map((item, idx) => (
         <AccordionItem
           indicator={({ isOpen }) =>
             isOpen ? <MinusIcon className="rotate-90" /> : <PlusIcon />
           }
-          className="py-2 text-lg lg:text-xl font-normal"
+          className="py-2 text-lg lg:text-xl font-normal border-b-1 border-dark-grey border-opacity-20"
           title={item.title}
           key={idx}
         >
