@@ -17,6 +17,24 @@ export function ProductSlider<T>({ title, data }: Props<T>) {
     return null;
   }
 
+  if (data.length <= 4) {
+    return (
+      <div className="my-28">
+        <h2 className="text-2xl font-medium font-feature mb-4 lg:mb-8">
+          {title}
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8">
+          {data?.map((product, idx) => (
+            <ProductCard
+              key={idx}
+              productData={product as FragmentType<typeof BaseProductFragment>}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="my-28">
       <h2 className="text-2xl font-medium font-feature mb-4 lg:mb-8">
