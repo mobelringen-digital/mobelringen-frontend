@@ -21060,10 +21060,8 @@ type BaseProduct_BundleProduct_Fragment = {
   url_key?: string | null;
   url_suffix?: string | null;
   canonical_url?: string | null;
-  country_of_manufacture?: string | null;
   gift_message_available?: string | null;
   is_returnable?: string | null;
-  manufacturer?: number | null;
   meta_description?: string | null;
   meta_keyword?: string | null;
   meta_title?: string | null;
@@ -21071,12 +21069,9 @@ type BaseProduct_BundleProduct_Fragment = {
   new_from_date?: string | null;
   new_to_date?: string | null;
   only_x_left_in_stock?: number | null;
-  options_container?: string | null;
   rating_summary: number;
   uid: string;
-  swatch_image?: string | null;
   stock_status?: ProductStockStatus | null;
-  staged: boolean;
   special_to_date?: string | null;
   special_price?: number | null;
   sku?: string | null;
@@ -21111,14 +21106,6 @@ type BaseProduct_BundleProduct_Fragment = {
     brand_image_url?: string | null;
     name?: string | null;
   } | null;
-  product_links?: Array<{
-    __typename?: "ProductLinks";
-    link_type?: string | null;
-    linked_product_sku?: string | null;
-    linked_product_type?: string | null;
-    position?: number | null;
-    sku?: string | null;
-  } | null> | null;
   small_image?: {
     __typename?: "ProductImage";
     disabled?: boolean | null;
@@ -21127,63 +21114,147 @@ type BaseProduct_BundleProduct_Fragment = {
     url?: string | null;
   } | null;
   short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
-  series?: Array<
-    | {
-        __typename?: "BundleProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "ConfigurableProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "DownloadableProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "GiftCardProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "GroupedProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "SimpleProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "VirtualProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | null
-  > | null;
   categories?: Array<{
     __typename?: "CategoryTree";
     url_path?: string | null;
     name?: string | null;
   } | null> | null;
+  related_products?: Array<
+    | {
+        __typename?: "BundleProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "ConfigurableProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "DownloadableProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "GiftCardProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "GroupedProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "SimpleProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "VirtualProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | null
+  > | null;
   productLabel?:
     | ({ __typename?: "Label" } & {
         " $fragmentRefs"?: { ProductLabelFragment: ProductLabelFragment };
@@ -21196,10 +21267,8 @@ type BaseProduct_ConfigurableProduct_Fragment = {
   url_key?: string | null;
   url_suffix?: string | null;
   canonical_url?: string | null;
-  country_of_manufacture?: string | null;
   gift_message_available?: string | null;
   is_returnable?: string | null;
-  manufacturer?: number | null;
   meta_description?: string | null;
   meta_keyword?: string | null;
   meta_title?: string | null;
@@ -21207,12 +21276,9 @@ type BaseProduct_ConfigurableProduct_Fragment = {
   new_from_date?: string | null;
   new_to_date?: string | null;
   only_x_left_in_stock?: number | null;
-  options_container?: string | null;
   rating_summary: number;
   uid: string;
-  swatch_image?: string | null;
   stock_status?: ProductStockStatus | null;
-  staged: boolean;
   special_to_date?: string | null;
   special_price?: number | null;
   sku?: string | null;
@@ -21247,14 +21313,6 @@ type BaseProduct_ConfigurableProduct_Fragment = {
     brand_image_url?: string | null;
     name?: string | null;
   } | null;
-  product_links?: Array<{
-    __typename?: "ProductLinks";
-    link_type?: string | null;
-    linked_product_sku?: string | null;
-    linked_product_type?: string | null;
-    position?: number | null;
-    sku?: string | null;
-  } | null> | null;
   small_image?: {
     __typename?: "ProductImage";
     disabled?: boolean | null;
@@ -21263,63 +21321,147 @@ type BaseProduct_ConfigurableProduct_Fragment = {
     url?: string | null;
   } | null;
   short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
-  series?: Array<
-    | {
-        __typename?: "BundleProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "ConfigurableProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "DownloadableProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "GiftCardProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "GroupedProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "SimpleProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "VirtualProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | null
-  > | null;
   categories?: Array<{
     __typename?: "CategoryTree";
     url_path?: string | null;
     name?: string | null;
   } | null> | null;
+  related_products?: Array<
+    | {
+        __typename?: "BundleProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "ConfigurableProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "DownloadableProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "GiftCardProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "GroupedProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "SimpleProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "VirtualProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | null
+  > | null;
   productLabel?:
     | ({ __typename?: "Label" } & {
         " $fragmentRefs"?: { ProductLabelFragment: ProductLabelFragment };
@@ -21332,10 +21474,8 @@ type BaseProduct_DownloadableProduct_Fragment = {
   url_key?: string | null;
   url_suffix?: string | null;
   canonical_url?: string | null;
-  country_of_manufacture?: string | null;
   gift_message_available?: string | null;
   is_returnable?: string | null;
-  manufacturer?: number | null;
   meta_description?: string | null;
   meta_keyword?: string | null;
   meta_title?: string | null;
@@ -21343,12 +21483,9 @@ type BaseProduct_DownloadableProduct_Fragment = {
   new_from_date?: string | null;
   new_to_date?: string | null;
   only_x_left_in_stock?: number | null;
-  options_container?: string | null;
   rating_summary: number;
   uid: string;
-  swatch_image?: string | null;
   stock_status?: ProductStockStatus | null;
-  staged: boolean;
   special_to_date?: string | null;
   special_price?: number | null;
   sku?: string | null;
@@ -21383,14 +21520,6 @@ type BaseProduct_DownloadableProduct_Fragment = {
     brand_image_url?: string | null;
     name?: string | null;
   } | null;
-  product_links?: Array<{
-    __typename?: "ProductLinks";
-    link_type?: string | null;
-    linked_product_sku?: string | null;
-    linked_product_type?: string | null;
-    position?: number | null;
-    sku?: string | null;
-  } | null> | null;
   small_image?: {
     __typename?: "ProductImage";
     disabled?: boolean | null;
@@ -21399,63 +21528,147 @@ type BaseProduct_DownloadableProduct_Fragment = {
     url?: string | null;
   } | null;
   short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
-  series?: Array<
-    | {
-        __typename?: "BundleProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "ConfigurableProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "DownloadableProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "GiftCardProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "GroupedProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "SimpleProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "VirtualProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | null
-  > | null;
   categories?: Array<{
     __typename?: "CategoryTree";
     url_path?: string | null;
     name?: string | null;
   } | null> | null;
+  related_products?: Array<
+    | {
+        __typename?: "BundleProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "ConfigurableProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "DownloadableProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "GiftCardProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "GroupedProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "SimpleProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "VirtualProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | null
+  > | null;
   productLabel?:
     | ({ __typename?: "Label" } & {
         " $fragmentRefs"?: { ProductLabelFragment: ProductLabelFragment };
@@ -21468,10 +21681,8 @@ type BaseProduct_GiftCardProduct_Fragment = {
   url_key?: string | null;
   url_suffix?: string | null;
   canonical_url?: string | null;
-  country_of_manufacture?: string | null;
   gift_message_available?: string | null;
   is_returnable?: string | null;
-  manufacturer?: number | null;
   meta_description?: string | null;
   meta_keyword?: string | null;
   meta_title?: string | null;
@@ -21479,12 +21690,9 @@ type BaseProduct_GiftCardProduct_Fragment = {
   new_from_date?: string | null;
   new_to_date?: string | null;
   only_x_left_in_stock?: number | null;
-  options_container?: string | null;
   rating_summary: number;
   uid: string;
-  swatch_image?: string | null;
   stock_status?: ProductStockStatus | null;
-  staged: boolean;
   special_to_date?: string | null;
   special_price?: number | null;
   sku?: string | null;
@@ -21519,14 +21727,6 @@ type BaseProduct_GiftCardProduct_Fragment = {
     brand_image_url?: string | null;
     name?: string | null;
   } | null;
-  product_links?: Array<{
-    __typename?: "ProductLinks";
-    link_type?: string | null;
-    linked_product_sku?: string | null;
-    linked_product_type?: string | null;
-    position?: number | null;
-    sku?: string | null;
-  } | null> | null;
   small_image?: {
     __typename?: "ProductImage";
     disabled?: boolean | null;
@@ -21535,63 +21735,147 @@ type BaseProduct_GiftCardProduct_Fragment = {
     url?: string | null;
   } | null;
   short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
-  series?: Array<
-    | {
-        __typename?: "BundleProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "ConfigurableProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "DownloadableProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "GiftCardProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "GroupedProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "SimpleProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "VirtualProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | null
-  > | null;
   categories?: Array<{
     __typename?: "CategoryTree";
     url_path?: string | null;
     name?: string | null;
   } | null> | null;
+  related_products?: Array<
+    | {
+        __typename?: "BundleProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "ConfigurableProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "DownloadableProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "GiftCardProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "GroupedProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "SimpleProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "VirtualProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | null
+  > | null;
   productLabel?:
     | ({ __typename?: "Label" } & {
         " $fragmentRefs"?: { ProductLabelFragment: ProductLabelFragment };
@@ -21604,10 +21888,8 @@ type BaseProduct_GroupedProduct_Fragment = {
   url_key?: string | null;
   url_suffix?: string | null;
   canonical_url?: string | null;
-  country_of_manufacture?: string | null;
   gift_message_available?: string | null;
   is_returnable?: string | null;
-  manufacturer?: number | null;
   meta_description?: string | null;
   meta_keyword?: string | null;
   meta_title?: string | null;
@@ -21615,12 +21897,9 @@ type BaseProduct_GroupedProduct_Fragment = {
   new_from_date?: string | null;
   new_to_date?: string | null;
   only_x_left_in_stock?: number | null;
-  options_container?: string | null;
   rating_summary: number;
   uid: string;
-  swatch_image?: string | null;
   stock_status?: ProductStockStatus | null;
-  staged: boolean;
   special_to_date?: string | null;
   special_price?: number | null;
   sku?: string | null;
@@ -21655,14 +21934,6 @@ type BaseProduct_GroupedProduct_Fragment = {
     brand_image_url?: string | null;
     name?: string | null;
   } | null;
-  product_links?: Array<{
-    __typename?: "ProductLinks";
-    link_type?: string | null;
-    linked_product_sku?: string | null;
-    linked_product_type?: string | null;
-    position?: number | null;
-    sku?: string | null;
-  } | null> | null;
   small_image?: {
     __typename?: "ProductImage";
     disabled?: boolean | null;
@@ -21671,63 +21942,147 @@ type BaseProduct_GroupedProduct_Fragment = {
     url?: string | null;
   } | null;
   short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
-  series?: Array<
-    | {
-        __typename?: "BundleProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "ConfigurableProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "DownloadableProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "GiftCardProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "GroupedProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "SimpleProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "VirtualProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | null
-  > | null;
   categories?: Array<{
     __typename?: "CategoryTree";
     url_path?: string | null;
     name?: string | null;
   } | null> | null;
+  related_products?: Array<
+    | {
+        __typename?: "BundleProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "ConfigurableProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "DownloadableProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "GiftCardProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "GroupedProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "SimpleProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "VirtualProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | null
+  > | null;
   productLabel?:
     | ({ __typename?: "Label" } & {
         " $fragmentRefs"?: { ProductLabelFragment: ProductLabelFragment };
@@ -21740,10 +22095,8 @@ type BaseProduct_SimpleProduct_Fragment = {
   url_key?: string | null;
   url_suffix?: string | null;
   canonical_url?: string | null;
-  country_of_manufacture?: string | null;
   gift_message_available?: string | null;
   is_returnable?: string | null;
-  manufacturer?: number | null;
   meta_description?: string | null;
   meta_keyword?: string | null;
   meta_title?: string | null;
@@ -21751,12 +22104,9 @@ type BaseProduct_SimpleProduct_Fragment = {
   new_from_date?: string | null;
   new_to_date?: string | null;
   only_x_left_in_stock?: number | null;
-  options_container?: string | null;
   rating_summary: number;
   uid: string;
-  swatch_image?: string | null;
   stock_status?: ProductStockStatus | null;
-  staged: boolean;
   special_to_date?: string | null;
   special_price?: number | null;
   sku?: string | null;
@@ -21791,14 +22141,6 @@ type BaseProduct_SimpleProduct_Fragment = {
     brand_image_url?: string | null;
     name?: string | null;
   } | null;
-  product_links?: Array<{
-    __typename?: "ProductLinks";
-    link_type?: string | null;
-    linked_product_sku?: string | null;
-    linked_product_type?: string | null;
-    position?: number | null;
-    sku?: string | null;
-  } | null> | null;
   small_image?: {
     __typename?: "ProductImage";
     disabled?: boolean | null;
@@ -21807,63 +22149,147 @@ type BaseProduct_SimpleProduct_Fragment = {
     url?: string | null;
   } | null;
   short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
-  series?: Array<
-    | {
-        __typename?: "BundleProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "ConfigurableProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "DownloadableProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "GiftCardProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "GroupedProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "SimpleProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "VirtualProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | null
-  > | null;
   categories?: Array<{
     __typename?: "CategoryTree";
     url_path?: string | null;
     name?: string | null;
   } | null> | null;
+  related_products?: Array<
+    | {
+        __typename?: "BundleProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "ConfigurableProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "DownloadableProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "GiftCardProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "GroupedProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "SimpleProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "VirtualProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | null
+  > | null;
   productLabel?:
     | ({ __typename?: "Label" } & {
         " $fragmentRefs"?: { ProductLabelFragment: ProductLabelFragment };
@@ -21876,10 +22302,8 @@ type BaseProduct_VirtualProduct_Fragment = {
   url_key?: string | null;
   url_suffix?: string | null;
   canonical_url?: string | null;
-  country_of_manufacture?: string | null;
   gift_message_available?: string | null;
   is_returnable?: string | null;
-  manufacturer?: number | null;
   meta_description?: string | null;
   meta_keyword?: string | null;
   meta_title?: string | null;
@@ -21887,12 +22311,9 @@ type BaseProduct_VirtualProduct_Fragment = {
   new_from_date?: string | null;
   new_to_date?: string | null;
   only_x_left_in_stock?: number | null;
-  options_container?: string | null;
   rating_summary: number;
   uid: string;
-  swatch_image?: string | null;
   stock_status?: ProductStockStatus | null;
-  staged: boolean;
   special_to_date?: string | null;
   special_price?: number | null;
   sku?: string | null;
@@ -21927,14 +22348,6 @@ type BaseProduct_VirtualProduct_Fragment = {
     brand_image_url?: string | null;
     name?: string | null;
   } | null;
-  product_links?: Array<{
-    __typename?: "ProductLinks";
-    link_type?: string | null;
-    linked_product_sku?: string | null;
-    linked_product_type?: string | null;
-    position?: number | null;
-    sku?: string | null;
-  } | null> | null;
   small_image?: {
     __typename?: "ProductImage";
     disabled?: boolean | null;
@@ -21943,63 +22356,147 @@ type BaseProduct_VirtualProduct_Fragment = {
     url?: string | null;
   } | null;
   short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
-  series?: Array<
-    | {
-        __typename?: "BundleProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "ConfigurableProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "DownloadableProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "GiftCardProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "GroupedProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "SimpleProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | {
-        __typename?: "VirtualProduct";
-        url_key?: string | null;
-        sku?: string | null;
-        name?: string | null;
-        image?: { __typename?: "ProductImage"; url?: string | null } | null;
-      }
-    | null
-  > | null;
   categories?: Array<{
     __typename?: "CategoryTree";
     url_path?: string | null;
     name?: string | null;
   } | null> | null;
+  related_products?: Array<
+    | {
+        __typename?: "BundleProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "ConfigurableProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "DownloadableProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "GiftCardProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "GroupedProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "SimpleProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | {
+        __typename?: "VirtualProduct";
+        name?: string | null;
+        canonical_url?: string | null;
+        short_description?: {
+          __typename?: "ComplexTextValue";
+          html: string;
+        } | null;
+        price_range: { __typename?: "PriceRange" } & {
+          " $fragmentRefs"?: {
+            ProductPriceRangeFragment: ProductPriceRangeFragment;
+          };
+        };
+        image?: {
+          __typename?: "ProductImage";
+          url?: string | null;
+          label?: string | null;
+        } | null;
+      }
+    | null
+  > | null;
   productLabel?:
     | ({ __typename?: "Label" } & {
         " $fragmentRefs"?: { ProductLabelFragment: ProductLabelFragment };
@@ -22658,10 +23155,6 @@ export const BaseProductFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "canonical_url" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "country_of_manufacture" },
-          },
-          {
-            kind: "Field",
             name: { kind: "Name", value: "description" },
             selectionSet: {
               kind: "SelectionSet",
@@ -22688,7 +23181,6 @@ export const BaseProductFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "is_returnable" } },
-          { kind: "Field", name: { kind: "Name", value: "manufacturer" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "media_gallery" },
@@ -22712,7 +23204,6 @@ export const BaseProductFragmentDoc = {
             kind: "Field",
             name: { kind: "Name", value: "only_x_left_in_stock" },
           },
-          { kind: "Field", name: { kind: "Name", value: "options_container" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "price_range" },
@@ -22740,60 +23231,9 @@ export const BaseProductFragmentDoc = {
               ],
             },
           },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "product_links" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "link_type" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "linked_product_sku" },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "linked_product_type" },
-                },
-                { kind: "Field", name: { kind: "Name", value: "position" } },
-                { kind: "Field", name: { kind: "Name", value: "sku" } },
-                {
-                  kind: "InlineFragment",
-                  typeCondition: {
-                    kind: "NamedType",
-                    name: { kind: "Name", value: "ProductLinks" },
-                  },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "link_type" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "linked_product_sku" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "linked_product_type" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "position" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "sku" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
           { kind: "Field", name: { kind: "Name", value: "rating_summary" } },
           { kind: "Field", name: { kind: "Name", value: "uid" } },
-          { kind: "Field", name: { kind: "Name", value: "swatch_image" } },
           { kind: "Field", name: { kind: "Name", value: "stock_status" } },
-          { kind: "Field", name: { kind: "Name", value: "staged" } },
           { kind: "Field", name: { kind: "Name", value: "special_to_date" } },
           { kind: "Field", name: { kind: "Name", value: "special_price" } },
           {
@@ -22824,12 +23264,49 @@ export const BaseProductFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "addable_to_cart" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "series" },
+            name: { kind: "Name", value: "categories" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "url_key" } },
-                { kind: "Field", name: { kind: "Name", value: "sku" } },
+                { kind: "Field", name: { kind: "Name", value: "url_path" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "related_products" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "short_description" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "html" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "price_range" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "ProductPriceRange" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "canonical_url" },
+                },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "image" },
@@ -22837,21 +23314,10 @@ export const BaseProductFragmentDoc = {
                     kind: "SelectionSet",
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
                     ],
                   },
                 },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "categories" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "url_path" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
               ],
             },
           },
@@ -23580,10 +24046,6 @@ export const ConfigurableProductVariantsFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "canonical_url" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "country_of_manufacture" },
-          },
-          {
-            kind: "Field",
             name: { kind: "Name", value: "description" },
             selectionSet: {
               kind: "SelectionSet",
@@ -23610,7 +24072,6 @@ export const ConfigurableProductVariantsFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "is_returnable" } },
-          { kind: "Field", name: { kind: "Name", value: "manufacturer" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "media_gallery" },
@@ -23634,7 +24095,6 @@ export const ConfigurableProductVariantsFragmentDoc = {
             kind: "Field",
             name: { kind: "Name", value: "only_x_left_in_stock" },
           },
-          { kind: "Field", name: { kind: "Name", value: "options_container" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "price_range" },
@@ -23662,60 +24122,9 @@ export const ConfigurableProductVariantsFragmentDoc = {
               ],
             },
           },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "product_links" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "link_type" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "linked_product_sku" },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "linked_product_type" },
-                },
-                { kind: "Field", name: { kind: "Name", value: "position" } },
-                { kind: "Field", name: { kind: "Name", value: "sku" } },
-                {
-                  kind: "InlineFragment",
-                  typeCondition: {
-                    kind: "NamedType",
-                    name: { kind: "Name", value: "ProductLinks" },
-                  },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "link_type" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "linked_product_sku" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "linked_product_type" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "position" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "sku" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
           { kind: "Field", name: { kind: "Name", value: "rating_summary" } },
           { kind: "Field", name: { kind: "Name", value: "uid" } },
-          { kind: "Field", name: { kind: "Name", value: "swatch_image" } },
           { kind: "Field", name: { kind: "Name", value: "stock_status" } },
-          { kind: "Field", name: { kind: "Name", value: "staged" } },
           { kind: "Field", name: { kind: "Name", value: "special_to_date" } },
           { kind: "Field", name: { kind: "Name", value: "special_price" } },
           {
@@ -23746,12 +24155,49 @@ export const ConfigurableProductVariantsFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "addable_to_cart" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "series" },
+            name: { kind: "Name", value: "categories" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "url_key" } },
-                { kind: "Field", name: { kind: "Name", value: "sku" } },
+                { kind: "Field", name: { kind: "Name", value: "url_path" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "related_products" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "short_description" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "html" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "price_range" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "ProductPriceRange" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "canonical_url" },
+                },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "image" },
@@ -23759,21 +24205,10 @@ export const ConfigurableProductVariantsFragmentDoc = {
                     kind: "SelectionSet",
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
                     ],
                   },
                 },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "categories" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "url_path" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
               ],
             },
           },
@@ -24159,10 +24594,6 @@ export const ConfigurableProductFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "canonical_url" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "country_of_manufacture" },
-          },
-          {
-            kind: "Field",
             name: { kind: "Name", value: "description" },
             selectionSet: {
               kind: "SelectionSet",
@@ -24189,7 +24620,6 @@ export const ConfigurableProductFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "is_returnable" } },
-          { kind: "Field", name: { kind: "Name", value: "manufacturer" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "media_gallery" },
@@ -24213,7 +24643,6 @@ export const ConfigurableProductFragmentDoc = {
             kind: "Field",
             name: { kind: "Name", value: "only_x_left_in_stock" },
           },
-          { kind: "Field", name: { kind: "Name", value: "options_container" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "price_range" },
@@ -24241,60 +24670,9 @@ export const ConfigurableProductFragmentDoc = {
               ],
             },
           },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "product_links" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "link_type" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "linked_product_sku" },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "linked_product_type" },
-                },
-                { kind: "Field", name: { kind: "Name", value: "position" } },
-                { kind: "Field", name: { kind: "Name", value: "sku" } },
-                {
-                  kind: "InlineFragment",
-                  typeCondition: {
-                    kind: "NamedType",
-                    name: { kind: "Name", value: "ProductLinks" },
-                  },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "link_type" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "linked_product_sku" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "linked_product_type" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "position" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "sku" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
           { kind: "Field", name: { kind: "Name", value: "rating_summary" } },
           { kind: "Field", name: { kind: "Name", value: "uid" } },
-          { kind: "Field", name: { kind: "Name", value: "swatch_image" } },
           { kind: "Field", name: { kind: "Name", value: "stock_status" } },
-          { kind: "Field", name: { kind: "Name", value: "staged" } },
           { kind: "Field", name: { kind: "Name", value: "special_to_date" } },
           { kind: "Field", name: { kind: "Name", value: "special_price" } },
           {
@@ -24325,12 +24703,49 @@ export const ConfigurableProductFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "addable_to_cart" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "series" },
+            name: { kind: "Name", value: "categories" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "url_key" } },
-                { kind: "Field", name: { kind: "Name", value: "sku" } },
+                { kind: "Field", name: { kind: "Name", value: "url_path" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "related_products" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "short_description" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "html" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "price_range" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "ProductPriceRange" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "canonical_url" },
+                },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "image" },
@@ -24338,21 +24753,10 @@ export const ConfigurableProductFragmentDoc = {
                     kind: "SelectionSet",
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
                     ],
                   },
                 },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "categories" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "url_path" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
               ],
             },
           },
@@ -25017,10 +25421,6 @@ export const SimpleProductFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "canonical_url" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "country_of_manufacture" },
-          },
-          {
-            kind: "Field",
             name: { kind: "Name", value: "description" },
             selectionSet: {
               kind: "SelectionSet",
@@ -25047,7 +25447,6 @@ export const SimpleProductFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "is_returnable" } },
-          { kind: "Field", name: { kind: "Name", value: "manufacturer" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "media_gallery" },
@@ -25071,7 +25470,6 @@ export const SimpleProductFragmentDoc = {
             kind: "Field",
             name: { kind: "Name", value: "only_x_left_in_stock" },
           },
-          { kind: "Field", name: { kind: "Name", value: "options_container" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "price_range" },
@@ -25099,60 +25497,9 @@ export const SimpleProductFragmentDoc = {
               ],
             },
           },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "product_links" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "link_type" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "linked_product_sku" },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "linked_product_type" },
-                },
-                { kind: "Field", name: { kind: "Name", value: "position" } },
-                { kind: "Field", name: { kind: "Name", value: "sku" } },
-                {
-                  kind: "InlineFragment",
-                  typeCondition: {
-                    kind: "NamedType",
-                    name: { kind: "Name", value: "ProductLinks" },
-                  },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "link_type" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "linked_product_sku" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "linked_product_type" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "position" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "sku" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
           { kind: "Field", name: { kind: "Name", value: "rating_summary" } },
           { kind: "Field", name: { kind: "Name", value: "uid" } },
-          { kind: "Field", name: { kind: "Name", value: "swatch_image" } },
           { kind: "Field", name: { kind: "Name", value: "stock_status" } },
-          { kind: "Field", name: { kind: "Name", value: "staged" } },
           { kind: "Field", name: { kind: "Name", value: "special_to_date" } },
           { kind: "Field", name: { kind: "Name", value: "special_price" } },
           {
@@ -25183,12 +25530,49 @@ export const SimpleProductFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "addable_to_cart" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "series" },
+            name: { kind: "Name", value: "categories" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "url_key" } },
-                { kind: "Field", name: { kind: "Name", value: "sku" } },
+                { kind: "Field", name: { kind: "Name", value: "url_path" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "related_products" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "short_description" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "html" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "price_range" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "ProductPriceRange" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "canonical_url" },
+                },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "image" },
@@ -25196,21 +25580,10 @@ export const SimpleProductFragmentDoc = {
                     kind: "SelectionSet",
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
                     ],
                   },
                 },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "categories" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "url_path" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
               ],
             },
           },
@@ -26276,10 +26649,6 @@ export const ProductsDocument = {
           { kind: "Field", name: { kind: "Name", value: "canonical_url" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "country_of_manufacture" },
-          },
-          {
-            kind: "Field",
             name: { kind: "Name", value: "description" },
             selectionSet: {
               kind: "SelectionSet",
@@ -26306,7 +26675,6 @@ export const ProductsDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "is_returnable" } },
-          { kind: "Field", name: { kind: "Name", value: "manufacturer" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "media_gallery" },
@@ -26330,7 +26698,6 @@ export const ProductsDocument = {
             kind: "Field",
             name: { kind: "Name", value: "only_x_left_in_stock" },
           },
-          { kind: "Field", name: { kind: "Name", value: "options_container" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "price_range" },
@@ -26358,60 +26725,9 @@ export const ProductsDocument = {
               ],
             },
           },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "product_links" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "link_type" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "linked_product_sku" },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "linked_product_type" },
-                },
-                { kind: "Field", name: { kind: "Name", value: "position" } },
-                { kind: "Field", name: { kind: "Name", value: "sku" } },
-                {
-                  kind: "InlineFragment",
-                  typeCondition: {
-                    kind: "NamedType",
-                    name: { kind: "Name", value: "ProductLinks" },
-                  },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "link_type" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "linked_product_sku" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "linked_product_type" },
-                      },
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "position" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "sku" } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
           { kind: "Field", name: { kind: "Name", value: "rating_summary" } },
           { kind: "Field", name: { kind: "Name", value: "uid" } },
-          { kind: "Field", name: { kind: "Name", value: "swatch_image" } },
           { kind: "Field", name: { kind: "Name", value: "stock_status" } },
-          { kind: "Field", name: { kind: "Name", value: "staged" } },
           { kind: "Field", name: { kind: "Name", value: "special_to_date" } },
           { kind: "Field", name: { kind: "Name", value: "special_price" } },
           {
@@ -26442,12 +26758,49 @@ export const ProductsDocument = {
           { kind: "Field", name: { kind: "Name", value: "addable_to_cart" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "series" },
+            name: { kind: "Name", value: "categories" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "url_key" } },
-                { kind: "Field", name: { kind: "Name", value: "sku" } },
+                { kind: "Field", name: { kind: "Name", value: "url_path" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "related_products" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "short_description" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "html" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "price_range" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "ProductPriceRange" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "canonical_url" },
+                },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "image" },
@@ -26455,21 +26808,10 @@ export const ProductsDocument = {
                     kind: "SelectionSet",
                     selections: [
                       { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
                     ],
                   },
                 },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "categories" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "url_path" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
               ],
             },
           },

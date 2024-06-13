@@ -105,7 +105,6 @@ export const BaseProductFragment = graphql(`
     url_key
     url_suffix
     canonical_url
-    country_of_manufacture
     description {
       html
     }
@@ -114,7 +113,6 @@ export const BaseProductFragment = graphql(`
       ...ProductImageFragment
     }
     is_returnable
-    manufacturer
     media_gallery {
       ...ProductMediaGallery
     }
@@ -125,7 +123,6 @@ export const BaseProductFragment = graphql(`
     new_from_date
     new_to_date
     only_x_left_in_stock
-    options_container
     price_range {
       ...ProductPriceRange
     }
@@ -133,25 +130,9 @@ export const BaseProductFragment = graphql(`
       brand_image_url
       name
     }
-    product_links {
-      link_type
-      linked_product_sku
-      linked_product_type
-      position
-      sku
-      ... on ProductLinks {
-        link_type
-        linked_product_sku
-        linked_product_type
-        position
-        sku
-      }
-    }
     rating_summary
     uid
-    swatch_image
     stock_status
-    staged
     special_to_date
     special_price
     small_image {
@@ -166,17 +147,23 @@ export const BaseProductFragment = graphql(`
     }
     review_count
     addable_to_cart
-    series {
-      url_key
-      sku
-      image {
-        url
-      }
-      name
-    }
     categories {
       url_path
       name
+    }
+    related_products {
+      name
+      short_description {
+        html
+      }
+      price_range {
+        ...ProductPriceRange
+      }
+      canonical_url
+      image {
+        url
+        label
+      }
     }
     productLabel {
       ...ProductLabel

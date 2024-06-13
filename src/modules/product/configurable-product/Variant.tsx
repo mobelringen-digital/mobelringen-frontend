@@ -51,6 +51,7 @@ export const Variant: React.FC<Props> = ({ variant }) => {
       )}
     >
       <Image
+        className="object-contain w-[45px] h-[45px]"
         src={variantProduct.small_image?.url ?? ""}
         alt={variantProduct.sku ?? ""}
         width={45}
