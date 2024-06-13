@@ -11,11 +11,13 @@ import { QuantityButton } from "@/components/_ui/quantity-input/QuantityButton";
 interface Props extends InputProps {
   onQuantityIncrement?: () => void;
   onQuantityDecrement?: () => void;
+  disabled?: boolean;
 }
 
 export const QuantityInput: React.FC<Props> = ({
   onQuantityIncrement,
   onQuantityDecrement,
+  disabled,
   onChange,
   ...rest
 }) => {
@@ -23,8 +25,9 @@ export const QuantityInput: React.FC<Props> = ({
     <div className="rounded-2xl w-[120px] bg-sand flex items-center px-2 py-1">
       <Input
         {...rest}
+        disabled={disabled}
         startContent={
-          <QuantityButton onClick={onQuantityDecrement}>
+          <QuantityButton onClick={onQuantityDecrement} disabled={disabled}>
             <MinusIcon width={24} height={24} />
           </QuantityButton>
         }
@@ -41,7 +44,7 @@ export const QuantityInput: React.FC<Props> = ({
           mainWrapper: "bg-sand p-0",
         }}
         endContent={
-          <QuantityButton onClick={onQuantityIncrement}>
+          <QuantityButton onClick={onQuantityIncrement} disabled={disabled}>
             <PlusIcon width={24} height={24} />
           </QuantityButton>
         }
