@@ -53,7 +53,7 @@ const documents = {
     types.BaseProductFragmentDoc,
   "\n  query Products($pageSize: Int = 12, $filter: ProductAttributeFilterInput) {\n    products(pageSize: $pageSize, filter: $filter) {\n      items {\n        ... on SimpleProduct {\n          ...SimpleProduct\n        }\n        ... on ConfigurableProduct {\n          ...ConfigurableProduct\n        }\n      }\n    }\n  }\n":
     types.ProductsDocument,
-  "\n  query ProductSliderData(\n    $pageSize: Int = 1\n    $filter: ProductAttributeFilterInput\n  ) {\n    products(pageSize: $pageSize, filter: $filter) {\n      items {\n        related_products {\n          ...BaseProduct\n        }\n        series {\n          ...BaseProduct\n        }\n      }\n    }\n  }\n":
+  "\n  query ProductSliderData(\n    $pageSize: Int = 1\n    $filter: ProductAttributeFilterInput\n  ) {\n    products(pageSize: $pageSize, filter: $filter) {\n      items {\n        __typename\n        related_products {\n          ...BaseProduct\n        }\n        series {\n          ...BaseProduct\n        }\n      }\n    }\n  }\n":
     types.ProductSliderDataDocument,
   "\n  query Route($url: String!) {\n    route(url: $url) {\n      redirect_code\n      relative_url\n      type\n      ... on SimpleProduct {\n        __typename\n        name\n        sku\n      }\n      ... on ConfigurableProduct {\n        __typename\n        name\n        sku\n      }\n    }\n  }\n":
     types.RouteDocument,
@@ -199,8 +199,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  query ProductSliderData(\n    $pageSize: Int = 1\n    $filter: ProductAttributeFilterInput\n  ) {\n    products(pageSize: $pageSize, filter: $filter) {\n      items {\n        related_products {\n          ...BaseProduct\n        }\n        series {\n          ...BaseProduct\n        }\n      }\n    }\n  }\n",
-): (typeof documents)["\n  query ProductSliderData(\n    $pageSize: Int = 1\n    $filter: ProductAttributeFilterInput\n  ) {\n    products(pageSize: $pageSize, filter: $filter) {\n      items {\n        related_products {\n          ...BaseProduct\n        }\n        series {\n          ...BaseProduct\n        }\n      }\n    }\n  }\n"];
+  source: "\n  query ProductSliderData(\n    $pageSize: Int = 1\n    $filter: ProductAttributeFilterInput\n  ) {\n    products(pageSize: $pageSize, filter: $filter) {\n      items {\n        __typename\n        related_products {\n          ...BaseProduct\n        }\n        series {\n          ...BaseProduct\n        }\n      }\n    }\n  }\n",
+): (typeof documents)["\n  query ProductSliderData(\n    $pageSize: Int = 1\n    $filter: ProductAttributeFilterInput\n  ) {\n    products(pageSize: $pageSize, filter: $filter) {\n      items {\n        __typename\n        related_products {\n          ...BaseProduct\n        }\n        series {\n          ...BaseProduct\n        }\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

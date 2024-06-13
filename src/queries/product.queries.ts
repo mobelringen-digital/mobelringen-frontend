@@ -179,6 +179,7 @@ export const ProductSliderDataDocument = graphql(`
   ) {
     products(pageSize: $pageSize, filter: $filter) {
       items {
+        __typename
         related_products {
           ...BaseProduct
         }

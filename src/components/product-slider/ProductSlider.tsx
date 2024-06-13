@@ -12,6 +12,10 @@ interface Props {
 }
 
 export const ProductSlider: React.FC<Props> = ({ title, data }) => {
+  if (data && data.length < 1) {
+    return null;
+  }
+
   if (data && data.length <= 4) {
     return (
       <div className="my-28">

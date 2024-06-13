@@ -22986,7 +22986,7 @@ export type ProductSliderDataQuery = {
     __typename?: "Products";
     items?: Array<
       | {
-          __typename?: "BundleProduct";
+          __typename: "BundleProduct";
           related_products?: Array<
             | {
                 __typename: "BundleProduct";
@@ -25011,7 +25011,7 @@ export type ProductSliderDataQuery = {
           > | null;
         }
       | {
-          __typename?: "ConfigurableProduct";
+          __typename: "ConfigurableProduct";
           related_products?: Array<
             | {
                 __typename: "BundleProduct";
@@ -27036,7 +27036,7 @@ export type ProductSliderDataQuery = {
           > | null;
         }
       | {
-          __typename?: "DownloadableProduct";
+          __typename: "DownloadableProduct";
           related_products?: Array<
             | {
                 __typename: "BundleProduct";
@@ -29061,7 +29061,7 @@ export type ProductSliderDataQuery = {
           > | null;
         }
       | {
-          __typename?: "GiftCardProduct";
+          __typename: "GiftCardProduct";
           related_products?: Array<
             | {
                 __typename: "BundleProduct";
@@ -31086,7 +31086,7 @@ export type ProductSliderDataQuery = {
           > | null;
         }
       | {
-          __typename?: "GroupedProduct";
+          __typename: "GroupedProduct";
           related_products?: Array<
             | {
                 __typename: "BundleProduct";
@@ -33111,7 +33111,7 @@ export type ProductSliderDataQuery = {
           > | null;
         }
       | {
-          __typename?: "SimpleProduct";
+          __typename: "SimpleProduct";
           related_products?: Array<
             | {
                 __typename: "BundleProduct";
@@ -35136,7 +35136,7 @@ export type ProductSliderDataQuery = {
           > | null;
         }
       | {
-          __typename?: "VirtualProduct";
+          __typename: "VirtualProduct";
           related_products?: Array<
             | {
                 __typename: "BundleProduct";
@@ -41554,6 +41554,10 @@ export const ProductSliderDataDocument = {
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "__typename" },
+                      },
                       {
                         kind: "Field",
                         name: { kind: "Name", value: "related_products" },
