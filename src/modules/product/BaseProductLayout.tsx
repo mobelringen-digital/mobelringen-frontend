@@ -12,6 +12,8 @@ import { MoreInTheStore } from "@/modules/product/MoreInTheStore";
 import { ProductGallery } from "@/modules/product/product-gallery/ProductGallery";
 import { ProductPricing } from "@/modules/product/product-pricing/ProductPricing";
 import { ProductTopInfo } from "@/modules/product/ProductTopInfo";
+import { RelatedProducts } from "@/modules/product/related-products/RelatedProducts";
+import { ProductSeries } from "@/modules/product/series/ProductSeries";
 import { BaseProductFragment } from "@/queries/product.queries";
 import { BaseProductFragment as BaseProductFragmentType } from "@/types";
 import { useFragment } from "@/types/schema";
@@ -77,6 +79,10 @@ export const BaseProductLayout: React.FC<Props> = ({
           </div>
         </div>
       </div>
+
+      <ProductSeries sku={product.sku} />
+      <RelatedProducts sku={product.sku} />
+
       <Debugger data={baseProductData} />
     </ContainerLayout>
   );

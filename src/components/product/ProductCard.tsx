@@ -1,5 +1,7 @@
 import React from "react";
 
+import cx from "classnames";
+
 import Link from "next/link";
 
 import { ProductImage } from "@/components/product/ProductImage";
@@ -18,9 +20,10 @@ import { usePriceRange } from "@/utils/hooks/usePriceRange";
 
 interface Props {
   productData: FragmentType<typeof BaseProductFragment>;
+  className?: string;
 }
 
-export const ProductCard: React.FC<Props> = ({ productData }) => {
+export const ProductCard: React.FC<Props> = ({ productData, className }) => {
   const product = useFragment(BaseProductFragment, productData);
   const priceRange = useFragment(
     ProductPriceRangeFragment,
@@ -33,7 +36,7 @@ export const ProductCard: React.FC<Props> = ({ productData }) => {
   if (!product) return null;
 
   return (
-    <div className="relative flex w-full flex-col">
+    <div className={cx("relative flex w-full flex-col", className)}>
       <Link
         className="relative flex items-center justify-center bg-warm-grey px-2 lg:px-6 py-8 lg:py-12 rounded-2xl h-[240px] lg:h-[420px]"
         href={`/${product.canonical_url}`}

@@ -151,20 +151,6 @@ export const BaseProductFragment = graphql(`
       url_path
       name
     }
-    related_products {
-      name
-      short_description {
-        html
-      }
-      price_range {
-        ...ProductPriceRange
-      }
-      canonical_url
-      image {
-        url
-        label
-      }
-    }
     productLabel {
       ...ProductLabel
     }
@@ -180,6 +166,33 @@ export const ProductsQueryDocument = graphql(`
         }
         ... on ConfigurableProduct {
           ...ConfigurableProduct
+        }
+      }
+    }
+  }
+`);
+
+export const ProductRelatedProductsDocument = graphql(`
+  query RelatedProducts(
+    $pageSize: Int = 1
+    $filter: ProductAttributeFilterInput
+  ) {
+    products(pageSize: $pageSize, filter: $filter) {
+      items {
+        related_products {
+          ...BaseProduct
+        }
+      }
+    }
+  }
+`);
+
+export const ProductSeriesDocument = graphql(`
+  query Series($pageSize: Int = 1, $filter: ProductAttributeFilterInput) {
+    products(pageSize: $pageSize, filter: $filter) {
+      items {
+        series {
+          ...BaseProduct
         }
       }
     }

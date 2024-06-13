@@ -3,9 +3,10 @@ import React from "react";
 
 interface Props {
   data: any;
+  name?: string;
 }
 
-export const Debugger: React.FC<Props> = ({ data }) => {
+export const Debugger: React.FC<Props> = ({ data, name = "Debugger" }) => {
   const [isOpen, setIsOpen] = React.useState(false);
   return (
     <div className="my-16">
@@ -13,7 +14,7 @@ export const Debugger: React.FC<Props> = ({ data }) => {
         className="text-sm bg-black text-white p-2"
         onClick={() => setIsOpen((prev) => !prev)}
       >
-        Debugger
+        {name}
       </button>
       {isOpen ? (
         <div className="bg-black text-white text-sm p-4">
