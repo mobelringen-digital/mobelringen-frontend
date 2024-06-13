@@ -2,6 +2,7 @@ import React from "react";
 
 import { Actions } from "@/components/header-menu/Actions";
 import { DesktopMenu } from "@/components/header-menu/desktop-menu/DesktopMenu";
+import { DesktopMenuAdditionalLinks } from "@/components/header-menu/desktop-menu/DesktopMenuAdditionalLinks";
 import { Logo } from "@/components/header-menu/Logo";
 import { MobileMenu } from "@/components/header-menu/mobile-menu/MobileMenu";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
@@ -24,13 +25,16 @@ export async function HeaderMenu() {
   const data = await getMenu();
 
   return (
-    <header className="shadow-header-menu backdrop-blur-lg sticky top-0 py-4 bg-white min-h-[80px] tracking-wide z-30 flex items-center">
-      <ContainerLayout className="flex items-center justify-between">
-        <DesktopMenu data={data} />
-        <MobileMenu data={data} />
-        <Logo />
-        <Actions />
-      </ContainerLayout>
-    </header>
+    <nav className="sticky top-0 z-30">
+      <DesktopMenuAdditionalLinks />
+      <header className="shadow-header-menu backdrop-blur-lg py-4 bg-white min-h-[80px] tracking-wide flex items-center">
+        <ContainerLayout className="flex items-center justify-between">
+          <DesktopMenu data={data} />
+          <MobileMenu data={data} />
+          <Logo />
+          <Actions />
+        </ContainerLayout>
+      </header>
+    </nav>
   );
 }

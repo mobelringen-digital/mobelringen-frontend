@@ -9,7 +9,7 @@ import { baseHygraphClient } from "@/utils/lib/graphql";
 async function getMenuItems() {
   return await baseHygraphClient.request<MenuQuery>(MenuQueryDocument, {
     where: {
-      menuLocation: MenuType.MobileMenuAdditionalLinks,
+      menuLocation: MenuType.MenuTopLinks,
     },
   });
 }

@@ -2152,6 +2152,8 @@ export type BundleProduct = CustomizableProductInterface &
     options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>;
     /** If the product has multiple options, determines where they appear on the product page. */
     options_container?: Maybe<Scalars["String"]["output"]>;
+    /** An array of product assigned documents. */
+    pdf_dokument: Array<Maybe<DocumentItem>>;
     /**
      * Indicates the price of an item.
      * @deprecated Use `price_range` for product price information.
@@ -2994,6 +2996,13 @@ export type ComplexTextValue = {
   html: Scalars["String"]["output"];
 };
 
+export type ConfigConsent = {
+  __typename?: "ConfigConsent";
+  code: Scalars["String"]["output"];
+  is_required: Scalars["Boolean"]["output"];
+  label: Scalars["String"]["output"];
+};
+
 /** Contains details about a configurable product attribute option. */
 export type ConfigurableAttributeOption = {
   __typename?: "ConfigurableAttributeOption";
@@ -3153,6 +3162,8 @@ export type ConfigurableProduct = CustomizableProductInterface &
     options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>;
     /** If the product has multiple options, determines where they appear on the product page. */
     options_container?: Maybe<Scalars["String"]["output"]>;
+    /** An array of product assigned documents. */
+    pdf_dokument: Array<Maybe<DocumentItem>>;
     /**
      * Indicates the price of an item.
      * @deprecated Use `price_range` for product price information.
@@ -3429,14 +3440,6 @@ export type ConnectPositionInput = {
   end?: InputMaybe<Scalars["Boolean"]["input"]>;
   /** Connect document at first position */
   start?: InputMaybe<Scalars["Boolean"]["input"]>;
-};
-
-export type Consent = {
-  __typename?: "Consent";
-  code: Scalars["String"]["output"];
-  is_required: Scalars["Boolean"]["output"];
-  label: Scalars["String"]["output"];
-  value: Scalars["Boolean"]["output"];
 };
 
 /** Contains the source and target wish lists after copying products. */
@@ -5241,6 +5244,26 @@ export type CustomAttributeMetadata = {
 /** Defines the customer name, addresses, and other details. */
 export type Customer = {
   __typename?: "Customer";
+  /** Consent. */
+  accepts_analysis?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Consent. */
+  accepts_data_quality?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Consent. */
+  accepts_digital_campaigns?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Consent. */
+  accepts_emails?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Consent. */
+  accepts_sms?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Consent. */
+  accepts_social_media?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Consent. */
+  accepts_terms?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Consent. */
+  accepts_third_parties?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Consent. */
+  accepts_transactions?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Consent. */
+  accepts_twin?: Maybe<Scalars["Boolean"]["output"]>;
   /** An array containing the customer's shipping and billing addresses. */
   addresses?: Maybe<Array<Maybe<CustomerAddress>>>;
   /** Indicates whether the customer has enabled remote shopping assistance. */
@@ -5248,7 +5271,7 @@ export type Customer = {
   /** The contents of the customer's compare list. */
   compare_list?: Maybe<CompareList>;
   /** Customer consent list. */
-  consents?: Maybe<Array<Maybe<Consent>>>;
+  consents?: Maybe<Array<Maybe<CustomerConsent>>>;
   /** Timestamp indicating when the account was created. */
   created_at?: Maybe<Scalars["String"]["output"]>;
   /** The customer's date of birth. */
@@ -5286,6 +5309,8 @@ export type Customer = {
   /** The customer's middle name. */
   middlename?: Maybe<Scalars["String"]["output"]>;
   orders?: Maybe<CustomerOrders>;
+  /** Phone number. */
+  phone_number: Scalars["String"]["output"];
   /** An honorific, such as Dr., Mr., or Mrs. */
   prefix?: Maybe<Scalars["String"]["output"]>;
   /** Details about the specified return request from the unique ID for a `Return` object. */
@@ -5490,10 +5515,40 @@ export type CustomerAddressRegionInput = {
   region_id?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
+export type CustomerConsent = {
+  __typename?: "CustomerConsent";
+  code: Scalars["String"]["output"];
+  is_required: Scalars["Boolean"]["output"];
+  label: Scalars["String"]["output"];
+  value: Scalars["Boolean"]["output"];
+};
+
 /** An input object for creating a customer. */
 export type CustomerCreateInput = {
+  /** Consent. */
+  accepts_analysis?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Consent. */
+  accepts_data_quality?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Consent. */
+  accepts_digital_campaigns?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Consent. */
+  accepts_emails?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Consent. */
+  accepts_sms?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Consent. */
+  accepts_social_media?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Consent. */
+  accepts_terms?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Consent. */
+  accepts_third_parties?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Consent. */
+  accepts_transactions?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Consent. */
+  accepts_twin?: InputMaybe<Scalars["Boolean"]["input"]>;
   /** Indicates whether the customer has enabled remote shopping assistance. */
   allow_remote_shopping_assistance?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** The customer's city or town. */
+  city: Scalars["String"]["input"];
   /** The customer's date of birth. */
   date_of_birth?: InputMaybe<Scalars["String"]["input"]>;
   /** Deprecated: Use `date_of_birth` instead. */
@@ -5512,8 +5567,14 @@ export type CustomerCreateInput = {
   middlename?: InputMaybe<Scalars["String"]["input"]>;
   /** The customer's password. */
   password?: InputMaybe<Scalars["String"]["input"]>;
+  /** Phone number. */
+  phone_number: Scalars["String"]["input"];
+  /** The customer's ZIP or postal code. */
+  postcode: Scalars["String"]["input"];
   /** An honorific, such as Dr., Mr., or Mrs. */
   prefix?: InputMaybe<Scalars["String"]["input"]>;
+  /** An array of strings that define the street number and name. */
+  street: Array<InputMaybe<Scalars["String"]["input"]>>;
   /** A value such as Sr., Jr., or III. */
   suffix?: InputMaybe<Scalars["String"]["input"]>;
   /** The customer's Tax/VAT number (for corporate customers). */
@@ -5752,25 +5813,25 @@ export type CustomerToken = {
 
 /** An input object for updating a customer. */
 export type CustomerUpdateInput = {
-  /** Consent */
+  /** Consent. */
   accepts_analysis?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Consent */
+  /** Consent. */
   accepts_data_quality?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Consent */
+  /** Consent. */
   accepts_digital_campaigns?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Consent */
+  /** Consent. */
   accepts_emails?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Consent */
+  /** Consent. */
   accepts_sms?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Consent */
+  /** Consent. */
   accepts_social_media?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Consent */
+  /** Consent. */
   accepts_terms?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Consent */
+  /** Consent. */
   accepts_third_parties?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Consent */
+  /** Consent. */
   accepts_transactions?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Consent */
+  /** Consent. */
   accepts_twin?: InputMaybe<Scalars["Boolean"]["input"]>;
   /** Indicates whether the customer has enabled remote shopping assistance. */
   allow_remote_shopping_assistance?: InputMaybe<Scalars["Boolean"]["input"]>;
@@ -5788,6 +5849,8 @@ export type CustomerUpdateInput = {
   lastname?: InputMaybe<Scalars["String"]["input"]>;
   /** The customer's middle name. */
   middlename?: InputMaybe<Scalars["String"]["input"]>;
+  /** Phone number. */
+  phone_number?: InputMaybe<Scalars["String"]["input"]>;
   /** An honorific, such as Dr., Mr., or Mrs. */
   prefix?: InputMaybe<Scalars["String"]["input"]>;
   /** A value such as Sr., Jr., or III. */
@@ -6193,6 +6256,12 @@ export enum DocumentFileTypes {
   Webp = "webp",
 }
 
+export type DocumentItem = {
+  __typename?: "DocumentItem";
+  label: Scalars["String"]["output"];
+  media: Scalars["String"]["output"];
+};
+
 export type DocumentOutputInput = {
   /**
    * Transforms a document into a desired file type.
@@ -6466,6 +6535,8 @@ export type DownloadableProduct = CustomizableProductInterface &
     options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>;
     /** If the product has multiple options, determines where they appear on the product page. */
     options_container?: Maybe<Scalars["String"]["output"]>;
+    /** An array of product assigned documents. */
+    pdf_dokument: Array<Maybe<DocumentItem>>;
     /**
      * Indicates the price of an item.
      * @deprecated Use `price_range` for product price information.
@@ -7229,6 +7300,8 @@ export type GiftCardProduct = CustomizableProductInterface &
     options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>;
     /** If the product has multiple options, determines where they appear on the product page. */
     options_container?: Maybe<Scalars["String"]["output"]>;
+    /** An array of product assigned documents. */
+    pdf_dokument: Array<Maybe<DocumentItem>>;
     /**
      * Indicates the price of an item.
      * @deprecated Use `price_range` for product price information.
@@ -7830,6 +7903,8 @@ export type GroupedProduct = PhysicalProductInterface &
     only_x_left_in_stock?: Maybe<Scalars["Float"]["output"]>;
     /** If the product has multiple options, determines where they appear on the product page. */
     options_container?: Maybe<Scalars["String"]["output"]>;
+    /** An array of product assigned documents. */
+    pdf_dokument: Array<Maybe<DocumentItem>>;
     /**
      * Indicates the price of an item.
      * @deprecated Use `price_range` for product price information.
@@ -10603,6 +10678,7 @@ export enum MenuType {
   FooterMenu = "FOOTER_MENU",
   FooterPromoText = "FOOTER_PROMO_TEXT",
   MainMenu = "MAIN_MENU",
+  MenuTopLinks = "MENU_TOP_LINKS",
   MobileMenuAdditionalLinks = "MOBILE_MENU_ADDITIONAL_LINKS",
 }
 
@@ -14533,6 +14609,8 @@ export type ProductInterface = {
   only_x_left_in_stock?: Maybe<Scalars["Float"]["output"]>;
   /** If the product has multiple options, determines where they appear on the product page. */
   options_container?: Maybe<Scalars["String"]["output"]>;
+  /** An array of product assigned documents. */
+  pdf_dokument: Array<Maybe<DocumentItem>>;
   /**
    * Indicates the price of an item.
    * @deprecated Use `price_range` for product price information.
@@ -18684,6 +18762,8 @@ export type SimpleProduct = CustomizableProductInterface &
     options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>;
     /** If the product has multiple options, determines where they appear on the product page. */
     options_container?: Maybe<Scalars["String"]["output"]>;
+    /** An array of product assigned documents. */
+    pdf_dokument: Array<Maybe<DocumentItem>>;
     /**
      * Indicates the price of an item.
      * @deprecated Use `price_range` for product price information.
@@ -19174,6 +19254,8 @@ export type StoreConfig = {
   code?: Maybe<Scalars["String"]["output"]>;
   /** Indicates whether the `parent` or child (`itself`) thumbnail should be used in the cart for configurable products. */
   configurable_thumbnail_source?: Maybe<Scalars["String"]["output"]>;
+  /** Config consent list. */
+  consents?: Maybe<Array<Maybe<ConfigConsent>>>;
   /** The copyright statement that appears at the bottom of each page. */
   copyright?: Maybe<Scalars["String"]["output"]>;
   /** The description that provides a summary of your site for search engine listings. It should not be more than 160 characters in length. */
@@ -20165,6 +20247,8 @@ export type VirtualProduct = CustomizableProductInterface &
     options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>;
     /** If the product has multiple options, determines where they appear on the product page. */
     options_container?: Maybe<Scalars["String"]["output"]>;
+    /** An array of product assigned documents. */
+    pdf_dokument: Array<Maybe<DocumentItem>>;
     /**
      * Indicates the price of an item.
      * @deprecated Use `price_range` for product price information.
