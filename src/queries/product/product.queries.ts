@@ -171,22 +171,3 @@ export const ProductsQueryDocument = graphql(`
     }
   }
 `);
-
-export const ProductSliderDataDocument = graphql(`
-  query ProductSliderData(
-    $pageSize: Int = 1
-    $filter: ProductAttributeFilterInput
-  ) {
-    products(pageSize: $pageSize, filter: $filter) {
-      items {
-        __typename
-        related_products {
-          ...BaseProduct
-        }
-        series {
-          ...BaseProduct
-        }
-      }
-    }
-  }
-`);

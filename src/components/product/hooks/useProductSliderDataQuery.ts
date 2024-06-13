@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { ProductSliderDataDocument } from "@/queries/product.queries";
 import {
+  ProductSliderDataDocument,
   ProductSliderDataQuery,
   ProductSliderDataQueryVariables,
 } from "@/types";

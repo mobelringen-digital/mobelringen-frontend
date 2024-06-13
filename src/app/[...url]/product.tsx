@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 
 import { ConfigurableProductPage } from "@/modules/product/ConfigurableProduct";
 import { SimpleProductPage } from "@/modules/product/SimpleProduct";
-import { ProductsQueryDocument } from "@/queries/product.queries";
+import { ProductsQueryDocument } from "@/queries/product/product.queries";
 import { ProductsQuery, ProductsQueryVariables } from "@/types";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 

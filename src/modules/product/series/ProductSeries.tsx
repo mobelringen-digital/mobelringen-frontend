@@ -1,25 +1,13 @@
 import React from "react";
 
-import { Loader } from "@/components/_ui/loader/Loader";
-import { LoaderInnerWrapper } from "@/components/_ui/loader/LoaderInnerWrapper";
-import { useProductSliderDataQuery } from "@/components/product/hooks/useProductSliderDataQuery";
 import { ProductSlider } from "@/components/product-slider/ProductSlider";
+import { BaseProductSliderDataFragment } from "@/types";
 
 interface Props {
-  sku?: string | null;
+  data?: BaseProductSliderDataFragment | null;
 }
 
-export const ProductSeries: React.FC<Props> = ({ sku }) => {
-  const { data, isLoading } = useProductSliderDataQuery(sku);
-
-  if (isLoading) {
-    return (
-      <LoaderInnerWrapper>
-        <Loader />
-      </LoaderInnerWrapper>
-    );
-  }
-
+export const ProductSeries: React.FC<Props> = ({ data }) => {
   if (!data?.series) return null;
 
   return <ProductSlider title="Utforsk serien" data={data.series} />;

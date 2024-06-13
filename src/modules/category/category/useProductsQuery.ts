@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { ProductsQueryDocument } from "@/queries/product.queries";
+import { ProductsQueryDocument } from "@/queries/product/product.queries";
 import { ProductsQuery, ProductsQueryVariables } from "@/types";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 

@@ -2,9 +2,12 @@
 
 import React from "react";
 
+import { Loader } from "@/components/_ui/loader/Loader";
+import { LoaderInnerWrapper } from "@/components/_ui/loader/LoaderInnerWrapper";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
+import { useProductSliderDataQuery } from "@/components/product/hooks/useProductSliderDataQuery";
 import { useActiveProductData } from "@/modules/product/active-product-data-provider/useActiveProductData";
 import { PurchaseBlock } from "@/modules/product/add-to-cart/PurchaseBlock";
 import { InformationAccordion } from "@/modules/product/information-accordion/InformationAccordion";
@@ -29,6 +32,8 @@ export const BaseProductLayout: React.FC<Props> = ({
   const { activeProductVariant } = useActiveProductData();
 
   const product = activeProductVariant.variant?.product ?? baseProductData;
+  const { data: productSliderData, isLoading: isSlidersDataLoading } =
+    useProductSliderDataQuery(product.sku);
 
   return (
     <ContainerLayout>
@@ -73,8 +78,16 @@ export const BaseProductLayout: React.FC<Props> = ({
         </div>
       </div>
 
-      <ProductSeries sku={product.sku} />
-      <RelatedProducts sku={product.sku} />
+      {isSlidersDataLoading ? (
+        <LoaderInnerWrapper>
+          <Loader />
+        </LoaderInnerWrapper>
+      ) : (
+        <>
+          <ProductSeries data={productSliderData} />
+          <RelatedProducts data={productSliderData} />
+        </>
+      )}
 
       <Debugger data={baseProductData} />
     </ContainerLayout>
