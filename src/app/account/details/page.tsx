@@ -1,7 +1,6 @@
 import React from "react";
 
 import { auth } from "@/auth/auth";
-import { Debugger } from "@/components/Debugger";
 import { DetailsPage } from "@/modules/account/details/DetailsPage";
 import { CustomerDocument } from "@/queries/mutations/customer.queries";
 import { CustomerQuery } from "@/types";
@@ -17,16 +16,10 @@ async function getCustomerDetails() {
 
 export default async function Details() {
   const data = await getCustomerDetails();
-  const session = await auth();
 
   if (!data.customer) {
     return null;
   }
 
-  return (
-    <>
-      <Debugger data={session} />
-      <DetailsPage data={data.customer} />
-    </>
-  );
+  return <DetailsPage data={data.customer} />;
 }
