@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
 
-import ReactJson from "react-json-view";
-
 interface Props {
   data: any;
   name?: string;
@@ -19,14 +17,9 @@ export const Debugger: React.FC<Props> = ({ data, name = "Debugger" }) => {
         {name}
       </button>
       {isOpen ? (
-        <ReactJson
-          src={data}
-          enableClipboard={false}
-          displayDataTypes={false}
-          name="data"
-          theme="monokai"
-          style={{ fontSize: "12px" }}
-        />
+        <div className="bg-black text-white text-sm p-4">
+          <pre>{JSON.stringify(data, null, 2)}</pre>
+        </div>
       ) : null}
     </div>
   );

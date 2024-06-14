@@ -1,8 +1,8 @@
 import React from "react";
 
 import { auth } from "@/auth/auth";
-import { DetailsPage } from "@/modules/account/details/DetailsPage";
-import { CustomerDocument } from "@/queries/mutations/customer.queries";
+import { DetailsPage } from "@/modules/account/DetailsPage";
+import { CustomerDocument } from "@/queries/mutations/customer.mutations";
 import { CustomerQuery } from "@/types";
 import { authorizedMagentoClient } from "@/utils/lib/graphql";
 
