@@ -7,6 +7,7 @@ import { FormatNumber } from "@/components/_ui/format-number/FormatNumber";
 import { QuantityInput } from "@/components/_ui/quantity-input/QuantityInput";
 import { useActiveProductData } from "@/modules/product/active-product-data-provider/useActiveProductData";
 import { DeliveryInfo } from "@/modules/product/add-to-cart/DeliveryInfo";
+import { InfoIcons } from "@/modules/product/add-to-cart/InfoIcons";
 import { BaseProductFragment } from "@/types";
 import { usePriceRange } from "@/utils/hooks/usePriceRange";
 
@@ -58,6 +59,7 @@ export const PurchaseBlock: React.FC<Props> = ({ product }) => {
           Klikk og hent
         </Button>
       </div>
+      <InfoIcons />
     </div>
   );
 };
