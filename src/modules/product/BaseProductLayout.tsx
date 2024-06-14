@@ -12,6 +12,7 @@ import { ProductSlider } from "@/components/product-slider/ProductSlider";
 import { useActiveProductData } from "@/modules/product/active-product-data-provider/useActiveProductData";
 import { PurchaseBlock } from "@/modules/product/add-to-cart/PurchaseBlock";
 import { InformationAccordion } from "@/modules/product/information-accordion/InformationAccordion";
+import { MoreInformation } from "@/modules/product/MoreInformation";
 import { MoreInTheStore } from "@/modules/product/MoreInTheStore";
 import { ProductGallery } from "@/modules/product/product-gallery/ProductGallery";
 import { ProductPricing } from "@/modules/product/product-pricing/ProductPricing";
@@ -35,78 +36,83 @@ export const BaseProductLayout: React.FC<Props> = ({
     useProductSliderDataQuery(product.sku);
 
   return (
-    <ContainerLayout>
-      {baseProductData?.categories ? (
-        <Breadcrumbs
-          data={baseProductData.categories
-            .filter((c) => !c?.url_path?.includes("merker"))
-            .map((cat) => ({
-              label: cat?.name ?? "",
-              url: `/${cat?.url_path}`,
-            }))}
-        />
-      ) : null}
-
-      <div className="grid grid-cols-12 gap-4 lg:gap-16">
-        <div className="col-span-12 lg:col-span-7 flex flex-col gap-12">
-          <ProductGallery
-            image={product?.image}
-            gallery={product?.media_gallery}
-            labels={product?.productLabel}
-            priceRange={product?.price_range}
+    <>
+      <ContainerLayout>
+        {baseProductData?.categories ? (
+          <Breadcrumbs
+            data={baseProductData.categories
+              .filter((c) => !c?.url_path?.includes("merker"))
+              .map((cat) => ({
+                label: cat?.name ?? "",
+                url: `/${cat?.url_path}`,
+              }))}
           />
-          <div className="hidden lg:block">
-            <InformationAccordion product={product} />
+        ) : null}
+
+        <div className="grid grid-cols-12 gap-4 lg:gap-16">
+          <div className="col-span-12 lg:col-span-7 flex flex-col gap-12">
+            <ProductGallery
+              image={product?.image}
+              gallery={product?.media_gallery}
+              labels={product?.productLabel}
+              priceRange={product?.price_range}
+            />
+            <div className="hidden lg:block">
+              <InformationAccordion product={product} />
+            </div>
+          </div>
+          <div className="col-span-12 lg:col-span-5 flex flex-col gap-8">
+            <ProductTopInfo
+              brand={product?.productBrand?.name}
+              name={product?.name}
+              shortDescription={product?.short_description?.html}
+            />
+
+            {configurationBlock}
+
+            <ProductPricing pricingRange={product?.price_range} />
+            <MoreInTheStore />
+            <PurchaseBlock product={product} />
+            <div className="block lg:hidden">
+              <InformationAccordion product={product} />
+            </div>
           </div>
         </div>
-        <div className="col-span-12 lg:col-span-5 flex flex-col gap-8">
-          <ProductTopInfo
-            brand={product?.productBrand?.name}
-            name={product?.name}
-            shortDescription={product?.short_description?.html}
-          />
+        <Debugger data={baseProductData} />
+      </ContainerLayout>
 
-          {configurationBlock}
+      <MoreInformation />
 
-          <ProductPricing pricingRange={product?.price_range} />
-          <MoreInTheStore />
-          <PurchaseBlock product={product} />
-          <div className="block lg:hidden">
-            <InformationAccordion product={product} />
-          </div>
-        </div>
-      </div>
+      <ContainerLayout>
+        {isSlidersDataLoading ? (
+          <LoaderInnerWrapper>
+            <Loader />
+          </LoaderInnerWrapper>
+        ) : (
+          <>
+            {productSliderData?.series ? (
+              <ProductSlider
+                title="Utforsk serien"
+                data={productSliderData.series}
+              />
+            ) : null}
 
-      {isSlidersDataLoading ? (
-        <LoaderInnerWrapper>
-          <Loader />
-        </LoaderInnerWrapper>
-      ) : (
-        <>
-          {productSliderData?.series ? (
-            <ProductSlider
-              title="Utforsk serien"
-              data={productSliderData.series}
-            />
-          ) : null}
+            {productSliderData?.related_products ? (
+              <ProductSlider
+                title="Relaterte produkter"
+                data={productSliderData.related_products}
+              />
+            ) : null}
 
-          {productSliderData?.related_products ? (
-            <ProductSlider
-              title="Relaterte produkter"
-              data={productSliderData.related_products}
-            />
-          ) : null}
-
-          {productSliderData?.upsell_products ? (
-            <ProductSlider
-              title="Gi møblene nytt liv"
-              data={productSliderData.upsell_products}
-            />
-          ) : null}
-        </>
-      )}
-
-      <Debugger data={baseProductData} />
-    </ContainerLayout>
+            {productSliderData?.upsell_products ? (
+              <ProductSlider
+                title="Gi møblene nytt liv"
+                data={productSliderData.upsell_products}
+              />
+            ) : null}
+          </>
+        )}
+      </ContainerLayout>
+    </>
   );
 };
