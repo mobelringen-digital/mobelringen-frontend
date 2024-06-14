@@ -15,7 +15,7 @@ export const MoreInformation = () => {
                 <SupportIcon />
               </div>
 
-              <div className="col-span-12 lg:col-span-10 flex flex-col text-center lg:text-left gap-2">
+              <div className="col-span-12 lg:col-span-8 flex flex-col text-center lg:text-left gap-2">
                 <h4 className="text-3xl font-feature font-normal">
                   Lurer du på noe mer?
                 </h4>
