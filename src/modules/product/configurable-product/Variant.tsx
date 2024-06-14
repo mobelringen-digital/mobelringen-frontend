@@ -5,6 +5,7 @@ import React from "react";
 import cx from "classnames";
 
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 
 import { useActiveProductData } from "@/modules/product/active-product-data-provider/useActiveProductData";
 import { ConfigurableProductVariantsFragment } from "@/types";
@@ -14,20 +15,18 @@ interface Props {
 }
 
 export const Variant: React.FC<Props> = ({ variant }) => {
-  const { setActiveProductVariant, activeProductVariant } =
-    useActiveProductData();
+  const { activeProductVariant } = useActiveProductData();
   const selectedProduct = activeProductVariant.variant?.product;
   const variantProduct = variant?.product;
+  const pathname = usePathname();
+  const router = useRouter();
 
   if (!variantProduct) return null;
 
   const handleVariantSelect = () => {
     if (!variantProduct.sku) return;
 
-    setActiveProductVariant((prev) => ({
-      ...prev,
-      variant,
-    }));
+    router.push(`${pathname}?variant=${variant?.product?.sku}`);
   };
 
   return (

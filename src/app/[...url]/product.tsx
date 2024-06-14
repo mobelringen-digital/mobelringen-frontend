@@ -1,6 +1,6 @@
 import React from "react";
 
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import { ConfigurableProductPage } from "@/modules/product/ConfigurableProduct";
 import { SimpleProductPage } from "@/modules/product/SimpleProduct";
@@ -23,7 +23,21 @@ async function getProduct(sku: string) {
 
 export default async function Product({ sku }: Props) {
   const product = await getProduct(sku);
-  const productData = product.products?.items?.[0];
+
+  const products = product.products?.items;
+  if (products && products.length > 1) {
+    const firstProduct = products[0];
+    const secondProduct = products[1];
+
+    if (
+      firstProduct?.__typename === "ConfigurableProduct" &&
+      secondProduct?.__typename === "SimpleProduct"
+    ) {
+      redirect(`/${firstProduct.canonical_url}?variant=${secondProduct.sku}`);
+    }
+  }
+
+  const productData = products?.[0];
 
   if (!productData) {
     return notFound();

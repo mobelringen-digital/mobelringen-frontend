@@ -8,6 +8,7 @@ import { Breadcrumbs } from "@/components/breadcrumbs";
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { useProductSliderDataQuery } from "@/components/product/hooks/useProductSliderDataQuery";
+import { ProductSlider } from "@/components/product-slider/ProductSlider";
 import { useActiveProductData } from "@/modules/product/active-product-data-provider/useActiveProductData";
 import { PurchaseBlock } from "@/modules/product/add-to-cart/PurchaseBlock";
 import { InformationAccordion } from "@/modules/product/information-accordion/InformationAccordion";
@@ -15,8 +16,6 @@ import { MoreInTheStore } from "@/modules/product/MoreInTheStore";
 import { ProductGallery } from "@/modules/product/product-gallery/ProductGallery";
 import { ProductPricing } from "@/modules/product/product-pricing/ProductPricing";
 import { ProductTopInfo } from "@/modules/product/ProductTopInfo";
-import { RelatedProducts } from "@/modules/product/related-products/RelatedProducts";
-import { ProductSeries } from "@/modules/product/series/ProductSeries";
 import { BaseProductFragment as BaseProductFragmentType } from "@/types";
 
 interface Props {
@@ -84,8 +83,19 @@ export const BaseProductLayout: React.FC<Props> = ({
         </LoaderInnerWrapper>
       ) : (
         <>
-          <ProductSeries data={productSliderData} />
-          <RelatedProducts data={productSliderData} />
+          {productSliderData?.series ? (
+            <ProductSlider
+              title="Utforsk serien"
+              data={productSliderData.series}
+            />
+          ) : null}
+
+          {productSliderData?.related_products ? (
+            <ProductSlider
+              title="Relaterte produkter"
+              data={productSliderData.related_products}
+            />
+          ) : null}
         </>
       )}
 
