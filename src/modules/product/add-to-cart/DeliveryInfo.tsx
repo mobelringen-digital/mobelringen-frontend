@@ -11,24 +11,28 @@ interface Props {
 export const DeliveryInfo: React.FC<Props> = ({ deliveryPromise }) => {
   return (
     <div className="grid grid-cols-2 gap-4">
-      {deliveryPromise ? (
-        <div>
-          <span className="font-semibold flex items-center gap-2 text-sm lg:text-base">
-            <LocalShippingIcon width={24} height={24} />
-            Nettbutikk
-          </span>
+      <div>
+        <span className="font-semibold flex items-center gap-2 text-sm lg:text-base">
+          <LocalShippingIcon width={24} height={24} />
+          Nettbutikk
+        </span>
 
-          <div className="flex gap-2 mt-2">
-            <StatusCircle variant="green" className="mt-1 ml-1" />
-            <div className="flex flex-col">
-              <span className="text-sm lg:text-base">Tilgjengelig på nett</span>
+        <div className="flex gap-2 mt-2">
+          <StatusCircle
+            variant={!deliveryPromise ? "green" : "red"}
+            className="mt-1 ml-1"
+          />
+          <div className="flex flex-col">
+            <span className="text-sm lg:text-base">Tilgjengelig på nett</span>
+            {deliveryPromise ? (
               <span className="text-xs lg:text-sm text-dark-grey">
                 {deliveryPromise}
               </span>
-            </div>
+            ) : null}
           </div>
         </div>
-      ) : null}
+      </div>
+
       <div>
         <span className="font-semibold flex items-center gap-2 text-sm lg:text-base">
           <StorefrontIcon width={24} height={24} />
