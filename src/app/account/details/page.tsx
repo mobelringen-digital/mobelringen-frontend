@@ -1,0 +1,26 @@
+import React from "react";
+
+import { DetailsPage } from "@/modules/account/details/DetailsPage";
+import { CustomerDocument } from "@/queries/mutations/customer.queries";
+import { CustomerQuery } from "@/types";
+import { authorizedMagentoClient } from "@/utils/lib/graphql";
+
+import { auth } from "../../api/auth/[...nextauth]/auth";
+
+async function getCustomerDetails() {
+  const session = await auth();
+
+  return await authorizedMagentoClient(session?.token).request<CustomerQuery>(
+    CustomerDocument,
+  );
+}
+
+export default async function Details() {
+  const data = await getCustomerDetails();
+
+  if (!data.customer) {
+    return null;
+  }
+
+  return <DetailsPage data={data.customer} />;
+}

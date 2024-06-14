@@ -31,6 +31,12 @@ const documents = {
     types.CmsLinkBlockFragmentDoc,
   "\n  query Menu($where: MenuWhereInput) {\n    menus(where: $where) {\n      menuLocation\n      links {\n        ... on LinkBlock {\n          ...CmsLinkBlock\n        }\n        ... on Link {\n          ...CmsLink\n        }\n        ... on MegaMenuCategoriesDropdown {\n          ...CmsMegaMenuCategoriesDropdown\n        }\n        ... on MegaMenuDropdown {\n          ...CmsMegamenuDropdown\n        }\n      }\n    }\n  }\n":
     types.MenuDocument,
+  "\n  mutation GenerateCustomerToken($email: String!, $password: String!) {\n    generateCustomerToken(email: $email, password: $password) {\n      token\n    }\n  }\n":
+    types.GenerateCustomerTokenDocument,
+  "\n  fragment CustomerData on Customer {\n    orders {\n      total_count\n    }\n    firstname\n    lastname\n    is_subscribed\n    addresses {\n      city\n      company\n      country_code\n      vat_id\n      telephone\n      suffix\n      street\n      region_id\n      prefix\n      postcode\n      middlename\n      lastname\n      id\n      firstname\n      fax\n      default_shipping\n      default_billing\n    }\n  }\n":
+    types.CustomerDataFragmentDoc,
+  "\n  query Customer {\n    customer {\n      ...CustomerData\n    }\n  }\n":
+    types.CustomerDocument,
   "\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      title\n      url\n      content {\n        ...CmsBanner\n        ...CmsPopularProducts\n      }\n    }\n  }\n":
     types.CmsPagesDocument,
   "\n  fragment ConfigurableProductOptions on ConfigurableProductOptions {\n    __typename\n    values {\n      default_label\n      label\n      store_label\n      uid\n      use_default_value\n      value_index\n    }\n    attribute_code\n    attribute_uid\n    label\n    position\n    uid\n    use_default\n  }\n":
@@ -137,6 +143,24 @@ export function graphql(
 export function graphql(
   source: "\n  query Menu($where: MenuWhereInput) {\n    menus(where: $where) {\n      menuLocation\n      links {\n        ... on LinkBlock {\n          ...CmsLinkBlock\n        }\n        ... on Link {\n          ...CmsLink\n        }\n        ... on MegaMenuCategoriesDropdown {\n          ...CmsMegaMenuCategoriesDropdown\n        }\n        ... on MegaMenuDropdown {\n          ...CmsMegamenuDropdown\n        }\n      }\n    }\n  }\n",
 ): (typeof documents)["\n  query Menu($where: MenuWhereInput) {\n    menus(where: $where) {\n      menuLocation\n      links {\n        ... on LinkBlock {\n          ...CmsLinkBlock\n        }\n        ... on Link {\n          ...CmsLink\n        }\n        ... on MegaMenuCategoriesDropdown {\n          ...CmsMegaMenuCategoriesDropdown\n        }\n        ... on MegaMenuDropdown {\n          ...CmsMegamenuDropdown\n        }\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  mutation GenerateCustomerToken($email: String!, $password: String!) {\n    generateCustomerToken(email: $email, password: $password) {\n      token\n    }\n  }\n",
+): (typeof documents)["\n  mutation GenerateCustomerToken($email: String!, $password: String!) {\n    generateCustomerToken(email: $email, password: $password) {\n      token\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment CustomerData on Customer {\n    orders {\n      total_count\n    }\n    firstname\n    lastname\n    is_subscribed\n    addresses {\n      city\n      company\n      country_code\n      vat_id\n      telephone\n      suffix\n      street\n      region_id\n      prefix\n      postcode\n      middlename\n      lastname\n      id\n      firstname\n      fax\n      default_shipping\n      default_billing\n    }\n  }\n",
+): (typeof documents)["\n  fragment CustomerData on Customer {\n    orders {\n      total_count\n    }\n    firstname\n    lastname\n    is_subscribed\n    addresses {\n      city\n      company\n      country_code\n      vat_id\n      telephone\n      suffix\n      street\n      region_id\n      prefix\n      postcode\n      middlename\n      lastname\n      id\n      firstname\n      fax\n      default_shipping\n      default_billing\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  query Customer {\n    customer {\n      ...CustomerData\n    }\n  }\n",
+): (typeof documents)["\n  query Customer {\n    customer {\n      ...CustomerData\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
