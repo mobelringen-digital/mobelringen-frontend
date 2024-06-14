@@ -29,7 +29,7 @@ export const InfoIcons = () => {
           </div>
         </div>
       </div>
-      <div className="flex text-xs lg:text-sm mt-2 justify-between bg-sand rounded-2xl px-4 py-2">
+      <div className="flex text-xs lg:text-sm mt-2 justify-between bg-sand rounded-2xl px-4 py-3">
         <div className="flex items-center gap-1">
           <span>Betal xxxx kr/mnd i 6 måneder med</span>
           <Klarna />
