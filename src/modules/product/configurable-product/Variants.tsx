@@ -18,6 +18,10 @@ export const Variants: React.FC<Props> = ({ variants }) => {
   const { activeProductVariant, setActiveProductVariant } =
     useActiveProductData();
 
+  /**
+   * When opening a configurable product variant, instead of real product from the list
+   * we need to preselect that variant on configurable product
+   */
   React.useEffect(() => {
     const variantSku = searchParams.get("variant");
 

@@ -29,6 +29,16 @@ export default async function Product({ sku }: Props) {
     const firstProduct = products[0];
     const secondProduct = products[1];
 
+    /**
+     * If Magento returns two items with same SKU request, it means that product is either
+     * Configurable product or Configurable Product Variant.
+     *
+     * First returned - Configurable Product (Parent)
+     * Second returned - Its variant (Child)
+     *
+     * When opening a configurable product variant, instead of real product from the list
+     * we set variant search param and redirect to its parent configurable product
+     */
     if (
       firstProduct?.__typename === "ConfigurableProduct" &&
       secondProduct?.__typename === "SimpleProduct"

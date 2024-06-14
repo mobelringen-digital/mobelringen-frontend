@@ -21,12 +21,6 @@ const documents = {
     types.CmsBannerFragmentDoc,
   "\n  fragment CmsPopularProducts on PopularProduct {\n    ... on PopularProduct {\n      __typename\n      id\n      categoryId\n    }\n  }\n":
     types.CmsPopularProductsFragmentDoc,
-  "\n  fragment ConfigurableProductOptions on ConfigurableProductOptions {\n    __typename\n    values {\n      default_label\n      label\n      store_label\n      uid\n      use_default_value\n      value_index\n    }\n    attribute_code\n    attribute_uid\n    label\n    position\n    uid\n    use_default\n  }\n":
-    types.ConfigurableProductOptionsFragmentDoc,
-  "\n  fragment ConfigurableProductVariants on ConfigurableVariant {\n    __typename\n    attributes {\n      code\n      label\n      uid\n      value_index\n    }\n    product {\n      ...BaseProduct\n    }\n  }\n":
-    types.ConfigurableProductVariantsFragmentDoc,
-  "\n  fragment ConfigurableProduct on ConfigurableProduct {\n    __typename\n    ...BaseProduct\n    configurable_options {\n      ...ConfigurableProductOptions\n    }\n    variants {\n      ...ConfigurableProductVariants\n    }\n  }\n":
-    types.ConfigurableProductFragmentDoc,
   "\n  fragment CmsLink on Link {\n    __typename\n    label\n    url\n    icon {\n      url\n    }\n  }\n":
     types.CmsLinkFragmentDoc,
   "\n  fragment CmsMegamenuDropdown on MegaMenuDropdown {\n    __typename\n    label\n    items {\n      ... on Link {\n        ...CmsLink\n      }\n      ... on ImageLink {\n        __typename\n        label\n        url\n        image {\n          url\n        }\n      }\n    }\n  }\n":
@@ -39,6 +33,12 @@ const documents = {
     types.MenuDocument,
   "\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      title\n      url\n      content {\n        ...CmsBanner\n        ...CmsPopularProducts\n      }\n    }\n  }\n":
     types.CmsPagesDocument,
+  "\n  fragment ConfigurableProductOptions on ConfigurableProductOptions {\n    __typename\n    values {\n      default_label\n      label\n      store_label\n      uid\n      use_default_value\n      value_index\n    }\n    attribute_code\n    attribute_uid\n    label\n    position\n    uid\n    use_default\n  }\n":
+    types.ConfigurableProductOptionsFragmentDoc,
+  "\n  fragment ConfigurableProductVariants on ConfigurableVariant {\n    __typename\n    attributes {\n      code\n      label\n      uid\n      value_index\n    }\n    product {\n      ...BaseProduct\n    }\n  }\n":
+    types.ConfigurableProductVariantsFragmentDoc,
+  "\n  fragment ConfigurableProduct on ConfigurableProduct {\n    __typename\n    ...BaseProduct\n    configurable_options {\n      ...ConfigurableProductOptions\n    }\n    variants {\n      ...ConfigurableProductVariants\n    }\n  }\n":
+    types.ConfigurableProductFragmentDoc,
   "\n  fragment ProductImageFragment on ProductImage {\n    __typename\n    url\n    position\n    label\n    disabled\n  }\n":
     types.ProductImageFragmentFragmentDoc,
   "\n  fragment ProductVideoFragment on ProductVideo {\n    __typename\n    disabled\n    label\n    position\n    url\n    video_content {\n      media_type\n      video_description\n      video_metadata\n      video_provider\n      video_title\n      video_url\n    }\n  }\n":
@@ -53,18 +53,20 @@ const documents = {
     types.BaseProductFragmentDoc,
   "\n  query Products($pageSize: Int = 12, $filter: ProductAttributeFilterInput) {\n    products(pageSize: $pageSize, filter: $filter) {\n      items {\n        ... on SimpleProduct {\n          ...SimpleProduct\n        }\n        ... on ConfigurableProduct {\n          ...ConfigurableProduct\n        }\n      }\n    }\n  }\n":
     types.ProductsDocument,
+  "\n  fragment SimpleProduct on SimpleProduct {\n    ...BaseProduct\n  }\n":
+    types.SimpleProductFragmentDoc,
   "\n  fragment ProductSeriesSliderData on ProductInterface {\n    __typename\n    series {\n      ...BaseProduct\n    }\n  }\n":
     types.ProductSeriesSliderDataFragmentDoc,
   "\n  fragment RelatedProductsSliderData on ProductInterface {\n    __typename\n    related_products {\n      ...BaseProduct\n    }\n  }\n":
     types.RelatedProductsSliderDataFragmentDoc,
-  "\n  fragment BaseProductSliderData on ProductInterface {\n    ...RelatedProductsSliderData\n    ...ProductSeriesSliderData\n  }\n":
+  "\n  fragment UpsellProductsSliderData on ProductInterface {\n    __typename\n    upsell_products {\n      ...BaseProduct\n    }\n  }\n":
+    types.UpsellProductsSliderDataFragmentDoc,
+  "\n  fragment BaseProductSliderData on ProductInterface {\n    ...RelatedProductsSliderData\n    ...ProductSeriesSliderData\n    ...UpsellProductsSliderData\n  }\n":
     types.BaseProductSliderDataFragmentDoc,
   "\n  query ProductSliderData(\n    $pageSize: Int = 1\n    $filter: ProductAttributeFilterInput\n  ) {\n    products(pageSize: $pageSize, filter: $filter) {\n      items {\n        __typename\n        ...BaseProductSliderData\n      }\n    }\n  }\n":
     types.ProductSliderDataDocument,
   "\n  query Route($url: String!) {\n    route(url: $url) {\n      redirect_code\n      relative_url\n      type\n      ... on SimpleProduct {\n        __typename\n        name\n        sku\n      }\n      ... on ConfigurableProduct {\n        __typename\n        name\n        sku\n      }\n    }\n  }\n":
     types.RouteDocument,
-  "\n  fragment SimpleProduct on SimpleProduct {\n    ...BaseProduct\n  }\n":
-    types.SimpleProductFragmentDoc,
 };
 
 /**
@@ -109,24 +111,6 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment ConfigurableProductOptions on ConfigurableProductOptions {\n    __typename\n    values {\n      default_label\n      label\n      store_label\n      uid\n      use_default_value\n      value_index\n    }\n    attribute_code\n    attribute_uid\n    label\n    position\n    uid\n    use_default\n  }\n",
-): (typeof documents)["\n  fragment ConfigurableProductOptions on ConfigurableProductOptions {\n    __typename\n    values {\n      default_label\n      label\n      store_label\n      uid\n      use_default_value\n      value_index\n    }\n    attribute_code\n    attribute_uid\n    label\n    position\n    uid\n    use_default\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(
-  source: "\n  fragment ConfigurableProductVariants on ConfigurableVariant {\n    __typename\n    attributes {\n      code\n      label\n      uid\n      value_index\n    }\n    product {\n      ...BaseProduct\n    }\n  }\n",
-): (typeof documents)["\n  fragment ConfigurableProductVariants on ConfigurableVariant {\n    __typename\n    attributes {\n      code\n      label\n      uid\n      value_index\n    }\n    product {\n      ...BaseProduct\n    }\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(
-  source: "\n  fragment ConfigurableProduct on ConfigurableProduct {\n    __typename\n    ...BaseProduct\n    configurable_options {\n      ...ConfigurableProductOptions\n    }\n    variants {\n      ...ConfigurableProductVariants\n    }\n  }\n",
-): (typeof documents)["\n  fragment ConfigurableProduct on ConfigurableProduct {\n    __typename\n    ...BaseProduct\n    configurable_options {\n      ...ConfigurableProductOptions\n    }\n    variants {\n      ...ConfigurableProductVariants\n    }\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(
   source: "\n  fragment CmsLink on Link {\n    __typename\n    label\n    url\n    icon {\n      url\n    }\n  }\n",
 ): (typeof documents)["\n  fragment CmsLink on Link {\n    __typename\n    label\n    url\n    icon {\n      url\n    }\n  }\n"];
 /**
@@ -159,6 +143,24 @@ export function graphql(
 export function graphql(
   source: "\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      title\n      url\n      content {\n        ...CmsBanner\n        ...CmsPopularProducts\n      }\n    }\n  }\n",
 ): (typeof documents)["\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      title\n      url\n      content {\n        ...CmsBanner\n        ...CmsPopularProducts\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment ConfigurableProductOptions on ConfigurableProductOptions {\n    __typename\n    values {\n      default_label\n      label\n      store_label\n      uid\n      use_default_value\n      value_index\n    }\n    attribute_code\n    attribute_uid\n    label\n    position\n    uid\n    use_default\n  }\n",
+): (typeof documents)["\n  fragment ConfigurableProductOptions on ConfigurableProductOptions {\n    __typename\n    values {\n      default_label\n      label\n      store_label\n      uid\n      use_default_value\n      value_index\n    }\n    attribute_code\n    attribute_uid\n    label\n    position\n    uid\n    use_default\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment ConfigurableProductVariants on ConfigurableVariant {\n    __typename\n    attributes {\n      code\n      label\n      uid\n      value_index\n    }\n    product {\n      ...BaseProduct\n    }\n  }\n",
+): (typeof documents)["\n  fragment ConfigurableProductVariants on ConfigurableVariant {\n    __typename\n    attributes {\n      code\n      label\n      uid\n      value_index\n    }\n    product {\n      ...BaseProduct\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment ConfigurableProduct on ConfigurableProduct {\n    __typename\n    ...BaseProduct\n    configurable_options {\n      ...ConfigurableProductOptions\n    }\n    variants {\n      ...ConfigurableProductVariants\n    }\n  }\n",
+): (typeof documents)["\n  fragment ConfigurableProduct on ConfigurableProduct {\n    __typename\n    ...BaseProduct\n    configurable_options {\n      ...ConfigurableProductOptions\n    }\n    variants {\n      ...ConfigurableProductVariants\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -205,6 +207,12 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
+  source: "\n  fragment SimpleProduct on SimpleProduct {\n    ...BaseProduct\n  }\n",
+): (typeof documents)["\n  fragment SimpleProduct on SimpleProduct {\n    ...BaseProduct\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
   source: "\n  fragment ProductSeriesSliderData on ProductInterface {\n    __typename\n    series {\n      ...BaseProduct\n    }\n  }\n",
 ): (typeof documents)["\n  fragment ProductSeriesSliderData on ProductInterface {\n    __typename\n    series {\n      ...BaseProduct\n    }\n  }\n"];
 /**
@@ -217,8 +225,14 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment BaseProductSliderData on ProductInterface {\n    ...RelatedProductsSliderData\n    ...ProductSeriesSliderData\n  }\n",
-): (typeof documents)["\n  fragment BaseProductSliderData on ProductInterface {\n    ...RelatedProductsSliderData\n    ...ProductSeriesSliderData\n  }\n"];
+  source: "\n  fragment UpsellProductsSliderData on ProductInterface {\n    __typename\n    upsell_products {\n      ...BaseProduct\n    }\n  }\n",
+): (typeof documents)["\n  fragment UpsellProductsSliderData on ProductInterface {\n    __typename\n    upsell_products {\n      ...BaseProduct\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment BaseProductSliderData on ProductInterface {\n    ...RelatedProductsSliderData\n    ...ProductSeriesSliderData\n    ...UpsellProductsSliderData\n  }\n",
+): (typeof documents)["\n  fragment BaseProductSliderData on ProductInterface {\n    ...RelatedProductsSliderData\n    ...ProductSeriesSliderData\n    ...UpsellProductsSliderData\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -231,12 +245,6 @@ export function graphql(
 export function graphql(
   source: "\n  query Route($url: String!) {\n    route(url: $url) {\n      redirect_code\n      relative_url\n      type\n      ... on SimpleProduct {\n        __typename\n        name\n        sku\n      }\n      ... on ConfigurableProduct {\n        __typename\n        name\n        sku\n      }\n    }\n  }\n",
 ): (typeof documents)["\n  query Route($url: String!) {\n    route(url: $url) {\n      redirect_code\n      relative_url\n      type\n      ... on SimpleProduct {\n        __typename\n        name\n        sku\n      }\n      ... on ConfigurableProduct {\n        __typename\n        name\n        sku\n      }\n    }\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(
-  source: "\n  fragment SimpleProduct on SimpleProduct {\n    ...BaseProduct\n  }\n",
-): (typeof documents)["\n  fragment SimpleProduct on SimpleProduct {\n    ...BaseProduct\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

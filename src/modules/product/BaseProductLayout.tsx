@@ -96,6 +96,13 @@ export const BaseProductLayout: React.FC<Props> = ({
               data={productSliderData.related_products}
             />
           ) : null}
+
+          {productSliderData?.upsell_products ? (
+            <ProductSlider
+              title="Gi møblene nytt liv"
+              data={productSliderData.upsell_products}
+            />
+          ) : null}
         </>
       )}
 

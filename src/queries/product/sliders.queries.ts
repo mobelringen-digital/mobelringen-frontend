@@ -17,11 +17,20 @@ export const RelatedProductsSliderDataFragment = graphql(`
     }
   }
 `);
+export const UpsellProductsSliderDataFragment = graphql(`
+  fragment UpsellProductsSliderData on ProductInterface {
+    __typename
+    upsell_products {
+      ...BaseProduct
+    }
+  }
+`);
 
 export const BaseProductSliderDataFragment = graphql(`
   fragment BaseProductSliderData on ProductInterface {
     ...RelatedProductsSliderData
     ...ProductSeriesSliderData
+    ...UpsellProductsSliderData
   }
 `);
 
