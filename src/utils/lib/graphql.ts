@@ -30,7 +30,6 @@ export const authorizedMagentoClient = (token?: string) =>
           next: { revalidate: 60 },
           ...init,
           headers: {
-            ...init?.headers,
             Authorization: `Bearer ${token}`,
             Accept: "application/graphql-response+json, application/json",
             ContentType: "application/json",
