@@ -19,7 +19,7 @@ export const DeliveryInfo: React.FC<Props> = ({ deliveryPromise }) => {
 
         <div className="flex gap-2 mt-2">
           <StatusCircle
-            variant={!deliveryPromise ? "green" : "red"}
+            variant={!!deliveryPromise ? "green" : "red"}
             className="mt-1 ml-1"
           />
           <div className="flex flex-col">
