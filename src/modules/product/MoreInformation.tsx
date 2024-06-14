@@ -11,7 +11,7 @@ export const MoreInformation = () => {
         <div className="grid grid-cols-6 gap-6 lg:gap-0 items-center lg:w-4/5">
           <div className="col-span-6 lg:col-span-4">
             <div className="grid grid-cols-10 items-center">
-              <div className="col-span-12 lg:col-span-2">
+              <div className="col-span-12 lg:col-span-2 flex justify-center lg:justify-start">
                 <SupportIcon />
               </div>
 
