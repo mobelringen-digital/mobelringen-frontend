@@ -20965,6 +20965,7 @@ export type ConfigurableProductVariantsFragment = {
     sku?: string | null;
     review_count: number;
     addable_to_cart?: number | null;
+    delivery_promise?: string | null;
     description?: { __typename?: "ComplexTextValue"; html: string } | null;
     image?: {
       __typename: "ProductImage";
@@ -21108,6 +21109,7 @@ export type ConfigurableProductFragment = {
   sku?: string | null;
   review_count: number;
   addable_to_cart?: number | null;
+  delivery_promise?: string | null;
   configurable_options?: Array<{
     __typename: "ConfigurableProductOptions";
     attribute_code?: string | null;
@@ -21157,6 +21159,7 @@ export type ConfigurableProductFragment = {
       sku?: string | null;
       review_count: number;
       addable_to_cart?: number | null;
+      delivery_promise?: string | null;
       description?: { __typename?: "ComplexTextValue"; html: string } | null;
       image?: {
         __typename: "ProductImage";
@@ -21535,6 +21538,7 @@ type BaseProduct_BundleProduct_Fragment = {
   sku?: string | null;
   review_count: number;
   addable_to_cart?: number | null;
+  delivery_promise?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -21674,6 +21678,7 @@ type BaseProduct_ConfigurableProduct_Fragment = {
   sku?: string | null;
   review_count: number;
   addable_to_cart?: number | null;
+  delivery_promise?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -21813,6 +21818,7 @@ type BaseProduct_DownloadableProduct_Fragment = {
   sku?: string | null;
   review_count: number;
   addable_to_cart?: number | null;
+  delivery_promise?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -21952,6 +21958,7 @@ type BaseProduct_GiftCardProduct_Fragment = {
   sku?: string | null;
   review_count: number;
   addable_to_cart?: number | null;
+  delivery_promise?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -22091,6 +22098,7 @@ type BaseProduct_GroupedProduct_Fragment = {
   sku?: string | null;
   review_count: number;
   addable_to_cart?: number | null;
+  delivery_promise?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -22230,6 +22238,7 @@ type BaseProduct_SimpleProduct_Fragment = {
   sku?: string | null;
   review_count: number;
   addable_to_cart?: number | null;
+  delivery_promise?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -22369,6 +22378,7 @@ type BaseProduct_VirtualProduct_Fragment = {
   sku?: string | null;
   review_count: number;
   addable_to_cart?: number | null;
+  delivery_promise?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -22528,6 +22538,7 @@ export type ProductsQuery = {
           sku?: string | null;
           review_count: number;
           addable_to_cart?: number | null;
+          delivery_promise?: string | null;
           configurable_options?: Array<{
             __typename: "ConfigurableProductOptions";
             attribute_code?: string | null;
@@ -22577,6 +22588,7 @@ export type ProductsQuery = {
               sku?: string | null;
               review_count: number;
               addable_to_cart?: number | null;
+              delivery_promise?: string | null;
               description?: {
                 __typename?: "ComplexTextValue";
                 html: string;
@@ -22847,6 +22859,7 @@ export type ProductsQuery = {
           sku?: string | null;
           review_count: number;
           addable_to_cart?: number | null;
+          delivery_promise?: string | null;
           description?: {
             __typename?: "ComplexTextValue";
             html: string;
@@ -22997,6 +23010,7 @@ export type SimpleProductFragment = {
   sku?: string | null;
   review_count: number;
   addable_to_cart?: number | null;
+  delivery_promise?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -23139,6 +23153,7 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -23280,6 +23295,7 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -23421,6 +23437,7 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -23562,6 +23579,7 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -23703,6 +23721,7 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -23844,6 +23863,7 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -23985,6 +24005,7 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -24133,6 +24154,7 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -24274,6 +24296,7 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -24415,6 +24438,7 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -24556,6 +24580,7 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -24697,6 +24722,7 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -24838,6 +24864,7 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -24979,6 +25006,7 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -25127,6 +25155,7 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -25268,6 +25297,7 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -25409,6 +25439,7 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -25550,6 +25581,7 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -25691,6 +25723,7 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -25832,6 +25865,7 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -25973,6 +26007,7 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -26121,6 +26156,7 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -26262,6 +26298,7 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -26403,6 +26440,7 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -26544,6 +26582,7 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -26685,6 +26724,7 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -26826,6 +26866,7 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -26967,6 +27008,7 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -27115,6 +27157,7 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -27256,6 +27299,7 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -27397,6 +27441,7 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -27538,6 +27583,7 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -27679,6 +27725,7 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -27820,6 +27867,7 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -27961,6 +28009,7 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -28109,6 +28158,7 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -28250,6 +28300,7 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -28391,6 +28442,7 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -28532,6 +28584,7 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -28673,6 +28726,7 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -28814,6 +28868,7 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -28955,6 +29010,7 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29103,6 +29159,7 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29244,6 +29301,7 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29385,6 +29443,7 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29526,6 +29585,7 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29667,6 +29727,7 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29808,6 +29869,7 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29949,6 +30011,7 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30106,6 +30169,7 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30247,6 +30311,7 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30388,6 +30453,7 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30529,6 +30595,7 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30670,6 +30737,7 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30811,6 +30879,7 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30952,6 +31021,7 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -31100,6 +31170,7 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -31241,6 +31312,7 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -31382,6 +31454,7 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -31523,6 +31596,7 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -31664,6 +31738,7 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -31805,6 +31880,7 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -31946,6 +32022,7 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -32094,6 +32171,7 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -32235,6 +32313,7 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -32376,6 +32455,7 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -32517,6 +32597,7 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -32658,6 +32739,7 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -32799,6 +32881,7 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -32940,6 +33023,7 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -33088,6 +33172,7 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -33229,6 +33314,7 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -33370,6 +33456,7 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -33511,6 +33598,7 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -33652,6 +33740,7 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -33793,6 +33882,7 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -33934,6 +34024,7 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -34082,6 +34173,7 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -34223,6 +34315,7 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -34364,6 +34457,7 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -34505,6 +34599,7 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -34646,6 +34741,7 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -34787,6 +34883,7 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -34928,6 +35025,7 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -35076,6 +35174,7 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -35217,6 +35316,7 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -35358,6 +35458,7 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -35499,6 +35600,7 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -35640,6 +35742,7 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -35781,6 +35884,7 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -35922,6 +36026,7 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -36070,6 +36175,7 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -36211,6 +36317,7 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -36352,6 +36459,7 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -36493,6 +36601,7 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -36634,6 +36743,7 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -36775,6 +36885,7 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -36916,6 +37027,7 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -37073,6 +37185,7 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -37214,6 +37327,7 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -37355,6 +37469,7 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -37496,6 +37611,7 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -37637,6 +37753,7 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -37778,6 +37895,7 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -37919,6 +38037,7 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -38067,6 +38186,7 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -38208,6 +38328,7 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -38349,6 +38470,7 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -38490,6 +38612,7 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -38631,6 +38754,7 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -38772,6 +38896,7 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -38913,6 +39038,7 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -39061,6 +39187,7 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -39202,6 +39329,7 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -39343,6 +39471,7 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -39484,6 +39613,7 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -39625,6 +39755,7 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -39766,6 +39897,7 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -39907,6 +40039,7 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -40055,6 +40188,7 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -40196,6 +40330,7 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -40337,6 +40472,7 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -40478,6 +40614,7 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -40619,6 +40756,7 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -40760,6 +40898,7 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -40901,6 +41040,7 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -41049,6 +41189,7 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -41190,6 +41331,7 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -41331,6 +41473,7 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -41472,6 +41615,7 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -41613,6 +41757,7 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -41754,6 +41899,7 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -41895,6 +42041,7 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -42043,6 +42190,7 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -42184,6 +42332,7 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -42325,6 +42474,7 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -42466,6 +42616,7 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -42607,6 +42758,7 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -42748,6 +42900,7 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -42889,6 +43042,7 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -43037,6 +43191,7 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -43178,6 +43333,7 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -43319,6 +43475,7 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -43460,6 +43617,7 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -43601,6 +43759,7 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -43742,6 +43901,7 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -43883,6 +44043,7 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -44040,6 +44201,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -44181,6 +44343,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -44322,6 +44485,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -44463,6 +44627,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -44604,6 +44769,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -44745,6 +44911,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -44886,6 +45053,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -45030,6 +45198,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -45171,6 +45340,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -45312,6 +45482,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -45453,6 +45624,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -45594,6 +45766,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -45735,6 +45908,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -45876,6 +46050,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -46020,6 +46195,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -46161,6 +46337,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -46302,6 +46479,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -46443,6 +46621,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -46584,6 +46763,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -46725,6 +46905,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -46866,6 +47047,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -47014,6 +47196,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -47155,6 +47338,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -47296,6 +47480,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -47437,6 +47622,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -47578,6 +47764,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -47719,6 +47906,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -47860,6 +48048,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48004,6 +48193,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48145,6 +48335,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48286,6 +48477,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48427,6 +48619,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48568,6 +48761,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48709,6 +48903,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48850,6 +49045,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48994,6 +49190,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -49135,6 +49332,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -49276,6 +49474,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -49417,6 +49616,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -49558,6 +49758,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -49699,6 +49900,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -49840,6 +50042,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -49988,6 +50191,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -50129,6 +50333,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -50270,6 +50475,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -50411,6 +50617,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -50552,6 +50759,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -50693,6 +50901,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -50834,6 +51043,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -50978,6 +51188,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -51119,6 +51330,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -51260,6 +51472,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -51401,6 +51614,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -51542,6 +51756,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -51683,6 +51898,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -51824,6 +52040,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -51968,6 +52185,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -52109,6 +52327,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -52250,6 +52469,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -52391,6 +52611,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -52532,6 +52753,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -52673,6 +52895,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -52814,6 +53037,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -52962,6 +53186,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -53103,6 +53328,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -53244,6 +53470,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -53385,6 +53612,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -53526,6 +53754,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -53667,6 +53896,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -53808,6 +54038,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -53952,6 +54183,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -54093,6 +54325,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -54234,6 +54467,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -54375,6 +54609,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -54516,6 +54751,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -54657,6 +54893,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -54798,6 +55035,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -54942,6 +55180,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -55083,6 +55322,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -55224,6 +55464,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -55365,6 +55606,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -55506,6 +55748,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -55647,6 +55890,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -55788,6 +56032,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -55936,6 +56181,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -56077,6 +56323,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -56218,6 +56465,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -56359,6 +56607,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -56500,6 +56749,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -56641,6 +56891,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -56782,6 +57033,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -56926,6 +57178,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -57067,6 +57320,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -57208,6 +57462,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -57349,6 +57604,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -57490,6 +57746,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -57631,6 +57888,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -57772,6 +58030,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -57916,6 +58175,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -58057,6 +58317,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -58198,6 +58459,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -58339,6 +58601,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -58480,6 +58743,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -58621,6 +58885,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -58762,6 +59027,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -58910,6 +59176,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -59051,6 +59318,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -59192,6 +59460,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -59333,6 +59602,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -59474,6 +59744,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -59615,6 +59886,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -59756,6 +60028,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -59900,6 +60173,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -60041,6 +60315,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -60182,6 +60457,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -60323,6 +60599,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -60464,6 +60741,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -60605,6 +60883,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -60746,6 +61025,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -60890,6 +61170,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -61031,6 +61312,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -61172,6 +61454,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -61313,6 +61596,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -61454,6 +61738,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -61595,6 +61880,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -61736,6 +62022,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -61884,6 +62171,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -62025,6 +62313,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -62166,6 +62455,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -62307,6 +62597,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -62448,6 +62739,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -62589,6 +62881,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -62730,6 +63023,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -62874,6 +63168,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -63015,6 +63310,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -63156,6 +63452,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -63297,6 +63594,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -63438,6 +63736,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -63579,6 +63878,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -63720,6 +64020,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -63864,6 +64165,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -64005,6 +64307,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -64146,6 +64449,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -64287,6 +64591,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -64428,6 +64733,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -64569,6 +64875,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -64710,6 +65017,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         sku?: string | null;
         review_count: number;
         addable_to_cart?: number | null;
+        delivery_promise?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -64877,6 +65185,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -65021,6 +65330,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -65165,6 +65475,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -65309,6 +65620,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -65453,6 +65765,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -65597,6 +65910,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -65741,6 +66055,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -65888,6 +66203,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -66032,6 +66348,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -66176,6 +66493,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -66320,6 +66638,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -66464,6 +66783,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -66608,6 +66928,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -66752,6 +67073,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -66899,6 +67221,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -67043,6 +67366,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -67187,6 +67511,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -67331,6 +67656,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -67475,6 +67801,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -67619,6 +67946,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -67763,6 +68091,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -67913,6 +68242,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -68057,6 +68387,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -68201,6 +68532,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -68345,6 +68677,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -68489,6 +68822,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -68633,6 +68967,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -68777,6 +69112,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -68924,6 +69260,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -69068,6 +69405,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -69212,6 +69550,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -69356,6 +69695,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -69500,6 +69840,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -69644,6 +69985,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -69788,6 +70130,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -69935,6 +70278,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -70079,6 +70423,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -70223,6 +70568,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -70367,6 +70713,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -70511,6 +70858,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -70655,6 +71003,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -70799,6 +71148,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -70949,6 +71299,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -71093,6 +71444,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -71237,6 +71589,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -71381,6 +71734,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -71525,6 +71879,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -71669,6 +72024,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -71813,6 +72169,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -71960,6 +72317,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -72104,6 +72462,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -72248,6 +72607,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -72392,6 +72752,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -72536,6 +72897,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -72680,6 +73042,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -72824,6 +73187,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -72971,6 +73335,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -73115,6 +73480,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -73259,6 +73625,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -73403,6 +73770,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -73547,6 +73915,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -73691,6 +74060,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -73835,6 +74205,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -73985,6 +74356,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -74129,6 +74501,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -74273,6 +74646,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -74417,6 +74791,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -74561,6 +74936,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -74705,6 +75081,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -74849,6 +75226,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -74996,6 +75374,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -75140,6 +75519,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -75284,6 +75664,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -75428,6 +75809,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -75572,6 +75954,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -75716,6 +76099,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -75860,6 +76244,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -76007,6 +76392,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -76151,6 +76537,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -76295,6 +76682,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -76439,6 +76827,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -76583,6 +76972,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -76727,6 +77117,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -76871,6 +77262,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -77021,6 +77413,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -77165,6 +77558,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -77309,6 +77703,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -77453,6 +77848,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -77597,6 +77993,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -77741,6 +78138,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -77885,6 +78283,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -78032,6 +78431,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -78176,6 +78576,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -78320,6 +78721,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -78464,6 +78866,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -78608,6 +79011,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -78752,6 +79156,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -78896,6 +79301,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -79043,6 +79449,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -79187,6 +79594,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -79331,6 +79739,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -79475,6 +79884,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -79619,6 +80029,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -79763,6 +80174,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -79907,6 +80319,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -80057,6 +80470,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -80201,6 +80615,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -80345,6 +80760,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -80489,6 +80905,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -80633,6 +81050,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -80777,6 +81195,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -80921,6 +81340,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -81068,6 +81488,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -81212,6 +81633,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -81356,6 +81778,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -81500,6 +81923,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -81644,6 +82068,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -81788,6 +82213,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -81932,6 +82358,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -82079,6 +82506,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -82223,6 +82651,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -82367,6 +82796,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -82511,6 +82941,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -82655,6 +83086,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -82799,6 +83231,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -82943,6 +83376,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -83093,6 +83527,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -83237,6 +83672,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -83381,6 +83817,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -83525,6 +83962,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -83669,6 +84107,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -83813,6 +84252,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -83957,6 +84397,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -84104,6 +84545,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -84248,6 +84690,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -84392,6 +84835,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -84536,6 +84980,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -84680,6 +85125,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -84824,6 +85270,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -84968,6 +85415,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -85115,6 +85563,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -85259,6 +85708,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -85403,6 +85853,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -85547,6 +85998,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -85691,6 +86143,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -85835,6 +86288,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -85979,6 +86433,7 @@ export type ProductSliderDataQuery = {
                 sku?: string | null;
                 review_count: number;
                 addable_to_cart?: number | null;
+                delivery_promise?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -87073,6 +87528,7 @@ export const BaseProductFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "delivery_promise" } },
         ],
       },
     },
@@ -87916,6 +88372,7 @@ export const ConfigurableProductVariantsFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "delivery_promise" } },
         ],
       },
     },
@@ -88416,6 +88873,7 @@ export const ConfigurableProductFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "delivery_promise" } },
         ],
       },
     },
@@ -88970,6 +89428,7 @@ export const SimpleProductFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "delivery_promise" } },
         ],
       },
     },
@@ -89453,6 +89912,7 @@ export const RelatedProductsSliderDataFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "delivery_promise" } },
         ],
       },
     },
@@ -89936,6 +90396,7 @@ export const ProductSeriesSliderDataFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "delivery_promise" } },
         ],
       },
     },
@@ -90419,6 +90880,7 @@ export const UpsellProductsSliderDataFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "delivery_promise" } },
         ],
       },
     },
@@ -90900,6 +91362,7 @@ export const BaseProductSliderDataFragmentDoc = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "delivery_promise" } },
         ],
       },
     },
@@ -92161,6 +92624,7 @@ export const ProductsDocument = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "delivery_promise" } },
         ],
       },
     },
@@ -92835,6 +93299,7 @@ export const ProductSliderDataDocument = {
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "delivery_promise" } },
         ],
       },
     },

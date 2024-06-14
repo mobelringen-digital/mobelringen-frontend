@@ -154,6 +154,7 @@ export const BaseProductFragment = graphql(`
     productLabel {
       ...ProductLabel
     }
+    delivery_promise
   }
 `);
 

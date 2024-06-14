@@ -26,7 +26,7 @@ export const PurchaseBlock: React.FC<Props> = ({ product }) => {
 
   return (
     <div className="bg-white p-4 lg:p-8 rounded-2xl flex flex-col gap-4">
-      <DeliveryInfo />
+      <DeliveryInfo deliveryPromise={product?.delivery_promise} />
       <div className="flex gap-4 items-center mt-4">
         <QuantityInput
           disabled={isVariantNotSelected}
