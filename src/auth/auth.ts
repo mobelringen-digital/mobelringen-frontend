@@ -56,6 +56,7 @@ const authOptions: NextAuthOptions = {
     jwt({ token, user }) {
       if (user) {
         token.user = user;
+        token.token = user.generateCustomerToken?.token as string;
       }
       return token;
     },
