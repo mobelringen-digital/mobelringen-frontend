@@ -7,7 +7,7 @@ import { Klarna } from "@/components/_ui/icons/figma/Klarna";
 import { PriceTag } from "@/components/_ui/icons/figma/PriceTag";
 import { Trailer } from "@/components/_ui/icons/figma/Trailer";
 
-export const InfoIcons = () => {
+export const KlarnaInformation = () => {
   return (
     <>
       <div className="grid grid-cols-12 mt-2 text-xs lg:text-sm">

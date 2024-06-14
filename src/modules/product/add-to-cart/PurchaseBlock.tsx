@@ -7,7 +7,7 @@ import { FormatNumber } from "@/components/_ui/format-number/FormatNumber";
 import { QuantityInput } from "@/components/_ui/quantity-input/QuantityInput";
 import { useActiveProductData } from "@/modules/product/active-product-data-provider/useActiveProductData";
 import { DeliveryInfo } from "@/modules/product/add-to-cart/DeliveryInfo";
-import { InfoIcons } from "@/modules/product/add-to-cart/InfoIcons";
+import { KlarnaInformation } from "@/modules/product/add-to-cart/KlarnaInformation";
 import { BaseProductFragment } from "@/types";
 import { usePriceRange } from "@/utils/hooks/usePriceRange";
 
@@ -28,6 +28,7 @@ export const PurchaseBlock: React.FC<Props> = ({ product }) => {
   return (
     <div className="bg-white p-4 lg:p-8 rounded-2xl flex flex-col gap-4">
       <DeliveryInfo deliveryPromise={product?.delivery_promise} />
+
       <div className="flex gap-4 items-center mt-4">
         <QuantityInput
           disabled={isVariantNotSelected}
@@ -59,7 +60,8 @@ export const PurchaseBlock: React.FC<Props> = ({ product }) => {
           Klikk og hent
         </Button>
       </div>
-      <InfoIcons />
+
+      <KlarnaInformation />
     </div>
   );
 };
