@@ -2,23 +2,15 @@ import React from "react";
 
 import { notFound } from "next/navigation";
 
-import { CmsDynamicHeader } from "@/components/cms/dynamic-header/CmsDynamicHeader";
 import { CategoryPage } from "@/modules/category/category/CategoryPage";
 import { CategoryDescription } from "@/modules/category/CategoryDescription";
 import { ParentCategoryPage } from "@/modules/category/parent-category/ParentCategoryPage";
 import { SubCategoriesSelect } from "@/modules/category/SubCategoriesSelect";
 import { CategoryItemEntity } from "@/modules/category/types";
 import { CategoryQueryDocument } from "@/queries/category.queries";
-import { CmsStaticPageConfigurationDocument } from "@/queries/page.queries";
-import {
-  CategoryQuery,
-  CategoryQueryVariables,
-  CmsStaticPageConfigurationQuery,
-  CmsStaticPageConfigurationQueryVariables,
-  StaticPageType,
-} from "@/types";
+import { CategoryQuery, CategoryQueryVariables } from "@/types";
 import { generatePrettyUrl } from "@/utils/helpers";
-import { baseHygraphClient, baseMagentoClient } from "@/utils/lib/graphql";
+import { baseMagentoClient } from "@/utils/lib/graphql";
 
 type Props = {
   url: string;
@@ -31,16 +23,6 @@ async function getCategory(url: string) {
       filters: { url_path: { eq: url } },
     },
   );
-}
-async function getStaticPageConfiguration() {
-  return await baseHygraphClient.request<
-    CmsStaticPageConfigurationQuery,
-    CmsStaticPageConfigurationQueryVariables
-  >(CmsStaticPageConfigurationDocument, {
-    where: {
-      pageType: StaticPageType.CategoryPage,
-    },
-  });
 }
 
 const isLastCategoryInTree = (category: CategoryItemEntity) => {
@@ -75,7 +57,6 @@ async function getLastCategoryWithChildren(
 
 export default async function Category({ url }: Props) {
   const category = await getCategory(url);
-  const configuration = await getStaticPageConfiguration();
   const currentCategory = category.categories?.items?.[0];
 
   /**
@@ -101,12 +82,6 @@ export default async function Category({ url }: Props) {
         name="description"
         content={currentCategory.meta_description ?? ""}
       />
-
-      {configuration.staticPageConfiguration?.dynamicHeader ? (
-        <CmsDynamicHeader
-          data={configuration.staticPageConfiguration.dynamicHeader}
-        />
-      ) : null}
 
       {subCategoriesData ? (
         <SubCategoriesSelect category={subCategoriesData} url={url} />

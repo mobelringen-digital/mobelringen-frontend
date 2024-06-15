@@ -8,23 +8,16 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "@/components/_ui/button/Button";
 import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
 import { Input } from "@/components/_ui/input/Input";
-import { CmsDynamicHeader } from "@/components/cms/dynamic-header/CmsDynamicHeader";
-import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
-import { CmsStaticPageConfigurationFragment } from "@/types";
 
 import { navigate } from "../../app/actions";
-
-interface Props {
-  configuration?: CmsStaticPageConfigurationFragment | null;
-}
 
 type FormData = {
   email: string;
   password: string;
 };
 
-export const LoginPage: React.FC<Props> = ({ configuration }) => {
+export const LoginPage: React.FC = () => {
   const [error, setError] = React.useState<Array<Error> | null>(null);
   const {
     control,
@@ -46,13 +39,6 @@ export const LoginPage: React.FC<Props> = ({ configuration }) => {
 
   return (
     <>
-      <CmsDynamicHeader data={configuration?.dynamicHeader}>
-        <div className="absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-50 flex items-center justify-center text-center">
-          <span className="text-4xl lg:text-5xl text-white font-feature">
-            Logg inn
-          </span>
-        </div>
-      </CmsDynamicHeader>
       <ContainerLayout className="my-16 flex justify-center">
         <form
           onSubmit={handleSubmit(onSubmit)}
@@ -93,7 +79,6 @@ export const LoginPage: React.FC<Props> = ({ configuration }) => {
           </Button>
         </form>
       </ContainerLayout>
-      <Debugger data={configuration} />
     </>
   );
 };

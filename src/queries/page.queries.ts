@@ -17,25 +17,8 @@ export const CmsPagesQueryDocument = graphql(`
   }
 `);
 
-export const CmsDynamicHeaderFragment = graphql(`
-  fragment CmsDynamicHeader on DynamicHeader {
-    banner {
-      ...CmsBanner
-    }
-    rules {
-      ... on RuleBlock {
-        contentType
-        value
-      }
-    }
-  }
-`);
-
 export const CmsStaticPageConfigurationFragment = graphql(`
   fragment CmsStaticPageConfiguration on StaticPageConfiguration {
-    dynamicHeader {
-      ...CmsDynamicHeader
-    }
     translations
   }
 `);
@@ -46,6 +29,30 @@ export const CmsStaticPageConfigurationDocument = graphql(`
   ) {
     staticPageConfiguration(where: $where) {
       ...CmsStaticPageConfiguration
+    }
+  }
+`);
+
+export const CmsDynamicHeaderFragment = graphql(`
+  fragment CmsDynamicHeader on DynamicHeader {
+    id
+    rules {
+      ... on RuleBlock {
+        id
+        value
+        contentType
+      }
+    }
+    banner {
+      ...CmsBanner
+    }
+  }
+`);
+
+export const CmsDynamicHeadersDocument = graphql(`
+  query CmsDynamicHeaders($where: DynamicHeaderWhereInput) {
+    dynamicHeaders(where: $where) {
+      ...CmsDynamicHeader
     }
   }
 `);
