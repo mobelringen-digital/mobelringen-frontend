@@ -7171,7 +7171,7 @@ export type DynamicHeader = Entity &
     publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
     /** User that last published this document */
     publishedBy?: Maybe<User>;
-    rules: Array<DynamicHeaderrulesUnion>;
+    rule: RuleBlock;
     scheduledIn: Array<ScheduledOperation>;
     /** System stage field */
     stage: Stage;
@@ -7208,14 +7208,9 @@ export type DynamicHeaderPublishedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type DynamicHeaderRulesArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  before?: InputMaybe<Scalars["String"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
+export type DynamicHeaderRuleArgs = {
   forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
-  last?: InputMaybe<Scalars["Int"]["input"]>;
   locales?: InputMaybe<Array<Locale>>;
-  skip?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
 export type DynamicHeaderScheduledInArgs = {
@@ -7254,7 +7249,7 @@ export type DynamicHeaderConnection = {
 export type DynamicHeaderCreateInput = {
   banner?: InputMaybe<BannerCreateOneInlineInput>;
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  rules?: InputMaybe<DynamicHeaderrulesUnionCreateManyInlineInput>;
+  rule: RuleBlockCreateOneInlineInput;
   updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
 };
 
@@ -7350,10 +7345,7 @@ export type DynamicHeaderManyWhereInput = {
     Array<InputMaybe<Scalars["DateTime"]["input"]>>
   >;
   publishedBy?: InputMaybe<UserWhereInput>;
-  /** All values in which the union is empty. */
-  rules_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Matches if the modular component contains at least one connection to the item provided to the filter */
-  rules_some?: InputMaybe<DynamicHeaderrulesUnionWhereInput>;
+  rule?: InputMaybe<RuleBlockWhereInput>;
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
@@ -7390,7 +7382,7 @@ export enum DynamicHeaderOrderByInput {
 
 export type DynamicHeaderUpdateInput = {
   banner?: InputMaybe<BannerUpdateOneInlineInput>;
-  rules?: InputMaybe<DynamicHeaderrulesUnionUpdateManyInlineInput>;
+  rule?: InputMaybe<RuleBlockUpdateOneInlineInput>;
 };
 
 export type DynamicHeaderUpdateManyInlineInput = {
@@ -7533,10 +7525,7 @@ export type DynamicHeaderWhereInput = {
     Array<InputMaybe<Scalars["DateTime"]["input"]>>
   >;
   publishedBy?: InputMaybe<UserWhereInput>;
-  /** All values in which the union is empty. */
-  rules_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Matches if the modular component contains at least one connection to the item provided to the filter */
-  rules_some?: InputMaybe<DynamicHeaderrulesUnionWhereInput>;
+  rule?: InputMaybe<RuleBlockWhereInput>;
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
@@ -7577,90 +7566,6 @@ export type DynamicHeaderWhereStageInput = {
 /** References DynamicHeader record uniquely */
 export type DynamicHeaderWhereUniqueInput = {
   id?: InputMaybe<Scalars["ID"]["input"]>;
-};
-
-export type DynamicHeaderrulesUnion = RuleBlock;
-
-export type DynamicHeaderrulesUnionConnectInput = {
-  RuleBlock?: InputMaybe<RuleBlockConnectInput>;
-};
-
-export type DynamicHeaderrulesUnionCreateInput = {
-  RuleBlock?: InputMaybe<RuleBlockCreateInput>;
-};
-
-export type DynamicHeaderrulesUnionCreateManyInlineInput = {
-  /** Create and connect multiple existing DynamicHeaderrulesUnion documents */
-  create?: InputMaybe<Array<DynamicHeaderrulesUnionCreateInput>>;
-};
-
-export type DynamicHeaderrulesUnionCreateOneInlineInput = {
-  /** Create and connect one DynamicHeaderrulesUnion document */
-  create?: InputMaybe<DynamicHeaderrulesUnionCreateInput>;
-};
-
-export type DynamicHeaderrulesUnionCreateWithPositionInput = {
-  RuleBlock?: InputMaybe<RuleBlockCreateWithPositionInput>;
-};
-
-export type DynamicHeaderrulesUnionUpdateInput = {
-  RuleBlock?: InputMaybe<RuleBlockUpdateInput>;
-};
-
-export type DynamicHeaderrulesUnionUpdateManyInlineInput = {
-  /** Create and connect multiple DynamicHeaderrulesUnion component instances */
-  create?: InputMaybe<Array<DynamicHeaderrulesUnionCreateWithPositionInput>>;
-  /** Delete multiple DynamicHeaderrulesUnion documents */
-  delete?: InputMaybe<Array<DynamicHeaderrulesUnionWhereUniqueInput>>;
-  /** Update multiple DynamicHeaderrulesUnion component instances */
-  update?: InputMaybe<
-    Array<DynamicHeaderrulesUnionUpdateWithNestedWhereUniqueAndPositionInput>
-  >;
-  /** Upsert multiple DynamicHeaderrulesUnion component instances */
-  upsert?: InputMaybe<
-    Array<DynamicHeaderrulesUnionUpsertWithNestedWhereUniqueAndPositionInput>
-  >;
-};
-
-export type DynamicHeaderrulesUnionUpdateManyWithNestedWhereInput = {
-  RuleBlock?: InputMaybe<RuleBlockUpdateManyWithNestedWhereInput>;
-};
-
-export type DynamicHeaderrulesUnionUpdateOneInlineInput = {
-  /** Create and connect one DynamicHeaderrulesUnion document */
-  create?: InputMaybe<DynamicHeaderrulesUnionCreateInput>;
-  /** Delete currently connected DynamicHeaderrulesUnion document */
-  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Update single DynamicHeaderrulesUnion document */
-  update?: InputMaybe<DynamicHeaderrulesUnionUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single DynamicHeaderrulesUnion document */
-  upsert?: InputMaybe<DynamicHeaderrulesUnionUpsertWithNestedWhereUniqueInput>;
-};
-
-export type DynamicHeaderrulesUnionUpdateWithNestedWhereUniqueAndPositionInput =
-  {
-    RuleBlock?: InputMaybe<RuleBlockUpdateWithNestedWhereUniqueAndPositionInput>;
-  };
-
-export type DynamicHeaderrulesUnionUpdateWithNestedWhereUniqueInput = {
-  RuleBlock?: InputMaybe<RuleBlockUpdateWithNestedWhereUniqueInput>;
-};
-
-export type DynamicHeaderrulesUnionUpsertWithNestedWhereUniqueAndPositionInput =
-  {
-    RuleBlock?: InputMaybe<RuleBlockUpsertWithNestedWhereUniqueAndPositionInput>;
-  };
-
-export type DynamicHeaderrulesUnionUpsertWithNestedWhereUniqueInput = {
-  RuleBlock?: InputMaybe<RuleBlockUpsertWithNestedWhereUniqueInput>;
-};
-
-export type DynamicHeaderrulesUnionWhereInput = {
-  RuleBlock?: InputMaybe<RuleBlockWhereInput>;
-};
-
-export type DynamicHeaderrulesUnionWhereUniqueInput = {
-  RuleBlock?: InputMaybe<RuleBlockWhereUniqueInput>;
 };
 
 /** Contains details about a custom text attribute that the buyer entered. */
@@ -23166,12 +23071,12 @@ export type CmsStaticPageConfigurationQuery = {
 export type CmsDynamicHeaderFragment = {
   __typename?: "DynamicHeader";
   id: string;
-  rules: Array<{
+  rule: {
     __typename?: "RuleBlock";
     id: string;
     value: Array<string>;
     contentType: DynamicContentType;
-  }>;
+  };
   banner?: {
     __typename: "Banner";
     alt?: string | null;
@@ -23203,12 +23108,12 @@ export type CmsDynamicHeadersQuery = {
   dynamicHeaders: Array<{
     __typename?: "DynamicHeader";
     id: string;
-    rules: Array<{
+    rule: {
       __typename?: "RuleBlock";
       id: string;
       value: Array<string>;
       contentType: DynamicContentType;
-    }>;
+    };
     banner?: {
       __typename: "Banner";
       alt?: string | null;
@@ -89411,7 +89316,7 @@ export const CmsDynamicHeaderFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "rules" },
+            name: { kind: "Name", value: "rule" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -94984,7 +94889,7 @@ export const CmsDynamicHeadersDocument = {
           { kind: "Field", name: { kind: "Name", value: "id" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "rules" },
+            name: { kind: "Name", value: "rule" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [

@@ -30,10 +30,8 @@ export const useDynamicHeadersQuery = (url: string) => {
       CmsDynamicHeadersQueryVariables
     >(CmsDynamicHeadersDocument, {
       where: {
-        rules_some: {
-          RuleBlock: {
-            value_contains_some: urlHierarchy,
-          },
+        rule: {
+          value_contains_some: urlHierarchy,
         },
       },
     });

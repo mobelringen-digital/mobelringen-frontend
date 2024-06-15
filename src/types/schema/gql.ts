@@ -43,7 +43,7 @@ const documents = {
     types.CmsStaticPageConfigurationFragmentDoc,
   "\n  query CmsStaticPageConfiguration(\n    $where: StaticPageConfigurationWhereUniqueInput!\n  ) {\n    staticPageConfiguration(where: $where) {\n      ...CmsStaticPageConfiguration\n    }\n  }\n":
     types.CmsStaticPageConfigurationDocument,
-  "\n  fragment CmsDynamicHeader on DynamicHeader {\n    id\n    rules {\n      ... on RuleBlock {\n        id\n        value\n        contentType\n      }\n    }\n    banner {\n      ...CmsBanner\n    }\n  }\n":
+  "\n  fragment CmsDynamicHeader on DynamicHeader {\n    id\n    rule {\n      ... on RuleBlock {\n        id\n        value\n        contentType\n      }\n    }\n    banner {\n      ...CmsBanner\n    }\n  }\n":
     types.CmsDynamicHeaderFragmentDoc,
   "\n  query CmsDynamicHeaders($where: DynamicHeaderWhereInput) {\n    dynamicHeaders(where: $where) {\n      ...CmsDynamicHeader\n    }\n  }\n":
     types.CmsDynamicHeadersDocument,
@@ -191,8 +191,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment CmsDynamicHeader on DynamicHeader {\n    id\n    rules {\n      ... on RuleBlock {\n        id\n        value\n        contentType\n      }\n    }\n    banner {\n      ...CmsBanner\n    }\n  }\n",
-): (typeof documents)["\n  fragment CmsDynamicHeader on DynamicHeader {\n    id\n    rules {\n      ... on RuleBlock {\n        id\n        value\n        contentType\n      }\n    }\n    banner {\n      ...CmsBanner\n    }\n  }\n"];
+  source: "\n  fragment CmsDynamicHeader on DynamicHeader {\n    id\n    rule {\n      ... on RuleBlock {\n        id\n        value\n        contentType\n      }\n    }\n    banner {\n      ...CmsBanner\n    }\n  }\n",
+): (typeof documents)["\n  fragment CmsDynamicHeader on DynamicHeader {\n    id\n    rule {\n      ... on RuleBlock {\n        id\n        value\n        contentType\n      }\n    }\n    banner {\n      ...CmsBanner\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

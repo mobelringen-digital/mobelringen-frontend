@@ -16,16 +16,16 @@ export const CmsDynamicHeader: React.FC<Props> = ({ data, children }) => {
   const pathname = usePathname();
 
   const isBannerVisible = React.useMemo(() => {
-    if (!data?.rules) return false;
+    if (!data?.rule) return false;
 
-    const urlRule = data.rules.find(
-      (rule) => rule.contentType === DynamicContentType.Url,
-    );
+    switch (data.rule.contentType) {
+      case DynamicContentType.Url:
+        return data.rule.value.some((url) => pathname.includes(url));
 
-    if (urlRule) {
-      return urlRule.value.some((url) => pathname.includes(url));
+      default:
+        return false;
     }
-  }, [data?.rules, pathname]);
+  }, [data, pathname]);
 
   if (!data?.banner) {
     return null;

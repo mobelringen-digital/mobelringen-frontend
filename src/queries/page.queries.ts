@@ -36,7 +36,7 @@ export const CmsStaticPageConfigurationDocument = graphql(`
 export const CmsDynamicHeaderFragment = graphql(`
   fragment CmsDynamicHeader on DynamicHeader {
     id
-    rules {
+    rule {
       ... on RuleBlock {
         id
         value
