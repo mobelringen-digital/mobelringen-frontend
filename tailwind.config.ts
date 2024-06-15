@@ -76,11 +76,21 @@ const config: Config = {
         light: {
           layout: {
             hoverOpacity: 0, //  this value is applied as opacity-[value] when the component is hovered
+            borderWidth: {
+              small: "1px",
+              medium: "1px",
+              large: "1px",
+            },
           },
         },
         dark: {
           layout: {
             hoverOpacity: 0, //  this value is applied as opacity-[value] when the component is hovered
+            borderWidth: {
+              small: "1px",
+              medium: "1px",
+              large: "1px",
+            },
           },
         },
       },

@@ -3,36 +3,80 @@
 import React from "react";
 
 import { signIn } from "next-auth/react";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 import { Button } from "@/components/_ui/button/Button";
+import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
+import { Input } from "@/components/_ui/input/Input";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
+
+import { navigate } from "../../app/actions";
+
+type FormData = {
+  email: string;
+  password: string;
+};
 
 export const LoginPage = () => {
   const [error, setError] = React.useState<Array<Error> | null>(null);
+  const {
+    control,
+    handleSubmit,
+    formState: { isSubmitting, errors },
+  } = useForm<FormData>();
 
-  const handleSignIn = async () => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     const res = await signIn("credentials", {
-      email: "aivaras.karaliunas@alpha-solutions.no",
-      password: "<YELA9<)evim>O;5bOr3",
+      email: data.email,
+      password: data.password,
+      redirect: false,
     });
 
     if (res?.error) setError(JSON.parse(res.error));
+
+    if (res?.ok) return navigate("/account");
   };
 
   return (
-    <ContainerLayout className="my-16">
-      {error ? (
-        <div className="my-4">
-          {error.map((err, i) => (
-            <div className="text-dark-red text-sm" key={i}>
-              {err.message}
-            </div>
-          ))}
-        </div>
-      ) : null}
-      <Button color="primary" onClick={handleSignIn}>
-        Login
-      </Button>
+    <ContainerLayout className="my-16 flex justify-center">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col gap-4 w-full md:w-3/4 lg:w-1/3"
+      >
+        {error ? (
+          <div className="my-4">
+            {error.map((err, i) => (
+              <div className="text-dark-red text-sm" key={i}>
+                {err.message}
+              </div>
+            ))}
+          </div>
+        ) : null}
+
+        <FieldWrapper
+          rules={{ required: "Dette er et påkrevd felt" }}
+          control={control}
+          label="E-post eller mobilnummer"
+          name="email"
+          error={errors.email}
+        >
+          <Input variant="bordered" />
+        </FieldWrapper>
+
+        <FieldWrapper
+          rules={{ required: "Dette er et påkrevd felt" }}
+          error={errors.password}
+          control={control}
+          label="Passord"
+          name="password"
+        >
+          <Input type="password" variant="bordered" />
+        </FieldWrapper>
+
+        <Button disabled={isSubmitting} color="primary" type="submit">
+          Logg inn
+        </Button>
+      </form>
     </ContainerLayout>
   );
 };
