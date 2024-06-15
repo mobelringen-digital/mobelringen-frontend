@@ -45,6 +45,6 @@ export const useDynamicHeadersQuery = (url: string) => {
     queryKey: [...DYNAMIC_HEADERS_QUERY_KEY, url],
     queryFn: fetchDynamicHeaders,
     enabled: !!url,
-    staleTime: 3600,
+    staleTime: Infinity,
   });
 };
