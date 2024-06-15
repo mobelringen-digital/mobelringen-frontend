@@ -40,7 +40,10 @@ export const useDynamicHeadersQuery = (url: string) => {
   };
 
   return useQuery({
-    queryKey: [...DYNAMIC_HEADERS_QUERY_KEY, urlHierarchy[0]],
+    queryKey: [
+      ...DYNAMIC_HEADERS_QUERY_KEY,
+      urlHierarchy[urlHierarchy.length - 1],
+    ],
     queryFn: fetchDynamicHeaders,
     enabled: !!url,
     staleTime: Infinity,
