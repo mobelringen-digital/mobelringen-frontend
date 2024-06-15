@@ -1268,6 +1268,7 @@ export type Banner = Entity &
     updatedAt: Scalars["DateTime"]["output"];
     /** User that last updated this document */
     updatedBy?: Maybe<User>;
+    variant: BannerVariant;
   };
 
 export type BannerBannerImageArgs = {
@@ -1350,11 +1351,13 @@ export type BannerConnection = {
 export type BannerCreateInput = {
   alt?: InputMaybe<Scalars["String"]["input"]>;
   bannerImage?: InputMaybe<AssetCreateOneInlineInput>;
+  clxg6d3zuso7s08l3ghdjfy86?: InputMaybe<DynamicHeaderCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   identify?: InputMaybe<Scalars["String"]["input"]>;
   pages?: InputMaybe<PageCreateManyInlineInput>;
   salesBubble?: InputMaybe<SaleBubbleCreateOneInlineInput>;
   updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  variant: BannerVariant;
 };
 
 export type BannerCreateManyInlineInput = {
@@ -1512,6 +1515,13 @@ export type BannerManyWhereInput = {
     Array<InputMaybe<Scalars["DateTime"]["input"]>>
   >;
   updatedBy?: InputMaybe<UserWhereInput>;
+  variant?: InputMaybe<BannerVariant>;
+  /** All values that are contained in given list. */
+  variant_in?: InputMaybe<Array<InputMaybe<BannerVariant>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  variant_not?: InputMaybe<BannerVariant>;
+  /** All values that are not contained in given list. */
+  variant_not_in?: InputMaybe<Array<InputMaybe<BannerVariant>>>;
 };
 
 export enum BannerOrderByInput {
@@ -1527,14 +1537,18 @@ export enum BannerOrderByInput {
   PublishedAtDesc = "publishedAt_DESC",
   UpdatedAtAsc = "updatedAt_ASC",
   UpdatedAtDesc = "updatedAt_DESC",
+  VariantAsc = "variant_ASC",
+  VariantDesc = "variant_DESC",
 }
 
 export type BannerUpdateInput = {
   alt?: InputMaybe<Scalars["String"]["input"]>;
   bannerImage?: InputMaybe<AssetUpdateOneInlineInput>;
+  clxg6d3zuso7s08l3ghdjfy86?: InputMaybe<DynamicHeaderUpdateManyInlineInput>;
   identify?: InputMaybe<Scalars["String"]["input"]>;
   pages?: InputMaybe<PageUpdateManyInlineInput>;
   salesBubble?: InputMaybe<SaleBubbleUpdateOneInlineInput>;
+  variant?: InputMaybe<BannerVariant>;
 };
 
 export type BannerUpdateManyInlineInput = {
@@ -1557,6 +1571,7 @@ export type BannerUpdateManyInlineInput = {
 export type BannerUpdateManyInput = {
   alt?: InputMaybe<Scalars["String"]["input"]>;
   identify?: InputMaybe<Scalars["String"]["input"]>;
+  variant?: InputMaybe<BannerVariant>;
 };
 
 export type BannerUpdateManyWithNestedWhereInput = {
@@ -1601,6 +1616,11 @@ export type BannerUpsertWithNestedWhereUniqueInput = {
   /** Unique document search */
   where: BannerWhereUniqueInput;
 };
+
+export enum BannerVariant {
+  Default = "default",
+  Small = "small",
+}
 
 /** This contains a set of filters that can be used to compare values internally */
 export type BannerWhereComparatorInput = {
@@ -1740,6 +1760,13 @@ export type BannerWhereInput = {
     Array<InputMaybe<Scalars["DateTime"]["input"]>>
   >;
   updatedBy?: InputMaybe<UserWhereInput>;
+  variant?: InputMaybe<BannerVariant>;
+  /** All values that are contained in given list. */
+  variant_in?: InputMaybe<Array<InputMaybe<BannerVariant>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  variant_not?: InputMaybe<BannerVariant>;
+  /** All values that are not contained in given list. */
+  variant_not_in?: InputMaybe<Array<InputMaybe<BannerVariant>>>;
 };
 
 /** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
@@ -6782,6 +6809,522 @@ export type DynamicBlocksFilterInput = {
   type: DynamicBlockTypeEnum;
 };
 
+export enum DynamicContentType {
+  Url = "URL",
+}
+
+export type DynamicHeader = Entity &
+  Node & {
+    __typename?: "DynamicHeader";
+    banner?: Maybe<Banner>;
+    /** The time the document was created */
+    createdAt: Scalars["DateTime"]["output"];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    /** Get the document in other stages */
+    documentInStages: Array<DynamicHeader>;
+    /** List of DynamicHeader versions */
+    history: Array<Version>;
+    /** The unique identifier */
+    id: Scalars["ID"]["output"];
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    rules: Array<DynamicHeaderrulesUnion>;
+    scheduledIn: Array<ScheduledOperation>;
+    /** System stage field */
+    stage: Stage;
+    /** The time the document was updated */
+    updatedAt: Scalars["DateTime"]["output"];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+  };
+
+export type DynamicHeaderBannerArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type DynamicHeaderCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type DynamicHeaderDocumentInStagesArgs = {
+  includeCurrent?: Scalars["Boolean"]["input"];
+  inheritLocale?: Scalars["Boolean"]["input"];
+  stages?: Array<Stage>;
+};
+
+export type DynamicHeaderHistoryArgs = {
+  limit?: Scalars["Int"]["input"];
+  skip?: Scalars["Int"]["input"];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+export type DynamicHeaderPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type DynamicHeaderRulesArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export type DynamicHeaderScheduledInArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+export type DynamicHeaderUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type DynamicHeaderConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: DynamicHeaderWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type DynamicHeaderConnection = {
+  __typename?: "DynamicHeaderConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<DynamicHeaderEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type DynamicHeaderCreateInput = {
+  banner?: InputMaybe<BannerCreateOneInlineInput>;
+  clxg5ndshsao908l3gm7idsn4?: InputMaybe<StaticPageConfigurationCreateManyInlineInput>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  rules?: InputMaybe<DynamicHeaderrulesUnionCreateManyInlineInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+};
+
+export type DynamicHeaderCreateManyInlineInput = {
+  /** Connect multiple existing DynamicHeader documents */
+  connect?: InputMaybe<Array<DynamicHeaderWhereUniqueInput>>;
+  /** Create and connect multiple existing DynamicHeader documents */
+  create?: InputMaybe<Array<DynamicHeaderCreateInput>>;
+};
+
+export type DynamicHeaderCreateOneInlineInput = {
+  /** Connect one existing DynamicHeader document */
+  connect?: InputMaybe<DynamicHeaderWhereUniqueInput>;
+  /** Create and connect one DynamicHeader document */
+  create?: InputMaybe<DynamicHeaderCreateInput>;
+};
+
+/** An edge in a connection. */
+export type DynamicHeaderEdge = {
+  __typename?: "DynamicHeaderEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: DynamicHeader;
+};
+
+/** Identifies documents */
+export type DynamicHeaderManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<DynamicHeaderWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<DynamicHeaderWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<DynamicHeaderWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  banner?: InputMaybe<BannerWhereInput>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<DynamicHeaderWhereStageInput>;
+  documentInStages_none?: InputMaybe<DynamicHeaderWhereStageInput>;
+  documentInStages_some?: InputMaybe<DynamicHeaderWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  /** All values in which the union is empty. */
+  rules_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Matches if the modular component contains at least one connection to the item provided to the filter */
+  rules_some?: InputMaybe<DynamicHeaderrulesUnionWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum DynamicHeaderOrderByInput {
+  CreatedAtAsc = "createdAt_ASC",
+  CreatedAtDesc = "createdAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  PublishedAtAsc = "publishedAt_ASC",
+  PublishedAtDesc = "publishedAt_DESC",
+  UpdatedAtAsc = "updatedAt_ASC",
+  UpdatedAtDesc = "updatedAt_DESC",
+}
+
+export type DynamicHeaderUpdateInput = {
+  banner?: InputMaybe<BannerUpdateOneInlineInput>;
+  clxg5ndshsao908l3gm7idsn4?: InputMaybe<StaticPageConfigurationUpdateManyInlineInput>;
+  rules?: InputMaybe<DynamicHeaderrulesUnionUpdateManyInlineInput>;
+};
+
+export type DynamicHeaderUpdateManyInlineInput = {
+  /** Connect multiple existing DynamicHeader documents */
+  connect?: InputMaybe<Array<DynamicHeaderConnectInput>>;
+  /** Create and connect multiple DynamicHeader documents */
+  create?: InputMaybe<Array<DynamicHeaderCreateInput>>;
+  /** Delete multiple DynamicHeader documents */
+  delete?: InputMaybe<Array<DynamicHeaderWhereUniqueInput>>;
+  /** Disconnect multiple DynamicHeader documents */
+  disconnect?: InputMaybe<Array<DynamicHeaderWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing DynamicHeader documents */
+  set?: InputMaybe<Array<DynamicHeaderWhereUniqueInput>>;
+  /** Update multiple DynamicHeader documents */
+  update?: InputMaybe<Array<DynamicHeaderUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple DynamicHeader documents */
+  upsert?: InputMaybe<Array<DynamicHeaderUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type DynamicHeaderUpdateManyInput = {
+  /** No fields in updateMany data input */
+  _?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type DynamicHeaderUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: DynamicHeaderUpdateManyInput;
+  /** Document search */
+  where: DynamicHeaderWhereInput;
+};
+
+export type DynamicHeaderUpdateOneInlineInput = {
+  /** Connect existing DynamicHeader document */
+  connect?: InputMaybe<DynamicHeaderWhereUniqueInput>;
+  /** Create and connect one DynamicHeader document */
+  create?: InputMaybe<DynamicHeaderCreateInput>;
+  /** Delete currently connected DynamicHeader document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected DynamicHeader document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single DynamicHeader document */
+  update?: InputMaybe<DynamicHeaderUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single DynamicHeader document */
+  upsert?: InputMaybe<DynamicHeaderUpsertWithNestedWhereUniqueInput>;
+};
+
+export type DynamicHeaderUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: DynamicHeaderUpdateInput;
+  /** Unique document search */
+  where: DynamicHeaderWhereUniqueInput;
+};
+
+export type DynamicHeaderUpsertInput = {
+  /** Create document if it didn't exist */
+  create: DynamicHeaderCreateInput;
+  /** Update document if it exists */
+  update: DynamicHeaderUpdateInput;
+};
+
+export type DynamicHeaderUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: DynamicHeaderUpsertInput;
+  /** Unique document search */
+  where: DynamicHeaderWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type DynamicHeaderWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Identifies documents */
+export type DynamicHeaderWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<DynamicHeaderWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<DynamicHeaderWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<DynamicHeaderWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  banner?: InputMaybe<BannerWhereInput>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<DynamicHeaderWhereStageInput>;
+  documentInStages_none?: InputMaybe<DynamicHeaderWhereStageInput>;
+  documentInStages_some?: InputMaybe<DynamicHeaderWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  /** All values in which the union is empty. */
+  rules_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Matches if the modular component contains at least one connection to the item provided to the filter */
+  rules_some?: InputMaybe<DynamicHeaderrulesUnionWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type DynamicHeaderWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<DynamicHeaderWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<DynamicHeaderWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<DynamicHeaderWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<DynamicHeaderWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References DynamicHeader record uniquely */
+export type DynamicHeaderWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+export type DynamicHeaderrulesUnion = RuleBlock;
+
+export type DynamicHeaderrulesUnionConnectInput = {
+  RuleBlock?: InputMaybe<RuleBlockConnectInput>;
+};
+
+export type DynamicHeaderrulesUnionCreateInput = {
+  RuleBlock?: InputMaybe<RuleBlockCreateInput>;
+};
+
+export type DynamicHeaderrulesUnionCreateManyInlineInput = {
+  /** Create and connect multiple existing DynamicHeaderrulesUnion documents */
+  create?: InputMaybe<Array<DynamicHeaderrulesUnionCreateInput>>;
+};
+
+export type DynamicHeaderrulesUnionCreateOneInlineInput = {
+  /** Create and connect one DynamicHeaderrulesUnion document */
+  create?: InputMaybe<DynamicHeaderrulesUnionCreateInput>;
+};
+
+export type DynamicHeaderrulesUnionCreateWithPositionInput = {
+  RuleBlock?: InputMaybe<RuleBlockCreateWithPositionInput>;
+};
+
+export type DynamicHeaderrulesUnionUpdateInput = {
+  RuleBlock?: InputMaybe<RuleBlockUpdateInput>;
+};
+
+export type DynamicHeaderrulesUnionUpdateManyInlineInput = {
+  /** Create and connect multiple DynamicHeaderrulesUnion component instances */
+  create?: InputMaybe<Array<DynamicHeaderrulesUnionCreateWithPositionInput>>;
+  /** Delete multiple DynamicHeaderrulesUnion documents */
+  delete?: InputMaybe<Array<DynamicHeaderrulesUnionWhereUniqueInput>>;
+  /** Update multiple DynamicHeaderrulesUnion component instances */
+  update?: InputMaybe<
+    Array<DynamicHeaderrulesUnionUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
+  /** Upsert multiple DynamicHeaderrulesUnion component instances */
+  upsert?: InputMaybe<
+    Array<DynamicHeaderrulesUnionUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
+};
+
+export type DynamicHeaderrulesUnionUpdateManyWithNestedWhereInput = {
+  RuleBlock?: InputMaybe<RuleBlockUpdateManyWithNestedWhereInput>;
+};
+
+export type DynamicHeaderrulesUnionUpdateOneInlineInput = {
+  /** Create and connect one DynamicHeaderrulesUnion document */
+  create?: InputMaybe<DynamicHeaderrulesUnionCreateInput>;
+  /** Delete currently connected DynamicHeaderrulesUnion document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single DynamicHeaderrulesUnion document */
+  update?: InputMaybe<DynamicHeaderrulesUnionUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single DynamicHeaderrulesUnion document */
+  upsert?: InputMaybe<DynamicHeaderrulesUnionUpsertWithNestedWhereUniqueInput>;
+};
+
+export type DynamicHeaderrulesUnionUpdateWithNestedWhereUniqueAndPositionInput =
+  {
+    RuleBlock?: InputMaybe<RuleBlockUpdateWithNestedWhereUniqueAndPositionInput>;
+  };
+
+export type DynamicHeaderrulesUnionUpdateWithNestedWhereUniqueInput = {
+  RuleBlock?: InputMaybe<RuleBlockUpdateWithNestedWhereUniqueInput>;
+};
+
+export type DynamicHeaderrulesUnionUpsertWithNestedWhereUniqueAndPositionInput =
+  {
+    RuleBlock?: InputMaybe<RuleBlockUpsertWithNestedWhereUniqueAndPositionInput>;
+  };
+
+export type DynamicHeaderrulesUnionUpsertWithNestedWhereUniqueInput = {
+  RuleBlock?: InputMaybe<RuleBlockUpsertWithNestedWhereUniqueInput>;
+};
+
+export type DynamicHeaderrulesUnionWhereInput = {
+  RuleBlock?: InputMaybe<RuleBlockWhereInput>;
+};
+
+export type DynamicHeaderrulesUnionWhereUniqueInput = {
+  RuleBlock?: InputMaybe<RuleBlockWhereUniqueInput>;
+};
+
 /** Contains details about a custom text attribute that the buyer entered. */
 export type EnteredCustomAttributeInput = {
   /** A string that identifies the entered custom attribute. */
@@ -6811,6 +7354,7 @@ export enum EntityTypeName {
   /** Asset system model */
   Asset = "Asset",
   Banner = "Banner",
+  DynamicHeader = "DynamicHeader",
   ImageLink = "ImageLink",
   Link = "Link",
   LinkBlock = "LinkBlock",
@@ -6820,12 +7364,14 @@ export enum EntityTypeName {
   Menu = "Menu",
   Page = "Page",
   PopularProduct = "PopularProduct",
+  RuleBlock = "RuleBlock",
   SaleBubble = "SaleBubble",
   /** Scheduled Operation system model */
   ScheduledOperation = "ScheduledOperation",
   /** Scheduled Release system model */
   ScheduledRelease = "ScheduledRelease",
   Setting = "Setting",
+  StaticPageConfiguration = "StaticPageConfiguration",
   /** User system model */
   User = "User",
 }
@@ -11092,6 +11638,8 @@ export type Mutation = {
   createCustomerAddress?: Maybe<CustomerAddress>;
   /** Create a customer account. */
   createCustomerV2?: Maybe<CustomerOutput>;
+  /** Create one dynamicHeader */
+  createDynamicHeader?: Maybe<DynamicHeader>;
   /** Create an empty shopping cart for a guest or logged in user */
   createEmptyCart?: Maybe<Scalars["String"]["output"]>;
   /** Create a gift registry on behalf of the customer. */
@@ -11112,6 +11660,8 @@ export type Mutation = {
   createScheduledRelease?: Maybe<ScheduledRelease>;
   /** Create one setting */
   createSetting?: Maybe<Setting>;
+  /** Create one staticPageConfiguration */
+  createStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
   /** Create a new wish list. */
   createWishlist?: Maybe<CreateWishlistOutput>;
   /** Delete one asset from _all_ existing stages. Returns deleted document. */
@@ -11124,6 +11674,8 @@ export type Mutation = {
   deleteCustomer?: Maybe<Scalars["Boolean"]["output"]>;
   /** Delete the billing or shipping address of a customer. */
   deleteCustomerAddress?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Delete one dynamicHeader from _all_ existing stages. Returns deleted document. */
+  deleteDynamicHeader?: Maybe<DynamicHeader>;
   /**
    * Delete many Asset documents
    * @deprecated Please use the new paginated many mutation (deleteManyAssetsConnection)
@@ -11138,6 +11690,13 @@ export type Mutation = {
   deleteManyBanners: BatchPayload;
   /** Delete many Banner documents, return deleted documents */
   deleteManyBannersConnection: BannerConnection;
+  /**
+   * Delete many DynamicHeader documents
+   * @deprecated Please use the new paginated many mutation (deleteManyDynamicHeadersConnection)
+   */
+  deleteManyDynamicHeaders: BatchPayload;
+  /** Delete many DynamicHeader documents, return deleted documents */
+  deleteManyDynamicHeadersConnection: DynamicHeaderConnection;
   /**
    * Delete many Menu documents
    * @deprecated Please use the new paginated many mutation (deleteManyMenusConnection)
@@ -11166,6 +11725,13 @@ export type Mutation = {
   deleteManySettings: BatchPayload;
   /** Delete many Setting documents, return deleted documents */
   deleteManySettingsConnection: SettingConnection;
+  /**
+   * Delete many StaticPageConfiguration documents
+   * @deprecated Please use the new paginated many mutation (deleteManyStaticPageConfigurationsConnection)
+   */
+  deleteManyStaticPageConfigurations: BatchPayload;
+  /** Delete many StaticPageConfiguration documents, return deleted documents */
+  deleteManyStaticPageConfigurationsConnection: StaticPageConfigurationConnection;
   /** Delete one menu from _all_ existing stages. Returns deleted document. */
   deleteMenu?: Maybe<Menu>;
   /** Delete one page from _all_ existing stages. Returns deleted document. */
@@ -11180,6 +11746,8 @@ export type Mutation = {
   deleteScheduledRelease?: Maybe<ScheduledRelease>;
   /** Delete one setting from _all_ existing stages. Returns deleted document. */
   deleteSetting?: Maybe<Setting>;
+  /** Delete one staticPageConfiguration from _all_ existing stages. Returns deleted document. */
+  deleteStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
   /** Delete the specified wish list. You cannot delete the customer's default (first) wish list. */
   deleteWishlist?: Maybe<DeleteWishlistOutput>;
   /** Generate a token for specified customer. */
@@ -11200,6 +11768,8 @@ export type Mutation = {
   publishAsset?: Maybe<Asset>;
   /** Publish one banner */
   publishBanner?: Maybe<Banner>;
+  /** Publish one dynamicHeader */
+  publishDynamicHeader?: Maybe<DynamicHeader>;
   /**
    * Publish many Asset documents
    * @deprecated Please use the new paginated many mutation (publishManyAssetsConnection)
@@ -11214,6 +11784,13 @@ export type Mutation = {
   publishManyBanners: BatchPayload;
   /** Publish many Banner documents */
   publishManyBannersConnection: BannerConnection;
+  /**
+   * Publish many DynamicHeader documents
+   * @deprecated Please use the new paginated many mutation (publishManyDynamicHeadersConnection)
+   */
+  publishManyDynamicHeaders: BatchPayload;
+  /** Publish many DynamicHeader documents */
+  publishManyDynamicHeadersConnection: DynamicHeaderConnection;
   /**
    * Publish many Menu documents
    * @deprecated Please use the new paginated many mutation (publishManyMenusConnection)
@@ -11242,6 +11819,13 @@ export type Mutation = {
   publishManySettings: BatchPayload;
   /** Publish many Setting documents */
   publishManySettingsConnection: SettingConnection;
+  /**
+   * Publish many StaticPageConfiguration documents
+   * @deprecated Please use the new paginated many mutation (publishManyStaticPageConfigurationsConnection)
+   */
+  publishManyStaticPageConfigurations: BatchPayload;
+  /** Publish many StaticPageConfiguration documents */
+  publishManyStaticPageConfigurationsConnection: StaticPageConfigurationConnection;
   /** Publish one menu */
   publishMenu?: Maybe<Menu>;
   /** Publish one page */
@@ -11250,6 +11834,8 @@ export type Mutation = {
   publishPopularProduct?: Maybe<PopularProduct>;
   /** Publish one setting */
   publishSetting?: Maybe<Setting>;
+  /** Publish one staticPageConfiguration */
+  publishStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
   /** Redeem a gift card for store credit. */
   redeemGiftCardBalanceAsStoreCredit?: Maybe<GiftCardAccount>;
   /** Remove a previously-applied coupon from the cart. The cart must contain at least one item in order to remove the coupon. */
@@ -11288,6 +11874,8 @@ export type Mutation = {
   schedulePublishAsset?: Maybe<Asset>;
   /** Schedule to publish one banner */
   schedulePublishBanner?: Maybe<Banner>;
+  /** Schedule to publish one dynamicHeader */
+  schedulePublishDynamicHeader?: Maybe<DynamicHeader>;
   /** Schedule to publish one menu */
   schedulePublishMenu?: Maybe<Menu>;
   /** Schedule to publish one page */
@@ -11296,10 +11884,14 @@ export type Mutation = {
   schedulePublishPopularProduct?: Maybe<PopularProduct>;
   /** Schedule to publish one setting */
   schedulePublishSetting?: Maybe<Setting>;
+  /** Schedule to publish one staticPageConfiguration */
+  schedulePublishStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishAsset?: Maybe<Asset>;
   /** Unpublish one banner from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishBanner?: Maybe<Banner>;
+  /** Unpublish one dynamicHeader from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishDynamicHeader?: Maybe<DynamicHeader>;
   /** Unpublish one menu from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishMenu?: Maybe<Menu>;
   /** Unpublish one page from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -11308,6 +11900,8 @@ export type Mutation = {
   scheduleUnpublishPopularProduct?: Maybe<PopularProduct>;
   /** Unpublish one setting from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishSetting?: Maybe<Setting>;
+  /** Unpublish one staticPageConfiguration from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
   /** Send a message on behalf of a customer to the specified email addresses. */
   sendEmailToFriend?: Maybe<SendEmailToFriendOutput>;
   /** Set the billing address on a specific cart. */
@@ -11335,6 +11929,8 @@ export type Mutation = {
   unpublishAsset?: Maybe<Asset>;
   /** Unpublish one banner from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishBanner?: Maybe<Banner>;
+  /** Unpublish one dynamicHeader from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishDynamicHeader?: Maybe<DynamicHeader>;
   /**
    * Unpublish many Asset documents
    * @deprecated Please use the new paginated many mutation (unpublishManyAssetsConnection)
@@ -11349,6 +11945,13 @@ export type Mutation = {
   unpublishManyBanners: BatchPayload;
   /** Find many Banner documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyBannersConnection: BannerConnection;
+  /**
+   * Unpublish many DynamicHeader documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyDynamicHeadersConnection)
+   */
+  unpublishManyDynamicHeaders: BatchPayload;
+  /** Find many DynamicHeader documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyDynamicHeadersConnection: DynamicHeaderConnection;
   /**
    * Unpublish many Menu documents
    * @deprecated Please use the new paginated many mutation (unpublishManyMenusConnection)
@@ -11377,6 +11980,13 @@ export type Mutation = {
   unpublishManySettings: BatchPayload;
   /** Find many Setting documents that match criteria in specified stage and unpublish from target stages */
   unpublishManySettingsConnection: SettingConnection;
+  /**
+   * Unpublish many StaticPageConfiguration documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyStaticPageConfigurationsConnection)
+   */
+  unpublishManyStaticPageConfigurations: BatchPayload;
+  /** Find many StaticPageConfiguration documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyStaticPageConfigurationsConnection: StaticPageConfigurationConnection;
   /** Unpublish one menu from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishMenu?: Maybe<Menu>;
   /** Unpublish one page from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -11385,6 +11995,8 @@ export type Mutation = {
   unpublishPopularProduct?: Maybe<PopularProduct>;
   /** Unpublish one setting from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishSetting?: Maybe<Setting>;
+  /** Unpublish one staticPageConfiguration from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
   /** Update one asset */
   updateAsset?: Maybe<Asset>;
   /** Update one banner */
@@ -11400,6 +12012,8 @@ export type Mutation = {
   updateCustomerEmail?: Maybe<CustomerOutput>;
   /** Update the customer's personal information. */
   updateCustomerV2?: Maybe<CustomerOutput>;
+  /** Update one dynamicHeader */
+  updateDynamicHeader?: Maybe<DynamicHeader>;
   /** Update the specified gift registry. */
   updateGiftRegistry?: Maybe<UpdateGiftRegistryOutput>;
   /** Update the specified items in the gift registry. */
@@ -11420,6 +12034,13 @@ export type Mutation = {
   updateManyBanners: BatchPayload;
   /** Update many Banner documents */
   updateManyBannersConnection: BannerConnection;
+  /**
+   * Update many dynamicHeaders
+   * @deprecated Please use the new paginated many mutation (updateManyDynamicHeadersConnection)
+   */
+  updateManyDynamicHeaders: BatchPayload;
+  /** Update many DynamicHeader documents */
+  updateManyDynamicHeadersConnection: DynamicHeaderConnection;
   /**
    * Update many menus
    * @deprecated Please use the new paginated many mutation (updateManyMenusConnection)
@@ -11448,6 +12069,13 @@ export type Mutation = {
   updateManySettings: BatchPayload;
   /** Update many Setting documents */
   updateManySettingsConnection: SettingConnection;
+  /**
+   * Update many staticPageConfigurations
+   * @deprecated Please use the new paginated many mutation (updateManyStaticPageConfigurationsConnection)
+   */
+  updateManyStaticPageConfigurations: BatchPayload;
+  /** Update many StaticPageConfiguration documents */
+  updateManyStaticPageConfigurationsConnection: StaticPageConfigurationConnection;
   /** Update one menu */
   updateMenu?: Maybe<Menu>;
   /** Update one page */
@@ -11460,12 +12088,16 @@ export type Mutation = {
   updateScheduledRelease?: Maybe<ScheduledRelease>;
   /** Update one setting */
   updateSetting?: Maybe<Setting>;
+  /** Update one staticPageConfiguration */
+  updateStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
   /** Change the name and visibility of the specified wish list. */
   updateWishlist?: Maybe<UpdateWishlistOutput>;
   /** Upsert one asset */
   upsertAsset?: Maybe<Asset>;
   /** Upsert one banner */
   upsertBanner?: Maybe<Banner>;
+  /** Upsert one dynamicHeader */
+  upsertDynamicHeader?: Maybe<DynamicHeader>;
   /** Upsert one menu */
   upsertMenu?: Maybe<Menu>;
   /** Upsert one page */
@@ -11474,6 +12106,8 @@ export type Mutation = {
   upsertPopularProduct?: Maybe<PopularProduct>;
   /** Upsert one setting */
   upsertSetting?: Maybe<Setting>;
+  /** Upsert one staticPageConfiguration */
+  upsertStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
 };
 
 export type MutationAddBundleProductsToCartArgs = {
@@ -11587,6 +12221,10 @@ export type MutationCreateCustomerV2Args = {
   input: CustomerCreateInput;
 };
 
+export type MutationCreateDynamicHeaderArgs = {
+  data: DynamicHeaderCreateInput;
+};
+
 export type MutationCreateEmptyCartArgs = {
   input?: InputMaybe<CreateEmptyCartInput>;
 };
@@ -11627,6 +12265,10 @@ export type MutationCreateSettingArgs = {
   data: SettingCreateInput;
 };
 
+export type MutationCreateStaticPageConfigurationArgs = {
+  data: StaticPageConfigurationCreateInput;
+};
+
 export type MutationCreateWishlistArgs = {
   input: CreateWishlistInput;
 };
@@ -11645,6 +12287,10 @@ export type MutationDeleteCompareListArgs = {
 
 export type MutationDeleteCustomerAddressArgs = {
   id: Scalars["Int"]["input"];
+};
+
+export type MutationDeleteDynamicHeaderArgs = {
+  where: DynamicHeaderWhereUniqueInput;
 };
 
 export type MutationDeleteManyAssetsArgs = {
@@ -11671,6 +12317,19 @@ export type MutationDeleteManyBannersConnectionArgs = {
   last?: InputMaybe<Scalars["Int"]["input"]>;
   skip?: InputMaybe<Scalars["Int"]["input"]>;
   where?: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationDeleteManyDynamicHeadersArgs = {
+  where?: InputMaybe<DynamicHeaderManyWhereInput>;
+};
+
+export type MutationDeleteManyDynamicHeadersConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<DynamicHeaderManyWhereInput>;
 };
 
 export type MutationDeleteManyMenusArgs = {
@@ -11725,6 +12384,19 @@ export type MutationDeleteManySettingsConnectionArgs = {
   where?: InputMaybe<SettingManyWhereInput>;
 };
 
+export type MutationDeleteManyStaticPageConfigurationsArgs = {
+  where?: InputMaybe<StaticPageConfigurationManyWhereInput>;
+};
+
+export type MutationDeleteManyStaticPageConfigurationsConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<StaticPageConfigurationManyWhereInput>;
+};
+
 export type MutationDeleteMenuArgs = {
   where: MenuWhereUniqueInput;
 };
@@ -11751,6 +12423,10 @@ export type MutationDeleteScheduledReleaseArgs = {
 
 export type MutationDeleteSettingArgs = {
   where: SettingWhereUniqueInput;
+};
+
+export type MutationDeleteStaticPageConfigurationArgs = {
+  where: StaticPageConfigurationWhereUniqueInput;
 };
 
 export type MutationDeleteWishlistArgs = {
@@ -11803,6 +12479,11 @@ export type MutationPublishBannerArgs = {
   where: BannerWhereUniqueInput;
 };
 
+export type MutationPublishDynamicHeaderArgs = {
+  to?: Array<Stage>;
+  where: DynamicHeaderWhereUniqueInput;
+};
+
 export type MutationPublishManyAssetsArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars["Boolean"]["input"]>;
@@ -11839,6 +12520,22 @@ export type MutationPublishManyBannersConnectionArgs = {
   skip?: InputMaybe<Scalars["Int"]["input"]>;
   to?: Array<Stage>;
   where?: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationPublishManyDynamicHeadersArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<DynamicHeaderManyWhereInput>;
+};
+
+export type MutationPublishManyDynamicHeadersConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  to?: Array<Stage>;
+  where?: InputMaybe<DynamicHeaderManyWhereInput>;
 };
 
 export type MutationPublishManyMenusArgs = {
@@ -11905,6 +12602,22 @@ export type MutationPublishManySettingsConnectionArgs = {
   where?: InputMaybe<SettingManyWhereInput>;
 };
 
+export type MutationPublishManyStaticPageConfigurationsArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<StaticPageConfigurationManyWhereInput>;
+};
+
+export type MutationPublishManyStaticPageConfigurationsConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  to?: Array<Stage>;
+  where?: InputMaybe<StaticPageConfigurationManyWhereInput>;
+};
+
 export type MutationPublishMenuArgs = {
   to?: Array<Stage>;
   where: MenuWhereUniqueInput;
@@ -11923,6 +12636,11 @@ export type MutationPublishPopularProductArgs = {
 export type MutationPublishSettingArgs = {
   to?: Array<Stage>;
   where: SettingWhereUniqueInput;
+};
+
+export type MutationPublishStaticPageConfigurationArgs = {
+  to?: Array<Stage>;
+  where: StaticPageConfigurationWhereUniqueInput;
 };
 
 export type MutationRedeemGiftCardBalanceAsStoreCreditArgs = {
@@ -12011,6 +12729,13 @@ export type MutationSchedulePublishBannerArgs = {
   where: BannerWhereUniqueInput;
 };
 
+export type MutationSchedulePublishDynamicHeaderArgs = {
+  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId?: InputMaybe<Scalars["String"]["input"]>;
+  to?: Array<Stage>;
+  where: DynamicHeaderWhereUniqueInput;
+};
+
 export type MutationSchedulePublishMenuArgs = {
   releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   releaseId?: InputMaybe<Scalars["String"]["input"]>;
@@ -12039,6 +12764,13 @@ export type MutationSchedulePublishSettingArgs = {
   where: SettingWhereUniqueInput;
 };
 
+export type MutationSchedulePublishStaticPageConfigurationArgs = {
+  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId?: InputMaybe<Scalars["String"]["input"]>;
+  to?: Array<Stage>;
+  where: StaticPageConfigurationWhereUniqueInput;
+};
+
 export type MutationScheduleUnpublishAssetArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -12053,6 +12785,13 @@ export type MutationScheduleUnpublishBannerArgs = {
   releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   releaseId?: InputMaybe<Scalars["String"]["input"]>;
   where: BannerWhereUniqueInput;
+};
+
+export type MutationScheduleUnpublishDynamicHeaderArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId?: InputMaybe<Scalars["String"]["input"]>;
+  where: DynamicHeaderWhereUniqueInput;
 };
 
 export type MutationScheduleUnpublishMenuArgs = {
@@ -12081,6 +12820,13 @@ export type MutationScheduleUnpublishSettingArgs = {
   releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   releaseId?: InputMaybe<Scalars["String"]["input"]>;
   where: SettingWhereUniqueInput;
+};
+
+export type MutationScheduleUnpublishStaticPageConfigurationArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId?: InputMaybe<Scalars["String"]["input"]>;
+  where: StaticPageConfigurationWhereUniqueInput;
 };
 
 export type MutationSendEmailToFriendArgs = {
@@ -12137,6 +12883,11 @@ export type MutationUnpublishBannerArgs = {
   where: BannerWhereUniqueInput;
 };
 
+export type MutationUnpublishDynamicHeaderArgs = {
+  from?: Array<Stage>;
+  where: DynamicHeaderWhereUniqueInput;
+};
+
 export type MutationUnpublishManyAssetsArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -12171,6 +12922,22 @@ export type MutationUnpublishManyBannersConnectionArgs = {
   skip?: InputMaybe<Scalars["Int"]["input"]>;
   stage?: InputMaybe<Stage>;
   where?: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationUnpublishManyDynamicHeadersArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<DynamicHeaderManyWhereInput>;
+};
+
+export type MutationUnpublishManyDynamicHeadersConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<DynamicHeaderManyWhereInput>;
 };
 
 export type MutationUnpublishManyMenusArgs = {
@@ -12237,6 +13004,22 @@ export type MutationUnpublishManySettingsConnectionArgs = {
   where?: InputMaybe<SettingManyWhereInput>;
 };
 
+export type MutationUnpublishManyStaticPageConfigurationsArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<StaticPageConfigurationManyWhereInput>;
+};
+
+export type MutationUnpublishManyStaticPageConfigurationsConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<StaticPageConfigurationManyWhereInput>;
+};
+
 export type MutationUnpublishMenuArgs = {
   from?: Array<Stage>;
   where: MenuWhereUniqueInput;
@@ -12255,6 +13038,11 @@ export type MutationUnpublishPopularProductArgs = {
 export type MutationUnpublishSettingArgs = {
   from?: Array<Stage>;
   where: SettingWhereUniqueInput;
+};
+
+export type MutationUnpublishStaticPageConfigurationArgs = {
+  from?: Array<Stage>;
+  where: StaticPageConfigurationWhereUniqueInput;
 };
 
 export type MutationUpdateAssetArgs = {
@@ -12291,6 +13079,11 @@ export type MutationUpdateCustomerEmailArgs = {
 
 export type MutationUpdateCustomerV2Args = {
   input: CustomerUpdateInput;
+};
+
+export type MutationUpdateDynamicHeaderArgs = {
+  data: DynamicHeaderUpdateInput;
+  where: DynamicHeaderWhereUniqueInput;
 };
 
 export type MutationUpdateGiftRegistryArgs = {
@@ -12336,6 +13129,21 @@ export type MutationUpdateManyBannersConnectionArgs = {
   last?: InputMaybe<Scalars["Int"]["input"]>;
   skip?: InputMaybe<Scalars["Int"]["input"]>;
   where?: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationUpdateManyDynamicHeadersArgs = {
+  data: DynamicHeaderUpdateManyInput;
+  where?: InputMaybe<DynamicHeaderManyWhereInput>;
+};
+
+export type MutationUpdateManyDynamicHeadersConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  data: DynamicHeaderUpdateManyInput;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<DynamicHeaderManyWhereInput>;
 };
 
 export type MutationUpdateManyMenusArgs = {
@@ -12398,6 +13206,21 @@ export type MutationUpdateManySettingsConnectionArgs = {
   where?: InputMaybe<SettingManyWhereInput>;
 };
 
+export type MutationUpdateManyStaticPageConfigurationsArgs = {
+  data: StaticPageConfigurationUpdateManyInput;
+  where?: InputMaybe<StaticPageConfigurationManyWhereInput>;
+};
+
+export type MutationUpdateManyStaticPageConfigurationsConnectionArgs = {
+  after?: InputMaybe<Scalars["ID"]["input"]>;
+  before?: InputMaybe<Scalars["ID"]["input"]>;
+  data: StaticPageConfigurationUpdateManyInput;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<StaticPageConfigurationManyWhereInput>;
+};
+
 export type MutationUpdateMenuArgs = {
   data: MenuUpdateInput;
   where: MenuWhereUniqueInput;
@@ -12428,6 +13251,11 @@ export type MutationUpdateSettingArgs = {
   where: SettingWhereUniqueInput;
 };
 
+export type MutationUpdateStaticPageConfigurationArgs = {
+  data: StaticPageConfigurationUpdateInput;
+  where: StaticPageConfigurationWhereUniqueInput;
+};
+
 export type MutationUpdateWishlistArgs = {
   name?: InputMaybe<Scalars["String"]["input"]>;
   visibility?: InputMaybe<WishlistVisibilityEnum>;
@@ -12442,6 +13270,11 @@ export type MutationUpsertAssetArgs = {
 export type MutationUpsertBannerArgs = {
   upsert: BannerUpsertInput;
   where: BannerWhereUniqueInput;
+};
+
+export type MutationUpsertDynamicHeaderArgs = {
+  upsert: DynamicHeaderUpsertInput;
+  where: DynamicHeaderWhereUniqueInput;
 };
 
 export type MutationUpsertMenuArgs = {
@@ -12462,6 +13295,11 @@ export type MutationUpsertPopularProductArgs = {
 export type MutationUpsertSettingArgs = {
   upsert: SettingUpsertInput;
   where: SettingWhereUniqueInput;
+};
+
+export type MutationUpsertStaticPageConfigurationArgs = {
+  upsert: StaticPageConfigurationUpsertInput;
+  where: StaticPageConfigurationWhereUniqueInput;
 };
 
 /** Contains an error message when an invalid UID was specified. */
@@ -15111,6 +15949,14 @@ export type Query = {
   customerPaymentTokens?: Maybe<CustomerPaymentTokens>;
   /** Return a list of dynamic blocks filtered by type, location, or UIDs. */
   dynamicBlocks: DynamicBlocks;
+  /** Retrieve a single dynamicHeader */
+  dynamicHeader?: Maybe<DynamicHeader>;
+  /** Retrieve document version */
+  dynamicHeaderVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple dynamicHeaders */
+  dynamicHeaders: Array<DynamicHeader>;
+  /** Retrieve multiple dynamicHeaders using the Relay connection interface */
+  dynamicHeadersConnection: DynamicHeaderConnection;
   /** Fetches an object given its ID */
   entities?: Maybe<Array<Entity>>;
   /** Retrieve the secure PayPal URL for a Payments Pro Hosted Solution transaction. */
@@ -15190,6 +16036,14 @@ export type Query = {
   snowdogMenuNodes?: Maybe<SnowdogMenuNodes>;
   /** The snowdogMenus query returns information about active menus */
   snowdogMenus?: Maybe<SnowdogMenus>;
+  /** Retrieve a single staticPageConfiguration */
+  staticPageConfiguration?: Maybe<StaticPageConfiguration>;
+  /** Retrieve document version */
+  staticPageConfigurationVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple staticPageConfigurations */
+  staticPageConfigurations: Array<StaticPageConfiguration>;
+  /** Retrieve multiple staticPageConfigurations using the Relay connection interface */
+  staticPageConfigurationsConnection: StaticPageConfigurationConnection;
   /** Return details about the store's configuration. */
   storeConfig?: Maybe<StoreConfig>;
   /**
@@ -15333,6 +16187,40 @@ export type QueryDynamicBlocksArgs = {
   currentPage?: InputMaybe<Scalars["Int"]["input"]>;
   input?: InputMaybe<DynamicBlocksFilterInput>;
   pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export type QueryDynamicHeaderArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: DynamicHeaderWhereUniqueInput;
+};
+
+export type QueryDynamicHeaderVersionArgs = {
+  where: VersionWhereInput;
+};
+
+export type QueryDynamicHeadersArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<DynamicHeaderOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<DynamicHeaderWhereInput>;
+};
+
+export type QueryDynamicHeadersConnectionArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<DynamicHeaderOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<DynamicHeaderWhereInput>;
 };
 
 export type QueryEntitiesArgs = {
@@ -15607,6 +16495,40 @@ export type QuerySnowdogMenuNodesArgs = {
 
 export type QuerySnowdogMenusArgs = {
   identifiers?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+};
+
+export type QueryStaticPageConfigurationArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: StaticPageConfigurationWhereUniqueInput;
+};
+
+export type QueryStaticPageConfigurationVersionArgs = {
+  where: VersionWhereInput;
+};
+
+export type QueryStaticPageConfigurationsArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<StaticPageConfigurationOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<StaticPageConfigurationWhereInput>;
+};
+
+export type QueryStaticPageConfigurationsConnectionArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<StaticPageConfigurationOrderByInput>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where?: InputMaybe<StaticPageConfigurationWhereInput>;
 };
 
 export type QueryUrlResolverArgs = {
@@ -16141,6 +17063,336 @@ export type RoutableInterface = {
   relative_url?: Maybe<Scalars["String"]["output"]>;
   /** One of PRODUCT, CATEGORY, or CMS_PAGE. */
   type?: Maybe<UrlRewriteEntityTypeEnum>;
+};
+
+export type RuleBlock = Entity & {
+  __typename?: "RuleBlock";
+  contentType: DynamicContentType;
+  /** The unique identifier */
+  id: Scalars["ID"]["output"];
+  /** System stage field */
+  stage: Stage;
+  value: Array<Scalars["String"]["output"]>;
+};
+
+export type RuleBlockConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: RuleBlockWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type RuleBlockConnection = {
+  __typename?: "RuleBlockConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<RuleBlockEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type RuleBlockCreateInput = {
+  contentType: DynamicContentType;
+  value?: InputMaybe<Array<Scalars["String"]["input"]>>;
+};
+
+export type RuleBlockCreateManyInlineInput = {
+  /** Create and connect multiple existing RuleBlock documents */
+  create?: InputMaybe<Array<RuleBlockCreateInput>>;
+};
+
+export type RuleBlockCreateOneInlineInput = {
+  /** Create and connect one RuleBlock document */
+  create?: InputMaybe<RuleBlockCreateInput>;
+};
+
+export type RuleBlockCreateWithPositionInput = {
+  /** Document to create */
+  data: RuleBlockCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type RuleBlockEdge = {
+  __typename?: "RuleBlockEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: RuleBlock;
+};
+
+/** Identifies documents */
+export type RuleBlockManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<RuleBlockWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<RuleBlockWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<RuleBlockWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  contentType?: InputMaybe<DynamicContentType>;
+  /** All values that are contained in given list. */
+  contentType_in?: InputMaybe<Array<InputMaybe<DynamicContentType>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  contentType_not?: InputMaybe<DynamicContentType>;
+  /** All values that are not contained in given list. */
+  contentType_not_in?: InputMaybe<Array<InputMaybe<DynamicContentType>>>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** Matches if the field array contains *all* items provided to the filter and order does match */
+  value?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  /** Matches if the field array contains *all* items provided to the filter */
+  value_contains_all?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  /** Matches if the field array does not contain any of the items provided to the filter */
+  value_contains_none?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  /** Matches if the field array contains at least one item provided to the filter */
+  value_contains_some?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+  value_not?: InputMaybe<Array<Scalars["String"]["input"]>>;
+};
+
+export enum RuleBlockOrderByInput {
+  ContentTypeAsc = "contentType_ASC",
+  ContentTypeDesc = "contentType_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  ValueAsc = "value_ASC",
+  ValueDesc = "value_DESC",
+}
+
+export type RuleBlockParent = DynamicHeader;
+
+export type RuleBlockParentConnectInput = {
+  DynamicHeader?: InputMaybe<DynamicHeaderConnectInput>;
+};
+
+export type RuleBlockParentCreateInput = {
+  DynamicHeader?: InputMaybe<DynamicHeaderCreateInput>;
+};
+
+export type RuleBlockParentCreateManyInlineInput = {
+  /** Connect multiple existing RuleBlockParent documents */
+  connect?: InputMaybe<Array<RuleBlockParentWhereUniqueInput>>;
+  /** Create and connect multiple existing RuleBlockParent documents */
+  create?: InputMaybe<Array<RuleBlockParentCreateInput>>;
+};
+
+export type RuleBlockParentCreateOneInlineInput = {
+  /** Connect one existing RuleBlockParent document */
+  connect?: InputMaybe<RuleBlockParentWhereUniqueInput>;
+  /** Create and connect one RuleBlockParent document */
+  create?: InputMaybe<RuleBlockParentCreateInput>;
+};
+
+export type RuleBlockParentUpdateInput = {
+  DynamicHeader?: InputMaybe<DynamicHeaderUpdateInput>;
+};
+
+export type RuleBlockParentUpdateManyInlineInput = {
+  /** Connect multiple existing RuleBlockParent documents */
+  connect?: InputMaybe<Array<RuleBlockParentConnectInput>>;
+  /** Create and connect multiple RuleBlockParent documents */
+  create?: InputMaybe<Array<RuleBlockParentCreateInput>>;
+  /** Delete multiple RuleBlockParent documents */
+  delete?: InputMaybe<Array<RuleBlockParentWhereUniqueInput>>;
+  /** Disconnect multiple RuleBlockParent documents */
+  disconnect?: InputMaybe<Array<RuleBlockParentWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing RuleBlockParent documents */
+  set?: InputMaybe<Array<RuleBlockParentWhereUniqueInput>>;
+  /** Update multiple RuleBlockParent documents */
+  update?: InputMaybe<Array<RuleBlockParentUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple RuleBlockParent documents */
+  upsert?: InputMaybe<Array<RuleBlockParentUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type RuleBlockParentUpdateManyWithNestedWhereInput = {
+  DynamicHeader?: InputMaybe<DynamicHeaderUpdateManyWithNestedWhereInput>;
+};
+
+export type RuleBlockParentUpdateOneInlineInput = {
+  /** Connect existing RuleBlockParent document */
+  connect?: InputMaybe<RuleBlockParentWhereUniqueInput>;
+  /** Create and connect one RuleBlockParent document */
+  create?: InputMaybe<RuleBlockParentCreateInput>;
+  /** Delete currently connected RuleBlockParent document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected RuleBlockParent document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single RuleBlockParent document */
+  update?: InputMaybe<RuleBlockParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single RuleBlockParent document */
+  upsert?: InputMaybe<RuleBlockParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type RuleBlockParentUpdateWithNestedWhereUniqueInput = {
+  DynamicHeader?: InputMaybe<DynamicHeaderUpdateWithNestedWhereUniqueInput>;
+};
+
+export type RuleBlockParentUpsertWithNestedWhereUniqueInput = {
+  DynamicHeader?: InputMaybe<DynamicHeaderUpsertWithNestedWhereUniqueInput>;
+};
+
+export type RuleBlockParentWhereInput = {
+  DynamicHeader?: InputMaybe<DynamicHeaderWhereInput>;
+};
+
+export type RuleBlockParentWhereUniqueInput = {
+  DynamicHeader?: InputMaybe<DynamicHeaderWhereUniqueInput>;
+};
+
+export type RuleBlockUpdateInput = {
+  contentType?: InputMaybe<DynamicContentType>;
+  value?: InputMaybe<Array<Scalars["String"]["input"]>>;
+};
+
+export type RuleBlockUpdateManyInlineInput = {
+  /** Create and connect multiple RuleBlock component instances */
+  create?: InputMaybe<Array<RuleBlockCreateWithPositionInput>>;
+  /** Delete multiple RuleBlock documents */
+  delete?: InputMaybe<Array<RuleBlockWhereUniqueInput>>;
+  /** Update multiple RuleBlock component instances */
+  update?: InputMaybe<
+    Array<RuleBlockUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
+  /** Upsert multiple RuleBlock component instances */
+  upsert?: InputMaybe<
+    Array<RuleBlockUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
+};
+
+export type RuleBlockUpdateManyInput = {
+  contentType?: InputMaybe<DynamicContentType>;
+  value?: InputMaybe<Array<Scalars["String"]["input"]>>;
+};
+
+export type RuleBlockUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: RuleBlockUpdateManyInput;
+  /** Document search */
+  where: RuleBlockWhereInput;
+};
+
+export type RuleBlockUpdateOneInlineInput = {
+  /** Create and connect one RuleBlock document */
+  create?: InputMaybe<RuleBlockCreateInput>;
+  /** Delete currently connected RuleBlock document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single RuleBlock document */
+  update?: InputMaybe<RuleBlockUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single RuleBlock document */
+  upsert?: InputMaybe<RuleBlockUpsertWithNestedWhereUniqueInput>;
+};
+
+export type RuleBlockUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<RuleBlockUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: RuleBlockWhereUniqueInput;
+};
+
+export type RuleBlockUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: RuleBlockUpdateInput;
+  /** Unique document search */
+  where: RuleBlockWhereUniqueInput;
+};
+
+export type RuleBlockUpsertInput = {
+  /** Create document if it didn't exist */
+  create: RuleBlockCreateInput;
+  /** Update document if it exists */
+  update: RuleBlockUpdateInput;
+};
+
+export type RuleBlockUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<RuleBlockUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: RuleBlockWhereUniqueInput;
+};
+
+export type RuleBlockUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: RuleBlockUpsertInput;
+  /** Unique document search */
+  where: RuleBlockWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type RuleBlockWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<RuleBlockWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<RuleBlockWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<RuleBlockWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  contentType?: InputMaybe<DynamicContentType>;
+  /** All values that are contained in given list. */
+  contentType_in?: InputMaybe<Array<InputMaybe<DynamicContentType>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  contentType_not?: InputMaybe<DynamicContentType>;
+  /** All values that are not contained in given list. */
+  contentType_not_in?: InputMaybe<Array<InputMaybe<DynamicContentType>>>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** Matches if the field array contains *all* items provided to the filter and order does match */
+  value?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  /** Matches if the field array contains *all* items provided to the filter */
+  value_contains_all?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  /** Matches if the field array does not contain any of the items provided to the filter */
+  value_contains_none?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  /** Matches if the field array contains at least one item provided to the filter */
+  value_contains_some?: InputMaybe<Array<Scalars["String"]["input"]>>;
+  /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+  value_not?: InputMaybe<Array<Scalars["String"]["input"]>>;
+};
+
+/** References RuleBlock record uniquely */
+export type RuleBlockWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
 };
 
 export type SaleBubble = Entity & {
@@ -16719,10 +17971,12 @@ export type ScheduledOperationUpdatedByArgs = {
 export type ScheduledOperationAffectedDocument =
   | Asset
   | Banner
+  | DynamicHeader
   | Menu
   | Page
   | PopularProduct
-  | Setting;
+  | Setting
+  | StaticPageConfiguration;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -19171,6 +20425,460 @@ export enum Stage {
   Published = "PUBLISHED",
 }
 
+export type StaticPageConfiguration = Entity &
+  Node & {
+    __typename?: "StaticPageConfiguration";
+    /** The time the document was created */
+    createdAt: Scalars["DateTime"]["output"];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    /** Get the document in other stages */
+    documentInStages: Array<StaticPageConfiguration>;
+    dynamicHeader?: Maybe<DynamicHeader>;
+    /** List of StaticPageConfiguration versions */
+    history: Array<Version>;
+    /** The unique identifier */
+    id: Scalars["ID"]["output"];
+    pageType: StaticPageType;
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    scheduledIn: Array<ScheduledOperation>;
+    /** System stage field */
+    stage: Stage;
+    translations?: Maybe<Scalars["Json"]["output"]>;
+    /** The time the document was updated */
+    updatedAt: Scalars["DateTime"]["output"];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+  };
+
+export type StaticPageConfigurationCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type StaticPageConfigurationDocumentInStagesArgs = {
+  includeCurrent?: Scalars["Boolean"]["input"];
+  inheritLocale?: Scalars["Boolean"]["input"];
+  stages?: Array<Stage>;
+};
+
+export type StaticPageConfigurationDynamicHeaderArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type StaticPageConfigurationHistoryArgs = {
+  limit?: Scalars["Int"]["input"];
+  skip?: Scalars["Int"]["input"];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+export type StaticPageConfigurationPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type StaticPageConfigurationScheduledInArgs = {
+  after?: InputMaybe<Scalars["String"]["input"]>;
+  before?: InputMaybe<Scalars["String"]["input"]>;
+  first?: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  last?: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars["Int"]["input"]>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+export type StaticPageConfigurationUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type StaticPageConfigurationConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: StaticPageConfigurationWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type StaticPageConfigurationConnection = {
+  __typename?: "StaticPageConfigurationConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<StaticPageConfigurationEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type StaticPageConfigurationCreateInput = {
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  dynamicHeader?: InputMaybe<DynamicHeaderCreateOneInlineInput>;
+  pageType: StaticPageType;
+  translations?: InputMaybe<Scalars["Json"]["input"]>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+};
+
+export type StaticPageConfigurationCreateManyInlineInput = {
+  /** Connect multiple existing StaticPageConfiguration documents */
+  connect?: InputMaybe<Array<StaticPageConfigurationWhereUniqueInput>>;
+  /** Create and connect multiple existing StaticPageConfiguration documents */
+  create?: InputMaybe<Array<StaticPageConfigurationCreateInput>>;
+};
+
+export type StaticPageConfigurationCreateOneInlineInput = {
+  /** Connect one existing StaticPageConfiguration document */
+  connect?: InputMaybe<StaticPageConfigurationWhereUniqueInput>;
+  /** Create and connect one StaticPageConfiguration document */
+  create?: InputMaybe<StaticPageConfigurationCreateInput>;
+};
+
+/** An edge in a connection. */
+export type StaticPageConfigurationEdge = {
+  __typename?: "StaticPageConfigurationEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: StaticPageConfiguration;
+};
+
+/** Identifies documents */
+export type StaticPageConfigurationManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<StaticPageConfigurationWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<StaticPageConfigurationWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<StaticPageConfigurationWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<StaticPageConfigurationWhereStageInput>;
+  documentInStages_none?: InputMaybe<StaticPageConfigurationWhereStageInput>;
+  documentInStages_some?: InputMaybe<StaticPageConfigurationWhereStageInput>;
+  dynamicHeader?: InputMaybe<DynamicHeaderWhereInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  pageType?: InputMaybe<StaticPageType>;
+  /** All values that are contained in given list. */
+  pageType_in?: InputMaybe<Array<InputMaybe<StaticPageType>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  pageType_not?: InputMaybe<StaticPageType>;
+  /** All values that are not contained in given list. */
+  pageType_not_in?: InputMaybe<Array<InputMaybe<StaticPageType>>>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  /** All values containing the given json path. */
+  translations_json_path_exists?: InputMaybe<Scalars["String"]["input"]>;
+  /**
+   * Recursively tries to find the provided JSON scalar value inside the field.
+   * It does use an exact match when comparing values.
+   * If you pass `null` as value the filter will be ignored.
+   * Note: This filter fails if you try to look for a non scalar JSON value!
+   */
+  translations_value_recursive?: InputMaybe<Scalars["Json"]["input"]>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum StaticPageConfigurationOrderByInput {
+  CreatedAtAsc = "createdAt_ASC",
+  CreatedAtDesc = "createdAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  PageTypeAsc = "pageType_ASC",
+  PageTypeDesc = "pageType_DESC",
+  PublishedAtAsc = "publishedAt_ASC",
+  PublishedAtDesc = "publishedAt_DESC",
+  UpdatedAtAsc = "updatedAt_ASC",
+  UpdatedAtDesc = "updatedAt_DESC",
+}
+
+export type StaticPageConfigurationUpdateInput = {
+  dynamicHeader?: InputMaybe<DynamicHeaderUpdateOneInlineInput>;
+  pageType?: InputMaybe<StaticPageType>;
+  translations?: InputMaybe<Scalars["Json"]["input"]>;
+};
+
+export type StaticPageConfigurationUpdateManyInlineInput = {
+  /** Connect multiple existing StaticPageConfiguration documents */
+  connect?: InputMaybe<Array<StaticPageConfigurationConnectInput>>;
+  /** Create and connect multiple StaticPageConfiguration documents */
+  create?: InputMaybe<Array<StaticPageConfigurationCreateInput>>;
+  /** Delete multiple StaticPageConfiguration documents */
+  delete?: InputMaybe<Array<StaticPageConfigurationWhereUniqueInput>>;
+  /** Disconnect multiple StaticPageConfiguration documents */
+  disconnect?: InputMaybe<Array<StaticPageConfigurationWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing StaticPageConfiguration documents */
+  set?: InputMaybe<Array<StaticPageConfigurationWhereUniqueInput>>;
+  /** Update multiple StaticPageConfiguration documents */
+  update?: InputMaybe<
+    Array<StaticPageConfigurationUpdateWithNestedWhereUniqueInput>
+  >;
+  /** Upsert multiple StaticPageConfiguration documents */
+  upsert?: InputMaybe<
+    Array<StaticPageConfigurationUpsertWithNestedWhereUniqueInput>
+  >;
+};
+
+export type StaticPageConfigurationUpdateManyInput = {
+  translations?: InputMaybe<Scalars["Json"]["input"]>;
+};
+
+export type StaticPageConfigurationUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: StaticPageConfigurationUpdateManyInput;
+  /** Document search */
+  where: StaticPageConfigurationWhereInput;
+};
+
+export type StaticPageConfigurationUpdateOneInlineInput = {
+  /** Connect existing StaticPageConfiguration document */
+  connect?: InputMaybe<StaticPageConfigurationWhereUniqueInput>;
+  /** Create and connect one StaticPageConfiguration document */
+  create?: InputMaybe<StaticPageConfigurationCreateInput>;
+  /** Delete currently connected StaticPageConfiguration document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected StaticPageConfiguration document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single StaticPageConfiguration document */
+  update?: InputMaybe<StaticPageConfigurationUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single StaticPageConfiguration document */
+  upsert?: InputMaybe<StaticPageConfigurationUpsertWithNestedWhereUniqueInput>;
+};
+
+export type StaticPageConfigurationUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: StaticPageConfigurationUpdateInput;
+  /** Unique document search */
+  where: StaticPageConfigurationWhereUniqueInput;
+};
+
+export type StaticPageConfigurationUpsertInput = {
+  /** Create document if it didn't exist */
+  create: StaticPageConfigurationCreateInput;
+  /** Update document if it exists */
+  update: StaticPageConfigurationUpdateInput;
+};
+
+export type StaticPageConfigurationUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: StaticPageConfigurationUpsertInput;
+  /** Unique document search */
+  where: StaticPageConfigurationWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type StaticPageConfigurationWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Identifies documents */
+export type StaticPageConfigurationWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<StaticPageConfigurationWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<StaticPageConfigurationWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<StaticPageConfigurationWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<StaticPageConfigurationWhereStageInput>;
+  documentInStages_none?: InputMaybe<StaticPageConfigurationWhereStageInput>;
+  documentInStages_some?: InputMaybe<StaticPageConfigurationWhereStageInput>;
+  dynamicHeader?: InputMaybe<DynamicHeaderWhereInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  pageType?: InputMaybe<StaticPageType>;
+  /** All values that are contained in given list. */
+  pageType_in?: InputMaybe<Array<InputMaybe<StaticPageType>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  pageType_not?: InputMaybe<StaticPageType>;
+  /** All values that are not contained in given list. */
+  pageType_not_in?: InputMaybe<Array<InputMaybe<StaticPageType>>>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  /** All values containing the given json path. */
+  translations_json_path_exists?: InputMaybe<Scalars["String"]["input"]>;
+  /**
+   * Recursively tries to find the provided JSON scalar value inside the field.
+   * It does use an exact match when comparing values.
+   * If you pass `null` as value the filter will be ignored.
+   * Note: This filter fails if you try to look for a non scalar JSON value!
+   */
+  translations_value_recursive?: InputMaybe<Scalars["Json"]["input"]>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type StaticPageConfigurationWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<StaticPageConfigurationWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<StaticPageConfigurationWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<StaticPageConfigurationWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<StaticPageConfigurationWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References StaticPageConfiguration record uniquely */
+export type StaticPageConfigurationWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  pageType?: InputMaybe<StaticPageType>;
+};
+
+export enum StaticPageType {
+  CategoryPage = "CATEGORY_PAGE",
+  LoginPage = "LOGIN_PAGE",
+}
+
 /** Contains information about a store's configuration. */
 export type StoreConfig = {
   __typename?: "StoreConfig";
@@ -20761,6 +22469,7 @@ export type CmsBannerFragment = {
   __typename: "Banner";
   alt?: string | null;
   identify?: string | null;
+  variant: BannerVariant;
   bannerImage?: {
     __typename?: "Asset";
     mimeType?: string | null;
@@ -20975,6 +22684,7 @@ export type CmsPagesQuery = {
           __typename: "Banner";
           alt?: string | null;
           identify?: string | null;
+          variant: BannerVariant;
           bannerImage?: {
             __typename?: "Asset";
             mimeType?: string | null;
@@ -20993,6 +22703,108 @@ export type CmsPagesQuery = {
       | { __typename: "PopularProduct"; id: string; categoryId?: string | null }
     >;
   }>;
+};
+
+export type CmsDynamicHeaderFragment = {
+  __typename?: "DynamicHeader";
+  banner?: {
+    __typename: "Banner";
+    alt?: string | null;
+    identify?: string | null;
+    variant: BannerVariant;
+    bannerImage?: {
+      __typename?: "Asset";
+      mimeType?: string | null;
+      url: string;
+      width?: number | null;
+    } | null;
+    salesBubble?: {
+      __typename?: "SaleBubble";
+      url?: string | null;
+      middleLine: string;
+      position: Position;
+      topLine?: string | null;
+      bottomLine?: string | null;
+    } | null;
+  } | null;
+  rules: Array<{
+    __typename?: "RuleBlock";
+    contentType: DynamicContentType;
+    value: Array<string>;
+  }>;
+};
+
+export type CmsStaticPageConfigurationFragment = {
+  __typename?: "StaticPageConfiguration";
+  translations?: any | null;
+  dynamicHeader?: {
+    __typename?: "DynamicHeader";
+    banner?: {
+      __typename: "Banner";
+      alt?: string | null;
+      identify?: string | null;
+      variant: BannerVariant;
+      bannerImage?: {
+        __typename?: "Asset";
+        mimeType?: string | null;
+        url: string;
+        width?: number | null;
+      } | null;
+      salesBubble?: {
+        __typename?: "SaleBubble";
+        url?: string | null;
+        middleLine: string;
+        position: Position;
+        topLine?: string | null;
+        bottomLine?: string | null;
+      } | null;
+    } | null;
+    rules: Array<{
+      __typename?: "RuleBlock";
+      contentType: DynamicContentType;
+      value: Array<string>;
+    }>;
+  } | null;
+};
+
+export type CmsStaticPageConfigurationQueryVariables = Exact<{
+  where: StaticPageConfigurationWhereUniqueInput;
+}>;
+
+export type CmsStaticPageConfigurationQuery = {
+  __typename?: "Query";
+  staticPageConfiguration?: {
+    __typename?: "StaticPageConfiguration";
+    translations?: any | null;
+    dynamicHeader?: {
+      __typename?: "DynamicHeader";
+      banner?: {
+        __typename: "Banner";
+        alt?: string | null;
+        identify?: string | null;
+        variant: BannerVariant;
+        bannerImage?: {
+          __typename?: "Asset";
+          mimeType?: string | null;
+          url: string;
+          width?: number | null;
+        } | null;
+        salesBubble?: {
+          __typename?: "SaleBubble";
+          url?: string | null;
+          middleLine: string;
+          position: Position;
+          topLine?: string | null;
+          bottomLine?: string | null;
+        } | null;
+      } | null;
+      rules: Array<{
+        __typename?: "RuleBlock";
+        contentType: DynamicContentType;
+        value: Array<string>;
+      }>;
+    } | null;
+  } | null;
 };
 
 export type ConfigurableProductOptionsFragment = {
@@ -86712,108 +88524,6 @@ export type RouteQuery = {
     | null;
 };
 
-export const CmsSalesBubbleFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "CmsSalesBubble" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "SaleBubble" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "url" } },
-          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
-          { kind: "Field", name: { kind: "Name", value: "position" } },
-          { kind: "Field", name: { kind: "Name", value: "topLine" } },
-          { kind: "Field", name: { kind: "Name", value: "bottomLine" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<CmsSalesBubbleFragment, unknown>;
-export const CmsBannerFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "CmsBanner" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "Banner" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "InlineFragment",
-            typeCondition: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "Banner" },
-            },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "alt" } },
-                { kind: "Field", name: { kind: "Name", value: "identify" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "bannerImage" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "mimeType" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "url" } },
-                      { kind: "Field", name: { kind: "Name", value: "width" } },
-                    ],
-                  },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "salesBubble" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "FragmentSpread",
-                        name: { kind: "Name", value: "CmsSalesBubble" },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "CmsSalesBubble" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "SaleBubble" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "url" } },
-          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
-          { kind: "Field", name: { kind: "Name", value: "position" } },
-          { kind: "Field", name: { kind: "Name", value: "topLine" } },
-          { kind: "Field", name: { kind: "Name", value: "bottomLine" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<CmsBannerFragment, unknown>;
 export const CmsPopularProductsFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -87138,6 +88848,400 @@ export const CustomerDataFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<CustomerDataFragment, unknown>;
+export const CmsSalesBubbleFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsSalesBubble" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SaleBubble" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "topLine" } },
+          { kind: "Field", name: { kind: "Name", value: "bottomLine" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CmsSalesBubbleFragment, unknown>;
+export const CmsBannerFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsBanner" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Banner" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "Banner" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "alt" } },
+                { kind: "Field", name: { kind: "Name", value: "identify" } },
+                { kind: "Field", name: { kind: "Name", value: "variant" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "bannerImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mimeType" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "salesBubble" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsSalesBubble" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsSalesBubble" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SaleBubble" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "topLine" } },
+          { kind: "Field", name: { kind: "Name", value: "bottomLine" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CmsBannerFragment, unknown>;
+export const CmsDynamicHeaderFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsDynamicHeader" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "DynamicHeader" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "banner" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CmsBanner" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "rules" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "RuleBlock" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "contentType" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsSalesBubble" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SaleBubble" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "topLine" } },
+          { kind: "Field", name: { kind: "Name", value: "bottomLine" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsBanner" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Banner" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "Banner" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "alt" } },
+                { kind: "Field", name: { kind: "Name", value: "identify" } },
+                { kind: "Field", name: { kind: "Name", value: "variant" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "bannerImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mimeType" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "salesBubble" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsSalesBubble" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CmsDynamicHeaderFragment, unknown>;
+export const CmsStaticPageConfigurationFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsStaticPageConfiguration" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StaticPageConfiguration" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "dynamicHeader" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CmsDynamicHeader" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "translations" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsSalesBubble" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SaleBubble" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "topLine" } },
+          { kind: "Field", name: { kind: "Name", value: "bottomLine" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsBanner" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Banner" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "Banner" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "alt" } },
+                { kind: "Field", name: { kind: "Name", value: "identify" } },
+                { kind: "Field", name: { kind: "Name", value: "variant" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "bannerImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mimeType" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "salesBubble" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsSalesBubble" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsDynamicHeader" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "DynamicHeader" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "banner" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CmsBanner" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "rules" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "RuleBlock" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "contentType" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CmsStaticPageConfigurationFragment, unknown>;
 export const ProductImageFragmentFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -92317,6 +94421,7 @@ export const CmsPagesDocument = {
                 { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "alt" } },
                 { kind: "Field", name: { kind: "Name", value: "identify" } },
+                { kind: "Field", name: { kind: "Name", value: "variant" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "bannerImage" },
@@ -92381,6 +94486,220 @@ export const CmsPagesDocument = {
     },
   ],
 } as unknown as DocumentNode<CmsPagesQuery, CmsPagesQueryVariables>;
+export const CmsStaticPageConfigurationDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "CmsStaticPageConfiguration" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "where" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: {
+                kind: "Name",
+                value: "StaticPageConfigurationWhereUniqueInput",
+              },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "staticPageConfiguration" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "where" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CmsStaticPageConfiguration" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsSalesBubble" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SaleBubble" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "topLine" } },
+          { kind: "Field", name: { kind: "Name", value: "bottomLine" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsBanner" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Banner" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "Banner" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "alt" } },
+                { kind: "Field", name: { kind: "Name", value: "identify" } },
+                { kind: "Field", name: { kind: "Name", value: "variant" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "bannerImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mimeType" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "salesBubble" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsSalesBubble" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsDynamicHeader" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "DynamicHeader" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "banner" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CmsBanner" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "rules" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "InlineFragment",
+                  typeCondition: {
+                    kind: "NamedType",
+                    name: { kind: "Name", value: "RuleBlock" },
+                  },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "contentType" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsStaticPageConfiguration" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "StaticPageConfiguration" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "dynamicHeader" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CmsDynamicHeader" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "translations" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  CmsStaticPageConfigurationQuery,
+  CmsStaticPageConfigurationQueryVariables
+>;
 export const ProductsDocument = {
   kind: "Document",
   definitions: [

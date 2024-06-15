@@ -17,7 +17,7 @@ const documents = {
     types.CategoryDocument,
   "\n  fragment CmsSalesBubble on SaleBubble {\n    url\n    middleLine\n    position\n    topLine\n    bottomLine\n  }\n":
     types.CmsSalesBubbleFragmentDoc,
-  "\n  fragment CmsBanner on Banner {\n    ... on Banner {\n      __typename\n      alt\n      identify\n      bannerImage {\n        mimeType\n        url\n        width\n      }\n      salesBubble {\n        ...CmsSalesBubble\n      }\n    }\n  }\n":
+  "\n  fragment CmsBanner on Banner {\n    ... on Banner {\n      __typename\n      alt\n      identify\n      variant\n      bannerImage {\n        mimeType\n        url\n        width\n      }\n      salesBubble {\n        ...CmsSalesBubble\n      }\n    }\n  }\n":
     types.CmsBannerFragmentDoc,
   "\n  fragment CmsPopularProducts on PopularProduct {\n    ... on PopularProduct {\n      __typename\n      id\n      categoryId\n    }\n  }\n":
     types.CmsPopularProductsFragmentDoc,
@@ -39,6 +39,12 @@ const documents = {
     types.CustomerDocument,
   "\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      title\n      url\n      content {\n        ...CmsBanner\n        ...CmsPopularProducts\n      }\n    }\n  }\n":
     types.CmsPagesDocument,
+  "\n  fragment CmsDynamicHeader on DynamicHeader {\n    banner {\n      ...CmsBanner\n    }\n    rules {\n      ... on RuleBlock {\n        contentType\n        value\n      }\n    }\n  }\n":
+    types.CmsDynamicHeaderFragmentDoc,
+  "\n  fragment CmsStaticPageConfiguration on StaticPageConfiguration {\n    dynamicHeader {\n      ...CmsDynamicHeader\n    }\n    translations\n  }\n":
+    types.CmsStaticPageConfigurationFragmentDoc,
+  "\n  query CmsStaticPageConfiguration(\n    $where: StaticPageConfigurationWhereUniqueInput!\n  ) {\n    staticPageConfiguration(where: $where) {\n      ...CmsStaticPageConfiguration\n    }\n  }\n":
+    types.CmsStaticPageConfigurationDocument,
   "\n  fragment ConfigurableProductOptions on ConfigurableProductOptions {\n    __typename\n    values {\n      default_label\n      label\n      store_label\n      uid\n      use_default_value\n      value_index\n    }\n    attribute_code\n    attribute_uid\n    label\n    position\n    uid\n    use_default\n  }\n":
     types.ConfigurableProductOptionsFragmentDoc,
   "\n  fragment ConfigurableProductVariants on ConfigurableVariant {\n    __typename\n    attributes {\n      code\n      label\n      uid\n      value_index\n    }\n    product {\n      ...BaseProduct\n    }\n  }\n":
@@ -105,8 +111,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment CmsBanner on Banner {\n    ... on Banner {\n      __typename\n      alt\n      identify\n      bannerImage {\n        mimeType\n        url\n        width\n      }\n      salesBubble {\n        ...CmsSalesBubble\n      }\n    }\n  }\n",
-): (typeof documents)["\n  fragment CmsBanner on Banner {\n    ... on Banner {\n      __typename\n      alt\n      identify\n      bannerImage {\n        mimeType\n        url\n        width\n      }\n      salesBubble {\n        ...CmsSalesBubble\n      }\n    }\n  }\n"];
+  source: "\n  fragment CmsBanner on Banner {\n    ... on Banner {\n      __typename\n      alt\n      identify\n      variant\n      bannerImage {\n        mimeType\n        url\n        width\n      }\n      salesBubble {\n        ...CmsSalesBubble\n      }\n    }\n  }\n",
+): (typeof documents)["\n  fragment CmsBanner on Banner {\n    ... on Banner {\n      __typename\n      alt\n      identify\n      variant\n      bannerImage {\n        mimeType\n        url\n        width\n      }\n      salesBubble {\n        ...CmsSalesBubble\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -167,6 +173,24 @@ export function graphql(
 export function graphql(
   source: "\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      title\n      url\n      content {\n        ...CmsBanner\n        ...CmsPopularProducts\n      }\n    }\n  }\n",
 ): (typeof documents)["\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      title\n      url\n      content {\n        ...CmsBanner\n        ...CmsPopularProducts\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment CmsDynamicHeader on DynamicHeader {\n    banner {\n      ...CmsBanner\n    }\n    rules {\n      ... on RuleBlock {\n        contentType\n        value\n      }\n    }\n  }\n",
+): (typeof documents)["\n  fragment CmsDynamicHeader on DynamicHeader {\n    banner {\n      ...CmsBanner\n    }\n    rules {\n      ... on RuleBlock {\n        contentType\n        value\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment CmsStaticPageConfiguration on StaticPageConfiguration {\n    dynamicHeader {\n      ...CmsDynamicHeader\n    }\n    translations\n  }\n",
+): (typeof documents)["\n  fragment CmsStaticPageConfiguration on StaticPageConfiguration {\n    dynamicHeader {\n      ...CmsDynamicHeader\n    }\n    translations\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  query CmsStaticPageConfiguration(\n    $where: StaticPageConfigurationWhereUniqueInput!\n  ) {\n    staticPageConfiguration(where: $where) {\n      ...CmsStaticPageConfiguration\n    }\n  }\n",
+): (typeof documents)["\n  query CmsStaticPageConfiguration(\n    $where: StaticPageConfigurationWhereUniqueInput!\n  ) {\n    staticPageConfiguration(where: $where) {\n      ...CmsStaticPageConfiguration\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
