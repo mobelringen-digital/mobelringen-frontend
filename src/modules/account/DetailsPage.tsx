@@ -17,14 +17,7 @@ export const DetailsPage: React.FC<Props> = ({ data }) => {
   return (
     <ContainerLayout className="mt-16">
       <h1>Customer details</h1>
-      <Button
-        color="primary"
-        onClick={() =>
-          signOut({
-            callbackUrl: "/account/login",
-          })
-        }
-      >
+      <Button color="primary" onClick={() => signOut()}>
         Logout
       </Button>
       <Debugger data={data} />

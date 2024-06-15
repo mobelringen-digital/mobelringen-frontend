@@ -2,28 +2,19 @@
 
 import React from "react";
 
-import { signIn, signOut, useSession } from "next-auth/react";
-
-import { useRouter } from "next/navigation";
+import { signIn } from "next-auth/react";
 
 import { Button } from "@/components/_ui/button/Button";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 
 export const LoginPage = () => {
-  const { data } = useSession();
-  const router = useRouter();
   const [error, setError] = React.useState<Array<Error> | null>(null);
 
   const handleSignIn = async () => {
     const res = await signIn("credentials", {
       email: "aivaras.karaliunas@alpha-solutions.no",
       password: "<YELA9<)evim>O;5bOr3",
-      redirect: false,
     });
-
-    if (res?.ok) {
-      router.push("/account/details");
-    }
 
     if (res?.error) setError(JSON.parse(res.error));
   };
@@ -39,15 +30,9 @@ export const LoginPage = () => {
           ))}
         </div>
       ) : null}
-      {data?.user ? (
-        <Button color="primary" onClick={() => signOut()}>
-          Logout
-        </Button>
-      ) : (
-        <Button color="primary" onClick={handleSignIn}>
-          Login
-        </Button>
-      )}
+      <Button color="primary" onClick={handleSignIn}>
+        Login
+      </Button>
     </ContainerLayout>
   );
 };
