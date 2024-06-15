@@ -32,6 +32,13 @@ export const Banner: React.FC<Props> = ({ data, children }) => {
         backgroundImage: `url(${bannerImage.url})`,
       }}
     >
+      {data.centerText ? (
+        <div className="absolute top-0 left-0 bottom-0 right-0 bg-black bg-opacity-50 flex items-center justify-center text-center">
+          <div className="text-white text-4xl lg:text-5xl font-feature">
+            {data.centerText}
+          </div>
+        </div>
+      ) : null}
       {children}
       {salesBubble ? <SalesBubbleWrapper data={salesBubble} /> : null}
     </div>

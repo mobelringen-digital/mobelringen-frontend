@@ -17,6 +17,7 @@ export const BannerFragment = graphql(`
       alt
       identify
       variant
+      centerText
       bannerImage {
         mimeType
         url

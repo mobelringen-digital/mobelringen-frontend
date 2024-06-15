@@ -1244,6 +1244,8 @@ export type Banner = Entity &
     __typename?: "Banner";
     alt?: Maybe<Scalars["String"]["output"]>;
     bannerImage?: Maybe<Asset>;
+    /** If used background image will have dark overlay with text in the middle */
+    centerText?: Maybe<Scalars["String"]["output"]>;
     /** The time the document was created */
     createdAt: Scalars["DateTime"]["output"];
     /** User that created this document */
@@ -1351,6 +1353,7 @@ export type BannerConnection = {
 export type BannerCreateInput = {
   alt?: InputMaybe<Scalars["String"]["input"]>;
   bannerImage?: InputMaybe<AssetCreateOneInlineInput>;
+  centerText?: InputMaybe<Scalars["String"]["input"]>;
   clxg6d3zuso7s08l3ghdjfy86?: InputMaybe<DynamicHeaderCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   identify?: InputMaybe<Scalars["String"]["input"]>;
@@ -1413,6 +1416,25 @@ export type BannerManyWhereInput = {
   /** All values starting with the given string. */
   alt_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   bannerImage?: InputMaybe<AssetWhereInput>;
+  centerText?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  centerText_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  centerText_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  centerText_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  centerText_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  centerText_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  centerText_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  centerText_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  centerText_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  centerText_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
@@ -1527,6 +1549,8 @@ export type BannerManyWhereInput = {
 export enum BannerOrderByInput {
   AltAsc = "alt_ASC",
   AltDesc = "alt_DESC",
+  CenterTextAsc = "centerText_ASC",
+  CenterTextDesc = "centerText_DESC",
   CreatedAtAsc = "createdAt_ASC",
   CreatedAtDesc = "createdAt_DESC",
   IdAsc = "id_ASC",
@@ -1544,6 +1568,7 @@ export enum BannerOrderByInput {
 export type BannerUpdateInput = {
   alt?: InputMaybe<Scalars["String"]["input"]>;
   bannerImage?: InputMaybe<AssetUpdateOneInlineInput>;
+  centerText?: InputMaybe<Scalars["String"]["input"]>;
   clxg6d3zuso7s08l3ghdjfy86?: InputMaybe<DynamicHeaderUpdateManyInlineInput>;
   identify?: InputMaybe<Scalars["String"]["input"]>;
   pages?: InputMaybe<PageUpdateManyInlineInput>;
@@ -1570,6 +1595,7 @@ export type BannerUpdateManyInlineInput = {
 
 export type BannerUpdateManyInput = {
   alt?: InputMaybe<Scalars["String"]["input"]>;
+  centerText?: InputMaybe<Scalars["String"]["input"]>;
   identify?: InputMaybe<Scalars["String"]["input"]>;
   variant?: InputMaybe<BannerVariant>;
 };
@@ -1658,6 +1684,25 @@ export type BannerWhereInput = {
   /** All values starting with the given string. */
   alt_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   bannerImage?: InputMaybe<AssetWhereInput>;
+  centerText?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  centerText_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  centerText_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  centerText_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  centerText_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  centerText_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  centerText_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  centerText_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  centerText_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  centerText_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
@@ -22816,6 +22861,7 @@ export type CmsBannerFragment = {
   alt?: string | null;
   identify?: string | null;
   variant: BannerVariant;
+  centerText?: string | null;
   bannerImage?: {
     __typename?: "Asset";
     mimeType?: string | null;
@@ -23031,6 +23077,7 @@ export type CmsPagesQuery = {
           alt?: string | null;
           identify?: string | null;
           variant: BannerVariant;
+          centerText?: string | null;
           bannerImage?: {
             __typename?: "Asset";
             mimeType?: string | null;
@@ -23082,6 +23129,7 @@ export type CmsDynamicHeaderFragment = {
     alt?: string | null;
     identify?: string | null;
     variant: BannerVariant;
+    centerText?: string | null;
     bannerImage?: {
       __typename?: "Asset";
       mimeType?: string | null;
@@ -23119,6 +23167,7 @@ export type CmsDynamicHeadersQuery = {
       alt?: string | null;
       identify?: string | null;
       variant: BannerVariant;
+      centerText?: string | null;
       bannerImage?: {
         __typename?: "Asset";
         mimeType?: string | null;
@@ -89246,6 +89295,7 @@ export const CmsBannerFragmentDoc = {
                 { kind: "Field", name: { kind: "Name", value: "alt" } },
                 { kind: "Field", name: { kind: "Name", value: "identify" } },
                 { kind: "Field", name: { kind: "Name", value: "variant" } },
+                { kind: "Field", name: { kind: "Name", value: "centerText" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "bannerImage" },
@@ -89398,6 +89448,7 @@ export const CmsDynamicHeaderFragmentDoc = {
                 { kind: "Field", name: { kind: "Name", value: "alt" } },
                 { kind: "Field", name: { kind: "Name", value: "identify" } },
                 { kind: "Field", name: { kind: "Name", value: "variant" } },
+                { kind: "Field", name: { kind: "Name", value: "centerText" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "bannerImage" },
@@ -94614,6 +94665,7 @@ export const CmsPagesDocument = {
                 { kind: "Field", name: { kind: "Name", value: "alt" } },
                 { kind: "Field", name: { kind: "Name", value: "identify" } },
                 { kind: "Field", name: { kind: "Name", value: "variant" } },
+                { kind: "Field", name: { kind: "Name", value: "centerText" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "bannerImage" },
@@ -94842,6 +94894,7 @@ export const CmsDynamicHeadersDocument = {
                 { kind: "Field", name: { kind: "Name", value: "alt" } },
                 { kind: "Field", name: { kind: "Name", value: "identify" } },
                 { kind: "Field", name: { kind: "Name", value: "variant" } },
+                { kind: "Field", name: { kind: "Name", value: "centerText" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "bannerImage" },
