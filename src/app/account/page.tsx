@@ -1,6 +1,6 @@
 import { auth } from "@/auth/auth";
 import { DetailsPage } from "@/modules/account/DetailsPage";
-import { LoginPage } from "@/modules/account/LoginPage";
+import { LoginPage } from "@/modules/auth/LoginPage";
 import { CustomerDocument } from "@/queries/mutations/customer.mutations";
 import { CustomerQuery } from "@/types";
 import { authorizedMagentoClient } from "@/utils/lib/graphql";

@@ -38,7 +38,8 @@ export const Button: React.FC<Props> = ({
         COLORS[color],
         VARIANTS[variant],
         {
-          "bg-cold-grey-dark text-dark-grey cursor-not-allowed": disabled,
+          "bg-cold-grey-dark text-dark-grey cursor-not-allowed hover:bg-cold-grey-dark":
+            disabled,
         },
       )}
       {...rest}

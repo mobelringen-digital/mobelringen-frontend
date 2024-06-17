@@ -18,6 +18,7 @@ type FormData = {
 };
 
 export const LoginPage: React.FC = () => {
+  const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState<Array<Error> | null>(null);
   const {
     control,
@@ -26,15 +27,19 @@ export const LoginPage: React.FC = () => {
   } = useForm<FormData>();
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
+    setIsLoading(true);
     const res = await signIn("credentials", {
       email: data.email,
       password: data.password,
       redirect: false,
     });
 
-    if (res?.error) setError(JSON.parse(res.error));
+    if (res?.error) {
+      setError(JSON.parse(res.error));
+      setIsLoading(false);
+    }
 
-    if (res?.ok) return navigate("/account");
+    if (res?.ok) return navigate("/account").then(() => setIsLoading(false));
   };
 
   return (
@@ -74,7 +79,11 @@ export const LoginPage: React.FC = () => {
             <Input type="password" variant="bordered" />
           </FieldWrapper>
 
-          <Button disabled={isSubmitting} color="primary" type="submit">
+          <Button
+            disabled={isLoading || isSubmitting}
+            color="primary"
+            type="submit"
+          >
             Logg inn
           </Button>
         </form>
