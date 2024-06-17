@@ -1,16 +1,13 @@
 "use client";
 
-import { CartIcon } from "@/components/_ui/icons/CartIcon";
+import { Cart } from "@/components/_ui/icons/figma/Cart";
 
-import { useCartQuery } from "./useCartQuery";
-
-export const Cart = () => {
-  const { data } = useCartQuery();
+export const CartIcon = () => {
+  // const { data } = useCartQuery();
 
   return (
     <button className="flex gap-1">
-      {data?.length}
-      <CartIcon />
+      <Cart width={24} height={24} /> a
     </button>
   );
 };

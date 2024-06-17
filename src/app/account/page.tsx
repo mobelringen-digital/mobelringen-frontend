@@ -14,12 +14,6 @@ async function getCustomerDetails() {
 }
 
 export default async function AccountPage() {
-  const session = await auth();
-
-  if (!session?.token) {
-    return <LoginPage />;
-  }
-
   const data = await getCustomerDetails();
 
   if (!data.customer) {
