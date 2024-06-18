@@ -22,7 +22,7 @@ export const baseMagentoClient = new GraphQLClient(
   process.env.NEXT_PUBLIC_MAGENTO_URL as string,
 );
 
-export const authorizedMagentoClient = (token?: string) =>
+export const authorizedMagentoClient = (token: string) =>
   new GraphQLClient(process.env.NEXT_PUBLIC_MAGENTO_URL as string, {
     fetch: cache(
       async (input: RequestInfo | URL, init?: RequestInit | undefined) =>

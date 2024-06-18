@@ -2,8 +2,10 @@
 
 import React from "react";
 
-import { signIn } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import { SubmitHandler, useForm } from "react-hook-form";
+
+import { useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/_ui/button/Button";
 import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
@@ -18,6 +20,8 @@ type FormData = {
 };
 
 export const LoginPage: React.FC = () => {
+  const { data: session } = useSession();
+  const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState<Array<Error> | null>(null);
   const {
@@ -25,6 +29,17 @@ export const LoginPage: React.FC = () => {
     handleSubmit,
     formState: { isSubmitting, errors },
   } = useForm<FormData>();
+
+  React.useEffect(() => {
+    (async () => {
+      const tokenExpired = searchParams.get("callback") === "TOKEN_EXPIRED";
+      if (tokenExpired && session?.token) {
+        await signOut({
+          callbackUrl: "/auth/login",
+        });
+      }
+    })();
+  }, [session?.token, searchParams]);
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     setIsLoading(true);

@@ -4,14 +4,14 @@ import { redirect } from "next/navigation";
 
 import { auth } from "@/auth/auth";
 
-export default async function RootLayout({
+export default async function AccountLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const session = await auth();
 
-  if (!session?.token) {
+  if (!session) {
     return redirect("/auth/login");
   }
 
