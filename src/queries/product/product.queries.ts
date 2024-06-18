@@ -146,6 +146,14 @@ export const BaseProductFragment = graphql(`
       html
     }
     review_count
+    reviews {
+      items {
+        average_rating
+        nickname
+        summary
+        text
+      }
+    }
     addable_to_cart
     categories {
       url_path
@@ -156,6 +164,15 @@ export const BaseProductFragment = graphql(`
     }
     delivery_promise
     maintenance_description
+    measurement_depth
+    measurement_diameter
+    measurement_gross_weight
+    measurement_height
+    measurement_length
+    measurement_seat_height
+    measurement_thickness
+    measurement_volume
+    measurement_width
   }
 `);
 

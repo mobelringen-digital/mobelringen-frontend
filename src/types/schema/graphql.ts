@@ -22628,6 +22628,15 @@ export type ConfigurableProductVariantsFragment = {
     addable_to_cart?: number | null;
     delivery_promise?: string | null;
     maintenance_description?: string | null;
+    measurement_depth?: string | null;
+    measurement_diameter?: string | null;
+    measurement_gross_weight?: string | null;
+    measurement_height?: string | null;
+    measurement_length?: string | null;
+    measurement_seat_height?: string | null;
+    measurement_thickness?: string | null;
+    measurement_volume?: string | null;
+    measurement_width?: string | null;
     description?: { __typename?: "ComplexTextValue"; html: string } | null;
     image?: {
       __typename: "ProductImage";
@@ -22735,6 +22744,16 @@ export type ConfigurableProductVariantsFragment = {
       __typename?: "ComplexTextValue";
       html: string;
     } | null;
+    reviews: {
+      __typename?: "ProductReviews";
+      items: Array<{
+        __typename?: "ProductReview";
+        average_rating: number;
+        nickname: string;
+        summary: string;
+        text: string;
+      } | null>;
+    };
     categories?: Array<{
       __typename?: "CategoryTree";
       url_path?: string | null;
@@ -22773,6 +22792,15 @@ export type ConfigurableProductFragment = {
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
   maintenance_description?: string | null;
+  measurement_depth?: string | null;
+  measurement_diameter?: string | null;
+  measurement_gross_weight?: string | null;
+  measurement_height?: string | null;
+  measurement_length?: string | null;
+  measurement_seat_height?: string | null;
+  measurement_thickness?: string | null;
+  measurement_volume?: string | null;
+  measurement_width?: string | null;
   configurable_options?: Array<{
     __typename: "ConfigurableProductOptions";
     attribute_code?: string | null;
@@ -22824,6 +22852,15 @@ export type ConfigurableProductFragment = {
       addable_to_cart?: number | null;
       delivery_promise?: string | null;
       maintenance_description?: string | null;
+      measurement_depth?: string | null;
+      measurement_diameter?: string | null;
+      measurement_gross_weight?: string | null;
+      measurement_height?: string | null;
+      measurement_length?: string | null;
+      measurement_seat_height?: string | null;
+      measurement_thickness?: string | null;
+      measurement_volume?: string | null;
+      measurement_width?: string | null;
       description?: { __typename?: "ComplexTextValue"; html: string } | null;
       image?: {
         __typename: "ProductImage";
@@ -22931,6 +22968,16 @@ export type ConfigurableProductFragment = {
         __typename?: "ComplexTextValue";
         html: string;
       } | null;
+      reviews: {
+        __typename?: "ProductReviews";
+        items: Array<{
+          __typename?: "ProductReview";
+          average_rating: number;
+          nickname: string;
+          summary: string;
+          text: string;
+        } | null>;
+      };
       categories?: Array<{
         __typename?: "CategoryTree";
         url_path?: string | null;
@@ -23048,6 +23095,16 @@ export type ConfigurableProductFragment = {
     url?: string | null;
   } | null;
   short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  reviews: {
+    __typename?: "ProductReviews";
+    items: Array<{
+      __typename?: "ProductReview";
+      average_rating: number;
+      nickname: string;
+      summary: string;
+      text: string;
+    } | null>;
+  };
   categories?: Array<{
     __typename?: "CategoryTree";
     url_path?: string | null;
@@ -23204,6 +23261,15 @@ type BaseProduct_BundleProduct_Fragment = {
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
   maintenance_description?: string | null;
+  measurement_depth?: string | null;
+  measurement_diameter?: string | null;
+  measurement_gross_weight?: string | null;
+  measurement_height?: string | null;
+  measurement_length?: string | null;
+  measurement_seat_height?: string | null;
+  measurement_thickness?: string | null;
+  measurement_volume?: string | null;
+  measurement_width?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -23308,6 +23374,16 @@ type BaseProduct_BundleProduct_Fragment = {
     url?: string | null;
   } | null;
   short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  reviews: {
+    __typename?: "ProductReviews";
+    items: Array<{
+      __typename?: "ProductReview";
+      average_rating: number;
+      nickname: string;
+      summary: string;
+      text: string;
+    } | null>;
+  };
   categories?: Array<{
     __typename?: "CategoryTree";
     url_path?: string | null;
@@ -23345,6 +23421,15 @@ type BaseProduct_ConfigurableProduct_Fragment = {
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
   maintenance_description?: string | null;
+  measurement_depth?: string | null;
+  measurement_diameter?: string | null;
+  measurement_gross_weight?: string | null;
+  measurement_height?: string | null;
+  measurement_length?: string | null;
+  measurement_seat_height?: string | null;
+  measurement_thickness?: string | null;
+  measurement_volume?: string | null;
+  measurement_width?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -23449,6 +23534,16 @@ type BaseProduct_ConfigurableProduct_Fragment = {
     url?: string | null;
   } | null;
   short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  reviews: {
+    __typename?: "ProductReviews";
+    items: Array<{
+      __typename?: "ProductReview";
+      average_rating: number;
+      nickname: string;
+      summary: string;
+      text: string;
+    } | null>;
+  };
   categories?: Array<{
     __typename?: "CategoryTree";
     url_path?: string | null;
@@ -23486,6 +23581,15 @@ type BaseProduct_DownloadableProduct_Fragment = {
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
   maintenance_description?: string | null;
+  measurement_depth?: string | null;
+  measurement_diameter?: string | null;
+  measurement_gross_weight?: string | null;
+  measurement_height?: string | null;
+  measurement_length?: string | null;
+  measurement_seat_height?: string | null;
+  measurement_thickness?: string | null;
+  measurement_volume?: string | null;
+  measurement_width?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -23590,6 +23694,16 @@ type BaseProduct_DownloadableProduct_Fragment = {
     url?: string | null;
   } | null;
   short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  reviews: {
+    __typename?: "ProductReviews";
+    items: Array<{
+      __typename?: "ProductReview";
+      average_rating: number;
+      nickname: string;
+      summary: string;
+      text: string;
+    } | null>;
+  };
   categories?: Array<{
     __typename?: "CategoryTree";
     url_path?: string | null;
@@ -23627,6 +23741,15 @@ type BaseProduct_GiftCardProduct_Fragment = {
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
   maintenance_description?: string | null;
+  measurement_depth?: string | null;
+  measurement_diameter?: string | null;
+  measurement_gross_weight?: string | null;
+  measurement_height?: string | null;
+  measurement_length?: string | null;
+  measurement_seat_height?: string | null;
+  measurement_thickness?: string | null;
+  measurement_volume?: string | null;
+  measurement_width?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -23731,6 +23854,16 @@ type BaseProduct_GiftCardProduct_Fragment = {
     url?: string | null;
   } | null;
   short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  reviews: {
+    __typename?: "ProductReviews";
+    items: Array<{
+      __typename?: "ProductReview";
+      average_rating: number;
+      nickname: string;
+      summary: string;
+      text: string;
+    } | null>;
+  };
   categories?: Array<{
     __typename?: "CategoryTree";
     url_path?: string | null;
@@ -23768,6 +23901,15 @@ type BaseProduct_GroupedProduct_Fragment = {
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
   maintenance_description?: string | null;
+  measurement_depth?: string | null;
+  measurement_diameter?: string | null;
+  measurement_gross_weight?: string | null;
+  measurement_height?: string | null;
+  measurement_length?: string | null;
+  measurement_seat_height?: string | null;
+  measurement_thickness?: string | null;
+  measurement_volume?: string | null;
+  measurement_width?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -23872,6 +24014,16 @@ type BaseProduct_GroupedProduct_Fragment = {
     url?: string | null;
   } | null;
   short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  reviews: {
+    __typename?: "ProductReviews";
+    items: Array<{
+      __typename?: "ProductReview";
+      average_rating: number;
+      nickname: string;
+      summary: string;
+      text: string;
+    } | null>;
+  };
   categories?: Array<{
     __typename?: "CategoryTree";
     url_path?: string | null;
@@ -23909,6 +24061,15 @@ type BaseProduct_SimpleProduct_Fragment = {
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
   maintenance_description?: string | null;
+  measurement_depth?: string | null;
+  measurement_diameter?: string | null;
+  measurement_gross_weight?: string | null;
+  measurement_height?: string | null;
+  measurement_length?: string | null;
+  measurement_seat_height?: string | null;
+  measurement_thickness?: string | null;
+  measurement_volume?: string | null;
+  measurement_width?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -24013,6 +24174,16 @@ type BaseProduct_SimpleProduct_Fragment = {
     url?: string | null;
   } | null;
   short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  reviews: {
+    __typename?: "ProductReviews";
+    items: Array<{
+      __typename?: "ProductReview";
+      average_rating: number;
+      nickname: string;
+      summary: string;
+      text: string;
+    } | null>;
+  };
   categories?: Array<{
     __typename?: "CategoryTree";
     url_path?: string | null;
@@ -24050,6 +24221,15 @@ type BaseProduct_VirtualProduct_Fragment = {
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
   maintenance_description?: string | null;
+  measurement_depth?: string | null;
+  measurement_diameter?: string | null;
+  measurement_gross_weight?: string | null;
+  measurement_height?: string | null;
+  measurement_length?: string | null;
+  measurement_seat_height?: string | null;
+  measurement_thickness?: string | null;
+  measurement_volume?: string | null;
+  measurement_width?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -24154,6 +24334,16 @@ type BaseProduct_VirtualProduct_Fragment = {
     url?: string | null;
   } | null;
   short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  reviews: {
+    __typename?: "ProductReviews";
+    items: Array<{
+      __typename?: "ProductReview";
+      average_rating: number;
+      nickname: string;
+      summary: string;
+      text: string;
+    } | null>;
+  };
   categories?: Array<{
     __typename?: "CategoryTree";
     url_path?: string | null;
@@ -24211,6 +24401,15 @@ export type ProductsQuery = {
           addable_to_cart?: number | null;
           delivery_promise?: string | null;
           maintenance_description?: string | null;
+          measurement_depth?: string | null;
+          measurement_diameter?: string | null;
+          measurement_gross_weight?: string | null;
+          measurement_height?: string | null;
+          measurement_length?: string | null;
+          measurement_seat_height?: string | null;
+          measurement_thickness?: string | null;
+          measurement_volume?: string | null;
+          measurement_width?: string | null;
           configurable_options?: Array<{
             __typename: "ConfigurableProductOptions";
             attribute_code?: string | null;
@@ -24262,6 +24461,15 @@ export type ProductsQuery = {
               addable_to_cart?: number | null;
               delivery_promise?: string | null;
               maintenance_description?: string | null;
+              measurement_depth?: string | null;
+              measurement_diameter?: string | null;
+              measurement_gross_weight?: string | null;
+              measurement_height?: string | null;
+              measurement_length?: string | null;
+              measurement_seat_height?: string | null;
+              measurement_thickness?: string | null;
+              measurement_volume?: string | null;
+              measurement_width?: string | null;
               description?: {
                 __typename?: "ComplexTextValue";
                 html: string;
@@ -24372,6 +24580,16 @@ export type ProductsQuery = {
                 __typename?: "ComplexTextValue";
                 html: string;
               } | null;
+              reviews: {
+                __typename?: "ProductReviews";
+                items: Array<{
+                  __typename?: "ProductReview";
+                  average_rating: number;
+                  nickname: string;
+                  summary: string;
+                  text: string;
+                } | null>;
+              };
               categories?: Array<{
                 __typename?: "CategoryTree";
                 url_path?: string | null;
@@ -24495,6 +24713,16 @@ export type ProductsQuery = {
             __typename?: "ComplexTextValue";
             html: string;
           } | null;
+          reviews: {
+            __typename?: "ProductReviews";
+            items: Array<{
+              __typename?: "ProductReview";
+              average_rating: number;
+              nickname: string;
+              summary: string;
+              text: string;
+            } | null>;
+          };
           categories?: Array<{
             __typename?: "CategoryTree";
             url_path?: string | null;
@@ -24534,6 +24762,15 @@ export type ProductsQuery = {
           addable_to_cart?: number | null;
           delivery_promise?: string | null;
           maintenance_description?: string | null;
+          measurement_depth?: string | null;
+          measurement_diameter?: string | null;
+          measurement_gross_weight?: string | null;
+          measurement_height?: string | null;
+          measurement_length?: string | null;
+          measurement_seat_height?: string | null;
+          measurement_thickness?: string | null;
+          measurement_volume?: string | null;
+          measurement_width?: string | null;
           description?: {
             __typename?: "ComplexTextValue";
             html: string;
@@ -24644,6 +24881,16 @@ export type ProductsQuery = {
             __typename?: "ComplexTextValue";
             html: string;
           } | null;
+          reviews: {
+            __typename?: "ProductReviews";
+            items: Array<{
+              __typename?: "ProductReview";
+              average_rating: number;
+              nickname: string;
+              summary: string;
+              text: string;
+            } | null>;
+          };
           categories?: Array<{
             __typename?: "CategoryTree";
             url_path?: string | null;
@@ -24686,6 +24933,15 @@ export type SimpleProductFragment = {
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
   maintenance_description?: string | null;
+  measurement_depth?: string | null;
+  measurement_diameter?: string | null;
+  measurement_gross_weight?: string | null;
+  measurement_height?: string | null;
+  measurement_length?: string | null;
+  measurement_seat_height?: string | null;
+  measurement_thickness?: string | null;
+  measurement_volume?: string | null;
+  measurement_width?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -24790,6 +25046,16 @@ export type SimpleProductFragment = {
     url?: string | null;
   } | null;
   short_description?: { __typename?: "ComplexTextValue"; html: string } | null;
+  reviews: {
+    __typename?: "ProductReviews";
+    items: Array<{
+      __typename?: "ProductReview";
+      average_rating: number;
+      nickname: string;
+      summary: string;
+      text: string;
+    } | null>;
+  };
   categories?: Array<{
     __typename?: "CategoryTree";
     url_path?: string | null;
@@ -24830,6 +25096,15 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -24937,6 +25212,16 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -24973,6 +25258,15 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -25080,6 +25374,16 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -25116,6 +25420,15 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -25223,6 +25536,16 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -25259,6 +25582,15 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -25366,6 +25698,16 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -25402,6 +25744,15 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -25509,6 +25860,16 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -25545,6 +25906,15 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -25652,6 +26022,16 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -25688,6 +26068,15 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -25795,6 +26184,16 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -25838,6 +26237,15 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -25945,6 +26353,16 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -25981,6 +26399,15 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -26088,6 +26515,16 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -26124,6 +26561,15 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -26231,6 +26677,16 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -26267,6 +26723,15 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -26374,6 +26839,16 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -26410,6 +26885,15 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -26517,6 +27001,16 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -26553,6 +27047,15 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -26660,6 +27163,16 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -26696,6 +27209,15 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -26803,6 +27325,16 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -26846,6 +27378,15 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -26953,6 +27494,16 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -26989,6 +27540,15 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -27096,6 +27656,16 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -27132,6 +27702,15 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -27239,6 +27818,16 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -27275,6 +27864,15 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -27382,6 +27980,16 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -27418,6 +28026,15 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -27525,6 +28142,16 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -27561,6 +28188,15 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -27668,6 +28304,16 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -27704,6 +28350,15 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -27811,6 +28466,16 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -27854,6 +28519,15 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -27961,6 +28635,16 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -27997,6 +28681,15 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -28104,6 +28797,16 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -28140,6 +28843,15 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -28247,6 +28959,16 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -28283,6 +29005,15 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -28390,6 +29121,16 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -28426,6 +29167,15 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -28533,6 +29283,16 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -28569,6 +29329,15 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -28676,6 +29445,16 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -28712,6 +29491,15 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -28819,6 +29607,16 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -28862,6 +29660,15 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -28969,6 +29776,16 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -29005,6 +29822,15 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29112,6 +29938,16 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -29148,6 +29984,15 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29255,6 +30100,16 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -29291,6 +30146,15 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29398,6 +30262,16 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -29434,6 +30308,15 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29541,6 +30424,16 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -29577,6 +30470,15 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29684,6 +30586,16 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -29720,6 +30632,15 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29827,6 +30748,16 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -29870,6 +30801,15 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29977,6 +30917,16 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -30013,6 +30963,15 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30120,6 +31079,16 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -30156,6 +31125,15 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30263,6 +31241,16 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -30299,6 +31287,15 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30406,6 +31403,16 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -30442,6 +31449,15 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30549,6 +31565,16 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -30585,6 +31611,15 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30692,6 +31727,16 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -30728,6 +31773,15 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30835,6 +31889,16 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -30878,6 +31942,15 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30985,6 +32058,16 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -31021,6 +32104,15 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -31128,6 +32220,16 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -31164,6 +32266,15 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -31271,6 +32382,16 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -31307,6 +32428,15 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -31414,6 +32544,16 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -31450,6 +32590,15 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -31557,6 +32706,16 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -31593,6 +32752,15 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -31700,6 +32868,16 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -31736,6 +32914,15 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -31843,6 +33030,16 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -31895,6 +33092,15 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -32002,6 +33208,16 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -32038,6 +33254,15 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -32145,6 +33370,16 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -32181,6 +33416,15 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -32288,6 +33532,16 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -32324,6 +33578,15 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -32431,6 +33694,16 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -32467,6 +33740,15 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -32574,6 +33856,16 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -32610,6 +33902,15 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -32717,6 +34018,16 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -32753,6 +34064,15 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -32860,6 +34180,16 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -32903,6 +34233,15 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -33010,6 +34349,16 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -33046,6 +34395,15 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -33153,6 +34511,16 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -33189,6 +34557,15 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -33296,6 +34673,16 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -33332,6 +34719,15 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -33439,6 +34835,16 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -33475,6 +34881,15 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -33582,6 +34997,16 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -33618,6 +35043,15 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -33725,6 +35159,16 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -33761,6 +35205,15 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -33868,6 +35321,16 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -33911,6 +35374,15 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -34018,6 +35490,16 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -34054,6 +35536,15 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -34161,6 +35652,16 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -34197,6 +35698,15 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -34304,6 +35814,16 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -34340,6 +35860,15 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -34447,6 +35976,16 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -34483,6 +36022,15 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -34590,6 +36138,16 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -34626,6 +36184,15 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -34733,6 +36300,16 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -34769,6 +36346,15 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -34876,6 +36462,16 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -34919,6 +36515,15 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -35026,6 +36631,16 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -35062,6 +36677,15 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -35169,6 +36793,16 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -35205,6 +36839,15 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -35312,6 +36955,16 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -35348,6 +37001,15 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -35455,6 +37117,16 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -35491,6 +37163,15 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -35598,6 +37279,16 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -35634,6 +37325,15 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -35741,6 +37441,16 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -35777,6 +37487,15 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -35884,6 +37603,16 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -35927,6 +37656,15 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -36034,6 +37772,16 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -36070,6 +37818,15 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -36177,6 +37934,16 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -36213,6 +37980,15 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -36320,6 +38096,16 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -36356,6 +38142,15 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -36463,6 +38258,16 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -36499,6 +38304,15 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -36606,6 +38420,16 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -36642,6 +38466,15 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -36749,6 +38582,16 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -36785,6 +38628,15 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -36892,6 +38744,16 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -36935,6 +38797,15 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -37042,6 +38913,16 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -37078,6 +38959,15 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -37185,6 +39075,16 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -37221,6 +39121,15 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -37328,6 +39237,16 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -37364,6 +39283,15 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -37471,6 +39399,16 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -37507,6 +39445,15 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -37614,6 +39561,16 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -37650,6 +39607,15 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -37757,6 +39723,16 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -37793,6 +39769,15 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -37900,6 +39885,16 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -37943,6 +39938,15 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -38050,6 +40054,16 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -38086,6 +40100,15 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -38193,6 +40216,16 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -38229,6 +40262,15 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -38336,6 +40378,16 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -38372,6 +40424,15 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -38479,6 +40540,16 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -38515,6 +40586,15 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -38622,6 +40702,16 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -38658,6 +40748,15 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -38765,6 +40864,16 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -38801,6 +40910,15 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -38908,6 +41026,16 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -38960,6 +41088,15 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -39067,6 +41204,16 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -39103,6 +41250,15 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -39210,6 +41366,16 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -39246,6 +41412,15 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -39353,6 +41528,16 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -39389,6 +41574,15 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -39496,6 +41690,16 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -39532,6 +41736,15 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -39639,6 +41852,16 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -39675,6 +41898,15 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -39782,6 +42014,16 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -39818,6 +42060,15 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -39925,6 +42176,16 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -39968,6 +42229,15 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -40075,6 +42345,16 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -40111,6 +42391,15 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -40218,6 +42507,16 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -40254,6 +42553,15 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -40361,6 +42669,16 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -40397,6 +42715,15 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -40504,6 +42831,16 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -40540,6 +42877,15 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -40647,6 +42993,16 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -40683,6 +43039,15 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -40790,6 +43155,16 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -40826,6 +43201,15 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -40933,6 +43317,16 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -40976,6 +43370,15 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -41083,6 +43486,16 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -41119,6 +43532,15 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -41226,6 +43648,16 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -41262,6 +43694,15 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -41369,6 +43810,16 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -41405,6 +43856,15 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -41512,6 +43972,16 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -41548,6 +44018,15 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -41655,6 +44134,16 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -41691,6 +44180,15 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -41798,6 +44296,16 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -41834,6 +44342,15 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -41941,6 +44458,16 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -41984,6 +44511,15 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -42091,6 +44627,16 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -42127,6 +44673,15 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -42234,6 +44789,16 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -42270,6 +44835,15 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -42377,6 +44951,16 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -42413,6 +44997,15 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -42520,6 +45113,16 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -42556,6 +45159,15 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -42663,6 +45275,16 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -42699,6 +45321,15 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -42806,6 +45437,16 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -42842,6 +45483,15 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -42949,6 +45599,16 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -42992,6 +45652,15 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -43099,6 +45768,16 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -43135,6 +45814,15 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -43242,6 +45930,16 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -43278,6 +45976,15 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -43385,6 +46092,16 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -43421,6 +46138,15 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -43528,6 +46254,16 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -43564,6 +46300,15 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -43671,6 +46416,16 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -43707,6 +46462,15 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -43814,6 +46578,16 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -43850,6 +46624,15 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -43957,6 +46740,16 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -44000,6 +46793,15 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -44107,6 +46909,16 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -44143,6 +46955,15 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -44250,6 +47071,16 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -44286,6 +47117,15 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -44393,6 +47233,16 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -44429,6 +47279,15 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -44536,6 +47395,16 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -44572,6 +47441,15 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -44679,6 +47557,16 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -44715,6 +47603,15 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -44822,6 +47719,16 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -44858,6 +47765,15 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -44965,6 +47881,16 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -45008,6 +47934,15 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -45115,6 +48050,16 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -45151,6 +48096,15 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -45258,6 +48212,16 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -45294,6 +48258,15 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -45401,6 +48374,16 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -45437,6 +48420,15 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -45544,6 +48536,16 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -45580,6 +48582,15 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -45687,6 +48698,16 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -45723,6 +48744,15 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -45830,6 +48860,16 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -45866,6 +48906,15 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -45973,6 +49022,16 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -46025,6 +49084,15 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -46132,6 +49200,16 @@ type BaseProductSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -46168,6 +49246,15 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -46275,6 +49362,16 @@ type BaseProductSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -46311,6 +49408,15 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -46418,6 +49524,16 @@ type BaseProductSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -46454,6 +49570,15 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -46561,6 +49686,16 @@ type BaseProductSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -46597,6 +49732,15 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -46704,6 +49848,16 @@ type BaseProductSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -46740,6 +49894,15 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -46847,6 +50010,16 @@ type BaseProductSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -46883,6 +50056,15 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -46990,6 +50172,16 @@ type BaseProductSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -47029,6 +50221,15 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -47136,6 +50337,16 @@ type BaseProductSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -47172,6 +50383,15 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -47279,6 +50499,16 @@ type BaseProductSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -47315,6 +50545,15 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -47422,6 +50661,16 @@ type BaseProductSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -47458,6 +50707,15 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -47565,6 +50823,16 @@ type BaseProductSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -47601,6 +50869,15 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -47708,6 +50985,16 @@ type BaseProductSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -47744,6 +51031,15 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -47851,6 +51147,16 @@ type BaseProductSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -47887,6 +51193,15 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -47994,6 +51309,16 @@ type BaseProductSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -48033,6 +51358,15 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48140,6 +51474,16 @@ type BaseProductSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -48176,6 +51520,15 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48283,6 +51636,16 @@ type BaseProductSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -48319,6 +51682,15 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48426,6 +51798,16 @@ type BaseProductSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -48462,6 +51844,15 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48569,6 +51960,16 @@ type BaseProductSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -48605,6 +52006,15 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48712,6 +52122,16 @@ type BaseProductSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -48748,6 +52168,15 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48855,6 +52284,16 @@ type BaseProductSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -48891,6 +52330,15 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48998,6 +52446,16 @@ type BaseProductSliderData_BundleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -49041,6 +52499,15 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -49148,6 +52615,16 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -49184,6 +52661,15 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -49291,6 +52777,16 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -49327,6 +52823,15 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -49434,6 +52939,16 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -49470,6 +52985,15 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -49577,6 +53101,16 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -49613,6 +53147,15 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -49720,6 +53263,16 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -49756,6 +53309,15 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -49863,6 +53425,16 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -49899,6 +53471,15 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -50006,6 +53587,16 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -50045,6 +53636,15 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -50152,6 +53752,16 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -50188,6 +53798,15 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -50295,6 +53914,16 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -50331,6 +53960,15 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -50438,6 +54076,16 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -50474,6 +54122,15 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -50581,6 +54238,16 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -50617,6 +54284,15 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -50724,6 +54400,16 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -50760,6 +54446,15 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -50867,6 +54562,16 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -50903,6 +54608,15 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -51010,6 +54724,16 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -51049,6 +54773,15 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -51156,6 +54889,16 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -51192,6 +54935,15 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -51299,6 +55051,16 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -51335,6 +55097,15 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -51442,6 +55213,16 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -51478,6 +55259,15 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -51585,6 +55375,16 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -51621,6 +55421,15 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -51728,6 +55537,16 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -51764,6 +55583,15 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -51871,6 +55699,16 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -51907,6 +55745,15 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -52014,6 +55861,16 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -52057,6 +55914,15 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -52164,6 +56030,16 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -52200,6 +56076,15 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -52307,6 +56192,16 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -52343,6 +56238,15 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -52450,6 +56354,16 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -52486,6 +56400,15 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -52593,6 +56516,16 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -52629,6 +56562,15 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -52736,6 +56678,16 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -52772,6 +56724,15 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -52879,6 +56840,16 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -52915,6 +56886,15 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -53022,6 +57002,16 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -53061,6 +57051,15 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -53168,6 +57167,16 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -53204,6 +57213,15 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -53311,6 +57329,16 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -53347,6 +57375,15 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -53454,6 +57491,16 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -53490,6 +57537,15 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -53597,6 +57653,16 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -53633,6 +57699,15 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -53740,6 +57815,16 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -53776,6 +57861,15 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -53883,6 +57977,16 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -53919,6 +58023,15 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -54026,6 +58139,16 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -54065,6 +58188,15 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -54172,6 +58304,16 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -54208,6 +58350,15 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -54315,6 +58466,16 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -54351,6 +58512,15 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -54458,6 +58628,16 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -54494,6 +58674,15 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -54601,6 +58790,16 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -54637,6 +58836,15 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -54744,6 +58952,16 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -54780,6 +58998,15 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -54887,6 +59114,16 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -54923,6 +59160,15 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -55030,6 +59276,16 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -55073,6 +59329,15 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -55180,6 +59445,16 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -55216,6 +59491,15 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -55323,6 +59607,16 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -55359,6 +59653,15 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -55466,6 +59769,16 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -55502,6 +59815,15 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -55609,6 +59931,16 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -55645,6 +59977,15 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -55752,6 +60093,16 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -55788,6 +60139,15 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -55895,6 +60255,16 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -55931,6 +60301,15 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -56038,6 +60417,16 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -56077,6 +60466,15 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -56184,6 +60582,16 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -56220,6 +60628,15 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -56327,6 +60744,16 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -56363,6 +60790,15 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -56470,6 +60906,16 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -56506,6 +60952,15 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -56613,6 +61068,16 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -56649,6 +61114,15 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -56756,6 +61230,16 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -56792,6 +61276,15 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -56899,6 +61392,16 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -56935,6 +61438,15 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -57042,6 +61554,16 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -57081,6 +61603,15 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -57188,6 +61719,16 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -57224,6 +61765,15 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -57331,6 +61881,16 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -57367,6 +61927,15 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -57474,6 +62043,16 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -57510,6 +62089,15 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -57617,6 +62205,16 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -57653,6 +62251,15 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -57760,6 +62367,16 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -57796,6 +62413,15 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -57903,6 +62529,16 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -57939,6 +62575,15 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -58046,6 +62691,16 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -58089,6 +62744,15 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -58196,6 +62860,16 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -58232,6 +62906,15 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -58339,6 +63022,16 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -58375,6 +63068,15 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -58482,6 +63184,16 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -58518,6 +63230,15 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -58625,6 +63346,16 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -58661,6 +63392,15 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -58768,6 +63508,16 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -58804,6 +63554,15 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -58911,6 +63670,16 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -58947,6 +63716,15 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -59054,6 +63832,16 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -59093,6 +63881,15 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -59200,6 +63997,16 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -59236,6 +64043,15 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -59343,6 +64159,16 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -59379,6 +64205,15 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -59486,6 +64321,16 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -59522,6 +64367,15 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -59629,6 +64483,16 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -59665,6 +64529,15 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -59772,6 +64645,16 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -59808,6 +64691,15 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -59915,6 +64807,16 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -59951,6 +64853,15 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -60058,6 +64969,16 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -60097,6 +65018,15 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -60204,6 +65134,16 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -60240,6 +65180,15 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -60347,6 +65296,16 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -60383,6 +65342,15 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -60490,6 +65458,16 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -60526,6 +65504,15 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -60633,6 +65620,16 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -60669,6 +65666,15 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -60776,6 +65782,16 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -60812,6 +65828,15 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -60919,6 +65944,16 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -60955,6 +65990,15 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -61062,6 +66106,16 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -61105,6 +66159,15 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -61212,6 +66275,16 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -61248,6 +66321,15 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -61355,6 +66437,16 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -61391,6 +66483,15 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -61498,6 +66599,16 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -61534,6 +66645,15 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -61641,6 +66761,16 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -61677,6 +66807,15 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -61784,6 +66923,16 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -61820,6 +66969,15 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -61927,6 +67085,16 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -61963,6 +67131,15 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -62070,6 +67247,16 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -62109,6 +67296,15 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -62216,6 +67412,16 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -62252,6 +67458,15 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -62359,6 +67574,16 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -62395,6 +67620,15 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -62502,6 +67736,16 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -62538,6 +67782,15 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -62645,6 +67898,16 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -62681,6 +67944,15 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -62788,6 +68060,16 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -62824,6 +68106,15 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -62931,6 +68222,16 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -62967,6 +68268,15 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -63074,6 +68384,16 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -63113,6 +68433,15 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -63220,6 +68549,16 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -63256,6 +68595,15 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -63363,6 +68711,16 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -63399,6 +68757,15 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -63506,6 +68873,16 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -63542,6 +68919,15 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -63649,6 +69035,16 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -63685,6 +69081,15 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -63792,6 +69197,16 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -63828,6 +69243,15 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -63935,6 +69359,16 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -63971,6 +69405,15 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -64078,6 +69521,16 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -64121,6 +69574,15 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -64228,6 +69690,16 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -64264,6 +69736,15 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -64371,6 +69852,16 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -64407,6 +69898,15 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -64514,6 +70014,16 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -64550,6 +70060,15 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -64657,6 +70176,16 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -64693,6 +70222,15 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -64800,6 +70338,16 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -64836,6 +70384,15 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -64943,6 +70500,16 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -64979,6 +70546,15 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -65086,6 +70662,16 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -65125,6 +70711,15 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -65232,6 +70827,16 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -65268,6 +70873,15 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -65375,6 +70989,16 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -65411,6 +71035,15 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -65518,6 +71151,16 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -65554,6 +71197,15 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -65661,6 +71313,16 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -65697,6 +71359,15 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -65804,6 +71475,16 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -65840,6 +71521,15 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -65947,6 +71637,16 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -65983,6 +71683,15 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -66090,6 +71799,16 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -66129,6 +71848,15 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -66236,6 +71964,16 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -66272,6 +72010,15 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -66379,6 +72126,16 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -66415,6 +72172,15 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -66522,6 +72288,16 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -66558,6 +72334,15 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -66665,6 +72450,16 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -66701,6 +72496,15 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -66808,6 +72612,16 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -66844,6 +72658,15 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -66951,6 +72774,16 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -66987,6 +72820,15 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -67094,6 +72936,16 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
           __typename?: "ComplexTextValue";
           html: string;
         } | null;
+        reviews: {
+          __typename?: "ProductReviews";
+          items: Array<{
+            __typename?: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
         categories?: Array<{
           __typename?: "CategoryTree";
           url_path?: string | null;
@@ -67156,6 +73008,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -67266,6 +73127,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -67302,6 +73173,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -67412,6 +73292,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -67448,6 +73338,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -67558,6 +73457,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -67594,6 +73503,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -67704,6 +73622,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -67740,6 +73668,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -67850,6 +73787,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -67886,6 +73833,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -67996,6 +73952,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -68032,6 +73998,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -68142,6 +74117,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -68181,6 +74166,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -68291,6 +74285,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -68327,6 +74331,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -68437,6 +74450,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -68473,6 +74496,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -68583,6 +74615,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -68619,6 +74661,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -68729,6 +74780,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -68765,6 +74826,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -68875,6 +74945,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -68911,6 +74991,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -69021,6 +75110,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -69057,6 +75156,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -69167,6 +75275,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -69206,6 +75324,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -69316,6 +75443,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -69352,6 +75489,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -69462,6 +75608,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -69498,6 +75654,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -69608,6 +75773,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -69644,6 +75819,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -69754,6 +75938,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -69790,6 +75984,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -69900,6 +76103,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -69936,6 +76149,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -70046,6 +76268,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -70082,6 +76314,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -70192,6 +76433,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -70234,6 +76485,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -70344,6 +76604,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -70380,6 +76650,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -70490,6 +76769,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -70526,6 +76815,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -70636,6 +76934,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -70672,6 +76980,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -70782,6 +77099,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -70818,6 +77145,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -70928,6 +77264,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -70964,6 +77310,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -71074,6 +77429,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -71110,6 +77475,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -71220,6 +77594,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -71259,6 +77643,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -71369,6 +77762,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -71405,6 +77808,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -71515,6 +77927,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -71551,6 +77973,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -71661,6 +78092,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -71697,6 +78138,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -71807,6 +78257,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -71843,6 +78303,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -71953,6 +78422,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -71989,6 +78468,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -72099,6 +78587,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -72135,6 +78633,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -72245,6 +78752,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -72284,6 +78801,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -72394,6 +78920,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -72430,6 +78966,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -72540,6 +79085,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -72576,6 +79131,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -72686,6 +79250,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -72722,6 +79296,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -72832,6 +79415,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -72868,6 +79461,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -72978,6 +79580,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -73014,6 +79626,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -73124,6 +79745,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -73160,6 +79791,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -73270,6 +79910,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -73312,6 +79962,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -73422,6 +80081,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -73458,6 +80127,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -73568,6 +80246,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -73604,6 +80292,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -73714,6 +80411,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -73750,6 +80457,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -73860,6 +80576,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -73896,6 +80622,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -74006,6 +80741,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -74042,6 +80787,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -74152,6 +80906,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -74188,6 +80952,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -74298,6 +81071,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -74337,6 +81120,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -74447,6 +81239,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -74483,6 +81285,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -74593,6 +81404,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -74629,6 +81450,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -74739,6 +81569,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -74775,6 +81615,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -74885,6 +81734,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -74921,6 +81780,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -75031,6 +81899,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -75067,6 +81945,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -75177,6 +82064,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -75213,6 +82110,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -75323,6 +82229,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -75362,6 +82278,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -75472,6 +82397,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -75508,6 +82443,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -75618,6 +82562,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -75654,6 +82608,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -75764,6 +82727,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -75800,6 +82773,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -75910,6 +82892,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -75946,6 +82938,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -76056,6 +83057,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -76092,6 +83103,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -76202,6 +83222,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -76238,6 +83268,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -76348,6 +83387,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -76390,6 +83439,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -76500,6 +83558,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -76536,6 +83604,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -76646,6 +83723,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -76682,6 +83769,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -76792,6 +83888,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -76828,6 +83934,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -76938,6 +84053,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -76974,6 +84099,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -77084,6 +84218,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -77120,6 +84264,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -77230,6 +84383,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -77266,6 +84429,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -77376,6 +84548,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -77415,6 +84597,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -77525,6 +84716,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -77561,6 +84762,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -77671,6 +84881,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -77707,6 +84927,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -77817,6 +85046,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -77853,6 +85092,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -77963,6 +85211,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -77999,6 +85257,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -78109,6 +85376,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -78145,6 +85422,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -78255,6 +85541,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -78291,6 +85587,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -78401,6 +85706,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -78440,6 +85755,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -78550,6 +85874,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -78586,6 +85920,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -78696,6 +86039,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -78732,6 +86085,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -78842,6 +86204,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -78878,6 +86250,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -78988,6 +86369,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -79024,6 +86415,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -79134,6 +86534,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -79170,6 +86580,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -79280,6 +86699,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -79316,6 +86745,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -79426,6 +86864,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -79468,6 +86916,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -79578,6 +87035,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -79614,6 +87081,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -79724,6 +87200,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -79760,6 +87246,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -79870,6 +87365,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -79906,6 +87411,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -80016,6 +87530,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -80052,6 +87576,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -80162,6 +87695,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -80198,6 +87741,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -80308,6 +87860,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -80344,6 +87906,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -80454,6 +88025,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -80493,6 +88074,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -80603,6 +88193,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -80639,6 +88239,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -80749,6 +88358,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -80785,6 +88404,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -80895,6 +88523,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -80931,6 +88569,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -81041,6 +88688,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -81077,6 +88734,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -81187,6 +88853,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -81223,6 +88899,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -81333,6 +89018,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -81369,6 +89064,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -81479,6 +89183,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -81518,6 +89232,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -81628,6 +89351,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -81664,6 +89397,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -81774,6 +89516,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -81810,6 +89562,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -81920,6 +89681,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -81956,6 +89727,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -82066,6 +89846,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -82102,6 +89892,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -82212,6 +90011,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -82248,6 +90057,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -82358,6 +90176,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -82394,6 +90222,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -82504,6 +90341,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -82546,6 +90393,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -82656,6 +90512,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -82692,6 +90558,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -82802,6 +90677,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -82838,6 +90723,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -82948,6 +90842,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -82984,6 +90888,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -83094,6 +91007,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -83130,6 +91053,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -83240,6 +91172,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -83276,6 +91218,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -83386,6 +91337,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -83422,6 +91383,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -83532,6 +91502,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -83571,6 +91551,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -83681,6 +91670,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -83717,6 +91716,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -83827,6 +91835,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -83863,6 +91881,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -83973,6 +92000,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -84009,6 +92046,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -84119,6 +92165,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -84155,6 +92211,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -84265,6 +92330,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -84301,6 +92376,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -84411,6 +92495,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -84447,6 +92541,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -84557,6 +92660,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -84596,6 +92709,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -84706,6 +92828,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -84742,6 +92874,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -84852,6 +92993,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -84888,6 +93039,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -84998,6 +93158,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -85034,6 +93204,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -85144,6 +93323,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -85180,6 +93369,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -85290,6 +93488,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -85326,6 +93534,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -85436,6 +93653,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -85472,6 +93699,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -85582,6 +93818,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -85624,6 +93870,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -85734,6 +93989,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -85770,6 +94035,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -85880,6 +94154,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -85916,6 +94200,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -86026,6 +94319,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -86062,6 +94365,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -86172,6 +94484,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -86208,6 +94530,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -86318,6 +94649,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -86354,6 +94695,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -86464,6 +94814,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -86500,6 +94860,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -86610,6 +94979,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -86649,6 +95028,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -86759,6 +95147,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -86795,6 +95193,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -86905,6 +95312,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -86941,6 +95358,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -87051,6 +95477,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -87087,6 +95523,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -87197,6 +95642,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -87233,6 +95688,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -87343,6 +95807,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -87379,6 +95853,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -87489,6 +95972,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -87525,6 +96018,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -87635,6 +96137,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -87674,6 +96186,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -87784,6 +96305,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -87820,6 +96351,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -87930,6 +96470,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -87966,6 +96516,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -88076,6 +96635,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -88112,6 +96681,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -88222,6 +96800,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -88258,6 +96846,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -88368,6 +96965,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -88404,6 +97011,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -88514,6 +97130,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -88550,6 +97176,15 @@ export type ProductSliderDataQuery = {
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
                 maintenance_description?: string | null;
+                measurement_depth?: string | null;
+                measurement_diameter?: string | null;
+                measurement_gross_weight?: string | null;
+                measurement_height?: string | null;
+                measurement_length?: string | null;
+                measurement_seat_height?: string | null;
+                measurement_thickness?: string | null;
+                measurement_volume?: string | null;
+                measurement_width?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -88660,6 +97295,16 @@ export type ProductSliderDataQuery = {
                   __typename?: "ComplexTextValue";
                   html: string;
                 } | null;
+                reviews: {
+                  __typename?: "ProductReviews";
+                  items: Array<{
+                    __typename?: "ProductReview";
+                    average_rating: number;
+                    nickname: string;
+                    summary: string;
+                    text: string;
+                  } | null>;
+                };
                 categories?: Array<{
                   __typename?: "CategoryTree";
                   url_path?: string | null;
@@ -89841,6 +98486,37 @@ export const BaseProductFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "review_count" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reviews" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "average_rating" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "nickname" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "summary" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "addable_to_cart" } },
           {
             kind: "Field",
@@ -89871,6 +98547,36 @@ export const BaseProductFragmentDoc = {
             kind: "Field",
             name: { kind: "Name", value: "maintenance_description" },
           },
+          { kind: "Field", name: { kind: "Name", value: "measurement_depth" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_diameter" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_gross_weight" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_length" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_seat_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_thickness" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_volume" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "measurement_width" } },
         ],
       },
     },
@@ -90689,6 +99395,37 @@ export const ConfigurableProductVariantsFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "review_count" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reviews" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "average_rating" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "nickname" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "summary" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "addable_to_cart" } },
           {
             kind: "Field",
@@ -90719,6 +99456,36 @@ export const ConfigurableProductVariantsFragmentDoc = {
             kind: "Field",
             name: { kind: "Name", value: "maintenance_description" },
           },
+          { kind: "Field", name: { kind: "Name", value: "measurement_depth" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_diameter" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_gross_weight" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_length" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_seat_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_thickness" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_volume" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "measurement_width" } },
         ],
       },
     },
@@ -91194,6 +99961,37 @@ export const ConfigurableProductFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "review_count" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reviews" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "average_rating" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "nickname" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "summary" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "addable_to_cart" } },
           {
             kind: "Field",
@@ -91224,6 +100022,36 @@ export const ConfigurableProductFragmentDoc = {
             kind: "Field",
             name: { kind: "Name", value: "maintenance_description" },
           },
+          { kind: "Field", name: { kind: "Name", value: "measurement_depth" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_diameter" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_gross_weight" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_length" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_seat_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_thickness" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_volume" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "measurement_width" } },
         ],
       },
     },
@@ -91753,6 +100581,37 @@ export const SimpleProductFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "review_count" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reviews" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "average_rating" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "nickname" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "summary" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "addable_to_cart" } },
           {
             kind: "Field",
@@ -91783,6 +100642,36 @@ export const SimpleProductFragmentDoc = {
             kind: "Field",
             name: { kind: "Name", value: "maintenance_description" },
           },
+          { kind: "Field", name: { kind: "Name", value: "measurement_depth" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_diameter" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_gross_weight" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_length" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_seat_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_thickness" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_volume" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "measurement_width" } },
         ],
       },
     },
@@ -92241,6 +101130,37 @@ export const RelatedProductsSliderDataFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "review_count" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reviews" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "average_rating" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "nickname" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "summary" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "addable_to_cart" } },
           {
             kind: "Field",
@@ -92271,6 +101191,36 @@ export const RelatedProductsSliderDataFragmentDoc = {
             kind: "Field",
             name: { kind: "Name", value: "maintenance_description" },
           },
+          { kind: "Field", name: { kind: "Name", value: "measurement_depth" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_diameter" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_gross_weight" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_length" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_seat_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_thickness" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_volume" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "measurement_width" } },
         ],
       },
     },
@@ -92729,6 +101679,37 @@ export const ProductSeriesSliderDataFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "review_count" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reviews" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "average_rating" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "nickname" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "summary" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "addable_to_cart" } },
           {
             kind: "Field",
@@ -92759,6 +101740,36 @@ export const ProductSeriesSliderDataFragmentDoc = {
             kind: "Field",
             name: { kind: "Name", value: "maintenance_description" },
           },
+          { kind: "Field", name: { kind: "Name", value: "measurement_depth" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_diameter" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_gross_weight" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_length" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_seat_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_thickness" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_volume" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "measurement_width" } },
         ],
       },
     },
@@ -93217,6 +102228,37 @@ export const UpsellProductsSliderDataFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "review_count" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reviews" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "average_rating" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "nickname" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "summary" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "addable_to_cart" } },
           {
             kind: "Field",
@@ -93247,6 +102289,36 @@ export const UpsellProductsSliderDataFragmentDoc = {
             kind: "Field",
             name: { kind: "Name", value: "maintenance_description" },
           },
+          { kind: "Field", name: { kind: "Name", value: "measurement_depth" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_diameter" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_gross_weight" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_length" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_seat_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_thickness" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_volume" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "measurement_width" } },
         ],
       },
     },
@@ -93703,6 +102775,37 @@ export const BaseProductSliderDataFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "review_count" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reviews" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "average_rating" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "nickname" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "summary" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "addable_to_cart" } },
           {
             kind: "Field",
@@ -93733,6 +102836,36 @@ export const BaseProductSliderDataFragmentDoc = {
             kind: "Field",
             name: { kind: "Name", value: "maintenance_description" },
           },
+          { kind: "Field", name: { kind: "Name", value: "measurement_depth" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_diameter" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_gross_weight" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_length" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_seat_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_thickness" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_volume" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "measurement_width" } },
         ],
       },
     },
@@ -95394,6 +104527,37 @@ export const ProductsDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "review_count" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reviews" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "average_rating" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "nickname" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "summary" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "addable_to_cart" } },
           {
             kind: "Field",
@@ -95424,6 +104588,36 @@ export const ProductsDocument = {
             kind: "Field",
             name: { kind: "Name", value: "maintenance_description" },
           },
+          { kind: "Field", name: { kind: "Name", value: "measurement_depth" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_diameter" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_gross_weight" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_length" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_seat_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_thickness" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_volume" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "measurement_width" } },
         ],
       },
     },
@@ -96073,6 +105267,37 @@ export const ProductSliderDataDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "review_count" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reviews" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "average_rating" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "nickname" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "summary" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
           { kind: "Field", name: { kind: "Name", value: "addable_to_cart" } },
           {
             kind: "Field",
@@ -96103,6 +105328,36 @@ export const ProductSliderDataDocument = {
             kind: "Field",
             name: { kind: "Name", value: "maintenance_description" },
           },
+          { kind: "Field", name: { kind: "Name", value: "measurement_depth" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_diameter" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_gross_weight" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_length" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_seat_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_thickness" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_volume" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "measurement_width" } },
         ],
       },
     },
