@@ -33,7 +33,7 @@ export const SubCategoriesSelect: React.FC<Props> = ({ category, url }) => {
           {category?.name}
         </Link>
         {hasChildren(category) ? (
-          <div className="flex gap-3 mt-8 flex-wrap">
+          <div className="flex gap-2 lg:gap-3 mt-8 flex-wrap">
             {category?.children
               ?.filter((c) => !!c?.product_count)
               .map((child) => (
@@ -45,7 +45,7 @@ export const SubCategoriesSelect: React.FC<Props> = ({ category, url }) => {
                   }
                   key={child?.uid}
                   className={cx(
-                    "rounded-full py-3 px-6 transition text-base font-suisse font-medium text-nowrap",
+                    "rounded-full py-2 lg:py-3 px-4 lg:px-6 transition text-xs lg:text-base font-suisse font-medium text-nowrap",
                     {
                       "bg-brown text-white": isCategoryActive(child),
                       "bg-powder text-brown hover:bg-brown hover:text-white":
