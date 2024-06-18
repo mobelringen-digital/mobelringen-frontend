@@ -43,7 +43,7 @@ export const ProductImage: React.FC<Props> = ({
         ) : null}
       </div>
 
-      <div className="absolute top-4 left-4 flex gap-1 items-center justify-center text-center">
+      <div className="absolute top-4 left-4 flex flex-col gap-1 items-center justify-center text-center">
         {labels?.custom ? (
           <>
             {labels.custom.map((label, idx) => (

@@ -21,7 +21,7 @@ export const ProductLabels: React.FC<Props> = ({
           <Label variant="powder">{discount}</Label>
         </div>
       ) : null}
-      <div className="absolute top-2 lg:top-4 left-2 lg:left-4 flex gap-1 items-center justify-center text-center">
+      <div className="absolute top-2 lg:top-4 left-2 lg:left-4 flex flex-col gap-1 items-center justify-center text-center">
         {labels?.custom ? (
           <>
             {labels.custom.map((label, idx) => (

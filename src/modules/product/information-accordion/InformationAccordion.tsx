@@ -68,29 +68,31 @@ export const InformationAccordion: React.FC<Props> = ({ product }) => {
     });
   }
 
-  accordionData.push({
-    title: "Mål",
-    content: (
-      <ul>
-        {productMeasurements.map((field, idx) => (
-          <li
-            className={cx(
-              "flex hover:bg-warm-grey border-cold-grey-dark border-opacity-80 border-b p-2",
-              {
-                "border-b-0": idx === productMeasurements.length - 1,
-              },
-            )}
-            key={idx}
-          >
-            <div className="font-semibold p-2 min-w-32">
-              {field.translation}
-            </div>
-            <div className="p-2">{field.value}</div>
-          </li>
-        ))}
-      </ul>
-    ),
-  });
+  if (productMeasurements.length > 0) {
+    accordionData.push({
+      title: "Mål",
+      content: (
+        <ul>
+          {productMeasurements.map((field, idx) => (
+            <li
+              className={cx(
+                "flex hover:bg-warm-grey border-cold-grey-dark border-opacity-80 border-b p-2",
+                {
+                  "border-b-0": idx === productMeasurements.length - 1,
+                },
+              )}
+              key={idx}
+            >
+              <div className="font-semibold p-2 min-w-32">
+                {field.translation}
+              </div>
+              <div className="p-2">{field.value}</div>
+            </li>
+          ))}
+        </ul>
+      ),
+    });
+  }
 
   // @TODO: Move product reviews to client side request
   accordionData.push({

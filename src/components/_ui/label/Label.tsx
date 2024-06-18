@@ -21,7 +21,7 @@ export const Label: React.FC<Props> = ({
   return (
     <span
       className={cx(
-        "py-1 px-2 font-semibold uppercase text-[10px] rounded-xl",
+        "py-1 px-2 font-semibold capitalize text-[9px] lg:text-[10px] rounded-xl",
         VARIANT[variant],
         className,
       )}

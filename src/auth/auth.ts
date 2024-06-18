@@ -53,7 +53,7 @@ const authOptions: NextAuthOptions = {
           });
 
           if (res.generateCustomerToken) {
-            return res as Promise<User>; // @TODO: return customer data
+            return res as User; // @TODO: return customer data
           }
         } catch (error) {
           throw new Error(

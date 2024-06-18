@@ -9,6 +9,16 @@ const config: CodegenConfig = {
     "src/types/schema/": {
       preset: "client",
       plugins: [],
+      config: {
+        useTypeImports: true,
+        nonOptionalTypename: true,
+        avoidOptionals: {
+          field: false,
+          inputValue: false,
+          object: true,
+          defaultValue: true,
+        },
+      },
       presetConfig: {
         fragmentMasking: false,
       },

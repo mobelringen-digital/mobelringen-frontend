@@ -1,6 +1,6 @@
 /* eslint-disable */
 import * as types from "./graphql";
-import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
+import type { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/core";
 
 /**
  * Map of all GraphQL operations in the project.
@@ -13,6 +13,8 @@ import { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+  "\n  fragment BaseCategoryData on CategoryTree {\n    name\n    description\n    id\n    uid\n    url_path\n    product_count\n    meta_title\n    meta_keywords\n    meta_description\n    include_in_menu\n    children {\n      name\n      uid\n      url_path\n      product_count\n      include_in_menu\n      children {\n        name\n        uid\n        url_path\n        product_count\n        include_in_menu\n      }\n    }\n  }\n":
+    types.BaseCategoryDataFragmentDoc,
   "\n  query Category($filters: CategoryFilterInput) {\n    categories(filters: $filters) {\n      items {\n        name\n        description\n        id\n        uid\n        url_path\n        product_count\n        meta_title\n        meta_keywords\n        meta_description\n        include_in_menu\n        children {\n          name\n          uid\n          url_path\n          product_count\n          include_in_menu\n          children {\n            name\n            uid\n            url_path\n            product_count\n            include_in_menu\n          }\n        }\n      }\n    }\n  }\n":
     types.CategoryDocument,
   "\n  fragment CmsSalesBubble on SaleBubble {\n    url\n    middleLine\n    position\n    topLine\n    bottomLine\n  }\n":
@@ -97,6 +99,12 @@ const documents = {
  */
 export function graphql(source: string): unknown;
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment BaseCategoryData on CategoryTree {\n    name\n    description\n    id\n    uid\n    url_path\n    product_count\n    meta_title\n    meta_keywords\n    meta_description\n    include_in_menu\n    children {\n      name\n      uid\n      url_path\n      product_count\n      include_in_menu\n      children {\n        name\n        uid\n        url_path\n        product_count\n        include_in_menu\n      }\n    }\n  }\n",
+): (typeof documents)["\n  fragment BaseCategoryData on CategoryTree {\n    name\n    description\n    id\n    uid\n    url_path\n    product_count\n    meta_title\n    meta_keywords\n    meta_description\n    include_in_menu\n    children {\n      name\n      uid\n      url_path\n      product_count\n      include_in_menu\n      children {\n        name\n        uid\n        url_path\n        product_count\n        include_in_menu\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

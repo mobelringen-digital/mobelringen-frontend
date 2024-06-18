@@ -32,6 +32,7 @@
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.2",
     "@graphql-codegen/client-preset": "^4.2.6",
+    "@graphql-codegen/typescript-operations": "^4.2.1",
     "@graphql-mesh/cli": "^0.90.5",
     "@graphql-mesh/graphql": "^0.98.4",
     "@graphql-mesh/runtime": "^0.99.5",

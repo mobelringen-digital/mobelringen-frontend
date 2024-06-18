@@ -16,9 +16,12 @@ import {
 import { CategoryDescription } from "@/modules/category/CategoryDescription";
 import { ParentCategoryPage } from "@/modules/category/parent-category/ParentCategoryPage";
 import { SubCategoriesSelect } from "@/modules/category/SubCategoriesSelect";
-import { CategoryItemEntity } from "@/modules/category/types";
 import { CategoryQueryDocument } from "@/queries/category.queries";
-import { CategoryQuery, CategoryQueryVariables } from "@/types";
+import {
+  BaseCategoryDataFragment,
+  CategoryQuery,
+  CategoryQueryVariables,
+} from "@/types";
 import { generatePrettyUrl } from "@/utils/helpers";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
@@ -35,12 +38,12 @@ async function getCategory(url: string) {
   );
 }
 
-const isLastCategoryInTree = (category: CategoryItemEntity) => {
+const isLastCategoryInTree = (category: BaseCategoryDataFragment) => {
   return !!(category?.children && category.children.length === 0);
 };
 
-const isLastCategoryWithChildren = (category: CategoryItemEntity) => {
-  return category?.children?.every((cat) => isLastCategoryInTree(cat));
+const isLastCategoryWithChildren = (category: BaseCategoryDataFragment) => {
+  return category?.children?.every((cat) => cat && isLastCategoryInTree(cat));
 };
 
 async function getLastCategoryWithChildren(
