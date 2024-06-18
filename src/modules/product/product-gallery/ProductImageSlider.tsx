@@ -66,6 +66,7 @@ export const ProductImageSlider: React.FC<Props> = ({
               {isTypename(item, ["ProductImage"]) ? (
                 <ProductImage
                   onZoomClick={() => setPhotoIndex(idx)}
+                  defaultImage={item}
                   product={product}
                 />
               ) : null}
