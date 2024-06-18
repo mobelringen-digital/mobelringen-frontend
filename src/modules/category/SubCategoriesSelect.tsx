@@ -45,7 +45,7 @@ export const SubCategoriesSelect: React.FC<Props> = ({ category, url }) => {
                   }
                   key={child?.uid}
                   className={cx(
-                    "rounded-full py-2 lg:py-3 px-4 lg:px-6 transition text-xs lg:text-base font-suisse font-medium text-nowrap",
+                    "rounded-full py-2 lg:py-3 px-4 lg:px-6 transition text-sm lg:text-base font-suisse font-medium text-nowrap",
                     {
                       "bg-brown text-white": isCategoryActive(child),
                       "bg-powder text-brown hover:bg-brown hover:text-white":
