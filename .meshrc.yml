@@ -2,8 +2,12 @@ sources:
   - name: hygraph
     handler:
       graphql:
+        useGETForQueries: true
         endpoint: ${NEXT_PUBLIC_HYGRAPH_URL}
+
   - name: magento
     handler:
       graphql:
+        useGETForQueries: true
+        batch: false
         endpoint: ${NEXT_PUBLIC_MAGENTO_URL}

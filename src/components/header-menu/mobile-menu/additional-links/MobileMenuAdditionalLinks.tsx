@@ -5,6 +5,7 @@ import { CmsLink } from "@/components/cms/link/CmsLink";
 import { MobileMenuAdditionalLinksBlock } from "@/components/header-menu/mobile-menu/additional-links/MobileMenuAdditionalLinksBlock";
 import { MenuQueryDocument } from "@/queries/menu.queries";
 import { MenuQuery, MenuType } from "@/types";
+import { isTypename } from "@/types/graphql-helpers";
 import { baseHygraphClient } from "@/utils/lib/graphql";
 
 async function getMenuItems() {
@@ -23,11 +24,11 @@ export default async function MobileMenuAdditionalLinks() {
     <div className="flex flex-col mt-8 border-b border-b-cold-grey-dark">
       {data.map((item, idx) => (
         <React.Fragment key={idx}>
-          {item.__typename === "LinkBlock" ? (
+          {isTypename(item, ["LinkBlock"]) ? (
             <MobileMenuAdditionalLinksBlock block={item} />
           ) : null}
 
-          {item.__typename === "Link" ? (
+          {isTypename(item, ["Link"]) ? (
             <CmsLink
               className="flex justify-between w-full"
               link={item}

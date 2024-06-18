@@ -5,6 +5,7 @@ import {
   ProductSliderDataQuery,
   ProductSliderDataQueryVariables,
 } from "@/types";
+import { isTypename } from "@/types/graphql-helpers";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
 export const PRODUCT_SLIDER_DATA_QUERY_KEY = ["product-slider"];
@@ -24,10 +25,7 @@ export const useProductSliderDataQuery = (sku?: string | null) => {
 
     const item = data.products?.items?.[0];
 
-    if (
-      item?.__typename === "SimpleProduct" ||
-      item?.__typename === "ConfigurableProduct"
-    ) {
+    if (item && isTypename(item, ["SimpleProduct", "ConfigurableProduct"])) {
       return item;
     }
 

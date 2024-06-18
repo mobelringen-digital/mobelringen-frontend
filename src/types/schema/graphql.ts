@@ -12397,6 +12397,10 @@ export type Mutation = {
   upsertSetting?: Maybe<Setting>;
   /** Upsert one staticPageConfiguration */
   upsertStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
+  /** Activate Cart */
+  vippsActivateCart?: Maybe<Scalars["String"]["output"]>;
+  /** Initialize Vipps Payment */
+  vippsInitPayment?: Maybe<VippsInitPaymentOutput>;
 };
 
 export type MutationAddBundleProductsToCartArgs = {
@@ -13589,6 +13593,14 @@ export type MutationUpsertSettingArgs = {
 export type MutationUpsertStaticPageConfigurationArgs = {
   upsert: StaticPageConfigurationUpsertInput;
   where: StaticPageConfigurationWhereUniqueInput;
+};
+
+export type MutationVippsActivateCartArgs = {
+  order_number: Scalars["String"]["input"];
+};
+
+export type MutationVippsInitPaymentArgs = {
+  input?: InputMaybe<VippsInitPaymentInput>;
 };
 
 /** Contains an error message when an invalid UID was specified. */
@@ -16348,6 +16360,8 @@ export type Query = {
   usersConnection: UserConnection;
   /** The viewMoreFilter query searches for all values of a given filter name in a specific context. */
   viewMoreFilter?: Maybe<ViewMoreResult>;
+  /** Returns information about Vipps Payment */
+  vippsGetPaymentDetails?: Maybe<VippsPaymentDetails>;
   /**
    * Return the contents of a customer's wish list.
    * @deprecated Moved under `Customer.wishlist`.
@@ -16858,6 +16872,10 @@ export type QueryViewMoreFilterArgs = {
   filter?: InputMaybe<ProductAttributeFilterInput>;
   filterName: Scalars["String"]["input"];
   search?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type QueryVippsGetPaymentDetailsArgs = {
+  order_number: Scalars["String"]["input"];
 };
 
 /** Representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
@@ -22223,6 +22241,14 @@ export type ViewMoreResult = {
   aggregations?: Maybe<Array<Maybe<Aggregation>>>;
 };
 
+export type VippsPaymentDetails = {
+  __typename?: "VippsPaymentDetails";
+  cancelled?: Maybe<Scalars["Boolean"]["output"]>;
+  order_number?: Maybe<Scalars["String"]["output"]>;
+  reserved?: Maybe<Scalars["Boolean"]["output"]>;
+  restore_cart?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
 /** An implementation for virtual product cart items. */
 export type VirtualCartItem = CartItemInterface & {
   __typename?: "VirtualCartItem";
@@ -22805,6 +22831,17 @@ export type Hero_Hotspot = {
   /** Normalized coordinate from 0 to 1 */
   normalized_coordinate_y?: Maybe<Scalars["Float"]["output"]>;
   product?: Maybe<ProductInterface>;
+};
+
+export type VippsInitPaymentInput = {
+  cart_id: Scalars["String"]["input"];
+  fallback_url?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type VippsInitPaymentOutput = {
+  __typename?: "vippsInitPaymentOutput";
+  /** Redirect url */
+  url?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type CategoryQueryVariables = Exact<{

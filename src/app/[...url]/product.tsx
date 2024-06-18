@@ -6,6 +6,7 @@ import { ConfigurableProductPage } from "@/modules/product/ConfigurableProduct";
 import { SimpleProductPage } from "@/modules/product/SimpleProduct";
 import { ProductsQueryDocument } from "@/queries/product/product.queries";
 import { ProductsQuery, ProductsQueryVariables } from "@/types";
+import { isTypename } from "@/types/graphql-helpers";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
 type Props = {
@@ -40,8 +41,10 @@ export default async function Product({ sku }: Props) {
      * we set variant search param and redirect to its parent configurable product
      */
     if (
-      firstProduct?.__typename === "ConfigurableProduct" &&
-      secondProduct?.__typename === "SimpleProduct"
+      firstProduct &&
+      isTypename(firstProduct, ["ConfigurableProduct"]) &&
+      secondProduct &&
+      isTypename(secondProduct, ["SimpleProduct"])
     ) {
       redirect(`/${firstProduct.canonical_url}?variant=${secondProduct.sku}`);
     }
@@ -55,11 +58,11 @@ export default async function Product({ sku }: Props) {
 
   return (
     <>
-      {productData.__typename === "SimpleProduct" ? (
+      {isTypename(productData, ["SimpleProduct"]) ? (
         <SimpleProductPage product={productData} />
       ) : null}
 
-      {productData.__typename === "ConfigurableProduct" ? (
+      {isTypename(productData, ["ConfigurableProduct"]) ? (
         <ConfigurableProductPage product={productData} />
       ) : null}
     </>

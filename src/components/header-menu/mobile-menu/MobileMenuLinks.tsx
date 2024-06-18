@@ -6,6 +6,7 @@ import { MegaMenuCategoriesDropdown } from "@/components/header-menu/cms-compone
 import { MegaMenuDropdown } from "@/components/header-menu/cms-components/MegaMenuDropdown/MegaMenuDropdown";
 import { MobileMenuWithChildren } from "@/components/header-menu/mobile-menu/MobileMenuWithChildren";
 import { MenuQuery } from "@/types";
+import { isTypename } from "@/types/graphql-helpers";
 
 interface Props {
   data: MenuQuery;
@@ -15,7 +16,7 @@ export const MobileMenuLinks: React.FC<Props> = ({ data }) => {
   return (
     <ul className="flex gap-4 flex-col list-none">
       {data.menus[0].links?.map((menu, idx) => {
-        if (menu.__typename === "Link") {
+        if (isTypename(menu, ["Link"])) {
           return (
             <CmsLink
               className="flex justify-between items-center text-2xl font-feature font-medium"
@@ -26,7 +27,7 @@ export const MobileMenuLinks: React.FC<Props> = ({ data }) => {
           );
         }
 
-        if (menu.__typename === "MegaMenuCategoriesDropdown") {
+        if (isTypename(menu, ["MegaMenuCategoriesDropdown"])) {
           return (
             <MobileMenuWithChildren key={idx} menu={menu}>
               <MegaMenuCategoriesDropdown />
@@ -34,7 +35,7 @@ export const MobileMenuLinks: React.FC<Props> = ({ data }) => {
           );
         }
 
-        if (menu.__typename === "MegaMenuDropdown") {
+        if (isTypename(menu, ["MegaMenuDropdown"])) {
           return (
             <MobileMenuWithChildren key={idx} menu={menu}>
               <MegaMenuDropdown link={menu} />

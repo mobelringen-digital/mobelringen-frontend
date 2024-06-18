@@ -2,6 +2,7 @@ import React from "react";
 
 import { CmsLink } from "@/components/cms/link/CmsLink";
 import { CmsLinkBlockFragment } from "@/types";
+import { isTypename } from "@/types/graphql-helpers";
 
 interface Props {
   block: CmsLinkBlockFragment;
@@ -17,7 +18,7 @@ export const BlockLinks: React.FC<Props> = ({ block }) => {
       <div>
         {block.links?.map((link, idx) => (
           <React.Fragment key={idx}>
-            {link.__typename === "Link" ? (
+            {isTypename(link, ["Link"]) ? (
               <CmsLink
                 className="text-sm py-1 hover:underline"
                 link={link}

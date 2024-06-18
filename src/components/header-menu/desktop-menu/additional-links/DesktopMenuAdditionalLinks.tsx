@@ -5,6 +5,7 @@ import { DesktopMenuAdditionalLinksBlock } from "@/components/header-menu/deskto
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { MenuQueryDocument } from "@/queries/menu.queries";
 import { MenuQuery, MenuType } from "@/types";
+import { isTypename } from "@/types/graphql-helpers";
 import { baseHygraphClient } from "@/utils/lib/graphql";
 
 async function getMenuItems() {
@@ -24,11 +25,11 @@ export async function DesktopMenuAdditionalLinks() {
       <div className="flex items-center justify-between">
         {data.map((item, idx) => (
           <React.Fragment key={idx}>
-            {item.__typename === "LinkBlock" ? (
+            {isTypename(item, ["LinkBlock"]) ? (
               <DesktopMenuAdditionalLinksBlock block={item} />
             ) : null}
 
-            {item.__typename === "Link" ? (
+            {isTypename(item, ["Link"]) ? (
               <CmsLink
                 className="flex justify-between w-full text-xs"
                 link={item}

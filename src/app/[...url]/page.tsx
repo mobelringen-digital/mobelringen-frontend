@@ -11,6 +11,7 @@ import {
   RouteQuery,
   RouteQueryVariables,
 } from "@/types";
+import { isTypename } from "@/types/graphql-helpers";
 import { generatePrettyUrl } from "@/utils/helpers";
 import { baseHygraphClient, baseMagentoClient } from "@/utils/lib/graphql";
 
@@ -48,10 +49,7 @@ export default async function Home({ params }: Props) {
   const routeData = await getRoute(url);
 
   if (routeData.route?.type === "PRODUCT") {
-    if (
-      routeData.route.__typename === "SimpleProduct" ||
-      routeData.route.__typename === "ConfigurableProduct"
-    ) {
+    if (isTypename(routeData.route, ["ConfigurableProduct", "SimpleProduct"])) {
       if (!routeData.route.sku) {
         return notFound();
       }

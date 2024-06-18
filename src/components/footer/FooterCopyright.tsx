@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { CmsLink } from "@/components/cms/link/CmsLink";
 import { MenuQuery, MenuType } from "@/types";
+import { isTypename } from "@/types/graphql-helpers";
 import { ArrayElement } from "@/utils/ts-utils";
 
 interface Props {
@@ -21,7 +22,7 @@ export const FooterCopyright: React.FC<Props> = ({ data }) => {
         <span className="mr-6">© Møbelringen 2024</span>
         {data.links.map((link, idx) => (
           <React.Fragment key={idx}>
-            {link.__typename === "Link" ? (
+            {isTypename(link, ["Link"]) ? (
               <CmsLink link={link} className="hover:underline" />
             ) : null}
           </React.Fragment>

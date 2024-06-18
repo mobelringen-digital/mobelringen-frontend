@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import { CmsLink } from "@/components/cms/link/CmsLink";
 import { CmsMegamenuDropdownFragment } from "@/types";
+import { isTypename } from "@/types/graphql-helpers";
 
 interface Props {
   link: CmsMegamenuDropdownFragment;
@@ -17,7 +18,7 @@ export const MegaMenuDropdown: React.FC<Props> = ({ link }) => {
     <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5 lg:gap-6">
       {link.items.map((item, index) => (
         <li key={index}>
-          {item.__typename === "ImageLink" ? (
+          {isTypename(item, ["ImageLink"]) ? (
             <Link href={item.url}>
               <Image
                 width={380}
@@ -31,7 +32,7 @@ export const MegaMenuDropdown: React.FC<Props> = ({ link }) => {
               </span>
             </Link>
           ) : null}
-          {item.__typename === "Link" ? (
+          {isTypename(item, ["Link"]) ? (
             <CmsLink className="text-base font-medium" link={item} />
           ) : null}
         </li>

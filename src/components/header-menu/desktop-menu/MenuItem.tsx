@@ -6,13 +6,14 @@ import { MegaMenuDropdown } from "@/components/header-menu/cms-components/MegaMe
 import { DropdownMenuProvider } from "@/components/header-menu/desktop-menu/DropdownMenuProvider";
 import { MenuItemEntity } from "@/components/header-menu/types";
 import { CmsMegamenuDropdownFragment } from "@/types";
+import { isTypename } from "@/types/graphql-helpers";
 
 interface Props {
   link: MenuItemEntity;
 }
 
 export const MenuItem: React.FC<Props> = ({ link }) => {
-  if (link.__typename === "Link") {
+  if (isTypename(link, ["Link"])) {
     return (
       <li className="py-2">
         <CmsLink link={link} />
@@ -23,10 +24,10 @@ export const MenuItem: React.FC<Props> = ({ link }) => {
   return (
     <Suspense>
       <DropdownMenuProvider title={(link as CmsMegamenuDropdownFragment).label}>
-        {link.__typename === "MegaMenuDropdown" ? (
+        {isTypename(link, ["MegaMenuDropdown"]) ? (
           <MegaMenuDropdown link={link} />
         ) : null}
-        {link.__typename === "MegaMenuCategoriesDropdown" ? (
+        {isTypename(link, ["MegaMenuCategoriesDropdown"]) ? (
           <MegaMenuCategoriesDropdown /> // This is a placeholder, replace it with the actual component
         ) : null}
       </DropdownMenuProvider>

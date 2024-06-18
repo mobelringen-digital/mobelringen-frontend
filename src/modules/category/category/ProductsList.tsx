@@ -6,6 +6,7 @@ import { Loader } from "@/components/_ui/loader/Loader";
 import { LoaderInnerWrapper } from "@/components/_ui/loader/LoaderInnerWrapper";
 import { ProductCard } from "@/components/product/ProductCard";
 import { useProductsQuery } from "@/modules/category/category/useProductsQuery";
+import { isTypename } from "@/types/graphql-helpers";
 
 interface Props {
   categoryId?: number | null;
@@ -25,10 +26,10 @@ export const ProductsList: React.FC<Props> = ({ categoryId }) => {
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8">
       {data?.map((product, idx) => (
         <React.Fragment key={idx}>
-          {product?.__typename === "SimpleProduct" ||
-          product?.__typename === "ConfigurableProduct" ? (
-              <ProductCard key={idx} product={product} />
-            ) : null}
+          {product &&
+          isTypename(product, ["SimpleProduct", "ConfigurableProduct"]) ? (
+            <ProductCard key={idx} product={product} />
+          ) : null}
         </React.Fragment>
       ))}
     </div>

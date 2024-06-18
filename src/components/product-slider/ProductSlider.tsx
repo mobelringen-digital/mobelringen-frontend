@@ -4,6 +4,7 @@ import Slider from "react-slick";
 
 import { ProductCard } from "@/components/product/ProductCard";
 import { BaseProductFragment } from "@/types";
+import { isTypename } from "@/types/graphql-helpers";
 import { productSliderConfig } from "@/utils/lib/slick";
 
 interface Props {
@@ -26,10 +27,9 @@ export const ProductSlider: React.FC<Props> = ({ title, data }) => {
           {data?.map((product, idx) => (
             <React.Fragment key={idx}>
               {product &&
-              (product.__typename === "SimpleProduct" ||
-                product.__typename === "ConfigurableProduct") ? (
-                  <ProductCard product={product} />
-                ) : null}
+              isTypename(product, ["SimpleProduct", "ConfigurableProduct"]) ? (
+                <ProductCard product={product} />
+              ) : null}
             </React.Fragment>
           ))}
         </div>
@@ -46,10 +46,9 @@ export const ProductSlider: React.FC<Props> = ({ title, data }) => {
         {data?.map((product, idx: number) => (
           <div key={idx} className="w-[260px]">
             {product &&
-            (product.__typename === "SimpleProduct" ||
-              product.__typename === "ConfigurableProduct") ? (
-                <ProductCard product={product} />
-              ) : null}
+            isTypename(product, ["SimpleProduct", "ConfigurableProduct"]) ? (
+              <ProductCard product={product} />
+            ) : null}
           </div>
         ))}
       </Slider>

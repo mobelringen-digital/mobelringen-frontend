@@ -8,6 +8,7 @@ import { PlayIcon } from "@/components/_ui/icons/PlayIcon";
 import { ProductImage } from "@/modules/product/product-gallery/ProductImage";
 import { ProductVideo } from "@/modules/product/product-gallery/ProductVideo";
 import { BaseProductFragment } from "@/types";
+import { isTypename } from "@/types/graphql-helpers";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -38,7 +39,7 @@ export const ProductImageSlider: React.FC<Props> = ({
             alt={item?.label ?? ""}
           />
 
-          {item?.__typename === "ProductVideo" ? (
+          {item && isTypename(item, ["ProductVideo"]) ? (
             <div className="absolute rounded-2xl inset-0 bg-black bg-opacity-70 flex items-center justify-center">
               <PlayIcon width={35} height={35} />
             </div>
@@ -62,14 +63,14 @@ export const ProductImageSlider: React.FC<Props> = ({
         <React.Fragment key={idx}>
           {item?.url ? (
             <>
-              {item.__typename === "ProductImage" ? (
+              {isTypename(item, ["ProductImage"]) ? (
                 <ProductImage
                   onZoomClick={() => setPhotoIndex(idx)}
                   product={product}
                 />
               ) : null}
 
-              {item.__typename === "ProductVideo" ? (
+              {isTypename(item, ["ProductVideo"]) ? (
                 <ProductVideo video={item} />
               ) : null}
             </>

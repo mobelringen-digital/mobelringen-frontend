@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { BlockLinks } from "@/components/footer/block-links/BlockLinks";
 import { MenuQuery, MenuType } from "@/types";
+import { isTypename } from "@/types/graphql-helpers";
 import { ArrayElement } from "@/utils/ts-utils";
 
 interface Props {
@@ -31,7 +32,7 @@ export async function FooterBlockLinks({ data }: Props) {
         </p>
       </div>
       {data?.links.map((block, idx) => {
-        if (block.__typename === "LinkBlock") {
+        if (isTypename(block, ["LinkBlock"])) {
           return <BlockLinks block={block} key={idx} />;
         }
 

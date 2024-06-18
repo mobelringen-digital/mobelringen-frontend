@@ -9,6 +9,7 @@ import { useActiveProductData } from "@/modules/product/active-product-data-prov
 import { DeliveryInfo } from "@/modules/product/add-to-cart/DeliveryInfo";
 import { KlarnaInformation } from "@/modules/product/add-to-cart/KlarnaInformation";
 import { BaseProductFragment } from "@/types";
+import { isTypename } from "@/types/graphql-helpers";
 import { usePriceRange } from "@/utils/hooks/usePriceRange";
 
 interface Props {
@@ -22,7 +23,7 @@ export const PurchaseBlock: React.FC<Props> = ({ product }) => {
   const { activeProductVariant } = useActiveProductData();
 
   const isVariantNotSelected =
-    product.__typename === "ConfigurableProduct" &&
+    isTypename(product, ["ConfigurableProduct"]) &&
     !activeProductVariant.variant;
 
   return (
