@@ -29,12 +29,6 @@ body {
 .product-slider .slick-list {
   @apply -mx-2 lg:-mx-4;
 }
-.slider-width-spacings .slick-slide > div {
-  @apply mx-1;
-}
-.slider-width-spacings .slick-list {
-  @apply -mx-1;
-}
 
 @layer base {
   @font-face {

@@ -1,9 +1,6 @@
-"use client";
-
 import React from "react";
 
 import cx from "classnames";
-import Slider, { Settings } from "react-slick";
 
 import Link from "next/link";
 
@@ -25,36 +22,6 @@ export const SubCategoriesSelect: React.FC<Props> = ({ category, url }) => {
     return !!(c?.children && c.children.length > 0);
   };
 
-  const initialSlideIndex = category?.children?.findIndex((c) =>
-    isCategoryActive(c),
-  );
-
-  const settings: Settings = {
-    dots: false,
-    arrows: false,
-    infinite: false,
-    speed: 500,
-    variableWidth: true,
-    swipeToSlide: true,
-    cssEase: "linear",
-    initialSlide: initialSlideIndex,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          centerMode: false,
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          centerMode: initialSlideIndex !== 0,
-          initialSlide: initialSlideIndex,
-        },
-      },
-    ],
-  };
-
   return (
     <div className="bg-cream py-[40px] border-b border-b-beige mb-12">
       <ContainerLayout>
@@ -66,34 +33,32 @@ export const SubCategoriesSelect: React.FC<Props> = ({ category, url }) => {
           {category?.name}
         </Link>
         {hasChildren(category) ? (
-          <div className="flex gap-3 mt-8 slider-width-spacings">
-            <Slider {...settings}>
-              {category?.children
-                ?.filter((c) => !!c?.product_count)
-                .map((child) => (
-                  <Link
-                    href={
-                      isCategoryActive(child)
-                        ? `/${category?.url_path}`
-                        : `/${child?.url_path}`
-                    }
-                    key={child?.uid}
-                    className={cx(
-                      "rounded-full py-3 px-6 transition text-base font-suisse font-medium text-nowrap",
-                      {
-                        "bg-brown text-white": isCategoryActive(child),
-                        "bg-powder text-brown hover:bg-brown hover:text-white":
-                          !isCategoryActive(child),
-                      },
-                    )}
-                  >
-                    {child?.name}
-                    {!hasChildren(child) ? (
-                      <span className="ml-3">{child?.product_count}</span>
-                    ) : null}
-                  </Link>
-                ))}
-            </Slider>
+          <div className="flex gap-3 mt-8 flex-wrap">
+            {category?.children
+              ?.filter((c) => !!c?.product_count)
+              .map((child) => (
+                <Link
+                  href={
+                    isCategoryActive(child)
+                      ? `/${category?.url_path}`
+                      : `/${child?.url_path}`
+                  }
+                  key={child?.uid}
+                  className={cx(
+                    "rounded-full py-3 px-6 transition text-base font-suisse font-medium text-nowrap",
+                    {
+                      "bg-brown text-white": isCategoryActive(child),
+                      "bg-powder text-brown hover:bg-brown hover:text-white":
+                        !isCategoryActive(child),
+                    },
+                  )}
+                >
+                  {child?.name}
+                  {!hasChildren(child) ? (
+                    <span className="ml-3">{child?.product_count}</span>
+                  ) : null}
+                </Link>
+              ))}
           </div>
         ) : null}
       </ContainerLayout>
