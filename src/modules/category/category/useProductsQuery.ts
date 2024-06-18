@@ -6,25 +6,25 @@ import { baseMagentoClient } from "@/utils/lib/graphql";
 
 export const PRODUCTS_QUERY_KEY = ["products"];
 
-export const useProductsQuery = (categoryId?: number | null) => {
-  const fetchProducts = async () => {
-    const data = await baseMagentoClient.request<
-      ProductsQuery,
-      ProductsQueryVariables
-    >(ProductsQueryDocument, {
-      filter: {
-        category_id: {
-          eq: String(categoryId),
-        },
+export const fetchProducts = async (categoryId?: number | null) => {
+  const data = await baseMagentoClient.request<
+    ProductsQuery,
+    ProductsQueryVariables
+  >(ProductsQueryDocument, {
+    filter: {
+      category_id: {
+        eq: String(categoryId),
       },
-    });
+    },
+  });
 
-    return data.products?.items;
-  };
+  return data.products?.items;
+};
 
+export const useProductsQuery = (categoryId?: number | null) => {
   return useQuery({
     queryKey: [...PRODUCTS_QUERY_KEY, categoryId],
-    queryFn: fetchProducts,
+    queryFn: () => fetchProducts(categoryId),
     enabled: !!categoryId,
     staleTime: 3600,
   });

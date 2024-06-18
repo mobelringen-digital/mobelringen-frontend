@@ -5,6 +5,7 @@ import cx from "classnames";
 import Link from "next/link";
 
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
+import { CategoryBreadcrumbs } from "@/modules/category/CategoryBreadcrumbs";
 import { CategoryItemEntity } from "@/modules/category/types";
 
 interface Props {
@@ -24,6 +25,7 @@ export const SubCategoriesSelect: React.FC<Props> = ({ category, url }) => {
   return (
     <div className="bg-cream py-[40px] border-b border-b-beige mb-12">
       <ContainerLayout>
+        <CategoryBreadcrumbs />
         <Link
           href={`/${category?.url_path}`}
           className="text-5xl font-medium font-feature hover:underline"
