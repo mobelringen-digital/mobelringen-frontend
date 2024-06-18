@@ -2,6 +2,8 @@
 
 import React from "react";
 
+import cx from "classnames";
+
 import { Accordion } from "@/components/_ui/accordion/Accordion";
 import { BaseProductFragment } from "@/types";
 
@@ -52,7 +54,9 @@ export const InformationAccordion: React.FC<Props> = ({ product }) => {
       },
     ];
 
-    return measurementFields.filter((field) => field.value);
+    return measurementFields.filter(
+      (field) => !!field.value && field.value !== "0",
+    );
   }, [product]);
 
   if (product?.description?.html) {
@@ -69,9 +73,19 @@ export const InformationAccordion: React.FC<Props> = ({ product }) => {
     content: (
       <ul>
         {productMeasurements.map((field, idx) => (
-          <li key={idx}>
-            <span className="font-semibold">{field.translation}: </span>
-            <span>{field.value}</span>
+          <li
+            className={cx(
+              "flex hover:bg-warm-grey border-cold-grey-dark border-opacity-80 border-b p-2",
+              {
+                "border-b-0": idx === productMeasurements.length - 1,
+              },
+            )}
+            key={idx}
+          >
+            <div className="font-semibold p-2 min-w-32">
+              {field.translation}
+            </div>
+            <div className="p-2">{field.value}</div>
           </li>
         ))}
       </ul>
