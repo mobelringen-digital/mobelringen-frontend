@@ -7659,7 +7659,6 @@ export enum EntityTypeName {
   ScheduledOperation = "ScheduledOperation",
   /** Scheduled Release system model */
   ScheduledRelease = "ScheduledRelease",
-  Setting = "Setting",
   StaticPageConfiguration = "StaticPageConfiguration",
   /** User system model */
   User = "User",
@@ -11947,8 +11946,6 @@ export type Mutation = {
   createProductReview: CreateProductReviewOutput;
   /** Create one scheduledRelease */
   createScheduledRelease?: Maybe<ScheduledRelease>;
-  /** Create one setting */
-  createSetting?: Maybe<Setting>;
   /** Create one staticPageConfiguration */
   createStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
   /** Create a new wish list. */
@@ -12008,13 +12005,6 @@ export type Mutation = {
   /** Delete many PopularProduct documents, return deleted documents */
   deleteManyPopularProductsConnection: PopularProductConnection;
   /**
-   * Delete many Setting documents
-   * @deprecated Please use the new paginated many mutation (deleteManySettingsConnection)
-   */
-  deleteManySettings: BatchPayload;
-  /** Delete many Setting documents, return deleted documents */
-  deleteManySettingsConnection: SettingConnection;
-  /**
    * Delete many StaticPageConfiguration documents
    * @deprecated Please use the new paginated many mutation (deleteManyStaticPageConfigurationsConnection)
    */
@@ -12033,8 +12023,6 @@ export type Mutation = {
   deleteScheduledOperation?: Maybe<ScheduledOperation>;
   /** Delete one scheduledRelease from _all_ existing stages. Returns deleted document. */
   deleteScheduledRelease?: Maybe<ScheduledRelease>;
-  /** Delete one setting from _all_ existing stages. Returns deleted document. */
-  deleteSetting?: Maybe<Setting>;
   /** Delete one staticPageConfiguration from _all_ existing stages. Returns deleted document. */
   deleteStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
   /** Delete the specified wish list. You cannot delete the customer's default (first) wish list. */
@@ -12102,13 +12090,6 @@ export type Mutation = {
   /** Publish many PopularProduct documents */
   publishManyPopularProductsConnection: PopularProductConnection;
   /**
-   * Publish many Setting documents
-   * @deprecated Please use the new paginated many mutation (publishManySettingsConnection)
-   */
-  publishManySettings: BatchPayload;
-  /** Publish many Setting documents */
-  publishManySettingsConnection: SettingConnection;
-  /**
    * Publish many StaticPageConfiguration documents
    * @deprecated Please use the new paginated many mutation (publishManyStaticPageConfigurationsConnection)
    */
@@ -12121,8 +12102,6 @@ export type Mutation = {
   publishPage?: Maybe<Page>;
   /** Publish one popularProduct */
   publishPopularProduct?: Maybe<PopularProduct>;
-  /** Publish one setting */
-  publishSetting?: Maybe<Setting>;
   /** Publish one staticPageConfiguration */
   publishStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
   /** Redeem a gift card for store credit. */
@@ -12171,8 +12150,6 @@ export type Mutation = {
   schedulePublishPage?: Maybe<Page>;
   /** Schedule to publish one popularProduct */
   schedulePublishPopularProduct?: Maybe<PopularProduct>;
-  /** Schedule to publish one setting */
-  schedulePublishSetting?: Maybe<Setting>;
   /** Schedule to publish one staticPageConfiguration */
   schedulePublishStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -12187,8 +12164,6 @@ export type Mutation = {
   scheduleUnpublishPage?: Maybe<Page>;
   /** Unpublish one popularProduct from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishPopularProduct?: Maybe<PopularProduct>;
-  /** Unpublish one setting from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-  scheduleUnpublishSetting?: Maybe<Setting>;
   /** Unpublish one staticPageConfiguration from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
   /** Send a message on behalf of a customer to the specified email addresses. */
@@ -12263,13 +12238,6 @@ export type Mutation = {
   /** Find many PopularProduct documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyPopularProductsConnection: PopularProductConnection;
   /**
-   * Unpublish many Setting documents
-   * @deprecated Please use the new paginated many mutation (unpublishManySettingsConnection)
-   */
-  unpublishManySettings: BatchPayload;
-  /** Find many Setting documents that match criteria in specified stage and unpublish from target stages */
-  unpublishManySettingsConnection: SettingConnection;
-  /**
    * Unpublish many StaticPageConfiguration documents
    * @deprecated Please use the new paginated many mutation (unpublishManyStaticPageConfigurationsConnection)
    */
@@ -12282,8 +12250,6 @@ export type Mutation = {
   unpublishPage?: Maybe<Page>;
   /** Unpublish one popularProduct from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishPopularProduct?: Maybe<PopularProduct>;
-  /** Unpublish one setting from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-  unpublishSetting?: Maybe<Setting>;
   /** Unpublish one staticPageConfiguration from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
   /** Update one asset */
@@ -12352,13 +12318,6 @@ export type Mutation = {
   /** Update many PopularProduct documents */
   updateManyPopularProductsConnection: PopularProductConnection;
   /**
-   * Update many settings
-   * @deprecated Please use the new paginated many mutation (updateManySettingsConnection)
-   */
-  updateManySettings: BatchPayload;
-  /** Update many Setting documents */
-  updateManySettingsConnection: SettingConnection;
-  /**
    * Update many staticPageConfigurations
    * @deprecated Please use the new paginated many mutation (updateManyStaticPageConfigurationsConnection)
    */
@@ -12375,8 +12334,6 @@ export type Mutation = {
   updateProductsInWishlist?: Maybe<UpdateProductsInWishlistOutput>;
   /** Update one scheduledRelease */
   updateScheduledRelease?: Maybe<ScheduledRelease>;
-  /** Update one setting */
-  updateSetting?: Maybe<Setting>;
   /** Update one staticPageConfiguration */
   updateStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
   /** Change the name and visibility of the specified wish list. */
@@ -12393,8 +12350,6 @@ export type Mutation = {
   upsertPage?: Maybe<Page>;
   /** Upsert one popularProduct */
   upsertPopularProduct?: Maybe<PopularProduct>;
-  /** Upsert one setting */
-  upsertSetting?: Maybe<Setting>;
   /** Upsert one staticPageConfiguration */
   upsertStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
   /** Activate Cart */
@@ -12554,10 +12509,6 @@ export type MutationCreateScheduledReleaseArgs = {
   data: ScheduledReleaseCreateInput;
 };
 
-export type MutationCreateSettingArgs = {
-  data: SettingCreateInput;
-};
-
 export type MutationCreateStaticPageConfigurationArgs = {
   data: StaticPageConfigurationCreateInput;
 };
@@ -12664,19 +12615,6 @@ export type MutationDeleteManyPopularProductsConnectionArgs = {
   where?: InputMaybe<PopularProductManyWhereInput>;
 };
 
-export type MutationDeleteManySettingsArgs = {
-  where?: InputMaybe<SettingManyWhereInput>;
-};
-
-export type MutationDeleteManySettingsConnectionArgs = {
-  after?: InputMaybe<Scalars["ID"]["input"]>;
-  before?: InputMaybe<Scalars["ID"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
-  last?: InputMaybe<Scalars["Int"]["input"]>;
-  skip?: InputMaybe<Scalars["Int"]["input"]>;
-  where?: InputMaybe<SettingManyWhereInput>;
-};
-
 export type MutationDeleteManyStaticPageConfigurationsArgs = {
   where?: InputMaybe<StaticPageConfigurationManyWhereInput>;
 };
@@ -12712,10 +12650,6 @@ export type MutationDeleteScheduledOperationArgs = {
 
 export type MutationDeleteScheduledReleaseArgs = {
   where: ScheduledReleaseWhereUniqueInput;
-};
-
-export type MutationDeleteSettingArgs = {
-  where: SettingWhereUniqueInput;
 };
 
 export type MutationDeleteStaticPageConfigurationArgs = {
@@ -12879,22 +12813,6 @@ export type MutationPublishManyPopularProductsConnectionArgs = {
   where?: InputMaybe<PopularProductManyWhereInput>;
 };
 
-export type MutationPublishManySettingsArgs = {
-  to?: Array<Stage>;
-  where?: InputMaybe<SettingManyWhereInput>;
-};
-
-export type MutationPublishManySettingsConnectionArgs = {
-  after?: InputMaybe<Scalars["ID"]["input"]>;
-  before?: InputMaybe<Scalars["ID"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
-  from?: InputMaybe<Stage>;
-  last?: InputMaybe<Scalars["Int"]["input"]>;
-  skip?: InputMaybe<Scalars["Int"]["input"]>;
-  to?: Array<Stage>;
-  where?: InputMaybe<SettingManyWhereInput>;
-};
-
 export type MutationPublishManyStaticPageConfigurationsArgs = {
   to?: Array<Stage>;
   where?: InputMaybe<StaticPageConfigurationManyWhereInput>;
@@ -12924,11 +12842,6 @@ export type MutationPublishPageArgs = {
 export type MutationPublishPopularProductArgs = {
   to?: Array<Stage>;
   where: PopularProductWhereUniqueInput;
-};
-
-export type MutationPublishSettingArgs = {
-  to?: Array<Stage>;
-  where: SettingWhereUniqueInput;
 };
 
 export type MutationPublishStaticPageConfigurationArgs = {
@@ -13050,13 +12963,6 @@ export type MutationSchedulePublishPopularProductArgs = {
   where: PopularProductWhereUniqueInput;
 };
 
-export type MutationSchedulePublishSettingArgs = {
-  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  releaseId?: InputMaybe<Scalars["String"]["input"]>;
-  to?: Array<Stage>;
-  where: SettingWhereUniqueInput;
-};
-
 export type MutationSchedulePublishStaticPageConfigurationArgs = {
   releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   releaseId?: InputMaybe<Scalars["String"]["input"]>;
@@ -13106,13 +13012,6 @@ export type MutationScheduleUnpublishPopularProductArgs = {
   releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   releaseId?: InputMaybe<Scalars["String"]["input"]>;
   where: PopularProductWhereUniqueInput;
-};
-
-export type MutationScheduleUnpublishSettingArgs = {
-  from?: Array<Stage>;
-  releaseAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  releaseId?: InputMaybe<Scalars["String"]["input"]>;
-  where: SettingWhereUniqueInput;
 };
 
 export type MutationScheduleUnpublishStaticPageConfigurationArgs = {
@@ -13281,22 +13180,6 @@ export type MutationUnpublishManyPopularProductsConnectionArgs = {
   where?: InputMaybe<PopularProductManyWhereInput>;
 };
 
-export type MutationUnpublishManySettingsArgs = {
-  from?: Array<Stage>;
-  where?: InputMaybe<SettingManyWhereInput>;
-};
-
-export type MutationUnpublishManySettingsConnectionArgs = {
-  after?: InputMaybe<Scalars["ID"]["input"]>;
-  before?: InputMaybe<Scalars["ID"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
-  from?: Array<Stage>;
-  last?: InputMaybe<Scalars["Int"]["input"]>;
-  skip?: InputMaybe<Scalars["Int"]["input"]>;
-  stage?: InputMaybe<Stage>;
-  where?: InputMaybe<SettingManyWhereInput>;
-};
-
 export type MutationUnpublishManyStaticPageConfigurationsArgs = {
   from?: Array<Stage>;
   where?: InputMaybe<StaticPageConfigurationManyWhereInput>;
@@ -13326,11 +13209,6 @@ export type MutationUnpublishPageArgs = {
 export type MutationUnpublishPopularProductArgs = {
   from?: Array<Stage>;
   where: PopularProductWhereUniqueInput;
-};
-
-export type MutationUnpublishSettingArgs = {
-  from?: Array<Stage>;
-  where: SettingWhereUniqueInput;
 };
 
 export type MutationUnpublishStaticPageConfigurationArgs = {
@@ -13484,21 +13362,6 @@ export type MutationUpdateManyPopularProductsConnectionArgs = {
   where?: InputMaybe<PopularProductManyWhereInput>;
 };
 
-export type MutationUpdateManySettingsArgs = {
-  data: SettingUpdateManyInput;
-  where?: InputMaybe<SettingManyWhereInput>;
-};
-
-export type MutationUpdateManySettingsConnectionArgs = {
-  after?: InputMaybe<Scalars["ID"]["input"]>;
-  before?: InputMaybe<Scalars["ID"]["input"]>;
-  data: SettingUpdateManyInput;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
-  last?: InputMaybe<Scalars["Int"]["input"]>;
-  skip?: InputMaybe<Scalars["Int"]["input"]>;
-  where?: InputMaybe<SettingManyWhereInput>;
-};
-
 export type MutationUpdateManyStaticPageConfigurationsArgs = {
   data: StaticPageConfigurationUpdateManyInput;
   where?: InputMaybe<StaticPageConfigurationManyWhereInput>;
@@ -13537,11 +13400,6 @@ export type MutationUpdateProductsInWishlistArgs = {
 export type MutationUpdateScheduledReleaseArgs = {
   data: ScheduledReleaseUpdateInput;
   where: ScheduledReleaseWhereUniqueInput;
-};
-
-export type MutationUpdateSettingArgs = {
-  data: SettingUpdateInput;
-  where: SettingWhereUniqueInput;
 };
 
 export type MutationUpdateStaticPageConfigurationArgs = {
@@ -13583,11 +13441,6 @@ export type MutationUpsertPageArgs = {
 export type MutationUpsertPopularProductArgs = {
   upsert: PopularProductUpsertInput;
   where: PopularProductWhereUniqueInput;
-};
-
-export type MutationUpsertSettingArgs = {
-  upsert: SettingUpsertInput;
-  where: SettingWhereUniqueInput;
 };
 
 export type MutationUpsertStaticPageConfigurationArgs = {
@@ -16325,14 +16178,6 @@ export type Query = {
   scheduledReleases: Array<ScheduledRelease>;
   /** Retrieve multiple scheduledReleases using the Relay connection interface */
   scheduledReleasesConnection: ScheduledReleaseConnection;
-  /** Retrieve a single setting */
-  setting?: Maybe<Setting>;
-  /** Retrieve document version */
-  settingVersion?: Maybe<DocumentVersion>;
-  /** Retrieve multiple settings */
-  settings: Array<Setting>;
-  /** Retrieve multiple settings using the Relay connection interface */
-  settingsConnection: SettingConnection;
   /** The snowdogMenuNodes query returns information about active nodes of a menu */
   snowdogMenuNodes?: Maybe<SnowdogMenuNodes>;
   /** The snowdogMenus query returns information about active menus */
@@ -16756,40 +16601,6 @@ export type QueryScheduledReleasesConnectionArgs = {
   skip?: InputMaybe<Scalars["Int"]["input"]>;
   stage?: Stage;
   where?: InputMaybe<ScheduledReleaseWhereInput>;
-};
-
-export type QuerySettingArgs = {
-  locales?: Array<Locale>;
-  stage?: Stage;
-  where: SettingWhereUniqueInput;
-};
-
-export type QuerySettingVersionArgs = {
-  where: VersionWhereInput;
-};
-
-export type QuerySettingsArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  before?: InputMaybe<Scalars["String"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
-  last?: InputMaybe<Scalars["Int"]["input"]>;
-  locales?: Array<Locale>;
-  orderBy?: InputMaybe<SettingOrderByInput>;
-  skip?: InputMaybe<Scalars["Int"]["input"]>;
-  stage?: Stage;
-  where?: InputMaybe<SettingWhereInput>;
-};
-
-export type QuerySettingsConnectionArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  before?: InputMaybe<Scalars["String"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
-  last?: InputMaybe<Scalars["Int"]["input"]>;
-  locales?: Array<Locale>;
-  orderBy?: InputMaybe<SettingOrderByInput>;
-  skip?: InputMaybe<Scalars["Int"]["input"]>;
-  stage?: Stage;
-  where?: InputMaybe<SettingWhereInput>;
 };
 
 export type QuerySnowdogMenuNodesArgs = {
@@ -18282,7 +18093,6 @@ export type ScheduledOperationAffectedDocument =
   | Menu
   | Page
   | PopularProduct
-  | Setting
   | StaticPageConfiguration;
 
 export type ScheduledOperationConnectInput = {
@@ -19576,466 +19386,9 @@ export type SetShippingMethodsOnCartOutput = {
   cart: Cart;
 };
 
-export type Setting = Entity &
-  Node & {
-    __typename?: "Setting";
-    /** The time the document was created */
-    createdAt: Scalars["DateTime"]["output"];
-    /** User that created this document */
-    createdBy?: Maybe<User>;
-    /** Get the document in other stages */
-    documentInStages: Array<Setting>;
-    /** List of Setting versions */
-    history: Array<Version>;
-    /** The unique identifier */
-    id: Scalars["ID"]["output"];
-    key: SettingKey;
-    /** The time the document was published. Null on documents in draft stage. */
-    publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
-    /** User that last published this document */
-    publishedBy?: Maybe<User>;
-    scheduledIn: Array<ScheduledOperation>;
-    /** System stage field */
-    stage: Stage;
-    /** The time the document was updated */
-    updatedAt: Scalars["DateTime"]["output"];
-    /** User that last updated this document */
-    updatedBy?: Maybe<User>;
-    value: Scalars["String"]["output"];
-  };
-
-export type SettingCreatedByArgs = {
-  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
-  locales?: InputMaybe<Array<Locale>>;
-};
-
-export type SettingDocumentInStagesArgs = {
-  includeCurrent?: Scalars["Boolean"]["input"];
-  inheritLocale?: Scalars["Boolean"]["input"];
-  stages?: Array<Stage>;
-};
-
-export type SettingHistoryArgs = {
-  limit?: Scalars["Int"]["input"];
-  skip?: Scalars["Int"]["input"];
-  stageOverride?: InputMaybe<Stage>;
-};
-
-export type SettingPublishedByArgs = {
-  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
-  locales?: InputMaybe<Array<Locale>>;
-};
-
-export type SettingScheduledInArgs = {
-  after?: InputMaybe<Scalars["String"]["input"]>;
-  before?: InputMaybe<Scalars["String"]["input"]>;
-  first?: InputMaybe<Scalars["Int"]["input"]>;
-  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
-  last?: InputMaybe<Scalars["Int"]["input"]>;
-  locales?: InputMaybe<Array<Locale>>;
-  skip?: InputMaybe<Scalars["Int"]["input"]>;
-  where?: InputMaybe<ScheduledOperationWhereInput>;
-};
-
-export type SettingUpdatedByArgs = {
-  forceParentLocale?: InputMaybe<Scalars["Boolean"]["input"]>;
-  locales?: InputMaybe<Array<Locale>>;
-};
-
-export type SettingConnectInput = {
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Document to connect */
-  where: SettingWhereUniqueInput;
-};
-
-/** A connection to a list of items. */
-export type SettingConnection = {
-  __typename?: "SettingConnection";
-  aggregate: Aggregate;
-  /** A list of edges. */
-  edges: Array<SettingEdge>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-};
-
-export type SettingCreateInput = {
-  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  key: SettingKey;
-  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  value: Scalars["String"]["input"];
-};
-
-export type SettingCreateManyInlineInput = {
-  /** Connect multiple existing Setting documents */
-  connect?: InputMaybe<Array<SettingWhereUniqueInput>>;
-  /** Create and connect multiple existing Setting documents */
-  create?: InputMaybe<Array<SettingCreateInput>>;
-};
-
-export type SettingCreateOneInlineInput = {
-  /** Connect one existing Setting document */
-  connect?: InputMaybe<SettingWhereUniqueInput>;
-  /** Create and connect one Setting document */
-  create?: InputMaybe<SettingCreateInput>;
-};
-
-/** An edge in a connection. */
-export type SettingEdge = {
-  __typename?: "SettingEdge";
-  /** A cursor for use in pagination. */
-  cursor: Scalars["String"]["output"];
-  /** The item at the end of the edge. */
-  node: Setting;
-};
-
 export enum SettingKey {
   PhoneNumber = "PHONE_NUMBER",
 }
-
-/** Identifies documents */
-export type SettingManyWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<SettingWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<SettingWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<SettingWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars["String"]["input"]>;
-  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than the given value. */
-  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are contained in given list. */
-  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  /** All values less than the given value. */
-  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Any other value that exists and is not equal to the given value. */
-  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<
-    Array<InputMaybe<Scalars["DateTime"]["input"]>>
-  >;
-  createdBy?: InputMaybe<UserWhereInput>;
-  documentInStages_every?: InputMaybe<SettingWhereStageInput>;
-  documentInStages_none?: InputMaybe<SettingWhereStageInput>;
-  documentInStages_some?: InputMaybe<SettingWhereStageInput>;
-  id?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  id_not?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
-  key?: InputMaybe<SettingKey>;
-  /** All values that are contained in given list. */
-  key_in?: InputMaybe<Array<InputMaybe<SettingKey>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  key_not?: InputMaybe<SettingKey>;
-  /** All values that are not contained in given list. */
-  key_not_in?: InputMaybe<Array<InputMaybe<SettingKey>>>;
-  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than the given value. */
-  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than or equal the given value. */
-  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are contained in given list. */
-  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  /** All values less than the given value. */
-  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values less than or equal the given value. */
-  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Any other value that exists and is not equal to the given value. */
-  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<
-    Array<InputMaybe<Scalars["DateTime"]["input"]>>
-  >;
-  publishedBy?: InputMaybe<UserWhereInput>;
-  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
-  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
-  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
-  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than the given value. */
-  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are contained in given list. */
-  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  /** All values less than the given value. */
-  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Any other value that exists and is not equal to the given value. */
-  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<
-    Array<InputMaybe<Scalars["DateTime"]["input"]>>
-  >;
-  updatedBy?: InputMaybe<UserWhereInput>;
-  value?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values containing the given string. */
-  value_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values ending with the given string. */
-  value_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are contained in given list. */
-  value_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  value_not?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not containing the given string. */
-  value_not_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not ending with the given string */
-  value_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are not contained in given list. */
-  value_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** All values not starting with the given string. */
-  value_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values starting with the given string. */
-  value_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-export enum SettingOrderByInput {
-  CreatedAtAsc = "createdAt_ASC",
-  CreatedAtDesc = "createdAt_DESC",
-  IdAsc = "id_ASC",
-  IdDesc = "id_DESC",
-  KeyAsc = "key_ASC",
-  KeyDesc = "key_DESC",
-  PublishedAtAsc = "publishedAt_ASC",
-  PublishedAtDesc = "publishedAt_DESC",
-  UpdatedAtAsc = "updatedAt_ASC",
-  UpdatedAtDesc = "updatedAt_DESC",
-  ValueAsc = "value_ASC",
-  ValueDesc = "value_DESC",
-}
-
-export type SettingUpdateInput = {
-  key?: InputMaybe<SettingKey>;
-  value?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-export type SettingUpdateManyInlineInput = {
-  /** Connect multiple existing Setting documents */
-  connect?: InputMaybe<Array<SettingConnectInput>>;
-  /** Create and connect multiple Setting documents */
-  create?: InputMaybe<Array<SettingCreateInput>>;
-  /** Delete multiple Setting documents */
-  delete?: InputMaybe<Array<SettingWhereUniqueInput>>;
-  /** Disconnect multiple Setting documents */
-  disconnect?: InputMaybe<Array<SettingWhereUniqueInput>>;
-  /** Override currently-connected documents with multiple existing Setting documents */
-  set?: InputMaybe<Array<SettingWhereUniqueInput>>;
-  /** Update multiple Setting documents */
-  update?: InputMaybe<Array<SettingUpdateWithNestedWhereUniqueInput>>;
-  /** Upsert multiple Setting documents */
-  upsert?: InputMaybe<Array<SettingUpsertWithNestedWhereUniqueInput>>;
-};
-
-export type SettingUpdateManyInput = {
-  value?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-export type SettingUpdateManyWithNestedWhereInput = {
-  /** Update many input */
-  data: SettingUpdateManyInput;
-  /** Document search */
-  where: SettingWhereInput;
-};
-
-export type SettingUpdateOneInlineInput = {
-  /** Connect existing Setting document */
-  connect?: InputMaybe<SettingWhereUniqueInput>;
-  /** Create and connect one Setting document */
-  create?: InputMaybe<SettingCreateInput>;
-  /** Delete currently connected Setting document */
-  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Disconnect currently connected Setting document */
-  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Update single Setting document */
-  update?: InputMaybe<SettingUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single Setting document */
-  upsert?: InputMaybe<SettingUpsertWithNestedWhereUniqueInput>;
-};
-
-export type SettingUpdateWithNestedWhereUniqueInput = {
-  /** Document to update */
-  data: SettingUpdateInput;
-  /** Unique document search */
-  where: SettingWhereUniqueInput;
-};
-
-export type SettingUpsertInput = {
-  /** Create document if it didn't exist */
-  create: SettingCreateInput;
-  /** Update document if it exists */
-  update: SettingUpdateInput;
-};
-
-export type SettingUpsertWithNestedWhereUniqueInput = {
-  /** Upsert data */
-  data: SettingUpsertInput;
-  /** Unique document search */
-  where: SettingWhereUniqueInput;
-};
-
-/** This contains a set of filters that can be used to compare values internally */
-export type SettingWhereComparatorInput = {
-  /** This field can be used to request to check if the entry is outdated by internal comparison */
-  outdated_to?: InputMaybe<Scalars["Boolean"]["input"]>;
-};
-
-/** Identifies documents */
-export type SettingWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<SettingWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<SettingWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<SettingWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars["String"]["input"]>;
-  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than the given value. */
-  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are contained in given list. */
-  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  /** All values less than the given value. */
-  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Any other value that exists and is not equal to the given value. */
-  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<
-    Array<InputMaybe<Scalars["DateTime"]["input"]>>
-  >;
-  createdBy?: InputMaybe<UserWhereInput>;
-  documentInStages_every?: InputMaybe<SettingWhereStageInput>;
-  documentInStages_none?: InputMaybe<SettingWhereStageInput>;
-  documentInStages_some?: InputMaybe<SettingWhereStageInput>;
-  id?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  id_not?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
-  key?: InputMaybe<SettingKey>;
-  /** All values that are contained in given list. */
-  key_in?: InputMaybe<Array<InputMaybe<SettingKey>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  key_not?: InputMaybe<SettingKey>;
-  /** All values that are not contained in given list. */
-  key_not_in?: InputMaybe<Array<InputMaybe<SettingKey>>>;
-  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than the given value. */
-  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than or equal the given value. */
-  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are contained in given list. */
-  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  /** All values less than the given value. */
-  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values less than or equal the given value. */
-  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Any other value that exists and is not equal to the given value. */
-  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<
-    Array<InputMaybe<Scalars["DateTime"]["input"]>>
-  >;
-  publishedBy?: InputMaybe<UserWhereInput>;
-  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
-  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
-  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
-  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than the given value. */
-  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are contained in given list. */
-  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  /** All values less than the given value. */
-  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Any other value that exists and is not equal to the given value. */
-  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<
-    Array<InputMaybe<Scalars["DateTime"]["input"]>>
-  >;
-  updatedBy?: InputMaybe<UserWhereInput>;
-  value?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values containing the given string. */
-  value_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values ending with the given string. */
-  value_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are contained in given list. */
-  value_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  value_not?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not containing the given string. */
-  value_not_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not ending with the given string */
-  value_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are not contained in given list. */
-  value_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** All values not starting with the given string. */
-  value_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values starting with the given string. */
-  value_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
-export type SettingWhereStageInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<SettingWhereStageInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<SettingWhereStageInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<SettingWhereStageInput>>;
-  /** This field contains fields which can be set as true or false to specify an internal comparison */
-  compareWithParent?: InputMaybe<SettingWhereComparatorInput>;
-  /** Specify the stage to compare with */
-  stage?: InputMaybe<Stage>;
-};
-
-/** References Setting record uniquely */
-export type SettingWhereUniqueInput = {
-  id?: InputMaybe<Scalars["ID"]["input"]>;
-  key?: InputMaybe<SettingKey>;
-};
 
 /** Defines a gift registry invitee. */
 export type ShareGiftRegistryInviteeInput = {
@@ -23274,6 +22627,7 @@ export type ConfigurableProductVariantsFragment = {
     review_count: number;
     addable_to_cart?: number | null;
     delivery_promise?: string | null;
+    maintenance_description?: string | null;
     description?: { __typename?: "ComplexTextValue"; html: string } | null;
     image?: {
       __typename: "ProductImage";
@@ -23418,6 +22772,7 @@ export type ConfigurableProductFragment = {
   review_count: number;
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
+  maintenance_description?: string | null;
   configurable_options?: Array<{
     __typename: "ConfigurableProductOptions";
     attribute_code?: string | null;
@@ -23468,6 +22823,7 @@ export type ConfigurableProductFragment = {
       review_count: number;
       addable_to_cart?: number | null;
       delivery_promise?: string | null;
+      maintenance_description?: string | null;
       description?: { __typename?: "ComplexTextValue"; html: string } | null;
       image?: {
         __typename: "ProductImage";
@@ -23847,6 +23203,7 @@ type BaseProduct_BundleProduct_Fragment = {
   review_count: number;
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
+  maintenance_description?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -23987,6 +23344,7 @@ type BaseProduct_ConfigurableProduct_Fragment = {
   review_count: number;
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
+  maintenance_description?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -24127,6 +23485,7 @@ type BaseProduct_DownloadableProduct_Fragment = {
   review_count: number;
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
+  maintenance_description?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -24267,6 +23626,7 @@ type BaseProduct_GiftCardProduct_Fragment = {
   review_count: number;
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
+  maintenance_description?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -24407,6 +23767,7 @@ type BaseProduct_GroupedProduct_Fragment = {
   review_count: number;
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
+  maintenance_description?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -24547,6 +23908,7 @@ type BaseProduct_SimpleProduct_Fragment = {
   review_count: number;
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
+  maintenance_description?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -24687,6 +24049,7 @@ type BaseProduct_VirtualProduct_Fragment = {
   review_count: number;
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
+  maintenance_description?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -24847,6 +24210,7 @@ export type ProductsQuery = {
           review_count: number;
           addable_to_cart?: number | null;
           delivery_promise?: string | null;
+          maintenance_description?: string | null;
           configurable_options?: Array<{
             __typename: "ConfigurableProductOptions";
             attribute_code?: string | null;
@@ -24897,6 +24261,7 @@ export type ProductsQuery = {
               review_count: number;
               addable_to_cart?: number | null;
               delivery_promise?: string | null;
+              maintenance_description?: string | null;
               description?: {
                 __typename?: "ComplexTextValue";
                 html: string;
@@ -25168,6 +24533,7 @@ export type ProductsQuery = {
           review_count: number;
           addable_to_cart?: number | null;
           delivery_promise?: string | null;
+          maintenance_description?: string | null;
           description?: {
             __typename?: "ComplexTextValue";
             html: string;
@@ -25319,6 +24685,7 @@ export type SimpleProductFragment = {
   review_count: number;
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
+  maintenance_description?: string | null;
   description?: { __typename?: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -25462,6 +24829,7 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -25604,6 +24972,7 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -25746,6 +25115,7 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -25888,6 +25258,7 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -26030,6 +25401,7 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -26172,6 +25544,7 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -26314,6 +25687,7 @@ type ProductSeriesSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -26463,6 +25837,7 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -26605,6 +25980,7 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -26747,6 +26123,7 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -26889,6 +26266,7 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -27031,6 +26409,7 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -27173,6 +26552,7 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -27315,6 +26695,7 @@ type ProductSeriesSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -27464,6 +26845,7 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -27606,6 +26988,7 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -27748,6 +27131,7 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -27890,6 +27274,7 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -28032,6 +27417,7 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -28174,6 +27560,7 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -28316,6 +27703,7 @@ type ProductSeriesSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -28465,6 +27853,7 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -28607,6 +27996,7 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -28749,6 +28139,7 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -28891,6 +28282,7 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29033,6 +28425,7 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29175,6 +28568,7 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29317,6 +28711,7 @@ type ProductSeriesSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29466,6 +28861,7 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29608,6 +29004,7 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29750,6 +29147,7 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29892,6 +29290,7 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30034,6 +29433,7 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30176,6 +29576,7 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30318,6 +29719,7 @@ type ProductSeriesSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30467,6 +29869,7 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30609,6 +30012,7 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30751,6 +30155,7 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30893,6 +30298,7 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -31035,6 +30441,7 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -31177,6 +30584,7 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -31319,6 +30727,7 @@ type ProductSeriesSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -31468,6 +30877,7 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -31610,6 +31020,7 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -31752,6 +31163,7 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -31894,6 +31306,7 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -32036,6 +31449,7 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -32178,6 +31592,7 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -32320,6 +31735,7 @@ type ProductSeriesSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -32478,6 +31894,7 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -32620,6 +32037,7 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -32762,6 +32180,7 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -32904,6 +32323,7 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -33046,6 +32466,7 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -33188,6 +32609,7 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -33330,6 +32752,7 @@ type RelatedProductsSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -33479,6 +32902,7 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -33621,6 +33045,7 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -33763,6 +33188,7 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -33905,6 +33331,7 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -34047,6 +33474,7 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -34189,6 +33617,7 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -34331,6 +33760,7 @@ type RelatedProductsSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -34480,6 +33910,7 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -34622,6 +34053,7 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -34764,6 +34196,7 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -34906,6 +34339,7 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -35048,6 +34482,7 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -35190,6 +34625,7 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -35332,6 +34768,7 @@ type RelatedProductsSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -35481,6 +34918,7 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -35623,6 +35061,7 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -35765,6 +35204,7 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -35907,6 +35347,7 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -36049,6 +35490,7 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -36191,6 +35633,7 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -36333,6 +35776,7 @@ type RelatedProductsSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -36482,6 +35926,7 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -36624,6 +36069,7 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -36766,6 +36212,7 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -36908,6 +36355,7 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -37050,6 +36498,7 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -37192,6 +36641,7 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -37334,6 +36784,7 @@ type RelatedProductsSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -37483,6 +36934,7 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -37625,6 +37077,7 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -37767,6 +37220,7 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -37909,6 +37363,7 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -38051,6 +37506,7 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -38193,6 +37649,7 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -38335,6 +37792,7 @@ type RelatedProductsSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -38484,6 +37942,7 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -38626,6 +38085,7 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -38768,6 +38228,7 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -38910,6 +38371,7 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -39052,6 +38514,7 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -39194,6 +38657,7 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -39336,6 +38800,7 @@ type RelatedProductsSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -39494,6 +38959,7 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -39636,6 +39102,7 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -39778,6 +39245,7 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -39920,6 +39388,7 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -40062,6 +39531,7 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -40204,6 +39674,7 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -40346,6 +39817,7 @@ type UpsellProductsSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -40495,6 +39967,7 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -40637,6 +40110,7 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -40779,6 +40253,7 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -40921,6 +40396,7 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -41063,6 +40539,7 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -41205,6 +40682,7 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -41347,6 +40825,7 @@ type UpsellProductsSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -41496,6 +40975,7 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -41638,6 +41118,7 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -41780,6 +41261,7 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -41922,6 +41404,7 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -42064,6 +41547,7 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -42206,6 +41690,7 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -42348,6 +41833,7 @@ type UpsellProductsSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -42497,6 +41983,7 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -42639,6 +42126,7 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -42781,6 +42269,7 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -42923,6 +42412,7 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -43065,6 +42555,7 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -43207,6 +42698,7 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -43349,6 +42841,7 @@ type UpsellProductsSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -43498,6 +42991,7 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -43640,6 +43134,7 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -43782,6 +43277,7 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -43924,6 +43420,7 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -44066,6 +43563,7 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -44208,6 +43706,7 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -44350,6 +43849,7 @@ type UpsellProductsSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -44499,6 +43999,7 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -44641,6 +44142,7 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -44783,6 +44285,7 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -44925,6 +44428,7 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -45067,6 +44571,7 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -45209,6 +44714,7 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -45351,6 +44857,7 @@ type UpsellProductsSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -45500,6 +45007,7 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -45642,6 +45150,7 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -45784,6 +45293,7 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -45926,6 +45436,7 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -46068,6 +45579,7 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -46210,6 +45722,7 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -46352,6 +45865,7 @@ type UpsellProductsSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -46510,6 +46024,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -46652,6 +46167,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -46794,6 +46310,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -46936,6 +46453,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -47078,6 +46596,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -47220,6 +46739,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -47362,6 +46882,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -47507,6 +47028,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -47649,6 +47171,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -47791,6 +47314,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -47933,6 +47457,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48075,6 +47600,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48217,6 +47743,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48359,6 +47886,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48504,6 +48032,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48646,6 +48175,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48788,6 +48318,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -48930,6 +48461,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -49072,6 +48604,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -49214,6 +48747,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -49356,6 +48890,7 @@ type BaseProductSliderData_BundleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -49505,6 +49040,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -49647,6 +49183,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -49789,6 +49326,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -49931,6 +49469,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -50073,6 +49612,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -50215,6 +49755,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -50357,6 +49898,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -50502,6 +50044,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -50644,6 +50187,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -50786,6 +50330,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -50928,6 +50473,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -51070,6 +50616,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -51212,6 +50759,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -51354,6 +50902,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -51499,6 +51048,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -51641,6 +51191,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -51783,6 +51334,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -51925,6 +51477,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -52067,6 +51620,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -52209,6 +51763,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -52351,6 +51906,7 @@ type BaseProductSliderData_ConfigurableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -52500,6 +52056,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -52642,6 +52199,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -52784,6 +52342,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -52926,6 +52485,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -53068,6 +52628,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -53210,6 +52771,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -53352,6 +52914,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -53497,6 +53060,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -53639,6 +53203,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -53781,6 +53346,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -53923,6 +53489,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -54065,6 +53632,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -54207,6 +53775,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -54349,6 +53918,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -54494,6 +54064,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -54636,6 +54207,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -54778,6 +54350,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -54920,6 +54493,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -55062,6 +54636,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -55204,6 +54779,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -55346,6 +54922,7 @@ type BaseProductSliderData_DownloadableProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -55495,6 +55072,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -55637,6 +55215,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -55779,6 +55358,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -55921,6 +55501,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -56063,6 +55644,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -56205,6 +55787,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -56347,6 +55930,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -56492,6 +56076,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -56634,6 +56219,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -56776,6 +56362,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -56918,6 +56505,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -57060,6 +56648,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -57202,6 +56791,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -57344,6 +56934,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -57489,6 +57080,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -57631,6 +57223,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -57773,6 +57366,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -57915,6 +57509,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -58057,6 +57652,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -58199,6 +57795,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -58341,6 +57938,7 @@ type BaseProductSliderData_GiftCardProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -58490,6 +58088,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -58632,6 +58231,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -58774,6 +58374,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -58916,6 +58517,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -59058,6 +58660,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -59200,6 +58803,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -59342,6 +58946,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -59487,6 +59092,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -59629,6 +59235,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -59771,6 +59378,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -59913,6 +59521,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -60055,6 +59664,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -60197,6 +59807,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -60339,6 +59950,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -60484,6 +60096,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -60626,6 +60239,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -60768,6 +60382,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -60910,6 +60525,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -61052,6 +60668,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -61194,6 +60811,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -61336,6 +60954,7 @@ type BaseProductSliderData_GroupedProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -61485,6 +61104,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -61627,6 +61247,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -61769,6 +61390,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -61911,6 +61533,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -62053,6 +61676,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -62195,6 +61819,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -62337,6 +61962,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -62482,6 +62108,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -62624,6 +62251,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -62766,6 +62394,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -62908,6 +62537,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -63050,6 +62680,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -63192,6 +62823,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -63334,6 +62966,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -63479,6 +63112,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -63621,6 +63255,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -63763,6 +63398,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -63905,6 +63541,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -64047,6 +63684,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -64189,6 +63827,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -64331,6 +63970,7 @@ type BaseProductSliderData_SimpleProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -64480,6 +64120,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -64622,6 +64263,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -64764,6 +64406,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -64906,6 +64549,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -65048,6 +64692,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -65190,6 +64835,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -65332,6 +64978,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -65477,6 +65124,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -65619,6 +65267,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -65761,6 +65410,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -65903,6 +65553,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -66045,6 +65696,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -66187,6 +65839,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -66329,6 +65982,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -66474,6 +66128,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -66616,6 +66271,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -66758,6 +66414,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -66900,6 +66557,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -67042,6 +66700,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -67184,6 +66843,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -67326,6 +66986,7 @@ type BaseProductSliderData_VirtualProduct_Fragment = {
         review_count: number;
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
+        maintenance_description?: string | null;
         description?: { __typename?: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -67494,6 +67155,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -67639,6 +67301,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -67784,6 +67447,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -67929,6 +67593,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -68074,6 +67739,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -68219,6 +67885,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -68364,6 +68031,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -68512,6 +68180,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -68657,6 +68326,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -68802,6 +68472,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -68947,6 +68618,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -69092,6 +68764,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -69237,6 +68910,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -69382,6 +69056,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -69530,6 +69205,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -69675,6 +69351,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -69820,6 +69497,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -69965,6 +69643,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -70110,6 +69789,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -70255,6 +69935,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -70400,6 +70081,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -70551,6 +70233,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -70696,6 +70379,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -70841,6 +70525,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -70986,6 +70671,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -71131,6 +70817,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -71276,6 +70963,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -71421,6 +71109,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -71569,6 +71258,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -71714,6 +71404,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -71859,6 +71550,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -72004,6 +71696,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -72149,6 +71842,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -72294,6 +71988,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -72439,6 +72134,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -72587,6 +72283,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -72732,6 +72429,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -72877,6 +72575,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -73022,6 +72721,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -73167,6 +72867,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -73312,6 +73013,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -73457,6 +73159,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -73608,6 +73311,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -73753,6 +73457,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -73898,6 +73603,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -74043,6 +73749,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -74188,6 +73895,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -74333,6 +74041,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -74478,6 +74187,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -74626,6 +74336,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -74771,6 +74482,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -74916,6 +74628,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -75061,6 +74774,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -75206,6 +74920,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -75351,6 +75066,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -75496,6 +75212,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -75644,6 +75361,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -75789,6 +75507,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -75934,6 +75653,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -76079,6 +75799,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -76224,6 +75945,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -76369,6 +76091,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -76514,6 +76237,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -76665,6 +76389,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -76810,6 +76535,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -76955,6 +76681,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -77100,6 +76827,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -77245,6 +76973,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -77390,6 +77119,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -77535,6 +77265,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -77683,6 +77414,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -77828,6 +77560,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -77973,6 +77706,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -78118,6 +77852,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -78263,6 +77998,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -78408,6 +78144,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -78553,6 +78290,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -78701,6 +78439,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -78846,6 +78585,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -78991,6 +78731,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -79136,6 +78877,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -79281,6 +79023,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -79426,6 +79169,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -79571,6 +79315,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -79722,6 +79467,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -79867,6 +79613,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -80012,6 +79759,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -80157,6 +79905,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -80302,6 +80051,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -80447,6 +80197,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -80592,6 +80343,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -80740,6 +80492,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -80885,6 +80638,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -81030,6 +80784,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -81175,6 +80930,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -81320,6 +81076,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -81465,6 +81222,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -81610,6 +81368,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -81758,6 +81517,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -81903,6 +81663,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -82048,6 +81809,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -82193,6 +81955,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -82338,6 +82101,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -82483,6 +82247,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -82628,6 +82393,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -82779,6 +82545,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -82924,6 +82691,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -83069,6 +82837,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -83214,6 +82983,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -83359,6 +83129,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -83504,6 +83275,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -83649,6 +83421,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -83797,6 +83570,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -83942,6 +83716,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -84087,6 +83862,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -84232,6 +84008,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -84377,6 +84154,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -84522,6 +84300,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -84667,6 +84446,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -84815,6 +84595,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -84960,6 +84741,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -85105,6 +84887,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -85250,6 +85033,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -85395,6 +85179,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -85540,6 +85325,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -85685,6 +85471,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -85836,6 +85623,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -85981,6 +85769,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -86126,6 +85915,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -86271,6 +86061,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -86416,6 +86207,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -86561,6 +86353,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -86706,6 +86499,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -86854,6 +86648,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -86999,6 +86794,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -87144,6 +86940,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -87289,6 +87086,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -87434,6 +87232,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -87579,6 +87378,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -87724,6 +87524,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -87872,6 +87673,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -88017,6 +87819,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -88162,6 +87965,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -88307,6 +88111,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -88452,6 +88257,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -88597,6 +88403,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -88742,6 +88549,7 @@ export type ProductSliderDataQuery = {
                 review_count: number;
                 addable_to_cart?: number | null;
                 delivery_promise?: string | null;
+                maintenance_description?: string | null;
                 description?: {
                   __typename?: "ComplexTextValue";
                   html: string;
@@ -90059,6 +89867,10 @@ export const BaseProductFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "delivery_promise" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "maintenance_description" },
+          },
         ],
       },
     },
@@ -90903,6 +90715,10 @@ export const ConfigurableProductVariantsFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "delivery_promise" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "maintenance_description" },
+          },
         ],
       },
     },
@@ -91404,6 +91220,10 @@ export const ConfigurableProductFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "delivery_promise" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "maintenance_description" },
+          },
         ],
       },
     },
@@ -91959,6 +91779,10 @@ export const SimpleProductFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "delivery_promise" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "maintenance_description" },
+          },
         ],
       },
     },
@@ -92443,6 +92267,10 @@ export const RelatedProductsSliderDataFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "delivery_promise" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "maintenance_description" },
+          },
         ],
       },
     },
@@ -92927,6 +92755,10 @@ export const ProductSeriesSliderDataFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "delivery_promise" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "maintenance_description" },
+          },
         ],
       },
     },
@@ -93411,6 +93243,10 @@ export const UpsellProductsSliderDataFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "delivery_promise" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "maintenance_description" },
+          },
         ],
       },
     },
@@ -93893,6 +93729,10 @@ export const BaseProductSliderDataFragmentDoc = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "delivery_promise" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "maintenance_description" },
+          },
         ],
       },
     },
@@ -95580,6 +95420,10 @@ export const ProductsDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "delivery_promise" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "maintenance_description" },
+          },
         ],
       },
     },
@@ -96255,6 +96099,10 @@ export const ProductSliderDataDocument = {
             },
           },
           { kind: "Field", name: { kind: "Name", value: "delivery_promise" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "maintenance_description" },
+          },
         ],
       },
     },

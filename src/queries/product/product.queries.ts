@@ -155,6 +155,7 @@ export const BaseProductFragment = graphql(`
       ...ProductLabel
     }
     delivery_promise
+    maintenance_description
   }
 `);
 

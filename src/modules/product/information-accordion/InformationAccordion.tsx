@@ -10,32 +10,37 @@ interface Props {
 }
 
 export const InformationAccordion: React.FC<Props> = ({ product }) => {
-  return (
-    <Accordion
-      data={[
-        {
-          title: "Om produktet",
-          content: (
-            <p
-              dangerouslySetInnerHTML={{
-                __html: product?.description?.html ?? "",
-              }}
-            />
-          ),
-        },
-        {
-          title: "Mål",
-          content: "...",
-        },
-        {
-          title: "Kundeanmeldelser (4)",
-          content: "...",
-        },
-        {
-          title: "Delbetaling og levering",
-          content: "...",
-        },
-      ]}
-    />
-  );
+  const accordionData = [];
+
+  if (product?.description?.html) {
+    accordionData.push({
+      title: "Om produktet",
+      content: (
+        <p dangerouslySetInnerHTML={{ __html: product.description.html }} />
+      ),
+    });
+  }
+
+  accordionData.push({
+    title: "Mål",
+    content: "...",
+  });
+
+  accordionData.push({
+    title: `Kundeanmeldelser (${product.review_count})`,
+    content: "...",
+  });
+
+  if (product?.maintenance_description) {
+    accordionData.push({
+      title: "Vedlikehold",
+      content: (
+        <p
+          dangerouslySetInnerHTML={{ __html: product.maintenance_description }}
+        />
+      ),
+    });
+  }
+
+  return <Accordion data={accordionData} />;
 };
