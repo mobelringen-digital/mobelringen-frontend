@@ -1,15 +1,19 @@
 import React from "react";
 
-import { FavoriteIcon } from "@/components/_ui/icons/FavoriteIcon";
 import { Label } from "@/components/_ui/label/Label";
 import { ProductLabelFragment } from "@/types";
 
 interface Props {
   discount?: string | null;
   labels?: ProductLabelFragment | null;
+  addToWishList?: React.ReactNode;
 }
 
-export const ProductLabels: React.FC<Props> = ({ discount, labels }) => {
+export const ProductLabels: React.FC<Props> = ({
+  discount,
+  labels,
+  addToWishList,
+}) => {
   return (
     <>
       {discount ? (
@@ -28,10 +32,8 @@ export const ProductLabels: React.FC<Props> = ({ discount, labels }) => {
           </>
         ) : null}
       </div>
-      <div className="absolute bottom-2 right-2 lg:right-4 z-50">
-        <button>
-          <FavoriteIcon width={24} height={24} />
-        </button>
+      <div className="absolute bottom-0 right-0 z-50">
+        {addToWishList ? addToWishList : null}
       </div>
     </>
   );

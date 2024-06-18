@@ -5,26 +5,13 @@ import React from "react";
 import { ProductImage } from "@/modules/product/product-gallery/ProductImage";
 import { ProductImageSlider } from "@/modules/product/product-gallery/ProductImageSlider";
 import { ProductLightbox } from "@/modules/product/product-gallery/ProductLightbox";
-import {
-  ProductImageFragmentFragment,
-  ProductLabelFragment,
-  ProductMediaGalleryFragment,
-  ProductPriceRangeFragment,
-} from "@/types";
+import { BaseProductFragment } from "@/types";
 
 interface Props {
-  image?: ProductImageFragmentFragment | null;
-  gallery?: Array<ProductMediaGalleryFragment | null> | null;
-  labels?: ProductLabelFragment | null;
-  priceRange?: ProductPriceRangeFragment | null;
+  product: BaseProductFragment;
 }
 
-export const ProductGallery: React.FC<Props> = ({
-  image,
-  gallery,
-  labels,
-  priceRange,
-}) => {
+export const ProductGallery: React.FC<Props> = ({ product }) => {
   const [photoIndex, setPhotoIndex] = React.useState<number | null>(null);
 
   React.useEffect(() => {
@@ -36,8 +23,8 @@ export const ProductGallery: React.FC<Props> = ({
   }, [photoIndex]);
 
   const images = React.useMemo(() => {
-    if (gallery && gallery.length > 0) {
-      return gallery
+    if (product.media_gallery && product.media_gallery.length > 0) {
+      return product.media_gallery
         .filter((i) => i?.__typename !== "ProductVideo")
         .map((img) => ({
           url: img?.url,
@@ -47,11 +34,11 @@ export const ProductGallery: React.FC<Props> = ({
 
     return [
       {
-        url: image?.url,
-        label: image?.label,
+        url: product.image?.url,
+        label: product.image?.label,
       },
     ];
-  }, [gallery, image]);
+  }, [product]);
 
   return (
     <>
@@ -62,20 +49,10 @@ export const ProductGallery: React.FC<Props> = ({
           setPhotoIndex={setPhotoIndex}
         />
       ) : null}
-      {gallery && gallery.length > 0 ? (
-        <ProductImageSlider
-          priceRange={priceRange}
-          labels={labels}
-          gallery={gallery}
-          setPhotoIndex={setPhotoIndex}
-        />
-      ) : image?.url ? (
-        <ProductImage
-          labels={labels}
-          priceRange={priceRange}
-          image={image}
-          onZoomClick={() => setPhotoIndex(0)}
-        />
+      {product.media_gallery && product.media_gallery.length > 0 ? (
+        <ProductImageSlider product={product} setPhotoIndex={setPhotoIndex} />
+      ) : product.image?.url ? (
+        <ProductImage product={product} onZoomClick={() => setPhotoIndex(0)} />
       ) : null}
     </>
   );

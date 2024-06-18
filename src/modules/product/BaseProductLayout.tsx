@@ -51,12 +51,7 @@ export const BaseProductLayout: React.FC<Props> = ({
 
         <div className="grid grid-cols-12 gap-4 lg:gap-16">
           <div className="col-span-12 lg:col-span-7 flex flex-col gap-12">
-            <ProductGallery
-              image={product?.image}
-              gallery={product?.media_gallery}
-              labels={product?.productLabel}
-              priceRange={product?.price_range}
-            />
+            <ProductGallery product={product} />
             <div className="hidden lg:block">
               <InformationAccordion product={product} />
             </div>

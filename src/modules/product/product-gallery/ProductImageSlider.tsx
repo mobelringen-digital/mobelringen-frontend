@@ -7,31 +7,23 @@ import Image from "next/image";
 import { PlayIcon } from "@/components/_ui/icons/PlayIcon";
 import { ProductImage } from "@/modules/product/product-gallery/ProductImage";
 import { ProductVideo } from "@/modules/product/product-gallery/ProductVideo";
-import {
-  ProductLabelFragment,
-  ProductMediaGalleryFragment,
-  ProductPriceRangeFragment,
-} from "@/types";
+import { BaseProductFragment } from "@/types";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 interface Props {
-  gallery?: Array<ProductMediaGalleryFragment | null> | null;
+  product: BaseProductFragment;
   setPhotoIndex: React.Dispatch<React.SetStateAction<number | null>>;
-  priceRange?: ProductPriceRangeFragment | null;
-  labels?: ProductLabelFragment | null;
 }
 
 export const ProductImageSlider: React.FC<Props> = ({
-  gallery,
+  product,
   setPhotoIndex,
-  labels,
-  priceRange,
 }) => {
   const settings = {
     customPaging: function (i: number) {
-      const item = gallery?.[i];
+      const item = product.media_gallery?.[i];
 
       return (
         <button
@@ -66,16 +58,14 @@ export const ProductImageSlider: React.FC<Props> = ({
 
   return (
     <Slider {...settings}>
-      {gallery?.map((item, idx) => (
+      {product.media_gallery?.map((item, idx) => (
         <React.Fragment key={idx}>
           {item?.url ? (
             <>
               {item.__typename === "ProductImage" ? (
                 <ProductImage
                   onZoomClick={() => setPhotoIndex(idx)}
-                  image={item}
-                  labels={labels}
-                  priceRange={priceRange}
+                  product={product}
                 />
               ) : null}
 
