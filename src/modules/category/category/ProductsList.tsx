@@ -28,8 +28,8 @@ export const ProductsList: React.FC<Props> = ({ categoryId }) => {
         <React.Fragment key={idx}>
           {product &&
           isTypename(product, ["SimpleProduct", "ConfigurableProduct"]) ? (
-              <ProductCard key={idx} product={product} />
-            ) : null}
+                <ProductCard key={idx} product={product} />
+              ) : null}
         </React.Fragment>
       ))}
     </div>
