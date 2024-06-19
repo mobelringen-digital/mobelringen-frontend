@@ -19,7 +19,7 @@ export const ProductSlider: React.FC<Props> = ({ title, data }) => {
 
   if (data && data.length <= 4) {
     return (
-      <div className="my-28">
+      <div className="my-28 relative">
         <h2 className="text-2xl font-medium font-feature mb-4 lg:mb-8">
           {title}
         </h2>
@@ -28,8 +28,8 @@ export const ProductSlider: React.FC<Props> = ({ title, data }) => {
             <React.Fragment key={idx}>
               {product &&
               isTypename(product, ["SimpleProduct", "ConfigurableProduct"]) ? (
-                  <ProductCard product={product} />
-                ) : null}
+                <ProductCard product={product} />
+              ) : null}
             </React.Fragment>
           ))}
         </div>
@@ -38,7 +38,7 @@ export const ProductSlider: React.FC<Props> = ({ title, data }) => {
   }
 
   return (
-    <div className="my-28 product-slider">
+    <div className="my-28 product-slider relative">
       <h2 className="text-2xl font-medium font-feature mb-4 lg:mb-8">
         {title}
       </h2>
@@ -47,8 +47,8 @@ export const ProductSlider: React.FC<Props> = ({ title, data }) => {
           <div key={idx} className="w-[260px]">
             {product &&
             isTypename(product, ["SimpleProduct", "ConfigurableProduct"]) ? (
-                <ProductCard product={product} />
-              ) : null}
+              <ProductCard product={product} />
+            ) : null}
           </div>
         ))}
       </Slider>

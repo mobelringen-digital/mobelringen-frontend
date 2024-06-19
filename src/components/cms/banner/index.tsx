@@ -11,7 +11,7 @@ interface Props {
 }
 
 const VARIANTS: Record<BannerVariant, string> = {
-  default: "h-[430px] lg:h-[820px] max-h-screen w-full",
+  default: "h-[430px] lg:h-[820px] max-h-screen w-full mb-10",
   small: "h-[200px] lg:h-[320px] max-h-screen w-full",
 };
 

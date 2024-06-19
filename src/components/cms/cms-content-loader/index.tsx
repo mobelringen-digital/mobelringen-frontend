@@ -1,10 +1,9 @@
 import React from "react";
 
-import { PopularProducts } from "@/components/cms/popular-products";
+import { Banner } from "@/components/cms/banner";
+import { CmsProductSlider } from "@/components/cms/product-slider";
 import { CmsPagesQuery } from "@/types";
 import { ArrayElement } from "@/utils/ts-utils";
-
-import { Banner } from "../banner";
 
 interface CmsContentProps {
   data: ArrayElement<
@@ -21,8 +20,8 @@ export const CmsContentLoader: React.FC<CmsContentProps> = ({ data }) => {
     case "Banner":
       return <Banner data={data} />;
 
-    case "PopularProduct":
-      return <PopularProducts data={data} />;
+    case "ProductSlider":
+      return <CmsProductSlider data={data} />;
 
     default:
       return null;

@@ -30,12 +30,13 @@ export const BannerFragment = graphql(`
   }
 `);
 
-export const PopularProductsFragment = graphql(`
-  fragment CmsPopularProducts on PopularProduct {
-    ... on PopularProduct {
+export const CmsProductSliderFragment = graphql(`
+  fragment CmsProductSlider on ProductSlider {
+    ... on ProductSlider {
       __typename
-      id
       categoryId
+      type
+      title
     }
   }
 `);

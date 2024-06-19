@@ -7652,7 +7652,7 @@ export enum EntityTypeName {
   MegaMenuDropdown = "MegaMenuDropdown",
   Menu = "Menu",
   Page = "Page",
-  PopularProduct = "PopularProduct",
+  ProductSlider = "ProductSlider",
   RuleBlock = "RuleBlock",
   SaleBubble = "SaleBubble",
   /** Scheduled Operation system model */
@@ -11940,10 +11940,10 @@ export type Mutation = {
   createPayflowProToken?: Maybe<CreatePayflowProTokenOutput>;
   /** Initiate an Express Checkout transaction and receive a token. Use this mutation for Express Checkout and Payments Standard payment methods. */
   createPaypalExpressToken?: Maybe<PaypalExpressTokenOutput>;
-  /** Create one popularProduct */
-  createPopularProduct?: Maybe<PopularProduct>;
   /** Create a product review for the specified product. */
   createProductReview: CreateProductReviewOutput;
+  /** Create one productSlider */
+  createProductSlider?: Maybe<ProductSlider>;
   /** Create one scheduledRelease */
   createScheduledRelease?: Maybe<ScheduledRelease>;
   /** Create one staticPageConfiguration */
@@ -11998,12 +11998,12 @@ export type Mutation = {
   /** Delete many Page documents, return deleted documents */
   deleteManyPagesConnection: PageConnection;
   /**
-   * Delete many PopularProduct documents
-   * @deprecated Please use the new paginated many mutation (deleteManyPopularProductsConnection)
+   * Delete many ProductSlider documents
+   * @deprecated Please use the new paginated many mutation (deleteManyProductSlidersConnection)
    */
-  deleteManyPopularProducts: BatchPayload;
-  /** Delete many PopularProduct documents, return deleted documents */
-  deleteManyPopularProductsConnection: PopularProductConnection;
+  deleteManyProductSliders: BatchPayload;
+  /** Delete many ProductSlider documents, return deleted documents */
+  deleteManyProductSlidersConnection: ProductSliderConnection;
   /**
    * Delete many StaticPageConfiguration documents
    * @deprecated Please use the new paginated many mutation (deleteManyStaticPageConfigurationsConnection)
@@ -12017,8 +12017,8 @@ export type Mutation = {
   deletePage?: Maybe<Page>;
   /** Delete a customer's payment token. */
   deletePaymentToken?: Maybe<DeletePaymentTokenOutput>;
-  /** Delete one popularProduct from _all_ existing stages. Returns deleted document. */
-  deletePopularProduct?: Maybe<PopularProduct>;
+  /** Delete one productSlider from _all_ existing stages. Returns deleted document. */
+  deleteProductSlider?: Maybe<ProductSlider>;
   /** Delete and return scheduled operation */
   deleteScheduledOperation?: Maybe<ScheduledOperation>;
   /** Delete one scheduledRelease from _all_ existing stages. Returns deleted document. */
@@ -12083,12 +12083,12 @@ export type Mutation = {
   /** Publish many Page documents */
   publishManyPagesConnection: PageConnection;
   /**
-   * Publish many PopularProduct documents
-   * @deprecated Please use the new paginated many mutation (publishManyPopularProductsConnection)
+   * Publish many ProductSlider documents
+   * @deprecated Please use the new paginated many mutation (publishManyProductSlidersConnection)
    */
-  publishManyPopularProducts: BatchPayload;
-  /** Publish many PopularProduct documents */
-  publishManyPopularProductsConnection: PopularProductConnection;
+  publishManyProductSliders: BatchPayload;
+  /** Publish many ProductSlider documents */
+  publishManyProductSlidersConnection: ProductSliderConnection;
   /**
    * Publish many StaticPageConfiguration documents
    * @deprecated Please use the new paginated many mutation (publishManyStaticPageConfigurationsConnection)
@@ -12100,8 +12100,8 @@ export type Mutation = {
   publishMenu?: Maybe<Menu>;
   /** Publish one page */
   publishPage?: Maybe<Page>;
-  /** Publish one popularProduct */
-  publishPopularProduct?: Maybe<PopularProduct>;
+  /** Publish one productSlider */
+  publishProductSlider?: Maybe<ProductSlider>;
   /** Publish one staticPageConfiguration */
   publishStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
   /** Redeem a gift card for store credit. */
@@ -12148,8 +12148,8 @@ export type Mutation = {
   schedulePublishMenu?: Maybe<Menu>;
   /** Schedule to publish one page */
   schedulePublishPage?: Maybe<Page>;
-  /** Schedule to publish one popularProduct */
-  schedulePublishPopularProduct?: Maybe<PopularProduct>;
+  /** Schedule to publish one productSlider */
+  schedulePublishProductSlider?: Maybe<ProductSlider>;
   /** Schedule to publish one staticPageConfiguration */
   schedulePublishStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -12162,8 +12162,8 @@ export type Mutation = {
   scheduleUnpublishMenu?: Maybe<Menu>;
   /** Unpublish one page from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishPage?: Maybe<Page>;
-  /** Unpublish one popularProduct from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-  scheduleUnpublishPopularProduct?: Maybe<PopularProduct>;
+  /** Unpublish one productSlider from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishProductSlider?: Maybe<ProductSlider>;
   /** Unpublish one staticPageConfiguration from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
   /** Send a message on behalf of a customer to the specified email addresses. */
@@ -12231,12 +12231,12 @@ export type Mutation = {
   /** Find many Page documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyPagesConnection: PageConnection;
   /**
-   * Unpublish many PopularProduct documents
-   * @deprecated Please use the new paginated many mutation (unpublishManyPopularProductsConnection)
+   * Unpublish many ProductSlider documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyProductSlidersConnection)
    */
-  unpublishManyPopularProducts: BatchPayload;
-  /** Find many PopularProduct documents that match criteria in specified stage and unpublish from target stages */
-  unpublishManyPopularProductsConnection: PopularProductConnection;
+  unpublishManyProductSliders: BatchPayload;
+  /** Find many ProductSlider documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyProductSlidersConnection: ProductSliderConnection;
   /**
    * Unpublish many StaticPageConfiguration documents
    * @deprecated Please use the new paginated many mutation (unpublishManyStaticPageConfigurationsConnection)
@@ -12248,8 +12248,8 @@ export type Mutation = {
   unpublishMenu?: Maybe<Menu>;
   /** Unpublish one page from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishPage?: Maybe<Page>;
-  /** Unpublish one popularProduct from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
-  unpublishPopularProduct?: Maybe<PopularProduct>;
+  /** Unpublish one productSlider from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishProductSlider?: Maybe<ProductSlider>;
   /** Unpublish one staticPageConfiguration from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
   /** Update one asset */
@@ -12311,12 +12311,12 @@ export type Mutation = {
   /** Update many Page documents */
   updateManyPagesConnection: PageConnection;
   /**
-   * Update many popularProducts
-   * @deprecated Please use the new paginated many mutation (updateManyPopularProductsConnection)
+   * Update many productSliders
+   * @deprecated Please use the new paginated many mutation (updateManyProductSlidersConnection)
    */
-  updateManyPopularProducts: BatchPayload;
-  /** Update many PopularProduct documents */
-  updateManyPopularProductsConnection: PopularProductConnection;
+  updateManyProductSliders: BatchPayload;
+  /** Update many ProductSlider documents */
+  updateManyProductSlidersConnection: ProductSliderConnection;
   /**
    * Update many staticPageConfigurations
    * @deprecated Please use the new paginated many mutation (updateManyStaticPageConfigurationsConnection)
@@ -12328,8 +12328,8 @@ export type Mutation = {
   updateMenu?: Maybe<Menu>;
   /** Update one page */
   updatePage?: Maybe<Page>;
-  /** Update one popularProduct */
-  updatePopularProduct?: Maybe<PopularProduct>;
+  /** Update one productSlider */
+  updateProductSlider?: Maybe<ProductSlider>;
   /** Update one or more products in the specified wish list. */
   updateProductsInWishlist?: Maybe<UpdateProductsInWishlistOutput>;
   /** Update one scheduledRelease */
@@ -12348,8 +12348,8 @@ export type Mutation = {
   upsertMenu?: Maybe<Menu>;
   /** Upsert one page */
   upsertPage?: Maybe<Page>;
-  /** Upsert one popularProduct */
-  upsertPopularProduct?: Maybe<PopularProduct>;
+  /** Upsert one productSlider */
+  upsertProductSlider?: Maybe<ProductSlider>;
   /** Upsert one staticPageConfiguration */
   upsertStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
   /** Activate Cart */
@@ -12497,12 +12497,12 @@ export type MutationCreatePaypalExpressTokenArgs = {
   input: PaypalExpressTokenInput;
 };
 
-export type MutationCreatePopularProductArgs = {
-  data: PopularProductCreateInput;
-};
-
 export type MutationCreateProductReviewArgs = {
   input: CreateProductReviewInput;
+};
+
+export type MutationCreateProductSliderArgs = {
+  data: ProductSliderCreateInput;
 };
 
 export type MutationCreateScheduledReleaseArgs = {
@@ -12602,17 +12602,17 @@ export type MutationDeleteManyPagesConnectionArgs = {
   where: InputMaybe<PageManyWhereInput>;
 };
 
-export type MutationDeleteManyPopularProductsArgs = {
-  where: InputMaybe<PopularProductManyWhereInput>;
+export type MutationDeleteManyProductSlidersArgs = {
+  where: InputMaybe<ProductSliderManyWhereInput>;
 };
 
-export type MutationDeleteManyPopularProductsConnectionArgs = {
+export type MutationDeleteManyProductSlidersConnectionArgs = {
   after: InputMaybe<Scalars["ID"]["input"]>;
   before: InputMaybe<Scalars["ID"]["input"]>;
   first: InputMaybe<Scalars["Int"]["input"]>;
   last: InputMaybe<Scalars["Int"]["input"]>;
   skip: InputMaybe<Scalars["Int"]["input"]>;
-  where: InputMaybe<PopularProductManyWhereInput>;
+  where: InputMaybe<ProductSliderManyWhereInput>;
 };
 
 export type MutationDeleteManyStaticPageConfigurationsArgs = {
@@ -12640,8 +12640,8 @@ export type MutationDeletePaymentTokenArgs = {
   public_hash: Scalars["String"]["input"];
 };
 
-export type MutationDeletePopularProductArgs = {
-  where: PopularProductWhereUniqueInput;
+export type MutationDeleteProductSliderArgs = {
+  where: ProductSliderWhereUniqueInput;
 };
 
 export type MutationDeleteScheduledOperationArgs = {
@@ -12797,12 +12797,12 @@ export type MutationPublishManyPagesConnectionArgs = {
   where: InputMaybe<PageManyWhereInput>;
 };
 
-export type MutationPublishManyPopularProductsArgs = {
+export type MutationPublishManyProductSlidersArgs = {
   to?: Array<Stage>;
-  where: InputMaybe<PopularProductManyWhereInput>;
+  where: InputMaybe<ProductSliderManyWhereInput>;
 };
 
-export type MutationPublishManyPopularProductsConnectionArgs = {
+export type MutationPublishManyProductSlidersConnectionArgs = {
   after: InputMaybe<Scalars["ID"]["input"]>;
   before: InputMaybe<Scalars["ID"]["input"]>;
   first: InputMaybe<Scalars["Int"]["input"]>;
@@ -12810,7 +12810,7 @@ export type MutationPublishManyPopularProductsConnectionArgs = {
   last: InputMaybe<Scalars["Int"]["input"]>;
   skip: InputMaybe<Scalars["Int"]["input"]>;
   to?: Array<Stage>;
-  where: InputMaybe<PopularProductManyWhereInput>;
+  where: InputMaybe<ProductSliderManyWhereInput>;
 };
 
 export type MutationPublishManyStaticPageConfigurationsArgs = {
@@ -12839,9 +12839,9 @@ export type MutationPublishPageArgs = {
   where: PageWhereUniqueInput;
 };
 
-export type MutationPublishPopularProductArgs = {
+export type MutationPublishProductSliderArgs = {
   to?: Array<Stage>;
-  where: PopularProductWhereUniqueInput;
+  where: ProductSliderWhereUniqueInput;
 };
 
 export type MutationPublishStaticPageConfigurationArgs = {
@@ -12956,11 +12956,11 @@ export type MutationSchedulePublishPageArgs = {
   where: PageWhereUniqueInput;
 };
 
-export type MutationSchedulePublishPopularProductArgs = {
+export type MutationSchedulePublishProductSliderArgs = {
   releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
   releaseId: InputMaybe<Scalars["String"]["input"]>;
   to?: Array<Stage>;
-  where: PopularProductWhereUniqueInput;
+  where: ProductSliderWhereUniqueInput;
 };
 
 export type MutationSchedulePublishStaticPageConfigurationArgs = {
@@ -13007,11 +13007,11 @@ export type MutationScheduleUnpublishPageArgs = {
   where: PageWhereUniqueInput;
 };
 
-export type MutationScheduleUnpublishPopularProductArgs = {
+export type MutationScheduleUnpublishProductSliderArgs = {
   from?: Array<Stage>;
   releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
   releaseId: InputMaybe<Scalars["String"]["input"]>;
-  where: PopularProductWhereUniqueInput;
+  where: ProductSliderWhereUniqueInput;
 };
 
 export type MutationScheduleUnpublishStaticPageConfigurationArgs = {
@@ -13164,12 +13164,12 @@ export type MutationUnpublishManyPagesConnectionArgs = {
   where: InputMaybe<PageManyWhereInput>;
 };
 
-export type MutationUnpublishManyPopularProductsArgs = {
+export type MutationUnpublishManyProductSlidersArgs = {
   from?: Array<Stage>;
-  where: InputMaybe<PopularProductManyWhereInput>;
+  where: InputMaybe<ProductSliderManyWhereInput>;
 };
 
-export type MutationUnpublishManyPopularProductsConnectionArgs = {
+export type MutationUnpublishManyProductSlidersConnectionArgs = {
   after: InputMaybe<Scalars["ID"]["input"]>;
   before: InputMaybe<Scalars["ID"]["input"]>;
   first: InputMaybe<Scalars["Int"]["input"]>;
@@ -13177,7 +13177,7 @@ export type MutationUnpublishManyPopularProductsConnectionArgs = {
   last: InputMaybe<Scalars["Int"]["input"]>;
   skip: InputMaybe<Scalars["Int"]["input"]>;
   stage?: InputMaybe<Stage>;
-  where: InputMaybe<PopularProductManyWhereInput>;
+  where: InputMaybe<ProductSliderManyWhereInput>;
 };
 
 export type MutationUnpublishManyStaticPageConfigurationsArgs = {
@@ -13206,9 +13206,9 @@ export type MutationUnpublishPageArgs = {
   where: PageWhereUniqueInput;
 };
 
-export type MutationUnpublishPopularProductArgs = {
+export type MutationUnpublishProductSliderArgs = {
   from?: Array<Stage>;
-  where: PopularProductWhereUniqueInput;
+  where: ProductSliderWhereUniqueInput;
 };
 
 export type MutationUnpublishStaticPageConfigurationArgs = {
@@ -13347,19 +13347,19 @@ export type MutationUpdateManyPagesConnectionArgs = {
   where: InputMaybe<PageManyWhereInput>;
 };
 
-export type MutationUpdateManyPopularProductsArgs = {
-  data: PopularProductUpdateManyInput;
-  where: InputMaybe<PopularProductManyWhereInput>;
+export type MutationUpdateManyProductSlidersArgs = {
+  data: ProductSliderUpdateManyInput;
+  where: InputMaybe<ProductSliderManyWhereInput>;
 };
 
-export type MutationUpdateManyPopularProductsConnectionArgs = {
+export type MutationUpdateManyProductSlidersConnectionArgs = {
   after: InputMaybe<Scalars["ID"]["input"]>;
   before: InputMaybe<Scalars["ID"]["input"]>;
-  data: PopularProductUpdateManyInput;
+  data: ProductSliderUpdateManyInput;
   first: InputMaybe<Scalars["Int"]["input"]>;
   last: InputMaybe<Scalars["Int"]["input"]>;
   skip: InputMaybe<Scalars["Int"]["input"]>;
-  where: InputMaybe<PopularProductManyWhereInput>;
+  where: InputMaybe<ProductSliderManyWhereInput>;
 };
 
 export type MutationUpdateManyStaticPageConfigurationsArgs = {
@@ -13387,9 +13387,9 @@ export type MutationUpdatePageArgs = {
   where: PageWhereUniqueInput;
 };
 
-export type MutationUpdatePopularProductArgs = {
-  data: PopularProductUpdateInput;
-  where: PopularProductWhereUniqueInput;
+export type MutationUpdateProductSliderArgs = {
+  data: ProductSliderUpdateInput;
+  where: ProductSliderWhereUniqueInput;
 };
 
 export type MutationUpdateProductsInWishlistArgs = {
@@ -13438,9 +13438,9 @@ export type MutationUpsertPageArgs = {
   where: PageWhereUniqueInput;
 };
 
-export type MutationUpsertPopularProductArgs = {
-  upsert: PopularProductUpsertInput;
-  where: PopularProductWhereUniqueInput;
+export type MutationUpsertProductSliderArgs = {
+  upsert: ProductSliderUpsertInput;
+  where: ProductSliderWhereUniqueInput;
 };
 
 export type MutationUpsertStaticPageConfigurationArgs = {
@@ -13757,16 +13757,16 @@ export type PageConnection = {
   pageInfo: PageInfo;
 };
 
-export type PageContent = Banner | PopularProduct;
+export type PageContent = Banner | ProductSlider;
 
 export type PageContentConnectInput = {
   Banner?: InputMaybe<BannerConnectInput>;
-  PopularProduct?: InputMaybe<PopularProductConnectInput>;
+  ProductSlider?: InputMaybe<ProductSliderConnectInput>;
 };
 
 export type PageContentCreateInput = {
   Banner?: InputMaybe<BannerCreateInput>;
-  PopularProduct?: InputMaybe<PopularProductCreateInput>;
+  ProductSlider?: InputMaybe<ProductSliderCreateInput>;
 };
 
 export type PageContentCreateManyInlineInput = {
@@ -13785,7 +13785,7 @@ export type PageContentCreateOneInlineInput = {
 
 export type PageContentUpdateInput = {
   Banner?: InputMaybe<BannerUpdateInput>;
-  PopularProduct?: InputMaybe<PopularProductUpdateInput>;
+  ProductSlider?: InputMaybe<ProductSliderUpdateInput>;
 };
 
 export type PageContentUpdateManyInlineInput = {
@@ -13807,7 +13807,7 @@ export type PageContentUpdateManyInlineInput = {
 
 export type PageContentUpdateManyWithNestedWhereInput = {
   Banner?: InputMaybe<BannerUpdateManyWithNestedWhereInput>;
-  PopularProduct?: InputMaybe<PopularProductUpdateManyWithNestedWhereInput>;
+  ProductSlider?: InputMaybe<ProductSliderUpdateManyWithNestedWhereInput>;
 };
 
 export type PageContentUpdateOneInlineInput = {
@@ -13827,22 +13827,22 @@ export type PageContentUpdateOneInlineInput = {
 
 export type PageContentUpdateWithNestedWhereUniqueInput = {
   Banner?: InputMaybe<BannerUpdateWithNestedWhereUniqueInput>;
-  PopularProduct?: InputMaybe<PopularProductUpdateWithNestedWhereUniqueInput>;
+  ProductSlider?: InputMaybe<ProductSliderUpdateWithNestedWhereUniqueInput>;
 };
 
 export type PageContentUpsertWithNestedWhereUniqueInput = {
   Banner?: InputMaybe<BannerUpsertWithNestedWhereUniqueInput>;
-  PopularProduct?: InputMaybe<PopularProductUpsertWithNestedWhereUniqueInput>;
+  ProductSlider?: InputMaybe<ProductSliderUpsertWithNestedWhereUniqueInput>;
 };
 
 export type PageContentWhereInput = {
   Banner?: InputMaybe<BannerWhereInput>;
-  PopularProduct?: InputMaybe<PopularProductWhereInput>;
+  ProductSlider?: InputMaybe<ProductSliderWhereInput>;
 };
 
 export type PageContentWhereUniqueInput = {
   Banner?: InputMaybe<BannerWhereUniqueInput>;
-  PopularProduct?: InputMaybe<PopularProductWhereUniqueInput>;
+  ProductSlider?: InputMaybe<ProductSliderWhereUniqueInput>;
 };
 
 export type PageCreateInput = {
@@ -14746,508 +14746,6 @@ export type PlaceOrderOutput = {
   order: Order;
 };
 
-export type PopularProduct = Entity &
-  Node & {
-    __typename: "PopularProduct";
-    /** If this field is set popular products will be loaded from specific category */
-    categoryId?: Maybe<Scalars["String"]["output"]>;
-    /** The time the document was created */
-    createdAt: Scalars["DateTime"]["output"];
-    /** User that created this document */
-    createdBy?: Maybe<User>;
-    /** Get the document in other stages */
-    documentInStages: Array<PopularProduct>;
-    /** List of PopularProduct versions */
-    history: Array<Version>;
-    /** The unique identifier */
-    id: Scalars["ID"]["output"];
-    identify: Scalars["String"]["output"];
-    pages: Array<Page>;
-    /** The time the document was published. Null on documents in draft stage. */
-    publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
-    /** User that last published this document */
-    publishedBy?: Maybe<User>;
-    scheduledIn: Array<ScheduledOperation>;
-    /** System stage field */
-    stage: Stage;
-    /** The time the document was updated */
-    updatedAt: Scalars["DateTime"]["output"];
-    /** User that last updated this document */
-    updatedBy?: Maybe<User>;
-  };
-
-export type PopularProductCreatedByArgs = {
-  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
-  locales: InputMaybe<Array<Locale>>;
-};
-
-export type PopularProductDocumentInStagesArgs = {
-  includeCurrent?: Scalars["Boolean"]["input"];
-  inheritLocale?: Scalars["Boolean"]["input"];
-  stages?: Array<Stage>;
-};
-
-export type PopularProductHistoryArgs = {
-  limit?: Scalars["Int"]["input"];
-  skip?: Scalars["Int"]["input"];
-  stageOverride: InputMaybe<Stage>;
-};
-
-export type PopularProductPagesArgs = {
-  after: InputMaybe<Scalars["String"]["input"]>;
-  before: InputMaybe<Scalars["String"]["input"]>;
-  first: InputMaybe<Scalars["Int"]["input"]>;
-  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
-  last: InputMaybe<Scalars["Int"]["input"]>;
-  locales: InputMaybe<Array<Locale>>;
-  skip: InputMaybe<Scalars["Int"]["input"]>;
-  where: InputMaybe<PageWhereInput>;
-};
-
-export type PopularProductPublishedByArgs = {
-  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
-  locales: InputMaybe<Array<Locale>>;
-};
-
-export type PopularProductScheduledInArgs = {
-  after: InputMaybe<Scalars["String"]["input"]>;
-  before: InputMaybe<Scalars["String"]["input"]>;
-  first: InputMaybe<Scalars["Int"]["input"]>;
-  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
-  last: InputMaybe<Scalars["Int"]["input"]>;
-  locales: InputMaybe<Array<Locale>>;
-  skip: InputMaybe<Scalars["Int"]["input"]>;
-  where: InputMaybe<ScheduledOperationWhereInput>;
-};
-
-export type PopularProductUpdatedByArgs = {
-  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
-  locales: InputMaybe<Array<Locale>>;
-};
-
-export type PopularProductConnectInput = {
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Document to connect */
-  where: PopularProductWhereUniqueInput;
-};
-
-/** A connection to a list of items. */
-export type PopularProductConnection = {
-  __typename: "PopularProductConnection";
-  aggregate: Aggregate;
-  /** A list of edges. */
-  edges: Array<PopularProductEdge>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-};
-
-export type PopularProductCreateInput = {
-  categoryId?: InputMaybe<Scalars["String"]["input"]>;
-  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  identify: Scalars["String"]["input"];
-  pages?: InputMaybe<PageCreateManyInlineInput>;
-  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-};
-
-export type PopularProductCreateManyInlineInput = {
-  /** Connect multiple existing PopularProduct documents */
-  connect?: InputMaybe<Array<PopularProductWhereUniqueInput>>;
-  /** Create and connect multiple existing PopularProduct documents */
-  create?: InputMaybe<Array<PopularProductCreateInput>>;
-};
-
-export type PopularProductCreateOneInlineInput = {
-  /** Connect one existing PopularProduct document */
-  connect?: InputMaybe<PopularProductWhereUniqueInput>;
-  /** Create and connect one PopularProduct document */
-  create?: InputMaybe<PopularProductCreateInput>;
-};
-
-/** An edge in a connection. */
-export type PopularProductEdge = {
-  __typename: "PopularProductEdge";
-  /** A cursor for use in pagination. */
-  cursor: Scalars["String"]["output"];
-  /** The item at the end of the edge. */
-  node: PopularProduct;
-};
-
-/** Identifies documents */
-export type PopularProductManyWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<PopularProductWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<PopularProductWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<PopularProductWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars["String"]["input"]>;
-  categoryId?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values containing the given string. */
-  categoryId_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values ending with the given string. */
-  categoryId_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are contained in given list. */
-  categoryId_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  categoryId_not?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not containing the given string. */
-  categoryId_not_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not ending with the given string */
-  categoryId_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are not contained in given list. */
-  categoryId_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** All values not starting with the given string. */
-  categoryId_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values starting with the given string. */
-  categoryId_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than the given value. */
-  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are contained in given list. */
-  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  /** All values less than the given value. */
-  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Any other value that exists and is not equal to the given value. */
-  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<
-    Array<InputMaybe<Scalars["DateTime"]["input"]>>
-  >;
-  createdBy?: InputMaybe<UserWhereInput>;
-  documentInStages_every?: InputMaybe<PopularProductWhereStageInput>;
-  documentInStages_none?: InputMaybe<PopularProductWhereStageInput>;
-  documentInStages_some?: InputMaybe<PopularProductWhereStageInput>;
-  id?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  id_not?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
-  identify?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values containing the given string. */
-  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values ending with the given string. */
-  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are contained in given list. */
-  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  identify_not?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not containing the given string. */
-  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not ending with the given string */
-  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are not contained in given list. */
-  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** All values not starting with the given string. */
-  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values starting with the given string. */
-  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  pages_every?: InputMaybe<PageWhereInput>;
-  pages_none?: InputMaybe<PageWhereInput>;
-  pages_some?: InputMaybe<PageWhereInput>;
-  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than the given value. */
-  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than or equal the given value. */
-  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are contained in given list. */
-  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  /** All values less than the given value. */
-  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values less than or equal the given value. */
-  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Any other value that exists and is not equal to the given value. */
-  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<
-    Array<InputMaybe<Scalars["DateTime"]["input"]>>
-  >;
-  publishedBy?: InputMaybe<UserWhereInput>;
-  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
-  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
-  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
-  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than the given value. */
-  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are contained in given list. */
-  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  /** All values less than the given value. */
-  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Any other value that exists and is not equal to the given value. */
-  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<
-    Array<InputMaybe<Scalars["DateTime"]["input"]>>
-  >;
-  updatedBy?: InputMaybe<UserWhereInput>;
-};
-
-export enum PopularProductOrderByInput {
-  CategoryIdAsc = "categoryId_ASC",
-  CategoryIdDesc = "categoryId_DESC",
-  CreatedAtAsc = "createdAt_ASC",
-  CreatedAtDesc = "createdAt_DESC",
-  IdAsc = "id_ASC",
-  IdDesc = "id_DESC",
-  IdentifyAsc = "identify_ASC",
-  IdentifyDesc = "identify_DESC",
-  PublishedAtAsc = "publishedAt_ASC",
-  PublishedAtDesc = "publishedAt_DESC",
-  UpdatedAtAsc = "updatedAt_ASC",
-  UpdatedAtDesc = "updatedAt_DESC",
-}
-
-export type PopularProductUpdateInput = {
-  categoryId?: InputMaybe<Scalars["String"]["input"]>;
-  identify?: InputMaybe<Scalars["String"]["input"]>;
-  pages?: InputMaybe<PageUpdateManyInlineInput>;
-};
-
-export type PopularProductUpdateManyInlineInput = {
-  /** Connect multiple existing PopularProduct documents */
-  connect?: InputMaybe<Array<PopularProductConnectInput>>;
-  /** Create and connect multiple PopularProduct documents */
-  create?: InputMaybe<Array<PopularProductCreateInput>>;
-  /** Delete multiple PopularProduct documents */
-  delete?: InputMaybe<Array<PopularProductWhereUniqueInput>>;
-  /** Disconnect multiple PopularProduct documents */
-  disconnect?: InputMaybe<Array<PopularProductWhereUniqueInput>>;
-  /** Override currently-connected documents with multiple existing PopularProduct documents */
-  set?: InputMaybe<Array<PopularProductWhereUniqueInput>>;
-  /** Update multiple PopularProduct documents */
-  update?: InputMaybe<Array<PopularProductUpdateWithNestedWhereUniqueInput>>;
-  /** Upsert multiple PopularProduct documents */
-  upsert?: InputMaybe<Array<PopularProductUpsertWithNestedWhereUniqueInput>>;
-};
-
-export type PopularProductUpdateManyInput = {
-  categoryId?: InputMaybe<Scalars["String"]["input"]>;
-  identify?: InputMaybe<Scalars["String"]["input"]>;
-};
-
-export type PopularProductUpdateManyWithNestedWhereInput = {
-  /** Update many input */
-  data: PopularProductUpdateManyInput;
-  /** Document search */
-  where: PopularProductWhereInput;
-};
-
-export type PopularProductUpdateOneInlineInput = {
-  /** Connect existing PopularProduct document */
-  connect?: InputMaybe<PopularProductWhereUniqueInput>;
-  /** Create and connect one PopularProduct document */
-  create?: InputMaybe<PopularProductCreateInput>;
-  /** Delete currently connected PopularProduct document */
-  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Disconnect currently connected PopularProduct document */
-  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Update single PopularProduct document */
-  update?: InputMaybe<PopularProductUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single PopularProduct document */
-  upsert?: InputMaybe<PopularProductUpsertWithNestedWhereUniqueInput>;
-};
-
-export type PopularProductUpdateWithNestedWhereUniqueInput = {
-  /** Document to update */
-  data: PopularProductUpdateInput;
-  /** Unique document search */
-  where: PopularProductWhereUniqueInput;
-};
-
-export type PopularProductUpsertInput = {
-  /** Create document if it didn't exist */
-  create: PopularProductCreateInput;
-  /** Update document if it exists */
-  update: PopularProductUpdateInput;
-};
-
-export type PopularProductUpsertWithNestedWhereUniqueInput = {
-  /** Upsert data */
-  data: PopularProductUpsertInput;
-  /** Unique document search */
-  where: PopularProductWhereUniqueInput;
-};
-
-/** This contains a set of filters that can be used to compare values internally */
-export type PopularProductWhereComparatorInput = {
-  /** This field can be used to request to check if the entry is outdated by internal comparison */
-  outdated_to?: InputMaybe<Scalars["Boolean"]["input"]>;
-};
-
-/** Identifies documents */
-export type PopularProductWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<PopularProductWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<PopularProductWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<PopularProductWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars["String"]["input"]>;
-  categoryId?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values containing the given string. */
-  categoryId_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values ending with the given string. */
-  categoryId_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are contained in given list. */
-  categoryId_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  categoryId_not?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not containing the given string. */
-  categoryId_not_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not ending with the given string */
-  categoryId_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are not contained in given list. */
-  categoryId_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** All values not starting with the given string. */
-  categoryId_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values starting with the given string. */
-  categoryId_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than the given value. */
-  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than or equal the given value. */
-  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are contained in given list. */
-  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  /** All values less than the given value. */
-  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values less than or equal the given value. */
-  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Any other value that exists and is not equal to the given value. */
-  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are not contained in given list. */
-  createdAt_not_in?: InputMaybe<
-    Array<InputMaybe<Scalars["DateTime"]["input"]>>
-  >;
-  createdBy?: InputMaybe<UserWhereInput>;
-  documentInStages_every?: InputMaybe<PopularProductWhereStageInput>;
-  documentInStages_none?: InputMaybe<PopularProductWhereStageInput>;
-  documentInStages_some?: InputMaybe<PopularProductWhereStageInput>;
-  id?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  id_not?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
-  identify?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values containing the given string. */
-  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values ending with the given string. */
-  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are contained in given list. */
-  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  identify_not?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not containing the given string. */
-  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not ending with the given string */
-  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are not contained in given list. */
-  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** All values not starting with the given string. */
-  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values starting with the given string. */
-  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  pages_every?: InputMaybe<PageWhereInput>;
-  pages_none?: InputMaybe<PageWhereInput>;
-  pages_some?: InputMaybe<PageWhereInput>;
-  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than the given value. */
-  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than or equal the given value. */
-  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are contained in given list. */
-  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  /** All values less than the given value. */
-  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values less than or equal the given value. */
-  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Any other value that exists and is not equal to the given value. */
-  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are not contained in given list. */
-  publishedAt_not_in?: InputMaybe<
-    Array<InputMaybe<Scalars["DateTime"]["input"]>>
-  >;
-  publishedBy?: InputMaybe<UserWhereInput>;
-  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
-  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
-  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
-  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than the given value. */
-  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values greater than or equal the given value. */
-  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are contained in given list. */
-  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
-  /** All values less than the given value. */
-  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values less than or equal the given value. */
-  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** Any other value that exists and is not equal to the given value. */
-  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
-  /** All values that are not contained in given list. */
-  updatedAt_not_in?: InputMaybe<
-    Array<InputMaybe<Scalars["DateTime"]["input"]>>
-  >;
-  updatedBy?: InputMaybe<UserWhereInput>;
-};
-
-/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
-export type PopularProductWhereStageInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<PopularProductWhereStageInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<PopularProductWhereStageInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<PopularProductWhereStageInput>>;
-  /** This field contains fields which can be set as true or false to specify an internal comparison */
-  compareWithParent?: InputMaybe<PopularProductWhereComparatorInput>;
-  /** Specify the stage to compare with */
-  stage?: InputMaybe<Stage>;
-};
-
-/** References PopularProduct record uniquely */
-export type PopularProductWhereUniqueInput = {
-  id?: InputMaybe<Scalars["ID"]["input"]>;
-};
-
 export enum Position {
   Left = "LEFT",
   Right = "RIGHT",
@@ -15879,6 +15377,532 @@ export type ProductReviews = {
   page_info: SearchResultPageInfo;
 };
 
+export type ProductSlider = Entity &
+  Node & {
+    __typename: "ProductSlider";
+    /** Must be entered if slider type is "Popular products" */
+    categoryId?: Maybe<Scalars["String"]["output"]>;
+    /** The time the document was created */
+    createdAt: Scalars["DateTime"]["output"];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    /** Get the document in other stages */
+    documentInStages: Array<ProductSlider>;
+    /** List of ProductSlider versions */
+    history: Array<Version>;
+    /** The unique identifier */
+    id: Scalars["ID"]["output"];
+    pages: Array<Page>;
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    scheduledIn: Array<ScheduledOperation>;
+    /** System stage field */
+    stage: Stage;
+    title: Scalars["String"]["output"];
+    type: ProductSliderType;
+    /** The time the document was updated */
+    updatedAt: Scalars["DateTime"]["output"];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+  };
+
+export type ProductSliderCreatedByArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type ProductSliderDocumentInStagesArgs = {
+  includeCurrent?: Scalars["Boolean"]["input"];
+  inheritLocale?: Scalars["Boolean"]["input"];
+  stages?: Array<Stage>;
+};
+
+export type ProductSliderHistoryArgs = {
+  limit?: Scalars["Int"]["input"];
+  skip?: Scalars["Int"]["input"];
+  stageOverride: InputMaybe<Stage>;
+};
+
+export type ProductSliderPagesArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<PageWhereInput>;
+};
+
+export type ProductSliderPublishedByArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type ProductSliderScheduledInArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+export type ProductSliderUpdatedByArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type ProductSliderConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: ProductSliderWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type ProductSliderConnection = {
+  __typename: "ProductSliderConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<ProductSliderEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type ProductSliderCreateInput = {
+  categoryId?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  pages?: InputMaybe<PageCreateManyInlineInput>;
+  title: Scalars["String"]["input"];
+  type: ProductSliderType;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+};
+
+export type ProductSliderCreateManyInlineInput = {
+  /** Connect multiple existing ProductSlider documents */
+  connect?: InputMaybe<Array<ProductSliderWhereUniqueInput>>;
+  /** Create and connect multiple existing ProductSlider documents */
+  create?: InputMaybe<Array<ProductSliderCreateInput>>;
+};
+
+export type ProductSliderCreateOneInlineInput = {
+  /** Connect one existing ProductSlider document */
+  connect?: InputMaybe<ProductSliderWhereUniqueInput>;
+  /** Create and connect one ProductSlider document */
+  create?: InputMaybe<ProductSliderCreateInput>;
+};
+
+/** An edge in a connection. */
+export type ProductSliderEdge = {
+  __typename: "ProductSliderEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: ProductSlider;
+};
+
+/** Identifies documents */
+export type ProductSliderManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ProductSliderWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ProductSliderWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ProductSliderWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  categoryId?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  categoryId_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  categoryId_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  categoryId_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  categoryId_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  categoryId_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  categoryId_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  categoryId_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  categoryId_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  categoryId_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<ProductSliderWhereStageInput>;
+  documentInStages_none?: InputMaybe<ProductSliderWhereStageInput>;
+  documentInStages_some?: InputMaybe<ProductSliderWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  pages_every?: InputMaybe<PageWhereInput>;
+  pages_none?: InputMaybe<PageWhereInput>;
+  pages_some?: InputMaybe<PageWhereInput>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  title_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  type?: InputMaybe<ProductSliderType>;
+  /** All values that are contained in given list. */
+  type_in?: InputMaybe<Array<InputMaybe<ProductSliderType>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  type_not?: InputMaybe<ProductSliderType>;
+  /** All values that are not contained in given list. */
+  type_not_in?: InputMaybe<Array<InputMaybe<ProductSliderType>>>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum ProductSliderOrderByInput {
+  CategoryIdAsc = "categoryId_ASC",
+  CategoryIdDesc = "categoryId_DESC",
+  CreatedAtAsc = "createdAt_ASC",
+  CreatedAtDesc = "createdAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  PublishedAtAsc = "publishedAt_ASC",
+  PublishedAtDesc = "publishedAt_DESC",
+  TitleAsc = "title_ASC",
+  TitleDesc = "title_DESC",
+  TypeAsc = "type_ASC",
+  TypeDesc = "type_DESC",
+  UpdatedAtAsc = "updatedAt_ASC",
+  UpdatedAtDesc = "updatedAt_DESC",
+}
+
+export enum ProductSliderType {
+  PopularProducts = "POPULAR_PRODUCTS",
+}
+
+export type ProductSliderUpdateInput = {
+  categoryId?: InputMaybe<Scalars["String"]["input"]>;
+  pages?: InputMaybe<PageUpdateManyInlineInput>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+  type?: InputMaybe<ProductSliderType>;
+};
+
+export type ProductSliderUpdateManyInlineInput = {
+  /** Connect multiple existing ProductSlider documents */
+  connect?: InputMaybe<Array<ProductSliderConnectInput>>;
+  /** Create and connect multiple ProductSlider documents */
+  create?: InputMaybe<Array<ProductSliderCreateInput>>;
+  /** Delete multiple ProductSlider documents */
+  delete?: InputMaybe<Array<ProductSliderWhereUniqueInput>>;
+  /** Disconnect multiple ProductSlider documents */
+  disconnect?: InputMaybe<Array<ProductSliderWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing ProductSlider documents */
+  set?: InputMaybe<Array<ProductSliderWhereUniqueInput>>;
+  /** Update multiple ProductSlider documents */
+  update?: InputMaybe<Array<ProductSliderUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple ProductSlider documents */
+  upsert?: InputMaybe<Array<ProductSliderUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type ProductSliderUpdateManyInput = {
+  categoryId?: InputMaybe<Scalars["String"]["input"]>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+  type?: InputMaybe<ProductSliderType>;
+};
+
+export type ProductSliderUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: ProductSliderUpdateManyInput;
+  /** Document search */
+  where: ProductSliderWhereInput;
+};
+
+export type ProductSliderUpdateOneInlineInput = {
+  /** Connect existing ProductSlider document */
+  connect?: InputMaybe<ProductSliderWhereUniqueInput>;
+  /** Create and connect one ProductSlider document */
+  create?: InputMaybe<ProductSliderCreateInput>;
+  /** Delete currently connected ProductSlider document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected ProductSlider document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single ProductSlider document */
+  update?: InputMaybe<ProductSliderUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single ProductSlider document */
+  upsert?: InputMaybe<ProductSliderUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ProductSliderUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: ProductSliderUpdateInput;
+  /** Unique document search */
+  where: ProductSliderWhereUniqueInput;
+};
+
+export type ProductSliderUpsertInput = {
+  /** Create document if it didn't exist */
+  create: ProductSliderCreateInput;
+  /** Update document if it exists */
+  update: ProductSliderUpdateInput;
+};
+
+export type ProductSliderUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: ProductSliderUpsertInput;
+  /** Unique document search */
+  where: ProductSliderWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type ProductSliderWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Identifies documents */
+export type ProductSliderWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ProductSliderWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ProductSliderWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ProductSliderWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  categoryId?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  categoryId_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  categoryId_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  categoryId_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  categoryId_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  categoryId_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  categoryId_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  categoryId_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  categoryId_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  categoryId_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<ProductSliderWhereStageInput>;
+  documentInStages_none?: InputMaybe<ProductSliderWhereStageInput>;
+  documentInStages_some?: InputMaybe<ProductSliderWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  pages_every?: InputMaybe<PageWhereInput>;
+  pages_none?: InputMaybe<PageWhereInput>;
+  pages_some?: InputMaybe<PageWhereInput>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  title_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  type?: InputMaybe<ProductSliderType>;
+  /** All values that are contained in given list. */
+  type_in?: InputMaybe<Array<InputMaybe<ProductSliderType>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  type_not?: InputMaybe<ProductSliderType>;
+  /** All values that are not contained in given list. */
+  type_not_in?: InputMaybe<Array<InputMaybe<ProductSliderType>>>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type ProductSliderWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ProductSliderWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ProductSliderWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ProductSliderWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<ProductSliderWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References ProductSlider record uniquely */
+export type ProductSliderWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
 /** Deprecated. Use `ProductAttributeSortInput` instead. Specifies the attribute to use for sorting search results and indicates whether the results are sorted in ascending or descending order. */
 export type ProductSortInput = {
   /** The product's country of origin. */
@@ -16151,17 +16175,17 @@ export type Query = {
   pagesConnection: PageConnection;
   /** The pickup locations query searches for locations that match the search request requirements. */
   pickupLocations?: Maybe<PickupLocations>;
-  /** Retrieve a single popularProduct */
-  popularProduct?: Maybe<PopularProduct>;
-  /** Retrieve document version */
-  popularProductVersion?: Maybe<DocumentVersion>;
-  /** Retrieve multiple popularProducts */
-  popularProducts: Array<PopularProduct>;
-  /** Retrieve multiple popularProducts using the Relay connection interface */
-  popularProductsConnection: PopularProductConnection;
   productBrand?: Maybe<Brand>;
   /** Return the active ratings attributes and the values each rating can have. */
   productReviewRatingsMetadata: ProductReviewRatingsMetadata;
+  /** Retrieve a single productSlider */
+  productSlider?: Maybe<ProductSlider>;
+  /** Retrieve document version */
+  productSliderVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple productSliders */
+  productSliders: Array<ProductSlider>;
+  /** Retrieve multiple productSliders using the Relay connection interface */
+  productSlidersConnection: ProductSliderConnection;
   /** Search for products that match the criteria specified in the `search` and `filter` attributes. */
   products?: Maybe<Products>;
   /** Return the full details for a specified product, category, or CMS page. */
@@ -16493,42 +16517,42 @@ export type QueryPickupLocationsArgs = {
   sort: InputMaybe<PickupLocationSortInput>;
 };
 
-export type QueryPopularProductArgs = {
-  locales?: Array<Locale>;
-  stage?: Stage;
-  where: PopularProductWhereUniqueInput;
+export type QueryProductBrandArgs = {
+  sku: InputMaybe<Scalars["String"]["input"]>;
 };
 
-export type QueryPopularProductVersionArgs = {
+export type QueryProductSliderArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: ProductSliderWhereUniqueInput;
+};
+
+export type QueryProductSliderVersionArgs = {
   where: VersionWhereInput;
 };
 
-export type QueryPopularProductsArgs = {
+export type QueryProductSlidersArgs = {
   after: InputMaybe<Scalars["String"]["input"]>;
   before: InputMaybe<Scalars["String"]["input"]>;
   first: InputMaybe<Scalars["Int"]["input"]>;
   last: InputMaybe<Scalars["Int"]["input"]>;
   locales?: Array<Locale>;
-  orderBy: InputMaybe<PopularProductOrderByInput>;
+  orderBy: InputMaybe<ProductSliderOrderByInput>;
   skip: InputMaybe<Scalars["Int"]["input"]>;
   stage?: Stage;
-  where: InputMaybe<PopularProductWhereInput>;
+  where: InputMaybe<ProductSliderWhereInput>;
 };
 
-export type QueryPopularProductsConnectionArgs = {
+export type QueryProductSlidersConnectionArgs = {
   after: InputMaybe<Scalars["String"]["input"]>;
   before: InputMaybe<Scalars["String"]["input"]>;
   first: InputMaybe<Scalars["Int"]["input"]>;
   last: InputMaybe<Scalars["Int"]["input"]>;
   locales?: Array<Locale>;
-  orderBy: InputMaybe<PopularProductOrderByInput>;
+  orderBy: InputMaybe<ProductSliderOrderByInput>;
   skip: InputMaybe<Scalars["Int"]["input"]>;
   stage?: Stage;
-  where: InputMaybe<PopularProductWhereInput>;
-};
-
-export type QueryProductBrandArgs = {
-  sku: InputMaybe<Scalars["String"]["input"]>;
+  where: InputMaybe<ProductSliderWhereInput>;
 };
 
 export type QueryProductsArgs = {
@@ -18092,7 +18116,7 @@ export type ScheduledOperationAffectedDocument =
   | DynamicHeader
   | Menu
   | Page
-  | PopularProduct
+  | ProductSlider
   | StaticPageConfiguration;
 
 export type ScheduledOperationConnectInput = {
@@ -22298,10 +22322,11 @@ export type CmsBannerFragment = {
   } | null;
 };
 
-export type CmsPopularProductsFragment = {
-  __typename: "PopularProduct";
-  id: string;
+export type CmsProductSliderFragment = {
+  __typename: "ProductSlider";
   categoryId?: string | null;
+  type: ProductSliderType;
+  title: string;
 };
 
 export type CmsLinkFragment = {
@@ -22510,7 +22535,12 @@ export type CmsPagesQuery = {
             bottomLine?: string | null;
           } | null;
         }
-      | { __typename: "PopularProduct"; id: string; categoryId?: string | null }
+      | {
+          __typename: "ProductSlider";
+          categoryId?: string | null;
+          type: ProductSliderType;
+          title: string;
+        }
     >;
   }>;
 };
@@ -23140,6 +23170,1151 @@ export type ConfigurableProductFragment = {
     discount?: Array<string | null> | null;
     new?: boolean | null;
   } | null;
+};
+
+export type BestSellingProductsByCategoryQueryVariables = Exact<{
+  categoryId: Scalars["Int"]["input"];
+}>;
+
+export type BestSellingProductsByCategoryQuery = {
+  __typename: "Query";
+  bestSellingProductsByCategory?: Array<
+    | {
+        __typename: "BundleProduct";
+        url_key?: string | null;
+        url_suffix?: string | null;
+        canonical_url?: string | null;
+        gift_message_available?: string | null;
+        is_returnable?: string | null;
+        meta_description?: string | null;
+        meta_keyword?: string | null;
+        meta_title?: string | null;
+        name?: string | null;
+        new_from_date?: string | null;
+        new_to_date?: string | null;
+        only_x_left_in_stock?: number | null;
+        rating_summary: number;
+        uid: string;
+        stock_status?: ProductStockStatus | null;
+        special_to_date?: string | null;
+        special_price?: number | null;
+        sku?: string | null;
+        review_count: number;
+        addable_to_cart?: number | null;
+        delivery_promise?: string | null;
+        maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
+        description?: { __typename: "ComplexTextValue"; html: string } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+        media_gallery?: Array<
+          | {
+              __typename: "ProductImage";
+              disabled?: boolean | null;
+              label?: string | null;
+              position?: number | null;
+              url?: string | null;
+            }
+          | {
+              __typename: "ProductVideo";
+              disabled?: boolean | null;
+              label?: string | null;
+              position?: number | null;
+              url?: string | null;
+              video_content?: {
+                __typename: "ProductMediaGalleryEntriesVideoContent";
+                media_type?: string | null;
+                video_description?: string | null;
+                video_metadata?: string | null;
+                video_provider?: string | null;
+                video_title?: string | null;
+                video_url?: string | null;
+              } | null;
+            }
+          | null
+        > | null;
+        price_range: {
+          __typename: "PriceRange";
+          maximum_price?: {
+            __typename: "ProductPrice";
+            discount?: {
+              __typename: "ProductDiscount";
+              amount_off?: number | null;
+              percent_off?: number | null;
+            } | null;
+            final_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null> | null;
+            regular_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+          } | null;
+          minimum_price: {
+            __typename: "ProductPrice";
+            discount?: {
+              __typename: "ProductDiscount";
+              amount_off?: number | null;
+              percent_off?: number | null;
+            } | null;
+            final_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null> | null;
+            regular_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+          };
+        };
+        productBrand?: {
+          __typename: "Brand";
+          brand_image_url?: string | null;
+          name?: string | null;
+        } | null;
+        small_image?: {
+          __typename: "ProductImage";
+          disabled?: boolean | null;
+          label?: string | null;
+          position?: number | null;
+          url?: string | null;
+        } | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        reviews: {
+          __typename: "ProductReviews";
+          items: Array<{
+            __typename: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
+        categories?: Array<{
+          __typename: "CategoryTree";
+          url_path?: string | null;
+          name?: string | null;
+        } | null> | null;
+        productLabel?: {
+          __typename: "Label";
+          custom?: Array<string | null> | null;
+          discount?: Array<string | null> | null;
+          new?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "ConfigurableProduct";
+        url_key?: string | null;
+        url_suffix?: string | null;
+        canonical_url?: string | null;
+        gift_message_available?: string | null;
+        is_returnable?: string | null;
+        meta_description?: string | null;
+        meta_keyword?: string | null;
+        meta_title?: string | null;
+        name?: string | null;
+        new_from_date?: string | null;
+        new_to_date?: string | null;
+        only_x_left_in_stock?: number | null;
+        rating_summary: number;
+        uid: string;
+        stock_status?: ProductStockStatus | null;
+        special_to_date?: string | null;
+        special_price?: number | null;
+        sku?: string | null;
+        review_count: number;
+        addable_to_cart?: number | null;
+        delivery_promise?: string | null;
+        maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
+        description?: { __typename: "ComplexTextValue"; html: string } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+        media_gallery?: Array<
+          | {
+              __typename: "ProductImage";
+              disabled?: boolean | null;
+              label?: string | null;
+              position?: number | null;
+              url?: string | null;
+            }
+          | {
+              __typename: "ProductVideo";
+              disabled?: boolean | null;
+              label?: string | null;
+              position?: number | null;
+              url?: string | null;
+              video_content?: {
+                __typename: "ProductMediaGalleryEntriesVideoContent";
+                media_type?: string | null;
+                video_description?: string | null;
+                video_metadata?: string | null;
+                video_provider?: string | null;
+                video_title?: string | null;
+                video_url?: string | null;
+              } | null;
+            }
+          | null
+        > | null;
+        price_range: {
+          __typename: "PriceRange";
+          maximum_price?: {
+            __typename: "ProductPrice";
+            discount?: {
+              __typename: "ProductDiscount";
+              amount_off?: number | null;
+              percent_off?: number | null;
+            } | null;
+            final_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null> | null;
+            regular_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+          } | null;
+          minimum_price: {
+            __typename: "ProductPrice";
+            discount?: {
+              __typename: "ProductDiscount";
+              amount_off?: number | null;
+              percent_off?: number | null;
+            } | null;
+            final_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null> | null;
+            regular_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+          };
+        };
+        productBrand?: {
+          __typename: "Brand";
+          brand_image_url?: string | null;
+          name?: string | null;
+        } | null;
+        small_image?: {
+          __typename: "ProductImage";
+          disabled?: boolean | null;
+          label?: string | null;
+          position?: number | null;
+          url?: string | null;
+        } | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        reviews: {
+          __typename: "ProductReviews";
+          items: Array<{
+            __typename: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
+        categories?: Array<{
+          __typename: "CategoryTree";
+          url_path?: string | null;
+          name?: string | null;
+        } | null> | null;
+        productLabel?: {
+          __typename: "Label";
+          custom?: Array<string | null> | null;
+          discount?: Array<string | null> | null;
+          new?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "DownloadableProduct";
+        url_key?: string | null;
+        url_suffix?: string | null;
+        canonical_url?: string | null;
+        gift_message_available?: string | null;
+        is_returnable?: string | null;
+        meta_description?: string | null;
+        meta_keyword?: string | null;
+        meta_title?: string | null;
+        name?: string | null;
+        new_from_date?: string | null;
+        new_to_date?: string | null;
+        only_x_left_in_stock?: number | null;
+        rating_summary: number;
+        uid: string;
+        stock_status?: ProductStockStatus | null;
+        special_to_date?: string | null;
+        special_price?: number | null;
+        sku?: string | null;
+        review_count: number;
+        addable_to_cart?: number | null;
+        delivery_promise?: string | null;
+        maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
+        description?: { __typename: "ComplexTextValue"; html: string } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+        media_gallery?: Array<
+          | {
+              __typename: "ProductImage";
+              disabled?: boolean | null;
+              label?: string | null;
+              position?: number | null;
+              url?: string | null;
+            }
+          | {
+              __typename: "ProductVideo";
+              disabled?: boolean | null;
+              label?: string | null;
+              position?: number | null;
+              url?: string | null;
+              video_content?: {
+                __typename: "ProductMediaGalleryEntriesVideoContent";
+                media_type?: string | null;
+                video_description?: string | null;
+                video_metadata?: string | null;
+                video_provider?: string | null;
+                video_title?: string | null;
+                video_url?: string | null;
+              } | null;
+            }
+          | null
+        > | null;
+        price_range: {
+          __typename: "PriceRange";
+          maximum_price?: {
+            __typename: "ProductPrice";
+            discount?: {
+              __typename: "ProductDiscount";
+              amount_off?: number | null;
+              percent_off?: number | null;
+            } | null;
+            final_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null> | null;
+            regular_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+          } | null;
+          minimum_price: {
+            __typename: "ProductPrice";
+            discount?: {
+              __typename: "ProductDiscount";
+              amount_off?: number | null;
+              percent_off?: number | null;
+            } | null;
+            final_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null> | null;
+            regular_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+          };
+        };
+        productBrand?: {
+          __typename: "Brand";
+          brand_image_url?: string | null;
+          name?: string | null;
+        } | null;
+        small_image?: {
+          __typename: "ProductImage";
+          disabled?: boolean | null;
+          label?: string | null;
+          position?: number | null;
+          url?: string | null;
+        } | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        reviews: {
+          __typename: "ProductReviews";
+          items: Array<{
+            __typename: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
+        categories?: Array<{
+          __typename: "CategoryTree";
+          url_path?: string | null;
+          name?: string | null;
+        } | null> | null;
+        productLabel?: {
+          __typename: "Label";
+          custom?: Array<string | null> | null;
+          discount?: Array<string | null> | null;
+          new?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "GiftCardProduct";
+        url_key?: string | null;
+        url_suffix?: string | null;
+        canonical_url?: string | null;
+        gift_message_available?: string | null;
+        is_returnable?: string | null;
+        meta_description?: string | null;
+        meta_keyword?: string | null;
+        meta_title?: string | null;
+        name?: string | null;
+        new_from_date?: string | null;
+        new_to_date?: string | null;
+        only_x_left_in_stock?: number | null;
+        rating_summary: number;
+        uid: string;
+        stock_status?: ProductStockStatus | null;
+        special_to_date?: string | null;
+        special_price?: number | null;
+        sku?: string | null;
+        review_count: number;
+        addable_to_cart?: number | null;
+        delivery_promise?: string | null;
+        maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
+        description?: { __typename: "ComplexTextValue"; html: string } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+        media_gallery?: Array<
+          | {
+              __typename: "ProductImage";
+              disabled?: boolean | null;
+              label?: string | null;
+              position?: number | null;
+              url?: string | null;
+            }
+          | {
+              __typename: "ProductVideo";
+              disabled?: boolean | null;
+              label?: string | null;
+              position?: number | null;
+              url?: string | null;
+              video_content?: {
+                __typename: "ProductMediaGalleryEntriesVideoContent";
+                media_type?: string | null;
+                video_description?: string | null;
+                video_metadata?: string | null;
+                video_provider?: string | null;
+                video_title?: string | null;
+                video_url?: string | null;
+              } | null;
+            }
+          | null
+        > | null;
+        price_range: {
+          __typename: "PriceRange";
+          maximum_price?: {
+            __typename: "ProductPrice";
+            discount?: {
+              __typename: "ProductDiscount";
+              amount_off?: number | null;
+              percent_off?: number | null;
+            } | null;
+            final_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null> | null;
+            regular_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+          } | null;
+          minimum_price: {
+            __typename: "ProductPrice";
+            discount?: {
+              __typename: "ProductDiscount";
+              amount_off?: number | null;
+              percent_off?: number | null;
+            } | null;
+            final_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null> | null;
+            regular_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+          };
+        };
+        productBrand?: {
+          __typename: "Brand";
+          brand_image_url?: string | null;
+          name?: string | null;
+        } | null;
+        small_image?: {
+          __typename: "ProductImage";
+          disabled?: boolean | null;
+          label?: string | null;
+          position?: number | null;
+          url?: string | null;
+        } | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        reviews: {
+          __typename: "ProductReviews";
+          items: Array<{
+            __typename: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
+        categories?: Array<{
+          __typename: "CategoryTree";
+          url_path?: string | null;
+          name?: string | null;
+        } | null> | null;
+        productLabel?: {
+          __typename: "Label";
+          custom?: Array<string | null> | null;
+          discount?: Array<string | null> | null;
+          new?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "GroupedProduct";
+        url_key?: string | null;
+        url_suffix?: string | null;
+        canonical_url?: string | null;
+        gift_message_available?: string | null;
+        is_returnable?: string | null;
+        meta_description?: string | null;
+        meta_keyword?: string | null;
+        meta_title?: string | null;
+        name?: string | null;
+        new_from_date?: string | null;
+        new_to_date?: string | null;
+        only_x_left_in_stock?: number | null;
+        rating_summary: number;
+        uid: string;
+        stock_status?: ProductStockStatus | null;
+        special_to_date?: string | null;
+        special_price?: number | null;
+        sku?: string | null;
+        review_count: number;
+        addable_to_cart?: number | null;
+        delivery_promise?: string | null;
+        maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
+        description?: { __typename: "ComplexTextValue"; html: string } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+        media_gallery?: Array<
+          | {
+              __typename: "ProductImage";
+              disabled?: boolean | null;
+              label?: string | null;
+              position?: number | null;
+              url?: string | null;
+            }
+          | {
+              __typename: "ProductVideo";
+              disabled?: boolean | null;
+              label?: string | null;
+              position?: number | null;
+              url?: string | null;
+              video_content?: {
+                __typename: "ProductMediaGalleryEntriesVideoContent";
+                media_type?: string | null;
+                video_description?: string | null;
+                video_metadata?: string | null;
+                video_provider?: string | null;
+                video_title?: string | null;
+                video_url?: string | null;
+              } | null;
+            }
+          | null
+        > | null;
+        price_range: {
+          __typename: "PriceRange";
+          maximum_price?: {
+            __typename: "ProductPrice";
+            discount?: {
+              __typename: "ProductDiscount";
+              amount_off?: number | null;
+              percent_off?: number | null;
+            } | null;
+            final_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null> | null;
+            regular_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+          } | null;
+          minimum_price: {
+            __typename: "ProductPrice";
+            discount?: {
+              __typename: "ProductDiscount";
+              amount_off?: number | null;
+              percent_off?: number | null;
+            } | null;
+            final_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null> | null;
+            regular_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+          };
+        };
+        productBrand?: {
+          __typename: "Brand";
+          brand_image_url?: string | null;
+          name?: string | null;
+        } | null;
+        small_image?: {
+          __typename: "ProductImage";
+          disabled?: boolean | null;
+          label?: string | null;
+          position?: number | null;
+          url?: string | null;
+        } | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        reviews: {
+          __typename: "ProductReviews";
+          items: Array<{
+            __typename: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
+        categories?: Array<{
+          __typename: "CategoryTree";
+          url_path?: string | null;
+          name?: string | null;
+        } | null> | null;
+        productLabel?: {
+          __typename: "Label";
+          custom?: Array<string | null> | null;
+          discount?: Array<string | null> | null;
+          new?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "SimpleProduct";
+        url_key?: string | null;
+        url_suffix?: string | null;
+        canonical_url?: string | null;
+        gift_message_available?: string | null;
+        is_returnable?: string | null;
+        meta_description?: string | null;
+        meta_keyword?: string | null;
+        meta_title?: string | null;
+        name?: string | null;
+        new_from_date?: string | null;
+        new_to_date?: string | null;
+        only_x_left_in_stock?: number | null;
+        rating_summary: number;
+        uid: string;
+        stock_status?: ProductStockStatus | null;
+        special_to_date?: string | null;
+        special_price?: number | null;
+        sku?: string | null;
+        review_count: number;
+        addable_to_cart?: number | null;
+        delivery_promise?: string | null;
+        maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
+        description?: { __typename: "ComplexTextValue"; html: string } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+        media_gallery?: Array<
+          | {
+              __typename: "ProductImage";
+              disabled?: boolean | null;
+              label?: string | null;
+              position?: number | null;
+              url?: string | null;
+            }
+          | {
+              __typename: "ProductVideo";
+              disabled?: boolean | null;
+              label?: string | null;
+              position?: number | null;
+              url?: string | null;
+              video_content?: {
+                __typename: "ProductMediaGalleryEntriesVideoContent";
+                media_type?: string | null;
+                video_description?: string | null;
+                video_metadata?: string | null;
+                video_provider?: string | null;
+                video_title?: string | null;
+                video_url?: string | null;
+              } | null;
+            }
+          | null
+        > | null;
+        price_range: {
+          __typename: "PriceRange";
+          maximum_price?: {
+            __typename: "ProductPrice";
+            discount?: {
+              __typename: "ProductDiscount";
+              amount_off?: number | null;
+              percent_off?: number | null;
+            } | null;
+            final_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null> | null;
+            regular_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+          } | null;
+          minimum_price: {
+            __typename: "ProductPrice";
+            discount?: {
+              __typename: "ProductDiscount";
+              amount_off?: number | null;
+              percent_off?: number | null;
+            } | null;
+            final_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null> | null;
+            regular_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+          };
+        };
+        productBrand?: {
+          __typename: "Brand";
+          brand_image_url?: string | null;
+          name?: string | null;
+        } | null;
+        small_image?: {
+          __typename: "ProductImage";
+          disabled?: boolean | null;
+          label?: string | null;
+          position?: number | null;
+          url?: string | null;
+        } | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        reviews: {
+          __typename: "ProductReviews";
+          items: Array<{
+            __typename: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
+        categories?: Array<{
+          __typename: "CategoryTree";
+          url_path?: string | null;
+          name?: string | null;
+        } | null> | null;
+        productLabel?: {
+          __typename: "Label";
+          custom?: Array<string | null> | null;
+          discount?: Array<string | null> | null;
+          new?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "VirtualProduct";
+        url_key?: string | null;
+        url_suffix?: string | null;
+        canonical_url?: string | null;
+        gift_message_available?: string | null;
+        is_returnable?: string | null;
+        meta_description?: string | null;
+        meta_keyword?: string | null;
+        meta_title?: string | null;
+        name?: string | null;
+        new_from_date?: string | null;
+        new_to_date?: string | null;
+        only_x_left_in_stock?: number | null;
+        rating_summary: number;
+        uid: string;
+        stock_status?: ProductStockStatus | null;
+        special_to_date?: string | null;
+        special_price?: number | null;
+        sku?: string | null;
+        review_count: number;
+        addable_to_cart?: number | null;
+        delivery_promise?: string | null;
+        maintenance_description?: string | null;
+        measurement_depth?: string | null;
+        measurement_diameter?: string | null;
+        measurement_gross_weight?: string | null;
+        measurement_height?: string | null;
+        measurement_length?: string | null;
+        measurement_seat_height?: string | null;
+        measurement_thickness?: string | null;
+        measurement_volume?: string | null;
+        measurement_width?: string | null;
+        description?: { __typename: "ComplexTextValue"; html: string } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+        media_gallery?: Array<
+          | {
+              __typename: "ProductImage";
+              disabled?: boolean | null;
+              label?: string | null;
+              position?: number | null;
+              url?: string | null;
+            }
+          | {
+              __typename: "ProductVideo";
+              disabled?: boolean | null;
+              label?: string | null;
+              position?: number | null;
+              url?: string | null;
+              video_content?: {
+                __typename: "ProductMediaGalleryEntriesVideoContent";
+                media_type?: string | null;
+                video_description?: string | null;
+                video_metadata?: string | null;
+                video_provider?: string | null;
+                video_title?: string | null;
+                video_url?: string | null;
+              } | null;
+            }
+          | null
+        > | null;
+        price_range: {
+          __typename: "PriceRange";
+          maximum_price?: {
+            __typename: "ProductPrice";
+            discount?: {
+              __typename: "ProductDiscount";
+              amount_off?: number | null;
+              percent_off?: number | null;
+            } | null;
+            final_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null> | null;
+            regular_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+          } | null;
+          minimum_price: {
+            __typename: "ProductPrice";
+            discount?: {
+              __typename: "ProductDiscount";
+              amount_off?: number | null;
+              percent_off?: number | null;
+            } | null;
+            final_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null> | null;
+            regular_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+          };
+        };
+        productBrand?: {
+          __typename: "Brand";
+          brand_image_url?: string | null;
+          name?: string | null;
+        } | null;
+        small_image?: {
+          __typename: "ProductImage";
+          disabled?: boolean | null;
+          label?: string | null;
+          position?: number | null;
+          url?: string | null;
+        } | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        reviews: {
+          __typename: "ProductReviews";
+          items: Array<{
+            __typename: "ProductReview";
+            average_rating: number;
+            nickname: string;
+            summary: string;
+            text: string;
+          } | null>;
+        };
+        categories?: Array<{
+          __typename: "CategoryTree";
+          url_path?: string | null;
+          name?: string | null;
+        } | null> | null;
+        productLabel?: {
+          __typename: "Label";
+          custom?: Array<string | null> | null;
+          discount?: Array<string | null> | null;
+          new?: boolean | null;
+        } | null;
+      }
+    | null
+  > | null;
 };
 
 export type ProductImageFragmentFragment = {
@@ -97482,15 +98657,15 @@ export const BaseCategoryDataFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<BaseCategoryDataFragment, unknown>;
-export const CmsPopularProductsFragmentDoc = {
+export const CmsProductSliderFragmentDoc = {
   kind: "Document",
   definitions: [
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "CmsPopularProducts" },
+      name: { kind: "Name", value: "CmsProductSlider" },
       typeCondition: {
         kind: "NamedType",
-        name: { kind: "Name", value: "PopularProduct" },
+        name: { kind: "Name", value: "ProductSlider" },
       },
       selectionSet: {
         kind: "SelectionSet",
@@ -97499,14 +98674,15 @@ export const CmsPopularProductsFragmentDoc = {
             kind: "InlineFragment",
             typeCondition: {
               kind: "NamedType",
-              name: { kind: "Name", value: "PopularProduct" },
+              name: { kind: "Name", value: "ProductSlider" },
             },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "categoryId" } },
+                { kind: "Field", name: { kind: "Name", value: "type" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
               ],
             },
           },
@@ -97514,7 +98690,7 @@ export const CmsPopularProductsFragmentDoc = {
       },
     },
   ],
-} as unknown as DocumentNode<CmsPopularProductsFragment, unknown>;
+} as unknown as DocumentNode<CmsProductSliderFragment, unknown>;
 export const CmsLinkFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -103712,7 +104888,7 @@ export const CmsPagesDocument = {
                       },
                       {
                         kind: "FragmentSpread",
-                        name: { kind: "Name", value: "CmsPopularProducts" },
+                        name: { kind: "Name", value: "CmsProductSlider" },
                       },
                     ],
                   },
@@ -103801,10 +104977,10 @@ export const CmsPagesDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "CmsPopularProducts" },
+      name: { kind: "Name", value: "CmsProductSlider" },
       typeCondition: {
         kind: "NamedType",
-        name: { kind: "Name", value: "PopularProduct" },
+        name: { kind: "Name", value: "ProductSlider" },
       },
       selectionSet: {
         kind: "SelectionSet",
@@ -103813,14 +104989,15 @@ export const CmsPagesDocument = {
             kind: "InlineFragment",
             typeCondition: {
               kind: "NamedType",
-              name: { kind: "Name", value: "PopularProduct" },
+              name: { kind: "Name", value: "ProductSlider" },
             },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "categoryId" } },
+                { kind: "Field", name: { kind: "Name", value: "type" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
               ],
             },
           },
@@ -104086,6 +105263,577 @@ export const CmsDynamicHeadersDocument = {
 } as unknown as DocumentNode<
   CmsDynamicHeadersQuery,
   CmsDynamicHeadersQueryVariables
+>;
+export const BestSellingProductsByCategoryDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "BestSellingProductsByCategory" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "categoryId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "bestSellingProductsByCategory" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "categoryId" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "categoryId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "BaseProduct" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductImageFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductImage" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductVideoFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductVideo" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "video_content" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "media_type" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_description" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_metadata" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "video_provider" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "video_title" } },
+                { kind: "Field", name: { kind: "Name", value: "video_url" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductMediaGallery" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "MediaGalleryInterface" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "ProductImage" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductImageFragment" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "ProductVideo" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductVideoFragment" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductPriceRange" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PriceRange" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "maximum_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "discount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount_off" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "percent_off" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "final_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "fixed_product_taxes" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "currency" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "value" },
+                            },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "regular_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "minimum_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "discount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount_off" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "percent_off" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "final_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "fixed_product_taxes" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "amount" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "currency" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "value" },
+                            },
+                          ],
+                        },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "label" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "regular_price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductLabel" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Label" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "custom" } },
+          { kind: "Field", name: { kind: "Name", value: "discount" } },
+          { kind: "Field", name: { kind: "Name", value: "new" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "BaseProduct" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductInterface" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "url_key" } },
+          { kind: "Field", name: { kind: "Name", value: "url_suffix" } },
+          { kind: "Field", name: { kind: "Name", value: "canonical_url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "description" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "html" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "gift_message_available" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductImageFragment" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "is_returnable" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "media_gallery" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductMediaGallery" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "meta_description" } },
+          { kind: "Field", name: { kind: "Name", value: "meta_keyword" } },
+          { kind: "Field", name: { kind: "Name", value: "meta_title" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "new_from_date" } },
+          { kind: "Field", name: { kind: "Name", value: "new_to_date" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "only_x_left_in_stock" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "price_range" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductPriceRange" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "productBrand" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "brand_image_url" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "rating_summary" } },
+          { kind: "Field", name: { kind: "Name", value: "uid" } },
+          { kind: "Field", name: { kind: "Name", value: "stock_status" } },
+          { kind: "Field", name: { kind: "Name", value: "special_to_date" } },
+          { kind: "Field", name: { kind: "Name", value: "special_price" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "small_image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "disabled" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "position" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "sku" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "short_description" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "html" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "review_count" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reviews" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "items" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "average_rating" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "nickname" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "summary" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "text" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "addable_to_cart" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "categories" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url_path" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "productLabel" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductLabel" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "delivery_promise" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "maintenance_description" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "measurement_depth" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_diameter" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_gross_weight" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_length" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_seat_height" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_thickness" },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "measurement_volume" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "measurement_width" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  BestSellingProductsByCategoryQuery,
+  BestSellingProductsByCategoryQueryVariables
 >;
 export const ProductsDocument = {
   kind: "Document",

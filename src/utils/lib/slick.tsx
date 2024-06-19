@@ -7,7 +7,7 @@ import { ArrowPrev } from "@/components/_ui/slider/arrows/ArrowPrev";
 
 export const productSliderConfig: Settings = {
   dots: true,
-  infinite: false,
+  infinite: true,
   speed: 500,
   slidesToShow: 4,
   slidesToScroll: 1,

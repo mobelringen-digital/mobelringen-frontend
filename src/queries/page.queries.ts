@@ -11,7 +11,7 @@ export const CmsPagesQueryDocument = graphql(`
       url
       content {
         ...CmsBanner
-        ...CmsPopularProducts
+        ...CmsProductSlider
       }
     }
   }
