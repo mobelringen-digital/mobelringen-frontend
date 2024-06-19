@@ -10,11 +10,11 @@ import { ProductInformation } from "@/components/product/ProductInformation";
 import { ProductLabels } from "@/components/product/ProductLabels";
 import { ProductPricing } from "@/components/product/ProductPricing";
 import { ProductStock } from "@/components/product/ProductStock";
-import { BaseProductFragment } from "@/types";
+import { BaseProductDataForCardFragment } from "@/types";
 import { usePriceRange } from "@/utils/hooks/usePriceRange";
 
 interface Props {
-  product: BaseProductFragment;
+  product: BaseProductDataForCardFragment;
   className?: string;
 }
 
@@ -36,7 +36,7 @@ export const ProductCard: React.FC<Props> = ({ product, className }) => {
         <ProductLabels
           discount={percentageDiscount}
           labels={labels}
-          addToWishList={<AddToWishList product={product} />}
+          addToWishList={<AddToWishList productSku={product.sku} />}
         />
       </Link>
       <div className="mt-4 px-2 pb-2 mb-2 border-b border-b-cold-grey-dark">

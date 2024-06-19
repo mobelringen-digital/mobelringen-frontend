@@ -1,10 +1,31 @@
 import { graphql } from "@/types/schema";
 
+export const BaseProductDataForCarFragment = graphql(`
+  fragment BaseProductDataForCard on ProductInterface {
+    __typename
+    name
+    sku
+    canonical_url
+    short_description {
+      html
+    }
+    price_range {
+      ...ProductPriceRange
+    }
+    image {
+      ...ProductImageFragment
+    }
+    productLabel {
+      ...ProductLabel
+    }
+  }
+`);
+
 export const ProductSeriesSliderDataFragment = graphql(`
   fragment ProductSeriesSliderData on ProductInterface {
     __typename
     series {
-      ...BaseProduct
+      ...BaseProductDataForCard
     }
   }
 `);
@@ -13,7 +34,7 @@ export const RelatedProductsSliderDataFragment = graphql(`
   fragment RelatedProductsSliderData on ProductInterface {
     __typename
     related_products {
-      ...BaseProduct
+      ...BaseProductDataForCard
     }
   }
 `);
@@ -21,7 +42,7 @@ export const UpsellProductsSliderDataFragment = graphql(`
   fragment UpsellProductsSliderData on ProductInterface {
     __typename
     upsell_products {
-      ...BaseProduct
+      ...BaseProductDataForCard
     }
   }
 `);

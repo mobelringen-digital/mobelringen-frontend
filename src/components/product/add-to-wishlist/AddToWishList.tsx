@@ -3,10 +3,9 @@ import React from "react";
 import cx from "classnames";
 
 import { Favorite } from "@/components/_ui/icons/figma/Favorite";
-import { BaseProductFragment } from "@/types";
 
 interface Props {
-  product: BaseProductFragment;
+  productSku?: string | null;
   className?: string;
 }
 

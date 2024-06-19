@@ -2,10 +2,10 @@ import React from "react";
 
 import Link from "next/link";
 
-import { BaseProductFragment } from "@/types";
+import { BaseProductDataForCardFragment } from "@/types";
 
 interface Props {
-  product: BaseProductFragment;
+  product: BaseProductDataForCardFragment;
 }
 
 export const ProductInformation: React.FC<Props> = ({ product }) => {

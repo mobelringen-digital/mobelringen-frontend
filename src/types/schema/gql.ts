@@ -79,11 +79,13 @@ const documents = {
     types.ProductMeasurementsDocument,
   "\n  fragment SimpleProduct on SimpleProduct {\n    ...BaseProduct\n  }\n":
     types.SimpleProductFragmentDoc,
-  "\n  fragment ProductSeriesSliderData on ProductInterface {\n    __typename\n    series {\n      ...BaseProduct\n    }\n  }\n":
+  "\n  fragment BaseProductDataForCard on ProductInterface {\n    __typename\n    name\n    sku\n    canonical_url\n    short_description {\n      html\n    }\n    price_range {\n      ...ProductPriceRange\n    }\n    image {\n      ...ProductImageFragment\n    }\n    productLabel {\n      ...ProductLabel\n    }\n  }\n":
+    types.BaseProductDataForCardFragmentDoc,
+  "\n  fragment ProductSeriesSliderData on ProductInterface {\n    __typename\n    series {\n      ...BaseProductDataForCard\n    }\n  }\n":
     types.ProductSeriesSliderDataFragmentDoc,
-  "\n  fragment RelatedProductsSliderData on ProductInterface {\n    __typename\n    related_products {\n      ...BaseProduct\n    }\n  }\n":
+  "\n  fragment RelatedProductsSliderData on ProductInterface {\n    __typename\n    related_products {\n      ...BaseProductDataForCard\n    }\n  }\n":
     types.RelatedProductsSliderDataFragmentDoc,
-  "\n  fragment UpsellProductsSliderData on ProductInterface {\n    __typename\n    upsell_products {\n      ...BaseProduct\n    }\n  }\n":
+  "\n  fragment UpsellProductsSliderData on ProductInterface {\n    __typename\n    upsell_products {\n      ...BaseProductDataForCard\n    }\n  }\n":
     types.UpsellProductsSliderDataFragmentDoc,
   "\n  fragment BaseProductSliderData on ProductInterface {\n    ...RelatedProductsSliderData\n    ...ProductSeriesSliderData\n    ...UpsellProductsSliderData\n  }\n":
     types.BaseProductSliderDataFragmentDoc,
@@ -313,20 +315,26 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment ProductSeriesSliderData on ProductInterface {\n    __typename\n    series {\n      ...BaseProduct\n    }\n  }\n",
-): (typeof documents)["\n  fragment ProductSeriesSliderData on ProductInterface {\n    __typename\n    series {\n      ...BaseProduct\n    }\n  }\n"];
+  source: "\n  fragment BaseProductDataForCard on ProductInterface {\n    __typename\n    name\n    sku\n    canonical_url\n    short_description {\n      html\n    }\n    price_range {\n      ...ProductPriceRange\n    }\n    image {\n      ...ProductImageFragment\n    }\n    productLabel {\n      ...ProductLabel\n    }\n  }\n",
+): (typeof documents)["\n  fragment BaseProductDataForCard on ProductInterface {\n    __typename\n    name\n    sku\n    canonical_url\n    short_description {\n      html\n    }\n    price_range {\n      ...ProductPriceRange\n    }\n    image {\n      ...ProductImageFragment\n    }\n    productLabel {\n      ...ProductLabel\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment RelatedProductsSliderData on ProductInterface {\n    __typename\n    related_products {\n      ...BaseProduct\n    }\n  }\n",
-): (typeof documents)["\n  fragment RelatedProductsSliderData on ProductInterface {\n    __typename\n    related_products {\n      ...BaseProduct\n    }\n  }\n"];
+  source: "\n  fragment ProductSeriesSliderData on ProductInterface {\n    __typename\n    series {\n      ...BaseProductDataForCard\n    }\n  }\n",
+): (typeof documents)["\n  fragment ProductSeriesSliderData on ProductInterface {\n    __typename\n    series {\n      ...BaseProductDataForCard\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment UpsellProductsSliderData on ProductInterface {\n    __typename\n    upsell_products {\n      ...BaseProduct\n    }\n  }\n",
-): (typeof documents)["\n  fragment UpsellProductsSliderData on ProductInterface {\n    __typename\n    upsell_products {\n      ...BaseProduct\n    }\n  }\n"];
+  source: "\n  fragment RelatedProductsSliderData on ProductInterface {\n    __typename\n    related_products {\n      ...BaseProductDataForCard\n    }\n  }\n",
+): (typeof documents)["\n  fragment RelatedProductsSliderData on ProductInterface {\n    __typename\n    related_products {\n      ...BaseProductDataForCard\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment UpsellProductsSliderData on ProductInterface {\n    __typename\n    upsell_products {\n      ...BaseProductDataForCard\n    }\n  }\n",
+): (typeof documents)["\n  fragment UpsellProductsSliderData on ProductInterface {\n    __typename\n    upsell_products {\n      ...BaseProductDataForCard\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
