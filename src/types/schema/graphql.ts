@@ -98586,6 +98586,148 @@ export type RouteQuery = {
     | null;
 };
 
+export type StoreConsentFragment = {
+  __typename: "ConfigConsent";
+  code: string;
+  is_required: boolean;
+  label: string;
+};
+
+export type StoreConfigQueryVariables = Exact<{ [key: string]: never }>;
+
+export type StoreConfigQuery = {
+  __typename: "Query";
+  storeConfig?: {
+    __typename: "StoreConfig";
+    brands_category?: number | null;
+    category_url_suffix?: string | null;
+    copyright?: string | null;
+    returns_enabled: string;
+    absolute_footer?: string | null;
+    allow_gift_receipt?: string | null;
+    allow_gift_wrapping_on_order?: string | null;
+    allow_gift_wrapping_on_order_items?: string | null;
+    allow_guests_to_write_product_reviews?: string | null;
+    allow_items?: string | null;
+    allow_order?: string | null;
+    allow_printed_card?: string | null;
+    autocomplete_on_storefront?: boolean | null;
+    base_currency_code?: string | null;
+    base_link_url?: string | null;
+    base_media_url?: string | null;
+    base_static_url?: string | null;
+    base_url?: string | null;
+    braintree_cc_vault_active?: string | null;
+    cart_gift_wrapping?: string | null;
+    cart_printed_card?: string | null;
+    catalog_default_sort_by?: string | null;
+    category_fixed_product_tax_display_setting?: FixedProductTaxDisplaySettings | null;
+    check_money_order_enable_for_specific_countries?: boolean | null;
+    check_money_order_enabled?: boolean | null;
+    check_money_order_make_check_payable_to?: string | null;
+    check_money_order_max_order_total?: string | null;
+    check_money_order_min_order_total?: string | null;
+    check_money_order_new_order_status?: string | null;
+    check_money_order_payment_from_specific_countries?: string | null;
+    check_money_order_send_check_to?: string | null;
+    check_money_order_sort_order?: number | null;
+    check_money_order_title?: string | null;
+    cms_home_page?: string | null;
+    cms_no_cookies?: string | null;
+    cms_no_route?: string | null;
+    code?: string | null;
+    configurable_thumbnail_source?: string | null;
+    default_description?: string | null;
+    default_display_currency_code?: string | null;
+    default_title?: string | null;
+    default_keywords?: string | null;
+    demonotice?: number | null;
+    enable_multiple_wishlists?: string | null;
+    front?: string | null;
+    grid_per_page?: number | null;
+    grid_per_page_values?: string | null;
+    head_includes?: string | null;
+    head_shortcut_icon?: string | null;
+    header_logo_src?: string | null;
+    id?: number | null;
+    is_default_store?: boolean | null;
+    is_default_store_group?: boolean | null;
+    list_mode?: string | null;
+    list_per_page?: number | null;
+    list_per_page_values?: string | null;
+    locale?: string | null;
+    logo_alt?: string | null;
+    logo_height?: number | null;
+    logo_width?: number | null;
+    magento_reward_general_is_enabled?: string | null;
+    magento_reward_general_is_enabled_on_front?: string | null;
+    magento_reward_general_min_points_balance?: string | null;
+    magento_reward_general_publish_history?: string | null;
+    magento_reward_points_invitation_customer?: string | null;
+    magento_reward_points_invitation_customer_limit?: string | null;
+    magento_reward_points_invitation_order?: string | null;
+    magento_reward_points_invitation_order_limit?: string | null;
+    magento_reward_points_newsletter?: string | null;
+    magento_reward_points_order?: string | null;
+    magento_reward_points_register?: string | null;
+    magento_reward_points_review?: string | null;
+    magento_reward_points_review_limit?: string | null;
+    magento_wishlist_general_is_enabled?: string | null;
+    maximum_number_of_wishlists?: string | null;
+    minimum_password_length?: string | null;
+    no_route?: string | null;
+    payment_payflowpro_cc_vault_active?: string | null;
+    printed_card_price?: string | null;
+    product_fixed_product_tax_display_setting?: FixedProductTaxDisplaySettings | null;
+    product_reviews_enabled?: string | null;
+    product_url_suffix?: string | null;
+    required_character_classes_number?: string | null;
+    root_category_id?: number | null;
+    root_category_uid?: string | null;
+    sales_fixed_product_tax_display_setting?: FixedProductTaxDisplaySettings | null;
+    sales_gift_wrapping?: string | null;
+    sales_printed_card?: string | null;
+    secure_base_link_url?: string | null;
+    secure_base_media_url?: string | null;
+    secure_base_static_url?: string | null;
+    secure_base_url?: string | null;
+    show_cms_breadcrumbs?: number | null;
+    store_code?: string | null;
+    store_group_code?: string | null;
+    store_group_name?: string | null;
+    store_name?: string | null;
+    store_sort_order?: number | null;
+    timezone?: string | null;
+    title_prefix?: string | null;
+    title_separator?: string | null;
+    title_suffix?: string | null;
+    use_store_in_url?: boolean | null;
+    website_code?: string | null;
+    website_id?: number | null;
+    website_name?: string | null;
+    weight_unit?: string | null;
+    welcome?: string | null;
+    zero_subtotal_enable_for_specific_countries?: boolean | null;
+    zero_subtotal_enabled?: boolean | null;
+    zero_subtotal_new_order_status?: string | null;
+    zero_subtotal_payment_action?: string | null;
+    zero_subtotal_payment_from_specific_countries?: string | null;
+    zero_subtotal_sort_order?: number | null;
+    zero_subtotal_title?: string | null;
+    consents?: Array<{
+      __typename: "ConfigConsent";
+      code: string;
+      is_required: boolean;
+      label: string;
+    } | null> | null;
+    send_friend?: {
+      __typename: "SendFriendConfiguration";
+      enabled_for_customers: boolean;
+      enabled_for_guests: boolean;
+    } | null;
+  } | null;
+};
+
 export const BaseCategoryDataFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -104217,6 +104359,27 @@ export const BaseProductSliderDataFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<BaseProductSliderDataFragment, unknown>;
+export const StoreConsentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StoreConsent" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ConfigConsent" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "code" } },
+          { kind: "Field", name: { kind: "Name", value: "is_required" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<StoreConsentFragment, unknown>;
 export const CategoryDocument = {
   kind: "Document",
   definitions: [
@@ -107401,3 +107564,566 @@ export const RouteDocument = {
     },
   ],
 } as unknown as DocumentNode<RouteQuery, RouteQueryVariables>;
+export const StoreConfigDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "StoreConfig" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "storeConfig" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "brands_category" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "category_url_suffix" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "consents" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "StoreConsent" },
+                      },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "copyright" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "returns_enabled" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "absolute_footer" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "allow_gift_receipt" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "allow_gift_wrapping_on_order" },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "allow_gift_wrapping_on_order_items",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "allow_guests_to_write_product_reviews",
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "allow_items" } },
+                { kind: "Field", name: { kind: "Name", value: "allow_order" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "allow_printed_card" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "autocomplete_on_storefront" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "base_currency_code" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "base_link_url" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "base_media_url" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "base_static_url" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "base_url" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "braintree_cc_vault_active" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "cart_gift_wrapping" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "cart_printed_card" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "catalog_default_sort_by" },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "category_fixed_product_tax_display_setting",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "check_money_order_enable_for_specific_countries",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "check_money_order_enabled" },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "check_money_order_make_check_payable_to",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "check_money_order_max_order_total",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "check_money_order_min_order_total",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "check_money_order_new_order_status",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "check_money_order_payment_from_specific_countries",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "check_money_order_send_check_to",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "check_money_order_sort_order" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "check_money_order_title" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "cms_home_page" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "cms_no_cookies" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "cms_no_route" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "code" } },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "configurable_thumbnail_source",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "default_description" },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "default_display_currency_code",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "default_title" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "default_keywords" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "demonotice" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "enable_multiple_wishlists" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "front" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "grid_per_page" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "grid_per_page_values" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "head_includes" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "head_shortcut_icon" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "header_logo_src" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "is_default_store" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "is_default_store_group" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "list_mode" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "list_per_page" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "list_per_page_values" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "locale" } },
+                { kind: "Field", name: { kind: "Name", value: "logo_alt" } },
+                { kind: "Field", name: { kind: "Name", value: "logo_height" } },
+                { kind: "Field", name: { kind: "Name", value: "logo_width" } },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "magento_reward_general_is_enabled",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "magento_reward_general_is_enabled_on_front",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "magento_reward_general_min_points_balance",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "magento_reward_general_publish_history",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "magento_reward_points_invitation_customer",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "magento_reward_points_invitation_customer_limit",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "magento_reward_points_invitation_order",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "magento_reward_points_invitation_order_limit",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "magento_reward_points_newsletter",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "magento_reward_points_order" },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "magento_reward_points_register",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "magento_reward_points_review" },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "magento_reward_points_review_limit",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "magento_wishlist_general_is_enabled",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "maximum_number_of_wishlists" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "minimum_password_length" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "no_route" } },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "payment_payflowpro_cc_vault_active",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "printed_card_price" },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "product_fixed_product_tax_display_setting",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "product_reviews_enabled" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "product_url_suffix" },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "required_character_classes_number",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "root_category_id" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "root_category_uid" },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "sales_fixed_product_tax_display_setting",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "sales_gift_wrapping" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "sales_printed_card" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "secure_base_link_url" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "secure_base_media_url" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "secure_base_static_url" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "secure_base_url" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "send_friend" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "enabled_for_customers" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "enabled_for_guests" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "show_cms_breadcrumbs" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "store_code" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "store_group_code" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "store_group_name" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "store_name" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "store_sort_order" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "timezone" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "title_prefix" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "title_separator" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "title_suffix" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "use_store_in_url" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "website_code" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "website_id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "website_name" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "weight_unit" } },
+                { kind: "Field", name: { kind: "Name", value: "welcome" } },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "zero_subtotal_enable_for_specific_countries",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "zero_subtotal_enabled" },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "zero_subtotal_new_order_status",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "zero_subtotal_payment_action" },
+                },
+                {
+                  kind: "Field",
+                  name: {
+                    kind: "Name",
+                    value: "zero_subtotal_payment_from_specific_countries",
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "zero_subtotal_sort_order" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "zero_subtotal_title" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "StoreConsent" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ConfigConsent" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "code" } },
+          { kind: "Field", name: { kind: "Name", value: "is_required" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<StoreConfigQuery, StoreConfigQueryVariables>;

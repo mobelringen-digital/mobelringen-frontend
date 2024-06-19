@@ -1,12 +1,10 @@
 import { graphql } from "@/types/schema";
 
 export const StoreConsentFragment = graphql(`
-  fragment StoreConsent on StoreConfig {
-    consents {
-      code
-      is_required
-      label
-    }
+  fragment StoreConsent on ConfigConsent {
+    code
+    is_required
+    label
   }
 `);
 

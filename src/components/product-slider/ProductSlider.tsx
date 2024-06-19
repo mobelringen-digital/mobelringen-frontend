@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import Slider from "react-slick";
@@ -34,8 +36,8 @@ export const ProductSlider: React.FC<Props> = ({ title, data, isLoading }) => {
             <React.Fragment key={idx}>
               {product &&
               isTypename(product, ["SimpleProduct", "ConfigurableProduct"]) ? (
-                  <ProductCard product={product} />
-                ) : null}
+                <ProductCard product={product} />
+              ) : null}
             </React.Fragment>
           ))}
         </div>
@@ -53,8 +55,8 @@ export const ProductSlider: React.FC<Props> = ({ title, data, isLoading }) => {
           <div key={idx} className="w-[260px]">
             {product &&
             isTypename(product, ["SimpleProduct", "ConfigurableProduct"]) ? (
-                <ProductCard product={product} />
-              ) : null}
+              <ProductCard product={product} />
+            ) : null}
           </div>
         ))}
       </Slider>
