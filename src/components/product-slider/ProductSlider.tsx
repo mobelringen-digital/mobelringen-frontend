@@ -3,6 +3,7 @@ import React from "react";
 import Slider from "react-slick";
 
 import { ProductCard } from "@/components/product/ProductCard";
+import { ProductSliderSkeleton } from "@/components/product-slider/ProductSliderSkeleton";
 import { BaseProductFragment } from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
 import { productSliderConfig } from "@/utils/lib/slick";
@@ -10,9 +11,14 @@ import { productSliderConfig } from "@/utils/lib/slick";
 interface Props {
   title: string;
   data: Array<BaseProductFragment | null> | null;
+  isLoading?: boolean;
 }
 
-export const ProductSlider: React.FC<Props> = ({ title, data }) => {
+export const ProductSlider: React.FC<Props> = ({ title, data, isLoading }) => {
+  if (isLoading) {
+    return <ProductSliderSkeleton />;
+  }
+
   if (data && data.length < 1) {
     return null;
   }
@@ -28,8 +34,8 @@ export const ProductSlider: React.FC<Props> = ({ title, data }) => {
             <React.Fragment key={idx}>
               {product &&
               isTypename(product, ["SimpleProduct", "ConfigurableProduct"]) ? (
-                  <ProductCard product={product} />
-                ) : null}
+                <ProductCard product={product} />
+              ) : null}
             </React.Fragment>
           ))}
         </div>
@@ -47,8 +53,8 @@ export const ProductSlider: React.FC<Props> = ({ title, data }) => {
           <div key={idx} className="w-[260px]">
             {product &&
             isTypename(product, ["SimpleProduct", "ConfigurableProduct"]) ? (
-                <ProductCard product={product} />
-              ) : null}
+              <ProductCard product={product} />
+            ) : null}
           </div>
         ))}
       </Slider>
