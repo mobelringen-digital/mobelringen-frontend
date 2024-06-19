@@ -44,7 +44,7 @@ const authOptions: NextAuthOptions = {
         };
 
         try {
-          const res = await baseMagentoClient("POST").request<
+          const res = await baseMagentoClient().request<
             GenerateCustomerTokenMutation,
             GenerateCustomerTokenMutationVariables
           >(GenerateCustomerTokenDocument, {

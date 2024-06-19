@@ -4,10 +4,11 @@ import { GraphQLClient } from "graphql-request";
 
 export const baseHygraphClient = (method?: "POST" | "GET") =>
   new GraphQLClient(process.env.NEXT_PUBLIC_HYGRAPH_URL as string, {
-    method: method ?? "POST",
+    method,
     fetch: cache(
       async (input: RequestInfo | URL, init?: RequestInit | undefined) =>
         fetch(input, {
+          method,
           next: { revalidate: 60 },
           ...init,
           headers: {
@@ -19,15 +20,13 @@ export const baseHygraphClient = (method?: "POST" | "GET") =>
 
 export const baseMagentoClient = (method?: "POST" | "GET") =>
   new GraphQLClient(process.env.NEXT_PUBLIC_MAGENTO_URL as string, {
-    method: method ?? "POST",
+    method,
     fetch: cache(
       async (input: RequestInfo | URL, init?: RequestInit | undefined) =>
         fetch(input, {
+          method,
           next: { revalidate: 3600 },
           ...init,
-          headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_API_KEY}`,
-          },
         }),
     ),
   });
@@ -37,10 +36,11 @@ export const authorizedMagentoClient = (
   method?: "GET" | "POST",
 ) =>
   new GraphQLClient(process.env.NEXT_PUBLIC_MAGENTO_URL as string, {
-    method: method ?? "POST",
+    method,
     fetch: cache(
       async (input: RequestInfo | URL, init?: RequestInit | undefined) =>
         fetch(input, {
+          method,
           next: { revalidate: 3600 },
           ...init,
           headers: {
