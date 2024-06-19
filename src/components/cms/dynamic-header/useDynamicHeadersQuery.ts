@@ -25,7 +25,7 @@ export const useDynamicHeadersQuery = (url: string) => {
   }, [url]);
 
   const fetchDynamicHeaders = async () => {
-    const data = await baseHygraphClient.request<
+    const data = await baseHygraphClient("GET").request<
       CmsDynamicHeadersQuery,
       CmsDynamicHeadersQueryVariables
     >(CmsDynamicHeadersDocument, {

@@ -7,7 +7,7 @@ import { baseMagentoClient } from "@/utils/lib/graphql";
 export const PRODUCTS_QUERY_KEY = ["products"];
 
 export const fetchProducts = async (categoryId?: number | null) => {
-  const data = await baseMagentoClient.request<
+  const data = await baseMagentoClient("GET").request<
     ProductsQuery,
     ProductsQueryVariables
   >(ProductsQueryDocument, {

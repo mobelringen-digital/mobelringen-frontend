@@ -11,7 +11,7 @@ import { MenuQuery, MenuType } from "@/types";
 import { baseHygraphClient } from "@/utils/lib/graphql";
 
 async function getFooterMenus() {
-  return await baseHygraphClient.request<MenuQuery>(MenuQueryDocument, {
+  return await baseHygraphClient("GET").request<MenuQuery>(MenuQueryDocument, {
     where: {
       menuLocation_in: [
         MenuType.FooterMenu,

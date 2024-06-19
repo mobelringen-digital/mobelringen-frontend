@@ -12,7 +12,7 @@ export const PRODUCT_SLIDER_DATA_QUERY_KEY = ["product-slider"];
 
 export const useProductSliderDataQuery = (sku?: string | null) => {
   const fetchProductSliderData = async () => {
-    const data = await baseMagentoClient.request<
+    const data = await baseMagentoClient("GET").request<
       ProductSliderDataQuery,
       ProductSliderDataQueryVariables
     >(ProductSliderDataDocument, {

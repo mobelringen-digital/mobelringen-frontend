@@ -14,12 +14,12 @@ type Props = {
 };
 
 async function getProduct(sku: string) {
-  return await baseMagentoClient.request<ProductsQuery, ProductsQueryVariables>(
-    ProductsQueryDocument,
-    {
-      filter: { sku: { eq: sku } },
-    },
-  );
+  return await baseMagentoClient("GET").request<
+    ProductsQuery,
+    ProductsQueryVariables
+  >(ProductsQueryDocument, {
+    filter: { sku: { eq: sku } },
+  });
 }
 
 export default async function Product({ sku }: Props) {

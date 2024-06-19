@@ -10,7 +10,7 @@ import { baseMagentoClient } from "@/utils/lib/graphql";
 export const BEST_SELLING_PRODUCTS_QUERY_KEY = ["best-selling-products"];
 
 export const fetchBestSellingProducts = async (categoryId?: number | null) => {
-  const data = await baseMagentoClient.request<
+  const data = await baseMagentoClient("GET").request<
     BestSellingProductsByCategoryQuery,
     BestSellingProductsByCategoryQueryVariables
   >(BestSellingProductsByCategory, {

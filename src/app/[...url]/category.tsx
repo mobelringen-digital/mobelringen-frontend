@@ -30,12 +30,12 @@ type Props = {
 };
 
 async function getCategory(url: string) {
-  return await baseMagentoClient.request<CategoryQuery, CategoryQueryVariables>(
-    CategoryQueryDocument,
-    {
-      filters: { url_path: { eq: url } },
-    },
-  );
+  return await baseMagentoClient("GET").request<
+    CategoryQuery,
+    CategoryQueryVariables
+  >(CategoryQueryDocument, {
+    filters: { url_path: { eq: url } },
+  });
 }
 
 const isLastCategoryInTree = (category: BaseCategoryDataFragment) => {

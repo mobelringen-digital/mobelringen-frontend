@@ -6,12 +6,12 @@ import { CmsPagesQuery, CmsPagesQueryVariables } from "@/types";
 import { baseHygraphClient } from "@/utils/lib/graphql";
 
 async function getPage() {
-  return await baseHygraphClient.request<CmsPagesQuery, CmsPagesQueryVariables>(
-    CmsPagesQueryDocument,
-    {
-      url: "/",
-    },
-  );
+  return await baseHygraphClient("GET").request<
+    CmsPagesQuery,
+    CmsPagesQueryVariables
+  >(CmsPagesQueryDocument, {
+    url: "/",
+  });
 }
 
 export default async function Home() {

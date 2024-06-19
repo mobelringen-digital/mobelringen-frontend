@@ -11,7 +11,7 @@ import { MenuQuery, MenuQueryVariables, MenuType } from "@/types";
 import { baseHygraphClient } from "@/utils/lib/graphql";
 
 async function getMenu() {
-  return await baseHygraphClient.request<MenuQuery, MenuQueryVariables>(
+  return await baseHygraphClient("GET").request<MenuQuery, MenuQueryVariables>(
     MenuQueryDocument,
     {
       where: {

@@ -6,7 +6,9 @@ import { CategoryQuery } from "@/types";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
 async function getCategories() {
-  return await baseMagentoClient.request<CategoryQuery>(CategoryQueryDocument);
+  return await baseMagentoClient("GET").request<CategoryQuery>(
+    CategoryQueryDocument,
+  );
 }
 
 export async function MegaMenuCategoriesDropdown() {

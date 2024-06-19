@@ -24,21 +24,21 @@ type Props = {
 };
 
 async function getPage(url: string) {
-  return await baseHygraphClient.request<CmsPagesQuery, CmsPagesQueryVariables>(
-    CmsPagesQueryDocument,
-    {
-      url,
-    },
-  );
+  return await baseHygraphClient("GET").request<
+    CmsPagesQuery,
+    CmsPagesQueryVariables
+  >(CmsPagesQueryDocument, {
+    url,
+  });
 }
 
 async function getRoute(url: string) {
-  return await baseMagentoClient.request<RouteQuery, RouteQueryVariables>(
-    RouteDocument,
-    {
-      url,
-    },
-  );
+  return await baseMagentoClient("GET").request<
+    RouteQuery,
+    RouteQueryVariables
+  >(RouteDocument, {
+    url,
+  });
 }
 
 export default async function Home({ params }: Props) {
