@@ -18,7 +18,11 @@ export const CmsProductSlider: React.FC<Props> = ({ data }) => {
     useBestSellingProductsQuery(categoryId);
 
   if (isLoading) {
-    return <ProductSliderSkeleton />;
+    return (
+      <ContainerLayout>
+        <ProductSliderSkeleton />
+      </ContainerLayout>
+    );
   }
 
   if (popularProducts && popularProducts.length > 0) {
