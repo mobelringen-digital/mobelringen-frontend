@@ -103,16 +103,15 @@ export const BaseProductFragment = graphql(`
   fragment BaseProduct on ProductInterface {
     __typename
     url_key
-    url_suffix
     canonical_url
     description {
       html
     }
     gift_message_available
+    review_count
     image {
       ...ProductImageFragment
     }
-    is_returnable
     media_gallery {
       ...ProductMediaGallery
     }
@@ -122,7 +121,6 @@ export const BaseProductFragment = graphql(`
     name
     new_from_date
     new_to_date
-    only_x_left_in_stock
     price_range {
       ...ProductPriceRange
     }
@@ -130,9 +128,7 @@ export const BaseProductFragment = graphql(`
       brand_image_url
       name
     }
-    rating_summary
     uid
-    stock_status
     special_to_date
     special_price
     small_image {
@@ -145,15 +141,6 @@ export const BaseProductFragment = graphql(`
     short_description {
       html
     }
-    review_count
-    reviews {
-      items {
-        average_rating
-        nickname
-        summary
-        text
-      }
-    }
     addable_to_cart
     categories {
       url_path
@@ -164,15 +151,6 @@ export const BaseProductFragment = graphql(`
     }
     delivery_promise
     maintenance_description
-    measurement_depth
-    measurement_diameter
-    measurement_gross_weight
-    measurement_height
-    measurement_length
-    measurement_seat_height
-    measurement_thickness
-    measurement_volume
-    measurement_width
   }
 `);
 
@@ -186,6 +164,60 @@ export const ProductsQueryDocument = graphql(`
         ... on ConfigurableProduct {
           ...ConfigurableProduct
         }
+      }
+    }
+  }
+`);
+
+export const ProductReviewsDocument = graphql(`
+  query ProductReviews(
+    $pageSize: Int = 1
+    $filter: ProductAttributeFilterInput
+  ) {
+    products(pageSize: $pageSize, filter: $filter) {
+      items {
+        rating_summary
+        review_count
+        reviews {
+          items {
+            average_rating
+            nickname
+            summary
+            text
+          }
+        }
+      }
+    }
+  }
+`);
+
+export const ProductStockDocument = graphql(`
+  query ProductStock($pageSize: Int = 1, $filter: ProductAttributeFilterInput) {
+    products(pageSize: $pageSize, filter: $filter) {
+      items {
+        is_returnable
+        only_x_left_in_stock
+        stock_status
+      }
+    }
+  }
+`);
+export const ProductMeasurementsDocument = graphql(`
+  query ProductMeasurements(
+    $pageSize: Int = 1
+    $filter: ProductAttributeFilterInput
+  ) {
+    products(pageSize: $pageSize, filter: $filter) {
+      items {
+        measurement_depth
+        measurement_diameter
+        measurement_gross_weight
+        measurement_height
+        measurement_length
+        measurement_seat_height
+        measurement_thickness
+        measurement_volume
+        measurement_width
       }
     }
   }
