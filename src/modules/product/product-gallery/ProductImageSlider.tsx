@@ -10,9 +10,6 @@ import { ProductVideo } from "@/modules/product/product-gallery/ProductVideo";
 import { BaseProductFragment } from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
 
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
 interface Props {
   product: BaseProductFragment;
   setPhotoIndex: React.Dispatch<React.SetStateAction<number | null>>;

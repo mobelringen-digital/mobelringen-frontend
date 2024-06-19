@@ -10,6 +10,7 @@ export const productSliderConfig: Settings = {
   infinite: true,
   speed: 500,
   slidesToShow: 4,
+  initialSlide: 0,
   slidesToScroll: 1,
   nextArrow: <ArrowNext />,
   prevArrow: <ArrowPrev />,
