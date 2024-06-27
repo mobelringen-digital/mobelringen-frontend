@@ -17,7 +17,9 @@ const documents = {
     types.CartPriceFragmentDoc,
   "\n  fragment CartItemPrice on CartItemPrices {\n    fixed_product_taxes {\n      amount {\n        currency\n        value\n      }\n      label\n    }\n    discounts {\n      amount {\n        currency\n        value\n      }\n      label\n    }\n    price {\n      currency\n      value\n    }\n    price_including_tax {\n      currency\n      value\n    }\n    row_total {\n      currency\n      value\n    }\n    row_total_including_tax {\n      currency\n      value\n    }\n    total_item_discount {\n      currency\n      value\n    }\n  }\n":
     types.CartItemPriceFragmentDoc,
-  "\n  fragment BaseCart on Cart {\n    prices {\n      ...CartPrice\n    }\n    items {\n      prices {\n        ...CartItemPrice\n      }\n      is_in_store\n      product {\n        id\n        name\n        sku\n        url_key\n        image {\n          url\n        }\n      }\n      quantity\n    }\n  }\n":
+  "\n  fragment BaseProductDataForCart on ProductInterface {\n    __typename\n    name\n    sku\n    canonical_url\n    short_description {\n      html\n    }\n    image {\n      ...ProductImageFragment\n    }\n  }\n":
+    types.BaseProductDataForCartFragmentDoc,
+  "\n  fragment BaseCart on Cart {\n    prices {\n      ...CartPrice\n    }\n    items {\n      prices {\n        ...CartItemPrice\n      }\n      is_in_store\n      product {\n        ...BaseProductDataForCart\n      }\n      quantity\n    }\n  }\n":
     types.BaseCartFragmentDoc,
   "\n  query Cart($cart_id: String!) {\n    cart(cart_id: $cart_id) {\n      ...BaseCart\n    }\n  }\n":
     types.CartDocument,
@@ -141,8 +143,14 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment BaseCart on Cart {\n    prices {\n      ...CartPrice\n    }\n    items {\n      prices {\n        ...CartItemPrice\n      }\n      is_in_store\n      product {\n        id\n        name\n        sku\n        url_key\n        image {\n          url\n        }\n      }\n      quantity\n    }\n  }\n",
-): (typeof documents)["\n  fragment BaseCart on Cart {\n    prices {\n      ...CartPrice\n    }\n    items {\n      prices {\n        ...CartItemPrice\n      }\n      is_in_store\n      product {\n        id\n        name\n        sku\n        url_key\n        image {\n          url\n        }\n      }\n      quantity\n    }\n  }\n"];
+  source: "\n  fragment BaseProductDataForCart on ProductInterface {\n    __typename\n    name\n    sku\n    canonical_url\n    short_description {\n      html\n    }\n    image {\n      ...ProductImageFragment\n    }\n  }\n",
+): (typeof documents)["\n  fragment BaseProductDataForCart on ProductInterface {\n    __typename\n    name\n    sku\n    canonical_url\n    short_description {\n      html\n    }\n    image {\n      ...ProductImageFragment\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment BaseCart on Cart {\n    prices {\n      ...CartPrice\n    }\n    items {\n      prices {\n        ...CartItemPrice\n      }\n      is_in_store\n      product {\n        ...BaseProductDataForCart\n      }\n      quantity\n    }\n  }\n",
+): (typeof documents)["\n  fragment BaseCart on Cart {\n    prices {\n      ...CartPrice\n    }\n    items {\n      prices {\n        ...CartItemPrice\n      }\n      is_in_store\n      product {\n        ...BaseProductDataForCart\n      }\n      quantity\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

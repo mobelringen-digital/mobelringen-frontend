@@ -74,6 +74,21 @@ export const CartItemPriceFragment = graphql(`
   }
 `);
 
+export const BaseProductDataForCartFragment = graphql(`
+  fragment BaseProductDataForCart on ProductInterface {
+    __typename
+    name
+    sku
+    canonical_url
+    short_description {
+      html
+    }
+    image {
+      ...ProductImageFragment
+    }
+  }
+`);
+
 export const BaseCartFragment = graphql(`
   fragment BaseCart on Cart {
     prices {
@@ -85,13 +100,7 @@ export const BaseCartFragment = graphql(`
       }
       is_in_store
       product {
-        id
-        name
-        sku
-        url_key
-        image {
-          url
-        }
+        ...BaseProductDataForCart
       }
       quantity
     }
