@@ -35,15 +35,15 @@ export const ProductAddedModal: React.FC<Props> = ({
       <ModalContent className="bg-white rounded-2xl">
         {(onClose) => (
           <>
-            <ModalHeader className="bg-cream flex items-center gap-1">
+            <ModalHeader className="bg-cream flex items-center px-2 lg:px-5 gap-1">
               Lagt til i handlekurv!
             </ModalHeader>
-            <ModalBody className="py-6">
+            <ModalBody className="py-6 px-2 lg:px-5">
               <div className="flex gap-4 lg:gap-8">
                 {product.image?.url ? (
-                  <div className="relative p-10 h-[310px] bg-warm-grey rounded-3xl !flex justify-center items-center">
+                  <div className="relative p-6 lg:p-10 h-[200px] lg:h-[310px] bg-warm-grey rounded-3xl !flex justify-center items-center">
                     <Image
-                      className="object-contain h-[250px]"
+                      className="object-contain h-[150px] lg:[250px]"
                       width={280}
                       height={280}
                       src={product.image.url}
@@ -64,7 +64,7 @@ export const ProductAddedModal: React.FC<Props> = ({
                 </div>
               </div>
             </ModalBody>
-            <ModalFooter className="flex justify-between gap-4">
+            <ModalFooter className="flex justify-between px-2 lg:px-5 gap-2 lg:gap-4">
               <Button className="w-full" color="secondary" onPress={onClose}>
                 Fortsett å handle
               </Button>
