@@ -3068,346 +3068,6 @@ export type ComplexTextValue = {
   html: Scalars["String"]["output"];
 };
 
-export type ConfigBlock = Entity & {
-  __typename: "ConfigBlock";
-  /** The unique identifier */
-  id: Scalars["ID"]["output"];
-  key: Scalars["String"]["output"];
-  /** System stage field */
-  stage: Stage;
-  value: Scalars["Boolean"]["output"];
-};
-
-export type ConfigBlockConnectInput = {
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Document to connect */
-  where: ConfigBlockWhereUniqueInput;
-};
-
-/** A connection to a list of items. */
-export type ConfigBlockConnection = {
-  __typename: "ConfigBlockConnection";
-  aggregate: Aggregate;
-  /** A list of edges. */
-  edges: Array<ConfigBlockEdge>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-};
-
-export type ConfigBlockCreateInput = {
-  key: Scalars["String"]["input"];
-  value: Scalars["Boolean"]["input"];
-};
-
-export type ConfigBlockCreateManyInlineInput = {
-  /** Create and connect multiple existing ConfigBlock documents */
-  create?: InputMaybe<Array<ConfigBlockCreateInput>>;
-};
-
-export type ConfigBlockCreateOneInlineInput = {
-  /** Create and connect one ConfigBlock document */
-  create?: InputMaybe<ConfigBlockCreateInput>;
-};
-
-export type ConfigBlockCreateWithPositionInput = {
-  /** Document to create */
-  data: ConfigBlockCreateInput;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-};
-
-/** An edge in a connection. */
-export type ConfigBlockEdge = {
-  __typename: "ConfigBlockEdge";
-  /** A cursor for use in pagination. */
-  cursor: Scalars["String"]["output"];
-  /** The item at the end of the edge. */
-  node: ConfigBlock;
-};
-
-/** Identifies documents */
-export type ConfigBlockManyWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<ConfigBlockWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<ConfigBlockWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<ConfigBlockWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars["String"]["input"]>;
-  id?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  id_not?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
-  key?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values containing the given string. */
-  key_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values ending with the given string. */
-  key_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are contained in given list. */
-  key_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  key_not?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not containing the given string. */
-  key_not_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not ending with the given string */
-  key_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are not contained in given list. */
-  key_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** All values not starting with the given string. */
-  key_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values starting with the given string. */
-  key_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  value?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Any other value that exists and is not equal to the given value. */
-  value_not?: InputMaybe<Scalars["Boolean"]["input"]>;
-};
-
-export enum ConfigBlockOrderByInput {
-  IdAsc = "id_ASC",
-  IdDesc = "id_DESC",
-  KeyAsc = "key_ASC",
-  KeyDesc = "key_DESC",
-  ValueAsc = "value_ASC",
-  ValueDesc = "value_DESC",
-}
-
-export type ConfigBlockParent = StaticPageConfiguration;
-
-export type ConfigBlockParentConnectInput = {
-  StaticPageConfiguration?: InputMaybe<StaticPageConfigurationConnectInput>;
-};
-
-export type ConfigBlockParentCreateInput = {
-  StaticPageConfiguration?: InputMaybe<StaticPageConfigurationCreateInput>;
-};
-
-export type ConfigBlockParentCreateManyInlineInput = {
-  /** Connect multiple existing ConfigBlockParent documents */
-  connect?: InputMaybe<Array<ConfigBlockParentWhereUniqueInput>>;
-  /** Create and connect multiple existing ConfigBlockParent documents */
-  create?: InputMaybe<Array<ConfigBlockParentCreateInput>>;
-};
-
-export type ConfigBlockParentCreateOneInlineInput = {
-  /** Connect one existing ConfigBlockParent document */
-  connect?: InputMaybe<ConfigBlockParentWhereUniqueInput>;
-  /** Create and connect one ConfigBlockParent document */
-  create?: InputMaybe<ConfigBlockParentCreateInput>;
-};
-
-export type ConfigBlockParentUpdateInput = {
-  StaticPageConfiguration?: InputMaybe<StaticPageConfigurationUpdateInput>;
-};
-
-export type ConfigBlockParentUpdateManyInlineInput = {
-  /** Connect multiple existing ConfigBlockParent documents */
-  connect?: InputMaybe<Array<ConfigBlockParentConnectInput>>;
-  /** Create and connect multiple ConfigBlockParent documents */
-  create?: InputMaybe<Array<ConfigBlockParentCreateInput>>;
-  /** Delete multiple ConfigBlockParent documents */
-  delete?: InputMaybe<Array<ConfigBlockParentWhereUniqueInput>>;
-  /** Disconnect multiple ConfigBlockParent documents */
-  disconnect?: InputMaybe<Array<ConfigBlockParentWhereUniqueInput>>;
-  /** Override currently-connected documents with multiple existing ConfigBlockParent documents */
-  set?: InputMaybe<Array<ConfigBlockParentWhereUniqueInput>>;
-  /** Update multiple ConfigBlockParent documents */
-  update?: InputMaybe<Array<ConfigBlockParentUpdateWithNestedWhereUniqueInput>>;
-  /** Upsert multiple ConfigBlockParent documents */
-  upsert?: InputMaybe<Array<ConfigBlockParentUpsertWithNestedWhereUniqueInput>>;
-};
-
-export type ConfigBlockParentUpdateManyWithNestedWhereInput = {
-  StaticPageConfiguration?: InputMaybe<StaticPageConfigurationUpdateManyWithNestedWhereInput>;
-};
-
-export type ConfigBlockParentUpdateOneInlineInput = {
-  /** Connect existing ConfigBlockParent document */
-  connect?: InputMaybe<ConfigBlockParentWhereUniqueInput>;
-  /** Create and connect one ConfigBlockParent document */
-  create?: InputMaybe<ConfigBlockParentCreateInput>;
-  /** Delete currently connected ConfigBlockParent document */
-  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Disconnect currently connected ConfigBlockParent document */
-  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Update single ConfigBlockParent document */
-  update?: InputMaybe<ConfigBlockParentUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single ConfigBlockParent document */
-  upsert?: InputMaybe<ConfigBlockParentUpsertWithNestedWhereUniqueInput>;
-};
-
-export type ConfigBlockParentUpdateWithNestedWhereUniqueInput = {
-  StaticPageConfiguration?: InputMaybe<StaticPageConfigurationUpdateWithNestedWhereUniqueInput>;
-};
-
-export type ConfigBlockParentUpsertWithNestedWhereUniqueInput = {
-  StaticPageConfiguration?: InputMaybe<StaticPageConfigurationUpsertWithNestedWhereUniqueInput>;
-};
-
-export type ConfigBlockParentWhereInput = {
-  StaticPageConfiguration?: InputMaybe<StaticPageConfigurationWhereInput>;
-};
-
-export type ConfigBlockParentWhereUniqueInput = {
-  StaticPageConfiguration?: InputMaybe<StaticPageConfigurationWhereUniqueInput>;
-};
-
-export type ConfigBlockUpdateInput = {
-  key?: InputMaybe<Scalars["String"]["input"]>;
-  value?: InputMaybe<Scalars["Boolean"]["input"]>;
-};
-
-export type ConfigBlockUpdateManyInlineInput = {
-  /** Create and connect multiple ConfigBlock component instances */
-  create?: InputMaybe<Array<ConfigBlockCreateWithPositionInput>>;
-  /** Delete multiple ConfigBlock documents */
-  delete?: InputMaybe<Array<ConfigBlockWhereUniqueInput>>;
-  /** Update multiple ConfigBlock component instances */
-  update?: InputMaybe<
-    Array<ConfigBlockUpdateWithNestedWhereUniqueAndPositionInput>
-  >;
-  /** Upsert multiple ConfigBlock component instances */
-  upsert?: InputMaybe<
-    Array<ConfigBlockUpsertWithNestedWhereUniqueAndPositionInput>
-  >;
-};
-
-export type ConfigBlockUpdateManyInput = {
-  key?: InputMaybe<Scalars["String"]["input"]>;
-  value?: InputMaybe<Scalars["Boolean"]["input"]>;
-};
-
-export type ConfigBlockUpdateManyWithNestedWhereInput = {
-  /** Update many input */
-  data: ConfigBlockUpdateManyInput;
-  /** Document search */
-  where: ConfigBlockWhereInput;
-};
-
-export type ConfigBlockUpdateOneInlineInput = {
-  /** Create and connect one ConfigBlock document */
-  create?: InputMaybe<ConfigBlockCreateInput>;
-  /** Delete currently connected ConfigBlock document */
-  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Update single ConfigBlock document */
-  update?: InputMaybe<ConfigBlockUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single ConfigBlock document */
-  upsert?: InputMaybe<ConfigBlockUpsertWithNestedWhereUniqueInput>;
-};
-
-export type ConfigBlockUpdateWithNestedWhereUniqueAndPositionInput = {
-  /** Document to update */
-  data?: InputMaybe<ConfigBlockUpdateInput>;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Unique component instance search */
-  where: ConfigBlockWhereUniqueInput;
-};
-
-export type ConfigBlockUpdateWithNestedWhereUniqueInput = {
-  /** Document to update */
-  data: ConfigBlockUpdateInput;
-  /** Unique document search */
-  where: ConfigBlockWhereUniqueInput;
-};
-
-export type ConfigBlockUpsertInput = {
-  /** Create document if it didn't exist */
-  create: ConfigBlockCreateInput;
-  /** Update document if it exists */
-  update: ConfigBlockUpdateInput;
-};
-
-export type ConfigBlockUpsertWithNestedWhereUniqueAndPositionInput = {
-  /** Document to upsert */
-  data?: InputMaybe<ConfigBlockUpsertInput>;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Unique component instance search */
-  where: ConfigBlockWhereUniqueInput;
-};
-
-export type ConfigBlockUpsertWithNestedWhereUniqueInput = {
-  /** Upsert data */
-  data: ConfigBlockUpsertInput;
-  /** Unique document search */
-  where: ConfigBlockWhereUniqueInput;
-};
-
-/** Identifies documents */
-export type ConfigBlockWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<ConfigBlockWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<ConfigBlockWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<ConfigBlockWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars["String"]["input"]>;
-  id?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  id_not?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
-  key?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values containing the given string. */
-  key_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values ending with the given string. */
-  key_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are contained in given list. */
-  key_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  key_not?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not containing the given string. */
-  key_not_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not ending with the given string */
-  key_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are not contained in given list. */
-  key_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** All values not starting with the given string. */
-  key_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values starting with the given string. */
-  key_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  value?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Any other value that exists and is not equal to the given value. */
-  value_not?: InputMaybe<Scalars["Boolean"]["input"]>;
-};
-
-/** References ConfigBlock record uniquely */
-export type ConfigBlockWhereUniqueInput = {
-  id?: InputMaybe<Scalars["ID"]["input"]>;
-};
-
 export type ConfigConsent = {
   __typename: "ConfigConsent";
   code: Scalars["String"]["output"];
@@ -7642,7 +7302,6 @@ export enum EntityTypeName {
   /** Asset system model */
   Asset = "Asset",
   Banner = "Banner",
-  ConfigBlock = "ConfigBlock",
   DynamicHeader = "DynamicHeader",
   ImageLink = "ImageLink",
   Link = "Link",
@@ -15215,6 +14874,21 @@ export type ProductInterfaceStoreItem = {
   qty?: Maybe<Scalars["Int"]["output"]>;
 };
 
+export enum ProductLabels {
+  /** @deprecated  */
+  BlackFriday = "BLACK_FRIDAY",
+  /** @deprecated  */
+  ClearanceSale = "CLEARANCE_SALE",
+  /** @deprecated  */
+  CustomerClub = "CUSTOMER_CLUB",
+  /** @deprecated  */
+  LowPrice = "LOW_PRICE",
+  /** @deprecated  */
+  RaskLavering = "RASK_LAVERING",
+  /** @deprecated  */
+  Upcoming = "UPCOMING",
+}
+
 /** An implementation of `ProductLinksInterface`. */
 export type ProductLinks = ProductLinksInterface & {
   __typename: "ProductLinks";
@@ -16188,6 +15862,8 @@ export type Query = {
   productSlidersConnection: ProductSliderConnection;
   /** Search for products that match the criteria specified in the `search` and `filter` attributes. */
   products?: Maybe<Products>;
+  /** Get products query by labels assigned to them. */
+  productsByLabel?: Maybe<Array<Maybe<ProductInterface>>>;
   /** Return the full details for a specified product, category, or CMS page. */
   route?: Maybe<RoutableInterface>;
   /** Retrieve a single scheduledOperation */
@@ -16561,6 +16237,10 @@ export type QueryProductsArgs = {
   pageSize?: InputMaybe<Scalars["Int"]["input"]>;
   search: InputMaybe<Scalars["String"]["input"]>;
   sort: InputMaybe<ProductAttributeSortInput>;
+};
+
+export type QueryProductsByLabelArgs = {
+  label: InputMaybe<ProductLabels>;
 };
 
 export type QueryRouteArgs = {
@@ -20128,7 +19808,6 @@ export type StaticPageConfiguration = Entity &
     /** User that last published this document */
     publishedBy?: Maybe<User>;
     scheduledIn: Array<ScheduledOperation>;
-    settings: Array<StaticPageConfigurationsettingsUnion>;
     /** System stage field */
     stage: Stage;
     translations?: Maybe<Scalars["Json"]["output"]>;
@@ -20171,16 +19850,6 @@ export type StaticPageConfigurationScheduledInArgs = {
   where: InputMaybe<ScheduledOperationWhereInput>;
 };
 
-export type StaticPageConfigurationSettingsArgs = {
-  after: InputMaybe<Scalars["String"]["input"]>;
-  before: InputMaybe<Scalars["String"]["input"]>;
-  first: InputMaybe<Scalars["Int"]["input"]>;
-  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
-  last: InputMaybe<Scalars["Int"]["input"]>;
-  locales: InputMaybe<Array<Locale>>;
-  skip: InputMaybe<Scalars["Int"]["input"]>;
-};
-
 export type StaticPageConfigurationUpdatedByArgs = {
   forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
   locales: InputMaybe<Array<Locale>>;
@@ -20206,7 +19875,6 @@ export type StaticPageConfigurationConnection = {
 export type StaticPageConfigurationCreateInput = {
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   pageType: StaticPageType;
-  settings?: InputMaybe<StaticPageConfigurationsettingsUnionCreateManyInlineInput>;
   translations?: InputMaybe<Scalars["Json"]["input"]>;
   updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
 };
@@ -20312,10 +19980,6 @@ export type StaticPageConfigurationManyWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
-  /** All values in which the union is empty. */
-  settings_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Matches if the modular component contains at least one connection to the item provided to the filter */
-  settings_some?: InputMaybe<StaticPageConfigurationsettingsUnionWhereInput>;
   /** All values containing the given json path. */
   translations_json_path_exists?: InputMaybe<Scalars["String"]["input"]>;
   /**
@@ -20360,7 +20024,6 @@ export enum StaticPageConfigurationOrderByInput {
 
 export type StaticPageConfigurationUpdateInput = {
   pageType?: InputMaybe<StaticPageType>;
-  settings?: InputMaybe<StaticPageConfigurationsettingsUnionUpdateManyInlineInput>;
   translations?: InputMaybe<Scalars["Json"]["input"]>;
 };
 
@@ -20516,10 +20179,6 @@ export type StaticPageConfigurationWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
-  /** All values in which the union is empty. */
-  settings_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Matches if the modular component contains at least one connection to the item provided to the filter */
-  settings_some?: InputMaybe<StaticPageConfigurationsettingsUnionWhereInput>;
   /** All values containing the given json path. */
   translations_json_path_exists?: InputMaybe<Scalars["String"]["input"]>;
   /**
@@ -20567,97 +20226,6 @@ export type StaticPageConfigurationWhereStageInput = {
 export type StaticPageConfigurationWhereUniqueInput = {
   id?: InputMaybe<Scalars["ID"]["input"]>;
   pageType?: InputMaybe<StaticPageType>;
-};
-
-export type StaticPageConfigurationsettingsUnion = ConfigBlock;
-
-export type StaticPageConfigurationsettingsUnionConnectInput = {
-  ConfigBlock?: InputMaybe<ConfigBlockConnectInput>;
-};
-
-export type StaticPageConfigurationsettingsUnionCreateInput = {
-  ConfigBlock?: InputMaybe<ConfigBlockCreateInput>;
-};
-
-export type StaticPageConfigurationsettingsUnionCreateManyInlineInput = {
-  /** Create and connect multiple existing StaticPageConfigurationsettingsUnion documents */
-  create?: InputMaybe<Array<StaticPageConfigurationsettingsUnionCreateInput>>;
-};
-
-export type StaticPageConfigurationsettingsUnionCreateOneInlineInput = {
-  /** Create and connect one StaticPageConfigurationsettingsUnion document */
-  create?: InputMaybe<StaticPageConfigurationsettingsUnionCreateInput>;
-};
-
-export type StaticPageConfigurationsettingsUnionCreateWithPositionInput = {
-  ConfigBlock?: InputMaybe<ConfigBlockCreateWithPositionInput>;
-};
-
-export type StaticPageConfigurationsettingsUnionUpdateInput = {
-  ConfigBlock?: InputMaybe<ConfigBlockUpdateInput>;
-};
-
-export type StaticPageConfigurationsettingsUnionUpdateManyInlineInput = {
-  /** Create and connect multiple StaticPageConfigurationsettingsUnion component instances */
-  create?: InputMaybe<
-    Array<StaticPageConfigurationsettingsUnionCreateWithPositionInput>
-  >;
-  /** Delete multiple StaticPageConfigurationsettingsUnion documents */
-  delete?: InputMaybe<
-    Array<StaticPageConfigurationsettingsUnionWhereUniqueInput>
-  >;
-  /** Update multiple StaticPageConfigurationsettingsUnion component instances */
-  update?: InputMaybe<
-    Array<StaticPageConfigurationsettingsUnionUpdateWithNestedWhereUniqueAndPositionInput>
-  >;
-  /** Upsert multiple StaticPageConfigurationsettingsUnion component instances */
-  upsert?: InputMaybe<
-    Array<StaticPageConfigurationsettingsUnionUpsertWithNestedWhereUniqueAndPositionInput>
-  >;
-};
-
-export type StaticPageConfigurationsettingsUnionUpdateManyWithNestedWhereInput =
-  {
-    ConfigBlock?: InputMaybe<ConfigBlockUpdateManyWithNestedWhereInput>;
-  };
-
-export type StaticPageConfigurationsettingsUnionUpdateOneInlineInput = {
-  /** Create and connect one StaticPageConfigurationsettingsUnion document */
-  create?: InputMaybe<StaticPageConfigurationsettingsUnionCreateInput>;
-  /** Delete currently connected StaticPageConfigurationsettingsUnion document */
-  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
-  /** Update single StaticPageConfigurationsettingsUnion document */
-  update?: InputMaybe<StaticPageConfigurationsettingsUnionUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single StaticPageConfigurationsettingsUnion document */
-  upsert?: InputMaybe<StaticPageConfigurationsettingsUnionUpsertWithNestedWhereUniqueInput>;
-};
-
-export type StaticPageConfigurationsettingsUnionUpdateWithNestedWhereUniqueAndPositionInput =
-  {
-    ConfigBlock?: InputMaybe<ConfigBlockUpdateWithNestedWhereUniqueAndPositionInput>;
-  };
-
-export type StaticPageConfigurationsettingsUnionUpdateWithNestedWhereUniqueInput =
-  {
-    ConfigBlock?: InputMaybe<ConfigBlockUpdateWithNestedWhereUniqueInput>;
-  };
-
-export type StaticPageConfigurationsettingsUnionUpsertWithNestedWhereUniqueAndPositionInput =
-  {
-    ConfigBlock?: InputMaybe<ConfigBlockUpsertWithNestedWhereUniqueAndPositionInput>;
-  };
-
-export type StaticPageConfigurationsettingsUnionUpsertWithNestedWhereUniqueInput =
-  {
-    ConfigBlock?: InputMaybe<ConfigBlockUpsertWithNestedWhereUniqueInput>;
-  };
-
-export type StaticPageConfigurationsettingsUnionWhereInput = {
-  ConfigBlock?: InputMaybe<ConfigBlockWhereInput>;
-};
-
-export type StaticPageConfigurationsettingsUnionWhereUniqueInput = {
-  ConfigBlock?: InputMaybe<ConfigBlockWhereUniqueInput>;
 };
 
 export enum StaticPageType {
@@ -20769,6 +20337,8 @@ export type StoreConfig = {
   grid_per_page?: Maybe<Scalars["Int"]["output"]>;
   /** A list of numbers that define how many products can be displayed in Grid View. */
   grid_per_page_values?: Maybe<Scalars["String"]["output"]>;
+  /** Allow Guest Checkout */
+  guest_checkout?: Maybe<Scalars["Boolean"]["output"]>;
   /** Scripts that must be included in the HTML before the closing `<head>` tag. */
   head_includes?: Maybe<Scalars["String"]["output"]>;
   /** The small graphic image (favicon) that appears in the address bar and tab of the browser. */
@@ -22219,6 +21789,2586 @@ export type VippsInitPaymentOutput = {
   __typename: "vippsInitPaymentOutput";
   /** Redirect url */
   url?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type CartPriceFragment = {
+  __typename: "CartPrices";
+  grand_total?: {
+    __typename: "Money";
+    currency?: CurrencyEnum | null;
+    value?: number | null;
+  } | null;
+  discounts?: Array<{
+    __typename: "Discount";
+    label: string;
+    amount: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+  } | null> | null;
+  applied_taxes?: Array<{
+    __typename: "CartTaxItem";
+    label: string;
+    amount: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+  } | null> | null;
+  subtotal_excluding_tax?: {
+    __typename: "Money";
+    currency?: CurrencyEnum | null;
+    value?: number | null;
+  } | null;
+  subtotal_including_tax?: {
+    __typename: "Money";
+    currency?: CurrencyEnum | null;
+    value?: number | null;
+  } | null;
+  subtotal_with_discount_excluding_tax?: {
+    __typename: "Money";
+    currency?: CurrencyEnum | null;
+    value?: number | null;
+  } | null;
+};
+
+export type CartItemPriceFragment = {
+  __typename: "CartItemPrices";
+  fixed_product_taxes?: Array<{
+    __typename: "FixedProductTax";
+    label?: string | null;
+    amount?: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    } | null;
+  } | null> | null;
+  discounts?: Array<{
+    __typename: "Discount";
+    label: string;
+    amount: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+  } | null> | null;
+  price: {
+    __typename: "Money";
+    currency?: CurrencyEnum | null;
+    value?: number | null;
+  };
+  price_including_tax: {
+    __typename: "Money";
+    currency?: CurrencyEnum | null;
+    value?: number | null;
+  };
+  row_total: {
+    __typename: "Money";
+    currency?: CurrencyEnum | null;
+    value?: number | null;
+  };
+  row_total_including_tax: {
+    __typename: "Money";
+    currency?: CurrencyEnum | null;
+    value?: number | null;
+  };
+  total_item_discount?: {
+    __typename: "Money";
+    currency?: CurrencyEnum | null;
+    value?: number | null;
+  } | null;
+};
+
+export type BaseCartFragment = {
+  __typename: "Cart";
+  prices?: {
+    __typename: "CartPrices";
+    grand_total?: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    } | null;
+    discounts?: Array<{
+      __typename: "Discount";
+      label: string;
+      amount: {
+        __typename: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      };
+    } | null> | null;
+    applied_taxes?: Array<{
+      __typename: "CartTaxItem";
+      label: string;
+      amount: {
+        __typename: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      };
+    } | null> | null;
+    subtotal_excluding_tax?: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    } | null;
+    subtotal_including_tax?: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    } | null;
+    subtotal_with_discount_excluding_tax?: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    } | null;
+  } | null;
+  items?: Array<
+    | {
+        __typename: "BundleCartItem";
+        is_in_store?: boolean | null;
+        quantity: number;
+        prices?: {
+          __typename: "CartItemPrices";
+          fixed_product_taxes?: Array<{
+            __typename: "FixedProductTax";
+            label?: string | null;
+            amount?: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            } | null;
+          } | null> | null;
+          discounts?: Array<{
+            __typename: "Discount";
+            label: string;
+            amount: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+          } | null> | null;
+          price: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          price_including_tax: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          row_total: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          row_total_including_tax: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          total_item_discount?: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          } | null;
+        } | null;
+        product:
+          | {
+              __typename: "BundleProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "ConfigurableProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "DownloadableProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "GiftCardProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "GroupedProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "SimpleProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "VirtualProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            };
+      }
+    | {
+        __typename: "ConfigurableCartItem";
+        is_in_store?: boolean | null;
+        quantity: number;
+        prices?: {
+          __typename: "CartItemPrices";
+          fixed_product_taxes?: Array<{
+            __typename: "FixedProductTax";
+            label?: string | null;
+            amount?: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            } | null;
+          } | null> | null;
+          discounts?: Array<{
+            __typename: "Discount";
+            label: string;
+            amount: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+          } | null> | null;
+          price: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          price_including_tax: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          row_total: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          row_total_including_tax: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          total_item_discount?: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          } | null;
+        } | null;
+        product:
+          | {
+              __typename: "BundleProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "ConfigurableProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "DownloadableProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "GiftCardProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "GroupedProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "SimpleProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "VirtualProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            };
+      }
+    | {
+        __typename: "DownloadableCartItem";
+        is_in_store?: boolean | null;
+        quantity: number;
+        prices?: {
+          __typename: "CartItemPrices";
+          fixed_product_taxes?: Array<{
+            __typename: "FixedProductTax";
+            label?: string | null;
+            amount?: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            } | null;
+          } | null> | null;
+          discounts?: Array<{
+            __typename: "Discount";
+            label: string;
+            amount: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+          } | null> | null;
+          price: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          price_including_tax: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          row_total: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          row_total_including_tax: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          total_item_discount?: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          } | null;
+        } | null;
+        product:
+          | {
+              __typename: "BundleProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "ConfigurableProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "DownloadableProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "GiftCardProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "GroupedProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "SimpleProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "VirtualProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            };
+      }
+    | {
+        __typename: "GiftCardCartItem";
+        is_in_store?: boolean | null;
+        quantity: number;
+        prices?: {
+          __typename: "CartItemPrices";
+          fixed_product_taxes?: Array<{
+            __typename: "FixedProductTax";
+            label?: string | null;
+            amount?: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            } | null;
+          } | null> | null;
+          discounts?: Array<{
+            __typename: "Discount";
+            label: string;
+            amount: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+          } | null> | null;
+          price: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          price_including_tax: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          row_total: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          row_total_including_tax: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          total_item_discount?: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          } | null;
+        } | null;
+        product:
+          | {
+              __typename: "BundleProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "ConfigurableProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "DownloadableProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "GiftCardProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "GroupedProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "SimpleProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "VirtualProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            };
+      }
+    | {
+        __typename: "SimpleCartItem";
+        is_in_store?: boolean | null;
+        quantity: number;
+        prices?: {
+          __typename: "CartItemPrices";
+          fixed_product_taxes?: Array<{
+            __typename: "FixedProductTax";
+            label?: string | null;
+            amount?: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            } | null;
+          } | null> | null;
+          discounts?: Array<{
+            __typename: "Discount";
+            label: string;
+            amount: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+          } | null> | null;
+          price: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          price_including_tax: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          row_total: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          row_total_including_tax: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          total_item_discount?: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          } | null;
+        } | null;
+        product:
+          | {
+              __typename: "BundleProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "ConfigurableProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "DownloadableProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "GiftCardProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "GroupedProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "SimpleProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "VirtualProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            };
+      }
+    | {
+        __typename: "VirtualCartItem";
+        is_in_store?: boolean | null;
+        quantity: number;
+        prices?: {
+          __typename: "CartItemPrices";
+          fixed_product_taxes?: Array<{
+            __typename: "FixedProductTax";
+            label?: string | null;
+            amount?: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            } | null;
+          } | null> | null;
+          discounts?: Array<{
+            __typename: "Discount";
+            label: string;
+            amount: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+          } | null> | null;
+          price: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          price_including_tax: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          row_total: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          row_total_including_tax: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+          total_item_discount?: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          } | null;
+        } | null;
+        product:
+          | {
+              __typename: "BundleProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "ConfigurableProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "DownloadableProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "GiftCardProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "GroupedProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "SimpleProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            }
+          | {
+              __typename: "VirtualProduct";
+              id?: number | null;
+              name?: string | null;
+              sku?: string | null;
+              url_key?: string | null;
+              image?: {
+                __typename: "ProductImage";
+                url?: string | null;
+              } | null;
+            };
+      }
+    | null
+  > | null;
+};
+
+export type CartQueryVariables = Exact<{
+  cart_id: Scalars["String"]["input"];
+}>;
+
+export type CartQuery = {
+  __typename: "Query";
+  cart?: {
+    __typename: "Cart";
+    prices?: {
+      __typename: "CartPrices";
+      grand_total?: {
+        __typename: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      } | null;
+      discounts?: Array<{
+        __typename: "Discount";
+        label: string;
+        amount: {
+          __typename: "Money";
+          currency?: CurrencyEnum | null;
+          value?: number | null;
+        };
+      } | null> | null;
+      applied_taxes?: Array<{
+        __typename: "CartTaxItem";
+        label: string;
+        amount: {
+          __typename: "Money";
+          currency?: CurrencyEnum | null;
+          value?: number | null;
+        };
+      } | null> | null;
+      subtotal_excluding_tax?: {
+        __typename: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      } | null;
+      subtotal_including_tax?: {
+        __typename: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      } | null;
+      subtotal_with_discount_excluding_tax?: {
+        __typename: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      } | null;
+    } | null;
+    items?: Array<
+      | {
+          __typename: "BundleCartItem";
+          is_in_store?: boolean | null;
+          quantity: number;
+          prices?: {
+            __typename: "CartItemPrices";
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null> | null;
+            discounts?: Array<{
+              __typename: "Discount";
+              label: string;
+              amount: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+            } | null> | null;
+            price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            price_including_tax: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            row_total: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            row_total_including_tax: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            total_item_discount?: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            } | null;
+          } | null;
+          product:
+            | {
+                __typename: "BundleProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "ConfigurableProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "DownloadableProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "GiftCardProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "GroupedProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "SimpleProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "VirtualProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              };
+        }
+      | {
+          __typename: "ConfigurableCartItem";
+          is_in_store?: boolean | null;
+          quantity: number;
+          prices?: {
+            __typename: "CartItemPrices";
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null> | null;
+            discounts?: Array<{
+              __typename: "Discount";
+              label: string;
+              amount: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+            } | null> | null;
+            price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            price_including_tax: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            row_total: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            row_total_including_tax: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            total_item_discount?: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            } | null;
+          } | null;
+          product:
+            | {
+                __typename: "BundleProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "ConfigurableProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "DownloadableProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "GiftCardProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "GroupedProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "SimpleProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "VirtualProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              };
+        }
+      | {
+          __typename: "DownloadableCartItem";
+          is_in_store?: boolean | null;
+          quantity: number;
+          prices?: {
+            __typename: "CartItemPrices";
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null> | null;
+            discounts?: Array<{
+              __typename: "Discount";
+              label: string;
+              amount: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+            } | null> | null;
+            price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            price_including_tax: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            row_total: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            row_total_including_tax: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            total_item_discount?: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            } | null;
+          } | null;
+          product:
+            | {
+                __typename: "BundleProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "ConfigurableProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "DownloadableProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "GiftCardProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "GroupedProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "SimpleProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "VirtualProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              };
+        }
+      | {
+          __typename: "GiftCardCartItem";
+          is_in_store?: boolean | null;
+          quantity: number;
+          prices?: {
+            __typename: "CartItemPrices";
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null> | null;
+            discounts?: Array<{
+              __typename: "Discount";
+              label: string;
+              amount: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+            } | null> | null;
+            price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            price_including_tax: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            row_total: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            row_total_including_tax: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            total_item_discount?: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            } | null;
+          } | null;
+          product:
+            | {
+                __typename: "BundleProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "ConfigurableProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "DownloadableProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "GiftCardProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "GroupedProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "SimpleProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "VirtualProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              };
+        }
+      | {
+          __typename: "SimpleCartItem";
+          is_in_store?: boolean | null;
+          quantity: number;
+          prices?: {
+            __typename: "CartItemPrices";
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null> | null;
+            discounts?: Array<{
+              __typename: "Discount";
+              label: string;
+              amount: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+            } | null> | null;
+            price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            price_including_tax: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            row_total: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            row_total_including_tax: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            total_item_discount?: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            } | null;
+          } | null;
+          product:
+            | {
+                __typename: "BundleProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "ConfigurableProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "DownloadableProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "GiftCardProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "GroupedProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "SimpleProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "VirtualProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              };
+        }
+      | {
+          __typename: "VirtualCartItem";
+          is_in_store?: boolean | null;
+          quantity: number;
+          prices?: {
+            __typename: "CartItemPrices";
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null> | null;
+            discounts?: Array<{
+              __typename: "Discount";
+              label: string;
+              amount: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+            } | null> | null;
+            price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            price_including_tax: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            row_total: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            row_total_including_tax: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
+            total_item_discount?: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            } | null;
+          } | null;
+          product:
+            | {
+                __typename: "BundleProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "ConfigurableProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "DownloadableProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "GiftCardProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "GroupedProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "SimpleProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              }
+            | {
+                __typename: "VirtualProduct";
+                id?: number | null;
+                name?: string | null;
+                sku?: string | null;
+                url_key?: string | null;
+                image?: {
+                  __typename: "ProductImage";
+                  url?: string | null;
+                } | null;
+              };
+        }
+      | null
+    > | null;
+  } | null;
+};
+
+export type CreateEmptyCartMutationVariables = Exact<{ [key: string]: never }>;
+
+export type CreateEmptyCartMutation = {
+  __typename: "Mutation";
+  createEmptyCart?: string | null;
+};
+
+export type AddProductToCartMutationVariables = Exact<{
+  cartId: Scalars["String"]["input"];
+  cartItems: Array<CartItemInput> | CartItemInput;
+}>;
+
+export type AddProductToCartMutation = {
+  __typename: "Mutation";
+  addProductsToCart?: {
+    __typename: "AddProductsToCartOutput";
+    cart: {
+      __typename: "Cart";
+      prices?: {
+        __typename: "CartPrices";
+        grand_total?: {
+          __typename: "Money";
+          currency?: CurrencyEnum | null;
+          value?: number | null;
+        } | null;
+        discounts?: Array<{
+          __typename: "Discount";
+          label: string;
+          amount: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+        } | null> | null;
+        applied_taxes?: Array<{
+          __typename: "CartTaxItem";
+          label: string;
+          amount: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+        } | null> | null;
+        subtotal_excluding_tax?: {
+          __typename: "Money";
+          currency?: CurrencyEnum | null;
+          value?: number | null;
+        } | null;
+        subtotal_including_tax?: {
+          __typename: "Money";
+          currency?: CurrencyEnum | null;
+          value?: number | null;
+        } | null;
+        subtotal_with_discount_excluding_tax?: {
+          __typename: "Money";
+          currency?: CurrencyEnum | null;
+          value?: number | null;
+        } | null;
+      } | null;
+      items?: Array<
+        | {
+            __typename: "BundleCartItem";
+            is_in_store?: boolean | null;
+            quantity: number;
+            prices?: {
+              __typename: "CartItemPrices";
+              fixed_product_taxes?: Array<{
+                __typename: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              discounts?: Array<{
+                __typename: "Discount";
+                label: string;
+                amount: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                };
+              } | null> | null;
+              price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              price_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              total_item_discount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null;
+            product:
+              | {
+                  __typename: "BundleProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "ConfigurableProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "DownloadableProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GiftCardProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GroupedProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "SimpleProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "VirtualProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                };
+          }
+        | {
+            __typename: "ConfigurableCartItem";
+            is_in_store?: boolean | null;
+            quantity: number;
+            prices?: {
+              __typename: "CartItemPrices";
+              fixed_product_taxes?: Array<{
+                __typename: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              discounts?: Array<{
+                __typename: "Discount";
+                label: string;
+                amount: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                };
+              } | null> | null;
+              price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              price_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              total_item_discount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null;
+            product:
+              | {
+                  __typename: "BundleProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "ConfigurableProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "DownloadableProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GiftCardProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GroupedProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "SimpleProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "VirtualProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                };
+          }
+        | {
+            __typename: "DownloadableCartItem";
+            is_in_store?: boolean | null;
+            quantity: number;
+            prices?: {
+              __typename: "CartItemPrices";
+              fixed_product_taxes?: Array<{
+                __typename: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              discounts?: Array<{
+                __typename: "Discount";
+                label: string;
+                amount: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                };
+              } | null> | null;
+              price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              price_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              total_item_discount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null;
+            product:
+              | {
+                  __typename: "BundleProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "ConfigurableProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "DownloadableProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GiftCardProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GroupedProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "SimpleProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "VirtualProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                };
+          }
+        | {
+            __typename: "GiftCardCartItem";
+            is_in_store?: boolean | null;
+            quantity: number;
+            prices?: {
+              __typename: "CartItemPrices";
+              fixed_product_taxes?: Array<{
+                __typename: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              discounts?: Array<{
+                __typename: "Discount";
+                label: string;
+                amount: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                };
+              } | null> | null;
+              price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              price_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              total_item_discount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null;
+            product:
+              | {
+                  __typename: "BundleProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "ConfigurableProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "DownloadableProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GiftCardProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GroupedProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "SimpleProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "VirtualProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                };
+          }
+        | {
+            __typename: "SimpleCartItem";
+            is_in_store?: boolean | null;
+            quantity: number;
+            prices?: {
+              __typename: "CartItemPrices";
+              fixed_product_taxes?: Array<{
+                __typename: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              discounts?: Array<{
+                __typename: "Discount";
+                label: string;
+                amount: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                };
+              } | null> | null;
+              price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              price_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              total_item_discount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null;
+            product:
+              | {
+                  __typename: "BundleProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "ConfigurableProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "DownloadableProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GiftCardProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GroupedProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "SimpleProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "VirtualProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                };
+          }
+        | {
+            __typename: "VirtualCartItem";
+            is_in_store?: boolean | null;
+            quantity: number;
+            prices?: {
+              __typename: "CartItemPrices";
+              fixed_product_taxes?: Array<{
+                __typename: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              discounts?: Array<{
+                __typename: "Discount";
+                label: string;
+                amount: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                };
+              } | null> | null;
+              price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              price_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              total_item_discount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null;
+            product:
+              | {
+                  __typename: "BundleProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "ConfigurableProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "DownloadableProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GiftCardProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GroupedProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "SimpleProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                }
+              | {
+                  __typename: "VirtualProduct";
+                  id?: number | null;
+                  name?: string | null;
+                  sku?: string | null;
+                  url_key?: string | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                  } | null;
+                };
+          }
+        | null
+      > | null;
+    };
+  } | null;
 };
 
 export type BaseCategoryDataFragment = {
@@ -62452,6 +64602,548 @@ export type StoreConfigQuery = {
   } | null;
 };
 
+export const CartPriceFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CartPrice" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CartPrices" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "grand_total" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "discounts" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "applied_taxes" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "subtotal_excluding_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "subtotal_including_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: {
+              kind: "Name",
+              value: "subtotal_with_discount_excluding_tax",
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CartPriceFragment, unknown>;
+export const CartItemPriceFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CartItemPrice" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CartItemPrices" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "fixed_product_taxes" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "discounts" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "price_including_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "row_total" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "row_total_including_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "total_item_discount" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CartItemPriceFragment, unknown>;
+export const BaseCartFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "BaseCart" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Cart" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "prices" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CartPrice" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "prices" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CartItemPrice" },
+                      },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "is_in_store" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "product" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      { kind: "Field", name: { kind: "Name", value: "sku" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "url_key" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "url" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "quantity" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CartPrice" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CartPrices" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "grand_total" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "discounts" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "applied_taxes" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "subtotal_excluding_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "subtotal_including_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: {
+              kind: "Name",
+              value: "subtotal_with_discount_excluding_tax",
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CartItemPrice" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CartItemPrices" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "fixed_product_taxes" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "discounts" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "price_including_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "row_total" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "row_total_including_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "total_item_discount" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<BaseCartFragment, unknown>;
 export const BaseCategoryDataFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -67140,6 +69832,779 @@ export const StoreConsentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<StoreConsentFragment, unknown>;
+export const CartDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "Cart" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "cart_id" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "cart" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "cart_id" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "cart_id" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "BaseCart" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CartPrice" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CartPrices" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "grand_total" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "discounts" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "applied_taxes" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "subtotal_excluding_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "subtotal_including_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: {
+              kind: "Name",
+              value: "subtotal_with_discount_excluding_tax",
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CartItemPrice" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CartItemPrices" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "fixed_product_taxes" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "discounts" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "price_including_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "row_total" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "row_total_including_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "total_item_discount" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "BaseCart" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Cart" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "prices" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CartPrice" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "prices" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CartItemPrice" },
+                      },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "is_in_store" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "product" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      { kind: "Field", name: { kind: "Name", value: "sku" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "url_key" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "url" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "quantity" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CartQuery, CartQueryVariables>;
+export const CreateEmptyCartDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "CreateEmptyCart" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "createEmptyCart" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  CreateEmptyCartMutation,
+  CreateEmptyCartMutationVariables
+>;
+export const AddProductToCartDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "AddProductToCart" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "cartId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "cartItems" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "ListType",
+              type: {
+                kind: "NonNullType",
+                type: {
+                  kind: "NamedType",
+                  name: { kind: "Name", value: "CartItemInput" },
+                },
+              },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "addProductsToCart" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "cartId" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "cartId" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "cartItems" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "cartItems" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "cart" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "BaseCart" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CartPrice" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CartPrices" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "grand_total" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "discounts" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "applied_taxes" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "subtotal_excluding_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "subtotal_including_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: {
+              kind: "Name",
+              value: "subtotal_with_discount_excluding_tax",
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CartItemPrice" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CartItemPrices" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "fixed_product_taxes" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "discounts" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "price_including_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "row_total" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "row_total_including_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "total_item_discount" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "BaseCart" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Cart" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "prices" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CartPrice" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "prices" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CartItemPrice" },
+                      },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "is_in_store" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "product" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "name" } },
+                      { kind: "Field", name: { kind: "Name", value: "sku" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "url_key" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "image" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "url" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "quantity" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  AddProductToCartMutation,
+  AddProductToCartMutationVariables
+>;
 export const CategoryDocument = {
   kind: "Document",
   definitions: [

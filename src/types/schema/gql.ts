@@ -13,6 +13,18 @@ import type { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+  "\n  fragment CartPrice on CartPrices {\n    grand_total {\n      currency\n      value\n    }\n    discounts {\n      label\n      amount {\n        currency\n        value\n      }\n    }\n    applied_taxes {\n      amount {\n        currency\n        value\n      }\n      label\n    }\n    subtotal_excluding_tax {\n      currency\n      value\n    }\n    subtotal_including_tax {\n      currency\n      value\n    }\n    subtotal_with_discount_excluding_tax {\n      currency\n      value\n    }\n  }\n":
+    types.CartPriceFragmentDoc,
+  "\n  fragment CartItemPrice on CartItemPrices {\n    fixed_product_taxes {\n      amount {\n        currency\n        value\n      }\n      label\n    }\n    discounts {\n      amount {\n        currency\n        value\n      }\n      label\n    }\n    price {\n      currency\n      value\n    }\n    price_including_tax {\n      currency\n      value\n    }\n    row_total {\n      currency\n      value\n    }\n    row_total_including_tax {\n      currency\n      value\n    }\n    total_item_discount {\n      currency\n      value\n    }\n  }\n":
+    types.CartItemPriceFragmentDoc,
+  "\n  fragment BaseCart on Cart {\n    prices {\n      ...CartPrice\n    }\n    items {\n      prices {\n        ...CartItemPrice\n      }\n      is_in_store\n      product {\n        id\n        name\n        sku\n        url_key\n        image {\n          url\n        }\n      }\n      quantity\n    }\n  }\n":
+    types.BaseCartFragmentDoc,
+  "\n  query Cart($cart_id: String!) {\n    cart(cart_id: $cart_id) {\n      ...BaseCart\n    }\n  }\n":
+    types.CartDocument,
+  "\n  mutation CreateEmptyCart {\n    createEmptyCart\n  }\n":
+    types.CreateEmptyCartDocument,
+  "\n  mutation AddProductToCart($cartId: String!, $cartItems: [CartItemInput!]!) {\n    addProductsToCart(cartId: $cartId, cartItems: $cartItems) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n":
+    types.AddProductToCartDocument,
   "\n  fragment BaseCategoryData on CategoryTree {\n    name\n    description\n    id\n    uid\n    url_path\n    product_count\n    meta_title\n    meta_keywords\n    meta_description\n    include_in_menu\n    children {\n      name\n      uid\n      url_path\n      product_count\n      include_in_menu\n      children {\n        name\n        uid\n        url_path\n        product_count\n        include_in_menu\n      }\n    }\n  }\n":
     types.BaseCategoryDataFragmentDoc,
   "\n  query Category($filters: CategoryFilterInput) {\n    categories(filters: $filters) {\n      items {\n        name\n        description\n        id\n        uid\n        url_path\n        product_count\n        meta_title\n        meta_keywords\n        meta_description\n        include_in_menu\n        children {\n          name\n          uid\n          url_path\n          product_count\n          include_in_menu\n          children {\n            name\n            uid\n            url_path\n            product_count\n            include_in_menu\n          }\n        }\n      }\n    }\n  }\n":
@@ -113,6 +125,42 @@ const documents = {
  */
 export function graphql(source: string): unknown;
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment CartPrice on CartPrices {\n    grand_total {\n      currency\n      value\n    }\n    discounts {\n      label\n      amount {\n        currency\n        value\n      }\n    }\n    applied_taxes {\n      amount {\n        currency\n        value\n      }\n      label\n    }\n    subtotal_excluding_tax {\n      currency\n      value\n    }\n    subtotal_including_tax {\n      currency\n      value\n    }\n    subtotal_with_discount_excluding_tax {\n      currency\n      value\n    }\n  }\n",
+): (typeof documents)["\n  fragment CartPrice on CartPrices {\n    grand_total {\n      currency\n      value\n    }\n    discounts {\n      label\n      amount {\n        currency\n        value\n      }\n    }\n    applied_taxes {\n      amount {\n        currency\n        value\n      }\n      label\n    }\n    subtotal_excluding_tax {\n      currency\n      value\n    }\n    subtotal_including_tax {\n      currency\n      value\n    }\n    subtotal_with_discount_excluding_tax {\n      currency\n      value\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment CartItemPrice on CartItemPrices {\n    fixed_product_taxes {\n      amount {\n        currency\n        value\n      }\n      label\n    }\n    discounts {\n      amount {\n        currency\n        value\n      }\n      label\n    }\n    price {\n      currency\n      value\n    }\n    price_including_tax {\n      currency\n      value\n    }\n    row_total {\n      currency\n      value\n    }\n    row_total_including_tax {\n      currency\n      value\n    }\n    total_item_discount {\n      currency\n      value\n    }\n  }\n",
+): (typeof documents)["\n  fragment CartItemPrice on CartItemPrices {\n    fixed_product_taxes {\n      amount {\n        currency\n        value\n      }\n      label\n    }\n    discounts {\n      amount {\n        currency\n        value\n      }\n      label\n    }\n    price {\n      currency\n      value\n    }\n    price_including_tax {\n      currency\n      value\n    }\n    row_total {\n      currency\n      value\n    }\n    row_total_including_tax {\n      currency\n      value\n    }\n    total_item_discount {\n      currency\n      value\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment BaseCart on Cart {\n    prices {\n      ...CartPrice\n    }\n    items {\n      prices {\n        ...CartItemPrice\n      }\n      is_in_store\n      product {\n        id\n        name\n        sku\n        url_key\n        image {\n          url\n        }\n      }\n      quantity\n    }\n  }\n",
+): (typeof documents)["\n  fragment BaseCart on Cart {\n    prices {\n      ...CartPrice\n    }\n    items {\n      prices {\n        ...CartItemPrice\n      }\n      is_in_store\n      product {\n        id\n        name\n        sku\n        url_key\n        image {\n          url\n        }\n      }\n      quantity\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  query Cart($cart_id: String!) {\n    cart(cart_id: $cart_id) {\n      ...BaseCart\n    }\n  }\n",
+): (typeof documents)["\n  query Cart($cart_id: String!) {\n    cart(cart_id: $cart_id) {\n      ...BaseCart\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  mutation CreateEmptyCart {\n    createEmptyCart\n  }\n",
+): (typeof documents)["\n  mutation CreateEmptyCart {\n    createEmptyCart\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  mutation AddProductToCart($cartId: String!, $cartItems: [CartItemInput!]!) {\n    addProductsToCart(cartId: $cartId, cartItems: $cartItems) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n",
+): (typeof documents)["\n  mutation AddProductToCart($cartId: String!, $cartItems: [CartItemInput!]!) {\n    addProductsToCart(cartId: $cartId, cartItems: $cartItems) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

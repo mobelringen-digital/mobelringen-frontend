@@ -2,9 +2,9 @@ import React from "react";
 
 import Link from "next/link";
 
-import { CartIcon } from "@/components/_ui/icons/CartIcon";
 import { Favorite } from "@/components/_ui/icons/figma/Favorite";
 import { Profile } from "@/components/_ui/icons/figma/Profile";
+import { CartButton } from "@/components/cart/CartButton";
 import { SearchInput } from "@/components/search/SearchInput";
 
 export const Actions = () => {
@@ -22,7 +22,7 @@ export const Actions = () => {
         <Favorite width={24} height={24} />
       </li>
       <li>
-        <CartIcon />
+        <CartButton />
       </li>
     </ul>
   );

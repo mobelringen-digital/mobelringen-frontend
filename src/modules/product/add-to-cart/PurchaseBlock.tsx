@@ -2,9 +2,9 @@
 
 import React from "react";
 
-import { Button } from "@/components/_ui/button/Button";
 import { FormatNumber } from "@/components/_ui/format-number/FormatNumber";
 import { QuantityInput } from "@/components/_ui/quantity-input/QuantityInput";
+import { AddToCart } from "@/components/cart/add-to-cart/AddToCart";
 import { useActiveProductData } from "@/modules/product/active-product-data-provider/useActiveProductData";
 import { DeliveryInfo } from "@/modules/product/add-to-cart/DeliveryInfo";
 import { KlarnaInformation } from "@/modules/product/add-to-cart/KlarnaInformation";
@@ -53,14 +53,11 @@ export const PurchaseBlock: React.FC<Props> = ({ product }) => {
           </div>
         ) : null}
       </div>
-      <div className="flex flex-col gap-4">
-        <Button disabled={isVariantNotSelected} color="primary">
-          Legg i handlekurv
-        </Button>
-        <Button disabled={isVariantNotSelected} color="secondary">
-          Klikk og hent
-        </Button>
-      </div>
+      <AddToCart
+        product={product}
+        quantity={quantity}
+        isDisabled={isVariantNotSelected}
+      />
 
       <KlarnaInformation />
     </div>
