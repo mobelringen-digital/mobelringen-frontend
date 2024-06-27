@@ -27,7 +27,7 @@ export const ProductAddedModal: React.FC<Props> = ({
   return (
     <Modal
       size="2xl"
-      className="mx-4"
+      className="mx-2"
       backdrop="blur"
       isOpen={isOpen}
       onOpenChange={onOpenChange}
