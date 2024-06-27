@@ -5,6 +5,7 @@ import React from "react";
 import { useCookies } from "react-cookie";
 
 import { Button } from "@/components/_ui/button/Button";
+import { ProductAddedModal } from "@/components/cart/add-to-cart/ProductAddedModal";
 import { useAddProductToCartMutation } from "@/components/cart/add-to-cart/useAddProductToCartMutation";
 import { useCreateEmptyCartMutation } from "@/components/cart/add-to-cart/useCreateEmptyCartMutation";
 import { CartCookie } from "@/components/cart/useCartQuery";
@@ -21,6 +22,7 @@ export const AddToCart: React.FC<Props> = ({
   product,
   quantity,
 }) => {
+  const [isOpen, setOpen] = React.useState(false);
   const [cookies] = useCookies<"cart", CartCookie>(["cart"]);
   const { mutate: createEmptyCart, isPending: isCreateCartLoading } =
     useCreateEmptyCartMutation();
@@ -35,44 +37,61 @@ export const AddToCart: React.FC<Props> = ({
       createEmptyCart(undefined, {
         onSettled: async (cartId) => {
           if (product.sku && quantity && cartId) {
-            addProductToCart({
-              cartItems: [
-                {
-                  sku: product.sku,
-                  quantity,
-                },
-              ],
-              cartId,
-            });
+            addProductToCart(
+              {
+                cartItems: [
+                  {
+                    sku: product.sku,
+                    quantity,
+                  },
+                ],
+                cartId,
+              },
+              {
+                onSuccess: () => setOpen(true),
+              },
+            );
           }
         },
       });
     } else {
       if (!!cookies.cart && product.sku && quantity) {
-        addProductToCart({
-          cartItems: [
-            {
-              sku: product.sku,
-              quantity,
-            },
-          ],
-        });
+        addProductToCart(
+          {
+            cartItems: [
+              {
+                sku: product.sku,
+                quantity,
+              },
+            ],
+          },
+          {
+            onSuccess: () => setOpen(true),
+          },
+        );
       }
     }
   };
 
   return (
-    <div className="flex flex-col gap-4">
-      <Button
-        onClick={handleAddItemToCart}
-        disabled={isButtonDisabled}
-        color="primary"
-      >
-        Legg i handlekurv
-      </Button>
-      <Button disabled={isButtonDisabled} color="secondary">
-        Klikk og hent
-      </Button>
-    </div>
+    <>
+      <ProductAddedModal
+        product={product}
+        isOpen={isOpen}
+        onOpenChange={() => setOpen((prev) => !prev)}
+      />
+      <div className="flex flex-col gap-4">
+        <Button
+          onClick={handleAddItemToCart}
+          disabled={isButtonDisabled}
+          color="primary"
+        >
+          Legg i handlekurv
+        </Button>
+        <Button disabled={isButtonDisabled} color="secondary">
+          Klikk og hent
+        </Button>
+      </div>
+    </>
   );
 };
