@@ -2,36 +2,28 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useCookies } from "react-cookie";
 
 import { CART_QUERY_KEY, CartCookie } from "@/components/cart/fetchCartService";
-import { AddProductToCartDocument, CartItemInput } from "@/types";
+import { RemoveProductFromCart } from "@/queries/cart.queries";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
-export const useAddProductToCartMutation = () => {
+export const useRemoveProductFromCartMutation = () => {
   const queryClient = useQueryClient();
   const [cookies] = useCookies<"cart", CartCookie>(["cart"]);
 
-  const addProductToCart = async (
-    cartItems: Array<CartItemInput> | CartItemInput,
-    cartId?: string,
-  ) => {
+  const removeProductFromCart = async (cartItemId: number) => {
     const data = await baseMagentoClient("POST").request(
-      AddProductToCartDocument,
+      RemoveProductFromCart,
       {
-        cartId: cartId ?? cookies.cart,
-        cartItems,
+        cartId: cookies.cart,
+        cartItemId,
       },
     );
 
-    return data.addProductsToCart;
+    return data.removeItemFromCart?.cart;
   };
 
   return useMutation({
-    mutationFn: ({
-      cartItems,
-      cartId,
-    }: {
-      cartItems: Array<CartItemInput> | CartItemInput;
-      cartId?: string;
-    }) => addProductToCart(cartItems, cartId),
+    mutationFn: ({ cartItemId }: { cartItemId: number }) =>
+      removeProductFromCart(cartItemId),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: CART_QUERY_KEY });
     },

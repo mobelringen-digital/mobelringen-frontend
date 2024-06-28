@@ -8,7 +8,7 @@ import { Button } from "@/components/_ui/button/Button";
 import { ProductAddedModal } from "@/components/cart/add-to-cart/ProductAddedModal";
 import { useAddProductToCartMutation } from "@/components/cart/add-to-cart/useAddProductToCartMutation";
 import { useCreateEmptyCartMutation } from "@/components/cart/add-to-cart/useCreateEmptyCartMutation";
-import { CartCookie } from "@/components/cart/useCartQuery";
+import { CartCookie } from "@/components/cart/fetchCartService";
 import { BaseProductFragment } from "@/types";
 
 interface Props {

@@ -14,7 +14,7 @@ const COLORS = {
   primary:
     "bg-red text-black hover:bg-blend-darken hover:bg-dark-red hover:text-white",
   secondary: "bg-powder text-black hover:bg-blend-darken hover:bg-powder-dark",
-  tertiary: "bg-black text-white  hover:bg-blend-lighten",
+  tertiary: "bg-black text-white hover:bg-dark-grey hover:text-white",
 } as const;
 
 const VARIANTS = {

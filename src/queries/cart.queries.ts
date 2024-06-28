@@ -37,14 +37,14 @@ export const CartPriceFragment = graphql(`
 
 export const CartItemPriceFragment = graphql(`
   fragment CartItemPrice on CartItemPrices {
-    fixed_product_taxes {
+    discounts {
+      label
       amount {
         currency
         value
       }
-      label
     }
-    discounts {
+    fixed_product_taxes {
       amount {
         currency
         value
@@ -80,6 +80,7 @@ export const BaseProductDataForCartFragment = graphql(`
     name
     sku
     canonical_url
+    special_price
     short_description {
       html
     }
@@ -89,20 +90,27 @@ export const BaseProductDataForCartFragment = graphql(`
   }
 `);
 
+export const CartItemFragment = graphql(`
+  fragment CartItem on CartItemInterface {
+    id
+    prices {
+      ...CartItemPrice
+    }
+    is_in_store
+    product {
+      ...BaseProductDataForCart
+    }
+    quantity
+  }
+`);
+
 export const BaseCartFragment = graphql(`
   fragment BaseCart on Cart {
     prices {
       ...CartPrice
     }
     items {
-      prices {
-        ...CartItemPrice
-      }
-      is_in_store
-      product {
-        ...BaseProductDataForCart
-      }
-      quantity
+      ...CartItem
     }
   }
 `);
@@ -124,6 +132,16 @@ export const CreateEmptyCartDocument = graphql(`
 export const AddProductToCart = graphql(`
   mutation AddProductToCart($cartId: String!, $cartItems: [CartItemInput!]!) {
     addProductsToCart(cartId: $cartId, cartItems: $cartItems) {
+      cart {
+        ...BaseCart
+      }
+    }
+  }
+`);
+
+export const RemoveProductFromCart = graphql(`
+  mutation RemoveProductFromCart($cartId: String!, $cartItemId: Int!) {
+    removeItemFromCart(input: { cart_id: $cartId, cart_item_id: $cartItemId }) {
       cart {
         ...BaseCart
       }

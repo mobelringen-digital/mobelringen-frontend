@@ -13,6 +13,8 @@ import Image from "next/image";
 import { Button } from "@/components/_ui/button/Button";
 import { BaseProductFragment } from "@/types";
 
+import { navigate } from "../../../app/actions";
+
 interface Props {
   product: BaseProductFragment;
   isOpen: boolean;
@@ -24,6 +26,10 @@ export const ProductAddedModal: React.FC<Props> = ({
   isOpen,
   onOpenChange,
 }) => {
+  const navigateToCart = async () => {
+    return navigate("/cart");
+  };
+
   return (
     <Modal
       size="2xl"
@@ -68,7 +74,14 @@ export const ProductAddedModal: React.FC<Props> = ({
               <Button className="w-full" color="secondary" onPress={onClose}>
                 Fortsett å handle
               </Button>
-              <Button className="w-full" color="primary" onPress={onClose}>
+              <Button
+                className="w-full"
+                color="primary"
+                onPress={async () => {
+                  onClose();
+                  await navigateToCart();
+                }}
+              >
                 Gå til handlekurv
               </Button>
             </ModalFooter>

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import { Favorite } from "@/components/_ui/icons/figma/Favorite";
 import { Profile } from "@/components/_ui/icons/figma/Profile";
-import { CartButton } from "@/components/cart/CartButton";
+import { HeaderCartButton } from "@/components/cart/HeaderCartButton";
 import { SearchInput } from "@/components/search/SearchInput";
 
 export const Actions = () => {
@@ -22,7 +22,7 @@ export const Actions = () => {
         <Favorite width={24} height={24} />
       </li>
       <li>
-        <CartButton />
+        <HeaderCartButton />
       </li>
     </ul>
   );

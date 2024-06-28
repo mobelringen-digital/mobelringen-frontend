@@ -1,7 +1,7 @@
 import { useMutation } from "@tanstack/react-query";
 import { useCookies } from "react-cookie";
 
-import { CartCookie } from "@/components/cart/useCartQuery";
+import { CartCookie } from "@/components/cart/fetchCartService";
 import { CreateEmptyCartDocument } from "@/queries/cart.queries";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 

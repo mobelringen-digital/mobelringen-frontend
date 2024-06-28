@@ -21835,15 +21835,6 @@ export type CartPriceFragment = {
 
 export type CartItemPriceFragment = {
   __typename: "CartItemPrices";
-  fixed_product_taxes?: Array<{
-    __typename: "FixedProductTax";
-    label?: string | null;
-    amount?: {
-      __typename: "Money";
-      currency?: CurrencyEnum | null;
-      value?: number | null;
-    } | null;
-  } | null> | null;
   discounts?: Array<{
     __typename: "Discount";
     label: string;
@@ -21852,6 +21843,15 @@ export type CartItemPriceFragment = {
       currency?: CurrencyEnum | null;
       value?: number | null;
     };
+  } | null> | null;
+  fixed_product_taxes?: Array<{
+    __typename: "FixedProductTax";
+    label?: string | null;
+    amount?: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    } | null;
   } | null> | null;
   price: {
     __typename: "Money";
@@ -21885,6 +21885,7 @@ type BaseProductDataForCart_BundleProduct_Fragment = {
   name?: string | null;
   sku?: string | null;
   canonical_url?: string | null;
+  special_price?: number | null;
   short_description?: { __typename: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -21900,6 +21901,7 @@ type BaseProductDataForCart_ConfigurableProduct_Fragment = {
   name?: string | null;
   sku?: string | null;
   canonical_url?: string | null;
+  special_price?: number | null;
   short_description?: { __typename: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -21915,6 +21917,7 @@ type BaseProductDataForCart_DownloadableProduct_Fragment = {
   name?: string | null;
   sku?: string | null;
   canonical_url?: string | null;
+  special_price?: number | null;
   short_description?: { __typename: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -21930,6 +21933,7 @@ type BaseProductDataForCart_GiftCardProduct_Fragment = {
   name?: string | null;
   sku?: string | null;
   canonical_url?: string | null;
+  special_price?: number | null;
   short_description?: { __typename: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -21945,6 +21949,7 @@ type BaseProductDataForCart_GroupedProduct_Fragment = {
   name?: string | null;
   sku?: string | null;
   canonical_url?: string | null;
+  special_price?: number | null;
   short_description?: { __typename: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -21960,6 +21965,7 @@ type BaseProductDataForCart_SimpleProduct_Fragment = {
   name?: string | null;
   sku?: string | null;
   canonical_url?: string | null;
+  special_price?: number | null;
   short_description?: { __typename: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -21975,6 +21981,7 @@ type BaseProductDataForCart_VirtualProduct_Fragment = {
   name?: string | null;
   sku?: string | null;
   canonical_url?: string | null;
+  special_price?: number | null;
   short_description?: { __typename: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -21993,6 +22000,1094 @@ export type BaseProductDataForCartFragment =
   | BaseProductDataForCart_GroupedProduct_Fragment
   | BaseProductDataForCart_SimpleProduct_Fragment
   | BaseProductDataForCart_VirtualProduct_Fragment;
+
+type CartItem_BundleCartItem_Fragment = {
+  __typename: "BundleCartItem";
+  id: string;
+  is_in_store?: boolean | null;
+  quantity: number;
+  prices?: {
+    __typename: "CartItemPrices";
+    discounts?: Array<{
+      __typename: "Discount";
+      label: string;
+      amount: {
+        __typename: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      };
+    } | null> | null;
+    fixed_product_taxes?: Array<{
+      __typename: "FixedProductTax";
+      label?: string | null;
+      amount?: {
+        __typename: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      } | null;
+    } | null> | null;
+    price: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    price_including_tax: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    row_total: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    row_total_including_tax: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    total_item_discount?: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    } | null;
+  } | null;
+  product:
+    | {
+        __typename: "BundleProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "ConfigurableProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "DownloadableProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "GiftCardProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "GroupedProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "SimpleProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "VirtualProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      };
+};
+
+type CartItem_ConfigurableCartItem_Fragment = {
+  __typename: "ConfigurableCartItem";
+  id: string;
+  is_in_store?: boolean | null;
+  quantity: number;
+  prices?: {
+    __typename: "CartItemPrices";
+    discounts?: Array<{
+      __typename: "Discount";
+      label: string;
+      amount: {
+        __typename: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      };
+    } | null> | null;
+    fixed_product_taxes?: Array<{
+      __typename: "FixedProductTax";
+      label?: string | null;
+      amount?: {
+        __typename: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      } | null;
+    } | null> | null;
+    price: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    price_including_tax: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    row_total: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    row_total_including_tax: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    total_item_discount?: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    } | null;
+  } | null;
+  product:
+    | {
+        __typename: "BundleProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "ConfigurableProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "DownloadableProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "GiftCardProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "GroupedProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "SimpleProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "VirtualProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      };
+};
+
+type CartItem_DownloadableCartItem_Fragment = {
+  __typename: "DownloadableCartItem";
+  id: string;
+  is_in_store?: boolean | null;
+  quantity: number;
+  prices?: {
+    __typename: "CartItemPrices";
+    discounts?: Array<{
+      __typename: "Discount";
+      label: string;
+      amount: {
+        __typename: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      };
+    } | null> | null;
+    fixed_product_taxes?: Array<{
+      __typename: "FixedProductTax";
+      label?: string | null;
+      amount?: {
+        __typename: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      } | null;
+    } | null> | null;
+    price: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    price_including_tax: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    row_total: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    row_total_including_tax: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    total_item_discount?: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    } | null;
+  } | null;
+  product:
+    | {
+        __typename: "BundleProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "ConfigurableProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "DownloadableProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "GiftCardProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "GroupedProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "SimpleProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "VirtualProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      };
+};
+
+type CartItem_GiftCardCartItem_Fragment = {
+  __typename: "GiftCardCartItem";
+  id: string;
+  is_in_store?: boolean | null;
+  quantity: number;
+  prices?: {
+    __typename: "CartItemPrices";
+    discounts?: Array<{
+      __typename: "Discount";
+      label: string;
+      amount: {
+        __typename: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      };
+    } | null> | null;
+    fixed_product_taxes?: Array<{
+      __typename: "FixedProductTax";
+      label?: string | null;
+      amount?: {
+        __typename: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      } | null;
+    } | null> | null;
+    price: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    price_including_tax: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    row_total: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    row_total_including_tax: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    total_item_discount?: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    } | null;
+  } | null;
+  product:
+    | {
+        __typename: "BundleProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "ConfigurableProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "DownloadableProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "GiftCardProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "GroupedProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "SimpleProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "VirtualProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      };
+};
+
+type CartItem_SimpleCartItem_Fragment = {
+  __typename: "SimpleCartItem";
+  id: string;
+  is_in_store?: boolean | null;
+  quantity: number;
+  prices?: {
+    __typename: "CartItemPrices";
+    discounts?: Array<{
+      __typename: "Discount";
+      label: string;
+      amount: {
+        __typename: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      };
+    } | null> | null;
+    fixed_product_taxes?: Array<{
+      __typename: "FixedProductTax";
+      label?: string | null;
+      amount?: {
+        __typename: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      } | null;
+    } | null> | null;
+    price: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    price_including_tax: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    row_total: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    row_total_including_tax: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    total_item_discount?: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    } | null;
+  } | null;
+  product:
+    | {
+        __typename: "BundleProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "ConfigurableProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "DownloadableProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "GiftCardProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "GroupedProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "SimpleProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "VirtualProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      };
+};
+
+type CartItem_VirtualCartItem_Fragment = {
+  __typename: "VirtualCartItem";
+  id: string;
+  is_in_store?: boolean | null;
+  quantity: number;
+  prices?: {
+    __typename: "CartItemPrices";
+    discounts?: Array<{
+      __typename: "Discount";
+      label: string;
+      amount: {
+        __typename: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      };
+    } | null> | null;
+    fixed_product_taxes?: Array<{
+      __typename: "FixedProductTax";
+      label?: string | null;
+      amount?: {
+        __typename: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      } | null;
+    } | null> | null;
+    price: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    price_including_tax: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    row_total: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    row_total_including_tax: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
+    total_item_discount?: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    } | null;
+  } | null;
+  product:
+    | {
+        __typename: "BundleProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "ConfigurableProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "DownloadableProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "GiftCardProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "GroupedProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "SimpleProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      }
+    | {
+        __typename: "VirtualProduct";
+        name?: string | null;
+        sku?: string | null;
+        canonical_url?: string | null;
+        special_price?: number | null;
+        short_description?: {
+          __typename: "ComplexTextValue";
+          html: string;
+        } | null;
+        image?: {
+          __typename: "ProductImage";
+          url?: string | null;
+          position?: number | null;
+          label?: string | null;
+          disabled?: boolean | null;
+        } | null;
+      };
+};
+
+export type CartItemFragment =
+  | CartItem_BundleCartItem_Fragment
+  | CartItem_ConfigurableCartItem_Fragment
+  | CartItem_DownloadableCartItem_Fragment
+  | CartItem_GiftCardCartItem_Fragment
+  | CartItem_SimpleCartItem_Fragment
+  | CartItem_VirtualCartItem_Fragment;
 
 export type BaseCartFragment = {
   __typename: "Cart";
@@ -22040,19 +23135,11 @@ export type BaseCartFragment = {
   items?: Array<
     | {
         __typename: "BundleCartItem";
+        id: string;
         is_in_store?: boolean | null;
         quantity: number;
         prices?: {
           __typename: "CartItemPrices";
-          fixed_product_taxes?: Array<{
-            __typename: "FixedProductTax";
-            label?: string | null;
-            amount?: {
-              __typename: "Money";
-              currency?: CurrencyEnum | null;
-              value?: number | null;
-            } | null;
-          } | null> | null;
           discounts?: Array<{
             __typename: "Discount";
             label: string;
@@ -22061,6 +23148,15 @@ export type BaseCartFragment = {
               currency?: CurrencyEnum | null;
               value?: number | null;
             };
+          } | null> | null;
+          fixed_product_taxes?: Array<{
+            __typename: "FixedProductTax";
+            label?: string | null;
+            amount?: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            } | null;
           } | null> | null;
           price: {
             __typename: "Money";
@@ -22094,6 +23190,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22111,6 +23208,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22128,6 +23226,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22145,6 +23244,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22162,6 +23262,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22179,6 +23280,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22196,6 +23298,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22211,19 +23314,11 @@ export type BaseCartFragment = {
       }
     | {
         __typename: "ConfigurableCartItem";
+        id: string;
         is_in_store?: boolean | null;
         quantity: number;
         prices?: {
           __typename: "CartItemPrices";
-          fixed_product_taxes?: Array<{
-            __typename: "FixedProductTax";
-            label?: string | null;
-            amount?: {
-              __typename: "Money";
-              currency?: CurrencyEnum | null;
-              value?: number | null;
-            } | null;
-          } | null> | null;
           discounts?: Array<{
             __typename: "Discount";
             label: string;
@@ -22232,6 +23327,15 @@ export type BaseCartFragment = {
               currency?: CurrencyEnum | null;
               value?: number | null;
             };
+          } | null> | null;
+          fixed_product_taxes?: Array<{
+            __typename: "FixedProductTax";
+            label?: string | null;
+            amount?: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            } | null;
           } | null> | null;
           price: {
             __typename: "Money";
@@ -22265,6 +23369,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22282,6 +23387,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22299,6 +23405,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22316,6 +23423,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22333,6 +23441,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22350,6 +23459,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22367,6 +23477,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22382,19 +23493,11 @@ export type BaseCartFragment = {
       }
     | {
         __typename: "DownloadableCartItem";
+        id: string;
         is_in_store?: boolean | null;
         quantity: number;
         prices?: {
           __typename: "CartItemPrices";
-          fixed_product_taxes?: Array<{
-            __typename: "FixedProductTax";
-            label?: string | null;
-            amount?: {
-              __typename: "Money";
-              currency?: CurrencyEnum | null;
-              value?: number | null;
-            } | null;
-          } | null> | null;
           discounts?: Array<{
             __typename: "Discount";
             label: string;
@@ -22403,6 +23506,15 @@ export type BaseCartFragment = {
               currency?: CurrencyEnum | null;
               value?: number | null;
             };
+          } | null> | null;
+          fixed_product_taxes?: Array<{
+            __typename: "FixedProductTax";
+            label?: string | null;
+            amount?: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            } | null;
           } | null> | null;
           price: {
             __typename: "Money";
@@ -22436,6 +23548,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22453,6 +23566,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22470,6 +23584,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22487,6 +23602,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22504,6 +23620,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22521,6 +23638,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22538,6 +23656,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22553,19 +23672,11 @@ export type BaseCartFragment = {
       }
     | {
         __typename: "GiftCardCartItem";
+        id: string;
         is_in_store?: boolean | null;
         quantity: number;
         prices?: {
           __typename: "CartItemPrices";
-          fixed_product_taxes?: Array<{
-            __typename: "FixedProductTax";
-            label?: string | null;
-            amount?: {
-              __typename: "Money";
-              currency?: CurrencyEnum | null;
-              value?: number | null;
-            } | null;
-          } | null> | null;
           discounts?: Array<{
             __typename: "Discount";
             label: string;
@@ -22574,6 +23685,15 @@ export type BaseCartFragment = {
               currency?: CurrencyEnum | null;
               value?: number | null;
             };
+          } | null> | null;
+          fixed_product_taxes?: Array<{
+            __typename: "FixedProductTax";
+            label?: string | null;
+            amount?: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            } | null;
           } | null> | null;
           price: {
             __typename: "Money";
@@ -22607,6 +23727,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22624,6 +23745,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22641,6 +23763,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22658,6 +23781,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22675,6 +23799,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22692,6 +23817,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22709,6 +23835,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22724,19 +23851,11 @@ export type BaseCartFragment = {
       }
     | {
         __typename: "SimpleCartItem";
+        id: string;
         is_in_store?: boolean | null;
         quantity: number;
         prices?: {
           __typename: "CartItemPrices";
-          fixed_product_taxes?: Array<{
-            __typename: "FixedProductTax";
-            label?: string | null;
-            amount?: {
-              __typename: "Money";
-              currency?: CurrencyEnum | null;
-              value?: number | null;
-            } | null;
-          } | null> | null;
           discounts?: Array<{
             __typename: "Discount";
             label: string;
@@ -22745,6 +23864,15 @@ export type BaseCartFragment = {
               currency?: CurrencyEnum | null;
               value?: number | null;
             };
+          } | null> | null;
+          fixed_product_taxes?: Array<{
+            __typename: "FixedProductTax";
+            label?: string | null;
+            amount?: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            } | null;
           } | null> | null;
           price: {
             __typename: "Money";
@@ -22778,6 +23906,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22795,6 +23924,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22812,6 +23942,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22829,6 +23960,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22846,6 +23978,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22863,6 +23996,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22880,6 +24014,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22895,19 +24030,11 @@ export type BaseCartFragment = {
       }
     | {
         __typename: "VirtualCartItem";
+        id: string;
         is_in_store?: boolean | null;
         quantity: number;
         prices?: {
           __typename: "CartItemPrices";
-          fixed_product_taxes?: Array<{
-            __typename: "FixedProductTax";
-            label?: string | null;
-            amount?: {
-              __typename: "Money";
-              currency?: CurrencyEnum | null;
-              value?: number | null;
-            } | null;
-          } | null> | null;
           discounts?: Array<{
             __typename: "Discount";
             label: string;
@@ -22916,6 +24043,15 @@ export type BaseCartFragment = {
               currency?: CurrencyEnum | null;
               value?: number | null;
             };
+          } | null> | null;
+          fixed_product_taxes?: Array<{
+            __typename: "FixedProductTax";
+            label?: string | null;
+            amount?: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            } | null;
           } | null> | null;
           price: {
             __typename: "Money";
@@ -22949,6 +24085,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22966,6 +24103,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -22983,6 +24121,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -23000,6 +24139,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -23017,6 +24157,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -23034,6 +24175,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -23051,6 +24193,7 @@ export type BaseCartFragment = {
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
+              special_price?: number | null;
               short_description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -23120,19 +24263,11 @@ export type CartQuery = {
     items?: Array<
       | {
           __typename: "BundleCartItem";
+          id: string;
           is_in_store?: boolean | null;
           quantity: number;
           prices?: {
             __typename: "CartItemPrices";
-            fixed_product_taxes?: Array<{
-              __typename: "FixedProductTax";
-              label?: string | null;
-              amount?: {
-                __typename: "Money";
-                currency?: CurrencyEnum | null;
-                value?: number | null;
-              } | null;
-            } | null> | null;
             discounts?: Array<{
               __typename: "Discount";
               label: string;
@@ -23141,6 +24276,15 @@ export type CartQuery = {
                 currency?: CurrencyEnum | null;
                 value?: number | null;
               };
+            } | null> | null;
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
             } | null> | null;
             price: {
               __typename: "Money";
@@ -23174,6 +24318,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23191,6 +24336,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23208,6 +24354,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23225,6 +24372,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23242,6 +24390,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23259,6 +24408,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23276,6 +24426,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23291,19 +24442,11 @@ export type CartQuery = {
         }
       | {
           __typename: "ConfigurableCartItem";
+          id: string;
           is_in_store?: boolean | null;
           quantity: number;
           prices?: {
             __typename: "CartItemPrices";
-            fixed_product_taxes?: Array<{
-              __typename: "FixedProductTax";
-              label?: string | null;
-              amount?: {
-                __typename: "Money";
-                currency?: CurrencyEnum | null;
-                value?: number | null;
-              } | null;
-            } | null> | null;
             discounts?: Array<{
               __typename: "Discount";
               label: string;
@@ -23312,6 +24455,15 @@ export type CartQuery = {
                 currency?: CurrencyEnum | null;
                 value?: number | null;
               };
+            } | null> | null;
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
             } | null> | null;
             price: {
               __typename: "Money";
@@ -23345,6 +24497,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23362,6 +24515,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23379,6 +24533,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23396,6 +24551,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23413,6 +24569,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23430,6 +24587,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23447,6 +24605,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23462,19 +24621,11 @@ export type CartQuery = {
         }
       | {
           __typename: "DownloadableCartItem";
+          id: string;
           is_in_store?: boolean | null;
           quantity: number;
           prices?: {
             __typename: "CartItemPrices";
-            fixed_product_taxes?: Array<{
-              __typename: "FixedProductTax";
-              label?: string | null;
-              amount?: {
-                __typename: "Money";
-                currency?: CurrencyEnum | null;
-                value?: number | null;
-              } | null;
-            } | null> | null;
             discounts?: Array<{
               __typename: "Discount";
               label: string;
@@ -23483,6 +24634,15 @@ export type CartQuery = {
                 currency?: CurrencyEnum | null;
                 value?: number | null;
               };
+            } | null> | null;
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
             } | null> | null;
             price: {
               __typename: "Money";
@@ -23516,6 +24676,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23533,6 +24694,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23550,6 +24712,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23567,6 +24730,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23584,6 +24748,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23601,6 +24766,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23618,6 +24784,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23633,19 +24800,11 @@ export type CartQuery = {
         }
       | {
           __typename: "GiftCardCartItem";
+          id: string;
           is_in_store?: boolean | null;
           quantity: number;
           prices?: {
             __typename: "CartItemPrices";
-            fixed_product_taxes?: Array<{
-              __typename: "FixedProductTax";
-              label?: string | null;
-              amount?: {
-                __typename: "Money";
-                currency?: CurrencyEnum | null;
-                value?: number | null;
-              } | null;
-            } | null> | null;
             discounts?: Array<{
               __typename: "Discount";
               label: string;
@@ -23654,6 +24813,15 @@ export type CartQuery = {
                 currency?: CurrencyEnum | null;
                 value?: number | null;
               };
+            } | null> | null;
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
             } | null> | null;
             price: {
               __typename: "Money";
@@ -23687,6 +24855,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23704,6 +24873,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23721,6 +24891,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23738,6 +24909,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23755,6 +24927,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23772,6 +24945,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23789,6 +24963,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23804,19 +24979,11 @@ export type CartQuery = {
         }
       | {
           __typename: "SimpleCartItem";
+          id: string;
           is_in_store?: boolean | null;
           quantity: number;
           prices?: {
             __typename: "CartItemPrices";
-            fixed_product_taxes?: Array<{
-              __typename: "FixedProductTax";
-              label?: string | null;
-              amount?: {
-                __typename: "Money";
-                currency?: CurrencyEnum | null;
-                value?: number | null;
-              } | null;
-            } | null> | null;
             discounts?: Array<{
               __typename: "Discount";
               label: string;
@@ -23825,6 +24992,15 @@ export type CartQuery = {
                 currency?: CurrencyEnum | null;
                 value?: number | null;
               };
+            } | null> | null;
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
             } | null> | null;
             price: {
               __typename: "Money";
@@ -23858,6 +25034,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23875,6 +25052,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23892,6 +25070,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23909,6 +25088,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23926,6 +25106,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23943,6 +25124,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23960,6 +25142,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -23975,19 +25158,11 @@ export type CartQuery = {
         }
       | {
           __typename: "VirtualCartItem";
+          id: string;
           is_in_store?: boolean | null;
           quantity: number;
           prices?: {
             __typename: "CartItemPrices";
-            fixed_product_taxes?: Array<{
-              __typename: "FixedProductTax";
-              label?: string | null;
-              amount?: {
-                __typename: "Money";
-                currency?: CurrencyEnum | null;
-                value?: number | null;
-              } | null;
-            } | null> | null;
             discounts?: Array<{
               __typename: "Discount";
               label: string;
@@ -23996,6 +25171,15 @@ export type CartQuery = {
                 currency?: CurrencyEnum | null;
                 value?: number | null;
               };
+            } | null> | null;
+            fixed_product_taxes?: Array<{
+              __typename: "FixedProductTax";
+              label?: string | null;
+              amount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
             } | null> | null;
             price: {
               __typename: "Money";
@@ -24029,6 +25213,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -24046,6 +25231,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -24063,6 +25249,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -24080,6 +25267,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -24097,6 +25285,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -24114,6 +25303,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -24131,6 +25321,7 @@ export type CartQuery = {
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
+                special_price?: number | null;
                 short_description?: {
                   __typename: "ComplexTextValue";
                   html: string;
@@ -24211,19 +25402,11 @@ export type AddProductToCartMutation = {
       items?: Array<
         | {
             __typename: "BundleCartItem";
+            id: string;
             is_in_store?: boolean | null;
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
-              fixed_product_taxes?: Array<{
-                __typename: "FixedProductTax";
-                label?: string | null;
-                amount?: {
-                  __typename: "Money";
-                  currency?: CurrencyEnum | null;
-                  value?: number | null;
-                } | null;
-              } | null> | null;
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -24232,6 +25415,15 @@ export type AddProductToCartMutation = {
                   currency?: CurrencyEnum | null;
                   value?: number | null;
                 };
+              } | null> | null;
+              fixed_product_taxes?: Array<{
+                __typename: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
               } | null> | null;
               price: {
                 __typename: "Money";
@@ -24265,6 +25457,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24282,6 +25475,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24299,6 +25493,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24316,6 +25511,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24333,6 +25529,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24350,6 +25547,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24367,6 +25565,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24382,19 +25581,11 @@ export type AddProductToCartMutation = {
           }
         | {
             __typename: "ConfigurableCartItem";
+            id: string;
             is_in_store?: boolean | null;
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
-              fixed_product_taxes?: Array<{
-                __typename: "FixedProductTax";
-                label?: string | null;
-                amount?: {
-                  __typename: "Money";
-                  currency?: CurrencyEnum | null;
-                  value?: number | null;
-                } | null;
-              } | null> | null;
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -24403,6 +25594,15 @@ export type AddProductToCartMutation = {
                   currency?: CurrencyEnum | null;
                   value?: number | null;
                 };
+              } | null> | null;
+              fixed_product_taxes?: Array<{
+                __typename: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
               } | null> | null;
               price: {
                 __typename: "Money";
@@ -24436,6 +25636,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24453,6 +25654,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24470,6 +25672,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24487,6 +25690,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24504,6 +25708,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24521,6 +25726,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24538,6 +25744,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24553,19 +25760,11 @@ export type AddProductToCartMutation = {
           }
         | {
             __typename: "DownloadableCartItem";
+            id: string;
             is_in_store?: boolean | null;
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
-              fixed_product_taxes?: Array<{
-                __typename: "FixedProductTax";
-                label?: string | null;
-                amount?: {
-                  __typename: "Money";
-                  currency?: CurrencyEnum | null;
-                  value?: number | null;
-                } | null;
-              } | null> | null;
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -24574,6 +25773,15 @@ export type AddProductToCartMutation = {
                   currency?: CurrencyEnum | null;
                   value?: number | null;
                 };
+              } | null> | null;
+              fixed_product_taxes?: Array<{
+                __typename: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
               } | null> | null;
               price: {
                 __typename: "Money";
@@ -24607,6 +25815,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24624,6 +25833,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24641,6 +25851,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24658,6 +25869,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24675,6 +25887,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24692,6 +25905,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24709,6 +25923,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24724,19 +25939,11 @@ export type AddProductToCartMutation = {
           }
         | {
             __typename: "GiftCardCartItem";
+            id: string;
             is_in_store?: boolean | null;
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
-              fixed_product_taxes?: Array<{
-                __typename: "FixedProductTax";
-                label?: string | null;
-                amount?: {
-                  __typename: "Money";
-                  currency?: CurrencyEnum | null;
-                  value?: number | null;
-                } | null;
-              } | null> | null;
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -24745,6 +25952,15 @@ export type AddProductToCartMutation = {
                   currency?: CurrencyEnum | null;
                   value?: number | null;
                 };
+              } | null> | null;
+              fixed_product_taxes?: Array<{
+                __typename: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
               } | null> | null;
               price: {
                 __typename: "Money";
@@ -24778,6 +25994,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24795,6 +26012,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24812,6 +26030,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24829,6 +26048,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24846,6 +26066,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24863,6 +26084,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24880,6 +26102,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24895,19 +26118,11 @@ export type AddProductToCartMutation = {
           }
         | {
             __typename: "SimpleCartItem";
+            id: string;
             is_in_store?: boolean | null;
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
-              fixed_product_taxes?: Array<{
-                __typename: "FixedProductTax";
-                label?: string | null;
-                amount?: {
-                  __typename: "Money";
-                  currency?: CurrencyEnum | null;
-                  value?: number | null;
-                } | null;
-              } | null> | null;
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -24916,6 +26131,15 @@ export type AddProductToCartMutation = {
                   currency?: CurrencyEnum | null;
                   value?: number | null;
                 };
+              } | null> | null;
+              fixed_product_taxes?: Array<{
+                __typename: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
               } | null> | null;
               price: {
                 __typename: "Money";
@@ -24949,6 +26173,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24966,6 +26191,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -24983,6 +26209,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -25000,6 +26227,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -25017,6 +26245,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -25034,6 +26263,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -25051,6 +26281,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -25066,19 +26297,11 @@ export type AddProductToCartMutation = {
           }
         | {
             __typename: "VirtualCartItem";
+            id: string;
             is_in_store?: boolean | null;
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
-              fixed_product_taxes?: Array<{
-                __typename: "FixedProductTax";
-                label?: string | null;
-                amount?: {
-                  __typename: "Money";
-                  currency?: CurrencyEnum | null;
-                  value?: number | null;
-                } | null;
-              } | null> | null;
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -25087,6 +26310,15 @@ export type AddProductToCartMutation = {
                   currency?: CurrencyEnum | null;
                   value?: number | null;
                 };
+              } | null> | null;
+              fixed_product_taxes?: Array<{
+                __typename: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
               } | null> | null;
               price: {
                 __typename: "Money";
@@ -25120,6 +26352,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -25137,6 +26370,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -25154,6 +26388,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -25171,6 +26406,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -25188,6 +26424,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -25205,6 +26442,7 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -25222,6 +26460,1140 @@ export type AddProductToCartMutation = {
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                };
+          }
+        | null
+      > | null;
+    };
+  } | null;
+};
+
+export type RemoveProductFromCartMutationVariables = Exact<{
+  cartId: Scalars["String"]["input"];
+  cartItemId: Scalars["Int"]["input"];
+}>;
+
+export type RemoveProductFromCartMutation = {
+  __typename: "Mutation";
+  removeItemFromCart?: {
+    __typename: "RemoveItemFromCartOutput";
+    cart: {
+      __typename: "Cart";
+      prices?: {
+        __typename: "CartPrices";
+        grand_total?: {
+          __typename: "Money";
+          currency?: CurrencyEnum | null;
+          value?: number | null;
+        } | null;
+        discounts?: Array<{
+          __typename: "Discount";
+          label: string;
+          amount: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+        } | null> | null;
+        applied_taxes?: Array<{
+          __typename: "CartTaxItem";
+          label: string;
+          amount: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
+        } | null> | null;
+        subtotal_excluding_tax?: {
+          __typename: "Money";
+          currency?: CurrencyEnum | null;
+          value?: number | null;
+        } | null;
+        subtotal_including_tax?: {
+          __typename: "Money";
+          currency?: CurrencyEnum | null;
+          value?: number | null;
+        } | null;
+        subtotal_with_discount_excluding_tax?: {
+          __typename: "Money";
+          currency?: CurrencyEnum | null;
+          value?: number | null;
+        } | null;
+      } | null;
+      items?: Array<
+        | {
+            __typename: "BundleCartItem";
+            id: string;
+            is_in_store?: boolean | null;
+            quantity: number;
+            prices?: {
+              __typename: "CartItemPrices";
+              discounts?: Array<{
+                __typename: "Discount";
+                label: string;
+                amount: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                };
+              } | null> | null;
+              fixed_product_taxes?: Array<{
+                __typename: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              price_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              total_item_discount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null;
+            product:
+              | {
+                  __typename: "BundleProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "ConfigurableProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "DownloadableProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GiftCardProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GroupedProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "SimpleProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "VirtualProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                };
+          }
+        | {
+            __typename: "ConfigurableCartItem";
+            id: string;
+            is_in_store?: boolean | null;
+            quantity: number;
+            prices?: {
+              __typename: "CartItemPrices";
+              discounts?: Array<{
+                __typename: "Discount";
+                label: string;
+                amount: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                };
+              } | null> | null;
+              fixed_product_taxes?: Array<{
+                __typename: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              price_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              total_item_discount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null;
+            product:
+              | {
+                  __typename: "BundleProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "ConfigurableProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "DownloadableProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GiftCardProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GroupedProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "SimpleProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "VirtualProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                };
+          }
+        | {
+            __typename: "DownloadableCartItem";
+            id: string;
+            is_in_store?: boolean | null;
+            quantity: number;
+            prices?: {
+              __typename: "CartItemPrices";
+              discounts?: Array<{
+                __typename: "Discount";
+                label: string;
+                amount: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                };
+              } | null> | null;
+              fixed_product_taxes?: Array<{
+                __typename: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              price_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              total_item_discount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null;
+            product:
+              | {
+                  __typename: "BundleProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "ConfigurableProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "DownloadableProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GiftCardProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GroupedProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "SimpleProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "VirtualProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                };
+          }
+        | {
+            __typename: "GiftCardCartItem";
+            id: string;
+            is_in_store?: boolean | null;
+            quantity: number;
+            prices?: {
+              __typename: "CartItemPrices";
+              discounts?: Array<{
+                __typename: "Discount";
+                label: string;
+                amount: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                };
+              } | null> | null;
+              fixed_product_taxes?: Array<{
+                __typename: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              price_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              total_item_discount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null;
+            product:
+              | {
+                  __typename: "BundleProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "ConfigurableProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "DownloadableProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GiftCardProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GroupedProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "SimpleProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "VirtualProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                };
+          }
+        | {
+            __typename: "SimpleCartItem";
+            id: string;
+            is_in_store?: boolean | null;
+            quantity: number;
+            prices?: {
+              __typename: "CartItemPrices";
+              discounts?: Array<{
+                __typename: "Discount";
+                label: string;
+                amount: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                };
+              } | null> | null;
+              fixed_product_taxes?: Array<{
+                __typename: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              price_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              total_item_discount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null;
+            product:
+              | {
+                  __typename: "BundleProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "ConfigurableProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "DownloadableProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GiftCardProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GroupedProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "SimpleProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "VirtualProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                };
+          }
+        | {
+            __typename: "VirtualCartItem";
+            id: string;
+            is_in_store?: boolean | null;
+            quantity: number;
+            prices?: {
+              __typename: "CartItemPrices";
+              discounts?: Array<{
+                __typename: "Discount";
+                label: string;
+                amount: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                };
+              } | null> | null;
+              fixed_product_taxes?: Array<{
+                __typename: "FixedProductTax";
+                label?: string | null;
+                amount?: {
+                  __typename: "Money";
+                  currency?: CurrencyEnum | null;
+                  value?: number | null;
+                } | null;
+              } | null> | null;
+              price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              price_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              row_total_including_tax: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
+              total_item_discount?: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              } | null;
+            } | null;
+            product:
+              | {
+                  __typename: "BundleProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "ConfigurableProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "DownloadableProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GiftCardProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "GroupedProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "SimpleProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
+                  short_description?: {
+                    __typename: "ComplexTextValue";
+                    html: string;
+                  } | null;
+                  image?: {
+                    __typename: "ProductImage";
+                    url?: string | null;
+                    position?: number | null;
+                    label?: string | null;
+                    disabled?: boolean | null;
+                  } | null;
+                }
+              | {
+                  __typename: "VirtualProduct";
+                  name?: string | null;
+                  sku?: string | null;
+                  canonical_url?: string | null;
+                  special_price?: number | null;
                   short_description?: {
                     __typename: "ComplexTextValue";
                     html: string;
@@ -65600,10 +67972,11 @@ export const CartItemPriceFragmentDoc = {
         selections: [
           {
             kind: "Field",
-            name: { kind: "Name", value: "fixed_product_taxes" },
+            name: { kind: "Name", value: "discounts" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "amount" },
@@ -65618,13 +67991,12 @@ export const CartItemPriceFragmentDoc = {
                     ],
                   },
                 },
-                { kind: "Field", name: { kind: "Name", value: "label" } },
               ],
             },
           },
           {
             kind: "Field",
-            name: { kind: "Name", value: "discounts" },
+            name: { kind: "Name", value: "fixed_product_taxes" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -65746,6 +68118,7 @@ export const BaseProductDataForCartFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "name" } },
           { kind: "Field", name: { kind: "Name", value: "sku" } },
           { kind: "Field", name: { kind: "Name", value: "canonical_url" } },
+          { kind: "Field", name: { kind: "Name", value: "special_price" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "short_description" },
@@ -65792,6 +68165,228 @@ export const BaseProductDataForCartFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<BaseProductDataForCartFragment, unknown>;
+export const CartItemFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CartItem" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CartItemInterface" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "prices" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CartItemPrice" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "is_in_store" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "product" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "BaseProductDataForCart" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "quantity" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductImageFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductImage" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CartItemPrice" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CartItemPrices" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "discounts" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "fixed_product_taxes" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "price_including_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "row_total" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "row_total_including_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "total_item_discount" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "BaseProductDataForCart" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductInterface" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "sku" } },
+          { kind: "Field", name: { kind: "Name", value: "canonical_url" } },
+          { kind: "Field", name: { kind: "Name", value: "special_price" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "short_description" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "html" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductImageFragment" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CartItemFragment, unknown>;
 export const BaseCartFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -65825,33 +68420,125 @@ export const BaseCartFragmentDoc = {
               kind: "SelectionSet",
               selections: [
                 {
-                  kind: "Field",
-                  name: { kind: "Name", value: "prices" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "FragmentSpread",
-                        name: { kind: "Name", value: "CartItemPrice" },
-                      },
-                    ],
-                  },
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CartItem" },
                 },
-                { kind: "Field", name: { kind: "Name", value: "is_in_store" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CartItemPrice" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CartItemPrices" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "discounts" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
                 {
                   kind: "Field",
-                  name: { kind: "Name", value: "product" },
+                  name: { kind: "Name", value: "amount" },
                   selectionSet: {
                     kind: "SelectionSet",
                     selections: [
                       {
-                        kind: "FragmentSpread",
-                        name: { kind: "Name", value: "BaseProductDataForCart" },
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
                       },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
                     ],
                   },
                 },
-                { kind: "Field", name: { kind: "Name", value: "quantity" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "fixed_product_taxes" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "price_including_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "row_total" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "row_total_including_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "total_item_discount" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
               ],
             },
           },
@@ -65873,6 +68560,47 @@ export const BaseCartFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "label" } },
           { kind: "Field", name: { kind: "Name", value: "disabled" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "BaseProductDataForCart" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductInterface" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "sku" } },
+          { kind: "Field", name: { kind: "Name", value: "canonical_url" } },
+          { kind: "Field", name: { kind: "Name", value: "special_price" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "short_description" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "html" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductImageFragment" },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -65986,157 +68714,43 @@ export const BaseCartFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "CartItemPrice" },
+      name: { kind: "Name", value: "CartItem" },
       typeCondition: {
         kind: "NamedType",
-        name: { kind: "Name", value: "CartItemPrices" },
+        name: { kind: "Name", value: "CartItemInterface" },
       },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "fixed_product_taxes" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "amount" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "currency" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "value" } },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "label" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "discounts" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "amount" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "Field",
-                        name: { kind: "Name", value: "currency" },
-                      },
-                      { kind: "Field", name: { kind: "Name", value: "value" } },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "label" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "price" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "currency" } },
-                { kind: "Field", name: { kind: "Name", value: "value" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "price_including_tax" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "currency" } },
-                { kind: "Field", name: { kind: "Name", value: "value" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "row_total" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "currency" } },
-                { kind: "Field", name: { kind: "Name", value: "value" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "row_total_including_tax" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "currency" } },
-                { kind: "Field", name: { kind: "Name", value: "value" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "total_item_discount" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "currency" } },
-                { kind: "Field", name: { kind: "Name", value: "value" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "BaseProductDataForCart" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "ProductInterface" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "__typename" } },
-          { kind: "Field", name: { kind: "Name", value: "name" } },
-          { kind: "Field", name: { kind: "Name", value: "sku" } },
-          { kind: "Field", name: { kind: "Name", value: "canonical_url" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "short_description" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "html" } },
-              ],
-            },
-          },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "image" },
+            name: { kind: "Name", value: "prices" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
                 {
                   kind: "FragmentSpread",
-                  name: { kind: "Name", value: "ProductImageFragment" },
+                  name: { kind: "Name", value: "CartItemPrice" },
                 },
               ],
             },
           },
+          { kind: "Field", name: { kind: "Name", value: "is_in_store" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "product" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "BaseProductDataForCart" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "quantity" } },
         ],
       },
     },
@@ -70979,10 +73593,11 @@ export const CartDocument = {
         selections: [
           {
             kind: "Field",
-            name: { kind: "Name", value: "fixed_product_taxes" },
+            name: { kind: "Name", value: "discounts" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "amount" },
@@ -70997,13 +73612,12 @@ export const CartDocument = {
                     ],
                   },
                 },
-                { kind: "Field", name: { kind: "Name", value: "label" } },
               ],
             },
           },
           {
             kind: "Field",
-            name: { kind: "Name", value: "discounts" },
+            name: { kind: "Name", value: "fixed_product_taxes" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -71115,6 +73729,7 @@ export const CartDocument = {
           { kind: "Field", name: { kind: "Name", value: "name" } },
           { kind: "Field", name: { kind: "Name", value: "sku" } },
           { kind: "Field", name: { kind: "Name", value: "canonical_url" } },
+          { kind: "Field", name: { kind: "Name", value: "special_price" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "short_description" },
@@ -71138,6 +73753,48 @@ export const CartDocument = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CartItem" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CartItemInterface" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "prices" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CartItemPrice" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "is_in_store" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "product" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "BaseProductDataForCart" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "quantity" } },
         ],
       },
     },
@@ -71171,33 +73828,9 @@ export const CartDocument = {
               kind: "SelectionSet",
               selections: [
                 {
-                  kind: "Field",
-                  name: { kind: "Name", value: "prices" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "FragmentSpread",
-                        name: { kind: "Name", value: "CartItemPrice" },
-                      },
-                    ],
-                  },
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CartItem" },
                 },
-                { kind: "Field", name: { kind: "Name", value: "is_in_store" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "product" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "FragmentSpread",
-                        name: { kind: "Name", value: "BaseProductDataForCart" },
-                      },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "quantity" } },
               ],
             },
           },
@@ -71434,10 +74067,11 @@ export const AddProductToCartDocument = {
         selections: [
           {
             kind: "Field",
-            name: { kind: "Name", value: "fixed_product_taxes" },
+            name: { kind: "Name", value: "discounts" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "amount" },
@@ -71452,13 +74086,12 @@ export const AddProductToCartDocument = {
                     ],
                   },
                 },
-                { kind: "Field", name: { kind: "Name", value: "label" } },
               ],
             },
           },
           {
             kind: "Field",
-            name: { kind: "Name", value: "discounts" },
+            name: { kind: "Name", value: "fixed_product_taxes" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -71570,6 +74203,7 @@ export const AddProductToCartDocument = {
           { kind: "Field", name: { kind: "Name", value: "name" } },
           { kind: "Field", name: { kind: "Name", value: "sku" } },
           { kind: "Field", name: { kind: "Name", value: "canonical_url" } },
+          { kind: "Field", name: { kind: "Name", value: "special_price" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "short_description" },
@@ -71593,6 +74227,48 @@ export const AddProductToCartDocument = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CartItem" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CartItemInterface" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "prices" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CartItemPrice" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "is_in_store" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "product" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "BaseProductDataForCart" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "quantity" } },
         ],
       },
     },
@@ -71626,33 +74302,9 @@ export const AddProductToCartDocument = {
               kind: "SelectionSet",
               selections: [
                 {
-                  kind: "Field",
-                  name: { kind: "Name", value: "prices" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "FragmentSpread",
-                        name: { kind: "Name", value: "CartItemPrice" },
-                      },
-                    ],
-                  },
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CartItem" },
                 },
-                { kind: "Field", name: { kind: "Name", value: "is_in_store" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "product" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      {
-                        kind: "FragmentSpread",
-                        name: { kind: "Name", value: "BaseProductDataForCart" },
-                      },
-                    ],
-                  },
-                },
-                { kind: "Field", name: { kind: "Name", value: "quantity" } },
               ],
             },
           },
@@ -71663,6 +74315,464 @@ export const AddProductToCartDocument = {
 } as unknown as DocumentNode<
   AddProductToCartMutation,
   AddProductToCartMutationVariables
+>;
+export const RemoveProductFromCartDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "RemoveProductFromCart" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "cartId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "cartItemId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "removeItemFromCart" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "input" },
+                value: {
+                  kind: "ObjectValue",
+                  fields: [
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "cart_id" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "cartId" },
+                      },
+                    },
+                    {
+                      kind: "ObjectField",
+                      name: { kind: "Name", value: "cart_item_id" },
+                      value: {
+                        kind: "Variable",
+                        name: { kind: "Name", value: "cartItemId" },
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "cart" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "BaseCart" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CartPrice" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CartPrices" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "grand_total" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "discounts" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "applied_taxes" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "subtotal_excluding_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "subtotal_including_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: {
+              kind: "Name",
+              value: "subtotal_with_discount_excluding_tax",
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CartItemPrice" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CartItemPrices" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "discounts" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "fixed_product_taxes" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "amount" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "currency" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "value" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "price_including_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "row_total" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "row_total_including_tax" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "total_item_discount" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductImageFragment" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductImage" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "disabled" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "BaseProductDataForCart" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductInterface" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "sku" } },
+          { kind: "Field", name: { kind: "Name", value: "canonical_url" } },
+          { kind: "Field", name: { kind: "Name", value: "special_price" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "short_description" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "html" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "image" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "ProductImageFragment" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CartItem" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CartItemInterface" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "prices" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CartItemPrice" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "is_in_store" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "product" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "BaseProductDataForCart" },
+                },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "quantity" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "BaseCart" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Cart" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "prices" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CartPrice" },
+                },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CartItem" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  RemoveProductFromCartMutation,
+  RemoveProductFromCartMutationVariables
 >;
 export const CategoryDocument = {
   kind: "Document",

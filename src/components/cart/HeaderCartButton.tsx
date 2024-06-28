@@ -7,9 +7,10 @@ import { useCookies } from "react-cookie";
 import Link from "next/link";
 
 import { Cart } from "@/components/_ui/icons/figma/Cart";
-import { CartCookie, useCartQuery } from "@/components/cart/useCartQuery";
+import { CartCookie } from "@/components/cart/fetchCartService";
+import { useCartQuery } from "@/components/cart/useCartQuery";
 
-export const CartButton = () => {
+export const HeaderCartButton = () => {
   const [cookies, _setCookie, removeCookie] = useCookies<"cart", CartCookie>([
     "cart",
   ]);
