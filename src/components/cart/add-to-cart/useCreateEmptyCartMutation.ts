@@ -19,8 +19,14 @@ export const useCreateEmptyCartMutation = () => {
   return useMutation({
     mutationFn: createEmptyCart,
     onSuccess: async (cartId) => {
+      const today = new Date();
+      const oneWeekFromNow = new Date(
+        today.getTime() + 7 * 24 * 60 * 60 * 1000,
+      );
       if (cartId) {
-        setCookie("cart", cartId);
+        setCookie("cart", cartId, {
+          expires: oneWeekFromNow,
+        });
       }
     },
   });

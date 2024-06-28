@@ -33,7 +33,7 @@ export const Button: React.FC<Props> = ({
   return (
     <NextUIButton
       className={cx(
-        "rounded-full py-6 px-6 lg:px-8 text-base",
+        "rounded-full py-6 px-6 lg:px-8 text-sm lg:text-base",
         className,
         COLORS[color],
         VARIANTS[variant],

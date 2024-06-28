@@ -39,11 +39,11 @@ export const ProductAddedModal: React.FC<Props> = ({
               Lagt til i handlekurv!
             </ModalHeader>
             <ModalBody className="py-6 px-2 lg:px-5">
-              <div className="flex gap-4 lg:gap-8">
+              <div className="grid grid-cols-2 gap-4 lg:gap-8">
                 {product.image?.url ? (
                   <div className="relative p-6 lg:p-10 h-[200px] lg:h-[310px] bg-warm-grey rounded-3xl !flex justify-center items-center">
                     <Image
-                      className="object-contain h-[150px] lg:[250px]"
+                      className="object-contain h-[150px] lg:[280px]"
                       width={280}
                       height={280}
                       src={product.image.url}
