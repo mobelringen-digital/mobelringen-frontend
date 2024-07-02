@@ -7,9 +7,9 @@ import Link from "next/link";
 
 import { FormatNumber } from "@/components/_ui/format-number/FormatNumber";
 import { QuantityInput } from "@/components/_ui/quantity-input/QuantityInput";
-import { useRemoveProductFromCartMutation } from "@/components/cart/add-to-cart/useRemoveProductFromCartMutation";
-import { useUpdateCartItemsMutation } from "@/components/cart/useUpdateCartItemsMutation";
 import { useConfirm } from "@/components/confirm/hooks/useConfirm";
+import { useRemoveProductFromCartMutation } from "@/modules/cart/hooks/useRemoveProductFromCartMutation";
+import { useUpdateCartItemsMutation } from "@/modules/cart/hooks/useUpdateCartItemsMutation";
 import { CartItemFragment } from "@/types";
 
 interface Props {

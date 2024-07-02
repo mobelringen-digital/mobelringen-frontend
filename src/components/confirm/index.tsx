@@ -24,7 +24,13 @@ export const ModalConfirm: React.FC<Props> = ({
   content,
 }) => {
   return (
-    <Modal isOpen={true} size="2xl" className="mx-2" backdrop="blur">
+    <Modal
+      isOpen={true}
+      onClose={onCancel}
+      size="2xl"
+      className="mx-2"
+      backdrop="blur"
+    >
       <ModalContent className="bg-white rounded-2xl">
         {(onClose) => (
           <>
