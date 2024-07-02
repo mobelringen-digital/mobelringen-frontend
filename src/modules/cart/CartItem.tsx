@@ -29,7 +29,7 @@ export const CartItem: React.FC<Props> = ({ item }) => {
     >
       <Link
         href={item.product.canonical_url ?? ""}
-        className="relative p-6 w-[70px] lg:w-[160px] h-[70px] lg:h-[160px] bg-warm-grey rounded-xl lg:rounded-3xl !flex justify-center items-center"
+        className="relative p-2 lg:p-6 w-[70px] lg:w-[160px] h-[70px] lg:h-[160px] bg-warm-grey rounded-xl lg:rounded-3xl !flex justify-center items-center"
       >
         {item?.product.image?.url && (
           <Image
@@ -41,38 +41,40 @@ export const CartItem: React.FC<Props> = ({ item }) => {
           />
         )}
       </Link>
-      <div className="flex justify-between gap-8 w-full">
-        <div className="flex flex-col justify-between">
-          <div className="flex flex-col gap-2">
-            <Link
-              href={item.product.canonical_url ?? ""}
-              className="text-sm lg:text-lg font-semibold"
-            >
-              {item?.product.name}
-            </Link>
-            <p
-              className="text-xs lg:text-sm font-normal text-dark-grey"
-              dangerouslySetInnerHTML={{
-                __html: item?.product.short_description?.html ?? "",
-              }}
+      <div className="flex flex-col w-full">
+        <div className="flex justify-between gap-8 w-full">
+          <div className="flex flex-col justify-between">
+            <div className="flex flex-col gap-2">
+              <Link
+                href={item.product.canonical_url ?? ""}
+                className="text-sm lg:text-lg font-semibold"
+              >
+                {item?.product.name}
+              </Link>
+              <p
+                className="text-xs lg:text-sm font-normal text-dark-grey"
+                dangerouslySetInnerHTML={{
+                  __html: item?.product.short_description?.html ?? "",
+                }}
+              />
+            </div>
+          </div>
+          <div className="flex flex-col items-end min-w-[80px] lg:min-w-[120px] text-xs lg:text-sm font-semibold whitespace-nowrap">
+            <FormatNumber
+              value={item?.prices?.row_total_including_tax.value}
+              format="currency"
+              suffix={item.prices?.row_total_including_tax.currency ?? "NOK"}
             />
           </div>
-          <div className="w-full lg:text-base flex items-center gap-4 mt-4">
-            <QuantityInput value={String(item?.quantity ?? 1)} />
-            <button
-              onClick={handleRemoveProduct}
-              className="underline text-black text-xs lg:text-base"
-            >
-              Fjern produkt
-            </button>
-          </div>
         </div>
-        <div className="flex flex-col items-end min-w-[80px] lg:min-w-[120px] text-xs lg:text-sm font-semibold whitespace-nowrap">
-          <FormatNumber
-            value={item?.prices?.row_total_including_tax.value}
-            format="currency"
-            suffix={item.prices?.row_total_including_tax.currency ?? "NOK"}
-          />
+        <div className="w-full lg:text-base flex items-center gap-4 mt-4">
+          <QuantityInput value={String(item?.quantity ?? 1)} />
+          <button
+            onClick={handleRemoveProduct}
+            className="underline text-black text-xs lg:text-base"
+          >
+            Fjern produkt
+          </button>
         </div>
       </div>
     </div>

@@ -49,7 +49,7 @@ export const CartPage: React.FC = () => {
       </div>
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-12 lg:col-span-7">
-          <div className="bg-white flex flex-col gap-6 rounded-2xl p-8">
+          <div className="bg-white flex flex-col gap-6 rounded-2xl p-4 lg:p-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {CART_LINKS.map((link, idx) => (
                 <Link
@@ -80,7 +80,7 @@ export const CartPage: React.FC = () => {
           </div>
         </div>
         <div className="col-span-12 lg:col-span-5">
-          <div className="bg-white p-8 rounded-2xl flex flex-col gap-6">
+          <div className="bg-white p-4 lg:p-8 rounded-2xl flex flex-col gap-6">
             <CartPrice prices={data?.prices} />
           </div>
         </div>
