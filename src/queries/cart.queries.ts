@@ -148,3 +148,16 @@ export const RemoveProductFromCart = graphql(`
     }
   }
 `);
+
+export const UpdateCartItems = graphql(`
+  mutation UpdateCartItems(
+    $cartId: String!
+    $cartItems: [CartItemUpdateInput]!
+  ) {
+    updateCartItems(input: { cart_id: $cartId, cart_items: $cartItems }) {
+      cart {
+        ...BaseCart
+      }
+    }
+  }
+`);

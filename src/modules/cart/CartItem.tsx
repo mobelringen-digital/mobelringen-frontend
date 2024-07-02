@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import Image from "next/image";
@@ -6,6 +8,8 @@ import Link from "next/link";
 import { FormatNumber } from "@/components/_ui/format-number/FormatNumber";
 import { QuantityInput } from "@/components/_ui/quantity-input/QuantityInput";
 import { useRemoveProductFromCartMutation } from "@/components/cart/add-to-cart/useRemoveProductFromCartMutation";
+import { useUpdateCartItemsMutation } from "@/components/cart/useUpdateCartItemsMutation";
+import { useConfirm } from "@/components/confirm/hooks/useConfirm";
 import { CartItemFragment } from "@/types";
 
 interface Props {
@@ -14,12 +18,43 @@ interface Props {
 
 export const CartItem: React.FC<Props> = ({ item }) => {
   const { mutate: removeProduct } = useRemoveProductFromCartMutation();
+  const { mutate: updateCartItems } = useUpdateCartItemsMutation();
+  const { showConfirmation } = useConfirm();
+
   if (!item) return null;
 
+  const handleUpdateQuantity = async (quantity: number) => {
+    if (quantity > 0) {
+      return updateCartItems({
+        cartItems: [
+          {
+            cart_item_id: parseInt(item.id, 10),
+            quantity: quantity,
+          },
+        ],
+      });
+    }
+  };
+
+  const onQuantityIncrement = () => {
+    return handleUpdateQuantity(item.quantity + 1);
+  };
+
+  const onQuantityDecrement = () => {
+    return handleUpdateQuantity(item.quantity - 1);
+  };
+
   const handleRemoveProduct = async () => {
-    return removeProduct({
-      cartItemId: parseInt(item.id, 10),
+    const confirmed = await showConfirmation({
+      title: "Er du sikker på at du vil slette dette elementet?",
+      message: "Denne handlingen kan ikke angres.",
     });
+
+    if (confirmed) {
+      return removeProduct({
+        cartItemId: parseInt(item.id, 10),
+      });
+    }
   };
 
   return (
@@ -41,7 +76,7 @@ export const CartItem: React.FC<Props> = ({ item }) => {
           />
         )}
       </Link>
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full justify-between">
         <div className="flex justify-between gap-8 w-full">
           <div className="flex flex-col justify-between">
             <div className="flex flex-col gap-2">
@@ -68,7 +103,11 @@ export const CartItem: React.FC<Props> = ({ item }) => {
           </div>
         </div>
         <div className="w-full lg:text-base flex items-center gap-4 mt-4">
-          <QuantityInput value={String(item?.quantity ?? 1)} />
+          <QuantityInput
+            onQuantityIncrement={onQuantityIncrement}
+            onQuantityDecrement={onQuantityDecrement}
+            value={String(item?.quantity ?? 1)}
+          />
           <button
             onClick={handleRemoveProduct}
             className="underline text-black text-xs lg:text-base"
