@@ -27,12 +27,12 @@ export const useRemoveProductFromCartMutation = () => {
     mutationFn: ({ cartItemId }: { cartItemId: number }) =>
       removeProductFromCart(cartItemId),
     onMutate: async ({ cartItemId }) => {
+      const QUERY_KEY = [...CART_QUERY_KEY, cookies.cart];
+
       await queryClient.cancelQueries({ queryKey: CART_QUERY_KEY });
 
-      const previousCart = queryClient.getQueryData<BaseCartFragment>([
-        ...CART_QUERY_KEY,
-        cookies.cart,
-      ]);
+      const previousCart =
+        queryClient.getQueryData<BaseCartFragment>(QUERY_KEY);
 
       if (!previousCart) {
         return;
@@ -43,7 +43,7 @@ export const useRemoveProductFromCartMutation = () => {
           items?.filter((item) => item?.id !== cartItemId.toString()),
       });
 
-      queryClient.setQueryData(CART_QUERY_KEY, updatedCart);
+      queryClient.setQueryData(QUERY_KEY, updatedCart);
 
       return { previousCart };
     },
