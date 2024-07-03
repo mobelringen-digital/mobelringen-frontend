@@ -8,6 +8,7 @@ import Link from "next/link";
 import { FormatNumber } from "@/components/_ui/format-number/FormatNumber";
 import { QuantityInput } from "@/components/_ui/quantity-input/QuantityInput";
 import { useConfirm } from "@/components/confirm/hooks/useConfirm";
+import { CartItemDeliveryInfo } from "@/modules/cart/cart-item/CartItemDeliveryInfo";
 import { useRemoveProductFromCartMutation } from "@/modules/cart/hooks/useRemoveProductFromCartMutation";
 import { useUpdateCartItemsMutation } from "@/modules/cart/hooks/useUpdateCartItemsMutation";
 import { CartItemFragment } from "@/types";
@@ -76,10 +77,10 @@ export const CartItem: React.FC<Props> = ({ item }) => {
           />
         )}
       </Link>
-      <div className="flex flex-col w-full justify-between">
+      <div className="flex flex-col w-full justify-between gap-4">
         <div className="flex justify-between gap-8 w-full">
           <div className="flex flex-col justify-between">
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1">
               <Link
                 href={item.product.canonical_url ?? ""}
                 className="text-sm lg:text-lg font-semibold"
@@ -102,7 +103,8 @@ export const CartItem: React.FC<Props> = ({ item }) => {
             />
           </div>
         </div>
-        <div className="w-full lg:text-base flex items-center gap-4 mt-4">
+        <CartItemDeliveryInfo item={item} />
+        <div className="w-full lg:text-base flex items-center gap-4">
           <QuantityInput
             onQuantityIncrement={onQuantityIncrement}
             onQuantityDecrement={onQuantityDecrement}

@@ -22055,6 +22055,8 @@ type CartItem_BundleCartItem_Fragment = {
   product:
     | {
         __typename: "BundleProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22073,6 +22075,8 @@ type CartItem_BundleCartItem_Fragment = {
       }
     | {
         __typename: "ConfigurableProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22091,6 +22095,8 @@ type CartItem_BundleCartItem_Fragment = {
       }
     | {
         __typename: "DownloadableProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22109,6 +22115,8 @@ type CartItem_BundleCartItem_Fragment = {
       }
     | {
         __typename: "GiftCardProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22127,6 +22135,8 @@ type CartItem_BundleCartItem_Fragment = {
       }
     | {
         __typename: "GroupedProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22145,6 +22155,8 @@ type CartItem_BundleCartItem_Fragment = {
       }
     | {
         __typename: "SimpleProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22163,6 +22175,8 @@ type CartItem_BundleCartItem_Fragment = {
       }
     | {
         __typename: "VirtualProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22235,6 +22249,8 @@ type CartItem_ConfigurableCartItem_Fragment = {
   product:
     | {
         __typename: "BundleProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22253,6 +22269,8 @@ type CartItem_ConfigurableCartItem_Fragment = {
       }
     | {
         __typename: "ConfigurableProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22271,6 +22289,8 @@ type CartItem_ConfigurableCartItem_Fragment = {
       }
     | {
         __typename: "DownloadableProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22289,6 +22309,8 @@ type CartItem_ConfigurableCartItem_Fragment = {
       }
     | {
         __typename: "GiftCardProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22307,6 +22329,8 @@ type CartItem_ConfigurableCartItem_Fragment = {
       }
     | {
         __typename: "GroupedProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22325,6 +22349,8 @@ type CartItem_ConfigurableCartItem_Fragment = {
       }
     | {
         __typename: "SimpleProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22343,6 +22369,8 @@ type CartItem_ConfigurableCartItem_Fragment = {
       }
     | {
         __typename: "VirtualProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22415,6 +22443,8 @@ type CartItem_DownloadableCartItem_Fragment = {
   product:
     | {
         __typename: "BundleProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22433,6 +22463,8 @@ type CartItem_DownloadableCartItem_Fragment = {
       }
     | {
         __typename: "ConfigurableProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22451,6 +22483,8 @@ type CartItem_DownloadableCartItem_Fragment = {
       }
     | {
         __typename: "DownloadableProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22469,6 +22503,8 @@ type CartItem_DownloadableCartItem_Fragment = {
       }
     | {
         __typename: "GiftCardProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22487,6 +22523,8 @@ type CartItem_DownloadableCartItem_Fragment = {
       }
     | {
         __typename: "GroupedProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22505,6 +22543,8 @@ type CartItem_DownloadableCartItem_Fragment = {
       }
     | {
         __typename: "SimpleProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22523,6 +22563,8 @@ type CartItem_DownloadableCartItem_Fragment = {
       }
     | {
         __typename: "VirtualProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22595,6 +22637,8 @@ type CartItem_GiftCardCartItem_Fragment = {
   product:
     | {
         __typename: "BundleProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22613,6 +22657,8 @@ type CartItem_GiftCardCartItem_Fragment = {
       }
     | {
         __typename: "ConfigurableProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22631,6 +22677,8 @@ type CartItem_GiftCardCartItem_Fragment = {
       }
     | {
         __typename: "DownloadableProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22649,6 +22697,8 @@ type CartItem_GiftCardCartItem_Fragment = {
       }
     | {
         __typename: "GiftCardProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22667,6 +22717,8 @@ type CartItem_GiftCardCartItem_Fragment = {
       }
     | {
         __typename: "GroupedProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22685,6 +22737,8 @@ type CartItem_GiftCardCartItem_Fragment = {
       }
     | {
         __typename: "SimpleProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22703,6 +22757,8 @@ type CartItem_GiftCardCartItem_Fragment = {
       }
     | {
         __typename: "VirtualProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22775,6 +22831,8 @@ type CartItem_SimpleCartItem_Fragment = {
   product:
     | {
         __typename: "BundleProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22793,6 +22851,8 @@ type CartItem_SimpleCartItem_Fragment = {
       }
     | {
         __typename: "ConfigurableProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22811,6 +22871,8 @@ type CartItem_SimpleCartItem_Fragment = {
       }
     | {
         __typename: "DownloadableProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22829,6 +22891,8 @@ type CartItem_SimpleCartItem_Fragment = {
       }
     | {
         __typename: "GiftCardProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22847,6 +22911,8 @@ type CartItem_SimpleCartItem_Fragment = {
       }
     | {
         __typename: "GroupedProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22865,6 +22931,8 @@ type CartItem_SimpleCartItem_Fragment = {
       }
     | {
         __typename: "SimpleProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22883,6 +22951,8 @@ type CartItem_SimpleCartItem_Fragment = {
       }
     | {
         __typename: "VirtualProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22955,6 +23025,8 @@ type CartItem_VirtualCartItem_Fragment = {
   product:
     | {
         __typename: "BundleProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22973,6 +23045,8 @@ type CartItem_VirtualCartItem_Fragment = {
       }
     | {
         __typename: "ConfigurableProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -22991,6 +23065,8 @@ type CartItem_VirtualCartItem_Fragment = {
       }
     | {
         __typename: "DownloadableProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -23009,6 +23085,8 @@ type CartItem_VirtualCartItem_Fragment = {
       }
     | {
         __typename: "GiftCardProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -23027,6 +23105,8 @@ type CartItem_VirtualCartItem_Fragment = {
       }
     | {
         __typename: "GroupedProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -23045,6 +23125,8 @@ type CartItem_VirtualCartItem_Fragment = {
       }
     | {
         __typename: "SimpleProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -23063,6 +23145,8 @@ type CartItem_VirtualCartItem_Fragment = {
       }
     | {
         __typename: "VirtualProduct";
+        delivery_promise?: string | null;
+        stock_status?: ProductStockStatus | null;
         name?: string | null;
         sku?: string | null;
         canonical_url?: string | null;
@@ -23187,6 +23271,8 @@ export type BaseCartFragment = {
         product:
           | {
               __typename: "BundleProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23205,6 +23291,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "ConfigurableProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23223,6 +23311,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "DownloadableProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23241,6 +23331,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "GiftCardProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23259,6 +23351,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "GroupedProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23277,6 +23371,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "SimpleProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23295,6 +23391,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "VirtualProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23366,6 +23464,8 @@ export type BaseCartFragment = {
         product:
           | {
               __typename: "BundleProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23384,6 +23484,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "ConfigurableProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23402,6 +23504,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "DownloadableProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23420,6 +23524,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "GiftCardProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23438,6 +23544,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "GroupedProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23456,6 +23564,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "SimpleProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23474,6 +23584,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "VirtualProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23545,6 +23657,8 @@ export type BaseCartFragment = {
         product:
           | {
               __typename: "BundleProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23563,6 +23677,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "ConfigurableProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23581,6 +23697,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "DownloadableProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23599,6 +23717,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "GiftCardProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23617,6 +23737,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "GroupedProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23635,6 +23757,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "SimpleProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23653,6 +23777,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "VirtualProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23724,6 +23850,8 @@ export type BaseCartFragment = {
         product:
           | {
               __typename: "BundleProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23742,6 +23870,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "ConfigurableProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23760,6 +23890,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "DownloadableProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23778,6 +23910,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "GiftCardProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23796,6 +23930,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "GroupedProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23814,6 +23950,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "SimpleProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23832,6 +23970,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "VirtualProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23903,6 +24043,8 @@ export type BaseCartFragment = {
         product:
           | {
               __typename: "BundleProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23921,6 +24063,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "ConfigurableProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23939,6 +24083,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "DownloadableProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23957,6 +24103,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "GiftCardProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23975,6 +24123,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "GroupedProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -23993,6 +24143,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "SimpleProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -24011,6 +24163,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "VirtualProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -24082,6 +24236,8 @@ export type BaseCartFragment = {
         product:
           | {
               __typename: "BundleProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -24100,6 +24256,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "ConfigurableProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -24118,6 +24276,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "DownloadableProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -24136,6 +24296,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "GiftCardProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -24154,6 +24316,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "GroupedProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -24172,6 +24336,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "SimpleProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -24190,6 +24356,8 @@ export type BaseCartFragment = {
             }
           | {
               __typename: "VirtualProduct";
+              delivery_promise?: string | null;
+              stock_status?: ProductStockStatus | null;
               name?: string | null;
               sku?: string | null;
               canonical_url?: string | null;
@@ -24315,6 +24483,8 @@ export type CartQuery = {
           product:
             | {
                 __typename: "BundleProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24333,6 +24503,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "ConfigurableProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24351,6 +24523,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "DownloadableProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24369,6 +24543,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "GiftCardProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24387,6 +24563,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "GroupedProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24405,6 +24583,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "SimpleProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24423,6 +24603,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "VirtualProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24494,6 +24676,8 @@ export type CartQuery = {
           product:
             | {
                 __typename: "BundleProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24512,6 +24696,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "ConfigurableProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24530,6 +24716,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "DownloadableProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24548,6 +24736,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "GiftCardProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24566,6 +24756,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "GroupedProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24584,6 +24776,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "SimpleProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24602,6 +24796,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "VirtualProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24673,6 +24869,8 @@ export type CartQuery = {
           product:
             | {
                 __typename: "BundleProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24691,6 +24889,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "ConfigurableProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24709,6 +24909,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "DownloadableProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24727,6 +24929,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "GiftCardProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24745,6 +24949,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "GroupedProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24763,6 +24969,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "SimpleProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24781,6 +24989,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "VirtualProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24852,6 +25062,8 @@ export type CartQuery = {
           product:
             | {
                 __typename: "BundleProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24870,6 +25082,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "ConfigurableProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24888,6 +25102,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "DownloadableProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24906,6 +25122,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "GiftCardProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24924,6 +25142,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "GroupedProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24942,6 +25162,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "SimpleProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -24960,6 +25182,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "VirtualProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -25031,6 +25255,8 @@ export type CartQuery = {
           product:
             | {
                 __typename: "BundleProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -25049,6 +25275,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "ConfigurableProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -25067,6 +25295,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "DownloadableProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -25085,6 +25315,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "GiftCardProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -25103,6 +25335,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "GroupedProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -25121,6 +25355,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "SimpleProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -25139,6 +25375,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "VirtualProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -25210,6 +25448,8 @@ export type CartQuery = {
           product:
             | {
                 __typename: "BundleProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -25228,6 +25468,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "ConfigurableProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -25246,6 +25488,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "DownloadableProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -25264,6 +25508,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "GiftCardProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -25282,6 +25528,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "GroupedProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -25300,6 +25548,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "SimpleProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -25318,6 +25568,8 @@ export type CartQuery = {
               }
             | {
                 __typename: "VirtualProduct";
+                delivery_promise?: string | null;
+                stock_status?: ProductStockStatus | null;
                 name?: string | null;
                 sku?: string | null;
                 canonical_url?: string | null;
@@ -25454,6 +25706,8 @@ export type AddProductToCartMutation = {
             product:
               | {
                   __typename: "BundleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -25472,6 +25726,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "ConfigurableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -25490,6 +25746,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "DownloadableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -25508,6 +25766,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "GiftCardProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -25526,6 +25786,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "GroupedProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -25544,6 +25806,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "SimpleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -25562,6 +25826,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "VirtualProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -25633,6 +25899,8 @@ export type AddProductToCartMutation = {
             product:
               | {
                   __typename: "BundleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -25651,6 +25919,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "ConfigurableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -25669,6 +25939,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "DownloadableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -25687,6 +25959,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "GiftCardProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -25705,6 +25979,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "GroupedProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -25723,6 +25999,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "SimpleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -25741,6 +26019,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "VirtualProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -25812,6 +26092,8 @@ export type AddProductToCartMutation = {
             product:
               | {
                   __typename: "BundleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -25830,6 +26112,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "ConfigurableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -25848,6 +26132,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "DownloadableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -25866,6 +26152,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "GiftCardProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -25884,6 +26172,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "GroupedProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -25902,6 +26192,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "SimpleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -25920,6 +26212,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "VirtualProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -25991,6 +26285,8 @@ export type AddProductToCartMutation = {
             product:
               | {
                   __typename: "BundleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26009,6 +26305,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "ConfigurableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26027,6 +26325,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "DownloadableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26045,6 +26345,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "GiftCardProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26063,6 +26365,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "GroupedProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26081,6 +26385,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "SimpleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26099,6 +26405,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "VirtualProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26170,6 +26478,8 @@ export type AddProductToCartMutation = {
             product:
               | {
                   __typename: "BundleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26188,6 +26498,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "ConfigurableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26206,6 +26518,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "DownloadableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26224,6 +26538,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "GiftCardProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26242,6 +26558,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "GroupedProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26260,6 +26578,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "SimpleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26278,6 +26598,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "VirtualProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26349,6 +26671,8 @@ export type AddProductToCartMutation = {
             product:
               | {
                   __typename: "BundleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26367,6 +26691,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "ConfigurableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26385,6 +26711,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "DownloadableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26403,6 +26731,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "GiftCardProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26421,6 +26751,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "GroupedProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26439,6 +26771,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "SimpleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26457,6 +26791,8 @@ export type AddProductToCartMutation = {
                 }
               | {
                   __typename: "VirtualProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26587,6 +26923,8 @@ export type RemoveProductFromCartMutation = {
             product:
               | {
                   __typename: "BundleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26605,6 +26943,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "ConfigurableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26623,6 +26963,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "DownloadableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26641,6 +26983,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "GiftCardProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26659,6 +27003,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "GroupedProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26677,6 +27023,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "SimpleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26695,6 +27043,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "VirtualProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26766,6 +27116,8 @@ export type RemoveProductFromCartMutation = {
             product:
               | {
                   __typename: "BundleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26784,6 +27136,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "ConfigurableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26802,6 +27156,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "DownloadableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26820,6 +27176,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "GiftCardProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26838,6 +27196,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "GroupedProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26856,6 +27216,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "SimpleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26874,6 +27236,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "VirtualProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26945,6 +27309,8 @@ export type RemoveProductFromCartMutation = {
             product:
               | {
                   __typename: "BundleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26963,6 +27329,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "ConfigurableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26981,6 +27349,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "DownloadableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -26999,6 +27369,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "GiftCardProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27017,6 +27389,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "GroupedProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27035,6 +27409,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "SimpleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27053,6 +27429,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "VirtualProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27124,6 +27502,8 @@ export type RemoveProductFromCartMutation = {
             product:
               | {
                   __typename: "BundleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27142,6 +27522,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "ConfigurableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27160,6 +27542,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "DownloadableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27178,6 +27562,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "GiftCardProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27196,6 +27582,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "GroupedProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27214,6 +27602,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "SimpleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27232,6 +27622,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "VirtualProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27303,6 +27695,8 @@ export type RemoveProductFromCartMutation = {
             product:
               | {
                   __typename: "BundleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27321,6 +27715,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "ConfigurableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27339,6 +27735,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "DownloadableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27357,6 +27755,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "GiftCardProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27375,6 +27775,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "GroupedProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27393,6 +27795,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "SimpleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27411,6 +27815,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "VirtualProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27482,6 +27888,8 @@ export type RemoveProductFromCartMutation = {
             product:
               | {
                   __typename: "BundleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27500,6 +27908,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "ConfigurableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27518,6 +27928,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "DownloadableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27536,6 +27948,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "GiftCardProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27554,6 +27968,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "GroupedProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27572,6 +27988,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "SimpleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27590,6 +28008,8 @@ export type RemoveProductFromCartMutation = {
                 }
               | {
                   __typename: "VirtualProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27722,6 +28142,8 @@ export type UpdateCartItemsMutation = {
             product:
               | {
                   __typename: "BundleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27740,6 +28162,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "ConfigurableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27758,6 +28182,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "DownloadableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27776,6 +28202,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "GiftCardProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27794,6 +28222,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "GroupedProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27812,6 +28242,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "SimpleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27830,6 +28262,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "VirtualProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27901,6 +28335,8 @@ export type UpdateCartItemsMutation = {
             product:
               | {
                   __typename: "BundleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27919,6 +28355,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "ConfigurableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27937,6 +28375,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "DownloadableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27955,6 +28395,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "GiftCardProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27973,6 +28415,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "GroupedProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -27991,6 +28435,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "SimpleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28009,6 +28455,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "VirtualProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28080,6 +28528,8 @@ export type UpdateCartItemsMutation = {
             product:
               | {
                   __typename: "BundleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28098,6 +28548,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "ConfigurableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28116,6 +28568,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "DownloadableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28134,6 +28588,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "GiftCardProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28152,6 +28608,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "GroupedProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28170,6 +28628,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "SimpleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28188,6 +28648,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "VirtualProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28259,6 +28721,8 @@ export type UpdateCartItemsMutation = {
             product:
               | {
                   __typename: "BundleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28277,6 +28741,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "ConfigurableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28295,6 +28761,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "DownloadableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28313,6 +28781,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "GiftCardProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28331,6 +28801,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "GroupedProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28349,6 +28821,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "SimpleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28367,6 +28841,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "VirtualProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28438,6 +28914,8 @@ export type UpdateCartItemsMutation = {
             product:
               | {
                   __typename: "BundleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28456,6 +28934,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "ConfigurableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28474,6 +28954,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "DownloadableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28492,6 +28974,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "GiftCardProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28510,6 +28994,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "GroupedProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28528,6 +29014,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "SimpleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28546,6 +29034,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "VirtualProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28617,6 +29107,8 @@ export type UpdateCartItemsMutation = {
             product:
               | {
                   __typename: "BundleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28635,6 +29127,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "ConfigurableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28653,6 +29147,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "DownloadableProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28671,6 +29167,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "GiftCardProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28689,6 +29187,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "GroupedProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28707,6 +29207,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "SimpleProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -28725,6 +29227,8 @@ export type UpdateCartItemsMutation = {
                 }
               | {
                   __typename: "VirtualProduct";
+                  delivery_promise?: string | null;
+                  stock_status?: ProductStockStatus | null;
                   name?: string | null;
                   sku?: string | null;
                   canonical_url?: string | null;
@@ -29207,6 +29711,7 @@ export type ConfigurableProductVariantsFragment = {
     addable_to_cart?: number | null;
     delivery_promise?: string | null;
     maintenance_description?: string | null;
+    stock_status?: ProductStockStatus | null;
     description?: { __typename: "ComplexTextValue"; html: string } | null;
     image?: {
       __typename: "ProductImage";
@@ -29344,6 +29849,7 @@ export type ConfigurableProductFragment = {
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
   maintenance_description?: string | null;
+  stock_status?: ProductStockStatus | null;
   configurable_options?: Array<{
     __typename: "ConfigurableProductOptions";
     attribute_code?: string | null;
@@ -29390,6 +29896,7 @@ export type ConfigurableProductFragment = {
       addable_to_cart?: number | null;
       delivery_promise?: string | null;
       maintenance_description?: string | null;
+      stock_status?: ProductStockStatus | null;
       description?: { __typename: "ComplexTextValue"; html: string } | null;
       image?: {
         __typename: "ProductImage";
@@ -29653,6 +30160,7 @@ export type BestSellingProductsByCategoryQuery = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        stock_status?: ProductStockStatus | null;
         description?: { __typename: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29791,6 +30299,7 @@ export type BestSellingProductsByCategoryQuery = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        stock_status?: ProductStockStatus | null;
         description?: { __typename: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -29929,6 +30438,7 @@ export type BestSellingProductsByCategoryQuery = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        stock_status?: ProductStockStatus | null;
         description?: { __typename: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30067,6 +30577,7 @@ export type BestSellingProductsByCategoryQuery = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        stock_status?: ProductStockStatus | null;
         description?: { __typename: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30205,6 +30716,7 @@ export type BestSellingProductsByCategoryQuery = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        stock_status?: ProductStockStatus | null;
         description?: { __typename: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30343,6 +30855,7 @@ export type BestSellingProductsByCategoryQuery = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        stock_status?: ProductStockStatus | null;
         description?: { __typename: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30481,6 +30994,7 @@ export type BestSellingProductsByCategoryQuery = {
         addable_to_cart?: number | null;
         delivery_promise?: string | null;
         maintenance_description?: string | null;
+        stock_status?: ProductStockStatus | null;
         description?: { __typename: "ComplexTextValue"; html: string } | null;
         image?: {
           __typename: "ProductImage";
@@ -30742,6 +31256,7 @@ type BaseProduct_BundleProduct_Fragment = {
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
   maintenance_description?: string | null;
+  stock_status?: ProductStockStatus | null;
   description?: { __typename: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -30878,6 +31393,7 @@ type BaseProduct_ConfigurableProduct_Fragment = {
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
   maintenance_description?: string | null;
+  stock_status?: ProductStockStatus | null;
   description?: { __typename: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -31014,6 +31530,7 @@ type BaseProduct_DownloadableProduct_Fragment = {
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
   maintenance_description?: string | null;
+  stock_status?: ProductStockStatus | null;
   description?: { __typename: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -31150,6 +31667,7 @@ type BaseProduct_GiftCardProduct_Fragment = {
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
   maintenance_description?: string | null;
+  stock_status?: ProductStockStatus | null;
   description?: { __typename: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -31286,6 +31804,7 @@ type BaseProduct_GroupedProduct_Fragment = {
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
   maintenance_description?: string | null;
+  stock_status?: ProductStockStatus | null;
   description?: { __typename: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -31422,6 +31941,7 @@ type BaseProduct_SimpleProduct_Fragment = {
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
   maintenance_description?: string | null;
+  stock_status?: ProductStockStatus | null;
   description?: { __typename: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -31558,6 +32078,7 @@ type BaseProduct_VirtualProduct_Fragment = {
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
   maintenance_description?: string | null;
+  stock_status?: ProductStockStatus | null;
   description?: { __typename: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -31714,6 +32235,7 @@ export type ProductsQuery = {
           addable_to_cart?: number | null;
           delivery_promise?: string | null;
           maintenance_description?: string | null;
+          stock_status?: ProductStockStatus | null;
           configurable_options?: Array<{
             __typename: "ConfigurableProductOptions";
             attribute_code?: string | null;
@@ -31760,6 +32282,7 @@ export type ProductsQuery = {
               addable_to_cart?: number | null;
               delivery_promise?: string | null;
               maintenance_description?: string | null;
+              stock_status?: ProductStockStatus | null;
               description?: {
                 __typename: "ComplexTextValue";
                 html: string;
@@ -32024,6 +32547,7 @@ export type ProductsQuery = {
           addable_to_cart?: number | null;
           delivery_promise?: string | null;
           maintenance_description?: string | null;
+          stock_status?: ProductStockStatus | null;
           description?: { __typename: "ComplexTextValue"; html: string } | null;
           image?: {
             __typename: "ProductImage";
@@ -32444,6 +32968,7 @@ export type SimpleProductFragment = {
   addable_to_cart?: number | null;
   delivery_promise?: string | null;
   maintenance_description?: string | null;
+  stock_status?: ProductStockStatus | null;
   description?: { __typename: "ComplexTextValue"; html: string } | null;
   image?: {
     __typename: "ProductImage";
@@ -69338,6 +69863,14 @@ export const CartItemFragmentDoc = {
                   kind: "FragmentSpread",
                   name: { kind: "Name", value: "BaseProductDataForCart" },
                 },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "delivery_promise" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "stock_status" },
+                },
               ],
             },
           },
@@ -69881,6 +70414,14 @@ export const BaseCartFragmentDoc = {
                 {
                   kind: "FragmentSpread",
                   name: { kind: "Name", value: "BaseProductDataForCart" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "delivery_promise" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "stock_status" },
                 },
               ],
             },
@@ -71055,6 +71596,7 @@ export const BaseProductFragmentDoc = {
             kind: "Field",
             name: { kind: "Name", value: "maintenance_description" },
           },
+          { kind: "Field", name: { kind: "Name", value: "stock_status" } },
         ],
       },
     },
@@ -71895,6 +72437,7 @@ export const ConfigurableProductVariantsFragmentDoc = {
             kind: "Field",
             name: { kind: "Name", value: "maintenance_description" },
           },
+          { kind: "Field", name: { kind: "Name", value: "stock_status" } },
         ],
       },
     },
@@ -72392,6 +72935,7 @@ export const ConfigurableProductFragmentDoc = {
             kind: "Field",
             name: { kind: "Name", value: "maintenance_description" },
           },
+          { kind: "Field", name: { kind: "Name", value: "stock_status" } },
         ],
       },
     },
@@ -72943,6 +73487,7 @@ export const SimpleProductFragmentDoc = {
             kind: "Field",
             name: { kind: "Name", value: "maintenance_description" },
           },
+          { kind: "Field", name: { kind: "Name", value: "stock_status" } },
         ],
       },
     },
@@ -74926,6 +75471,14 @@ export const CartDocument = {
                   kind: "FragmentSpread",
                   name: { kind: "Name", value: "BaseProductDataForCart" },
                 },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "delivery_promise" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "stock_status" },
+                },
               ],
             },
           },
@@ -75400,6 +75953,14 @@ export const AddProductToCartDocument = {
                   kind: "FragmentSpread",
                   name: { kind: "Name", value: "BaseProductDataForCart" },
                 },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "delivery_promise" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "stock_status" },
+                },
               ],
             },
           },
@@ -75857,6 +76418,14 @@ export const RemoveProductFromCartDocument = {
                 {
                   kind: "FragmentSpread",
                   name: { kind: "Name", value: "BaseProductDataForCart" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "delivery_promise" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "stock_status" },
                 },
               ],
             },
@@ -76321,6 +76890,14 @@ export const UpdateCartItemsDocument = {
                 {
                   kind: "FragmentSpread",
                   name: { kind: "Name", value: "BaseProductDataForCart" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "delivery_promise" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "stock_status" },
                 },
               ],
             },
@@ -77914,6 +78491,7 @@ export const BestSellingProductsByCategoryDocument = {
             kind: "Field",
             name: { kind: "Name", value: "maintenance_description" },
           },
+          { kind: "Field", name: { kind: "Name", value: "stock_status" } },
         ],
       },
     },
@@ -78473,6 +79051,7 @@ export const ProductsDocument = {
             kind: "Field",
             name: { kind: "Name", value: "maintenance_description" },
           },
+          { kind: "Field", name: { kind: "Name", value: "stock_status" } },
         ],
       },
     },

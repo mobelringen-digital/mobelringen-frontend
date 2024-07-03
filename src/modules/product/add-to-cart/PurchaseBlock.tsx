@@ -8,7 +8,7 @@ import { AddToCart } from "@/components/cart/add-to-cart/AddToCart";
 import { useActiveProductData } from "@/modules/product/active-product-data-provider/useActiveProductData";
 import { DeliveryInfo } from "@/modules/product/add-to-cart/DeliveryInfo";
 import { KlarnaInformation } from "@/modules/product/add-to-cart/KlarnaInformation";
-import { BaseProductFragment } from "@/types";
+import { BaseProductFragment, ProductStockStatus } from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
 import { usePriceRange } from "@/utils/hooks/usePriceRange";
 
@@ -25,6 +25,7 @@ export const PurchaseBlock: React.FC<Props> = ({ product }) => {
   const isVariantNotSelected =
     isTypename(product, ["ConfigurableProduct"]) &&
     !activeProductVariant.variant;
+  const isInStock = product.stock_status === ProductStockStatus.InStock;
 
   return (
     <div className="bg-white p-4 lg:p-8 rounded-2xl flex flex-col gap-4">
@@ -56,7 +57,7 @@ export const PurchaseBlock: React.FC<Props> = ({ product }) => {
       <AddToCart
         product={product}
         quantity={quantity}
-        isDisabled={isVariantNotSelected}
+        isDisabled={isVariantNotSelected || !isInStock}
       />
 
       <KlarnaInformation />

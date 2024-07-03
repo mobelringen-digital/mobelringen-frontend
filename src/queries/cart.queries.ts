@@ -99,6 +99,8 @@ export const CartItemFragment = graphql(`
     is_in_store
     product {
       ...BaseProductDataForCart
+      delivery_promise
+      stock_status
     }
     quantity
   }

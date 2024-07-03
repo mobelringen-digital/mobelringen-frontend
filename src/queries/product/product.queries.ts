@@ -151,6 +151,7 @@ export const BaseProductFragment = graphql(`
     }
     delivery_promise
     maintenance_description
+    stock_status
   }
 `);
 
