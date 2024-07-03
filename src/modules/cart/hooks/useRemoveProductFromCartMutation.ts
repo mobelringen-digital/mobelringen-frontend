@@ -1,8 +1,10 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import update from "immutability-helper";
 import { useCookies } from "react-cookie";
 
 import { CART_QUERY_KEY, CartCookie } from "@/components/cart/fetchCartService";
 import { RemoveProductFromCart } from "@/queries/cart.queries";
+import { BaseCartFragment } from "@/types";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
 export const useRemoveProductFromCartMutation = () => {
@@ -24,7 +26,31 @@ export const useRemoveProductFromCartMutation = () => {
   return useMutation({
     mutationFn: ({ cartItemId }: { cartItemId: number }) =>
       removeProductFromCart(cartItemId),
-    onSuccess: async () => {
+    onMutate: async ({ cartItemId }) => {
+      await queryClient.cancelQueries({ queryKey: CART_QUERY_KEY });
+
+      const previousCart = queryClient.getQueryData<BaseCartFragment>([
+        ...CART_QUERY_KEY,
+        cookies.cart,
+      ]);
+
+      if (!previousCart) {
+        return;
+      }
+
+      const updatedCart = update(previousCart, {
+        items: (items) =>
+          items?.filter((item) => item?.id !== cartItemId.toString()),
+      });
+
+      queryClient.setQueryData(CART_QUERY_KEY, updatedCart);
+
+      return { previousCart };
+    },
+    onError: async (_, __, context?: { previousCart: BaseCartFragment }) => {
+      await queryClient.setQueryData(CART_QUERY_KEY, context?.previousCart);
+    },
+    onSettled: async () => {
       await queryClient.invalidateQueries({ queryKey: CART_QUERY_KEY });
     },
   });
