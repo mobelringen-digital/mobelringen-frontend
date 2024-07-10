@@ -2567,11 +2567,15 @@ export type CartItemInterface = {
 /** Contains details about the price of the item, including taxes and discounts. */
 export type CartItemPrices = {
   __typename: "CartItemPrices";
+  /** The price(base_price) of the item before any discounts were applied. The price that might include tax, depending on the configured display settings for cart. */
+  base_price: Money;
   /** An array of discounts to be applied to the cart item. */
   discounts?: Maybe<Array<Maybe<Discount>>>;
   /** An array of FPTs applied to the cart item. */
   fixed_product_taxes?: Maybe<Array<Maybe<FixedProductTax>>>;
-  /** The price of the item before any discounts were applied. The price that might include tax, depending on the configured display settings for cart. */
+  /** Flag indicates if price is special_price. */
+  is_special_price: Scalars["Boolean"]["output"];
+  /** The price(special_price) of the item before any discounts were applied. The price that might include tax, depending on the configured display settings for cart. */
   price: Money;
   /** The price of the item before any discounts were applied. The price that might include tax, depending on the configured display settings for cart. */
   price_including_tax: Money;
@@ -2632,6 +2636,10 @@ export type CartPrices = {
   gift_options?: Maybe<GiftOptionsPrices>;
   /** The total, including discounts, taxes, shipping, and other fees. */
   grand_total?: Maybe<Money>;
+  /** Special price diff to grand total. */
+  grand_total_special_price_diff: Money;
+  /** Flag indicates if any item has special_price. */
+  is_special_price: Scalars["Boolean"]["output"];
   /** The subtotal without any applied taxes. */
   subtotal_excluding_tax?: Maybe<Money>;
   /** The subtotal including any applied taxes. */
@@ -21793,6 +21801,12 @@ export type VippsInitPaymentOutput = {
 
 export type CartPriceFragment = {
   __typename: "CartPrices";
+  is_special_price: boolean;
+  grand_total_special_price_diff: {
+    __typename: "Money";
+    currency?: CurrencyEnum | null;
+    value?: number | null;
+  };
   grand_total?: {
     __typename: "Money";
     currency?: CurrencyEnum | null;
@@ -21835,6 +21849,12 @@ export type CartPriceFragment = {
 
 export type CartItemPriceFragment = {
   __typename: "CartItemPrices";
+  is_special_price: boolean;
+  base_price: {
+    __typename: "Money";
+    currency?: CurrencyEnum | null;
+    value?: number | null;
+  };
   discounts?: Array<{
     __typename: "Discount";
     label: string;
@@ -22008,6 +22028,12 @@ type CartItem_BundleCartItem_Fragment = {
   quantity: number;
   prices?: {
     __typename: "CartItemPrices";
+    is_special_price: boolean;
+    base_price: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
     discounts?: Array<{
       __typename: "Discount";
       label: string;
@@ -22202,6 +22228,12 @@ type CartItem_ConfigurableCartItem_Fragment = {
   quantity: number;
   prices?: {
     __typename: "CartItemPrices";
+    is_special_price: boolean;
+    base_price: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
     discounts?: Array<{
       __typename: "Discount";
       label: string;
@@ -22396,6 +22428,12 @@ type CartItem_DownloadableCartItem_Fragment = {
   quantity: number;
   prices?: {
     __typename: "CartItemPrices";
+    is_special_price: boolean;
+    base_price: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
     discounts?: Array<{
       __typename: "Discount";
       label: string;
@@ -22590,6 +22628,12 @@ type CartItem_GiftCardCartItem_Fragment = {
   quantity: number;
   prices?: {
     __typename: "CartItemPrices";
+    is_special_price: boolean;
+    base_price: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
     discounts?: Array<{
       __typename: "Discount";
       label: string;
@@ -22784,6 +22828,12 @@ type CartItem_SimpleCartItem_Fragment = {
   quantity: number;
   prices?: {
     __typename: "CartItemPrices";
+    is_special_price: boolean;
+    base_price: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
     discounts?: Array<{
       __typename: "Discount";
       label: string;
@@ -22978,6 +23028,12 @@ type CartItem_VirtualCartItem_Fragment = {
   quantity: number;
   prices?: {
     __typename: "CartItemPrices";
+    is_special_price: boolean;
+    base_price: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
     discounts?: Array<{
       __typename: "Discount";
       label: string;
@@ -23177,6 +23233,12 @@ export type BaseCartFragment = {
   __typename: "Cart";
   prices?: {
     __typename: "CartPrices";
+    is_special_price: boolean;
+    grand_total_special_price_diff: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
     grand_total?: {
       __typename: "Money";
       currency?: CurrencyEnum | null;
@@ -23224,6 +23286,12 @@ export type BaseCartFragment = {
         quantity: number;
         prices?: {
           __typename: "CartItemPrices";
+          is_special_price: boolean;
+          base_price: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
           discounts?: Array<{
             __typename: "Discount";
             label: string;
@@ -23417,6 +23485,12 @@ export type BaseCartFragment = {
         quantity: number;
         prices?: {
           __typename: "CartItemPrices";
+          is_special_price: boolean;
+          base_price: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
           discounts?: Array<{
             __typename: "Discount";
             label: string;
@@ -23610,6 +23684,12 @@ export type BaseCartFragment = {
         quantity: number;
         prices?: {
           __typename: "CartItemPrices";
+          is_special_price: boolean;
+          base_price: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
           discounts?: Array<{
             __typename: "Discount";
             label: string;
@@ -23803,6 +23883,12 @@ export type BaseCartFragment = {
         quantity: number;
         prices?: {
           __typename: "CartItemPrices";
+          is_special_price: boolean;
+          base_price: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
           discounts?: Array<{
             __typename: "Discount";
             label: string;
@@ -23996,6 +24082,12 @@ export type BaseCartFragment = {
         quantity: number;
         prices?: {
           __typename: "CartItemPrices";
+          is_special_price: boolean;
+          base_price: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
           discounts?: Array<{
             __typename: "Discount";
             label: string;
@@ -24189,6 +24281,12 @@ export type BaseCartFragment = {
         quantity: number;
         prices?: {
           __typename: "CartItemPrices";
+          is_special_price: boolean;
+          base_price: {
+            __typename: "Money";
+            currency?: CurrencyEnum | null;
+            value?: number | null;
+          };
           discounts?: Array<{
             __typename: "Discount";
             label: string;
@@ -24389,6 +24487,12 @@ export type CartQuery = {
     __typename: "Cart";
     prices?: {
       __typename: "CartPrices";
+      is_special_price: boolean;
+      grand_total_special_price_diff: {
+        __typename: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      };
       grand_total?: {
         __typename: "Money";
         currency?: CurrencyEnum | null;
@@ -24436,6 +24540,12 @@ export type CartQuery = {
           quantity: number;
           prices?: {
             __typename: "CartItemPrices";
+            is_special_price: boolean;
+            base_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
             discounts?: Array<{
               __typename: "Discount";
               label: string;
@@ -24629,6 +24739,12 @@ export type CartQuery = {
           quantity: number;
           prices?: {
             __typename: "CartItemPrices";
+            is_special_price: boolean;
+            base_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
             discounts?: Array<{
               __typename: "Discount";
               label: string;
@@ -24822,6 +24938,12 @@ export type CartQuery = {
           quantity: number;
           prices?: {
             __typename: "CartItemPrices";
+            is_special_price: boolean;
+            base_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
             discounts?: Array<{
               __typename: "Discount";
               label: string;
@@ -25015,6 +25137,12 @@ export type CartQuery = {
           quantity: number;
           prices?: {
             __typename: "CartItemPrices";
+            is_special_price: boolean;
+            base_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
             discounts?: Array<{
               __typename: "Discount";
               label: string;
@@ -25208,6 +25336,12 @@ export type CartQuery = {
           quantity: number;
           prices?: {
             __typename: "CartItemPrices";
+            is_special_price: boolean;
+            base_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
             discounts?: Array<{
               __typename: "Discount";
               label: string;
@@ -25401,6 +25535,12 @@ export type CartQuery = {
           quantity: number;
           prices?: {
             __typename: "CartItemPrices";
+            is_special_price: boolean;
+            base_price: {
+              __typename: "Money";
+              currency?: CurrencyEnum | null;
+              value?: number | null;
+            };
             discounts?: Array<{
               __typename: "Discount";
               label: string;
@@ -25612,6 +25752,12 @@ export type AddProductToCartMutation = {
       __typename: "Cart";
       prices?: {
         __typename: "CartPrices";
+        is_special_price: boolean;
+        grand_total_special_price_diff: {
+          __typename: "Money";
+          currency?: CurrencyEnum | null;
+          value?: number | null;
+        };
         grand_total?: {
           __typename: "Money";
           currency?: CurrencyEnum | null;
@@ -25659,6 +25805,12 @@ export type AddProductToCartMutation = {
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
+              is_special_price: boolean;
+              base_price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -25852,6 +26004,12 @@ export type AddProductToCartMutation = {
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
+              is_special_price: boolean;
+              base_price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -26045,6 +26203,12 @@ export type AddProductToCartMutation = {
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
+              is_special_price: boolean;
+              base_price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -26238,6 +26402,12 @@ export type AddProductToCartMutation = {
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
+              is_special_price: boolean;
+              base_price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -26431,6 +26601,12 @@ export type AddProductToCartMutation = {
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
+              is_special_price: boolean;
+              base_price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -26624,6 +26800,12 @@ export type AddProductToCartMutation = {
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
+              is_special_price: boolean;
+              base_price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -26829,6 +27011,12 @@ export type RemoveProductFromCartMutation = {
       __typename: "Cart";
       prices?: {
         __typename: "CartPrices";
+        is_special_price: boolean;
+        grand_total_special_price_diff: {
+          __typename: "Money";
+          currency?: CurrencyEnum | null;
+          value?: number | null;
+        };
         grand_total?: {
           __typename: "Money";
           currency?: CurrencyEnum | null;
@@ -26876,6 +27064,12 @@ export type RemoveProductFromCartMutation = {
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
+              is_special_price: boolean;
+              base_price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -27069,6 +27263,12 @@ export type RemoveProductFromCartMutation = {
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
+              is_special_price: boolean;
+              base_price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -27262,6 +27462,12 @@ export type RemoveProductFromCartMutation = {
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
+              is_special_price: boolean;
+              base_price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -27455,6 +27661,12 @@ export type RemoveProductFromCartMutation = {
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
+              is_special_price: boolean;
+              base_price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -27648,6 +27860,12 @@ export type RemoveProductFromCartMutation = {
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
+              is_special_price: boolean;
+              base_price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -27841,6 +28059,12 @@ export type RemoveProductFromCartMutation = {
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
+              is_special_price: boolean;
+              base_price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -28048,6 +28272,12 @@ export type UpdateCartItemsMutation = {
       __typename: "Cart";
       prices?: {
         __typename: "CartPrices";
+        is_special_price: boolean;
+        grand_total_special_price_diff: {
+          __typename: "Money";
+          currency?: CurrencyEnum | null;
+          value?: number | null;
+        };
         grand_total?: {
           __typename: "Money";
           currency?: CurrencyEnum | null;
@@ -28095,6 +28325,12 @@ export type UpdateCartItemsMutation = {
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
+              is_special_price: boolean;
+              base_price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -28288,6 +28524,12 @@ export type UpdateCartItemsMutation = {
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
+              is_special_price: boolean;
+              base_price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -28481,6 +28723,12 @@ export type UpdateCartItemsMutation = {
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
+              is_special_price: boolean;
+              base_price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -28674,6 +28922,12 @@ export type UpdateCartItemsMutation = {
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
+              is_special_price: boolean;
+              base_price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -28867,6 +29121,12 @@ export type UpdateCartItemsMutation = {
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
+              is_special_price: boolean;
+              base_price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -29060,6 +29320,12 @@ export type UpdateCartItemsMutation = {
             quantity: number;
             prices?: {
               __typename: "CartItemPrices";
+              is_special_price: boolean;
+              base_price: {
+                __typename: "Money";
+                currency?: CurrencyEnum | null;
+                value?: number | null;
+              };
               discounts?: Array<{
                 __typename: "Discount";
                 label: string;
@@ -69517,6 +69783,18 @@ export const CartPriceFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "is_special_price" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "grand_total_special_price_diff" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "grand_total" },
@@ -69630,6 +69908,18 @@ export const CartItemPriceFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "is_special_price" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "base_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "discounts" },
@@ -69906,6 +70196,18 @@ export const CartItemFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "is_special_price" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "base_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "discounts" },
@@ -70107,6 +70409,18 @@ export const BaseCartFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "is_special_price" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "base_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "discounts" },
@@ -70282,6 +70596,18 @@ export const BaseCartFragmentDoc = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "is_special_price" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "grand_total_special_price_diff" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "grand_total" },
@@ -75163,6 +75489,18 @@ export const CartDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "is_special_price" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "grand_total_special_price_diff" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "grand_total" },
@@ -75271,6 +75609,18 @@ export const CartDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "is_special_price" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "base_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "discounts" },
@@ -75645,6 +75995,18 @@ export const AddProductToCartDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "is_special_price" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "grand_total_special_price_diff" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "grand_total" },
@@ -75753,6 +76115,18 @@ export const AddProductToCartDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "is_special_price" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "base_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "discounts" },
@@ -76111,6 +76485,18 @@ export const RemoveProductFromCartDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "is_special_price" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "grand_total_special_price_diff" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "grand_total" },
@@ -76219,6 +76605,18 @@ export const RemoveProductFromCartDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "is_special_price" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "base_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "discounts" },
@@ -76583,6 +76981,18 @@ export const UpdateCartItemsDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "is_special_price" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "grand_total_special_price_diff" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "grand_total" },
@@ -76691,6 +77101,18 @@ export const UpdateCartItemsDocument = {
       selectionSet: {
         kind: "SelectionSet",
         selections: [
+          { kind: "Field", name: { kind: "Name", value: "is_special_price" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "base_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
           {
             kind: "Field",
             name: { kind: "Name", value: "discounts" },

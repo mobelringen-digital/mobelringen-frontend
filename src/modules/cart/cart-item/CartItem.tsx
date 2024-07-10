@@ -5,10 +5,10 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { FormatNumber } from "@/components/_ui/format-number/FormatNumber";
 import { QuantityInput } from "@/components/_ui/quantity-input/QuantityInput";
 import { useConfirm } from "@/components/confirm/hooks/useConfirm";
 import { CartItemDeliveryInfo } from "@/modules/cart/cart-item/CartItemDeliveryInfo";
+import { CartItemPrice } from "@/modules/cart/cart-item/CartItemPrice";
 import { useRemoveProductFromCartMutation } from "@/modules/cart/hooks/useRemoveProductFromCartMutation";
 import { useUpdateCartItemsMutation } from "@/modules/cart/hooks/useUpdateCartItemsMutation";
 import { CartItemFragment } from "@/types";
@@ -96,11 +96,7 @@ export const CartItem: React.FC<Props> = ({ item }) => {
             </div>
           </div>
           <div className="flex flex-col items-end min-w-[80px] lg:min-w-[120px] text-xs lg:text-sm font-semibold whitespace-nowrap">
-            <FormatNumber
-              value={item?.prices?.row_total_including_tax.value}
-              format="currency"
-              suffix={item.prices?.row_total_including_tax.currency ?? "NOK"}
-            />
+            <CartItemPrice item={item} />
           </div>
         </div>
         <CartItemDeliveryInfo item={item} />

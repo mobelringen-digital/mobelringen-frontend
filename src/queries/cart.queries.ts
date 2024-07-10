@@ -2,6 +2,11 @@ import { graphql } from "@/types/schema";
 
 export const CartPriceFragment = graphql(`
   fragment CartPrice on CartPrices {
+    is_special_price
+    grand_total_special_price_diff {
+      currency
+      value
+    }
     grand_total {
       currency
       value
@@ -37,6 +42,11 @@ export const CartPriceFragment = graphql(`
 
 export const CartItemPriceFragment = graphql(`
   fragment CartItemPrice on CartItemPrices {
+    is_special_price
+    base_price {
+      currency
+      value
+    }
     discounts {
       label
       amount {

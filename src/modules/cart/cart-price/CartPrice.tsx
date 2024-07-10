@@ -27,6 +27,11 @@ export const CartPrice: React.FC<Props> = ({ prices, checkoutDisabled }) => {
         value: prices?.grand_total?.value,
         currency: prices?.grand_total?.currency,
       },
+      totalDiscount: {
+        label: "Rabatter",
+        value: prices?.grand_total_special_price_diff.value,
+        currency: prices?.grand_total_special_price_diff.currency,
+      },
     };
   }, [prices]);
 
@@ -43,6 +48,17 @@ export const CartPrice: React.FC<Props> = ({ prices, checkoutDisabled }) => {
               value={pricingLines.subtotal.value}
               currency={pricingLines.subtotal.currency}
             />
+
+            {prices.is_special_price ? (
+              <CartPriceLine
+                priceClassName="text-red"
+                label="Rabatter"
+                value={pricingLines.totalDiscount.value}
+                currency={pricingLines.totalDiscount.currency}
+                isDiscount={true}
+              />
+            ) : null}
+
             {pricingLines.taxes?.map((tax, idx) => (
               <CartPriceLine
                 key={idx}
