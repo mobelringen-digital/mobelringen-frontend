@@ -14,8 +14,8 @@ export const CartPrice: React.FC<Props> = ({ prices, checkoutDisabled }) => {
     return {
       subtotal: {
         label: "Produkter",
-        value: prices?.subtotal_excluding_tax?.value,
-        currency: prices?.subtotal_excluding_tax?.currency,
+        value: prices?.items_grand_total_base_price?.value,
+        currency: prices?.items_grand_total_base_price?.currency,
       },
       taxes: prices?.applied_taxes?.map((tax) => ({
         label: tax?.label,

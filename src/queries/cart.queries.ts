@@ -7,6 +7,10 @@ export const CartPriceFragment = graphql(`
       currency
       value
     }
+    items_grand_total_base_price {
+      currency
+      value
+    }
     grand_total {
       currency
       value

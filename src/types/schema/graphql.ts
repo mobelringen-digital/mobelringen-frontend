@@ -2640,6 +2640,8 @@ export type CartPrices = {
   grand_total_special_price_diff: Money;
   /** Flag indicates if any item has special_price. */
   is_special_price: Scalars["Boolean"]["output"];
+  /** Item grand total base price. */
+  items_grand_total_base_price: Money;
   /** The subtotal without any applied taxes. */
   subtotal_excluding_tax?: Maybe<Money>;
   /** The subtotal including any applied taxes. */
@@ -21807,6 +21809,11 @@ export type CartPriceFragment = {
     currency?: CurrencyEnum | null;
     value?: number | null;
   };
+  items_grand_total_base_price: {
+    __typename: "Money";
+    currency?: CurrencyEnum | null;
+    value?: number | null;
+  };
   grand_total?: {
     __typename: "Money";
     currency?: CurrencyEnum | null;
@@ -23239,6 +23246,11 @@ export type BaseCartFragment = {
       currency?: CurrencyEnum | null;
       value?: number | null;
     };
+    items_grand_total_base_price: {
+      __typename: "Money";
+      currency?: CurrencyEnum | null;
+      value?: number | null;
+    };
     grand_total?: {
       __typename: "Money";
       currency?: CurrencyEnum | null;
@@ -24489,6 +24501,11 @@ export type CartQuery = {
       __typename: "CartPrices";
       is_special_price: boolean;
       grand_total_special_price_diff: {
+        __typename: "Money";
+        currency?: CurrencyEnum | null;
+        value?: number | null;
+      };
+      items_grand_total_base_price: {
         __typename: "Money";
         currency?: CurrencyEnum | null;
         value?: number | null;
@@ -25758,6 +25775,11 @@ export type AddProductToCartMutation = {
           currency?: CurrencyEnum | null;
           value?: number | null;
         };
+        items_grand_total_base_price: {
+          __typename: "Money";
+          currency?: CurrencyEnum | null;
+          value?: number | null;
+        };
         grand_total?: {
           __typename: "Money";
           currency?: CurrencyEnum | null;
@@ -27013,6 +27035,11 @@ export type RemoveProductFromCartMutation = {
         __typename: "CartPrices";
         is_special_price: boolean;
         grand_total_special_price_diff: {
+          __typename: "Money";
+          currency?: CurrencyEnum | null;
+          value?: number | null;
+        };
+        items_grand_total_base_price: {
           __typename: "Money";
           currency?: CurrencyEnum | null;
           value?: number | null;
@@ -28274,6 +28301,11 @@ export type UpdateCartItemsMutation = {
         __typename: "CartPrices";
         is_special_price: boolean;
         grand_total_special_price_diff: {
+          __typename: "Money";
+          currency?: CurrencyEnum | null;
+          value?: number | null;
+        };
+        items_grand_total_base_price: {
           __typename: "Money";
           currency?: CurrencyEnum | null;
           value?: number | null;
@@ -69797,6 +69829,17 @@ export const CartPriceFragmentDoc = {
           },
           {
             kind: "Field",
+            name: { kind: "Name", value: "items_grand_total_base_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
             name: { kind: "Name", value: "grand_total" },
             selectionSet: {
               kind: "SelectionSet",
@@ -70600,6 +70643,17 @@ export const BaseCartFragmentDoc = {
           {
             kind: "Field",
             name: { kind: "Name", value: "grand_total_special_price_diff" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items_grand_total_base_price" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -75503,6 +75557,17 @@ export const CartDocument = {
           },
           {
             kind: "Field",
+            name: { kind: "Name", value: "items_grand_total_base_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
             name: { kind: "Name", value: "grand_total" },
             selectionSet: {
               kind: "SelectionSet",
@@ -76009,6 +76074,17 @@ export const AddProductToCartDocument = {
           },
           {
             kind: "Field",
+            name: { kind: "Name", value: "items_grand_total_base_price" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
             name: { kind: "Name", value: "grand_total" },
             selectionSet: {
               kind: "SelectionSet",
@@ -76489,6 +76565,17 @@ export const RemoveProductFromCartDocument = {
           {
             kind: "Field",
             name: { kind: "Name", value: "grand_total_special_price_diff" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items_grand_total_base_price" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
@@ -76985,6 +77072,17 @@ export const UpdateCartItemsDocument = {
           {
             kind: "Field",
             name: { kind: "Name", value: "grand_total_special_price_diff" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "items_grand_total_base_price" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
