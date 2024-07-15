@@ -10,7 +10,7 @@ interface IToastOptions extends Omit<IToastProps, "onClose" | "isOpen"> {
 }
 
 export const openToast = ({
-  position = "bottom-right",
+  position = "top-right",
   duration,
   ...props
 }: IToastOptions): string =>
