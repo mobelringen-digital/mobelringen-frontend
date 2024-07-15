@@ -34,5 +34,5 @@ export const useCart = () => {
     return cookies.cart ?? "";
   }, [cart?.id, cookies.cart, user?.token]);
 
-  return { isCheckoutEnabled, cartId };
+  return { isCheckoutEnabled, cartId, user };
 };

@@ -1,4 +1,4 @@
-import { useMergeGuestCartToCustomer } from "@/utils/hooks/useMergeGuestCartToCustomer";
+import { useMergeGuestCartToCustomer } from "@/components/cart/useMergeGuestCartToCustomer";
 
 export const GuestCartMergeProvider = () => {
   useMergeGuestCartToCustomer();

@@ -5,20 +5,20 @@ import { CART_QUERY_KEY } from "@/components/cart/fetchCartService";
 import { useCart } from "@/modules/cart/hooks/useCart";
 import { RemoveProductFromCart } from "@/queries/cart.queries";
 import { BaseCartFragment } from "@/types";
-import { baseMagentoClient } from "@/utils/lib/graphql";
+import { authorizedMagentoClient } from "@/utils/lib/graphql";
 
 export const useRemoveProductFromCartMutation = () => {
   const queryClient = useQueryClient();
-  const { cartId } = useCart();
+  const { cartId, user } = useCart();
 
   const removeProductFromCart = async (cartItemId: number) => {
-    const data = await baseMagentoClient("POST").request(
-      RemoveProductFromCart,
-      {
-        cartId,
-        cartItemId,
-      },
-    );
+    const data = await authorizedMagentoClient(
+      String(user?.token),
+      "POST",
+    ).request(RemoveProductFromCart, {
+      cartId,
+      cartItemId,
+    });
 
     return data.removeItemFromCart?.cart;
   };

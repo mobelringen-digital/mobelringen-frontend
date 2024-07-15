@@ -4,14 +4,17 @@ import { CART_QUERY_KEY } from "@/components/cart/fetchCartService";
 import { useCart } from "@/modules/cart/hooks/useCart";
 import { UpdateCartItems } from "@/queries/cart.queries";
 import { CartItemUpdateInput } from "@/types";
-import { baseMagentoClient } from "@/utils/lib/graphql";
+import { authorizedMagentoClient } from "@/utils/lib/graphql";
 
 export const useUpdateCartItemsMutation = () => {
   const queryClient = useQueryClient();
-  const { cartId } = useCart();
+  const { cartId, user } = useCart();
 
   const updateCartItems = async (cartItems: Array<CartItemUpdateInput>) => {
-    const data = await baseMagentoClient("POST").request(UpdateCartItems, {
+    const data = await authorizedMagentoClient(
+      String(user?.token),
+      "POST",
+    ).request(UpdateCartItems, {
       cartId,
       cartItems,
     });
