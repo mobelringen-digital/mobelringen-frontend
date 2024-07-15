@@ -2,6 +2,11 @@
 
 import React from "react";
 
+import { useQueryClient } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
+import { useCookies } from "react-cookie";
+
+import { CART_QUERY_KEY, CartCookie } from "@/components/cart/fetchCartService";
 import { useCartQuery } from "@/components/cart/useCartQuery";
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
@@ -11,11 +16,26 @@ import { CartBreadcrumbs } from "@/modules/cart/CartBreadcrumbs";
 import { CartMethodLinks } from "@/modules/cart/CartMethodLinks";
 import { CartTitle } from "@/modules/cart/CartTitle";
 import { CartWarning } from "@/modules/cart/CartWarning";
+import { useAssignCustomerToGuestCart } from "@/modules/cart/hooks/useAssignCustomerToGuestCart";
 import { useCart } from "@/modules/cart/hooks/useCart";
 
 export const CartPage: React.FC = () => {
   const { data } = useCartQuery();
-  const { isCheckoutEnabled } = useCart(data);
+  const queryClient = useQueryClient();
+  const { isCheckoutEnabled } = useCart();
+  const [cookies] = useCookies<"cart", CartCookie>(["cart"]);
+  const { data: user } = useSession();
+  const { mutate: assignCustomerToGuestCart } = useAssignCustomerToGuestCart();
+
+  React.useEffect(() => {
+    if (!!user?.token && cookies.cart) {
+      assignCustomerToGuestCart(undefined, {
+        onSuccess: async () => {
+          await queryClient.invalidateQueries({ queryKey: CART_QUERY_KEY });
+        },
+      });
+    }
+  }, [assignCustomerToGuestCart, cookies.cart, queryClient, user?.token]);
 
   return (
     <ContainerLayout>

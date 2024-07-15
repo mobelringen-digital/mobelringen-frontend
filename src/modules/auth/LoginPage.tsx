@@ -21,6 +21,7 @@ type FormData = {
 
 export const LoginPage: React.FC = () => {
   const { data: session } = useSession();
+
   const searchParams = useSearchParams();
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState<Array<Error> | null>(null);
@@ -54,7 +55,9 @@ export const LoginPage: React.FC = () => {
       setIsLoading(false);
     }
 
-    if (res?.ok) return navigate("/account").then(() => setIsLoading(false));
+    if (res?.ok) {
+      return navigate("/account").then(() => setIsLoading(false));
+    }
   };
 
   return (

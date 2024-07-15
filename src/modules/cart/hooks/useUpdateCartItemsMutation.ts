@@ -1,21 +1,18 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useCookies } from "react-cookie";
 
-import { CART_QUERY_KEY, CartCookie } from "@/components/cart/fetchCartService";
+import { CART_QUERY_KEY } from "@/components/cart/fetchCartService";
+import { useCart } from "@/modules/cart/hooks/useCart";
 import { UpdateCartItems } from "@/queries/cart.queries";
 import { CartItemUpdateInput } from "@/types";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
 export const useUpdateCartItemsMutation = () => {
   const queryClient = useQueryClient();
-  const [cookies] = useCookies<"cart", CartCookie>(["cart"]);
+  const { cartId } = useCart();
 
-  const updateCartItems = async (
-    cartItems: Array<CartItemUpdateInput>,
-    cartId?: string,
-  ) => {
+  const updateCartItems = async (cartItems: Array<CartItemUpdateInput>) => {
     const data = await baseMagentoClient("POST").request(UpdateCartItems, {
-      cartId: cartId ?? cookies.cart,
+      cartId,
       cartItems,
     });
 
@@ -23,13 +20,8 @@ export const useUpdateCartItemsMutation = () => {
   };
 
   return useMutation({
-    mutationFn: ({
-      cartItems,
-      cartId,
-    }: {
-      cartItems: Array<CartItemUpdateInput>;
-      cartId?: string;
-    }) => updateCartItems(cartItems, cartId),
+    mutationFn: ({ cartItems }: { cartItems: Array<CartItemUpdateInput> }) =>
+      updateCartItems(cartItems),
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: CART_QUERY_KEY });
     },

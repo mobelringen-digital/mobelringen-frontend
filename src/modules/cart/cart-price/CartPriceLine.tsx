@@ -29,6 +29,7 @@ export const CartPriceLine: React.FC<Props> = ({
           value={value}
           format="currency"
           suffix={String(currency)}
+          allowNegative={false}
           prefix={isDiscount ? "- " : undefined}
         />
       </span>

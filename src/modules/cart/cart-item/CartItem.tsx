@@ -12,12 +12,14 @@ import { CartItemPrice } from "@/modules/cart/cart-item/CartItemPrice";
 import { useRemoveProductFromCartMutation } from "@/modules/cart/hooks/useRemoveProductFromCartMutation";
 import { useUpdateCartItemsMutation } from "@/modules/cart/hooks/useUpdateCartItemsMutation";
 import { CartItemFragment } from "@/types";
+import { useRequestCallback } from "@/utils/hooks/useRequestCallback";
 
 interface Props {
   item: CartItemFragment | null;
 }
 
 export const CartItem: React.FC<Props> = ({ item }) => {
+  const { handleError } = useRequestCallback();
   const { mutate: removeProduct } = useRemoveProductFromCartMutation();
   const { mutate: updateCartItems } = useUpdateCartItemsMutation();
   const { showConfirmation } = useConfirm();
@@ -26,14 +28,19 @@ export const CartItem: React.FC<Props> = ({ item }) => {
 
   const handleUpdateQuantity = async (quantity: number) => {
     if (quantity > 0) {
-      return updateCartItems({
-        cartItems: [
-          {
-            cart_item_id: parseInt(item.id, 10),
-            quantity: quantity,
-          },
-        ],
-      });
+      return updateCartItems(
+        {
+          cartItems: [
+            {
+              cart_item_id: parseInt(item.id, 10),
+              quantity: quantity,
+            },
+          ],
+        },
+        {
+          onError: (error) => handleError(error),
+        },
+      );
     }
   };
 
@@ -52,9 +59,14 @@ export const CartItem: React.FC<Props> = ({ item }) => {
     });
 
     if (confirmed) {
-      return removeProduct({
-        cartItemId: parseInt(item.id, 10),
-      });
+      return removeProduct(
+        {
+          cartItemId: parseInt(item.id, 10),
+        },
+        {
+          onError: (error) => handleError(error),
+        },
+      );
     }
   };
 

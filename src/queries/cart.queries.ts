@@ -122,6 +122,7 @@ export const CartItemFragment = graphql(`
 
 export const BaseCartFragment = graphql(`
   fragment BaseCart on Cart {
+    id
     prices {
       ...CartPrice
     }
@@ -134,6 +135,14 @@ export const BaseCartFragment = graphql(`
 export const CartDocument = graphql(`
   query Cart($cart_id: String!) {
     cart(cart_id: $cart_id) {
+      ...BaseCart
+    }
+  }
+`);
+
+export const CustomerCartDocument = graphql(`
+  query CustomerCart {
+    customerCart {
       ...BaseCart
     }
   }
@@ -174,6 +183,25 @@ export const UpdateCartItems = graphql(`
       cart {
         ...BaseCart
       }
+    }
+  }
+`);
+
+export const PlaceOrder = graphql(`
+  mutation PlaceOrder($cartId: String!) {
+    placeOrder(input: { cart_id: $cartId }) {
+      order {
+        order_number
+      }
+    }
+  }
+`);
+
+export const AssignCustomerToGuestCart = graphql(`
+  mutation AssignCustomerToGuestCart($cartId: String!) {
+    assignCustomerToGuestCart(cart_id: $cartId) {
+      id
+      ...BaseCart
     }
   }
 `);

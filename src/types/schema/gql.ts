@@ -21,10 +21,12 @@ const documents = {
     types.BaseProductDataForCartFragmentDoc,
   "\n  fragment CartItem on CartItemInterface {\n    id\n    prices {\n      ...CartItemPrice\n    }\n    is_in_store\n    product {\n      ...BaseProductDataForCart\n      delivery_promise\n      stock_status\n    }\n    quantity\n  }\n":
     types.CartItemFragmentDoc,
-  "\n  fragment BaseCart on Cart {\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n":
+  "\n  fragment BaseCart on Cart {\n    id\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n":
     types.BaseCartFragmentDoc,
   "\n  query Cart($cart_id: String!) {\n    cart(cart_id: $cart_id) {\n      ...BaseCart\n    }\n  }\n":
     types.CartDocument,
+  "\n  query CustomerCart {\n    customerCart {\n      ...BaseCart\n    }\n  }\n":
+    types.CustomerCartDocument,
   "\n  mutation CreateEmptyCart {\n    createEmptyCart\n  }\n":
     types.CreateEmptyCartDocument,
   "\n  mutation AddProductToCart($cartId: String!, $cartItems: [CartItemInput!]!) {\n    addProductsToCart(cartId: $cartId, cartItems: $cartItems) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n":
@@ -33,6 +35,10 @@ const documents = {
     types.RemoveProductFromCartDocument,
   "\n  mutation UpdateCartItems(\n    $cartId: String!\n    $cartItems: [CartItemUpdateInput]!\n  ) {\n    updateCartItems(input: { cart_id: $cartId, cart_items: $cartItems }) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n":
     types.UpdateCartItemsDocument,
+  "\n  mutation PlaceOrder($cartId: String!) {\n    placeOrder(input: { cart_id: $cartId }) {\n      order {\n        order_number\n      }\n    }\n  }\n":
+    types.PlaceOrderDocument,
+  "\n  mutation AssignCustomerToGuestCart($cartId: String!) {\n    assignCustomerToGuestCart(cart_id: $cartId) {\n      id\n      ...BaseCart\n    }\n  }\n":
+    types.AssignCustomerToGuestCartDocument,
   "\n  fragment BaseCategoryData on CategoryTree {\n    name\n    description\n    id\n    uid\n    url_path\n    product_count\n    meta_title\n    meta_keywords\n    meta_description\n    include_in_menu\n    children {\n      name\n      uid\n      url_path\n      product_count\n      include_in_menu\n      children {\n        name\n        uid\n        url_path\n        product_count\n        include_in_menu\n      }\n    }\n  }\n":
     types.BaseCategoryDataFragmentDoc,
   "\n  query Category($filters: CategoryFilterInput) {\n    categories(filters: $filters) {\n      items {\n        name\n        description\n        id\n        uid\n        url_path\n        product_count\n        meta_title\n        meta_keywords\n        meta_description\n        include_in_menu\n        children {\n          name\n          uid\n          url_path\n          product_count\n          include_in_menu\n          children {\n            name\n            uid\n            url_path\n            product_count\n            include_in_menu\n          }\n        }\n      }\n    }\n  }\n":
@@ -161,14 +167,20 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment BaseCart on Cart {\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n",
-): (typeof documents)["\n  fragment BaseCart on Cart {\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n"];
+  source: "\n  fragment BaseCart on Cart {\n    id\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n",
+): (typeof documents)["\n  fragment BaseCart on Cart {\n    id\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
   source: "\n  query Cart($cart_id: String!) {\n    cart(cart_id: $cart_id) {\n      ...BaseCart\n    }\n  }\n",
 ): (typeof documents)["\n  query Cart($cart_id: String!) {\n    cart(cart_id: $cart_id) {\n      ...BaseCart\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  query CustomerCart {\n    customerCart {\n      ...BaseCart\n    }\n  }\n",
+): (typeof documents)["\n  query CustomerCart {\n    customerCart {\n      ...BaseCart\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -193,6 +205,18 @@ export function graphql(
 export function graphql(
   source: "\n  mutation UpdateCartItems(\n    $cartId: String!\n    $cartItems: [CartItemUpdateInput]!\n  ) {\n    updateCartItems(input: { cart_id: $cartId, cart_items: $cartItems }) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n",
 ): (typeof documents)["\n  mutation UpdateCartItems(\n    $cartId: String!\n    $cartItems: [CartItemUpdateInput]!\n  ) {\n    updateCartItems(input: { cart_id: $cartId, cart_items: $cartItems }) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  mutation PlaceOrder($cartId: String!) {\n    placeOrder(input: { cart_id: $cartId }) {\n      order {\n        order_number\n      }\n    }\n  }\n",
+): (typeof documents)["\n  mutation PlaceOrder($cartId: String!) {\n    placeOrder(input: { cart_id: $cartId }) {\n      order {\n        order_number\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  mutation AssignCustomerToGuestCart($cartId: String!) {\n    assignCustomerToGuestCart(cart_id: $cartId) {\n      id\n      ...BaseCart\n    }\n  }\n",
+): (typeof documents)["\n  mutation AssignCustomerToGuestCart($cartId: String!) {\n    assignCustomerToGuestCart(cart_id: $cartId) {\n      id\n      ...BaseCart\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

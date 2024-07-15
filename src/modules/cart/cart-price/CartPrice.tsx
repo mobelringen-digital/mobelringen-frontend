@@ -1,8 +1,13 @@
 import React from "react";
 
+import { ErrorResponse } from "@/auth/auth";
 import { Button } from "@/components/_ui/button/Button";
+import { openToast } from "@/components/_ui/toast-provider";
 import { CartPriceLine } from "@/modules/cart/cart-price/CartPriceLine";
+import { usePlaceOrderMutation } from "@/modules/cart/hooks/usePlaceOrder";
 import { CartPriceFragment } from "@/types";
+
+import { navigate } from "../../../app/actions";
 
 interface Props {
   prices?: CartPriceFragment | null;
@@ -10,6 +15,8 @@ interface Props {
 }
 
 export const CartPrice: React.FC<Props> = ({ prices, checkoutDisabled }) => {
+  const { mutate: placeOrder } = usePlaceOrderMutation();
+
   const pricingLines = React.useMemo(() => {
     return {
       subtotal: {
@@ -34,6 +41,21 @@ export const CartPrice: React.FC<Props> = ({ prices, checkoutDisabled }) => {
       },
     };
   }, [prices]);
+
+  const navigateToCheckout = async () => {
+    placeOrder(undefined, {
+      onSuccess: () => {
+        navigate("/cart/checkout");
+      },
+      onError: (error) => {
+        (error as unknown as ErrorResponse).response.errors.map((err) => {
+          openToast({
+            content: err.message,
+          });
+        });
+      },
+    });
+  };
 
   if (!prices) return null;
 
@@ -76,6 +98,7 @@ export const CartPrice: React.FC<Props> = ({ prices, checkoutDisabled }) => {
           />
           <Button
             disabled={checkoutDisabled}
+            onClick={navigateToCheckout}
             color="tertiary"
             className="w-full mt-4"
           >
