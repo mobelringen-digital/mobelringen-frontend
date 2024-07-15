@@ -1,8 +1,18 @@
+"use client";
+
+import React from "react";
+
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { CheckoutBreadcrumbs } from "@/modules/checkout/CheckoutBreadcrumbs";
 import { CheckoutTitle } from "@/modules/checkout/CheckoutTitle";
 
 export const CheckoutPage = () => {
+  const [isEnabled] = React.useState(false);
+
+  if (!isEnabled) {
+    return null;
+  }
+
   return (
     <ContainerLayout>
       <CheckoutBreadcrumbs />
