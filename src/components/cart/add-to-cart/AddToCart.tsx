@@ -9,6 +9,7 @@ import { ProductAddedModal } from "@/components/cart/add-to-cart/ProductAddedMod
 import { useAddProductToCartMutation } from "@/components/cart/add-to-cart/useAddProductToCartMutation";
 import { useCreateEmptyCartMutation } from "@/components/cart/add-to-cart/useCreateEmptyCartMutation";
 import { CartCookie } from "@/components/cart/fetchCartService";
+import { useCart } from "@/modules/cart/hooks/useCart";
 import { BaseProductFragment } from "@/types";
 
 interface Props {
@@ -22,6 +23,7 @@ export const AddToCart: React.FC<Props> = ({
   product,
   quantity,
 }) => {
+  const { cartId, user } = useCart();
   const [isOpen, setOpen] = React.useState(false);
   const [cookies] = useCookies<"cart", CartCookie>(["cart"]);
   const { mutate: createEmptyCart, isPending: isCreateCartLoading } =
@@ -33,10 +35,10 @@ export const AddToCart: React.FC<Props> = ({
     isDisabled || isCreateCartLoading || isAddToCartLoading;
 
   const handleAddItemToCart = async () => {
-    if (!cookies.cart) {
+    if (!cookies.cart && !user?.token) {
       createEmptyCart(undefined, {
-        onSettled: async (cartId) => {
-          if (product.sku && quantity && cartId) {
+        onSettled: async (cId) => {
+          if (product.sku && quantity && cId) {
             addProductToCart(
               {
                 cartItems: [
@@ -45,7 +47,7 @@ export const AddToCart: React.FC<Props> = ({
                     quantity,
                   },
                 ],
-                cartId,
+                cartId: cId,
               },
               {
                 onSuccess: () => setOpen(true),
@@ -55,7 +57,7 @@ export const AddToCart: React.FC<Props> = ({
         },
       });
     } else {
-      if (!!cookies.cart && product.sku && quantity) {
+      if (!!cartId && product.sku && quantity) {
         addProductToCart(
           {
             cartItems: [
@@ -64,6 +66,7 @@ export const AddToCart: React.FC<Props> = ({
                 quantity,
               },
             ],
+            cartId,
           },
           {
             onSuccess: () => setOpen(true),
