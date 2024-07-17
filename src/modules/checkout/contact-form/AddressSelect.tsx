@@ -8,9 +8,10 @@ import { useCustomerQuery } from "@/modules/account/hooks/useCustomerQuery";
 
 interface Props {
   control: any;
+  onSelect?: (value?: string) => void;
 }
 
-export const AddressSelect: React.FC<Props> = ({ control }) => {
+export const AddressSelect: React.FC<Props> = ({ control, onSelect }) => {
   const { data: customer } = useCustomerQuery();
 
   return (
@@ -21,7 +22,7 @@ export const AddressSelect: React.FC<Props> = ({ control }) => {
         label="Velg adresse"
         name="customer_address_id"
       >
-        <RadioGroup color="primary">
+        <RadioGroup onValueChange={onSelect} color="primary">
           {customer?.addresses?.map((address) => (
             <RadioBlock key={address?.id} value={String(address?.id)}>
               <b>

@@ -32,7 +32,7 @@ type AddressFields = {
 
 type FormData = {
   different_billing_address: boolean;
-  customer_address_id: string;
+  customer_address_id: string | null;
   shipping: AddressFields;
   billing: AddressFields;
 };
@@ -50,15 +50,29 @@ export const ContactForm: React.FC<Props> = ({ onSuccessfulSubmit }) => {
   const { mutateAsync: setBillingAddressOnCart } =
     useSetBillingAddressOnCartMutation();
 
+  const selectedCustomerAddressId = React.useMemo(() => {
+    if (!customer || !cart) return "null";
+    if (!customer.addresses) return "null";
+
+    const shippingAddress = cart.shipping_addresses[0];
+
+    return (
+      customer.addresses
+        .find((addr) => addr?.postcode === shippingAddress?.postcode)
+        ?.id?.toString() ?? null
+    );
+  }, [cart, customer]);
+
   const {
     control,
     formState: { isSubmitting },
     handleSubmit,
     watch,
+    getValues,
     setValue,
   } = useForm<FormData>({
     defaultValues: {
-      customer_address_id: "null",
+      customer_address_id: selectedCustomerAddressId,
       different_billing_address:
         cart?.shipping_addresses[0]?.postcode !==
         cart?.billing_address?.postcode,
@@ -81,25 +95,19 @@ export const ContactForm: React.FC<Props> = ({ onSuccessfulSubmit }) => {
     },
   });
 
-  const customerAddressId = watch("customer_address_id");
   const isDifferentBillingAddress = watch("different_billing_address");
+  const watchShippingFields = watch(["shipping"]);
 
   React.useEffect(() => {
-    if (customerAddressId) {
-      const customerAddress = customer?.addresses?.find(
-        (address) => address?.id === parseInt(customerAddressId),
-      );
-      if (customerAddress) {
-        setValue("shipping.firstname", customerAddress?.firstname ?? "");
-        setValue("shipping.lastname", customerAddress?.lastname ?? "");
-        setValue("shipping.city", customerAddress?.city ?? "");
-        setValue("shipping.street", customerAddress?.street?.toString() ?? "");
-        setValue("shipping.postcode", customerAddress?.postcode ?? "");
-        setValue("shipping.telephone", customerAddress?.telephone ?? "");
-      }
+    const customerAddress = customer?.addresses?.find(
+      (address) =>
+        address?.id === parseInt(getValues("customer_address_id") ?? ""),
+    );
+    if (getValues("shipping.postcode") !== customerAddress?.postcode) {
+      setValue("customer_address_id", null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [customerAddressId]);
+  }, [watchShippingFields]);
 
   const mapFormAddressValues = (
     values: FormData,
@@ -156,6 +164,22 @@ export const ContactForm: React.FC<Props> = ({ onSuccessfulSubmit }) => {
     });
   };
 
+  const onAddressSelect = (customerAddressId?: string) => {
+    if (customerAddressId) {
+      const customerAddress = customer?.addresses?.find(
+        (address) => address?.id === parseInt(customerAddressId),
+      );
+      if (customerAddress) {
+        setValue("shipping.firstname", customerAddress?.firstname ?? "");
+        setValue("shipping.lastname", customerAddress?.lastname ?? "");
+        setValue("shipping.city", customerAddress?.city ?? "");
+        setValue("shipping.street", customerAddress?.street?.toString() ?? "");
+        setValue("shipping.postcode", customerAddress?.postcode ?? "");
+        setValue("shipping.telephone", customerAddress?.telephone ?? "");
+      }
+    }
+  };
+
   return (
     <div className="flex flex-col">
       <span className="font-semibold mb-2">Leveringsadresse</span>
@@ -163,7 +187,7 @@ export const ContactForm: React.FC<Props> = ({ onSuccessfulSubmit }) => {
         onSubmit={handleSubmit(onSubmit)}
         className="grid grid-cols-12 gap-4"
       >
-        <AddressSelect control={control} />
+        <AddressSelect onSelect={onAddressSelect} control={control} />
         <ShippingFormFields control={control} />
         <BillingFormFields
           isDifferentBillingAddress={isDifferentBillingAddress}
