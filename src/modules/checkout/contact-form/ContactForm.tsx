@@ -8,6 +8,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import { Button } from "@/components/_ui/button/Button";
 import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
+import { openToast } from "@/components/_ui/toast-provider";
 import { CART_QUERY_KEY } from "@/components/cart/fetchCartService";
 import { useCartQuery } from "@/components/cart/useCartQuery";
 import { useCustomerQuery } from "@/modules/account/hooks/useCustomerQuery";
@@ -162,6 +163,9 @@ export const ContactForm: React.FC<Props> = ({ onSuccessfulSubmit }) => {
       }),
     ]).then(async () => {
       await queryClient.invalidateQueries({ queryKey: [...CART_QUERY_KEY] });
+      openToast({
+        content: "Forsendelses- og faktureringsadresser er oppdatert",
+      });
       onSuccessfulSubmit();
     });
   };
