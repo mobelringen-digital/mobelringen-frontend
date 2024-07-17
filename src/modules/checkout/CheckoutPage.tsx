@@ -5,6 +5,7 @@ import React from "react";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { CheckoutBlock } from "@/modules/checkout/CheckoutBlock";
 import { CheckoutBreadcrumbs } from "@/modules/checkout/CheckoutBreadcrumbs";
+import { CheckoutSummary } from "@/modules/checkout/CheckoutSummary";
 import { CheckoutTitle } from "@/modules/checkout/CheckoutTitle";
 import { ContactForm } from "@/modules/checkout/contact-form/ContactForm";
 
@@ -27,11 +28,12 @@ export const CheckoutPage = () => {
               isActive={activeBlock === "contact"}
               content={
                 <ContactForm
-                  onSuccessfulSubmit={() => setActiveBlock("shipping")}
+                  onSuccessfulSubmit={() => setActiveBlock("contact")}
                 />
               }
             />
             <CheckoutBlock
+              disabled={true}
               onClick={() => setActiveBlock("shipping")}
               position={2}
               title="Levering"
@@ -39,6 +41,7 @@ export const CheckoutPage = () => {
               content="text"
             />
             <CheckoutBlock
+              disabled={true}
               onClick={() => setActiveBlock("payment")}
               position={3}
               title="Betaling"
@@ -47,7 +50,9 @@ export const CheckoutPage = () => {
             />
           </div>
         </div>
-        <div className="col-span-12 lg:col-span-5">Side</div>
+        <div className="col-span-12 lg:col-span-5">
+          <CheckoutSummary />
+        </div>
       </div>
     </ContainerLayout>
   );

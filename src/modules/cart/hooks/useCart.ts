@@ -16,6 +16,33 @@ export const useCart = () => {
   const searchParams = useSearchParams();
   const isClickAndCollect = searchParams.get("method") === "collect";
 
+  const prices = cart?.prices;
+
+  const pricingLines = React.useMemo(() => {
+    return {
+      subtotal: {
+        label: "Produkter",
+        value: prices?.items_grand_total_base_price?.value,
+        currency: prices?.items_grand_total_base_price?.currency,
+      },
+      taxes: prices?.applied_taxes?.map((tax) => ({
+        label: tax?.label,
+        value: tax?.amount.value,
+        currency: tax?.amount.currency,
+      })),
+      total: {
+        label: "Total",
+        value: prices?.grand_total?.value,
+        currency: prices?.grand_total?.currency,
+      },
+      totalDiscount: {
+        label: "Rabatter",
+        value: prices?.grand_total_special_price_diff.value,
+        currency: prices?.grand_total_special_price_diff.currency,
+      },
+    };
+  }, [prices]);
+
   const isCheckoutEnabled = React.useMemo(() => {
     if (isClickAndCollect) {
       return cart?.items?.every((item) => item?.is_in_store);
@@ -34,5 +61,5 @@ export const useCart = () => {
     return cookies.cart ?? "";
   }, [cart?.id, cookies.cart, user?.token]);
 
-  return { isCheckoutEnabled, cartId, user };
+  return { isCheckoutEnabled, cartId, user, pricingLines };
 };

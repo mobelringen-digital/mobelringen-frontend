@@ -2,10 +2,12 @@
 
 import React from "react";
 
+import { Checkbox } from "@nextui-org/react";
 import { useQueryClient } from "@tanstack/react-query";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { Button } from "@/components/_ui/button/Button";
+import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
 import { CART_QUERY_KEY } from "@/components/cart/fetchCartService";
 import { useCartQuery } from "@/components/cart/useCartQuery";
 import { useCustomerQuery } from "@/modules/account/hooks/useCustomerQuery";
@@ -65,7 +67,7 @@ export const ContactForm: React.FC<Props> = ({ onSuccessfulSubmit }) => {
 
   const {
     control,
-    formState: { isSubmitting },
+    formState: { isSubmitting, isValid },
     handleSubmit,
     watch,
     getValues,
@@ -189,13 +191,29 @@ export const ContactForm: React.FC<Props> = ({ onSuccessfulSubmit }) => {
       >
         <AddressSelect onSelect={onAddressSelect} control={control} />
         <ShippingFormFields control={control} />
+
+        {watch("customer_address_id") === null ? (
+          <div className="col-span-12">
+            <FieldWrapper
+              control={control}
+              name="shipping.save_in_address_book"
+            >
+              <Checkbox>Lagre adresse i adresseboken</Checkbox>
+            </FieldWrapper>
+          </div>
+        ) : null}
+
         <BillingFormFields
           isDifferentBillingAddress={isDifferentBillingAddress}
           control={control}
         />
 
         <div className="col-span-12 flex justify-end mt-6">
-          <Button color="tertiary" type="submit" disabled={isSubmitting}>
+          <Button
+            color="tertiary"
+            type="submit"
+            disabled={isSubmitting || !isValid}
+          >
             Fortsett
           </Button>
         </div>

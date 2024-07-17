@@ -8,6 +8,7 @@ interface Props {
   isActive: boolean;
   content: React.ReactNode;
   onClick?: () => void;
+  disabled?: boolean;
 }
 
 export const CheckoutBlock: React.FC<Props> = ({
@@ -16,10 +17,15 @@ export const CheckoutBlock: React.FC<Props> = ({
   isActive,
   content,
   onClick,
+  disabled,
 }) => {
   return (
     <div className="bg-white flex flex-col gap-6 rounded-2xl p-4 lg:p-8">
-      <button onClick={onClick} className="flex items-center gap-4">
+      <button
+        disabled={disabled}
+        onClick={onClick}
+        className="flex items-center gap-4"
+      >
         <span
           className={cx(
             "w-[32px] font-semibold h-[32px] rounded-full p-2 flex items-center justify-center text-center",
