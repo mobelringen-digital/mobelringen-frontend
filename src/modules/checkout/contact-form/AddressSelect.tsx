@@ -17,7 +17,6 @@ export const AddressSelect: React.FC<Props> = ({ control, onSelect }) => {
   return (
     <div className="col-span-12">
       <FieldWrapper
-        rules={{ required: "Dette er et påkrevd felt" }}
         control={control}
         label="Velg adresse"
         name="customer_address_id"
