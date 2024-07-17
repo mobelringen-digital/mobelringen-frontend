@@ -35,8 +35,25 @@ export const AddToCart: React.FC<Props> = ({
     isDisabled || isCreateCartLoading || isAddToCartLoading;
 
   const handleAddItemToCart = async () => {
+    if ((cookies.cart || user?.token) && product.sku && quantity) {
+      return addProductToCart(
+        {
+          cartItems: [
+            {
+              sku: product.sku,
+              quantity,
+            },
+          ],
+          cartId,
+        },
+        {
+          onSuccess: () => setOpen(true),
+        },
+      );
+    }
+
     if (!cookies.cart && !user?.token) {
-      createEmptyCart(undefined, {
+      return createEmptyCart(undefined, {
         onSettled: async (cId) => {
           if (product.sku && quantity && cId) {
             addProductToCart(
@@ -56,23 +73,6 @@ export const AddToCart: React.FC<Props> = ({
           }
         },
       });
-    } else {
-      if (!!cartId && product.sku && quantity) {
-        addProductToCart(
-          {
-            cartItems: [
-              {
-                sku: product.sku,
-                quantity,
-              },
-            ],
-            cartId,
-          },
-          {
-            onSuccess: () => setOpen(true),
-          },
-        );
-      }
     }
   };
 
