@@ -20,7 +20,7 @@ export default async function Cart() {
   const cookiesStore = cookies();
   const cartId = cookiesStore.get("cart");
 
-  if (cartId) {
+  if (cartId || session?.token) {
     await queryClient.prefetchQuery({
       queryKey: [...CART_QUERY_KEY],
       queryFn: () =>

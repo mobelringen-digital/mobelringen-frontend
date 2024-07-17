@@ -21,7 +21,11 @@ const documents = {
     types.BaseProductDataForCartFragmentDoc,
   "\n  fragment CartItem on CartItemInterface {\n    id\n    prices {\n      ...CartItemPrice\n    }\n    is_in_store\n    product {\n      ...BaseProductDataForCart\n      delivery_promise\n      stock_status\n    }\n    quantity\n  }\n":
     types.CartItemFragmentDoc,
-  "\n  fragment BaseCart on Cart {\n    id\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n":
+  "\n  fragment BillingCartAddress on BillingCartAddress {\n    city\n    country {\n      code\n      label\n    }\n    firstname\n    lastname\n    postcode\n    region {\n      code\n      label\n    }\n    street\n    telephone\n  }\n":
+    types.BillingCartAddressFragmentDoc,
+  "\n  fragment ShippingCartAddress on ShippingCartAddress {\n    available_shipping_methods {\n      amount {\n        currency\n        value\n      }\n      available\n      carrier_code\n      carrier_title\n      error_message\n      method_code\n      method_title\n      price_excl_tax {\n        currency\n        value\n      }\n      price_incl_tax {\n        currency\n        value\n      }\n    }\n    city\n    company\n    country {\n      code\n      label\n    }\n    customer_notes\n    firstname\n    lastname\n    pickup_location_code\n    postcode\n    region {\n      code\n      label\n      region_id\n    }\n    selected_shipping_method {\n      amount {\n        currency\n        value\n      }\n      carrier_code\n      carrier_title\n      method_code\n      method_title\n      price_excl_tax {\n        currency\n        value\n      }\n      price_incl_tax {\n        currency\n        value\n      }\n    }\n    street\n    telephone\n    uid\n    vat_id\n  }\n":
+    types.ShippingCartAddressFragmentDoc,
+  "\n  fragment BaseCart on Cart {\n    id\n    billing_address {\n      ...BillingCartAddress\n    }\n    shipping_addresses {\n      ...ShippingCartAddress\n    }\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n":
     types.BaseCartFragmentDoc,
   "\n  query Cart($cart_id: String!) {\n    cart(cart_id: $cart_id) {\n      ...BaseCart\n    }\n  }\n":
     types.CartDocument,
@@ -39,6 +43,10 @@ const documents = {
     types.PlaceOrderDocument,
   "\n  mutation AssignCustomerToGuestCart($cartId: String!) {\n    assignCustomerToGuestCart(cart_id: $cartId) {\n      id\n      ...BaseCart\n    }\n  }\n":
     types.AssignCustomerToGuestCartDocument,
+  "\n  mutation SetShippingAddressOnCart(\n    $cartId: String!\n    $shipping_addresses: [ShippingAddressInput]!\n  ) {\n    setShippingAddressesOnCart(\n      input: { cart_id: $cartId, shipping_addresses: $shipping_addresses }\n    ) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n":
+    types.SetShippingAddressOnCartDocument,
+  "\n  mutation SetBillingAddressOnCart(\n    $cartId: String!\n    $billing_address: BillingAddressInput!\n  ) {\n    setBillingAddressOnCart(\n      input: { cart_id: $cartId, billing_address: $billing_address }\n    ) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n":
+    types.SetBillingAddressOnCartDocument,
   "\n  fragment BaseCategoryData on CategoryTree {\n    name\n    description\n    id\n    uid\n    url_path\n    product_count\n    meta_title\n    meta_keywords\n    meta_description\n    include_in_menu\n    children {\n      name\n      uid\n      url_path\n      product_count\n      include_in_menu\n      children {\n        name\n        uid\n        url_path\n        product_count\n        include_in_menu\n      }\n    }\n  }\n":
     types.BaseCategoryDataFragmentDoc,
   "\n  query Category($filters: CategoryFilterInput) {\n    categories(filters: $filters) {\n      items {\n        name\n        description\n        id\n        uid\n        url_path\n        product_count\n        meta_title\n        meta_keywords\n        meta_description\n        include_in_menu\n        children {\n          name\n          uid\n          url_path\n          product_count\n          include_in_menu\n          children {\n            name\n            uid\n            url_path\n            product_count\n            include_in_menu\n          }\n        }\n      }\n    }\n  }\n":
@@ -167,8 +175,20 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment BaseCart on Cart {\n    id\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n",
-): (typeof documents)["\n  fragment BaseCart on Cart {\n    id\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n"];
+  source: "\n  fragment BillingCartAddress on BillingCartAddress {\n    city\n    country {\n      code\n      label\n    }\n    firstname\n    lastname\n    postcode\n    region {\n      code\n      label\n    }\n    street\n    telephone\n  }\n",
+): (typeof documents)["\n  fragment BillingCartAddress on BillingCartAddress {\n    city\n    country {\n      code\n      label\n    }\n    firstname\n    lastname\n    postcode\n    region {\n      code\n      label\n    }\n    street\n    telephone\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment ShippingCartAddress on ShippingCartAddress {\n    available_shipping_methods {\n      amount {\n        currency\n        value\n      }\n      available\n      carrier_code\n      carrier_title\n      error_message\n      method_code\n      method_title\n      price_excl_tax {\n        currency\n        value\n      }\n      price_incl_tax {\n        currency\n        value\n      }\n    }\n    city\n    company\n    country {\n      code\n      label\n    }\n    customer_notes\n    firstname\n    lastname\n    pickup_location_code\n    postcode\n    region {\n      code\n      label\n      region_id\n    }\n    selected_shipping_method {\n      amount {\n        currency\n        value\n      }\n      carrier_code\n      carrier_title\n      method_code\n      method_title\n      price_excl_tax {\n        currency\n        value\n      }\n      price_incl_tax {\n        currency\n        value\n      }\n    }\n    street\n    telephone\n    uid\n    vat_id\n  }\n",
+): (typeof documents)["\n  fragment ShippingCartAddress on ShippingCartAddress {\n    available_shipping_methods {\n      amount {\n        currency\n        value\n      }\n      available\n      carrier_code\n      carrier_title\n      error_message\n      method_code\n      method_title\n      price_excl_tax {\n        currency\n        value\n      }\n      price_incl_tax {\n        currency\n        value\n      }\n    }\n    city\n    company\n    country {\n      code\n      label\n    }\n    customer_notes\n    firstname\n    lastname\n    pickup_location_code\n    postcode\n    region {\n      code\n      label\n      region_id\n    }\n    selected_shipping_method {\n      amount {\n        currency\n        value\n      }\n      carrier_code\n      carrier_title\n      method_code\n      method_title\n      price_excl_tax {\n        currency\n        value\n      }\n      price_incl_tax {\n        currency\n        value\n      }\n    }\n    street\n    telephone\n    uid\n    vat_id\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment BaseCart on Cart {\n    id\n    billing_address {\n      ...BillingCartAddress\n    }\n    shipping_addresses {\n      ...ShippingCartAddress\n    }\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n",
+): (typeof documents)["\n  fragment BaseCart on Cart {\n    id\n    billing_address {\n      ...BillingCartAddress\n    }\n    shipping_addresses {\n      ...ShippingCartAddress\n    }\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -217,6 +237,18 @@ export function graphql(
 export function graphql(
   source: "\n  mutation AssignCustomerToGuestCart($cartId: String!) {\n    assignCustomerToGuestCart(cart_id: $cartId) {\n      id\n      ...BaseCart\n    }\n  }\n",
 ): (typeof documents)["\n  mutation AssignCustomerToGuestCart($cartId: String!) {\n    assignCustomerToGuestCart(cart_id: $cartId) {\n      id\n      ...BaseCart\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  mutation SetShippingAddressOnCart(\n    $cartId: String!\n    $shipping_addresses: [ShippingAddressInput]!\n  ) {\n    setShippingAddressesOnCart(\n      input: { cart_id: $cartId, shipping_addresses: $shipping_addresses }\n    ) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n",
+): (typeof documents)["\n  mutation SetShippingAddressOnCart(\n    $cartId: String!\n    $shipping_addresses: [ShippingAddressInput]!\n  ) {\n    setShippingAddressesOnCart(\n      input: { cart_id: $cartId, shipping_addresses: $shipping_addresses }\n    ) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  mutation SetBillingAddressOnCart(\n    $cartId: String!\n    $billing_address: BillingAddressInput!\n  ) {\n    setBillingAddressOnCart(\n      input: { cart_id: $cartId, billing_address: $billing_address }\n    ) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n",
+): (typeof documents)["\n  mutation SetBillingAddressOnCart(\n    $cartId: String!\n    $billing_address: BillingAddressInput!\n  ) {\n    setBillingAddressOnCart(\n      input: { cart_id: $cartId, billing_address: $billing_address }\n    ) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

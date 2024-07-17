@@ -9,7 +9,7 @@ import {
 
 interface Props<TFieldValues extends FieldValues = FieldValues>
   extends UseControllerProps<TFieldValues> {
-  label: string;
+  label?: string;
   children: React.ReactElement;
   error?: FieldError;
 }
@@ -23,9 +23,11 @@ export function FieldWrapper<TFieldValues extends FieldValues = FieldValues>({
 }: Props<TFieldValues>) {
   return (
     <div className="flex flex-col gap-1">
-      <label className="text-base font-normal" htmlFor={label}>
-        {label}
-      </label>
+      {label ? (
+        <label className="text-base font-normal" htmlFor={label}>
+          {label}
+        </label>
+      ) : null}
       <Controller
         name={name}
         rules={{}}

@@ -120,9 +120,97 @@ export const CartItemFragment = graphql(`
   }
 `);
 
+export const BillingCartAddressFragment = graphql(`
+  fragment BillingCartAddress on BillingCartAddress {
+    city
+    country {
+      code
+      label
+    }
+    firstname
+    lastname
+    postcode
+    region {
+      code
+      label
+    }
+    street
+    telephone
+  }
+`);
+
+export const ShippingCartAddressFragment = graphql(`
+  fragment ShippingCartAddress on ShippingCartAddress {
+    available_shipping_methods {
+      amount {
+        currency
+        value
+      }
+      available
+      carrier_code
+      carrier_title
+      error_message
+      method_code
+      method_title
+      price_excl_tax {
+        currency
+        value
+      }
+      price_incl_tax {
+        currency
+        value
+      }
+    }
+    city
+    company
+    country {
+      code
+      label
+    }
+    customer_notes
+    firstname
+    lastname
+    pickup_location_code
+    postcode
+    region {
+      code
+      label
+      region_id
+    }
+    selected_shipping_method {
+      amount {
+        currency
+        value
+      }
+      carrier_code
+      carrier_title
+      method_code
+      method_title
+      price_excl_tax {
+        currency
+        value
+      }
+      price_incl_tax {
+        currency
+        value
+      }
+    }
+    street
+    telephone
+    uid
+    vat_id
+  }
+`);
+
 export const BaseCartFragment = graphql(`
   fragment BaseCart on Cart {
     id
+    billing_address {
+      ...BillingCartAddress
+    }
+    shipping_addresses {
+      ...ShippingCartAddress
+    }
     prices {
       ...CartPrice
     }
@@ -202,6 +290,36 @@ export const AssignCustomerToGuestCart = graphql(`
     assignCustomerToGuestCart(cart_id: $cartId) {
       id
       ...BaseCart
+    }
+  }
+`);
+
+export const SetShippingAddressOnCart = graphql(`
+  mutation SetShippingAddressOnCart(
+    $cartId: String!
+    $shipping_addresses: [ShippingAddressInput]!
+  ) {
+    setShippingAddressesOnCart(
+      input: { cart_id: $cartId, shipping_addresses: $shipping_addresses }
+    ) {
+      cart {
+        ...BaseCart
+      }
+    }
+  }
+`);
+
+export const SetBillingAddressOnCart = graphql(`
+  mutation SetBillingAddressOnCart(
+    $cartId: String!
+    $billing_address: BillingAddressInput!
+  ) {
+    setBillingAddressOnCart(
+      input: { cart_id: $cartId, billing_address: $billing_address }
+    ) {
+      cart {
+        ...BaseCart
+      }
     }
   }
 `);
