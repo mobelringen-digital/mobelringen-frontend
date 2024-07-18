@@ -39,7 +39,8 @@ export const AddressSelectModal: React.FC<Props> = ({
               customer?.addresses &&
               !customer.addresses.length ? (
                 <span>Du har ingen lagrede adresser</span>
-              ) : (
+              ) : null}
+              {customer?.addresses && customer.addresses.length > 0 ? (
                 <RadioGroup color="primary">
                   {customer?.addresses?.map((address) => (
                     <RadioBlock
@@ -66,7 +67,7 @@ export const AddressSelectModal: React.FC<Props> = ({
                     </RadioBlock>
                   ))}
                 </RadioGroup>
-              )}
+              ) : null}
             </ModalBody>
           </>
         )}
