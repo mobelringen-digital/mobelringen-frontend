@@ -137,6 +137,16 @@ export const ContactForm: React.FC<Props> = ({ onSuccessfulSubmit }) => {
     setValue("shipping.postcode", data.postcode ?? "");
     setValue("shipping.telephone", data.telephone ?? "");
     setValue("shipping.company", data.company ?? "");
+
+    if (!watchDifferentBillingAddress) {
+      setValue("billing.firstname", data.firstname ?? "");
+      setValue("billing.lastname", data.lastname ?? "");
+      setValue("billing.city", data.city ?? "");
+      setValue("billing.street", data.street ?? "");
+      setValue("billing.postcode", data.postcode ?? "");
+      setValue("billing.telephone", data.telephone ?? "");
+      setValue("billing.company", data.company ?? "");
+    }
   };
 
   return (
