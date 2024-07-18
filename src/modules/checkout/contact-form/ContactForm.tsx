@@ -2,36 +2,37 @@
 
 import React from "react";
 
-import { useQueryClient } from "@tanstack/react-query";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { Button } from "@/components/_ui/button/Button";
-import { openToast } from "@/components/_ui/toast-provider";
-import { CART_QUERY_KEY } from "@/components/cart/fetchCartService";
 import { AddressSelectModal } from "@/modules/checkout/contact-form/AddressSelectModal";
 import { BillingFormFields } from "@/modules/checkout/contact-form/BillingFormFields";
 import { ShippingFormFields } from "@/modules/checkout/contact-form/ShippingFormFields";
-import { useSetBillingAddressOnCartMutation } from "@/modules/checkout/contact-form/useSetBillingAddressOnCart";
-import { useSetShippingAddressOnCartMutation } from "@/modules/checkout/contact-form/useSetShippingAddressOnCart";
 import {
   CheckoutAddressFields,
   CheckoutFormData,
   mapFormAddressValues,
 } from "@/modules/checkout/factories";
-import { BaseCartFragment } from "@/types";
+import {
+  BaseCartFragment,
+  BillingAddressInput,
+  InputMaybe,
+  ShippingAddressInput,
+} from "@/types";
 
 interface Props {
   cart: BaseCartFragment;
-  onSuccessfulSubmit: () => void;
+  onCheckoutFormSubmit: (
+    shippingAddress: InputMaybe<ShippingAddressInput>,
+    billingAddress: BillingAddressInput,
+  ) => Promise<void>;
 }
 
-export const ContactForm: React.FC<Props> = ({ onSuccessfulSubmit, cart }) => {
+export const ContactForm: React.FC<Props> = ({
+  cart,
+  onCheckoutFormSubmit,
+}) => {
   const [showAddressModal, setShowAddressModal] = React.useState(false);
-  const queryClient = useQueryClient();
-  const { mutateAsync: setShippingAddressOnCart } =
-    useSetShippingAddressOnCartMutation();
-  const { mutateAsync: setBillingAddressOnCart } =
-    useSetBillingAddressOnCartMutation();
 
   const isDifferentBillingAddress = React.useMemo(() => {
     return (
@@ -71,29 +72,14 @@ export const ContactForm: React.FC<Props> = ({ onSuccessfulSubmit, cart }) => {
   const watchDifferentBillingAddress = watch("different_billing_address");
 
   const onSubmit: SubmitHandler<CheckoutFormData> = async (values) => {
-    const shippingFields: any = mapFormAddressValues(values, "shipping");
-    let billingFields: any = mapFormAddressValues(values, "billing");
+    const shippingFields = mapFormAddressValues(values, "shipping");
+    let billingFields = mapFormAddressValues(values, "billing");
 
     if (!watchDifferentBillingAddress) {
       billingFields = mapFormAddressValues(values, "shipping");
     }
 
-    return Promise.all([
-      setShippingAddressOnCart([
-        {
-          ...shippingFields,
-        },
-      ]),
-      setBillingAddressOnCart({
-        ...billingFields,
-      }),
-    ]).then(async () => {
-      await queryClient.invalidateQueries({ queryKey: [...CART_QUERY_KEY] });
-      openToast({
-        content: "Forsendelses- og faktureringsadresser er oppdatert",
-      });
-      onSuccessfulSubmit();
-    });
+    return onCheckoutFormSubmit(shippingFields, billingFields);
   };
 
   const onAddressSelect = (data: Partial<CheckoutAddressFields>) => {
