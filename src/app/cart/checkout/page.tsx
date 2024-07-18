@@ -12,10 +12,6 @@ import {
   fetchCartService,
   fetchCustomerCartService,
 } from "@/components/cart/fetchCartService";
-import {
-  CUSTOMER_QUERY_KEY,
-  fetchCustomer,
-} from "@/modules/account/services/fetchCustomer";
 import { CheckoutPage } from "@/modules/checkout/CheckoutPage";
 
 export default async function Checkout() {
@@ -31,13 +27,6 @@ export default async function Checkout() {
         session?.token
           ? fetchCustomerCartService(session.token)
           : fetchCartService(String(cartId)),
-    });
-  }
-
-  if (session?.token) {
-    await queryClient.prefetchQuery({
-      queryKey: [...CUSTOMER_QUERY_KEY],
-      queryFn: () => fetchCustomer(session.token),
     });
   }
 

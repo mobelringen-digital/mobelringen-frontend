@@ -18,7 +18,9 @@ export const BillingFormFields: React.FC<Props> = ({
     <>
       <div className="col-span-12">
         <FieldWrapper control={control} name="different_billing_address">
-          <Checkbox>Jeg ønsker å bruke en annen fakturaadresse</Checkbox>
+          <Checkbox isSelected={isDifferentBillingAddress}>
+            Jeg ønsker å bruke en annen fakturaadresse
+          </Checkbox>
         </FieldWrapper>
       </div>
 
