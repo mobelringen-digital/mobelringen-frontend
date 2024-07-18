@@ -3,6 +3,7 @@ import React from "react";
 import { Modal, ModalBody, ModalContent, ModalHeader } from "@nextui-org/modal";
 import { RadioGroup } from "@nextui-org/radio";
 
+import { Loader } from "@/components/_ui/loader/Loader";
 import { RadioBlock } from "@/components/_ui/radio/RadioBlock";
 import { useCustomerQuery } from "@/modules/account/hooks/useCustomerQuery";
 import { AddressFields } from "@/modules/checkout/contact-form/ContactForm";
@@ -35,11 +36,7 @@ export const AddressSelectModal: React.FC<Props> = ({
               Velg adresse
             </ModalHeader>
             <ModalBody className="py-6 px-2 lg:px-5">
-              {!isLoading &&
-              customer?.addresses &&
-              !customer.addresses.length ? (
-                <span>Du har ingen lagrede adresser</span>
-              ) : null}
+              {isLoading ? <Loader /> : null}
               {customer?.addresses && customer.addresses.length > 0 ? (
                 <RadioGroup color="primary">
                   {customer?.addresses?.map((address) => (
@@ -67,7 +64,9 @@ export const AddressSelectModal: React.FC<Props> = ({
                     </RadioBlock>
                   ))}
                 </RadioGroup>
-              ) : null}
+              ) : (
+                <span>Ingen lagrede adresser funnet</span>
+              )}
             </ModalBody>
           </>
         )}
