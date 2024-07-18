@@ -8,42 +8,26 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "@/components/_ui/button/Button";
 import { openToast } from "@/components/_ui/toast-provider";
 import { CART_QUERY_KEY } from "@/components/cart/fetchCartService";
-import { useCartQuery } from "@/components/cart/useCartQuery";
 import { AddressSelectModal } from "@/modules/checkout/contact-form/AddressSelectModal";
 import { BillingFormFields } from "@/modules/checkout/contact-form/BillingFormFields";
 import { ShippingFormFields } from "@/modules/checkout/contact-form/ShippingFormFields";
 import { useSetBillingAddressOnCartMutation } from "@/modules/checkout/contact-form/useSetBillingAddressOnCart";
 import { useSetShippingAddressOnCartMutation } from "@/modules/checkout/contact-form/useSetShippingAddressOnCart";
-
-export type AddressFields = {
-  city: string;
-  company: string;
-  country_code: string;
-  firstname: string;
-  lastname: string;
-  postcode: string;
-  region: string;
-  region_id: string;
-  street: string;
-  telephone: string;
-  vat_id: string;
-};
-
-type FormData = {
-  different_billing_address: boolean;
-  customer_address_id: string | null;
-  shipping: AddressFields;
-  billing: AddressFields;
-};
+import {
+  CheckoutAddressFields,
+  CheckoutFormData,
+  mapFormAddressValues,
+} from "@/modules/checkout/factories";
+import { BaseCartFragment } from "@/types";
 
 interface Props {
+  cart: BaseCartFragment;
   onSuccessfulSubmit: () => void;
 }
 
-export const ContactForm: React.FC<Props> = ({ onSuccessfulSubmit }) => {
+export const ContactForm: React.FC<Props> = ({ onSuccessfulSubmit, cart }) => {
   const [showAddressModal, setShowAddressModal] = React.useState(false);
   const queryClient = useQueryClient();
-  const { data: cart } = useCartQuery();
   const { mutateAsync: setShippingAddressOnCart } =
     useSetShippingAddressOnCartMutation();
   const { mutateAsync: setBillingAddressOnCart } =
@@ -61,7 +45,7 @@ export const ContactForm: React.FC<Props> = ({ onSuccessfulSubmit }) => {
     handleSubmit,
     setValue,
     watch,
-  } = useForm<FormData>({
+  } = useForm<CheckoutFormData>({
     defaultValues: {
       customer_address_id: null,
       different_billing_address: isDifferentBillingAddress,
@@ -86,24 +70,7 @@ export const ContactForm: React.FC<Props> = ({ onSuccessfulSubmit }) => {
 
   const watchDifferentBillingAddress = watch("different_billing_address");
 
-  const mapFormAddressValues = (
-    values: FormData,
-    type: "billing" | "shipping",
-  ) => {
-    return {
-      address: {
-        firstname: values[type].firstname,
-        lastname: values[type].lastname,
-        city: values[type].city,
-        street: values[type].street.split(","),
-        postcode: values[type].postcode,
-        telephone: values[type].telephone,
-        country_code: "NO",
-      },
-    };
-  };
-
-  const onSubmit: SubmitHandler<FormData> = async (values) => {
+  const onSubmit: SubmitHandler<CheckoutFormData> = async (values) => {
     const shippingFields: any = mapFormAddressValues(values, "shipping");
     let billingFields: any = mapFormAddressValues(values, "billing");
 
@@ -129,7 +96,7 @@ export const ContactForm: React.FC<Props> = ({ onSuccessfulSubmit }) => {
     });
   };
 
-  const onAddressSelect = (data: Partial<AddressFields>) => {
+  const onAddressSelect = (data: Partial<CheckoutAddressFields>) => {
     setValue("shipping.firstname", data.firstname ?? "");
     setValue("shipping.lastname", data.lastname ?? "");
     setValue("shipping.city", data.city ?? "");

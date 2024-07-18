@@ -7,7 +7,7 @@ import { CheckoutBlock } from "@/modules/checkout/CheckoutBlock";
 import { CheckoutBreadcrumbs } from "@/modules/checkout/CheckoutBreadcrumbs";
 import { CheckoutSummary } from "@/modules/checkout/CheckoutSummary";
 import { CheckoutTitle } from "@/modules/checkout/CheckoutTitle";
-import { ContactForm } from "@/modules/checkout/contact-form/ContactForm";
+import { ContactFormController } from "@/modules/checkout/contact-form/ContactFormController";
 
 type Blocks = "contact" | "shipping" | "payment";
 
@@ -27,7 +27,7 @@ export const CheckoutPage = () => {
               title="Kontaktopplysninger"
               isActive={activeBlock === "contact"}
               content={
-                <ContactForm
+                <ContactFormController
                   onSuccessfulSubmit={() => setActiveBlock("contact")}
                 />
               }

@@ -6,12 +6,12 @@ import { RadioGroup } from "@nextui-org/radio";
 import { Loader } from "@/components/_ui/loader/Loader";
 import { RadioBlock } from "@/components/_ui/radio/RadioBlock";
 import { useCustomerQuery } from "@/modules/account/hooks/useCustomerQuery";
-import { AddressFields } from "@/modules/checkout/contact-form/ContactForm";
+import { CheckoutAddressFields } from "@/modules/checkout/factories";
 
 interface Props {
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
-  onSelect: (data: Partial<AddressFields>) => void;
+  onSelect: (data: Partial<CheckoutAddressFields>) => void;
 }
 
 export const AddressSelectModal: React.FC<Props> = ({
