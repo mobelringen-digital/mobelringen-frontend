@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import { RadioGroup } from "@nextui-org/radio";
@@ -15,6 +17,24 @@ interface Props {
 export const ShippingForm: React.FC<Props> = ({ cart, onSubmit }) => {
   const [selectedMethod, setSelectedMethod] =
     React.useState<AvailableShippingMethodFragment | null>(null);
+  const selectedShippingMethod =
+    cart.shipping_addresses[0]?.selected_shipping_method;
+  const availableShippingMethods =
+    cart.shipping_addresses[0]?.available_shipping_methods;
+
+  React.useEffect(() => {
+    if (selectedShippingMethod) {
+      setSelectedMethod(
+        availableShippingMethods?.find(
+          (m) => m?.method_code === selectedShippingMethod.method_code,
+        ) ?? null,
+      );
+    }
+  }, [
+    availableShippingMethods,
+    cart.shipping_addresses,
+    selectedShippingMethod,
+  ]);
 
   const handleSelect = () => {
     if (!selectedMethod) {
@@ -34,7 +54,7 @@ export const ShippingForm: React.FC<Props> = ({ cart, onSubmit }) => {
                 <RadioBlock
                   key={method?.method_code}
                   value={method?.method_code ?? ""}
-                  checked={selectedMethod === method}
+                  checked={selectedMethod?.method_code === method?.method_code}
                   onClick={() => setSelectedMethod(method)}
                 >
                   <div className="flex flex-col gap-2">
