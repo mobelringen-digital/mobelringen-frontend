@@ -2,13 +2,16 @@
 
 import React from "react";
 
+import { useQueryClient } from "@tanstack/react-query";
 import { useCookies } from "react-cookie";
 
 import { Button } from "@/components/_ui/button/Button";
+import {
+  addToCart,
+  createEmptyCart,
+} from "@/components/cart/add-to-cart/actions";
 import { ProductAddedModal } from "@/components/cart/add-to-cart/ProductAddedModal";
-import { useAddProductToCartMutation } from "@/components/cart/add-to-cart/useAddProductToCartMutation";
-import { useCreateEmptyCartMutation } from "@/components/cart/add-to-cart/useCreateEmptyCartMutation";
-import { CartCookie } from "@/components/cart/fetchCartService";
+import { CART_QUERY_KEY, CartCookie } from "@/components/cart/fetchCartService";
 import { useCart } from "@/modules/cart/hooks/useCart";
 import { BaseProductFragment } from "@/types";
 
@@ -23,56 +26,37 @@ export const AddToCart: React.FC<Props> = ({
   product,
   quantity,
 }) => {
+  const queryClient = useQueryClient();
   const { cartId, user } = useCart();
   const [isOpen, setOpen] = React.useState(false);
   const [cookies] = useCookies<"cart", CartCookie>(["cart"]);
-  const { mutate: createEmptyCart, isPending: isCreateCartLoading } =
-    useCreateEmptyCartMutation();
-  const { mutate: addProductToCart, isPending: isAddToCartLoading } =
-    useAddProductToCartMutation();
-
-  const isButtonDisabled =
-    isDisabled || isCreateCartLoading || isAddToCartLoading;
 
   const handleAddItemToCart = async () => {
     if ((cookies.cart || user?.token) && product.sku && quantity) {
-      return addProductToCart(
+      return addToCart(cartId, [
         {
-          cartItems: [
-            {
-              sku: product.sku,
-              quantity,
-            },
-          ],
-          cartId,
+          sku: product.sku,
+          quantity,
         },
-        {
-          onSuccess: () => setOpen(true),
-        },
-      );
+      ]).then(() => {
+        queryClient.invalidateQueries({ queryKey: [...CART_QUERY_KEY] });
+        setOpen(true);
+      });
     }
 
     if (!cookies.cart && !user?.token) {
-      return createEmptyCart(undefined, {
-        onSettled: async (cId) => {
-          if (product.sku && quantity && cId) {
-            addProductToCart(
-              {
-                cartItems: [
-                  {
-                    sku: product.sku,
-                    quantity,
-                  },
-                ],
-                cartId: cId,
-              },
-              {
-                onSuccess: () => setOpen(true),
-              },
-            );
-          }
-        },
-      });
+      const emptyCart = await createEmptyCart();
+      if (emptyCart.createEmptyCart && product.sku && quantity) {
+        await addToCart(emptyCart.createEmptyCart, [
+          {
+            sku: product.sku,
+            quantity,
+          },
+        ]).then(() => {
+          queryClient.invalidateQueries({ queryKey: [...CART_QUERY_KEY] });
+          setOpen(true);
+        });
+      }
     }
   };
 
@@ -86,12 +70,12 @@ export const AddToCart: React.FC<Props> = ({
       <div className="flex flex-col gap-4">
         <Button
           onClick={handleAddItemToCart}
-          disabled={isButtonDisabled}
+          disabled={isDisabled}
           color="primary"
         >
           Legg i handlekurv
         </Button>
-        <Button disabled={isButtonDisabled} color="secondary">
+        <Button disabled={isDisabled} color="secondary">
           Klikk og hent
         </Button>
       </div>

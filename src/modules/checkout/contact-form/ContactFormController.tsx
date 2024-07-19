@@ -28,9 +28,11 @@ export const ContactFormController: React.FC<Props> = ({
     shippingAddress: InputMaybe<ShippingAddressInput>,
     billingAddress: BillingAddressInput,
   ) => {
+    if (!cart?.id) return;
+
     await Promise.all([
-      setShippingAddressOnCart(String(cart?.id), shippingAddress),
-      setBillingAddressOnCart(String(cart?.id), billingAddress),
+      setShippingAddressOnCart(cart.id, shippingAddress),
+      setBillingAddressOnCart(cart.id, billingAddress),
     ]);
     await queryClient.invalidateQueries({ queryKey: [...CART_QUERY_KEY] });
     openToast({
