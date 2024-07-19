@@ -1,3 +1,5 @@
+import { AvailableShippingMethodFragment } from "@/types";
+
 export type CheckoutAddressFields = {
   city: string;
   company: string;
@@ -17,6 +19,10 @@ export type CheckoutFormData = {
   customer_address_id: string | null;
   shipping: CheckoutAddressFields;
   billing: CheckoutAddressFields;
+};
+
+export type ShippingFormData = {
+  shipping_methods: AvailableShippingMethodFragment;
 };
 
 export const mapFormAddressValues = (

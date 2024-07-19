@@ -8,6 +8,7 @@ import { CheckoutBreadcrumbs } from "@/modules/checkout/CheckoutBreadcrumbs";
 import { CheckoutSummary } from "@/modules/checkout/CheckoutSummary";
 import { CheckoutTitle } from "@/modules/checkout/CheckoutTitle";
 import { ContactFormController } from "@/modules/checkout/contact-form/ContactFormController";
+import { ShippingFormController } from "@/modules/checkout/shipping/ShippingFormController";
 
 type Blocks = "contact" | "shipping" | "payment";
 
@@ -28,17 +29,21 @@ export const CheckoutPage = () => {
               isActive={activeBlock === "contact"}
               content={
                 <ContactFormController
-                  onSuccessfulSubmit={() => setActiveBlock("contact")}
+                  onSuccessfulSubmit={() => setActiveBlock("shipping")}
                 />
               }
             />
             <CheckoutBlock
-              disabled={true}
+              disabled={false}
               onClick={() => setActiveBlock("shipping")}
               position={2}
               title="Levering"
               isActive={activeBlock === "shipping"}
-              content="text"
+              content={
+                <ShippingFormController
+                  onSuccessfulSubmit={() => setActiveBlock("shipping")}
+                />
+              }
             />
             <CheckoutBlock
               disabled={true}

@@ -139,27 +139,33 @@ export const BillingCartAddressFragment = graphql(`
   }
 `);
 
+export const AvailableShippingMethodFragment = graphql(`
+  fragment AvailableShippingMethod on AvailableShippingMethod {
+    amount {
+      currency
+      value
+    }
+    available
+    carrier_code
+    carrier_title
+    error_message
+    method_code
+    method_title
+    price_excl_tax {
+      currency
+      value
+    }
+    price_incl_tax {
+      currency
+      value
+    }
+  }
+`);
+
 export const ShippingCartAddressFragment = graphql(`
   fragment ShippingCartAddress on ShippingCartAddress {
     available_shipping_methods {
-      amount {
-        currency
-        value
-      }
-      available
-      carrier_code
-      carrier_title
-      error_message
-      method_code
-      method_title
-      price_excl_tax {
-        currency
-        value
-      }
-      price_incl_tax {
-        currency
-        value
-      }
+      ...AvailableShippingMethod
     }
     city
     company
@@ -316,6 +322,21 @@ export const SetBillingAddressOnCart = graphql(`
   ) {
     setBillingAddressOnCart(
       input: { cart_id: $cartId, billing_address: $billing_address }
+    ) {
+      cart {
+        ...BaseCart
+      }
+    }
+  }
+`);
+
+export const SetShippingMethodsOnCart = graphql(`
+  mutation SetShippingMethodsOnCart(
+    $cartId: String!
+    $shipping_methods: [ShippingMethodInput!]!
+  ) {
+    setShippingMethodsOnCart(
+      input: { cart_id: $cartId, shipping_methods: $shipping_methods }
     ) {
       cart {
         ...BaseCart
