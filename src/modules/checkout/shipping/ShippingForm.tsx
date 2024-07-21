@@ -15,47 +15,39 @@ interface Props {
 }
 
 export const ShippingForm: React.FC<Props> = ({ cart, onSubmit }) => {
-  const [selectedMethod, setSelectedMethod] =
-    React.useState<AvailableShippingMethodFragment | null>(null);
-  const selectedShippingMethod =
-    cart.shipping_addresses[0]?.selected_shipping_method;
-  const availableShippingMethods =
-    cart.shipping_addresses[0]?.available_shipping_methods;
-
-  React.useEffect(() => {
-    if (selectedShippingMethod) {
-      setSelectedMethod(
-        availableShippingMethods?.find(
-          (m) => m?.method_code === selectedShippingMethod.method_code,
-        ) ?? null,
-      );
-    }
-  }, [
-    availableShippingMethods,
-    cart.shipping_addresses,
-    selectedShippingMethod,
-  ]);
+  const [selectedMethod, setSelectedMethod] = React.useState<
+    AvailableShippingMethodFragment["method_code"] | null
+  >(cart.shipping_addresses[0]?.selected_shipping_method?.method_code ?? null);
 
   const handleSelect = () => {
     if (!selectedMethod) {
       return;
     }
 
-    return onSubmit(selectedMethod);
+    const method = cart.shipping_addresses[0]?.available_shipping_methods?.find(
+      (m) => m?.method_code === selectedMethod,
+    );
+
+    if (!method) return;
+
+    return onSubmit(method);
   };
 
   return (
     <div className="flex flex-col">
       <div className="grid grid-cols-12 gap-4">
         <div className="col-span-12">
-          <RadioGroup color="primary">
+          <RadioGroup
+            value={selectedMethod}
+            onValueChange={setSelectedMethod}
+            color="primary"
+          >
             {cart.shipping_addresses[0]?.available_shipping_methods?.map(
               (method) => (
                 <RadioBlock
                   key={method?.method_code}
                   value={method?.method_code ?? ""}
-                  checked={selectedMethod?.method_code === method?.method_code}
-                  onClick={() => setSelectedMethod(method)}
+                  checked={selectedMethod === method?.method_code}
                 >
                   <div className="flex flex-col gap-2">
                     <b>{method?.method_title}</b>

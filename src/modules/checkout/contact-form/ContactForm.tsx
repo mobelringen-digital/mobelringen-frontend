@@ -36,13 +36,14 @@ export const ContactForm: React.FC<Props> = ({
 
   const isDifferentBillingAddress = React.useMemo(() => {
     return (
+      !!cart.shipping_addresses[0]?.postcode &&
       cart?.shipping_addresses[0]?.postcode !== cart?.billing_address?.postcode
     );
   }, [cart]);
 
   const {
     control,
-    formState: { isSubmitting, isValid },
+    formState: { isSubmitting },
     handleSubmit,
     setValue,
     watch,
@@ -131,11 +132,7 @@ export const ContactForm: React.FC<Props> = ({
         />
 
         <div className="col-span-12 flex justify-end mt-6">
-          <Button
-            color="tertiary"
-            type="submit"
-            disabled={isSubmitting || !isValid}
-          >
+          <Button color="tertiary" type="submit" disabled={isSubmitting}>
             Fortsett
           </Button>
         </div>

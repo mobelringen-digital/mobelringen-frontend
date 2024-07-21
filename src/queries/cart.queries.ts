@@ -208,6 +208,22 @@ export const ShippingCartAddressFragment = graphql(`
   }
 `);
 
+export const AvailablePaymentMethodFragment = graphql(`
+  fragment AvailablePaymentMethod on AvailablePaymentMethod {
+    code
+    is_deferred
+    title
+  }
+`);
+
+export const SelectedPaymentMethodFragment = graphql(`
+  fragment SelectedPaymentMethod on SelectedPaymentMethod {
+    purchase_order_number
+    code
+    title
+  }
+`);
+
 export const BaseCartFragment = graphql(`
   fragment BaseCart on Cart {
     id
@@ -216,6 +232,12 @@ export const BaseCartFragment = graphql(`
     }
     shipping_addresses {
       ...ShippingCartAddress
+    }
+    available_payment_methods {
+      ...AvailablePaymentMethod
+    }
+    selected_payment_method {
+      ...SelectedPaymentMethod
     }
     prices {
       ...CartPrice
@@ -281,10 +303,11 @@ export const UpdateCartItems = graphql(`
   }
 `);
 
-export const PlaceOrder = graphql(`
+export const PlaceOrderDocument = graphql(`
   mutation PlaceOrder($cartId: String!) {
     placeOrder(input: { cart_id: $cartId }) {
       order {
+        order_id
         order_number
       }
     }
@@ -341,6 +364,29 @@ export const SetShippingMethodsOnCart = graphql(`
       cart {
         ...BaseCart
       }
+    }
+  }
+`);
+
+export const SetPaymentMethodOnCart = graphql(`
+  mutation SetPaymentMethodOnCart(
+    $cartId: String!
+    $payment_method: PaymentMethodInput!
+  ) {
+    setPaymentMethodOnCart(
+      input: { cart_id: $cartId, payment_method: $payment_method }
+    ) {
+      cart {
+        ...BaseCart
+      }
+    }
+  }
+`);
+
+export const VippsInitPayment = graphql(`
+  mutation VippsInitPayment($input: vippsInitPaymentInput) {
+    vippsInitPayment(input: $input) {
+      url
     }
   }
 `);

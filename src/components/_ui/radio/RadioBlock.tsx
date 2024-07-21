@@ -17,6 +17,7 @@ export const RadioBlock: React.FC<Props> = ({ children, ...rest }) => {
           "w-full max-w-full flex-row cursor-pointer rounded-lg gap-2 p-4 border-2 border-dark-grey border-opacity-50",
           "data-[selected=true]:border-black",
         ),
+        labelWrapper: "w-full",
       }}
     >
       {children}

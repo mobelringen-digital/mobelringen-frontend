@@ -2,17 +2,21 @@
 
 import React from "react";
 
+import { useCartQuery } from "@/components/cart/useCartQuery";
+import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { CheckoutBlock } from "@/modules/checkout/CheckoutBlock";
 import { CheckoutBreadcrumbs } from "@/modules/checkout/CheckoutBreadcrumbs";
 import { CheckoutSummary } from "@/modules/checkout/CheckoutSummary";
 import { CheckoutTitle } from "@/modules/checkout/CheckoutTitle";
 import { ContactFormController } from "@/modules/checkout/contact-form/ContactFormController";
+import { PaymentFormController } from "@/modules/checkout/payment/PaymentFormController";
 import { ShippingFormController } from "@/modules/checkout/shipping/ShippingFormController";
 
 type Blocks = "contact" | "shipping" | "payment";
 
 export const CheckoutPage = () => {
+  const { data: cart } = useCartQuery();
   const [activeBlock, setActiveBlock] = React.useState<Blocks>("contact");
 
   return (
@@ -41,17 +45,20 @@ export const CheckoutPage = () => {
               isActive={activeBlock === "shipping"}
               content={
                 <ShippingFormController
-                  onSuccessfulSubmit={() => setActiveBlock("shipping")}
+                  onSuccessfulSubmit={() => setActiveBlock("payment")}
                 />
               }
             />
             <CheckoutBlock
-              disabled={true}
               onClick={() => setActiveBlock("payment")}
               position={3}
               title="Betaling"
               isActive={activeBlock === "payment"}
-              content="text"
+              content={
+                <PaymentFormController
+                  onSuccessfulSubmit={() => setActiveBlock("payment")}
+                />
+              }
             />
           </div>
         </div>
@@ -59,6 +66,7 @@ export const CheckoutPage = () => {
           <CheckoutSummary />
         </div>
       </div>
+      <Debugger data={cart} />
     </ContainerLayout>
   );
 };

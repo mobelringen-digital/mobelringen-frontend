@@ -27,7 +27,11 @@ const documents = {
     types.AvailableShippingMethodFragmentDoc,
   "\n  fragment ShippingCartAddress on ShippingCartAddress {\n    available_shipping_methods {\n      ...AvailableShippingMethod\n    }\n    city\n    company\n    country {\n      code\n      label\n    }\n    customer_notes\n    firstname\n    lastname\n    pickup_location_code\n    postcode\n    region {\n      code\n      label\n      region_id\n    }\n    selected_shipping_method {\n      amount {\n        currency\n        value\n      }\n      carrier_code\n      carrier_title\n      method_code\n      method_title\n      price_excl_tax {\n        currency\n        value\n      }\n      price_incl_tax {\n        currency\n        value\n      }\n    }\n    street\n    telephone\n    uid\n    vat_id\n  }\n":
     types.ShippingCartAddressFragmentDoc,
-  "\n  fragment BaseCart on Cart {\n    id\n    billing_address {\n      ...BillingCartAddress\n    }\n    shipping_addresses {\n      ...ShippingCartAddress\n    }\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n":
+  "\n  fragment AvailablePaymentMethod on AvailablePaymentMethod {\n    code\n    is_deferred\n    title\n  }\n":
+    types.AvailablePaymentMethodFragmentDoc,
+  "\n  fragment SelectedPaymentMethod on SelectedPaymentMethod {\n    purchase_order_number\n    code\n    title\n  }\n":
+    types.SelectedPaymentMethodFragmentDoc,
+  "\n  fragment BaseCart on Cart {\n    id\n    billing_address {\n      ...BillingCartAddress\n    }\n    shipping_addresses {\n      ...ShippingCartAddress\n    }\n    available_payment_methods {\n      ...AvailablePaymentMethod\n    }\n    selected_payment_method {\n      ...SelectedPaymentMethod\n    }\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n":
     types.BaseCartFragmentDoc,
   "\n  query Cart($cart_id: String!) {\n    cart(cart_id: $cart_id) {\n      ...BaseCart\n    }\n  }\n":
     types.CartDocument,
@@ -41,7 +45,7 @@ const documents = {
     types.RemoveProductFromCartDocument,
   "\n  mutation UpdateCartItems(\n    $cartId: String!\n    $cartItems: [CartItemUpdateInput]!\n  ) {\n    updateCartItems(input: { cart_id: $cartId, cart_items: $cartItems }) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n":
     types.UpdateCartItemsDocument,
-  "\n  mutation PlaceOrder($cartId: String!) {\n    placeOrder(input: { cart_id: $cartId }) {\n      order {\n        order_number\n      }\n    }\n  }\n":
+  "\n  mutation PlaceOrder($cartId: String!) {\n    placeOrder(input: { cart_id: $cartId }) {\n      order {\n        order_id\n        order_number\n      }\n    }\n  }\n":
     types.PlaceOrderDocument,
   "\n  mutation AssignCustomerToGuestCart($cartId: String!) {\n    assignCustomerToGuestCart(cart_id: $cartId) {\n      id\n      ...BaseCart\n    }\n  }\n":
     types.AssignCustomerToGuestCartDocument,
@@ -51,6 +55,10 @@ const documents = {
     types.SetBillingAddressOnCartDocument,
   "\n  mutation SetShippingMethodsOnCart(\n    $cartId: String!\n    $shipping_methods: [ShippingMethodInput!]!\n  ) {\n    setShippingMethodsOnCart(\n      input: { cart_id: $cartId, shipping_methods: $shipping_methods }\n    ) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n":
     types.SetShippingMethodsOnCartDocument,
+  "\n  mutation SetPaymentMethodOnCart(\n    $cartId: String!\n    $payment_method: PaymentMethodInput!\n  ) {\n    setPaymentMethodOnCart(\n      input: { cart_id: $cartId, payment_method: $payment_method }\n    ) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n":
+    types.SetPaymentMethodOnCartDocument,
+  "\n  mutation VippsInitPayment($input: vippsInitPaymentInput) {\n    vippsInitPayment(input: $input) {\n      url\n    }\n  }\n":
+    types.VippsInitPaymentDocument,
   "\n  fragment BaseCategoryData on CategoryTree {\n    name\n    description\n    id\n    uid\n    url_path\n    product_count\n    meta_title\n    meta_keywords\n    meta_description\n    include_in_menu\n    children {\n      name\n      uid\n      url_path\n      product_count\n      include_in_menu\n      children {\n        name\n        uid\n        url_path\n        product_count\n        include_in_menu\n      }\n    }\n  }\n":
     types.BaseCategoryDataFragmentDoc,
   "\n  query Category($filters: CategoryFilterInput) {\n    categories(filters: $filters) {\n      items {\n        name\n        description\n        id\n        uid\n        url_path\n        product_count\n        meta_title\n        meta_keywords\n        meta_description\n        include_in_menu\n        children {\n          name\n          uid\n          url_path\n          product_count\n          include_in_menu\n          children {\n            name\n            uid\n            url_path\n            product_count\n            include_in_menu\n          }\n        }\n      }\n    }\n  }\n":
@@ -197,8 +205,20 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment BaseCart on Cart {\n    id\n    billing_address {\n      ...BillingCartAddress\n    }\n    shipping_addresses {\n      ...ShippingCartAddress\n    }\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n",
-): (typeof documents)["\n  fragment BaseCart on Cart {\n    id\n    billing_address {\n      ...BillingCartAddress\n    }\n    shipping_addresses {\n      ...ShippingCartAddress\n    }\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n"];
+  source: "\n  fragment AvailablePaymentMethod on AvailablePaymentMethod {\n    code\n    is_deferred\n    title\n  }\n",
+): (typeof documents)["\n  fragment AvailablePaymentMethod on AvailablePaymentMethod {\n    code\n    is_deferred\n    title\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment SelectedPaymentMethod on SelectedPaymentMethod {\n    purchase_order_number\n    code\n    title\n  }\n",
+): (typeof documents)["\n  fragment SelectedPaymentMethod on SelectedPaymentMethod {\n    purchase_order_number\n    code\n    title\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment BaseCart on Cart {\n    id\n    billing_address {\n      ...BillingCartAddress\n    }\n    shipping_addresses {\n      ...ShippingCartAddress\n    }\n    available_payment_methods {\n      ...AvailablePaymentMethod\n    }\n    selected_payment_method {\n      ...SelectedPaymentMethod\n    }\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n",
+): (typeof documents)["\n  fragment BaseCart on Cart {\n    id\n    billing_address {\n      ...BillingCartAddress\n    }\n    shipping_addresses {\n      ...ShippingCartAddress\n    }\n    available_payment_methods {\n      ...AvailablePaymentMethod\n    }\n    selected_payment_method {\n      ...SelectedPaymentMethod\n    }\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -239,8 +259,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  mutation PlaceOrder($cartId: String!) {\n    placeOrder(input: { cart_id: $cartId }) {\n      order {\n        order_number\n      }\n    }\n  }\n",
-): (typeof documents)["\n  mutation PlaceOrder($cartId: String!) {\n    placeOrder(input: { cart_id: $cartId }) {\n      order {\n        order_number\n      }\n    }\n  }\n"];
+  source: "\n  mutation PlaceOrder($cartId: String!) {\n    placeOrder(input: { cart_id: $cartId }) {\n      order {\n        order_id\n        order_number\n      }\n    }\n  }\n",
+): (typeof documents)["\n  mutation PlaceOrder($cartId: String!) {\n    placeOrder(input: { cart_id: $cartId }) {\n      order {\n        order_id\n        order_number\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -265,6 +285,18 @@ export function graphql(
 export function graphql(
   source: "\n  mutation SetShippingMethodsOnCart(\n    $cartId: String!\n    $shipping_methods: [ShippingMethodInput!]!\n  ) {\n    setShippingMethodsOnCart(\n      input: { cart_id: $cartId, shipping_methods: $shipping_methods }\n    ) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n",
 ): (typeof documents)["\n  mutation SetShippingMethodsOnCart(\n    $cartId: String!\n    $shipping_methods: [ShippingMethodInput!]!\n  ) {\n    setShippingMethodsOnCart(\n      input: { cart_id: $cartId, shipping_methods: $shipping_methods }\n    ) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  mutation SetPaymentMethodOnCart(\n    $cartId: String!\n    $payment_method: PaymentMethodInput!\n  ) {\n    setPaymentMethodOnCart(\n      input: { cart_id: $cartId, payment_method: $payment_method }\n    ) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n",
+): (typeof documents)["\n  mutation SetPaymentMethodOnCart(\n    $cartId: String!\n    $payment_method: PaymentMethodInput!\n  ) {\n    setPaymentMethodOnCart(\n      input: { cart_id: $cartId, payment_method: $payment_method }\n    ) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  mutation VippsInitPayment($input: vippsInitPaymentInput) {\n    vippsInitPayment(input: $input) {\n      url\n    }\n  }\n",
+): (typeof documents)["\n  mutation VippsInitPayment($input: vippsInitPaymentInput) {\n    vippsInitPayment(input: $input) {\n      url\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
