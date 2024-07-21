@@ -15,6 +15,7 @@ export type CheckoutAddressFields = {
 };
 
 export type CheckoutFormData = {
+  email: string;
   different_billing_address: boolean;
   customer_address_id: string | null;
   shipping: CheckoutAddressFields;

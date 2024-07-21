@@ -390,3 +390,13 @@ export const VippsInitPayment = graphql(`
     }
   }
 `);
+
+export const SetGuestEmailOnCart = graphql(`
+  mutation SetGuestEmailOnCart($cartId: String!, $email: String!) {
+    setGuestEmailOnCart(input: { cart_id: $cartId, email: $email }) {
+      cart {
+        ...BaseCart
+      }
+    }
+  }
+`);

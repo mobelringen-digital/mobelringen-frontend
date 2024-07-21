@@ -59,6 +59,8 @@ const documents = {
     types.SetPaymentMethodOnCartDocument,
   "\n  mutation VippsInitPayment($input: vippsInitPaymentInput) {\n    vippsInitPayment(input: $input) {\n      url\n    }\n  }\n":
     types.VippsInitPaymentDocument,
+  "\n  mutation SetGuestEmailOnCart($cartId: String!, $email: String!) {\n    setGuestEmailOnCart(input: { cart_id: $cartId, email: $email }) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n":
+    types.SetGuestEmailOnCartDocument,
   "\n  fragment BaseCategoryData on CategoryTree {\n    name\n    description\n    id\n    uid\n    url_path\n    product_count\n    meta_title\n    meta_keywords\n    meta_description\n    include_in_menu\n    children {\n      name\n      uid\n      url_path\n      product_count\n      include_in_menu\n      children {\n        name\n        uid\n        url_path\n        product_count\n        include_in_menu\n      }\n    }\n  }\n":
     types.BaseCategoryDataFragmentDoc,
   "\n  query Category($filters: CategoryFilterInput) {\n    categories(filters: $filters) {\n      items {\n        name\n        description\n        id\n        uid\n        url_path\n        product_count\n        meta_title\n        meta_keywords\n        meta_description\n        include_in_menu\n        children {\n          name\n          uid\n          url_path\n          product_count\n          include_in_menu\n          children {\n            name\n            uid\n            url_path\n            product_count\n            include_in_menu\n          }\n        }\n      }\n    }\n  }\n":
@@ -297,6 +299,12 @@ export function graphql(
 export function graphql(
   source: "\n  mutation VippsInitPayment($input: vippsInitPaymentInput) {\n    vippsInitPayment(input: $input) {\n      url\n    }\n  }\n",
 ): (typeof documents)["\n  mutation VippsInitPayment($input: vippsInitPaymentInput) {\n    vippsInitPayment(input: $input) {\n      url\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  mutation SetGuestEmailOnCart($cartId: String!, $email: String!) {\n    setGuestEmailOnCart(input: { cart_id: $cartId, email: $email }) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n",
+): (typeof documents)["\n  mutation SetGuestEmailOnCart($cartId: String!, $email: String!) {\n    setGuestEmailOnCart(input: { cart_id: $cartId, email: $email }) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

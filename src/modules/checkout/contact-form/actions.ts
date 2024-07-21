@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 import { auth } from "@/auth/auth";
 import {
   SetBillingAddressOnCart,
+  SetGuestEmailOnCart,
   SetShippingAddressOnCart,
 } from "@/queries/cart.queries";
 import {
@@ -12,7 +13,10 @@ import {
   SetBillingAddressOnCartInput,
   ShippingAddressInput,
 } from "@/types";
-import { authorizedMagentoClient } from "@/utils/lib/graphql";
+import {
+  authorizedMagentoClient,
+  baseMagentoClient,
+} from "@/utils/lib/graphql";
 
 export async function setBillingAddressOnCart(
   cartId: string,
@@ -43,6 +47,17 @@ export async function setShippingAddressOnCart(
   ).request(SetShippingAddressOnCart, {
     cartId: cartId,
     shipping_addresses: [address],
+  });
+
+  revalidatePath("/cart");
+
+  return data;
+}
+
+export async function setGuestEmailOnCart(cartId: string, email: string) {
+  const data = await baseMagentoClient("POST").request(SetGuestEmailOnCart, {
+    cartId: cartId,
+    email: email,
   });
 
   revalidatePath("/cart");

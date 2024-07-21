@@ -2,6 +2,7 @@
 
 import React from "react";
 
+import { useSession } from "next-auth/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { Button } from "@/components/_ui/button/Button";
@@ -25,6 +26,7 @@ interface Props {
   onCheckoutFormSubmit: (
     shippingAddress: InputMaybe<ShippingAddressInput>,
     billingAddress: BillingAddressInput,
+    email?: string,
   ) => Promise<void>;
 }
 
@@ -32,6 +34,7 @@ export const ContactForm: React.FC<Props> = ({
   cart,
   onCheckoutFormSubmit,
 }) => {
+  const { data: session } = useSession();
   const [showAddressModal, setShowAddressModal] = React.useState(false);
 
   const isDifferentBillingAddress = React.useMemo(() => {
@@ -80,7 +83,7 @@ export const ContactForm: React.FC<Props> = ({
       billingFields = mapFormAddressValues(values, "shipping");
     }
 
-    return onCheckoutFormSubmit(shippingFields, billingFields);
+    return onCheckoutFormSubmit(shippingFields, billingFields, values.email);
   };
 
   const onAddressSelect = (data: Partial<CheckoutAddressFields>) => {
@@ -107,12 +110,14 @@ export const ContactForm: React.FC<Props> = ({
     <div className="flex flex-col">
       <div className="flex justify-between items-center">
         <span className="font-semibold mb-2">Leveringsadresse</span>
-        <button
-          className="text-sm"
-          onClick={() => setShowAddressModal((prev) => !prev)}
-        >
-          Legg til adresse
-        </button>
+        {session?.token ? (
+          <button
+            className="text-sm"
+            onClick={() => setShowAddressModal((prev) => !prev)}
+          >
+            Legg til adresse
+          </button>
+        ) : null}
       </div>
 
       <form

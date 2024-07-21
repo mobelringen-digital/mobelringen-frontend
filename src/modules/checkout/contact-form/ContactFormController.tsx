@@ -9,6 +9,7 @@ import { CART_QUERY_KEY } from "@/components/cart/fetchCartService";
 import { useCartQuery } from "@/components/cart/useCartQuery";
 import {
   setBillingAddressOnCart,
+  setGuestEmailOnCart,
   setShippingAddressOnCart,
 } from "@/modules/checkout/contact-form/actions";
 import { ContactForm } from "@/modules/checkout/contact-form/ContactForm";
@@ -27,9 +28,13 @@ export const ContactFormController: React.FC<Props> = ({
   const onSubmit = async (
     shippingAddress: InputMaybe<ShippingAddressInput>,
     billingAddress: BillingAddressInput,
+    email?: string,
   ) => {
     if (!cart?.id) return;
 
+    if (email) {
+      await setGuestEmailOnCart(cart.id, email);
+    }
     await Promise.all([
       setShippingAddressOnCart(cart.id, shippingAddress),
       setBillingAddressOnCart(cart.id, billingAddress),
