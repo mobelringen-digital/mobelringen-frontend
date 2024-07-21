@@ -45,7 +45,8 @@ export const authorizedMagentoClient = (
           ...init,
           headers: {
             Authorization: `Bearer ${token ?? ""}`,
-            Accept: "application/graphql-response+json, application/json",
+            Accept:
+              "application/graphql-response+json, application/json, multipart/mixed",
             ContentType: "application/json",
             "Content-Type": "application/json",
           },
