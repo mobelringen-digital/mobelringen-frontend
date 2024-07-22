@@ -5,6 +5,7 @@ import React from "react";
 import { useCartQuery } from "@/components/cart/useCartQuery";
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
+import { useCart } from "@/modules/cart/hooks/useCart";
 import { CheckoutBlock } from "@/modules/checkout/CheckoutBlock";
 import { CheckoutBreadcrumbs } from "@/modules/checkout/CheckoutBreadcrumbs";
 import { CheckoutSummary } from "@/modules/checkout/CheckoutSummary";
@@ -17,6 +18,7 @@ type Blocks = "contact" | "shipping" | "payment";
 
 export const CheckoutPage = () => {
   const { data: cart } = useCartQuery();
+  const { isShippingAddressSet, isShippingMethodSet } = useCart();
   const [activeBlock, setActiveBlock] = React.useState<Blocks>("contact");
 
   return (
@@ -38,7 +40,7 @@ export const CheckoutPage = () => {
               }
             />
             <CheckoutBlock
-              disabled={false}
+              disabled={!isShippingAddressSet}
               onClick={() => setActiveBlock("shipping")}
               position={2}
               title="Levering"
@@ -50,6 +52,7 @@ export const CheckoutPage = () => {
               }
             />
             <CheckoutBlock
+              disabled={!isShippingMethodSet}
               onClick={() => setActiveBlock("payment")}
               position={3}
               title="Betaling"

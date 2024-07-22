@@ -61,5 +61,25 @@ export const useCart = () => {
     return cookies.cart ?? "";
   }, [cart?.id, cookies.cart, user?.token]);
 
-  return { isCheckoutEnabled, cartId, user, pricingLines };
+  const isShippingAddressSet = React.useMemo(() => {
+    return !!cart?.shipping_addresses?.length;
+  }, [cart?.shipping_addresses]);
+
+  const isShippingMethodSet = React.useMemo(() => {
+    return !!cart?.shipping_addresses?.[0]?.selected_shipping_method;
+  }, [cart?.shipping_addresses]);
+
+  const isPaymentMethodSet = React.useMemo(() => {
+    return !!cart?.selected_payment_method;
+  }, [cart?.selected_payment_method]);
+
+  return {
+    isCheckoutEnabled,
+    cartId,
+    user,
+    pricingLines,
+    isShippingAddressSet,
+    isShippingMethodSet,
+    isPaymentMethodSet,
+  };
 };
