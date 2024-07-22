@@ -2,15 +2,19 @@
 
 import React from "react";
 
+import { useSearchParams } from "next/navigation";
+
 import { Button } from "@/components/_ui/button/Button";
 import { ProductAddedModal } from "@/components/cart/add-to-cart/ProductAddedModal";
-import { AddProductToCartMutation, BaseProductFragment } from "@/types";
+import { BaseProductFragment } from "@/types";
+
+import { navigate } from "../../../app/actions";
 
 interface Props {
   isDisabled?: boolean;
   product: BaseProductFragment;
   quantity: number;
-  onAddToCart: () => Promise<AddProductToCartMutation | undefined>;
+  onAddToCart: () => Promise<void>;
 }
 
 export const AddToCartController: React.FC<Props> = ({
@@ -19,13 +23,17 @@ export const AddToCartController: React.FC<Props> = ({
   onAddToCart,
 }) => {
   const [isLoading, setIsLoading] = React.useState(false);
-  const [isOpen, setOpen] = React.useState(false);
+  const searchParams = useSearchParams();
+  const isOpen = searchParams.get("cart") === "true";
+
+  const setClose = async () => {
+    return navigate("?");
+  };
 
   const handleAddItemToCart = async () => {
     setIsLoading(true);
     await onAddToCart().finally(() => {
       setIsLoading(false);
-      setTimeout(() => setOpen(true), 500);
     });
   };
 
@@ -34,7 +42,7 @@ export const AddToCartController: React.FC<Props> = ({
       <ProductAddedModal
         product={product}
         isOpen={isOpen}
-        onOpenChange={() => setOpen((prev) => !prev)}
+        onOpenChange={() => setClose()}
       />
       <div className="flex flex-col gap-4">
         <Button

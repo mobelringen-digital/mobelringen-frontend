@@ -7,6 +7,8 @@ import {
 import { AddToCartController } from "@/components/cart/add-to-cart/AddToCartController";
 import { BaseCartFragment, BaseProductFragment } from "@/types";
 
+import { navigate } from "../../../app/actions";
+
 interface Props {
   isDisabled?: boolean;
   product: BaseProductFragment;
@@ -27,7 +29,7 @@ export const AddToCart: React.FC<Props> = ({
           sku: product.sku,
           quantity,
         },
-      ]);
+      ]).then(() => navigate("?cart=true"));
     }
 
     if (!cart?.id) {
@@ -38,7 +40,7 @@ export const AddToCart: React.FC<Props> = ({
             sku: product.sku,
             quantity,
           },
-        ]);
+        ]).then(() => navigate("?cart=true"));
       }
     }
   };
