@@ -46,7 +46,7 @@ const responseMiddleware: ResponseMiddleware = async (response) => {
     );
 
     if (isGraphQlAuthorizationError) {
-      return signOut({ callbackUrl: "/auth/login" });
+      await signOut({ callbackUrl: "/auth/login" });
     }
   }
 };
