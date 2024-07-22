@@ -17,7 +17,7 @@ interface Props {
 }
 
 export const CartPage: React.FC<Props> = ({ data }) => {
-  const isEmptyCart = data?.items && data.items.length === 0;
+  const isEmptyCart = !data || (data?.items && data.items.length === 0);
   const isCheckoutEnabled = true;
 
   return (

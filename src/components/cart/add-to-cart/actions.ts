@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 import { auth } from "@/auth/auth";
@@ -44,8 +44,6 @@ export async function createEmptyCart() {
       expires: oneWeekFromNow,
     });
   }
-
-  revalidatePath("/cart");
 
   return data;
 }

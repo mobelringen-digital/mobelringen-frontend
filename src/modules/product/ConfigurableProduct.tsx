@@ -1,19 +1,17 @@
 import React from "react";
 
-import getCart from "@/components/cart/actions";
 import { ActiveProductDataContextProvider } from "@/modules/product/active-product-data-provider/ActiveProductDataProvider";
 import { BaseProductLayout } from "@/modules/product/BaseProductLayout";
 import { ConfigurationInfo } from "@/modules/product/configurable-product/ConfigurationInfo";
 import { Variants } from "@/modules/product/configurable-product/Variants";
-import { ConfigurableProductFragment } from "@/types";
+import { BaseCartFragment, ConfigurableProductFragment } from "@/types";
 
 interface Props {
   product: ConfigurableProductFragment;
+  cart?: BaseCartFragment | null;
 }
 
-export async function ConfigurableProductPage({ product }: Props) {
-  const cart = await getCart();
-
+export async function ConfigurableProductPage({ product, cart }: Props) {
   return (
     <ActiveProductDataContextProvider>
       <BaseProductLayout
