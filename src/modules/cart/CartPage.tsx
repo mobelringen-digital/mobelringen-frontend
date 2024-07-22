@@ -4,6 +4,7 @@ import React from "react";
 
 import Link from "next/link";
 
+import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { useCartQuery } from "@/components/cart/useCartQuery";
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
@@ -16,10 +17,14 @@ import { CartWarning } from "@/modules/cart/CartWarning";
 import { useCart } from "@/modules/cart/hooks/useCart";
 
 export const CartPage: React.FC = () => {
-  const { data } = useCartQuery();
+  const { data, isLoading } = useCartQuery();
   const { isCheckoutEnabled } = useCart();
 
-  const isEmptyCart = data?.items && data.items.length === 0;
+  const isEmptyCart = !isLoading && data?.items && data.items.length === 0;
+
+  if (isLoading) {
+    return <PageTopLoader />;
+  }
 
   return (
     <ContainerLayout>
