@@ -34,6 +34,7 @@ export const baseMagentoClient = (method?: "POST" | "GET") =>
 export const authorizedMagentoClient = (
   token: string,
   method?: "GET" | "POST",
+  nextOptions?: { revalidate: number; tags: string[]; cache: string },
 ) =>
   new GraphQLClient(process.env.NEXT_PUBLIC_MAGENTO_URL as string, {
     method,
@@ -41,7 +42,11 @@ export const authorizedMagentoClient = (
       async (input: RequestInfo | URL, init?: RequestInit | undefined) =>
         fetch(input, {
           method,
-          next: { revalidate: 3600 },
+          next: {
+            cache: method === "POST" ? "no-store" : undefined,
+            revalidate: method === "POST" ? 0 : 3600,
+            ...nextOptions,
+          },
           ...init,
           headers: {
             Authorization: `Bearer ${token ?? ""}`,
