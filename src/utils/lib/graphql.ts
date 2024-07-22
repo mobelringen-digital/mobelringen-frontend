@@ -1,7 +1,6 @@
 import { cache } from "react";
 
 import { GraphQLClient, ResponseMiddleware } from "graphql-request";
-import { signOut } from "next-auth/react";
 
 export const baseHygraphClient = (method?: "POST" | "GET") =>
   new GraphQLClient(process.env.NEXT_PUBLIC_HYGRAPH_URL as string, {
@@ -48,7 +47,8 @@ const responseMiddleware: ResponseMiddleware = async (response) => {
     );
 
     if (isGraphQlAuthorizationError) {
-      await signOut({ callbackUrl: "/auth/login" });
+      // redirect to login page
+      // router.push("/login");
     }
   }
 };

@@ -17,7 +17,7 @@ export default async function getCart() {
       cache: "no-store",
     }).request(CustomerCartDocument);
 
-    return customerQuery.customerCart;
+    return customerQuery?.customerCart;
   }
 
   if (cartCookie?.value) {
@@ -28,6 +28,6 @@ export default async function getCart() {
       cart_id: String(cartCookie.value),
     });
 
-    return guestCart.cart;
+    return guestCart?.cart;
   }
 }
