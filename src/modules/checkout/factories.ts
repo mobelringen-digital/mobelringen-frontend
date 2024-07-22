@@ -12,6 +12,7 @@ export type CheckoutAddressFields = {
   street: string;
   telephone: string;
   vat_id: string;
+  save_in_address_book: boolean;
 };
 
 export type CheckoutFormData = {

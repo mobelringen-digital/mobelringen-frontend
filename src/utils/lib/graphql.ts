@@ -1,6 +1,7 @@
 import { cache } from "react";
 
-import { GraphQLClient } from "graphql-request";
+import { GraphQLClient, ResponseMiddleware } from "graphql-request";
+import { signOut } from "next-auth/react";
 
 export const baseHygraphClient = (method?: "POST" | "GET") =>
   new GraphQLClient(process.env.NEXT_PUBLIC_HYGRAPH_URL as string, {
@@ -18,18 +19,37 @@ export const baseHygraphClient = (method?: "POST" | "GET") =>
     ),
   });
 
-export const baseMagentoClient = (method?: "POST" | "GET") =>
+export const baseMagentoClient = (
+  method?: "POST" | "GET",
+  nextOptions?: { revalidate: number; tags: string[]; cache: string },
+) =>
   new GraphQLClient(process.env.NEXT_PUBLIC_MAGENTO_URL as string, {
     method,
     fetch: cache(
       async (input: RequestInfo | URL, init?: RequestInit | undefined) =>
         fetch(input, {
           method,
-          next: { revalidate: 3600 },
+          next: {
+            cache: method === "POST" ? "no-store" : undefined,
+            revalidate: method === "POST" ? 0 : 3600,
+            ...nextOptions,
+          },
           ...init,
         }),
     ),
   });
+
+const responseMiddleware: ResponseMiddleware = async (response) => {
+  if (!(response instanceof Error) && response.errors) {
+    const isGraphQlAuthorizationError = response.errors.find(
+      (err) => err.extensions.category === "graphql-authorization",
+    );
+
+    if (isGraphQlAuthorizationError) {
+      return signOut({ callbackUrl: "/auth/login" });
+    }
+  }
+};
 
 export const authorizedMagentoClient = (
   token: string,
@@ -38,6 +58,8 @@ export const authorizedMagentoClient = (
 ) =>
   new GraphQLClient(process.env.NEXT_PUBLIC_MAGENTO_URL as string, {
     method,
+    errorPolicy: "all",
+    responseMiddleware,
     fetch: cache(
       async (input: RequestInfo | URL, init?: RequestInit | undefined) =>
         fetch(input, {

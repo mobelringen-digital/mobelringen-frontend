@@ -61,6 +61,7 @@ export const ContactForm: React.FC<Props> = ({
         postcode: cart?.shipping_addresses[0]?.postcode ?? "",
         street: cart?.shipping_addresses[0]?.street.toString() ?? "",
         telephone: cart?.shipping_addresses[0]?.telephone ?? "",
+        save_in_address_book: false,
       },
       billing: {
         city: cart?.billing_address?.city,
@@ -69,6 +70,7 @@ export const ContactForm: React.FC<Props> = ({
         postcode: cart?.billing_address?.postcode ?? "",
         street: cart?.billing_address?.street.toString() ?? "",
         telephone: cart?.billing_address?.telephone ?? "",
+        save_in_address_book: false,
       },
     },
   });

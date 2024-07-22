@@ -9,18 +9,11 @@ import { navigate } from "../actions";
 async function getCustomerDetails() {
   const session = await auth();
 
-  if (!session?.token) return null;
+  if (!session?.token) return navigate("/auth/login");
 
-  try {
-    return await authorizedMagentoClient(session.token).request<CustomerQuery>(
-      CustomerDocument,
-    );
-  } catch (error: any) {
-    if (!error?.response.data.customer) {
-      return navigate("/auth/login?callback=TOKEN_EXPIRED");
-    }
-    return null;
-  }
+  return await authorizedMagentoClient(session.token).request<CustomerQuery>(
+    CustomerDocument,
+  );
 }
 
 export default async function AccountPage() {

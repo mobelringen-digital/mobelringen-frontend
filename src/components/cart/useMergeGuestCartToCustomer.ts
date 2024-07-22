@@ -9,19 +9,30 @@ import { useAssignCustomerToGuestCart } from "@/modules/cart/hooks/useAssignCust
 
 export const useMergeGuestCartToCustomer = () => {
   const queryClient = useQueryClient();
-  const [cookies] = useCookies<"cart", CartCookie>(["cart"]);
+  const [cookies, _setCookie, removeCookie] = useCookies<"cart", CartCookie>([
+    "cart",
+  ]);
   const { data: user } = useSession();
   const { mutate: assignCustomerToGuestCart } = useAssignCustomerToGuestCart();
 
   React.useEffect(() => {
-    if (!!user?.token && cookies.cart) {
-      assignCustomerToGuestCart(undefined, {
-        onSuccess: async () => {
-          await queryClient.invalidateQueries({ queryKey: CART_QUERY_KEY });
-        },
-      });
-    }
-  }, [assignCustomerToGuestCart, cookies.cart, queryClient, user?.token]);
+    (async () => {
+      if (!!user?.token && cookies.cart) {
+        assignCustomerToGuestCart(undefined, {
+          onSuccess: async () => {
+            await queryClient.invalidateQueries({ queryKey: CART_QUERY_KEY });
+          },
+        });
+        removeCookie("cart");
+      }
+    })();
+  }, [
+    assignCustomerToGuestCart,
+    cookies.cart,
+    queryClient,
+    removeCookie,
+    user?.token,
+  ]);
 
   return null;
 };
