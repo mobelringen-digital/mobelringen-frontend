@@ -1,50 +1,36 @@
-"use client";
-
 import React from "react";
 
-import { useQueryClient } from "@tanstack/react-query";
-import { useCookies } from "react-cookie";
-
-import { Button } from "@/components/_ui/button/Button";
 import {
   addToCart,
   createEmptyCart,
 } from "@/components/cart/add-to-cart/actions";
-import { ProductAddedModal } from "@/components/cart/add-to-cart/ProductAddedModal";
-import { CART_QUERY_KEY, CartCookie } from "@/components/cart/fetchCartService";
-import { useCart } from "@/modules/cart/hooks/useCart";
-import { BaseProductFragment } from "@/types";
+import { AddToCartController } from "@/components/cart/add-to-cart/AddToCartController";
+import { BaseCartFragment, BaseProductFragment } from "@/types";
 
 interface Props {
   isDisabled?: boolean;
   product: BaseProductFragment;
   quantity: number;
+  cart?: BaseCartFragment | null;
 }
 
 export const AddToCart: React.FC<Props> = ({
   isDisabled,
   product,
   quantity,
+  cart,
 }) => {
-  const queryClient = useQueryClient();
-  const { cartId, user } = useCart();
-  const [isOpen, setOpen] = React.useState(false);
-  const [cookies] = useCookies<"cart", CartCookie>(["cart"]);
-
   const handleAddItemToCart = async () => {
-    if ((cookies.cart || user?.token) && product.sku && quantity) {
-      return addToCart(cartId, [
+    if (cart?.id && product.sku && quantity) {
+      return addToCart(cart?.id, [
         {
           sku: product.sku,
           quantity,
         },
-      ]).then(() => {
-        queryClient.invalidateQueries({ queryKey: [...CART_QUERY_KEY] });
-        setOpen(true);
-      });
+      ]);
     }
 
-    if (!cookies.cart && !user?.token) {
+    if (!cart?.id) {
       const emptyCart = await createEmptyCart();
       if (emptyCart.createEmptyCart && product.sku && quantity) {
         await addToCart(emptyCart.createEmptyCart, [
@@ -52,33 +38,17 @@ export const AddToCart: React.FC<Props> = ({
             sku: product.sku,
             quantity,
           },
-        ]).then(() => {
-          queryClient.invalidateQueries({ queryKey: [...CART_QUERY_KEY] });
-          setOpen(true);
-        });
+        ]);
       }
     }
   };
 
   return (
-    <>
-      <ProductAddedModal
-        product={product}
-        isOpen={isOpen}
-        onOpenChange={() => setOpen((prev) => !prev)}
-      />
-      <div className="flex flex-col gap-4">
-        <Button
-          onClick={handleAddItemToCart}
-          disabled={isDisabled}
-          color="primary"
-        >
-          Legg i handlekurv
-        </Button>
-        <Button disabled={isDisabled} color="secondary">
-          Klikk og hent
-        </Button>
-      </div>
-    </>
+    <AddToCartController
+      isDisabled={isDisabled}
+      product={product}
+      quantity={quantity}
+      onAddToCart={handleAddItemToCart}
+    />
   );
 };

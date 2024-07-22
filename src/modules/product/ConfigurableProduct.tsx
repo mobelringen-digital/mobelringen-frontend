@@ -1,5 +1,6 @@
 import React from "react";
 
+import getCart from "@/components/cart/actions";
 import { ActiveProductDataContextProvider } from "@/modules/product/active-product-data-provider/ActiveProductDataProvider";
 import { BaseProductLayout } from "@/modules/product/BaseProductLayout";
 import { ConfigurationInfo } from "@/modules/product/configurable-product/ConfigurationInfo";
@@ -10,10 +11,13 @@ interface Props {
   product: ConfigurableProductFragment;
 }
 
-export const ConfigurableProductPage: React.FC<Props> = ({ product }) => {
+export async function ConfigurableProductPage({ product }: Props) {
+  const cart = await getCart();
+
   return (
     <ActiveProductDataContextProvider>
       <BaseProductLayout
+        cart={cart}
         baseProductData={product}
         configurationBlock={
           <div className="flex flex-col gap-2">
@@ -24,4 +28,4 @@ export const ConfigurableProductPage: React.FC<Props> = ({ product }) => {
       />
     </ActiveProductDataContextProvider>
   );
-};
+}

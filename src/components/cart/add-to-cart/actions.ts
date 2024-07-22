@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 import { auth } from "@/auth/auth";
@@ -25,7 +25,7 @@ export async function addToCart(
     cartItems,
   });
 
-  revalidatePath("/cart");
+  revalidateTag("cart");
 
   return data;
 }

@@ -21,7 +21,7 @@ export const baseHygraphClient = (method?: "POST" | "GET") =>
 
 export const baseMagentoClient = (
   method?: "POST" | "GET",
-  nextOptions?: { revalidate: number; tags: string[]; cache: string },
+  nextOptions?: { revalidate?: number; tags?: string[]; cache?: string },
 ) =>
   new GraphQLClient(process.env.NEXT_PUBLIC_MAGENTO_URL as string, {
     method,
@@ -42,7 +42,9 @@ export const baseMagentoClient = (
 const responseMiddleware: ResponseMiddleware = async (response) => {
   if (!(response instanceof Error) && response.errors) {
     const isGraphQlAuthorizationError = response.errors.find(
-      (err) => err.extensions.category === "graphql-authorization",
+      (err) =>
+        !!err?.extensions?.category &&
+        err.extensions.category === "graphql-authorization",
     );
 
     if (isGraphQlAuthorizationError) {
@@ -52,9 +54,9 @@ const responseMiddleware: ResponseMiddleware = async (response) => {
 };
 
 export const authorizedMagentoClient = (
-  token: string,
+  token?: string,
   method?: "GET" | "POST",
-  nextOptions?: { revalidate: number; tags: string[]; cache: string },
+  nextOptions?: { revalidate?: number; tags?: string[]; cache?: string },
 ) =>
   new GraphQLClient(process.env.NEXT_PUBLIC_MAGENTO_URL as string, {
     method,
@@ -71,7 +73,7 @@ export const authorizedMagentoClient = (
           },
           ...init,
           headers: {
-            Authorization: `Bearer ${token ?? ""}`,
+            ...(token ? { Authorization: `Bearer ${token ?? ""}` } : undefined),
             Accept:
               "application/graphql-response+json, application/json, multipart/mixed",
             ContentType: "application/json",

@@ -1,10 +1,8 @@
 import React from "react";
 
-import { Button } from "@/components/_ui/button/Button";
 import { CartPricing } from "@/components/cart/CartPricing";
+import { CartProceedButton } from "@/modules/cart/cart-price/CartProceedButton";
 import { CartPriceFragment } from "@/types";
-
-import { navigate } from "../../../app/actions";
 
 interface Props {
   prices?: CartPriceFragment | null;
@@ -12,10 +10,6 @@ interface Props {
 }
 
 export const CartPrice: React.FC<Props> = ({ prices, checkoutDisabled }) => {
-  const navigateToCheckout = async () => {
-    return navigate("/cart/checkout");
-  };
-
   if (!prices) return null;
 
   return (
@@ -24,14 +18,7 @@ export const CartPrice: React.FC<Props> = ({ prices, checkoutDisabled }) => {
         <h4 className="text-xl font-semibold">Oppsummering</h4>
         <div className="flex flex-col gap-4">
           <CartPricing />
-          <Button
-            disabled={checkoutDisabled}
-            onClick={navigateToCheckout}
-            color="tertiary"
-            className="w-full mt-4"
-          >
-            Fortsett til betaling
-          </Button>
+          <CartProceedButton disabled={checkoutDisabled} />
         </div>
       </div>
     </div>

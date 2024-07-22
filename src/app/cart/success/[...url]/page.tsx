@@ -1,7 +1,5 @@
-export default function CartSuccessPage() {
-  return (
-    <div>
-      <h1>Cart Success Page</h1>
-    </div>
-  );
+import { CartSuccessPage } from "@/modules/cart/success/CartSuccessPage";
+
+export default function CartSuccess() {
+  return <CartSuccessPage />;
 }

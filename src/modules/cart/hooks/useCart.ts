@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import { useSession } from "next-auth/react";
@@ -6,11 +8,9 @@ import { useCookies } from "react-cookie";
 import { useSearchParams } from "next/navigation";
 
 import { CartCookie } from "@/components/cart/fetchCartService";
-import { useCartQuery } from "@/components/cart/useCartQuery";
-import { ProductStockStatus } from "@/types";
+import { BaseCartFragment, ProductStockStatus } from "@/types";
 
-export const useCart = () => {
-  const { data: cart } = useCartQuery();
+export const useCart = (cart?: BaseCartFragment | null) => {
   const [cookies] = useCookies<"cart", CartCookie>(["cart"]);
   const { data: user } = useSession();
   const searchParams = useSearchParams();

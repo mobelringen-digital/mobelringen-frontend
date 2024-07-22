@@ -1,33 +1,15 @@
-"use client";
-
 import React from "react";
-
-import { useCookies } from "react-cookie";
 
 import Link from "next/link";
 
 import { Cart } from "@/components/_ui/icons/figma/Cart";
-import { CartCookie } from "@/components/cart/fetchCartService";
-import { useCartQuery } from "@/components/cart/useCartQuery";
+import getCart from "@/components/cart/actions";
 
-export const HeaderCartButton = () => {
-  const [cookies, _setCookie, removeCookie] = useCookies<"cart", CartCookie>([
-    "cart",
-  ]);
-  const { data, isError } = useCartQuery();
+export async function HeaderCartButton() {
+  const data = await getCart();
 
-  React.useEffect(() => {
-    if (isError && cookies.cart) {
-      removeCookie("cart");
-    }
-  }, [cookies.cart, isError, removeCookie]);
-
-  const totalQuantity = React.useMemo(() => {
-    if (!data?.items) {
-      return 0;
-    }
-    return data.items.reduce((acc, item) => acc + (item?.quantity ?? 0), 0);
-  }, [data?.items]);
+  const totalQuantity =
+    data?.items?.reduce((acc, item) => acc + (item?.quantity ?? 0), 0) ?? 0;
 
   return (
     <Link href="/cart" className="relative">
@@ -39,4 +21,4 @@ export const HeaderCartButton = () => {
       ) : null}
     </Link>
   );
-};
+}

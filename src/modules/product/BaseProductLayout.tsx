@@ -17,17 +17,22 @@ import { MoreInTheStore } from "@/modules/product/MoreInTheStore";
 import { ProductGallery } from "@/modules/product/product-gallery/ProductGallery";
 import { ProductPricing } from "@/modules/product/product-pricing/ProductPricing";
 import { ProductTopInfo } from "@/modules/product/ProductTopInfo";
-import { BaseProductFragment as BaseProductFragmentType } from "@/types";
+import {
+  BaseCartFragment,
+  BaseProductFragment as BaseProductFragmentType,
+} from "@/types";
 
 interface Props {
   baseProductData: BaseProductFragmentType;
   configurationBlock?: React.ReactNode;
   productGallery?: React.ReactNode;
+  cart?: BaseCartFragment | null;
 }
 
 export const BaseProductLayout: React.FC<Props> = ({
   baseProductData,
   configurationBlock,
+  cart,
 }) => {
   const { activeProductVariant } = useActiveProductData();
 
@@ -67,7 +72,7 @@ export const BaseProductLayout: React.FC<Props> = ({
 
             <ProductPricing pricingRange={product?.price_range} />
             <MoreInTheStore />
-            <PurchaseBlock product={product} />
+            <PurchaseBlock cart={cart} product={product} />
             <div className="block lg:hidden">
               <InformationAccordion product={product} />
             </div>

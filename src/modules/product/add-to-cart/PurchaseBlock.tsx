@@ -8,15 +8,20 @@ import { AddToCart } from "@/components/cart/add-to-cart/AddToCart";
 import { useActiveProductData } from "@/modules/product/active-product-data-provider/useActiveProductData";
 import { DeliveryInfo } from "@/modules/product/add-to-cart/DeliveryInfo";
 import { KlarnaInformation } from "@/modules/product/add-to-cart/KlarnaInformation";
-import { BaseProductFragment, ProductStockStatus } from "@/types";
+import {
+  BaseCartFragment,
+  BaseProductFragment,
+  ProductStockStatus,
+} from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
 import { usePriceRange } from "@/utils/hooks/usePriceRange";
 
 interface Props {
   product: BaseProductFragment;
+  cart?: BaseCartFragment | null;
 }
 
-export const PurchaseBlock: React.FC<Props> = ({ product }) => {
+export const PurchaseBlock: React.FC<Props> = ({ product, cart }) => {
   const priceRange = product.price_range;
   const { finalPrice, currency } = usePriceRange(priceRange);
   const [quantity, setQuantity] = React.useState(1);
@@ -55,6 +60,7 @@ export const PurchaseBlock: React.FC<Props> = ({ product }) => {
         ) : null}
       </div>
       <AddToCart
+        cart={cart}
         product={product}
         quantity={quantity}
         isDisabled={isVariantNotSelected || !isInStock}

@@ -1,5 +1,6 @@
 import React from "react";
 
+import getCart from "@/components/cart/actions";
 import { ActiveProductDataContextProvider } from "@/modules/product/active-product-data-provider/ActiveProductDataProvider";
 import { BaseProductLayout } from "@/modules/product/BaseProductLayout";
 import { SimpleProductFragment } from "@/types";
@@ -8,10 +9,12 @@ interface Props {
   product: SimpleProductFragment;
 }
 
-export const SimpleProductPage: React.FC<Props> = ({ product }) => {
+export async function SimpleProductPage({ product }: Props) {
+  const cart = await getCart();
+
   return (
     <ActiveProductDataContextProvider>
-      <BaseProductLayout baseProductData={product} />
+      <BaseProductLayout cart={cart} baseProductData={product} />
     </ActiveProductDataContextProvider>
   );
-};
+}

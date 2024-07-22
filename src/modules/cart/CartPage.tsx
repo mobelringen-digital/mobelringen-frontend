@@ -1,11 +1,7 @@
-"use client";
-
 import React from "react";
 
 import Link from "next/link";
 
-import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
-import { useCartQuery } from "@/components/cart/useCartQuery";
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { CartItem } from "@/modules/cart/cart-item/CartItem";
@@ -13,18 +9,16 @@ import { CartPrice } from "@/modules/cart/cart-price/CartPrice";
 import { CartBreadcrumbs } from "@/modules/cart/CartBreadcrumbs";
 import { CartMethodLinks } from "@/modules/cart/CartMethodLinks";
 import { CartTitle } from "@/modules/cart/CartTitle";
-import { CartWarning } from "@/modules/cart/CartWarning";
-import { useCart } from "@/modules/cart/hooks/useCart";
+import { CartWarnings } from "@/modules/cart/CartWarnings";
+import { BaseCartFragment } from "@/types";
 
-export const CartPage: React.FC = () => {
-  const { data, isLoading } = useCartQuery();
-  const { isCheckoutEnabled } = useCart();
+interface Props {
+  data?: BaseCartFragment | null;
+}
 
-  const isEmptyCart = !isLoading && data?.items && data.items.length === 0;
-
-  if (isLoading) {
-    return <PageTopLoader />;
-  }
+export const CartPage: React.FC<Props> = ({ data }) => {
+  const isEmptyCart = data?.items && data.items.length === 0;
+  const isCheckoutEnabled = true;
 
   return (
     <ContainerLayout>
@@ -43,12 +37,7 @@ export const CartPage: React.FC = () => {
             <div className="bg-white flex flex-col gap-6 rounded-2xl p-4 lg:p-8">
               <div className="flex flex-col gap-4">
                 <CartMethodLinks />
-                {!isCheckoutEnabled ? (
-                  <CartWarning
-                    message="Noen av produktene under er dessverre ikke lengre tilgjengelig
-                på nett."
-                  />
-                ) : null}
+                <CartWarnings cart={data} />
               </div>
               <div className="border-t border-t-cold-grey-dark border-opacity-80" />
               {data?.items?.map((item, idx) => (
