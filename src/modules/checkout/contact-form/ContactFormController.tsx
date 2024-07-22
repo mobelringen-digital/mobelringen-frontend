@@ -28,7 +28,7 @@ export const ContactFormController: React.FC<Props> = ({
   const onSubmit = async (
     shippingAddress: InputMaybe<ShippingAddressInput>,
     billingAddress: BillingAddressInput,
-    email?: string,
+    email?: string | null,
   ) => {
     if (!cart?.id) return;
 

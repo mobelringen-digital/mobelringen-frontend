@@ -227,6 +227,7 @@ export const SelectedPaymentMethodFragment = graphql(`
 export const BaseCartFragment = graphql(`
   fragment BaseCart on Cart {
     id
+    email
     billing_address {
       ...BillingCartAddress
     }

@@ -26,7 +26,7 @@ interface Props {
   onCheckoutFormSubmit: (
     shippingAddress: InputMaybe<ShippingAddressInput>,
     billingAddress: BillingAddressInput,
-    email?: string,
+    email?: string | null,
   ) => Promise<void>;
 }
 
@@ -52,6 +52,7 @@ export const ContactForm: React.FC<Props> = ({
     watch,
   } = useForm<CheckoutFormData>({
     defaultValues: {
+      email: cart.email,
       customer_address_id: null,
       different_billing_address: isDifferentBillingAddress,
       shipping: {

@@ -31,7 +31,7 @@ const documents = {
     types.AvailablePaymentMethodFragmentDoc,
   "\n  fragment SelectedPaymentMethod on SelectedPaymentMethod {\n    purchase_order_number\n    code\n    title\n  }\n":
     types.SelectedPaymentMethodFragmentDoc,
-  "\n  fragment BaseCart on Cart {\n    id\n    billing_address {\n      ...BillingCartAddress\n    }\n    shipping_addresses {\n      ...ShippingCartAddress\n    }\n    available_payment_methods {\n      ...AvailablePaymentMethod\n    }\n    selected_payment_method {\n      ...SelectedPaymentMethod\n    }\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n":
+  "\n  fragment BaseCart on Cart {\n    id\n    email\n    billing_address {\n      ...BillingCartAddress\n    }\n    shipping_addresses {\n      ...ShippingCartAddress\n    }\n    available_payment_methods {\n      ...AvailablePaymentMethod\n    }\n    selected_payment_method {\n      ...SelectedPaymentMethod\n    }\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n":
     types.BaseCartFragmentDoc,
   "\n  query Cart($cart_id: String!) {\n    cart(cart_id: $cart_id) {\n      ...BaseCart\n    }\n  }\n":
     types.CartDocument,
@@ -219,8 +219,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment BaseCart on Cart {\n    id\n    billing_address {\n      ...BillingCartAddress\n    }\n    shipping_addresses {\n      ...ShippingCartAddress\n    }\n    available_payment_methods {\n      ...AvailablePaymentMethod\n    }\n    selected_payment_method {\n      ...SelectedPaymentMethod\n    }\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n",
-): (typeof documents)["\n  fragment BaseCart on Cart {\n    id\n    billing_address {\n      ...BillingCartAddress\n    }\n    shipping_addresses {\n      ...ShippingCartAddress\n    }\n    available_payment_methods {\n      ...AvailablePaymentMethod\n    }\n    selected_payment_method {\n      ...SelectedPaymentMethod\n    }\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n"];
+  source: "\n  fragment BaseCart on Cart {\n    id\n    email\n    billing_address {\n      ...BillingCartAddress\n    }\n    shipping_addresses {\n      ...ShippingCartAddress\n    }\n    available_payment_methods {\n      ...AvailablePaymentMethod\n    }\n    selected_payment_method {\n      ...SelectedPaymentMethod\n    }\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n",
+): (typeof documents)["\n  fragment BaseCart on Cart {\n    id\n    email\n    billing_address {\n      ...BillingCartAddress\n    }\n    shipping_addresses {\n      ...ShippingCartAddress\n    }\n    available_payment_methods {\n      ...AvailablePaymentMethod\n    }\n    selected_payment_method {\n      ...SelectedPaymentMethod\n    }\n    prices {\n      ...CartPrice\n    }\n    items {\n      ...CartItem\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

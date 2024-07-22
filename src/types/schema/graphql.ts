@@ -23397,6 +23397,7 @@ export type SelectedPaymentMethodFragment = {
 export type BaseCartFragment = {
   __typename: "Cart";
   id: string;
+  email?: string | null;
   billing_address?: {
     __typename: "BillingCartAddress";
     city: string;
@@ -24751,6 +24752,7 @@ export type CartQuery = {
   cart?: {
     __typename: "Cart";
     id: string;
+    email?: string | null;
     billing_address?: {
       __typename: "BillingCartAddress";
       city: string;
@@ -26112,6 +26114,7 @@ export type CustomerCartQuery = {
   customerCart: {
     __typename: "Cart";
     id: string;
+    email?: string | null;
     billing_address?: {
       __typename: "BillingCartAddress";
       city: string;
@@ -27485,6 +27488,7 @@ export type AddProductToCartMutation = {
     cart: {
       __typename: "Cart";
       id: string;
+      email?: string | null;
       billing_address?: {
         __typename: "BillingCartAddress";
         city: string;
@@ -28852,6 +28856,7 @@ export type RemoveProductFromCartMutation = {
     cart: {
       __typename: "Cart";
       id: string;
+      email?: string | null;
       billing_address?: {
         __typename: "BillingCartAddress";
         city: string;
@@ -30221,6 +30226,7 @@ export type UpdateCartItemsMutation = {
     cart: {
       __typename: "Cart";
       id: string;
+      email?: string | null;
       billing_address?: {
         __typename: "BillingCartAddress";
         city: string;
@@ -31601,6 +31607,7 @@ export type AssignCustomerToGuestCartMutation = {
   assignCustomerToGuestCart: {
     __typename: "Cart";
     id: string;
+    email?: string | null;
     billing_address?: {
       __typename: "BillingCartAddress";
       city: string;
@@ -32969,6 +32976,7 @@ export type SetShippingAddressOnCartMutation = {
     cart: {
       __typename: "Cart";
       id: string;
+      email?: string | null;
       billing_address?: {
         __typename: "BillingCartAddress";
         city: string;
@@ -34336,6 +34344,7 @@ export type SetBillingAddressOnCartMutation = {
     cart: {
       __typename: "Cart";
       id: string;
+      email?: string | null;
       billing_address?: {
         __typename: "BillingCartAddress";
         city: string;
@@ -35703,6 +35712,7 @@ export type SetShippingMethodsOnCartMutation = {
     cart: {
       __typename: "Cart";
       id: string;
+      email?: string | null;
       billing_address?: {
         __typename: "BillingCartAddress";
         city: string;
@@ -37070,6 +37080,7 @@ export type SetPaymentMethodOnCartMutation = {
     cart: {
       __typename: "Cart";
       id: string;
+      email?: string | null;
       billing_address?: {
         __typename: "BillingCartAddress";
         city: string;
@@ -38449,6 +38460,7 @@ export type SetGuestEmailOnCartMutation = {
     cart: {
       __typename: "Cart";
       id: string;
+      email?: string | null;
       billing_address?: {
         __typename: "BillingCartAddress";
         city: string;
@@ -81000,6 +81012,7 @@ export const BaseCartFragmentDoc = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "billing_address" },
@@ -87061,6 +87074,7 @@ export const CartDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "billing_address" },
@@ -87804,6 +87818,7 @@ export const CustomerCartDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "billing_address" },
@@ -88629,6 +88644,7 @@ export const AddProductToCartDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "billing_address" },
@@ -89438,6 +89454,7 @@ export const RemoveProductFromCartDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "billing_address" },
@@ -90253,6 +90270,7 @@ export const UpdateCartItemsDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "billing_address" },
@@ -91102,6 +91120,7 @@ export const AssignCustomerToGuestCartDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "billing_address" },
@@ -91917,6 +91936,7 @@ export const SetShippingAddressOnCartDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "billing_address" },
@@ -92729,6 +92749,7 @@ export const SetBillingAddressOnCartDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "billing_address" },
@@ -93547,6 +93568,7 @@ export const SetShippingMethodsOnCartDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "billing_address" },
@@ -94359,6 +94381,7 @@ export const SetPaymentMethodOnCartDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "billing_address" },
@@ -95222,6 +95245,7 @@ export const SetGuestEmailOnCartDocument = {
         kind: "SelectionSet",
         selections: [
           { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
           {
             kind: "Field",
             name: { kind: "Name", value: "billing_address" },
