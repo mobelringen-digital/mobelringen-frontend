@@ -14,7 +14,9 @@ import {
 export async function addToCart(
   cartId: string,
   cartItems: Array<CartItemInput> | CartItemInput,
+  preferredMethod?: "online" | "collect",
 ) {
+  const cookieStore = cookies();
   const token = await getToken();
 
   const data = await authorizedMagentoClient(token, "POST").request(
@@ -24,6 +26,10 @@ export async function addToCart(
       cartItems,
     },
   );
+
+  if (preferredMethod) {
+    cookieStore.set("preferredMethod", preferredMethod);
+  }
 
   revalidateTag("cart");
 

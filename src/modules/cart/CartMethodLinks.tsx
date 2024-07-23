@@ -3,6 +3,7 @@
 import React from "react";
 
 import cx from "classnames";
+import { useCookies } from "react-cookie";
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -28,12 +29,18 @@ const CART_LINKS = [
 export const CartMethodLinks = () => {
   const searchParams = useSearchParams();
   const activeMethod = searchParams.get("method") ?? "online";
+  const [_cookies, setCookie] = useCookies();
+
+  const setPreferredMethod = (method: "online" | "collect") => {
+    setCookie("preferredMethod", method);
+  };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
       {CART_LINKS.map((link, idx) => (
         <Link
           key={idx}
+          onClick={() => setPreferredMethod(link.method)}
           href={`/cart?method=${link.method}`}
           className={cx(
             "w-full px-4 py-1.5 lg:py-3 flex items-center gap-3 rounded-xl transition-all border hover:border-black",

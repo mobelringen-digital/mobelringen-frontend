@@ -7,6 +7,7 @@ import {
   ModalFooter,
   ModalHeader,
 } from "@nextui-org/modal";
+import { useCookies } from "react-cookie";
 
 import Image from "next/image";
 
@@ -26,7 +27,11 @@ export const ProductAddedModal: React.FC<Props> = ({
   isOpen,
   onOpenChange,
 }) => {
+  const [cookies] = useCookies();
   const navigateToCart = async () => {
+    if (cookies.preferredMethod) {
+      return navigate(`/cart?method=${cookies.preferredMethod}`);
+    }
     return navigate("/cart");
   };
 

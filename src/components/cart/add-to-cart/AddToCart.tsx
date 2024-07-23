@@ -22,25 +22,33 @@ export const AddToCart: React.FC<Props> = ({
   quantity,
   cart,
 }) => {
-  const handleAddItemToCart = async () => {
+  const handleAddItemToCart = async (preferredMethod: "online" | "collect") => {
     if (cart?.id && product.sku && quantity) {
-      return addToCart(cart?.id, [
-        {
-          sku: product.sku,
-          quantity,
-        },
-      ]).then(() => navigate("?cart=true"));
+      return addToCart(
+        cart?.id,
+        [
+          {
+            sku: product.sku,
+            quantity,
+          },
+        ],
+        preferredMethod,
+      ).then(() => navigate("?cart=true"));
     }
 
     if (!cart?.id) {
       const emptyCart = await createEmptyCart();
       if (emptyCart.createEmptyCart && product.sku && quantity) {
-        await addToCart(emptyCart.createEmptyCart, [
-          {
-            sku: product.sku,
-            quantity,
-          },
-        ]).then(() => navigate("?cart=true"));
+        await addToCart(
+          emptyCart.createEmptyCart,
+          [
+            {
+              sku: product.sku,
+              quantity,
+            },
+          ],
+          preferredMethod,
+        ).then(() => navigate("?cart=true"));
       }
     }
   };

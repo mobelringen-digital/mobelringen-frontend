@@ -15,7 +15,7 @@ interface Props {
   isDisabled?: boolean;
   product: BaseProductFragment;
   quantity: number;
-  onAddToCart: () => Promise<void>;
+  onAddToCart: (preferredMethod: "online" | "collect") => Promise<void>;
 }
 
 export const AddToCartController: React.FC<Props> = ({
@@ -31,9 +31,9 @@ export const AddToCartController: React.FC<Props> = ({
     return navigate("?");
   };
 
-  const handleAddItemToCart = async () => {
+  const handleAddItemToCart = async (preferredMethod: "online" | "collect") => {
     setIsLoading(true);
-    await onAddToCart().finally(() => {
+    await onAddToCart(preferredMethod).finally(() => {
       setIsLoading(false);
     });
   };
@@ -48,13 +48,17 @@ export const AddToCartController: React.FC<Props> = ({
       />
       <div className="flex flex-col gap-4">
         <Button
-          onClick={handleAddItemToCart}
+          onClick={() => handleAddItemToCart("online")}
           disabled={isDisabled || isLoading}
           color="primary"
         >
           Legg i handlekurv
         </Button>
-        <Button disabled={isDisabled || isLoading} color="secondary">
+        <Button
+          onClick={() => handleAddItemToCart("collect")}
+          disabled={isDisabled || isLoading}
+          color="secondary"
+        >
           Klikk og hent
         </Button>
       </div>
