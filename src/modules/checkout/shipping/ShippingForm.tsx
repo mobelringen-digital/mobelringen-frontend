@@ -6,20 +6,23 @@ import { RadioGroup } from "@nextui-org/radio";
 
 import { Button } from "@/components/_ui/button/Button";
 import { FormatNumber } from "@/components/_ui/format-number/FormatNumber";
+import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { RadioBlock } from "@/components/_ui/radio/RadioBlock";
 import { AvailableShippingMethodFragment, BaseCartFragment } from "@/types";
 
 interface Props {
   cart: BaseCartFragment;
-  onSubmit: (method: AvailableShippingMethodFragment) => void;
+  onSubmit: (method: AvailableShippingMethodFragment) => Promise<void>;
 }
 
 export const ShippingForm: React.FC<Props> = ({ cart, onSubmit }) => {
+  const [isLoading, setIsLoading] = React.useState(false);
   const [selectedMethod, setSelectedMethod] = React.useState<
     AvailableShippingMethodFragment["method_code"] | null
   >(cart.shipping_addresses[0]?.selected_shipping_method?.method_code ?? null);
 
   const handleSelect = () => {
+    setIsLoading(true);
     if (!selectedMethod) {
       return;
     }
@@ -30,11 +33,12 @@ export const ShippingForm: React.FC<Props> = ({ cart, onSubmit }) => {
 
     if (!method) return;
 
-    return onSubmit(method);
+    return onSubmit(method).finally(() => setIsLoading(false));
   };
 
   return (
     <div className="flex flex-col">
+      {isLoading ? <PageTopLoader /> : null}
       <div className="grid grid-cols-12 gap-4">
         <div className="col-span-12">
           <RadioGroup

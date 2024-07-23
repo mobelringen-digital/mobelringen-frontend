@@ -8,12 +8,13 @@ import { Button } from "@/components/_ui/button/Button";
 import { KlarnaIcon } from "@/components/_ui/icons/figma/KlarnaIcon";
 import { VippsIcon } from "@/components/_ui/icons/figma/VippsIcon";
 import { VisaIcon } from "@/components/_ui/icons/figma/VisaIcon";
+import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { RadioBlock } from "@/components/_ui/radio/RadioBlock";
 import { AvailablePaymentMethodFragment, BaseCartFragment } from "@/types";
 
 interface Props {
   cart: BaseCartFragment;
-  onSubmit: (method: AvailablePaymentMethodFragment) => void;
+  onSubmit: (method: AvailablePaymentMethodFragment) => Promise<void>;
 }
 
 const ICONS: Record<string, React.ReactNode> = {
@@ -23,11 +24,13 @@ const ICONS: Record<string, React.ReactNode> = {
 } as const;
 
 export const PaymentForm: React.FC<Props> = ({ cart, onSubmit }) => {
+  const [isLoading, setIsLoading] = React.useState(false);
   const [selectedMethod, setSelectedMethod] = React.useState<
     AvailablePaymentMethodFragment["code"] | null
   >(cart.selected_payment_method?.code ?? null);
 
   const handleSelect = () => {
+    setIsLoading(true);
     if (!selectedMethod) {
       return;
     }
@@ -38,11 +41,12 @@ export const PaymentForm: React.FC<Props> = ({ cart, onSubmit }) => {
 
     if (!method) return;
 
-    return onSubmit(method);
+    return onSubmit(method).finally(() => setIsLoading(false));
   };
 
   return (
     <div className="flex flex-col">
+      {isLoading ? <PageTopLoader /> : null}
       <div className="grid grid-cols-12 gap-4">
         <div className="col-span-12">
           <RadioGroup
@@ -67,7 +71,7 @@ export const PaymentForm: React.FC<Props> = ({ cart, onSubmit }) => {
           onClick={handleSelect}
           color="tertiary"
           type="submit"
-          disabled={!selectedMethod}
+          disabled={!selectedMethod || isLoading}
         >
           Fortsett
         </Button>

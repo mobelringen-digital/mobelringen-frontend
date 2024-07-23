@@ -55,12 +55,8 @@ export async function setShippingAddressOnCart(
 }
 
 export async function setGuestEmailOnCart(cartId: string, email: string) {
-  const data = await baseMagentoClient("POST").request(SetGuestEmailOnCart, {
+  return await baseMagentoClient("POST").request(SetGuestEmailOnCart, {
     cartId: cartId,
     email: email,
   });
-
-  revalidatePath("/cart");
-
-  return data;
 }

@@ -5,6 +5,7 @@ import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { Button } from "@/components/_ui/button/Button";
+import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { AddressSelectModal } from "@/modules/checkout/contact-form/AddressSelectModal";
 import { BillingFormFields } from "@/modules/checkout/contact-form/BillingFormFields";
 import { ShippingFormFields } from "@/modules/checkout/contact-form/ShippingFormFields";
@@ -34,6 +35,7 @@ export const ContactForm: React.FC<Props> = ({
   cart,
   onCheckoutFormSubmit,
 }) => {
+  const [isLoading, setIsLoading] = React.useState(false);
   const { token } = useSession();
   const [showAddressModal, setShowAddressModal] = React.useState(false);
 
@@ -79,6 +81,7 @@ export const ContactForm: React.FC<Props> = ({
   const watchDifferentBillingAddress = watch("different_billing_address");
 
   const onSubmit: SubmitHandler<CheckoutFormData> = async (values) => {
+    setIsLoading(true);
     const shippingFields = mapFormAddressValues(values, "shipping");
     let billingFields = mapFormAddressValues(values, "billing");
 
@@ -86,7 +89,11 @@ export const ContactForm: React.FC<Props> = ({
       billingFields = mapFormAddressValues(values, "shipping");
     }
 
-    return onCheckoutFormSubmit(shippingFields, billingFields, values.email);
+    return onCheckoutFormSubmit(
+      shippingFields,
+      billingFields,
+      values.email,
+    ).finally(() => setIsLoading(false));
   };
 
   const onAddressSelect = (data: Partial<CheckoutAddressFields>) => {
@@ -111,6 +118,7 @@ export const ContactForm: React.FC<Props> = ({
 
   return (
     <div className="flex flex-col">
+      {isLoading ? <PageTopLoader /> : null}
       <div className="flex justify-between items-center">
         <span className="font-semibold mb-2">Leveringsadresse</span>
         {!!token ? (
@@ -140,7 +148,11 @@ export const ContactForm: React.FC<Props> = ({
         />
 
         <div className="col-span-12 flex justify-end mt-6">
-          <Button color="tertiary" type="submit" disabled={isSubmitting}>
+          <Button
+            color="tertiary"
+            type="submit"
+            disabled={isSubmitting || isLoading}
+          >
             Fortsett
           </Button>
         </div>
