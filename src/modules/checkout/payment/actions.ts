@@ -7,10 +7,12 @@ import {
   SetPaymentMethodOnCart,
   VippsInitPayment,
 } from "@/queries/cart.queries";
-import { PaymentMethodInput, PlaceOrderDocument } from "@/types";
+import {
+  PaymentMethodInput,
+  PlaceOrderDocument,
+  VippsInitPaymentInput,
+} from "@/types";
 import { authorizedMagentoClient } from "@/utils/lib/graphql";
-
-import { vippsInitPaymentInput } from "../../../../.mesh";
 
 export async function setPaymentMethodOnCart(
   cartId: string,
@@ -48,7 +50,7 @@ export async function placeOrder(cartId: string) {
   return data;
 }
 
-export async function vippsInitPayment(input: vippsInitPaymentInput) {
+export async function vippsInitPayment(input: VippsInitPaymentInput) {
   const token = await getToken();
 
   const data = await authorizedMagentoClient(token, "POST").request(
