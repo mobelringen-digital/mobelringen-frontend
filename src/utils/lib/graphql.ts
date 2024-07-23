@@ -55,7 +55,7 @@ const responseMiddleware: ResponseMiddleware = async (response) => {
 export const authorizedMagentoClient = (
   token?: string,
   method?: "GET" | "POST",
-  nextOptions?: { revalidate?: number; tags?: string[]; cache?: string },
+  nextOptions?: { revalidate?: number; tags?: string[]; cache?: RequestCache },
 ) =>
   new GraphQLClient(process.env.NEXT_PUBLIC_MAGENTO_URL as string, {
     method,
@@ -66,10 +66,10 @@ export const authorizedMagentoClient = (
         fetch(input, {
           method,
           next: {
-            cache: method === "POST" ? "no-store" : undefined,
             revalidate: method === "POST" ? 0 : 3600,
             ...nextOptions,
           },
+          cache: method === "POST" ? "no-store" : nextOptions?.cache,
           ...init,
           headers: {
             ...(token ? { Authorization: `Bearer ${token ?? ""}` } : undefined),
