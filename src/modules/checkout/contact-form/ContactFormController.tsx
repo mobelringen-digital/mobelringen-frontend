@@ -14,6 +14,7 @@ import {
 } from "@/modules/checkout/contact-form/actions";
 import { ContactForm } from "@/modules/checkout/contact-form/ContactForm";
 import { BillingAddressInput, InputMaybe, ShippingAddressInput } from "@/types";
+import { useSession } from "@/utils/hooks/useSession";
 
 interface Props {
   onSuccessfulSubmit: () => void;
@@ -24,6 +25,7 @@ export const ContactFormController: React.FC<Props> = ({
 }) => {
   const queryClient = useQueryClient();
   const { data: cart, isLoading } = useCartQuery();
+  const { token } = useSession();
 
   const onSubmit = async (
     shippingAddress: InputMaybe<ShippingAddressInput>,
@@ -32,7 +34,7 @@ export const ContactFormController: React.FC<Props> = ({
   ) => {
     if (!cart?.id) return;
 
-    if (email) {
+    if (!token && email) {
       await setGuestEmailOnCart(cart.id, email);
     }
     await Promise.all([
