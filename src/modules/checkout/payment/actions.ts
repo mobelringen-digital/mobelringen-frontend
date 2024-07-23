@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 import { getToken } from "@/modules/auth/actions";
 import {
@@ -27,6 +27,7 @@ export async function setPaymentMethodOnCart(
   );
 
   revalidatePath("/cart");
+  revalidateTag("cart");
 
   return data;
 }
@@ -42,6 +43,7 @@ export async function placeOrder(cartId: string) {
   );
 
   revalidatePath("/cart");
+  revalidateTag("cart");
 
   return data;
 }
