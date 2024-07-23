@@ -13,7 +13,7 @@ export const QuantityButton: React.FC<Props> = ({
   return (
     <button
       disabled={disabled}
-      className="bg-sand w-[36px] h-[36px] flex items-center justify-center"
+      className="bg-sand w-[36px] h-[36px] flex items-center justify-center z-20"
       {...rest}
     >
       {children}
