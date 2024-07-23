@@ -2,13 +2,14 @@
 
 import React from "react";
 
-import { signIn } from "next-auth/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { Button } from "@/components/_ui/button/Button";
 import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
 import { Input } from "@/components/_ui/input/Input";
+import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
+import { login } from "@/modules/auth/actions";
 
 import { navigate } from "../../app/actions";
 
@@ -28,24 +29,20 @@ export const LoginPage: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     setIsLoading(true);
-    const res = await signIn("credentials", {
-      email: data.email,
-      password: data.password,
-      redirect: false,
-    });
+    const res = await login(data).finally(() => setIsLoading(false));
 
-    if (res?.error) {
-      setError(JSON.parse(res.error));
-      setIsLoading(false);
+    if (!res.success) {
+      setError(res.errors);
     }
 
-    if (res?.ok) {
+    if (res.success) {
       return navigate("/account").then(() => setIsLoading(false));
     }
   };
 
   return (
     <>
+      {isLoading ? <PageTopLoader /> : null}
       <ContainerLayout className="my-16 flex justify-center">
         <form
           onSubmit={handleSubmit(onSubmit)}

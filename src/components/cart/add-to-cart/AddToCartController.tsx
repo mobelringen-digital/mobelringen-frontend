@@ -5,6 +5,7 @@ import React from "react";
 import { useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/_ui/button/Button";
+import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { ProductAddedModal } from "@/components/cart/add-to-cart/ProductAddedModal";
 import { BaseProductFragment } from "@/types";
 
@@ -39,6 +40,7 @@ export const AddToCartController: React.FC<Props> = ({
 
   return (
     <>
+      {isLoading ? <PageTopLoader /> : null}
       <ProductAddedModal
         product={product}
         isOpen={isOpen}

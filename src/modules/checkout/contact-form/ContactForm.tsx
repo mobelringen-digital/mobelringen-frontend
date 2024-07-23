@@ -2,7 +2,6 @@
 
 import React from "react";
 
-import { useSession } from "next-auth/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { Button } from "@/components/_ui/button/Button";
@@ -20,6 +19,7 @@ import {
   InputMaybe,
   ShippingAddressInput,
 } from "@/types";
+import { useSession } from "@/utils/hooks/useSession";
 
 interface Props {
   cart: BaseCartFragment;
@@ -34,7 +34,7 @@ export const ContactForm: React.FC<Props> = ({
   cart,
   onCheckoutFormSubmit,
 }) => {
-  const { data: session } = useSession();
+  const { token } = useSession();
   const [showAddressModal, setShowAddressModal] = React.useState(false);
 
   const isDifferentBillingAddress = React.useMemo(() => {
@@ -113,7 +113,7 @@ export const ContactForm: React.FC<Props> = ({
     <div className="flex flex-col">
       <div className="flex justify-between items-center">
         <span className="font-semibold mb-2">Leveringsadresse</span>
-        {session?.token ? (
+        {!!token ? (
           <button
             className="text-sm"
             onClick={() => setShowAddressModal((prev) => !prev)}

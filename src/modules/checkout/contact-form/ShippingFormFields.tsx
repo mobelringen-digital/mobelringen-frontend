@@ -2,25 +2,24 @@
 
 import React from "react";
 
-import { useSession } from "next-auth/react";
-
 import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
 import { Input } from "@/components/_ui/input/Input";
+import { useSession } from "@/utils/hooks/useSession";
 
 interface Props {
   control: any;
 }
 
 export const ShippingFormFields: React.FC<Props> = ({ control }) => {
-  const { data } = useSession();
+  const { token } = useSession();
 
   return (
     <>
-      {!data?.token ? (
+      {!token ? (
         <div className="col-span-12">
           <FieldWrapper
             rules={{
-              required: !data?.token ? "Dette er et påkrevd felt" : false,
+              required: !token ? "Dette er et påkrevd felt" : false,
             }}
             control={control}
             label="E-post *"

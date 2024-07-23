@@ -3,7 +3,7 @@
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
-import { auth } from "@/auth/auth";
+import { getToken } from "@/modules/auth/actions";
 import { CreateEmptyCartDocument } from "@/queries/cart.queries";
 import { AddProductToCartDocument, CartItemInput } from "@/types";
 import {
@@ -15,15 +15,15 @@ export async function addToCart(
   cartId: string,
   cartItems: Array<CartItemInput> | CartItemInput,
 ) {
-  const session = await auth();
+  const token = await getToken();
 
-  const data = await authorizedMagentoClient(
-    String(session?.token),
-    "POST",
-  ).request(AddProductToCartDocument, {
-    cartId,
-    cartItems,
-  });
+  const data = await authorizedMagentoClient(token, "POST").request(
+    AddProductToCartDocument,
+    {
+      cartId,
+      cartItems,
+    },
+  );
 
   revalidateTag("cart");
 

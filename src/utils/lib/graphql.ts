@@ -2,6 +2,8 @@ import { cache } from "react";
 
 import { GraphQLClient, ResponseMiddleware } from "graphql-request";
 
+import { navigate } from "../../app/actions";
+
 export const baseHygraphClient = (method?: "POST" | "GET") =>
   new GraphQLClient(process.env.NEXT_PUBLIC_HYGRAPH_URL as string, {
     method,
@@ -47,8 +49,7 @@ const responseMiddleware: ResponseMiddleware = async (response) => {
     );
 
     if (isGraphQlAuthorizationError) {
-      // redirect to login page
-      // router.push("/login");
+      await navigate("/auth/login");
     }
   }
 };

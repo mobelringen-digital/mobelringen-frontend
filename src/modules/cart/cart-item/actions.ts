@@ -2,27 +2,27 @@
 
 import { revalidateTag } from "next/cache";
 
-import { auth } from "@/auth/auth";
 import getCart from "@/components/cart/actions";
+import { getToken } from "@/modules/auth/actions";
 import { RemoveProductFromCart, UpdateCartItems } from "@/queries/cart.queries";
 import { CartItemUpdateInput } from "@/types";
 import { authorizedMagentoClient } from "@/utils/lib/graphql";
 
 export async function updateCartItems(cartItems: Array<CartItemUpdateInput>) {
   const cart = await getCart();
-  const session = await auth();
+  const token = await getToken();
 
   if (!cart) {
     return;
   }
 
-  const data = await authorizedMagentoClient(
-    String(session?.token),
-    "POST",
-  ).request(UpdateCartItems, {
-    cartId: cart.id,
-    cartItems,
-  });
+  const data = await authorizedMagentoClient(token, "POST").request(
+    UpdateCartItems,
+    {
+      cartId: cart.id,
+      cartItems,
+    },
+  );
 
   revalidateTag("cart");
 
@@ -31,19 +31,19 @@ export async function updateCartItems(cartItems: Array<CartItemUpdateInput>) {
 
 export async function removeProductFromCart(cartItemId: number) {
   const cart = await getCart();
-  const session = await auth();
+  const token = await getToken();
 
   if (!cart) {
     return;
   }
 
-  const data = await authorizedMagentoClient(
-    String(session?.token),
-    "POST",
-  ).request(RemoveProductFromCart, {
-    cartId: cart.id,
-    cartItemId,
-  });
+  const data = await authorizedMagentoClient(token, "POST").request(
+    RemoveProductFromCart,
+    {
+      cartId: cart.id,
+      cartItemId,
+    },
+  );
 
   revalidateTag("cart");
 

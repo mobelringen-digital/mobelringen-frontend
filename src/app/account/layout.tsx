@@ -2,16 +2,16 @@ import React from "react";
 
 import { redirect } from "next/navigation";
 
-import { auth } from "@/auth/auth";
+import { getToken } from "@/modules/auth/actions";
 
 export default async function AccountLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await auth();
+  const token = await getToken();
 
-  if (!session) {
+  if (!token) {
     return redirect("/auth/login");
   }
 

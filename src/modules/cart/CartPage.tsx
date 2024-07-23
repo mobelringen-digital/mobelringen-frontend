@@ -18,7 +18,6 @@ interface Props {
 
 export const CartPage: React.FC<Props> = ({ data }) => {
   const isEmptyCart = !data || (data?.items && data.items.length === 0);
-  const isCheckoutEnabled = true;
 
   return (
     <ContainerLayout>
@@ -45,10 +44,7 @@ export const CartPage: React.FC<Props> = ({ data }) => {
               ))}
             </div>
           </div>
-          <CartPrice
-            checkoutDisabled={!isCheckoutEnabled}
-            prices={data?.prices}
-          />
+          <CartPrice cart={data} prices={data?.prices} />
         </div>
       )}
 

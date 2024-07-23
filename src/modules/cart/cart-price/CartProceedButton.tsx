@@ -3,21 +3,25 @@
 import React from "react";
 
 import { Button } from "@/components/_ui/button/Button";
+import { useCart } from "@/modules/cart/hooks/useCart";
+import { BaseCartFragment } from "@/types";
 
 import { navigate } from "../../../app/actions";
 
 interface Props {
   disabled?: boolean;
+  cart?: BaseCartFragment | null;
 }
 
-export const CartProceedButton: React.FC<Props> = ({ disabled }) => {
+export const CartProceedButton: React.FC<Props> = ({ disabled, cart }) => {
+  const { isCheckoutEnabled } = useCart(cart);
   const navigateToCheckout = async () => {
     return navigate("/cart/checkout");
   };
 
   return (
     <Button
-      disabled={disabled}
+      disabled={disabled || !isCheckoutEnabled}
       onClick={navigateToCheckout}
       color="tertiary"
       className="w-full mt-4"

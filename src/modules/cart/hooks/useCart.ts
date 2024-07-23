@@ -2,17 +2,17 @@
 
 import React from "react";
 
-import { useSession } from "next-auth/react";
 import { useCookies } from "react-cookie";
 
 import { useSearchParams } from "next/navigation";
 
 import { CartCookie } from "@/components/cart/fetchCartService";
 import { BaseCartFragment, ProductStockStatus } from "@/types";
+import { useSession } from "@/utils/hooks/useSession";
 
 export const useCart = (cart?: BaseCartFragment | null) => {
   const [cookies] = useCookies<"cart", CartCookie>(["cart"]);
-  const { data: user } = useSession();
+  const { token } = useSession();
   const searchParams = useSearchParams();
   const isClickAndCollect = searchParams.get("method") === "collect";
 
@@ -54,12 +54,12 @@ export const useCart = (cart?: BaseCartFragment | null) => {
   }, [cart, isClickAndCollect]);
 
   const cartId = React.useMemo(() => {
-    if (!!user?.token && cart?.id) {
+    if (!!token && cart?.id) {
       return cart.id;
     }
 
     return cookies.cart ?? "";
-  }, [cart?.id, cookies.cart, user?.token]);
+  }, [cart?.id, cookies.cart, token]);
 
   const isShippingAddressSet = React.useMemo(() => {
     return !!cart?.shipping_addresses?.length;
@@ -76,7 +76,6 @@ export const useCart = (cart?: BaseCartFragment | null) => {
   return {
     isCheckoutEnabled,
     cartId,
-    user,
     pricingLines,
     isShippingAddressSet,
     isShippingMethodSet,

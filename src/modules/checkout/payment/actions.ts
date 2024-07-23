@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 
-import { auth } from "@/auth/auth";
+import { getToken } from "@/modules/auth/actions";
 import {
   SetPaymentMethodOnCart,
   VippsInitPayment,
@@ -16,15 +16,15 @@ export async function setPaymentMethodOnCart(
   cartId: string,
   paymentMethod: PaymentMethodInput,
 ) {
-  const session = await auth();
+  const token = await getToken();
 
-  const data = await authorizedMagentoClient(
-    String(session?.token),
-    "POST",
-  ).request(SetPaymentMethodOnCart, {
-    cartId: cartId,
-    payment_method: paymentMethod,
-  });
+  const data = await authorizedMagentoClient(token, "POST").request(
+    SetPaymentMethodOnCart,
+    {
+      cartId: cartId,
+      payment_method: paymentMethod,
+    },
+  );
 
   revalidatePath("/cart");
 
@@ -32,14 +32,14 @@ export async function setPaymentMethodOnCart(
 }
 
 export async function placeOrder(cartId: string) {
-  const session = await auth();
+  const token = await getToken();
 
-  const data = await authorizedMagentoClient(
-    String(session?.token),
-    "POST",
-  ).request(PlaceOrderDocument, {
-    cartId: cartId,
-  });
+  const data = await authorizedMagentoClient(token, "POST").request(
+    PlaceOrderDocument,
+    {
+      cartId: cartId,
+    },
+  );
 
   revalidatePath("/cart");
 
@@ -47,12 +47,12 @@ export async function placeOrder(cartId: string) {
 }
 
 export async function vippsInitPayment(input: vippsInitPaymentInput) {
-  const session = await auth();
+  const token = await getToken();
 
-  const data = await authorizedMagentoClient(
-    String(session?.token),
-    "POST",
-  ).request(VippsInitPayment, { input });
+  const data = await authorizedMagentoClient(token, "POST").request(
+    VippsInitPayment,
+    { input },
+  );
 
   revalidatePath("/cart");
 

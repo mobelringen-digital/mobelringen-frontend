@@ -1,5 +1,12 @@
-import { ErrorResponse } from "@/auth/auth";
 import { openToast } from "@/components/_ui/toast-provider";
+
+export type ErrorResponse = {
+  response: {
+    errors: {
+      message: string;
+    }[];
+  };
+};
 
 export const useRequestCallback = () => {
   const handleError = (error: Error) => {

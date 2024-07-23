@@ -2,7 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 
-import { auth } from "@/auth/auth";
+import { getToken } from "@/modules/auth/actions";
 import {
   SetBillingAddressOnCart,
   SetGuestEmailOnCart,
@@ -22,14 +22,14 @@ export async function setBillingAddressOnCart(
   cartId: string,
   address: SetBillingAddressOnCartInput["billing_address"],
 ) {
-  const session = await auth();
-  const data = await authorizedMagentoClient(
-    String(session?.token),
-    "POST",
-  ).request(SetBillingAddressOnCart, {
-    cartId: cartId,
-    billing_address: address,
-  });
+  const token = await getToken();
+  const data = await authorizedMagentoClient(token, "POST").request(
+    SetBillingAddressOnCart,
+    {
+      cartId: cartId,
+      billing_address: address,
+    },
+  );
 
   revalidatePath("/cart");
 
@@ -40,14 +40,14 @@ export async function setShippingAddressOnCart(
   cartId: string,
   address: InputMaybe<ShippingAddressInput>,
 ) {
-  const session = await auth();
-  const data = await authorizedMagentoClient(
-    String(session?.token),
-    "POST",
-  ).request(SetShippingAddressOnCart, {
-    cartId: cartId,
-    shipping_addresses: [address],
-  });
+  const token = await getToken();
+  const data = await authorizedMagentoClient(token, "POST").request(
+    SetShippingAddressOnCart,
+    {
+      cartId: cartId,
+      shipping_addresses: [address],
+    },
+  );
 
   revalidatePath("/cart");
 
