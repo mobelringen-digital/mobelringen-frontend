@@ -57,5 +57,11 @@ export const ContactFormController: React.FC<Props> = ({
       </LoaderInnerWrapper>
     );
 
-  return <ContactForm cart={cart} onCheckoutFormSubmit={onSubmit} />;
+  return (
+    <ContactForm
+      cart={cart}
+      onCheckoutFormSubmit={onSubmit}
+      isAuthorized={!!token}
+    />
+  );
 };
