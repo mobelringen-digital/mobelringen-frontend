@@ -40,6 +40,10 @@ export async function login({ email, password }: LoginInput) {
 export async function logout() {
   const cookiesStore = cookies();
 
+  if (!cookiesStore.get("token")) {
+    return false;
+  }
+
   cookiesStore.set("token", "", {
     expires: new Date(0),
   });

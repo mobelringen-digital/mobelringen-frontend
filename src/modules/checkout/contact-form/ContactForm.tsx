@@ -20,7 +20,8 @@ import {
   InputMaybe,
   ShippingAddressInput,
 } from "@/types";
-import { useSession } from "@/utils/hooks/useSession";
+
+import { navigate } from "../../../app/actions";
 
 interface Props {
   cart: BaseCartFragment;
@@ -29,14 +30,15 @@ interface Props {
     billingAddress: BillingAddressInput,
     email?: string | null,
   ) => Promise<void>;
+  isAuthorized?: boolean;
 }
 
 export const ContactForm: React.FC<Props> = ({
   cart,
   onCheckoutFormSubmit,
+  isAuthorized,
 }) => {
   const [isLoading, setIsLoading] = React.useState(false);
-  const { token } = useSession();
   const [showAddressModal, setShowAddressModal] = React.useState(false);
 
   const isDifferentBillingAddress = React.useMemo(() => {
@@ -116,25 +118,39 @@ export const ContactForm: React.FC<Props> = ({
     }
   };
 
+  const navigateToLogin = async () => {
+    setIsLoading(true);
+    return navigate("/auth/login").finally(() => setIsLoading(false));
+  };
+
   return (
     <div className="flex flex-col">
       {isLoading ? <PageTopLoader /> : null}
-      <div className="flex justify-between items-center">
-        <span className="font-semibold mb-2">Leveringsadresse</span>
-        {!!token ? (
-          <button
-            className="text-sm"
-            onClick={() => setShowAddressModal((prev) => !prev)}
-          >
-            Legg til adresse
-          </button>
-        ) : null}
-      </div>
-
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="grid grid-cols-12 gap-4"
       >
+        {!isAuthorized ? (
+          <div className="col-span-12 flex items-center gap-4 mb-4">
+            <span>Allerede kunde?</span>
+            <Button color="secondary" onClick={navigateToLogin}>
+              Logg inn
+            </Button>
+          </div>
+        ) : null}
+
+        <div className="col-span-12 flex justify-between items-center">
+          <span className="font-semibold mb-2">Leveringsadresse</span>
+          {isAuthorized ? (
+            <button
+              className="text-sm"
+              onClick={() => setShowAddressModal((prev) => !prev)}
+            >
+              Legg til adresse
+            </button>
+          ) : null}
+        </div>
+
         <AddressSelectModal
           isOpen={showAddressModal}
           onOpenChange={() => setShowAddressModal((prev) => !prev)}

@@ -9,7 +9,7 @@ export default async function Cart() {
   const token = await getToken();
 
   if (token && !cart) {
-    return navigate("/auth/login");
+    return navigate("/auth/login?callback=TOKEN_EXPIRED");
   }
 
   return <CartPage data={cart} />;

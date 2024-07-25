@@ -5,6 +5,7 @@ import cx from "classnames";
 interface Props {
   position: number;
   title: string;
+  description?: string;
   isActive: boolean;
   content: React.ReactNode;
   onClick?: () => void;
@@ -35,16 +36,18 @@ export const CheckoutBlock: React.FC<Props> = ({
         >
           {position}
         </span>
-        <h4
-          className={cx("text-xl", {
-            "text-dark-grey": !isActive,
-            "font-semibold": isActive,
-          })}
-        >
-          {title}
-        </h4>
+        <span className="flex flex-col">
+          <h4
+            className={cx("text-sm lg:text-xl", {
+              "text-dark-grey": !isActive,
+              "font-semibold": isActive,
+            })}
+          >
+            {title}
+          </h4>
+        </span>
       </button>
-      {isActive ? <div className="mt-8">{content}</div> : null}
+      {isActive ? <div className="mt-2 lg:mt-4">{content}</div> : null}
     </div>
   );
 };
