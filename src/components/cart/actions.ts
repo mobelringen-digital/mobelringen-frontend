@@ -14,7 +14,7 @@ export default async function getCart() {
   if (!!token) {
     const customerQuery = await authorizedMagentoClient(token, "GET", {
       tags: ["cart"],
-      revalidate: 0,
+      revalidate: undefined,
       cache: "no-store",
     }).request(CustomerCartDocument);
 
@@ -24,7 +24,7 @@ export default async function getCart() {
   if (cartCookie?.value) {
     const guestCart = await authorizedMagentoClient(undefined, "GET", {
       tags: ["cart"],
-      revalidate: 0,
+      revalidate: undefined,
       cache: "no-store",
     }).request(CartDocument, {
       cart_id: String(cartCookie.value),

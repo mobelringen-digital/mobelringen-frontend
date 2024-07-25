@@ -69,7 +69,7 @@ export const authorizedMagentoClient = (
             revalidate: method === "POST" ? 0 : 3600,
             ...nextOptions,
           },
-          cache: method === "POST" ? "no-store" : nextOptions?.cache,
+          cache: nextOptions?.cache,
           ...init,
           headers: {
             ...(token ? { Authorization: `Bearer ${token ?? ""}` } : undefined),

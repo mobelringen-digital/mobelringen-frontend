@@ -11,9 +11,14 @@ async function getCustomerDetails() {
 
   if (!token) return navigate("/auth/login");
 
-  return await authorizedMagentoClient(token).request<CustomerQuery>(
-    CustomerDocument,
-  );
+  const data =
+    await authorizedMagentoClient(token).request<CustomerQuery>(
+      CustomerDocument,
+    );
+
+  if (!data.customer) return navigate("/auth/login");
+
+  return data;
 }
 
 export default async function AccountPage() {
