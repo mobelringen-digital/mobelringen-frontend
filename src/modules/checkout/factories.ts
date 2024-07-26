@@ -1,4 +1,8 @@
-import { AvailableShippingMethodFragment } from "@/types";
+import {
+  AvailableShippingMethodFragment,
+  BaseCartFragment,
+  CustomerQuery,
+} from "@/types";
 
 export type CheckoutAddressFields = {
   city: string;
@@ -40,6 +44,59 @@ export const mapFormAddressValues = (
       postcode: values[type].postcode,
       telephone: values[type].telephone,
       country_code: "NO",
+    },
+  };
+};
+
+export const setDefaultFormValues = (
+  customer?: CustomerQuery,
+  cart?: BaseCartFragment,
+) => {
+  const defaultShippingAddress = customer?.customer?.addresses?.find(
+    (a) => a?.default_shipping,
+  );
+  const defaultBillingAddress = customer?.customer?.addresses?.find(
+    (a) => a?.default_billing,
+  );
+  const cartShippingAddress = cart?.shipping_addresses[0];
+  const cartBillingAddress = cart?.billing_address;
+
+  return {
+    shipping: {
+      city: cartShippingAddress?.city ?? defaultShippingAddress?.city ?? "",
+      firstname:
+        cartShippingAddress?.firstname ??
+        defaultShippingAddress?.firstname ??
+        "",
+      lastname:
+        cartShippingAddress?.lastname ?? defaultShippingAddress?.lastname ?? "",
+      postcode:
+        cartShippingAddress?.postcode ?? defaultShippingAddress?.postcode ?? "",
+      street:
+        cartShippingAddress?.street.toString() ??
+        defaultShippingAddress?.street?.toString() ??
+        "",
+      telephone:
+        cartShippingAddress?.telephone ??
+        defaultShippingAddress?.telephone ??
+        "",
+      save_in_address_book: false,
+    },
+    billing: {
+      city: cartBillingAddress?.city ?? defaultBillingAddress?.city ?? "",
+      firstname:
+        cartBillingAddress?.firstname ?? defaultBillingAddress?.firstname ?? "",
+      lastname:
+        cartBillingAddress?.lastname ?? defaultBillingAddress?.lastname ?? "",
+      postcode:
+        cartBillingAddress?.postcode ?? defaultBillingAddress?.postcode ?? "",
+      street:
+        cartBillingAddress?.street.toString() ??
+        defaultBillingAddress?.street?.toString() ??
+        "",
+      telephone:
+        cartBillingAddress?.telephone ?? defaultBillingAddress?.telephone ?? "",
+      save_in_address_book: false,
     },
   };
 };

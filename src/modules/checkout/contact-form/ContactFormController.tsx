@@ -13,15 +13,22 @@ import {
   setShippingAddressOnCart,
 } from "@/modules/checkout/contact-form/actions";
 import { ContactForm } from "@/modules/checkout/contact-form/ContactForm";
-import { BillingAddressInput, InputMaybe, ShippingAddressInput } from "@/types";
+import {
+  BillingAddressInput,
+  CustomerQuery,
+  InputMaybe,
+  ShippingAddressInput,
+} from "@/types";
 import { useSession } from "@/utils/hooks/useSession";
 
 interface Props {
   onSuccessfulSubmit: () => void;
+  customer?: CustomerQuery;
 }
 
 export const ContactFormController: React.FC<Props> = ({
   onSuccessfulSubmit,
+  customer,
 }) => {
   const queryClient = useQueryClient();
   const { data: cart, isLoading } = useCartQuery();
@@ -59,6 +66,7 @@ export const ContactFormController: React.FC<Props> = ({
 
   return (
     <ContactForm
+      customer={customer}
       cart={cart}
       onCheckoutFormSubmit={onSubmit}
       isAuthorized={!!token}

@@ -6,17 +6,20 @@ import { CheckoutBlock } from "@/modules/checkout/CheckoutBlock";
 import { ContactFormController } from "@/modules/checkout/contact-form/ContactFormController";
 import { PaymentFormController } from "@/modules/checkout/payment/PaymentFormController";
 import { ShippingFormController } from "@/modules/checkout/shipping/ShippingFormController";
+import { CustomerQuery } from "@/types";
 
 type Blocks = "contact" | "shipping" | "payment";
 
 interface Props {
   isShippingAddressSet: boolean;
   isShippingMethodSet: boolean;
+  customer?: CustomerQuery;
 }
 
 export const CheckoutSteps: React.FC<Props> = ({
   isShippingAddressSet,
   isShippingMethodSet,
+  customer,
 }) => {
   const [activeBlock, setActiveBlock] = React.useState<Blocks>("contact");
 
@@ -29,6 +32,7 @@ export const CheckoutSteps: React.FC<Props> = ({
         isActive={activeBlock === "contact"}
         content={
           <ContactFormController
+            customer={customer}
             onSuccessfulSubmit={() => setActiveBlock("shipping")}
           />
         }

@@ -13,10 +13,12 @@ import {
   CheckoutAddressFields,
   CheckoutFormData,
   mapFormAddressValues,
+  setDefaultFormValues,
 } from "@/modules/checkout/factories";
 import {
   BaseCartFragment,
   BillingAddressInput,
+  CustomerQuery,
   InputMaybe,
   ShippingAddressInput,
 } from "@/types";
@@ -31,12 +33,14 @@ interface Props {
     email?: string | null,
   ) => Promise<void>;
   isAuthorized?: boolean;
+  customer?: CustomerQuery;
 }
 
 export const ContactForm: React.FC<Props> = ({
   cart,
   onCheckoutFormSubmit,
   isAuthorized,
+  customer,
 }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [showAddressModal, setShowAddressModal] = React.useState(false);
@@ -47,6 +51,8 @@ export const ContactForm: React.FC<Props> = ({
       cart?.shipping_addresses[0]?.postcode !== cart?.billing_address?.postcode
     );
   }, [cart]);
+
+  const formValues = setDefaultFormValues(customer, cart);
 
   const {
     control,
@@ -59,24 +65,7 @@ export const ContactForm: React.FC<Props> = ({
       email: cart.email,
       customer_address_id: null,
       different_billing_address: isDifferentBillingAddress,
-      shipping: {
-        city: cart?.shipping_addresses[0]?.city,
-        firstname: cart?.shipping_addresses[0]?.firstname,
-        lastname: cart?.shipping_addresses[0]?.lastname,
-        postcode: cart?.shipping_addresses[0]?.postcode ?? "",
-        street: cart?.shipping_addresses[0]?.street.toString() ?? "",
-        telephone: cart?.shipping_addresses[0]?.telephone ?? "",
-        save_in_address_book: false,
-      },
-      billing: {
-        city: cart?.billing_address?.city,
-        firstname: cart?.billing_address?.firstname,
-        lastname: cart?.billing_address?.lastname,
-        postcode: cart?.billing_address?.postcode ?? "",
-        street: cart?.billing_address?.street.toString() ?? "",
-        telephone: cart?.billing_address?.telephone ?? "",
-        save_in_address_book: false,
-      },
+      ...formValues,
     },
   });
 
