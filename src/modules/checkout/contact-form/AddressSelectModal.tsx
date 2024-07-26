@@ -6,12 +6,11 @@ import { RadioGroup } from "@nextui-org/radio";
 import { Loader } from "@/components/_ui/loader/Loader";
 import { RadioBlock } from "@/components/_ui/radio/RadioBlock";
 import { useCustomerQuery } from "@/modules/account/hooks/useCustomerQuery";
-import { CheckoutAddressFields } from "@/modules/checkout/factories";
 
 interface Props {
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
-  onSelect: (data: Partial<CheckoutAddressFields>) => void;
+  onSelect: (customerAddressId: number) => void;
 }
 
 export const AddressSelectModal: React.FC<Props> = ({
@@ -37,36 +36,33 @@ export const AddressSelectModal: React.FC<Props> = ({
             </ModalHeader>
             <ModalBody className="py-6 px-2 lg:px-5">
               {isLoading ? <Loader /> : null}
-              {customer?.addresses && customer.addresses.length > 0 ? (
-                <RadioGroup color="primary">
-                  {customer?.addresses?.map((address) => (
-                    <RadioBlock
-                      onClick={() => {
-                        onSelect({
-                          firstname: customer?.firstname ?? "",
-                          lastname: customer?.lastname ?? "",
-                          city: address?.city ?? "",
-                          street: address?.street?.toString() ?? "",
-                          postcode: address?.postcode ?? "",
-                          telephone: address?.telephone ?? "",
-                          company: address?.company ?? "",
-                        });
-                        onClose();
-                      }}
-                      key={address?.id}
-                      value={String(address?.id)}
-                    >
-                      <b>
-                        {customer?.firstname} {customer?.lastname}
-                      </b>
-                      <br />
-                      {address?.city}, {address?.street} {address?.postcode}
-                    </RadioBlock>
-                  ))}
-                </RadioGroup>
-              ) : (
-                <span>Ingen lagrede adresser funnet</span>
-              )}
+              <div className="max-h-64 overflow-auto">
+                {customer?.addresses && customer.addresses.length > 0 ? (
+                  <RadioGroup color="primary">
+                    {customer?.addresses?.map((address) => (
+                      <RadioBlock
+                        onClick={() => {
+                          if (address?.id) {
+                            onSelect(address.id);
+                          }
+
+                          onClose();
+                        }}
+                        key={address?.id}
+                        value={String(address?.id)}
+                      >
+                        <b>
+                          {address?.firstname} {address?.lastname}
+                        </b>
+                        <br />
+                        {address?.city}, {address?.street} {address?.postcode}
+                      </RadioBlock>
+                    ))}
+                  </RadioGroup>
+                ) : (
+                  <span>Ingen lagrede adresser funnet</span>
+                )}
+              </div>
             </ModalBody>
           </>
         )}

@@ -22,7 +22,7 @@ export type CheckoutAddressFields = {
 export type CheckoutFormData = {
   email?: string | null;
   different_billing_address: boolean;
-  customer_address_id: string | null;
+  customer_address_id: number | null;
   shipping: CheckoutAddressFields;
   billing: CheckoutAddressFields;
 };
@@ -35,6 +35,14 @@ export const mapFormAddressValues = (
   values: CheckoutFormData,
   type: "billing" | "shipping",
 ) => {
+  if (values.customer_address_id) {
+    return {
+      customer_address_id: values.customer_address_id
+        ? values.customer_address_id
+        : null,
+    };
+  }
+
   return {
     address: {
       firstname: values[type].firstname,
@@ -62,6 +70,9 @@ export const setDefaultFormValues = (
   const cartBillingAddress = cart?.billing_address;
 
   return {
+    customer_address_id: !cartShippingAddress
+      ? defaultShippingAddress?.id ?? null
+      : null,
     shipping: {
       city: cartShippingAddress?.city ?? defaultShippingAddress?.city ?? "",
       firstname:

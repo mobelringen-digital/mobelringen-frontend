@@ -10,7 +10,6 @@ import { AddressSelectModal } from "@/modules/checkout/contact-form/AddressSelec
 import { BillingFormFields } from "@/modules/checkout/contact-form/BillingFormFields";
 import { ShippingFormFields } from "@/modules/checkout/contact-form/ShippingFormFields";
 import {
-  CheckoutAddressFields,
   CheckoutFormData,
   mapFormAddressValues,
   setDefaultFormValues,
@@ -63,7 +62,6 @@ export const ContactForm: React.FC<Props> = ({
   } = useForm<CheckoutFormData>({
     defaultValues: {
       email: cart.email,
-      customer_address_id: null,
       different_billing_address: isDifferentBillingAddress,
       ...formValues,
     },
@@ -73,11 +71,20 @@ export const ContactForm: React.FC<Props> = ({
 
   const onSubmit: SubmitHandler<CheckoutFormData> = async (values) => {
     setIsLoading(true);
+    const customerAddress = customer?.customer?.addresses?.find(
+      (a) => a?.id === values.customer_address_id,
+    );
+
     const shippingFields = mapFormAddressValues(values, "shipping");
     let billingFields = mapFormAddressValues(values, "billing");
 
     if (!watchDifferentBillingAddress) {
       billingFields = mapFormAddressValues(values, "shipping");
+    }
+
+    //if postcode is different treat it as a new address
+    if (customerAddress?.postcode !== values.shipping.postcode) {
+      delete shippingFields.customer_address_id;
     }
 
     return onCheckoutFormSubmit(
@@ -87,23 +94,32 @@ export const ContactForm: React.FC<Props> = ({
     ).finally(() => setIsLoading(false));
   };
 
-  const onAddressSelect = (data: Partial<CheckoutAddressFields>) => {
-    setValue("shipping.firstname", data.firstname ?? "");
-    setValue("shipping.lastname", data.lastname ?? "");
-    setValue("shipping.city", data.city ?? "");
-    setValue("shipping.street", data.street ?? "");
-    setValue("shipping.postcode", data.postcode ?? "");
-    setValue("shipping.telephone", data.telephone ?? "");
-    setValue("shipping.company", data.company ?? "");
+  const onAddressSelect = (customerAddressId: number) => {
+    if (customerAddressId) {
+      setValue("customer_address_id", customerAddressId);
+    }
+    const addressValues = customer?.customer?.addresses?.find(
+      (a) => a?.id === customerAddressId,
+    );
 
-    if (!watchDifferentBillingAddress) {
-      setValue("billing.firstname", data.firstname ?? "");
-      setValue("billing.lastname", data.lastname ?? "");
-      setValue("billing.city", data.city ?? "");
-      setValue("billing.street", data.street ?? "");
-      setValue("billing.postcode", data.postcode ?? "");
-      setValue("billing.telephone", data.telephone ?? "");
-      setValue("billing.company", data.company ?? "");
+    if (addressValues) {
+      setValue("shipping.firstname", addressValues.firstname ?? "");
+      setValue("shipping.lastname", addressValues.lastname ?? "");
+      setValue("shipping.city", addressValues.city ?? "");
+      setValue("shipping.street", addressValues?.street?.toString() ?? "");
+      setValue("shipping.postcode", addressValues.postcode ?? "");
+      setValue("shipping.telephone", addressValues.telephone ?? "");
+      setValue("shipping.company", addressValues.company ?? "");
+
+      if (!watchDifferentBillingAddress) {
+        setValue("billing.firstname", addressValues.firstname ?? "");
+        setValue("billing.lastname", addressValues.lastname ?? "");
+        setValue("billing.city", addressValues.city ?? "");
+        setValue("billing.street", addressValues.street?.toString() ?? "");
+        setValue("billing.postcode", addressValues.postcode ?? "");
+        setValue("billing.telephone", addressValues.telephone ?? "");
+        setValue("billing.company", addressValues.company ?? "");
+      }
     }
   };
 
@@ -132,6 +148,7 @@ export const ContactForm: React.FC<Props> = ({
           <span className="font-semibold mb-2">Leveringsadresse</span>
           {isAuthorized ? (
             <button
+              type="button"
               className="text-sm"
               onClick={() => setShowAddressModal((prev) => !prev)}
             >
