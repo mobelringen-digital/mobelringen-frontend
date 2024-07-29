@@ -13,6 +13,7 @@ import { Checkbox } from "@nextui-org/react";
 import { Button } from "@/components/_ui/button/Button";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { RadioBlock } from "@/components/_ui/radio/RadioBlock";
+import { SearchInput } from "@/components/search/SearchInput";
 import { setGuestStoreId } from "@/components/store-selector/actions";
 import { BaseStoreFragment } from "@/types";
 
@@ -24,6 +25,12 @@ interface Props {
   selectedStore?: BaseStoreFragment | null;
 }
 
+const searchFields: Array<keyof BaseStoreFragment> = [
+  "name",
+  "postcode",
+  "city",
+];
+
 export const StoreSelectModal: React.FC<Props> = ({
   isOpen,
   onClose,
@@ -34,6 +41,30 @@ export const StoreSelectModal: React.FC<Props> = ({
   const [store, setStore] = React.useState<string | undefined>(
     selectedStore?.external_id ?? undefined,
   );
+  const [storesList, setStoresList] = React.useState(stores);
+  const [searchValue, setSearchValue] = React.useState<string>("");
+
+  const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+  };
+
+  React.useEffect(() => {
+    if (!searchValue) {
+      setStoresList(stores);
+      return;
+    }
+
+    const filteredStores = stores.filter((str) =>
+      searchFields.some((field) =>
+        str?.[field]
+          ?.toString()
+          .toLowerCase()
+          .includes(searchValue.toLowerCase()),
+      ),
+    );
+
+    setStoresList(filteredStores);
+  }, [searchValue, stores]);
 
   const submitStore = async () => {
     if (!store) return;
@@ -81,15 +112,23 @@ export const StoreSelectModal: React.FC<Props> = ({
               </div>
             ) : null}
 
+            <div className="border-b pt-2 pb-4 border-cold-grey-dark">
+              <SearchInput
+                onChange={onSearchChange}
+                variant="bordered"
+                placeholder="Skriv postnummer eller sted"
+              />
+            </div>
+
             <div className="max-h-64 overflow-y-auto">
               <RadioGroup
                 value={store}
                 onValueChange={setStore}
                 color="primary"
               >
-                {stores.map((storeData) => (
+                {storesList.map((storeData) => (
                   <RadioBlock
-                    key={storeData?.external_id}
+                    key={storeData?.name}
                     value={storeData?.external_id ?? ""}
                   >
                     {storeData?.name}
