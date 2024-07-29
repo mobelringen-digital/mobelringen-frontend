@@ -15826,6 +15826,10 @@ export type Query = {
   getHostedProUrl?: Maybe<HostedProUrl>;
   /** Retrieve payment credentials for a transaction. Use this query for Payflow Link and Payments Advanced payment methods. */
   getPayflowLinkToken?: Maybe<PayflowLinkToken>;
+  /** Return store information by given id. */
+  getStore?: Maybe<Array<Maybe<Store>>>;
+  /** Return stores list with information. */
+  getStores?: Maybe<Array<Maybe<Store>>>;
   /** Return details about a specific gift card. */
   giftCardAccount?: Maybe<GiftCardAccount>;
   /** Return the specified gift registry. Some details will not be available to guests. */
@@ -15903,8 +15907,6 @@ export type Query = {
   staticPageConfigurationsConnection: StaticPageConfigurationConnection;
   /** Return details about the store's configuration. */
   storeConfig?: Maybe<StoreConfig>;
-  /** Return stores list with information. */
-  stores_list?: Maybe<Array<Maybe<Store>>>;
   /**
    * Return the relative URL for a specified product, category or CMS page.
    * @deprecated Use the `route` query instead.
@@ -16095,6 +16097,10 @@ export type QueryGetHostedProUrlArgs = {
 
 export type QueryGetPayflowLinkTokenArgs = {
   input: PayflowLinkTokenInput;
+};
+
+export type QueryGetStoreArgs = {
+  storeId: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type QueryGiftCardAccountArgs = {
@@ -40028,6 +40034,27 @@ export type GenerateCustomerTokenMutation = {
     __typename: "CustomerToken";
     token?: string | null;
   } | null;
+};
+
+export type CustomerAddressFragment = {
+  __typename: "CustomerAddress";
+  city?: string | null;
+  company?: string | null;
+  country_code?: CountryCodeEnum | null;
+  vat_id?: string | null;
+  telephone?: string | null;
+  suffix?: string | null;
+  street?: Array<string | null> | null;
+  region_id?: number | null;
+  prefix?: string | null;
+  postcode?: string | null;
+  middlename?: string | null;
+  lastname?: string | null;
+  id?: number | null;
+  firstname?: string | null;
+  fax?: string | null;
+  default_shipping?: boolean | null;
+  default_billing?: boolean | null;
 };
 
 export type CustomerDataFragment = {
@@ -82049,6 +82076,41 @@ export const CmsLinkBlockFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<CmsLinkBlockFragment, unknown>;
+export const CustomerAddressFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CustomerAddress" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CustomerAddress" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "city" } },
+          { kind: "Field", name: { kind: "Name", value: "company" } },
+          { kind: "Field", name: { kind: "Name", value: "country_code" } },
+          { kind: "Field", name: { kind: "Name", value: "vat_id" } },
+          { kind: "Field", name: { kind: "Name", value: "telephone" } },
+          { kind: "Field", name: { kind: "Name", value: "suffix" } },
+          { kind: "Field", name: { kind: "Name", value: "street" } },
+          { kind: "Field", name: { kind: "Name", value: "region_id" } },
+          { kind: "Field", name: { kind: "Name", value: "prefix" } },
+          { kind: "Field", name: { kind: "Name", value: "postcode" } },
+          { kind: "Field", name: { kind: "Name", value: "middlename" } },
+          { kind: "Field", name: { kind: "Name", value: "lastname" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "firstname" } },
+          { kind: "Field", name: { kind: "Name", value: "fax" } },
+          { kind: "Field", name: { kind: "Name", value: "default_shipping" } },
+          { kind: "Field", name: { kind: "Name", value: "default_billing" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CustomerAddressFragment, unknown>;
 export const CustomerDataFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -82081,35 +82143,43 @@ export const CustomerDataFragmentDoc = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "city" } },
-                { kind: "Field", name: { kind: "Name", value: "company" } },
                 {
-                  kind: "Field",
-                  name: { kind: "Name", value: "country_code" },
-                },
-                { kind: "Field", name: { kind: "Name", value: "vat_id" } },
-                { kind: "Field", name: { kind: "Name", value: "telephone" } },
-                { kind: "Field", name: { kind: "Name", value: "suffix" } },
-                { kind: "Field", name: { kind: "Name", value: "street" } },
-                { kind: "Field", name: { kind: "Name", value: "region_id" } },
-                { kind: "Field", name: { kind: "Name", value: "prefix" } },
-                { kind: "Field", name: { kind: "Name", value: "postcode" } },
-                { kind: "Field", name: { kind: "Name", value: "middlename" } },
-                { kind: "Field", name: { kind: "Name", value: "lastname" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "firstname" } },
-                { kind: "Field", name: { kind: "Name", value: "fax" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "default_shipping" },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "default_billing" },
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CustomerAddress" },
                 },
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CustomerAddress" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CustomerAddress" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "city" } },
+          { kind: "Field", name: { kind: "Name", value: "company" } },
+          { kind: "Field", name: { kind: "Name", value: "country_code" } },
+          { kind: "Field", name: { kind: "Name", value: "vat_id" } },
+          { kind: "Field", name: { kind: "Name", value: "telephone" } },
+          { kind: "Field", name: { kind: "Name", value: "suffix" } },
+          { kind: "Field", name: { kind: "Name", value: "street" } },
+          { kind: "Field", name: { kind: "Name", value: "region_id" } },
+          { kind: "Field", name: { kind: "Name", value: "prefix" } },
+          { kind: "Field", name: { kind: "Name", value: "postcode" } },
+          { kind: "Field", name: { kind: "Name", value: "middlename" } },
+          { kind: "Field", name: { kind: "Name", value: "lastname" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "firstname" } },
+          { kind: "Field", name: { kind: "Name", value: "fax" } },
+          { kind: "Field", name: { kind: "Name", value: "default_shipping" } },
+          { kind: "Field", name: { kind: "Name", value: "default_billing" } },
         ],
       },
     },
@@ -95873,6 +95943,36 @@ export const CustomerDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CustomerAddress" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "CustomerAddress" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "city" } },
+          { kind: "Field", name: { kind: "Name", value: "company" } },
+          { kind: "Field", name: { kind: "Name", value: "country_code" } },
+          { kind: "Field", name: { kind: "Name", value: "vat_id" } },
+          { kind: "Field", name: { kind: "Name", value: "telephone" } },
+          { kind: "Field", name: { kind: "Name", value: "suffix" } },
+          { kind: "Field", name: { kind: "Name", value: "street" } },
+          { kind: "Field", name: { kind: "Name", value: "region_id" } },
+          { kind: "Field", name: { kind: "Name", value: "prefix" } },
+          { kind: "Field", name: { kind: "Name", value: "postcode" } },
+          { kind: "Field", name: { kind: "Name", value: "middlename" } },
+          { kind: "Field", name: { kind: "Name", value: "lastname" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "firstname" } },
+          { kind: "Field", name: { kind: "Name", value: "fax" } },
+          { kind: "Field", name: { kind: "Name", value: "default_shipping" } },
+          { kind: "Field", name: { kind: "Name", value: "default_billing" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "CustomerData" },
       typeCondition: {
         kind: "NamedType",
@@ -95900,31 +96000,9 @@ export const CustomerDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
-                { kind: "Field", name: { kind: "Name", value: "city" } },
-                { kind: "Field", name: { kind: "Name", value: "company" } },
                 {
-                  kind: "Field",
-                  name: { kind: "Name", value: "country_code" },
-                },
-                { kind: "Field", name: { kind: "Name", value: "vat_id" } },
-                { kind: "Field", name: { kind: "Name", value: "telephone" } },
-                { kind: "Field", name: { kind: "Name", value: "suffix" } },
-                { kind: "Field", name: { kind: "Name", value: "street" } },
-                { kind: "Field", name: { kind: "Name", value: "region_id" } },
-                { kind: "Field", name: { kind: "Name", value: "prefix" } },
-                { kind: "Field", name: { kind: "Name", value: "postcode" } },
-                { kind: "Field", name: { kind: "Name", value: "middlename" } },
-                { kind: "Field", name: { kind: "Name", value: "lastname" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "firstname" } },
-                { kind: "Field", name: { kind: "Name", value: "fax" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "default_shipping" },
-                },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "default_billing" },
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CustomerAddress" },
                 },
               ],
             },

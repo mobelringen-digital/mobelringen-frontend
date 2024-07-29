@@ -8,6 +8,28 @@ export const GenerateCustomerTokenDocument = graphql(`
   }
 `);
 
+export const CustomerAddressFragment = graphql(`
+  fragment CustomerAddress on CustomerAddress {
+    city
+    company
+    country_code
+    vat_id
+    telephone
+    suffix
+    street
+    region_id
+    prefix
+    postcode
+    middlename
+    lastname
+    id
+    firstname
+    fax
+    default_shipping
+    default_billing
+  }
+`);
+
 export const CustomerDataFragment = graphql(`
   fragment CustomerData on Customer {
     orders {
@@ -17,23 +39,7 @@ export const CustomerDataFragment = graphql(`
     lastname
     is_subscribed
     addresses {
-      city
-      company
-      country_code
-      vat_id
-      telephone
-      suffix
-      street
-      region_id
-      prefix
-      postcode
-      middlename
-      lastname
-      id
-      firstname
-      fax
-      default_shipping
-      default_billing
+      ...CustomerAddress
     }
   }
 `);

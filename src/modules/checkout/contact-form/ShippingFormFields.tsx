@@ -8,16 +8,24 @@ import { useSession } from "@/utils/hooks/useSession";
 
 interface Props {
   control: any;
+  formDisabled?: boolean;
 }
 
-export const ShippingFormFields: React.FC<Props> = ({ control }) => {
+export const ShippingFormFields: React.FC<Props> = ({
+  control,
+  formDisabled,
+}) => {
   const { token } = useSession();
 
   return (
-    <>
+    <div className="col-span-12 relative grid grid-cols-12 gap-4">
+      {formDisabled ? (
+        <div className="absolute left-0 right-0 top-0 bottom-0 bg-white bg-opacity-50 z-50" />
+      ) : null}
       {!token ? (
         <div className="col-span-12">
           <FieldWrapper
+            disabled={formDisabled}
             rules={{
               required: !token ? "Dette er et påkrevd felt" : false,
             }}
@@ -31,6 +39,7 @@ export const ShippingFormFields: React.FC<Props> = ({ control }) => {
       ) : null}
       <div className="col-span-12 lg:col-span-6">
         <FieldWrapper
+          disabled={formDisabled}
           rules={{
             required: "Dette er et påkrevd felt",
           }}
@@ -43,6 +52,7 @@ export const ShippingFormFields: React.FC<Props> = ({ control }) => {
       </div>
       <div className="col-span-12 lg:col-span-6">
         <FieldWrapper
+          disabled={formDisabled}
           rules={{
             required: "Dette er et påkrevd felt",
           }}
@@ -55,6 +65,7 @@ export const ShippingFormFields: React.FC<Props> = ({ control }) => {
       </div>
       <div className="col-span-12 lg:col-span-6">
         <FieldWrapper
+          disabled={formDisabled}
           rules={{
             required: "Dette er et påkrevd felt",
           }}
@@ -67,6 +78,7 @@ export const ShippingFormFields: React.FC<Props> = ({ control }) => {
       </div>
       <div className="col-span-12 lg:col-span-6">
         <FieldWrapper
+          disabled={formDisabled}
           rules={{
             required: "Dette er et påkrevd felt",
           }}
@@ -79,6 +91,7 @@ export const ShippingFormFields: React.FC<Props> = ({ control }) => {
       </div>
       <div className="col-span-12 lg:col-span-6">
         <FieldWrapper
+          disabled={formDisabled}
           rules={{
             required: "Dette er et påkrevd felt",
           }}
@@ -91,6 +104,7 @@ export const ShippingFormFields: React.FC<Props> = ({ control }) => {
       </div>
       <div className="col-span-12 lg:col-span-6">
         <FieldWrapper
+          disabled={formDisabled}
           rules={{
             required: "Dette er et påkrevd felt",
           }}
@@ -101,6 +115,6 @@ export const ShippingFormFields: React.FC<Props> = ({ control }) => {
           <Input variant="bordered" />
         </FieldWrapper>
       </div>
-    </>
+    </div>
   );
 };

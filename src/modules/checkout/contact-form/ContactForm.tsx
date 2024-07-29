@@ -8,6 +8,7 @@ import { Button } from "@/components/_ui/button/Button";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { AddressSelectModal } from "@/modules/checkout/contact-form/AddressSelectModal";
 import { BillingFormFields } from "@/modules/checkout/contact-form/BillingFormFields";
+import { SelectedCustomerAddress } from "@/modules/checkout/contact-form/SelectedCustomerAddress";
 import { ShippingFormFields } from "@/modules/checkout/contact-form/ShippingFormFields";
 import {
   CheckoutFormData,
@@ -68,6 +69,7 @@ export const ContactForm: React.FC<Props> = ({
   });
 
   const watchDifferentBillingAddress = watch("different_billing_address");
+  const watchCustomerAddressId = watch("customer_address_id");
 
   const onSubmit: SubmitHandler<CheckoutFormData> = async (values) => {
     setIsLoading(true);
@@ -93,6 +95,12 @@ export const ContactForm: React.FC<Props> = ({
       values.email,
     ).finally(() => setIsLoading(false));
   };
+
+  const selectedCustomerAddress = React.useMemo(() => {
+    return customer?.customer?.addresses?.find(
+      (a) => a?.id === watchCustomerAddressId,
+    );
+  }, [customer, watchCustomerAddressId]);
 
   const onAddressSelect = (customerAddressId: number) => {
     if (customerAddressId) {
@@ -126,6 +134,10 @@ export const ContactForm: React.FC<Props> = ({
   const navigateToLogin = async () => {
     setIsLoading(true);
     return navigate("/auth/login").finally(() => setIsLoading(false));
+  };
+
+  const resetCustomerAddressId = () => {
+    setValue("customer_address_id", null);
   };
 
   return (
@@ -162,7 +174,16 @@ export const ContactForm: React.FC<Props> = ({
           onOpenChange={() => setShowAddressModal((prev) => !prev)}
           onSelect={onAddressSelect}
         />
-        <ShippingFormFields control={control} />
+        {selectedCustomerAddress ? (
+          <SelectedCustomerAddress
+            address={selectedCustomerAddress}
+            onReset={resetCustomerAddressId}
+          />
+        ) : null}
+        <ShippingFormFields
+          formDisabled={!!watchCustomerAddressId}
+          control={control}
+        />
 
         <BillingFormFields
           isDifferentBillingAddress={watchDifferentBillingAddress}

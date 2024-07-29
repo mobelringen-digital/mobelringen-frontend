@@ -83,7 +83,9 @@ const documents = {
     types.MenuDocument,
   "\n  mutation GenerateCustomerToken($email: String!, $password: String!) {\n    generateCustomerToken(email: $email, password: $password) {\n      token\n    }\n  }\n":
     types.GenerateCustomerTokenDocument,
-  "\n  fragment CustomerData on Customer {\n    orders {\n      total_count\n    }\n    firstname\n    lastname\n    is_subscribed\n    addresses {\n      city\n      company\n      country_code\n      vat_id\n      telephone\n      suffix\n      street\n      region_id\n      prefix\n      postcode\n      middlename\n      lastname\n      id\n      firstname\n      fax\n      default_shipping\n      default_billing\n    }\n  }\n":
+  "\n  fragment CustomerAddress on CustomerAddress {\n    city\n    company\n    country_code\n    vat_id\n    telephone\n    suffix\n    street\n    region_id\n    prefix\n    postcode\n    middlename\n    lastname\n    id\n    firstname\n    fax\n    default_shipping\n    default_billing\n  }\n":
+    types.CustomerAddressFragmentDoc,
+  "\n  fragment CustomerData on Customer {\n    orders {\n      total_count\n    }\n    firstname\n    lastname\n    is_subscribed\n    addresses {\n      ...CustomerAddress\n    }\n  }\n":
     types.CustomerDataFragmentDoc,
   "\n  query Customer {\n    customer {\n      ...CustomerData\n    }\n  }\n":
     types.CustomerDocument,
@@ -375,8 +377,14 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment CustomerData on Customer {\n    orders {\n      total_count\n    }\n    firstname\n    lastname\n    is_subscribed\n    addresses {\n      city\n      company\n      country_code\n      vat_id\n      telephone\n      suffix\n      street\n      region_id\n      prefix\n      postcode\n      middlename\n      lastname\n      id\n      firstname\n      fax\n      default_shipping\n      default_billing\n    }\n  }\n",
-): (typeof documents)["\n  fragment CustomerData on Customer {\n    orders {\n      total_count\n    }\n    firstname\n    lastname\n    is_subscribed\n    addresses {\n      city\n      company\n      country_code\n      vat_id\n      telephone\n      suffix\n      street\n      region_id\n      prefix\n      postcode\n      middlename\n      lastname\n      id\n      firstname\n      fax\n      default_shipping\n      default_billing\n    }\n  }\n"];
+  source: "\n  fragment CustomerAddress on CustomerAddress {\n    city\n    company\n    country_code\n    vat_id\n    telephone\n    suffix\n    street\n    region_id\n    prefix\n    postcode\n    middlename\n    lastname\n    id\n    firstname\n    fax\n    default_shipping\n    default_billing\n  }\n",
+): (typeof documents)["\n  fragment CustomerAddress on CustomerAddress {\n    city\n    company\n    country_code\n    vat_id\n    telephone\n    suffix\n    street\n    region_id\n    prefix\n    postcode\n    middlename\n    lastname\n    id\n    firstname\n    fax\n    default_shipping\n    default_billing\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment CustomerData on Customer {\n    orders {\n      total_count\n    }\n    firstname\n    lastname\n    is_subscribed\n    addresses {\n      ...CustomerAddress\n    }\n  }\n",
+): (typeof documents)["\n  fragment CustomerData on Customer {\n    orders {\n      total_count\n    }\n    firstname\n    lastname\n    is_subscribed\n    addresses {\n      ...CustomerAddress\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
