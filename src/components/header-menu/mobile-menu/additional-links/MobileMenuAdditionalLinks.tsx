@@ -3,6 +3,7 @@ import React from "react";
 import { ChevronRight } from "@/components/_ui/icons/ChevronRight";
 import { CmsLink } from "@/components/cms/link/CmsLink";
 import { MobileMenuAdditionalLinksBlock } from "@/components/header-menu/mobile-menu/additional-links/MobileMenuAdditionalLinksBlock";
+import { StoreSelector } from "@/components/header-menu/StoreSelector";
 import { MenuQueryDocument } from "@/queries/menu.queries";
 import { MenuQuery, MenuType } from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
@@ -37,6 +38,7 @@ export default async function MobileMenuAdditionalLinks() {
           ) : null}
         </React.Fragment>
       ))}
+      <StoreSelector />
     </div>
   );
 }

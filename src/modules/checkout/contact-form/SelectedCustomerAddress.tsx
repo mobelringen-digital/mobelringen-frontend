@@ -13,12 +13,14 @@ export const SelectedCustomerAddress: React.FC<Props> = ({
 }) => {
   return (
     <div className="col-span-12">
-      <div className="rounded-full py-2 px-4 text-sm bg-black text-white">
+      <div className="rounded-2xl py-2 px-4 text-sm bg-black text-white">
         <div className="flex justify-between items-center">
-          <div className="flex">
+          <div className="flex flex-col gap-1">
             <span className="mr-2">Adresse valgt:</span>
-            {address.firstname} {address.lastname}, {address.city},{" "}
-            {address.street}, {address.postcode}
+            <span>
+              {address.firstname} {address.lastname}, {address.city},{" "}
+              {address.street}, {address.postcode}
+            </span>
           </div>
           <button className="underline" onClick={onReset}>
             Rediger
