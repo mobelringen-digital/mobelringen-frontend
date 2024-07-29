@@ -2,8 +2,8 @@ import React from "react";
 
 import { CmsLink } from "@/components/cms/link/CmsLink";
 import { DesktopMenuAdditionalLinksBlock } from "@/components/header-menu/desktop-menu/additional-links/DesktopMenuAdditionalLinksBlock";
-import { StoreSelector } from "@/components/header-menu/StoreSelector";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
+import { StoreSelector } from "@/components/store-selector/StoreSelector";
 import { MenuQueryDocument } from "@/queries/menu.queries";
 import { MenuQuery, MenuType } from "@/types";
 import { isTypename } from "@/types/graphql-helpers";

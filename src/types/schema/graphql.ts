@@ -80095,6 +80095,108 @@ export type StoreConfigQuery = {
   } | null;
 };
 
+export type BaseStoreFragment = {
+  __typename: "Store";
+  city?: string | null;
+  country?: string | null;
+  email?: string | null;
+  externalUrl?: string | null;
+  external_id?: string | null;
+  id?: string | null;
+  is_visible_on_map?: boolean | null;
+  latitude?: number | null;
+  longitude?: number | null;
+  name?: string | null;
+  organization_number?: string | null;
+  phone?: string | null;
+  postcode?: string | null;
+  region?: string | null;
+  street?: string | null;
+  opening_hours?: {
+    __typename: "openingHours";
+    additionalInformation?: string | null;
+    friday?: string | null;
+    monday?: string | null;
+    saturday?: string | null;
+    sunday?: string | null;
+    thursday?: string | null;
+    tuesday?: string | null;
+    wednesday?: string | null;
+  } | null;
+};
+
+export type StoresListQueryVariables = Exact<{ [key: string]: never }>;
+
+export type StoresListQuery = {
+  __typename: "Query";
+  getStores?: Array<{
+    __typename: "Store";
+    city?: string | null;
+    country?: string | null;
+    email?: string | null;
+    externalUrl?: string | null;
+    external_id?: string | null;
+    id?: string | null;
+    is_visible_on_map?: boolean | null;
+    latitude?: number | null;
+    longitude?: number | null;
+    name?: string | null;
+    organization_number?: string | null;
+    phone?: string | null;
+    postcode?: string | null;
+    region?: string | null;
+    street?: string | null;
+    opening_hours?: {
+      __typename: "openingHours";
+      additionalInformation?: string | null;
+      friday?: string | null;
+      monday?: string | null;
+      saturday?: string | null;
+      sunday?: string | null;
+      thursday?: string | null;
+      tuesday?: string | null;
+      wednesday?: string | null;
+    } | null;
+  } | null> | null;
+};
+
+export type StoreQueryVariables = Exact<{
+  id: Scalars["String"]["input"];
+}>;
+
+export type StoreQuery = {
+  __typename: "Query";
+  getStore?: Array<{
+    __typename: "Store";
+    city?: string | null;
+    country?: string | null;
+    email?: string | null;
+    externalUrl?: string | null;
+    external_id?: string | null;
+    id?: string | null;
+    is_visible_on_map?: boolean | null;
+    latitude?: number | null;
+    longitude?: number | null;
+    name?: string | null;
+    organization_number?: string | null;
+    phone?: string | null;
+    postcode?: string | null;
+    region?: string | null;
+    street?: string | null;
+    opening_hours?: {
+      __typename: "openingHours";
+      additionalInformation?: string | null;
+      friday?: string | null;
+      monday?: string | null;
+      saturday?: string | null;
+      sunday?: string | null;
+      thursday?: string | null;
+      tuesday?: string | null;
+      wednesday?: string | null;
+    } | null;
+  } | null> | null;
+};
+
 export const BillingCartAddressFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -86458,6 +86560,63 @@ export const StoreConsentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<StoreConsentFragment, unknown>;
+export const BaseStoreFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "BaseStore" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Store" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "city" } },
+          { kind: "Field", name: { kind: "Name", value: "country" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
+          { kind: "Field", name: { kind: "Name", value: "externalUrl" } },
+          { kind: "Field", name: { kind: "Name", value: "external_id" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "is_visible_on_map" } },
+          { kind: "Field", name: { kind: "Name", value: "latitude" } },
+          { kind: "Field", name: { kind: "Name", value: "longitude" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "opening_hours" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "additionalInformation" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "friday" } },
+                { kind: "Field", name: { kind: "Name", value: "monday" } },
+                { kind: "Field", name: { kind: "Name", value: "saturday" } },
+                { kind: "Field", name: { kind: "Name", value: "sunday" } },
+                { kind: "Field", name: { kind: "Name", value: "thursday" } },
+                { kind: "Field", name: { kind: "Name", value: "tuesday" } },
+                { kind: "Field", name: { kind: "Name", value: "wednesday" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "organization_number" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "phone" } },
+          { kind: "Field", name: { kind: "Name", value: "postcode" } },
+          { kind: "Field", name: { kind: "Name", value: "region" } },
+          { kind: "Field", name: { kind: "Name", value: "street" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<BaseStoreFragment, unknown>;
 export const CartDocument = {
   kind: "Document",
   definitions: [
@@ -99100,3 +99259,186 @@ export const StoreConfigDocument = {
     },
   ],
 } as unknown as DocumentNode<StoreConfigQuery, StoreConfigQueryVariables>;
+export const StoresListDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "StoresList" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getStores" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "BaseStore" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "BaseStore" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Store" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "city" } },
+          { kind: "Field", name: { kind: "Name", value: "country" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
+          { kind: "Field", name: { kind: "Name", value: "externalUrl" } },
+          { kind: "Field", name: { kind: "Name", value: "external_id" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "is_visible_on_map" } },
+          { kind: "Field", name: { kind: "Name", value: "latitude" } },
+          { kind: "Field", name: { kind: "Name", value: "longitude" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "opening_hours" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "additionalInformation" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "friday" } },
+                { kind: "Field", name: { kind: "Name", value: "monday" } },
+                { kind: "Field", name: { kind: "Name", value: "saturday" } },
+                { kind: "Field", name: { kind: "Name", value: "sunday" } },
+                { kind: "Field", name: { kind: "Name", value: "thursday" } },
+                { kind: "Field", name: { kind: "Name", value: "tuesday" } },
+                { kind: "Field", name: { kind: "Name", value: "wednesday" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "organization_number" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "phone" } },
+          { kind: "Field", name: { kind: "Name", value: "postcode" } },
+          { kind: "Field", name: { kind: "Name", value: "region" } },
+          { kind: "Field", name: { kind: "Name", value: "street" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<StoresListQuery, StoresListQueryVariables>;
+export const StoreDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "Store" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "id" } },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "getStore" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "storeId" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "id" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "BaseStore" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "BaseStore" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Store" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "city" } },
+          { kind: "Field", name: { kind: "Name", value: "country" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
+          { kind: "Field", name: { kind: "Name", value: "externalUrl" } },
+          { kind: "Field", name: { kind: "Name", value: "external_id" } },
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "is_visible_on_map" } },
+          { kind: "Field", name: { kind: "Name", value: "latitude" } },
+          { kind: "Field", name: { kind: "Name", value: "longitude" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "opening_hours" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "additionalInformation" },
+                },
+                { kind: "Field", name: { kind: "Name", value: "friday" } },
+                { kind: "Field", name: { kind: "Name", value: "monday" } },
+                { kind: "Field", name: { kind: "Name", value: "saturday" } },
+                { kind: "Field", name: { kind: "Name", value: "sunday" } },
+                { kind: "Field", name: { kind: "Name", value: "thursday" } },
+                { kind: "Field", name: { kind: "Name", value: "tuesday" } },
+                { kind: "Field", name: { kind: "Name", value: "wednesday" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "organization_number" },
+          },
+          { kind: "Field", name: { kind: "Name", value: "phone" } },
+          { kind: "Field", name: { kind: "Name", value: "postcode" } },
+          { kind: "Field", name: { kind: "Name", value: "region" } },
+          { kind: "Field", name: { kind: "Name", value: "street" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<StoreQuery, StoreQueryVariables>;
