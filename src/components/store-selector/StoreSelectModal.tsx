@@ -99,11 +99,7 @@ export const StoreSelectModal: React.FC<Props> = ({
             </div>
           </ModalBody>
           <ModalFooter className="flex justify-end px-2 lg:px-5 gap-2 lg:gap-4">
-            <Button
-              disabled={!selectedStore}
-              onClick={submitStore}
-              color="primary"
-            >
+            <Button disabled={!store} onClick={submitStore} color="primary">
               Fortsette
             </Button>
           </ModalFooter>
