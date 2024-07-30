@@ -14,10 +14,11 @@ export const RadioBlock: React.FC<Props> = ({ children, ...rest }) => {
       classNames={{
         base: cn(
           "inline-flex m-0 bg-white",
-          "w-full max-w-full flex-row cursor-pointer rounded-lg gap-2 p-4 border-2 border-dark-grey border-opacity-50",
+          "w-full max-w-full flex-row cursor-pointer rounded-lg lg:gap-2 p-2 lg:p-4 border-2 border-dark-grey border-opacity-50",
           "data-[selected=true]:border-black",
         ),
         labelWrapper: "w-full",
+        label: "text-sm lg:text-base",
       }}
     >
       {children}

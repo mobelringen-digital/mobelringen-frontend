@@ -94,7 +94,7 @@ export const StoreSelectModal: React.FC<Props> = ({
           <ModalBody>
             <h2 className="text-lg font-semibold mt-4">Din butikk</h2>
             {selectedStore ? (
-              <div className="flex justify-between border-y border-cold-grey-dark py-2">
+              <div className="flex justify-between text-xs lg:text-base border-y border-cold-grey-dark py-2">
                 <div className="flex flex-col">
                   <p className="font-semibold">{selectedStore?.name}</p>
                   <p className="text-dark-grey">
@@ -103,7 +103,7 @@ export const StoreSelectModal: React.FC<Props> = ({
                 </div>
                 <div className="bg-powder flex rounded-2xl px-4 py-2 items-center gap-2">
                   <Checkbox
-                    className="font-medium"
+                    className="font-medium text-xs lg:text-bas"
                     title="Min butikk"
                     isSelected={true}
                   >
