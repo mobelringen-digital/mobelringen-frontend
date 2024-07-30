@@ -6,26 +6,33 @@ import { FavoriteIcon } from "@/components/_ui/icons/FavoriteIcon";
 import { PersonIcon } from "@/components/_ui/icons/PersonIcon";
 import { ShoppingBagIcon } from "@/components/_ui/icons/ShoppingBagIcon";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
+import { getToken } from "@/modules/auth/actions";
 
 const LINKS = [
   {
     icon: <PersonIcon />,
     label: "Min profil",
-    url: "/min-profil",
+    url: "/account",
   },
   {
     icon: <FavoriteIcon />,
     label: "Favoritter",
-    url: "/min-profil",
+    url: "/account/favorite",
   },
   {
     icon: <ShoppingBagIcon />,
     label: "Handlekurv",
-    url: "/min-profil",
+    url: "/cart",
   },
 ];
 
-export const MobileMenuBottomLinks = () => {
+export async function MobileMenuBottomLinks() {
+  const token = await getToken();
+
+  if (!token) {
+    return null;
+  }
+
   return (
     <div className="fixed px-2 py-6 bottom-0 left-0 right-0">
       <ContainerLayout>
@@ -42,4 +49,4 @@ export const MobileMenuBottomLinks = () => {
       </ContainerLayout>
     </div>
   );
-};
+}

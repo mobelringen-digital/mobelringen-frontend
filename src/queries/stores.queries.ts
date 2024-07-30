@@ -46,3 +46,12 @@ export const StoreDocument = graphql(`
     }
   }
 `);
+
+export const UpdateCartItemsIsInStore = graphql(`
+  mutation UpdateCartItemsIsInStore($cartId: String!, $storeId: String!) {
+    updateCartItemsIsInStore(cartId: $cartId, storeId: $storeId) {
+      success
+      message
+    }
+  }
+`);

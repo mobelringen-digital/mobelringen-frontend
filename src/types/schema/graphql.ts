@@ -80197,6 +80197,20 @@ export type StoreQuery = {
   } | null> | null;
 };
 
+export type UpdateCartItemsIsInStoreMutationVariables = Exact<{
+  cartId: Scalars["String"]["input"];
+  storeId: Scalars["String"]["input"];
+}>;
+
+export type UpdateCartItemsIsInStoreMutation = {
+  __typename: "Mutation";
+  updateCartItemsIsInStore?: {
+    __typename: "UpdateCartItemsIsInStoreOutput";
+    success?: boolean | null;
+    message?: string | null;
+  } | null;
+};
+
 export const BillingCartAddressFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -99442,3 +99456,80 @@ export const StoreDocument = {
     },
   ],
 } as unknown as DocumentNode<StoreQuery, StoreQueryVariables>;
+export const UpdateCartItemsIsInStoreDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "UpdateCartItemsIsInStore" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "cartId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "storeId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateCartItemsIsInStore" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "cartId" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "cartId" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "storeId" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "storeId" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "success" } },
+                { kind: "Field", name: { kind: "Name", value: "message" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  UpdateCartItemsIsInStoreMutation,
+  UpdateCartItemsIsInStoreMutationVariables
+>;

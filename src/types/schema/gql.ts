@@ -153,6 +153,8 @@ const documents = {
     types.StoresListDocument,
   "\n  query Store($id: String!) {\n    getStore(storeId: $id) {\n      ...BaseStore\n    }\n  }\n":
     types.StoreDocument,
+  "\n  mutation UpdateCartItemsIsInStore($cartId: String!, $storeId: String!) {\n    updateCartItemsIsInStore(cartId: $cartId, storeId: $storeId) {\n      success\n      message\n    }\n  }\n":
+    types.UpdateCartItemsIsInStoreDocument,
 };
 
 /**
@@ -589,6 +591,12 @@ export function graphql(
 export function graphql(
   source: "\n  query Store($id: String!) {\n    getStore(storeId: $id) {\n      ...BaseStore\n    }\n  }\n",
 ): (typeof documents)["\n  query Store($id: String!) {\n    getStore(storeId: $id) {\n      ...BaseStore\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  mutation UpdateCartItemsIsInStore($cartId: String!, $storeId: String!) {\n    updateCartItemsIsInStore(cartId: $cartId, storeId: $storeId) {\n      success\n      message\n    }\n  }\n",
+): (typeof documents)["\n  mutation UpdateCartItemsIsInStore($cartId: String!, $storeId: String!) {\n    updateCartItemsIsInStore(cartId: $cartId, storeId: $storeId) {\n      success\n      message\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

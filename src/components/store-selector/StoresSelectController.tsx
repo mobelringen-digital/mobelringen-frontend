@@ -51,7 +51,10 @@ export const StoresSelectController: React.FC<Props> = ({
       {/*Render mobile menu*/}
       <ul className="flex-col gap-5 py-8 border-t border-t-cold-grey-dark flex lg:hidden">
         <li className="flex justify-between items-center">
-          <button className="flex gap-1 items-center">
+          <button
+            className="flex gap-1 items-center"
+            onClick={() => setIsOpen(true)}
+          >
             <Location width={26} height={26} />{" "}
             {selectedStore?.name ?? "Velg butikk"}
           </button>

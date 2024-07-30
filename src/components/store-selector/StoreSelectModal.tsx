@@ -72,6 +72,7 @@ export const StoreSelectModal: React.FC<Props> = ({
     setIsLoading(true);
     return setGuestStoreId(store).finally(() => {
       setIsLoading(false);
+      setSearchValue("");
       onClose();
     });
   };
@@ -128,7 +129,7 @@ export const StoreSelectModal: React.FC<Props> = ({
               >
                 {storesList.map((storeData) => (
                   <RadioBlock
-                    key={storeData?.name}
+                    key={storeData?.external_id}
                     value={storeData?.external_id ?? ""}
                   >
                     {storeData?.name}

@@ -1,8 +1,10 @@
 "use server";
 
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
+import getCart from "@/components/cart/actions";
+import { UpdateCartItemsIsInStore } from "@/queries/stores.queries";
 import {
   StoreDocument,
   StoreQuery,
@@ -19,7 +21,7 @@ export async function getStores() {
   return data.getStores;
 }
 
-export async function getStore() {
+export async function getSelectedStore() {
   const cookiesStore = cookies();
   const storeId = cookiesStore.get("storeId");
 
@@ -35,6 +37,26 @@ export async function getStore() {
   return data.getStore?.[0];
 }
 
+export async function updateCartItemsInStore() {
+  const cart = await getCart();
+  const store = await getSelectedStore();
+
+  if (!cart?.id || !store?.id) {
+    return;
+  }
+
+  const data = await baseMagentoClient("POST", {
+    cache: "no-store",
+  }).request(UpdateCartItemsIsInStore, {
+    cartId: cart.id,
+    storeId: store?.id,
+  });
+
+  revalidatePath("/cart");
+
+  return data.updateCartItemsIsInStore;
+}
+
 export async function setGuestStoreId(storeId: string) {
   const cookiesStore = cookies();
 
@@ -43,6 +65,7 @@ export async function setGuestStoreId(storeId: string) {
   });
 
   revalidateTag("store");
+  revalidatePath("/cart");
 
   return null;
 }

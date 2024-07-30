@@ -4,10 +4,11 @@ import Link from "next/link";
 
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
+import { getSelectedStore } from "@/components/store-selector/actions";
 import { CartItem } from "@/modules/cart/cart-item/CartItem";
+import { CartMethodLinks } from "@/modules/cart/cart-methods/CartMethodLinks";
 import { CartPrice } from "@/modules/cart/cart-price/CartPrice";
 import { CartBreadcrumbs } from "@/modules/cart/CartBreadcrumbs";
-import { CartMethodLinks } from "@/modules/cart/CartMethodLinks";
 import { CartTitle } from "@/modules/cart/CartTitle";
 import { CartWarnings } from "@/modules/cart/CartWarnings";
 import { BaseCartFragment } from "@/types";
@@ -16,7 +17,8 @@ interface Props {
   data?: BaseCartFragment | null;
 }
 
-export const CartPage: React.FC<Props> = ({ data }) => {
+export async function CartPage({ data }: Props) {
+  const selectedStore = await getSelectedStore();
   const isEmptyCart = !data || (data?.items && data.items.length === 0);
 
   return (
@@ -35,7 +37,7 @@ export const CartPage: React.FC<Props> = ({ data }) => {
           <div className="col-span-12 lg:col-span-7">
             <div className="bg-white flex flex-col gap-6 rounded-2xl p-4 lg:p-8">
               <div className="flex flex-col gap-4">
-                <CartMethodLinks />
+                <CartMethodLinks selectedStore={selectedStore} />
                 <CartWarnings cart={data} />
               </div>
               <div className="border-t border-t-cold-grey-dark border-opacity-80" />
@@ -51,4 +53,4 @@ export const CartPage: React.FC<Props> = ({ data }) => {
       <Debugger data={data} />
     </ContainerLayout>
   );
-};
+}
