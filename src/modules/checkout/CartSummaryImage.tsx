@@ -17,7 +17,7 @@ export const CartSummaryImage: React.FC<Props> = ({ item }) => {
   return (
     <Link
       key={item?.id}
-      href={item?.product.canonical_url ?? ""}
+      href={`/${item?.product.canonical_url}`}
       className="relative p-2 w-[70px] h-[70px] bg-warm-grey rounded-xl lg:rounded-2xl !flex justify-center items-center"
     >
       {item?.product.image?.url && (
