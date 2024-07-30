@@ -39,7 +39,6 @@ export const PaymentFormController: React.FC<Props> = () => {
     setPaymentMethodOnCart(cart.id, {
       code: method.code,
     }).then(async () => {
-      // await placeOrder(cart.id);
       if (method.code === "vipps") {
         const data = await vippsInitPayment({
           cart_id: cart.id,

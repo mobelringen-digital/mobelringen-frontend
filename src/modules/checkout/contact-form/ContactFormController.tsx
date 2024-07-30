@@ -4,12 +4,14 @@ import { Loader } from "@/components/_ui/loader/Loader";
 import { LoaderInnerWrapper } from "@/components/_ui/loader/LoaderInnerWrapper";
 import { openToast } from "@/components/_ui/toast-provider";
 import { useCartQuery } from "@/components/cart/useCartQuery";
+import { useCart } from "@/modules/cart/hooks/useCart";
 import {
   setBillingAddressOnCart,
   setGuestEmailOnCart,
   setShippingAddressOnCart,
 } from "@/modules/checkout/contact-form/actions";
 import { ContactForm } from "@/modules/checkout/contact-form/ContactForm";
+import { placeOrder } from "@/modules/checkout/payment/actions";
 import {
   BillingAddressInput,
   CustomerQuery,
@@ -17,6 +19,8 @@ import {
   ShippingAddressInput,
 } from "@/types";
 import { useSession } from "@/utils/hooks/useSession";
+
+import { navigate } from "../../../app/actions";
 
 interface Props {
   onSuccessfulSubmit: () => void;
@@ -29,6 +33,7 @@ export const ContactFormController: React.FC<Props> = ({
 }) => {
   const { data: cart, isLoading } = useCartQuery();
   const { token } = useSession();
+  const { isClickAndCollect } = useCart(cart);
 
   const onSubmit = async (
     shippingAddress: InputMaybe<ShippingAddressInput>,
@@ -44,10 +49,16 @@ export const ContactFormController: React.FC<Props> = ({
       setShippingAddressOnCart(cart.id, shippingAddress),
       setBillingAddressOnCart(cart.id, billingAddress),
     ]);
-    openToast({
-      content: "Forsendelses- og faktureringsadresser er oppdatert",
-    });
-    onSuccessfulSubmit();
+
+    if (isClickAndCollect) {
+      const order = await placeOrder(cart.id);
+      return navigate(`/cart/success?order_id=${order?.order_id}`);
+    } else {
+      openToast({
+        content: "Forsendelses- og faktureringsadresser er oppdatert",
+      });
+      onSuccessfulSubmit();
+    }
   };
 
   if (!cart) return null;

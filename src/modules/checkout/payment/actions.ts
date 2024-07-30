@@ -47,7 +47,7 @@ export async function placeOrder(cartId: string) {
   revalidatePath("/cart");
   revalidateTag("cart");
 
-  return data;
+  return data.placeOrder?.order;
 }
 
 export async function vippsInitPayment(input: VippsInitPaymentInput) {

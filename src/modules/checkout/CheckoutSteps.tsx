@@ -2,6 +2,8 @@
 
 import React from "react";
 
+import { useSearchParams } from "next/navigation";
+
 import { CheckoutBlock } from "@/modules/checkout/CheckoutBlock";
 import { ContactFormController } from "@/modules/checkout/contact-form/ContactFormController";
 import { PaymentFormController } from "@/modules/checkout/payment/PaymentFormController";
@@ -21,6 +23,8 @@ export const CheckoutSteps: React.FC<Props> = ({
   isShippingMethodSet,
   customer,
 }) => {
+  const searchParams = useSearchParams();
+  const activeMethod = searchParams.get("method") ?? "online";
   const [activeBlock, setActiveBlock] = React.useState<Blocks>("contact");
 
   return (
@@ -37,30 +41,34 @@ export const CheckoutSteps: React.FC<Props> = ({
           />
         }
       />
-      <CheckoutBlock
-        disabled={!isShippingAddressSet}
-        onClick={() => setActiveBlock("shipping")}
-        position={2}
-        title="Levering"
-        isActive={activeBlock === "shipping"}
-        content={
-          <ShippingFormController
-            onSuccessfulSubmit={() => setActiveBlock("payment")}
+      {activeMethod === "online" ? (
+        <>
+          <CheckoutBlock
+            disabled={!isShippingAddressSet}
+            onClick={() => setActiveBlock("shipping")}
+            position={2}
+            title="Levering"
+            isActive={activeBlock === "shipping"}
+            content={
+              <ShippingFormController
+                onSuccessfulSubmit={() => setActiveBlock("payment")}
+              />
+            }
           />
-        }
-      />
-      <CheckoutBlock
-        disabled={!isShippingMethodSet}
-        onClick={() => setActiveBlock("payment")}
-        position={3}
-        title="Betaling"
-        isActive={activeBlock === "payment"}
-        content={
-          <PaymentFormController
-            onSuccessfulSubmit={() => setActiveBlock("payment")}
+          <CheckoutBlock
+            disabled={!isShippingMethodSet}
+            onClick={() => setActiveBlock("payment")}
+            position={3}
+            title="Betaling"
+            isActive={activeBlock === "payment"}
+            content={
+              <PaymentFormController
+                onSuccessfulSubmit={() => setActiveBlock("payment")}
+              />
+            }
           />
-        }
-      />
+        </>
+      ) : null}
     </div>
   );
 };

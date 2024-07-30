@@ -80,5 +80,6 @@ export const useCart = (cart?: BaseCartFragment | null) => {
     isShippingAddressSet,
     isShippingMethodSet,
     isPaymentMethodSet,
+    isClickAndCollect,
   };
 };
