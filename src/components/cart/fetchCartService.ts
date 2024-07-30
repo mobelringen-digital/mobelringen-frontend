@@ -14,6 +14,7 @@ import {
 export const CART_QUERY_KEY = ["cart"];
 export type CartCookie = {
   cart: string;
+  preferredMethod: string;
 };
 
 export const fetchCartService = async (cartId: string) => {

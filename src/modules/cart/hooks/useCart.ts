@@ -11,10 +11,15 @@ import { BaseCartFragment, ProductStockStatus } from "@/types";
 import { useSession } from "@/utils/hooks/useSession";
 
 export const useCart = (cart?: BaseCartFragment | null) => {
-  const [cookies] = useCookies<"cart", CartCookie>(["cart"]);
+  const [cookies] = useCookies<"cart" | "preferredMethod", CartCookie>([
+    "cart",
+    "preferredMethod",
+  ]);
   const { token } = useSession();
   const searchParams = useSearchParams();
-  const isClickAndCollect = searchParams.get("method") === "collect";
+  const isClickAndCollect =
+    searchParams.get("method") === "collect" ||
+    cookies.preferredMethod === "collect";
 
   const prices = cart?.prices;
 

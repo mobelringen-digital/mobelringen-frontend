@@ -2,8 +2,9 @@
 
 import React from "react";
 
-import { useSearchParams } from "next/navigation";
+import { useCookies } from "react-cookie";
 
+import { CartCookie } from "@/components/cart/fetchCartService";
 import { CheckoutBlock } from "@/modules/checkout/CheckoutBlock";
 import { ContactFormController } from "@/modules/checkout/contact-form/ContactFormController";
 import { PaymentFormController } from "@/modules/checkout/payment/PaymentFormController";
@@ -23,8 +24,10 @@ export const CheckoutSteps: React.FC<Props> = ({
   isShippingMethodSet,
   customer,
 }) => {
-  const searchParams = useSearchParams();
-  const activeMethod = searchParams.get("method") ?? "online";
+  const [cookies] = useCookies<"preferredMethod", CartCookie>([
+    "preferredMethod",
+  ]);
+  const isOnlineMethod = cookies.preferredMethod === "online";
   const [activeBlock, setActiveBlock] = React.useState<Blocks>("contact");
 
   return (
@@ -41,7 +44,7 @@ export const CheckoutSteps: React.FC<Props> = ({
           />
         }
       />
-      {activeMethod === "online" ? (
+      {!isOnlineMethod ? (
         <>
           <CheckoutBlock
             disabled={!isShippingAddressSet}
