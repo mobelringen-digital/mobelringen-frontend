@@ -14,7 +14,7 @@ import { Button } from "@/components/_ui/button/Button";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { RadioBlock } from "@/components/_ui/radio/RadioBlock";
 import { SearchInput } from "@/components/search/SearchInput";
-import { setGuestStoreId } from "@/components/store-selector/actions";
+import { setFavoriteStoreId } from "@/components/store-selector/actions";
 import { BaseStoreFragment } from "@/types";
 
 interface Props {
@@ -70,7 +70,7 @@ export const StoreSelectModal: React.FC<Props> = ({
     if (!store) return;
 
     setIsLoading(true);
-    return setGuestStoreId(store).finally(() => {
+    return setFavoriteStoreId(store).finally(() => {
       setIsLoading(false);
       setSearchValue("");
       onClose();

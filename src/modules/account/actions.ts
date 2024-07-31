@@ -1,7 +1,8 @@
 "use server";
 
 import { getToken } from "@/modules/auth/actions";
-import { CustomerDocument, CustomerQuery } from "@/types";
+import { UpdateCustomerDocument } from "@/queries/mutations/customer.mutations";
+import { CustomerDocument, CustomerQuery, CustomerUpdateInput } from "@/types";
 import { authorizedMagentoClient } from "@/utils/lib/graphql";
 
 export async function getCustomerDetails() {
@@ -9,7 +10,18 @@ export async function getCustomerDetails() {
 
   if (!token) return;
 
-  return await authorizedMagentoClient(token).request<CustomerQuery>(
-    CustomerDocument,
+  return await authorizedMagentoClient(token, "GET", {
+    tags: ["customer"],
+  }).request<CustomerQuery>(CustomerDocument);
+}
+
+export async function updateCustomerDetails(input: CustomerUpdateInput) {
+  const token = await getToken();
+
+  if (!token) return;
+
+  return await authorizedMagentoClient(token, "POST").request(
+    UpdateCustomerDocument,
+    { input },
   );
 }

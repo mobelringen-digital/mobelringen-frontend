@@ -4,6 +4,11 @@ import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 import getCart from "@/components/cart/actions";
+import {
+  getCustomerDetails,
+  updateCustomerDetails,
+} from "@/modules/account/actions";
+import { getToken } from "@/modules/auth/actions";
 import { UpdateCartItemsIsInStore } from "@/queries/stores.queries";
 import {
   StoreDocument,
@@ -21,17 +26,29 @@ export async function getStores() {
   return data.getStores;
 }
 
-export async function getSelectedStore() {
+export async function getSelectedStoreId() {
   const cookiesStore = cookies();
-  const storeId = cookiesStore.get("storeId");
+  const guestStoreId = cookiesStore.get("storeId");
 
-  if (!storeId?.value) return null;
+  const data = await getCustomerDetails();
+
+  if (data?.customer?.favorite_store) {
+    return data.customer.favorite_store;
+  }
+
+  return guestStoreId?.value ? String(guestStoreId.value) : null;
+}
+
+export async function getSelectedStore() {
+  const storeId = await getSelectedStoreId();
+
+  if (!storeId) return null;
 
   const data = await baseMagentoClient("GET", {
     tags: ["store"],
     revalidate: 3600,
   }).request<StoreQuery>(StoreDocument, {
-    id: storeId.value,
+    id: storeId,
   });
 
   return data.getStore?.[0];
@@ -57,15 +74,27 @@ export async function updateCartItemsInStore() {
   return data.updateCartItemsIsInStore;
 }
 
-export async function setGuestStoreId(storeId: string) {
+export async function setFavoriteStoreId(storeId: string) {
+  const token = await getToken();
   const cookiesStore = cookies();
 
-  cookiesStore.set("storeId", storeId, {
-    maxAge: 60 * 60 * 24 * 365,
-  });
+  if (token) {
+    await updateCustomerDetails({
+      favorite_store: storeId,
+    });
+    // Expire the cookie if the user is logged in
+    cookiesStore.set("storeId", storeId, {
+      maxAge: 0,
+    });
+  } else {
+    cookiesStore.set("storeId", storeId, {
+      maxAge: 60 * 60 * 24 * 365,
+    });
+  }
 
   revalidateTag("store");
+  revalidateTag("customer");
   revalidatePath("/cart");
 
-  return null;
+  return storeId;
 }

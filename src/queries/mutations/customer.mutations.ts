@@ -38,6 +38,7 @@ export const CustomerDataFragment = graphql(`
     firstname
     lastname
     is_subscribed
+    favorite_store
     addresses {
       ...CustomerAddress
     }
@@ -48,6 +49,16 @@ export const CustomerDocument = graphql(`
   query Customer {
     customer {
       ...CustomerData
+    }
+  }
+`);
+
+export const UpdateCustomerDocument = graphql(`
+  mutation UpdateCustomer($input: CustomerUpdateInput!) {
+    updateCustomerV2(input: $input) {
+      customer {
+        ...CustomerData
+      }
     }
   }
 `);

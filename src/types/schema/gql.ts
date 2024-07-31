@@ -85,10 +85,12 @@ const documents = {
     types.GenerateCustomerTokenDocument,
   "\n  fragment CustomerAddress on CustomerAddress {\n    city\n    company\n    country_code\n    vat_id\n    telephone\n    suffix\n    street\n    region_id\n    prefix\n    postcode\n    middlename\n    lastname\n    id\n    firstname\n    fax\n    default_shipping\n    default_billing\n  }\n":
     types.CustomerAddressFragmentDoc,
-  "\n  fragment CustomerData on Customer {\n    orders {\n      total_count\n    }\n    firstname\n    lastname\n    is_subscribed\n    addresses {\n      ...CustomerAddress\n    }\n  }\n":
+  "\n  fragment CustomerData on Customer {\n    orders {\n      total_count\n    }\n    firstname\n    lastname\n    is_subscribed\n    favorite_store\n    addresses {\n      ...CustomerAddress\n    }\n  }\n":
     types.CustomerDataFragmentDoc,
   "\n  query Customer {\n    customer {\n      ...CustomerData\n    }\n  }\n":
     types.CustomerDocument,
+  "\n  mutation UpdateCustomer($input: CustomerUpdateInput!) {\n    updateCustomerV2(input: $input) {\n      customer {\n        ...CustomerData\n      }\n    }\n  }\n":
+    types.UpdateCustomerDocument,
   "\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      title\n      url\n      content {\n        ...CmsBanner\n        ...CmsProductSlider\n      }\n    }\n  }\n":
     types.CmsPagesDocument,
   "\n  fragment CmsStaticPageConfiguration on StaticPageConfiguration {\n    translations\n  }\n":
@@ -391,14 +393,20 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment CustomerData on Customer {\n    orders {\n      total_count\n    }\n    firstname\n    lastname\n    is_subscribed\n    addresses {\n      ...CustomerAddress\n    }\n  }\n",
-): (typeof documents)["\n  fragment CustomerData on Customer {\n    orders {\n      total_count\n    }\n    firstname\n    lastname\n    is_subscribed\n    addresses {\n      ...CustomerAddress\n    }\n  }\n"];
+  source: "\n  fragment CustomerData on Customer {\n    orders {\n      total_count\n    }\n    firstname\n    lastname\n    is_subscribed\n    favorite_store\n    addresses {\n      ...CustomerAddress\n    }\n  }\n",
+): (typeof documents)["\n  fragment CustomerData on Customer {\n    orders {\n      total_count\n    }\n    firstname\n    lastname\n    is_subscribed\n    favorite_store\n    addresses {\n      ...CustomerAddress\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
   source: "\n  query Customer {\n    customer {\n      ...CustomerData\n    }\n  }\n",
 ): (typeof documents)["\n  query Customer {\n    customer {\n      ...CustomerData\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  mutation UpdateCustomer($input: CustomerUpdateInput!) {\n    updateCustomerV2(input: $input) {\n      customer {\n        ...CustomerData\n      }\n    }\n  }\n",
+): (typeof documents)["\n  mutation UpdateCustomer($input: CustomerUpdateInput!) {\n    updateCustomerV2(input: $input) {\n      customer {\n        ...CustomerData\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
