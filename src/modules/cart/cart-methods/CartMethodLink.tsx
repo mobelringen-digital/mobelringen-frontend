@@ -24,7 +24,7 @@ export const CartMethodLink: React.FC<Props> = ({
 }) => {
   return (
     <Link
-      onClick={() => setPreferredMethod()}
+      onClick={setPreferredMethod}
       href={`/cart?method=${method}`}
       className={cx(
         "relative w-full px-4 py-1.5 lg:py-3 flex items-center gap-3 rounded-xl transition-all border hover:border-black",

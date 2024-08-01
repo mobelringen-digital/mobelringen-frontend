@@ -54,6 +54,33 @@ export async function setShippingAddressOnCart(
   return data;
 }
 
+export async function setAddressesOnCart(
+  cartId: string,
+  shippingAddress: InputMaybe<ShippingAddressInput>,
+  billingAddress: SetBillingAddressOnCartInput["billing_address"],
+) {
+  const token = await getToken();
+  const data = await authorizedMagentoClient(token, "POST").request(
+    SetShippingAddressOnCart,
+    {
+      cartId,
+      shipping_addresses: [shippingAddress],
+    },
+  );
+
+  await authorizedMagentoClient(token, "POST").request(
+    SetBillingAddressOnCart,
+    {
+      cartId,
+      billing_address: billingAddress,
+    },
+  );
+
+  revalidatePath("/cart");
+
+  return data;
+}
+
 export async function setGuestEmailOnCart(cartId: string, email: string) {
   return await baseMagentoClient("POST").request(SetGuestEmailOnCart, {
     cartId: cartId,

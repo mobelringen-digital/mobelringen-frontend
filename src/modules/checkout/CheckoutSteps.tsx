@@ -44,7 +44,7 @@ export const CheckoutSteps: React.FC<Props> = ({
           />
         }
       />
-      {!isOnlineMethod ? (
+      {isOnlineMethod ? (
         <>
           <CheckoutBlock
             disabled={!isShippingAddressSet}

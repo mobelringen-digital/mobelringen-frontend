@@ -53,3 +53,17 @@ export async function createEmptyCart() {
 
   return data;
 }
+
+export async function createCartAndAddProduct(
+  cartItems: Array<CartItemInput> | CartItemInput,
+  preferredMethod?: "online" | "collect",
+) {
+  const data = await createEmptyCart();
+  const cartId = data.createEmptyCart;
+
+  if (!cartId) return;
+
+  await addToCart(cartId, cartItems, preferredMethod);
+
+  return cartId;
+}

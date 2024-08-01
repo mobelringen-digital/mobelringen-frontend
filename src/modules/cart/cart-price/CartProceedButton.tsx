@@ -18,6 +18,8 @@ export const CartProceedButton: React.FC<Props> = ({ disabled, cart }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const { isCheckoutEnabled } = useCart(cart);
   const navigateToCheckout = async () => {
+    if (!isCheckoutEnabled) return;
+
     setIsLoading(true);
     return navigate("/cart/checkout").finally(() => setIsLoading(false));
   };

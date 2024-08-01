@@ -73,20 +73,12 @@ export const ContactForm: React.FC<Props> = ({
 
   const onSubmit: SubmitHandler<CheckoutFormData> = async (values) => {
     setIsLoading(true);
-    const customerAddress = customer?.customer?.addresses?.find(
-      (a) => a?.id === values.customer_address_id,
-    );
 
     const shippingFields = mapFormAddressValues(values, "shipping");
     let billingFields = mapFormAddressValues(values, "billing");
 
     if (!watchDifferentBillingAddress) {
       billingFields = mapFormAddressValues(values, "shipping");
-    }
-
-    //if postcode is different treat it as a new address
-    if (customerAddress?.postcode !== values.shipping.postcode) {
-      delete shippingFields.customer_address_id;
     }
 
     return onCheckoutFormSubmit(

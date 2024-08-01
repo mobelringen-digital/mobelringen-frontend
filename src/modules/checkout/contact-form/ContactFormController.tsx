@@ -6,9 +6,8 @@ import { openToast } from "@/components/_ui/toast-provider";
 import { useCartQuery } from "@/components/cart/useCartQuery";
 import { useCart } from "@/modules/cart/hooks/useCart";
 import {
-  setBillingAddressOnCart,
+  setAddressesOnCart,
   setGuestEmailOnCart,
-  setShippingAddressOnCart,
 } from "@/modules/checkout/contact-form/actions";
 import { ContactForm } from "@/modules/checkout/contact-form/ContactForm";
 import { placeOrder } from "@/modules/checkout/payment/actions";
@@ -45,10 +44,7 @@ export const ContactFormController: React.FC<Props> = ({
     if (!token && email) {
       await setGuestEmailOnCart(cart.id, email);
     }
-    await Promise.all([
-      setShippingAddressOnCart(cart.id, shippingAddress),
-      setBillingAddressOnCart(cart.id, billingAddress),
-    ]);
+    await setAddressesOnCart(cart.id, shippingAddress, billingAddress);
 
     if (isClickAndCollect) {
       const order = await placeOrder(cart.id);

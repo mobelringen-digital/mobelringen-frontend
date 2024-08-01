@@ -2,7 +2,7 @@ import React from "react";
 
 import {
   addToCart,
-  createEmptyCart,
+  createCartAndAddProduct,
 } from "@/components/cart/add-to-cart/actions";
 import { AddToCartController } from "@/components/cart/add-to-cart/AddToCartController";
 import { BaseCartFragment, BaseProductFragment } from "@/types";
@@ -36,20 +36,16 @@ export const AddToCart: React.FC<Props> = ({
       ).then(() => navigate("?cart=true"));
     }
 
-    if (!cart?.id) {
-      const emptyCart = await createEmptyCart();
-      if (emptyCart.createEmptyCart && product.sku && quantity) {
-        await addToCart(
-          emptyCart.createEmptyCart,
-          [
-            {
-              sku: product.sku,
-              quantity,
-            },
-          ],
-          preferredMethod,
-        ).then(() => navigate("?cart=true"));
-      }
+    if (!cart?.id && product.sku && quantity) {
+      await createCartAndAddProduct(
+        [
+          {
+            sku: product.sku,
+            quantity,
+          },
+        ],
+        preferredMethod,
+      ).then(() => navigate("?cart=true"));
     }
   };
 
