@@ -22,7 +22,7 @@ export async function setAddressesOnCart(
     delete values.shipping.customer_address_id;
   }
 
-  if (!values.shipping.address) {
+  if (values.shipping.customer_address_id) {
     delete values.shipping.address;
   }
 
@@ -30,7 +30,7 @@ export async function setAddressesOnCart(
     delete values.billing.customer_address_id;
   }
 
-  if (!values.billing.address) {
+  if (values.billing.customer_address_id) {
     delete values.billing.address;
   }
 
