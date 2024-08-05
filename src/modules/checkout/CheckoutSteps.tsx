@@ -27,7 +27,7 @@ export const CheckoutSteps: React.FC<Props> = ({
   const [cookies] = useCookies<"preferredMethod", CartCookie>([
     "preferredMethod",
   ]);
-  const isOnlineMethod = cookies.preferredMethod === "online";
+  const isOnlineMethod = cookies.preferredMethod !== "collect";
   const [activeBlock, setActiveBlock] = React.useState<Blocks>("contact");
 
   return (
