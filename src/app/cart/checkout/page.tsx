@@ -17,5 +17,24 @@ export default async function Checkout({
     return navigate("/auth/login?callback=TOKEN_EXPIRED");
   }
 
-  return <CheckoutPage searchParams={searchParams} cart={cart} />;
+  const isShippingAddressSet = !!cart?.shipping_addresses?.length;
+  const isShippingMethodSet =
+    !!cart?.shipping_addresses[0]?.selected_shipping_method;
+
+  if (searchParams?.step === "shipping" && !isShippingAddressSet) {
+    return navigate("/cart/checkout?step=contact");
+  }
+
+  if (searchParams?.step === "payment" && !isShippingMethodSet) {
+    return navigate("/cart/checkout?step=shipping");
+  }
+
+  return (
+    <CheckoutPage
+      isShippingMethodSet={isShippingMethodSet}
+      isShippingAddressSet={isShippingAddressSet}
+      searchParams={searchParams}
+      cart={cart}
+    />
+  );
 }

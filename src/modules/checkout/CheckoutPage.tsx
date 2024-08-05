@@ -13,13 +13,17 @@ import { NextSearchParams } from "@/utils/ts-utils";
 interface Props {
   cart?: BaseCartFragment | null;
   searchParams?: NextSearchParams;
+  isShippingAddressSet: boolean;
+  isShippingMethodSet: boolean;
 }
 
-export async function CheckoutPage({ cart, searchParams }: Props) {
+export async function CheckoutPage({
+  cart,
+  searchParams,
+  isShippingMethodSet,
+  isShippingAddressSet,
+}: Props) {
   const customer = await getCustomerDetails();
-  const isShippingAddressSet = !!cart?.shipping_addresses?.length;
-  const isShippingMethodSet =
-    !!cart?.shipping_addresses[0]?.selected_shipping_method;
 
   return (
     <ContainerLayout>

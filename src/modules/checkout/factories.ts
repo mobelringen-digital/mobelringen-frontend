@@ -56,6 +56,7 @@ export const setDefaultFormValues = (
           cartShippingAddress?.telephone ??
           defaultShippingAddress?.telephone ??
           "",
+        country_code: "NO",
         save_in_address_book: false,
       },
     },
@@ -79,6 +80,7 @@ export const setDefaultFormValues = (
           cartBillingAddress?.telephone ??
           defaultBillingAddress?.telephone ??
           "",
+        country_code: "NO",
         save_in_address_book: false,
       },
     },
