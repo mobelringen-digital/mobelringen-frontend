@@ -1,9 +1,8 @@
+"use client";
+
 import React from "react";
 
-import { Loader } from "@/components/_ui/loader/Loader";
-import { LoaderInnerWrapper } from "@/components/_ui/loader/LoaderInnerWrapper";
 import { openToast } from "@/components/_ui/toast-provider";
-import { useCartQuery } from "@/components/cart/useCartQuery";
 import { useCart } from "@/modules/cart/hooks/useCart";
 import {
   setAddressesOnCart,
@@ -12,6 +11,7 @@ import {
 import { ContactForm } from "@/modules/checkout/contact-form/ContactForm";
 import { placeOrder } from "@/modules/checkout/payment/actions";
 import {
+  BaseCartFragment,
   BillingAddressInput,
   CustomerQuery,
   InputMaybe,
@@ -22,15 +22,11 @@ import { useSession } from "@/utils/hooks/useSession";
 import { navigate } from "../../../app/actions";
 
 interface Props {
-  onSuccessfulSubmit: () => void;
   customer?: CustomerQuery;
+  cart?: BaseCartFragment | null;
 }
 
-export const ContactFormController: React.FC<Props> = ({
-  onSuccessfulSubmit,
-  customer,
-}) => {
-  const { data: cart, isLoading } = useCartQuery();
+export const ContactFormController: React.FC<Props> = ({ customer, cart }) => {
   const { token } = useSession();
   const { isClickAndCollect } = useCart(cart);
 
@@ -53,18 +49,12 @@ export const ContactFormController: React.FC<Props> = ({
       openToast({
         content: "Forsendelses- og faktureringsadresser er oppdatert",
       });
-      onSuccessfulSubmit();
     }
+
+    return navigate("/cart/checkout?step=shipping");
   };
 
   if (!cart) return null;
-
-  if (isLoading)
-    return (
-      <LoaderInnerWrapper>
-        <Loader />
-      </LoaderInnerWrapper>
-    );
 
   return (
     <ContactForm

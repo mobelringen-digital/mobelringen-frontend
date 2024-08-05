@@ -1,32 +1,21 @@
+"use client";
+
 import React from "react";
 
-import { Loader } from "@/components/_ui/loader/Loader";
-import { LoaderInnerWrapper } from "@/components/_ui/loader/LoaderInnerWrapper";
-import { useCartQuery } from "@/components/cart/useCartQuery";
 import {
   setPaymentMethodOnCart,
   vippsInitPayment,
 } from "@/modules/checkout/payment/actions";
 import { PaymentForm } from "@/modules/checkout/payment/PaymentForm";
-import { AvailablePaymentMethodFragment } from "@/types";
+import { AvailablePaymentMethodFragment, BaseCartFragment } from "@/types";
 
 import { navigate } from "../../../app/actions";
 
 interface Props {
-  onSuccessfulSubmit: () => void;
+  cart?: BaseCartFragment | null;
 }
 
-export const PaymentFormController: React.FC<Props> = () => {
-  const { data: cart, isLoading } = useCartQuery();
-
-  if (isLoading) {
-    return (
-      <LoaderInnerWrapper>
-        <Loader />
-      </LoaderInnerWrapper>
-    );
-  }
-
+export const PaymentFormController: React.FC<Props> = ({ cart }) => {
   if (!cart) {
     return null;
   }

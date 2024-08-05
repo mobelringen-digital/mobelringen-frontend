@@ -1,74 +1,61 @@
-"use client";
-
 import React from "react";
 
-import { useCookies } from "react-cookie";
+import { cookies } from "next/headers";
 
-import { CartCookie } from "@/components/cart/fetchCartService";
 import { CheckoutBlock } from "@/modules/checkout/CheckoutBlock";
 import { ContactFormController } from "@/modules/checkout/contact-form/ContactFormController";
 import { PaymentFormController } from "@/modules/checkout/payment/PaymentFormController";
 import { ShippingFormController } from "@/modules/checkout/shipping/ShippingFormController";
-import { CustomerQuery } from "@/types";
+import { BaseCartFragment, CustomerQuery } from "@/types";
+import { NextSearchParams } from "@/utils/ts-utils";
 
-type Blocks = "contact" | "shipping" | "payment";
+export type Blocks = "contact" | "shipping" | "payment";
 
 interface Props {
   isShippingAddressSet: boolean;
   isShippingMethodSet: boolean;
   customer?: CustomerQuery;
+  cart?: BaseCartFragment | null;
+  searchParams?: NextSearchParams;
 }
 
 export const CheckoutSteps: React.FC<Props> = ({
   isShippingAddressSet,
   isShippingMethodSet,
   customer,
+  cart,
+  searchParams,
 }) => {
-  const [cookies] = useCookies<"preferredMethod", CartCookie>([
-    "preferredMethod",
-  ]);
-  const isOnlineMethod = cookies.preferredMethod !== "collect";
-  const [activeBlock, setActiveBlock] = React.useState<Blocks>("contact");
+  const cookiesStore = cookies();
+  const isOnlineMethod =
+    cookiesStore.get("preferredMethod")?.value !== "collect";
 
   return (
     <div className="flex flex-col gap-6">
       <CheckoutBlock
-        onClick={() => setActiveBlock("contact")}
         position={1}
+        type="contact"
         title="Kontaktopplysninger"
-        isActive={activeBlock === "contact"}
-        content={
-          <ContactFormController
-            customer={customer}
-            onSuccessfulSubmit={() => setActiveBlock("shipping")}
-          />
-        }
+        isActive={!searchParams?.step || searchParams?.step === "contact"}
+        content={<ContactFormController cart={cart} customer={customer} />}
       />
       {isOnlineMethod ? (
         <>
           <CheckoutBlock
             disabled={!isShippingAddressSet}
-            onClick={() => setActiveBlock("shipping")}
             position={2}
+            type="shipping"
             title="Levering"
-            isActive={activeBlock === "shipping"}
-            content={
-              <ShippingFormController
-                onSuccessfulSubmit={() => setActiveBlock("payment")}
-              />
-            }
+            isActive={searchParams?.step === "shipping"}
+            content={<ShippingFormController cart={cart} />}
           />
           <CheckoutBlock
             disabled={!isShippingMethodSet}
-            onClick={() => setActiveBlock("payment")}
             position={3}
+            type="payment"
             title="Betaling"
-            isActive={activeBlock === "payment"}
-            content={
-              <PaymentFormController
-                onSuccessfulSubmit={() => setActiveBlock("payment")}
-              />
-            }
+            isActive={searchParams?.step === "payment"}
+            content={<PaymentFormController cart={cart} />}
           />
         </>
       ) : null}

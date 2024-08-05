@@ -1,6 +1,12 @@
+"use client";
+
 import React from "react";
 
 import cx from "classnames";
+
+import { Blocks } from "@/modules/checkout/CheckoutSteps";
+
+import { navigate } from "../../app/actions";
 
 interface Props {
   position: number;
@@ -8,8 +14,8 @@ interface Props {
   description?: string;
   isActive: boolean;
   content: React.ReactNode;
-  onClick?: () => void;
   disabled?: boolean;
+  type: Blocks;
 }
 
 export const CheckoutBlock: React.FC<Props> = ({
@@ -17,14 +23,20 @@ export const CheckoutBlock: React.FC<Props> = ({
   title,
   isActive,
   content,
-  onClick,
   disabled,
+  type,
 }) => {
+  const navigateTo = async (step: Blocks) => {
+    if (disabled) return;
+
+    await navigate(`/cart/checkout?step=${step}`);
+  };
+
   return (
     <div className="bg-white flex flex-col gap-6 rounded-2xl p-4 lg:p-8">
       <button
         disabled={disabled}
-        onClick={onClick}
+        onClick={() => navigateTo(type)}
         className="flex items-center gap-4"
       >
         <span

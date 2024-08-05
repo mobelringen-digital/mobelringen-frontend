@@ -8,12 +8,14 @@ import { CheckoutSteps } from "@/modules/checkout/CheckoutSteps";
 import { CheckoutSummary } from "@/modules/checkout/CheckoutSummary";
 import { CheckoutTitle } from "@/modules/checkout/CheckoutTitle";
 import { BaseCartFragment } from "@/types";
+import { NextSearchParams } from "@/utils/ts-utils";
 
 interface Props {
   cart?: BaseCartFragment | null;
+  searchParams?: NextSearchParams;
 }
 
-export async function CheckoutPage({ cart }: Props) {
+export async function CheckoutPage({ cart, searchParams }: Props) {
   const customer = await getCustomerDetails();
   const isShippingAddressSet = !!cart?.shipping_addresses?.length;
   const isShippingMethodSet =
@@ -26,7 +28,9 @@ export async function CheckoutPage({ cart }: Props) {
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-12 lg:col-span-7">
           <CheckoutSteps
+            searchParams={searchParams}
             customer={customer}
+            cart={cart}
             isShippingAddressSet={isShippingAddressSet}
             isShippingMethodSet={isShippingMethodSet}
           />

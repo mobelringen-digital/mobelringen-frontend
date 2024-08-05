@@ -1,30 +1,19 @@
+"use client";
+
 import React from "react";
 
-import { Loader } from "@/components/_ui/loader/Loader";
-import { LoaderInnerWrapper } from "@/components/_ui/loader/LoaderInnerWrapper";
 import { openToast } from "@/components/_ui/toast-provider";
-import { useCartQuery } from "@/components/cart/useCartQuery";
 import { setShippingMethods } from "@/modules/checkout/shipping/actions";
 import { ShippingForm } from "@/modules/checkout/shipping/ShippingForm";
-import { AvailableShippingMethodFragment } from "@/types";
+import { AvailableShippingMethodFragment, BaseCartFragment } from "@/types";
+
+import { navigate } from "../../../app/actions";
 
 interface Props {
-  onSuccessfulSubmit: () => void;
+  cart?: BaseCartFragment | null;
 }
 
-export const ShippingFormController: React.FC<Props> = ({
-  onSuccessfulSubmit,
-}) => {
-  const { data: cart, isLoading } = useCartQuery();
-
-  if (isLoading) {
-    return (
-      <LoaderInnerWrapper>
-        <Loader />
-      </LoaderInnerWrapper>
-    );
-  }
-
+export const ShippingFormController: React.FC<Props> = ({ cart }) => {
   if (!cart) {
     return null;
   }
@@ -39,7 +28,7 @@ export const ShippingFormController: React.FC<Props> = ({
       method_code: method.method_code,
     }).then(() => {
       openToast({ content: "Innleveringsmetode er valgt" });
-      onSuccessfulSubmit();
+      navigate("/cart/checkout?step=payment");
     });
   };
 
