@@ -12,26 +12,15 @@ import { SelectedCustomerAddress } from "@/modules/checkout/contact-form/Selecte
 import { ShippingFormFields } from "@/modules/checkout/contact-form/ShippingFormFields";
 import {
   CheckoutFormData,
-  mapFormAddressValues,
   setDefaultFormValues,
 } from "@/modules/checkout/factories";
-import {
-  BaseCartFragment,
-  BillingAddressInput,
-  CustomerQuery,
-  InputMaybe,
-  ShippingAddressInput,
-} from "@/types";
+import { BaseCartFragment, CustomerQuery } from "@/types";
 
 import { navigate } from "../../../app/actions";
 
 interface Props {
   cart: BaseCartFragment;
-  onCheckoutFormSubmit: (
-    shippingAddress: InputMaybe<ShippingAddressInput>,
-    billingAddress: BillingAddressInput,
-    email?: string | null,
-  ) => Promise<void>;
+  onCheckoutFormSubmit: (values: CheckoutFormData) => Promise<void>;
   isAuthorized?: boolean;
   customer?: CustomerQuery;
 }
@@ -75,18 +64,7 @@ export const ContactForm: React.FC<Props> = ({
   const onSubmit: SubmitHandler<CheckoutFormData> = async (values) => {
     setIsLoading(true);
 
-    const shippingFields = mapFormAddressValues(values, "shipping");
-    let billingFields = mapFormAddressValues(values, "billing");
-
-    if (!watchDifferentBillingAddress) {
-      billingFields = mapFormAddressValues(values, "shipping");
-    }
-
-    return onCheckoutFormSubmit(
-      shippingFields,
-      billingFields,
-      values.email,
-    ).finally(() => setIsLoading(false));
+    return onCheckoutFormSubmit(values).finally(() => setIsLoading(false));
   };
 
   const selectedShippingCustomerAddress = React.useMemo(() => {
@@ -152,6 +130,7 @@ export const ContactForm: React.FC<Props> = ({
         </div>
 
         <AddressSelectModal
+          customer={customer}
           isOpen={showAddressModal}
           onOpenChange={() => setShowAddressModal((prev) => !prev)}
           onSelect={onAddressSelect}

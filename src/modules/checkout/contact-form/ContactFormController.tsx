@@ -9,14 +9,9 @@ import {
   setGuestEmailOnCart,
 } from "@/modules/checkout/contact-form/actions";
 import { ContactForm } from "@/modules/checkout/contact-form/ContactForm";
+import { CheckoutFormData } from "@/modules/checkout/factories";
 import { placeOrder } from "@/modules/checkout/payment/actions";
-import {
-  BaseCartFragment,
-  BillingAddressInput,
-  CustomerQuery,
-  InputMaybe,
-  ShippingAddressInput,
-} from "@/types";
+import { BaseCartFragment, CustomerQuery } from "@/types";
 import { useSession } from "@/utils/hooks/useSession";
 
 import { navigate } from "../../../app/actions";
@@ -30,17 +25,13 @@ export const ContactFormController: React.FC<Props> = ({ customer, cart }) => {
   const { token } = useSession();
   const { isClickAndCollect } = useCart(cart);
 
-  const onSubmit = async (
-    shippingAddress: InputMaybe<ShippingAddressInput>,
-    billingAddress: BillingAddressInput,
-    email?: string | null,
-  ) => {
+  const onSubmit = async (values: CheckoutFormData) => {
     if (!cart?.id) return;
 
-    if (!token && email) {
-      await setGuestEmailOnCart(cart.id, email);
+    if (!token && values.email) {
+      await setGuestEmailOnCart(cart.id, values.email);
     }
-    await setAddressesOnCart(cart.id, shippingAddress, billingAddress);
+    await setAddressesOnCart(cart.id, values);
 
     if (isClickAndCollect) {
       const order = await placeOrder(cart.id);

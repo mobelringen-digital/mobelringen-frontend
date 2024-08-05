@@ -285,6 +285,36 @@ export type AggregationsFilterInput = {
   category?: InputMaybe<AggregationsCategoryFilterInput>;
 };
 
+export type ApplePayConfig = PaymentConfigItem & {
+  __typename: "ApplePayConfig";
+  /** The styles for the ApplePay Smart Button configuration */
+  button_styles?: Maybe<ButtonStyles>;
+  /** The payment method code as defined in the payment gateway */
+  code?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether the payment method is displayed */
+  is_visible?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Defines the payment intent (Authorize or Capture */
+  payment_intent?: Maybe<Scalars["String"]["output"]>;
+  /** The payment source for the payment method */
+  payment_source?: Maybe<Scalars["String"]["output"]>;
+  /** The PayPal parameters required to load the JS SDK */
+  sdk_params?: Maybe<Array<Maybe<SdkParams>>>;
+  /** The relative order the payment method is displayed on the checkout page */
+  sort_order?: Maybe<Scalars["String"]["output"]>;
+  /** The name displayed for the payment method */
+  title?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Apple Pay inputs */
+export type ApplePayMethodInput = {
+  /** The payment source for the payment method */
+  payment_source?: InputMaybe<Scalars["String"]["input"]>;
+  /** The payment services order ID */
+  payments_order_id?: InputMaybe<Scalars["String"]["input"]>;
+  /** PayPal order ID */
+  paypal_order_id?: InputMaybe<Scalars["String"]["input"]>;
+};
+
 /** Contains the applied coupon code. */
 export type AppliedCoupon = {
   __typename: "AppliedCoupon";
@@ -329,6 +359,24 @@ export type ApplyCouponToCartOutput = {
   __typename: "ApplyCouponToCartOutput";
   /** The cart after applying a coupon. */
   cart: Cart;
+};
+
+/** The strategy to apply coupons to the cart. */
+export enum ApplyCouponsStrategy {
+  /** Append new coupons keeping the coupons that have been applied before. */
+  Append = "APPEND",
+  /** Remove all the coupons from the cart and apply only new provided coupons. */
+  Replace = "REPLACE",
+}
+
+/** Apply coupons to the cart. */
+export type ApplyCouponsToCartInput = {
+  /** The unique ID of a `Cart` object. */
+  cart_id: Scalars["String"]["input"];
+  /** An array of valid coupon codes. */
+  coupon_codes: Array<InputMaybe<Scalars["String"]["input"]>>;
+  /** `replace` to replace the existing coupon(s) or `append` to add the coupon to the coupon(s) list. */
+  type?: InputMaybe<ApplyCouponsStrategy>;
 };
 
 /** Defines the input required to run the `applyGiftCardToCart` mutation. */
@@ -1186,6 +1234,63 @@ export type Attribute = {
   storefront_properties?: Maybe<StorefrontProperties>;
 };
 
+/** List of all entity types. Populated by the modules introducing EAV entities. */
+export enum AttributeEntityTypeEnum {
+  CatalogCategory = "CATALOG_CATEGORY",
+  CatalogProduct = "CATALOG_PRODUCT",
+  Customer = "CUSTOMER",
+  CustomerAddress = "CUSTOMER_ADDRESS",
+  RmaItem = "RMA_ITEM",
+}
+
+/** An input object that specifies the filters used for attributes. */
+export type AttributeFilterInput = {
+  /** Whether a product or category attribute can be compared against another or not. */
+  is_comparable?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Whether a product or category attribute can be filtered or not. */
+  is_filterable?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Whether a product or category attribute can be filtered in search or not. */
+  is_filterable_in_search?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Whether a product or category attribute can use HTML on front or not. */
+  is_html_allowed_on_front?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Whether a product or category attribute can be searched or not. */
+  is_searchable?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Whether a customer or customer address attribute is used for customer segment or not. */
+  is_used_for_customer_segment?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Whether a product or category attribute can be used for price rules or not. */
+  is_used_for_price_rules?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Whether a product or category attribute is used for promo rules or not. */
+  is_used_for_promo_rules?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Whether a product or category attribute is visible in advanced search or not. */
+  is_visible_in_advanced_search?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Whether a product or category attribute is visible on front or not. */
+  is_visible_on_front?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Whether a product or category attribute has WYSIWYG enabled or not. */
+  is_wysiwyg_enabled?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Whether a product or category attribute is used in product listing or not. */
+  used_in_product_listing?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** EAV attribute frontend input types. */
+export enum AttributeFrontendInputEnum {
+  Boolean = "BOOLEAN",
+  Date = "DATE",
+  Datetime = "DATETIME",
+  File = "FILE",
+  Gallery = "GALLERY",
+  Hidden = "HIDDEN",
+  Image = "IMAGE",
+  MediaImage = "MEDIA_IMAGE",
+  Multiline = "MULTILINE",
+  Multiselect = "MULTISELECT",
+  Price = "PRICE",
+  Select = "SELECT",
+  Text = "TEXT",
+  Textarea = "TEXTAREA",
+  Undefined = "UNDEFINED",
+  Weight = "WEIGHT",
+}
+
 /** Defines the attribute characteristics to search for the `attribute_code` and `entity_type` to search. */
 export type AttributeInput = {
   /** The unique identifier for an attribute code. This value should be in lowercase letters without spaces. */
@@ -1194,6 +1299,56 @@ export type AttributeInput = {
   entity_type?: InputMaybe<Scalars["String"]["input"]>;
 };
 
+/** Specifies selected option for a select or multiselect attribute value. */
+export type AttributeInputSelectedOption = {
+  /** The attribute option value. */
+  value: Scalars["String"]["input"];
+};
+
+/** Base EAV implementation of CustomAttributeMetadataInterface. */
+export type AttributeMetadata = CustomAttributeMetadataInterface & {
+  __typename: "AttributeMetadata";
+  /** The unique identifier for an attribute code. This value should be in lowercase letters without spaces. */
+  code: Scalars["ID"]["output"];
+  /** Default attribute value. */
+  default_value?: Maybe<Scalars["String"]["output"]>;
+  /** The type of entity that defines the attribute. */
+  entity_type: AttributeEntityTypeEnum;
+  /** The frontend class of the attribute. */
+  frontend_class?: Maybe<Scalars["String"]["output"]>;
+  /** The frontend input type of the attribute. */
+  frontend_input?: Maybe<AttributeFrontendInputEnum>;
+  /** Whether the attribute value is required. */
+  is_required: Scalars["Boolean"]["output"];
+  /** Whether the attribute value must be unique. */
+  is_unique: Scalars["Boolean"]["output"];
+  /** The label assigned to the attribute. */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /** Attribute options. */
+  options: Array<Maybe<CustomAttributeOptionInterface>>;
+};
+
+/** Attribute metadata retrieval error. */
+export type AttributeMetadataError = {
+  __typename: "AttributeMetadataError";
+  /** Attribute metadata retrieval error message. */
+  message: Scalars["String"]["output"];
+  /** Attribute metadata retrieval error type. */
+  type: AttributeMetadataErrorType;
+};
+
+/** Attribute metadata retrieval error types. */
+export enum AttributeMetadataErrorType {
+  /** The requested attribute was not found. */
+  AttributeNotFound = "ATTRIBUTE_NOT_FOUND",
+  /** The requested entity was not found. */
+  EntityNotFound = "ENTITY_NOT_FOUND",
+  /** The filter cannot be applied as it does not belong to the entity */
+  FilterNotFound = "FILTER_NOT_FOUND",
+  /** Not categorized error, see the error message. */
+  Undefined = "UNDEFINED",
+}
+
 /** Defines an attribute option. */
 export type AttributeOption = {
   __typename: "AttributeOption";
@@ -1201,6 +1356,82 @@ export type AttributeOption = {
   label?: Maybe<Scalars["String"]["output"]>;
   /** The attribute option value. */
   value?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Base EAV implementation of CustomAttributeOptionInterface. */
+export type AttributeOptionMetadata = CustomAttributeOptionInterface & {
+  __typename: "AttributeOptionMetadata";
+  /** Is the option value default. */
+  is_default: Scalars["Boolean"]["output"];
+  /** The label assigned to the attribute option. */
+  label: Scalars["String"]["output"];
+  /** The attribute option value. */
+  value: Scalars["String"]["output"];
+};
+
+export type AttributeSelectedOption = AttributeSelectedOptionInterface & {
+  __typename: "AttributeSelectedOption";
+  /** The attribute selected option label. */
+  label: Scalars["String"]["output"];
+  /** The attribute selected option value. */
+  value: Scalars["String"]["output"];
+};
+
+export type AttributeSelectedOptionInterface = {
+  /** The attribute selected option label. */
+  label: Scalars["String"]["output"];
+  /** The attribute selected option value. */
+  value: Scalars["String"]["output"];
+};
+
+export type AttributeSelectedOptions = AttributeValueInterface & {
+  __typename: "AttributeSelectedOptions";
+  /** The attribute code. */
+  code: Scalars["ID"]["output"];
+  selected_options: Array<Maybe<AttributeSelectedOptionInterface>>;
+};
+
+export type AttributeValue = AttributeValueInterface & {
+  __typename: "AttributeValue";
+  /** The attribute code. */
+  code: Scalars["ID"]["output"];
+  /** The attribute value. */
+  value: Scalars["String"]["output"];
+};
+
+/** Specifies the value for attribute. */
+export type AttributeValueInput = {
+  /** The code of the attribute. */
+  attribute_code: Scalars["String"]["input"];
+  /** An array containing selected options for a select or multiselect attribute. */
+  selected_options?: InputMaybe<
+    Array<InputMaybe<AttributeInputSelectedOption>>
+  >;
+  /** The value assigned to the attribute. */
+  value?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type AttributeValueInterface = {
+  /** The attribute code. */
+  code: Scalars["ID"]["output"];
+};
+
+/** Metadata of EAV attributes associated to form */
+export type AttributesFormOutput = {
+  __typename: "AttributesFormOutput";
+  /** Errors of retrieving certain attributes metadata. */
+  errors: Array<Maybe<AttributeMetadataError>>;
+  /** Requested attributes metadata. */
+  items: Array<Maybe<CustomAttributeMetadataInterface>>;
+};
+
+/** Metadata of EAV attributes. */
+export type AttributesMetadataOutput = {
+  __typename: "AttributesMetadataOutput";
+  /** Errors of retrieving certain attributes metadata. */
+  errors: Array<Maybe<AttributeMetadataError>>;
+  /** Requested attributes metadata. */
+  items: Array<Maybe<CustomAttributeMetadataInterface>>;
 };
 
 /** Describes a payment method that the shopper can use to pay for the order. */
@@ -1834,11 +2065,8 @@ export type BannerWhereUniqueInput = {
 };
 
 export enum BatchMutationStatus {
-  /** @deprecated  */
   Failure = "FAILURE",
-  /** @deprecated  */
   MixedResults = "MIXED_RESULTS",
-  /** @deprecated  */
   Success = "SUCCESS",
 }
 
@@ -1869,18 +2097,28 @@ export type BillingCartAddress = CartAddressInterface & {
   company?: Maybe<Scalars["String"]["output"]>;
   /** An object containing the country label and code. */
   country: CartAddressCountry;
+  /** The custom attribute values of the billing or shipping address. */
+  custom_attributes: Array<Maybe<AttributeValueInterface>>;
   /** @deprecated The field is used only in shipping address. */
   customer_notes?: Maybe<Scalars["String"]["output"]>;
+  /** The customer's fax number. */
+  fax?: Maybe<Scalars["String"]["output"]>;
   /** The first name of the customer or guest. */
   firstname: Scalars["String"]["output"];
   /** The last name of the customer or guest. */
   lastname: Scalars["String"]["output"];
+  /** The middle name of the person associated with the billing/shipping address. */
+  middlename?: Maybe<Scalars["String"]["output"]>;
   /** The ZIP or postal code of the billing or shipping address. */
   postcode?: Maybe<Scalars["String"]["output"]>;
+  /** An honorific, such as Dr., Mr., or Mrs. */
+  prefix?: Maybe<Scalars["String"]["output"]>;
   /** An object containing the region label and code. */
   region?: Maybe<CartAddressRegion>;
   /** An array containing the street for the billing or shipping address. */
   street: Array<Maybe<Scalars["String"]["output"]>>;
+  /** A value such as Sr., Jr., or III. */
+  suffix?: Maybe<Scalars["String"]["output"]>;
   /** The telephone number for the billing or shipping address. */
   telephone?: Maybe<Scalars["String"]["output"]>;
   /** The unique id of the customer address. */
@@ -1897,10 +2135,15 @@ export type BraintreeCcVaultInput = {
 export type BraintreeInput = {
   /** Contains a fingerprint provided by Braintree JS SDK and should be sent with sale transaction details to the Braintree payment gateway. */
   device_data?: InputMaybe<Scalars["String"]["input"]>;
-  /** States whether an entered by a customer credit/debit card should be tokenized for later usage. Required only if Vault is enabled for Braintree payment integration. */
+  /** States whether the payment details (Credit/Debit Card, PayPal Account) entered by a customer should be tokenized for later usage. Required only if Vault is enabled for the relevant Braintree payment integration. */
   is_active_payment_token_enabler: Scalars["Boolean"]["input"];
-  /** The one-time payment token generated by Braintree payment gateway based on card details. Required field to make sale transaction. */
+  /** The one-time payment token generated by Braintree payment gateway based on payment details (Card, PayPal). Required field to make sale transaction. */
   payment_method_nonce: Scalars["String"]["input"];
+};
+
+export type BraintreeVaultInput = {
+  device_data?: InputMaybe<Scalars["String"]["input"]>;
+  public_hash: Scalars["String"]["input"];
 };
 
 export type Brand = {
@@ -1946,6 +2189,8 @@ export type BundleCartItem = CartItemInterface & {
   gift_wrapping?: Maybe<GiftWrapping>;
   /** @deprecated Use `uid` instead. */
   id: Scalars["String"]["output"];
+  /** True if requested quantity is less than available stock, false otherwise. */
+  is_available: Scalars["Boolean"]["output"];
   /** Indicates whether the product is available in the store */
   is_in_store?: Maybe<Scalars["Boolean"]["output"]>;
   /** Contains details about the price of the item, including taxes and discounts. */
@@ -2086,6 +2331,8 @@ export type BundleOrderItem = OrderItemInterface & {
   gift_wrapping?: Maybe<GiftWrapping>;
   /** The unique ID for an `OrderItemInterface` object. */
   id: Scalars["ID"]["output"];
+  /** The ProductInterface object, which contains details about the base product */
+  product?: Maybe<ProductInterface>;
   /** The name of the base product. */
   product_name?: Maybe<Scalars["String"]["output"]>;
   /** The sale price of the base product, including selected options. */
@@ -2148,6 +2395,8 @@ export type BundleProduct = CustomizableProductInterface &
     created_at?: Maybe<Scalars["String"]["output"]>;
     /** An array of cross-sell products. */
     crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** Product custom attributes. */
+    custom_attributesV2?: Maybe<ProductCustomAttributes>;
     /** @deprecated Use the `custom_attributes` field instead. */
     delivery_promise?: Maybe<Scalars["String"]["output"]>;
     /** Detailed information about the product. The value can include simple HTML tags. */
@@ -2231,6 +2480,8 @@ export type BundleProduct = CustomizableProductInterface &
      * @deprecated Use `price_range` for product price information.
      */
     price?: Maybe<ProductPrices>;
+    /** The price details of the main product */
+    price_details?: Maybe<PriceDetails>;
     /** The range of prices for the product */
     price_range: PriceRange;
     /** An array of `TierPrice` objects. */
@@ -2335,6 +2586,11 @@ export type BundleProduct = CustomizableProductInterface &
   };
 
 /** Defines basic features of a bundle product and contains multiple BundleItems. */
+export type BundleProductCustom_AttributesV2Args = {
+  filters: InputMaybe<AttributeFilterInput>;
+};
+
+/** Defines basic features of a bundle product and contains multiple BundleItems. */
 export type BundleProductReviewsArgs = {
   currentPage?: InputMaybe<Scalars["Int"]["input"]>;
   pageSize?: InputMaybe<Scalars["Int"]["input"]>;
@@ -2388,6 +2644,66 @@ export type BundleWishlistItem = WishlistItemInterface & {
   quantity: Scalars["Float"]["output"];
 };
 
+export type ButtonStyles = {
+  __typename: "ButtonStyles";
+  /** The button color */
+  color?: Maybe<Scalars["String"]["output"]>;
+  /** The button height in pixels */
+  height?: Maybe<Scalars["Int"]["output"]>;
+  /** The button label */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /** The button layout */
+  layout?: Maybe<Scalars["String"]["output"]>;
+  /** The button shape */
+  shape?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether the tagline is displayed */
+  tagline?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Defines if the button uses default height. If the value is false, the value of height is used */
+  use_default_height?: Maybe<Scalars["Boolean"]["output"]>;
+};
+
+/** Defines the order to cancel. */
+export type CancelOrderInput = {
+  /** Order ID. */
+  order_id: Scalars["ID"]["input"];
+  /** Cancellation reason. */
+  reason: Scalars["String"]["input"];
+};
+
+/** Contains the updated customer order and error message if any. */
+export type CancelOrderOutput = {
+  __typename: "CancelOrderOutput";
+  /** Error encountered while cancelling the order. */
+  error?: Maybe<Scalars["String"]["output"]>;
+  /** Updated customer order. */
+  order?: Maybe<CustomerOrder>;
+};
+
+export type CancellationReason = {
+  __typename: "CancellationReason";
+  description: Scalars["String"]["output"];
+};
+
+export type Card = {
+  __typename: "Card";
+  /** Card bin details */
+  bin_details?: Maybe<CardBin>;
+  /** Expiration month of the card */
+  card_expiry_month?: Maybe<Scalars["String"]["output"]>;
+  /** Expiration year of the card */
+  card_expiry_year?: Maybe<Scalars["String"]["output"]>;
+  /** Last four digits of the card */
+  last_digits?: Maybe<Scalars["String"]["output"]>;
+  /** Name on the card */
+  name?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type CardBin = {
+  __typename: "CardBin";
+  /** Card bin number */
+  bin?: Maybe<Scalars["String"]["output"]>;
+};
+
 /** Contains the contents and other details about a guest or customer cart. */
 export type Cart = {
   __typename: "Cart";
@@ -2419,8 +2735,12 @@ export type Cart = {
   id: Scalars["ID"]["output"];
   /** Indicates whether the cart contains only virtual products. */
   is_virtual: Scalars["Boolean"]["output"];
-  /** An array of products that have been added to the cart. */
+  /**
+   * An array of products that have been added to the cart.
+   * @deprecated Use `itemsV2` instead.
+   */
   items?: Maybe<Array<Maybe<CartItemInterface>>>;
+  itemsV2?: Maybe<CartItems>;
   /** Pricing details for the quote. */
   prices?: Maybe<CartPrices>;
   /** Indicates whether the shopper requested a printed card for the cart. */
@@ -2431,6 +2751,13 @@ export type Cart = {
   shipping_addresses: Array<Maybe<ShippingCartAddress>>;
   /** The total number of items in the cart. */
   total_quantity: Scalars["Float"]["output"];
+};
+
+/** Contains the contents and other details about a guest or customer cart. */
+export type CartItemsV2Args = {
+  currentPage?: InputMaybe<Scalars["Int"]["input"]>;
+  pageSize?: InputMaybe<Scalars["Int"]["input"]>;
+  sort: InputMaybe<QuoteItemsSortInput>;
 };
 
 /** Contains details the country in a billing or shipping address. */
@@ -2450,12 +2777,20 @@ export type CartAddressInput = {
   company?: InputMaybe<Scalars["String"]["input"]>;
   /** The country code and label for the billing or shipping address. */
   country_code: Scalars["String"]["input"];
+  /** The custom attribute values of the billing or shipping address. */
+  custom_attributes?: InputMaybe<Array<InputMaybe<AttributeValueInput>>>;
+  /** The customer's fax number. */
+  fax?: InputMaybe<Scalars["String"]["input"]>;
   /** The first name of the customer or guest. */
   firstname: Scalars["String"]["input"];
   /** The last name of the customer or guest. */
   lastname: Scalars["String"]["input"];
+  /** The middle name of the person associated with the billing/shipping address. */
+  middlename?: InputMaybe<Scalars["String"]["input"]>;
   /** The ZIP or postal code of the billing or shipping address. */
   postcode?: InputMaybe<Scalars["String"]["input"]>;
+  /** An honorific, such as Dr., Mr., or Mrs. */
+  prefix?: InputMaybe<Scalars["String"]["input"]>;
   /** A string that defines the state or province of the billing or shipping address. */
   region?: InputMaybe<Scalars["String"]["input"]>;
   /** An integer that defines the state or province of the billing or shipping address. */
@@ -2464,6 +2799,8 @@ export type CartAddressInput = {
   save_in_address_book?: InputMaybe<Scalars["Boolean"]["input"]>;
   /** An array containing the street for the billing or shipping address. */
   street: Array<InputMaybe<Scalars["String"]["input"]>>;
+  /** A value such as Sr., Jr., or III. */
+  suffix?: InputMaybe<Scalars["String"]["input"]>;
   /** The telephone number for the billing or shipping address. */
   telephone?: InputMaybe<Scalars["String"]["input"]>;
   /** The VAT company number for billing or shipping address. */
@@ -2477,16 +2814,26 @@ export type CartAddressInterface = {
   company?: Maybe<Scalars["String"]["output"]>;
   /** An object containing the country label and code. */
   country: CartAddressCountry;
+  /** The custom attribute values of the billing or shipping address. */
+  custom_attributes: Array<Maybe<AttributeValueInterface>>;
+  /** The customer's fax number. */
+  fax?: Maybe<Scalars["String"]["output"]>;
   /** The first name of the customer or guest. */
   firstname: Scalars["String"]["output"];
   /** The last name of the customer or guest. */
   lastname: Scalars["String"]["output"];
+  /** The middle name of the person associated with the billing/shipping address. */
+  middlename?: Maybe<Scalars["String"]["output"]>;
   /** The ZIP or postal code of the billing or shipping address. */
   postcode?: Maybe<Scalars["String"]["output"]>;
+  /** An honorific, such as Dr., Mr., or Mrs. */
+  prefix?: Maybe<Scalars["String"]["output"]>;
   /** An object containing the region label and code. */
   region?: Maybe<CartAddressRegion>;
   /** An array containing the street for the billing or shipping address. */
   street: Array<Maybe<Scalars["String"]["output"]>>;
+  /** A value such as Sr., Jr., or III. */
+  suffix?: Maybe<Scalars["String"]["output"]>;
   /** The telephone number for the billing or shipping address. */
   telephone?: Maybe<Scalars["String"]["output"]>;
   /** The unique id of the customer address. */
@@ -2515,6 +2862,11 @@ export type CartDiscount = {
   label: Array<Maybe<Scalars["String"]["output"]>>;
 };
 
+export enum CartDiscountType {
+  Item = "ITEM",
+  Shipping = "SHIPPING",
+}
+
 export type CartItemError = {
   __typename: "CartItemError";
   /** An error code that describes the error encountered */
@@ -2524,11 +2876,8 @@ export type CartItemError = {
 };
 
 export enum CartItemErrorType {
-  /** @deprecated  */
   ItemIncrements = "ITEM_INCREMENTS",
-  /** @deprecated  */
   ItemQty = "ITEM_QTY",
-  /** @deprecated  */
   Undefined = "UNDEFINED",
 }
 
@@ -2552,6 +2901,8 @@ export type CartItemInterface = {
   errors?: Maybe<Array<Maybe<CartItemError>>>;
   /** @deprecated Use `uid` instead. */
   id: Scalars["String"]["output"];
+  /** True if requested quantity is less than available stock, false otherwise. */
+  is_available: Scalars["Boolean"]["output"];
   /** Indicates whether the product is available in the store */
   is_in_store?: Maybe<Scalars["Boolean"]["output"]>;
   /** Contains details about the price of the item, including taxes and discounts. */
@@ -2623,6 +2974,16 @@ export type CartItemUpdateInput = {
   quantity?: InputMaybe<Scalars["Float"]["input"]>;
 };
 
+export type CartItems = {
+  __typename: "CartItems";
+  /** An array of products that have been added to the cart. */
+  items: Array<Maybe<CartItemInterface>>;
+  /** Metadata for pagination rendering. */
+  page_info?: Maybe<SearchResultPageInfo>;
+  /** The number of returned cart items. */
+  total_count: Scalars["Int"]["output"];
+};
+
 /** Contains details about the final price of items in the cart, including discount and tax information. */
 export type CartPrices = {
   __typename: "CartPrices";
@@ -2669,17 +3030,75 @@ export type CartUserInputError = {
 };
 
 export enum CartUserInputErrorType {
-  /** @deprecated  */
   InsufficientStock = "INSUFFICIENT_STOCK",
-  /** @deprecated  */
   NotSalable = "NOT_SALABLE",
-  /** @deprecated  */
   PermissionDenied = "PERMISSION_DENIED",
-  /** @deprecated  */
   ProductNotFound = "PRODUCT_NOT_FOUND",
-  /** @deprecated  */
   Undefined = "UNDEFINED",
 }
+
+export enum CatalogAttributeApplyToEnum {
+  Bundle = "BUNDLE",
+  Category = "CATEGORY",
+  Configurable = "CONFIGURABLE",
+  Downloadable = "DOWNLOADABLE",
+  Grouped = "GROUPED",
+  Simple = "SIMPLE",
+  Virtual = "VIRTUAL",
+}
+
+/** Swatch attribute metadata. */
+export type CatalogAttributeMetadata = CustomAttributeMetadataInterface & {
+  __typename: "CatalogAttributeMetadata";
+  /** To which catalog types an attribute can be applied. */
+  apply_to?: Maybe<Array<Maybe<CatalogAttributeApplyToEnum>>>;
+  /** The unique identifier for an attribute code. This value should be in lowercase letters without spaces. */
+  code: Scalars["ID"]["output"];
+  /** Default attribute value. */
+  default_value?: Maybe<Scalars["String"]["output"]>;
+  /** The type of entity that defines the attribute. */
+  entity_type: AttributeEntityTypeEnum;
+  /** The frontend class of the attribute. */
+  frontend_class?: Maybe<Scalars["String"]["output"]>;
+  /** The frontend input type of the attribute. */
+  frontend_input?: Maybe<AttributeFrontendInputEnum>;
+  /** Whether a product or category attribute can be compared against another or not. */
+  is_comparable?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Whether a product or category attribute can be filtered or not. */
+  is_filterable?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Whether a product or category attribute can be filtered in search or not. */
+  is_filterable_in_search?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Whether a product or category attribute can use HTML on front or not. */
+  is_html_allowed_on_front?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Whether the attribute value is required. */
+  is_required: Scalars["Boolean"]["output"];
+  /** Whether a product or category attribute can be searched or not. */
+  is_searchable?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Whether the attribute value must be unique. */
+  is_unique: Scalars["Boolean"]["output"];
+  /** Whether a product or category attribute can be used for price rules or not. */
+  is_used_for_price_rules?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Whether a product or category attribute is used for promo rules or not. */
+  is_used_for_promo_rules?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Whether a product or category attribute is visible in advanced search or not. */
+  is_visible_in_advanced_search?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Whether a product or category attribute is visible on front or not. */
+  is_visible_on_front?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Whether a product or category attribute has WYSIWYG enabled or not. */
+  is_wysiwyg_enabled?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The label assigned to the attribute. */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /** Attribute options. */
+  options: Array<Maybe<CustomAttributeOptionInterface>>;
+  /** Input type of the swatch attribute option. */
+  swatch_input_type?: Maybe<SwatchInputTypeEnum>;
+  /** Whether update product preview image or not. */
+  update_product_preview_image?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Whether use product image for swatch or not. */
+  use_product_image_for_swatch?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Whether a product or category attribute is used in product listing or not. */
+  used_in_product_listing?: Maybe<Scalars["Boolean"]["output"]>;
+};
 
 /** Defines the filters to be used in the search. A filter contains at least one attribute, a comparison operator, and the value that is being searched for. */
 export type CategoryFilterInput = {
@@ -2761,6 +3180,7 @@ export type CategoryInterface = {
   /** The list of products assigned to the category. */
   products?: Maybe<CategoryProducts>;
   show_category_boxes?: Maybe<Scalars["Int"]["output"]>;
+  sort_direction?: Maybe<Scalars["String"]["output"]>;
   /** Indicates whether the category is staged for a future campaign. */
   staged: Scalars["Boolean"]["output"];
   thumbnail?: Maybe<Scalars["String"]["output"]>;
@@ -2883,6 +3303,7 @@ export type CategoryTree = CategoryInterface &
     /** The internal relative URL. If the specified URL is a redirect, the query returns the redirected URL, not the original. */
     relative_url?: Maybe<Scalars["String"]["output"]>;
     show_category_boxes?: Maybe<Scalars["Int"]["output"]>;
+    sort_direction?: Maybe<Scalars["String"]["output"]>;
     /** Indicates whether the category is staged for a future campaign. */
     staged: Scalars["Boolean"]["output"];
     thumbnail?: Maybe<Scalars["String"]["output"]>;
@@ -2936,15 +3357,9 @@ export type CheckoutAgreement = {
 
 /** Indicates how agreements are accepted. */
 export enum CheckoutAgreementMode {
-  /**
-   * Conditions are automatically accepted upon checkout.
-   * @deprecated
-   */
+  /** Conditions are automatically accepted upon checkout. */
   Auto = "AUTO",
-  /**
-   * Shoppers must manually accept the conditions to place an order.
-   * @deprecated
-   */
+  /** Shoppers must manually accept the conditions to place an order. */
   Manual = "MANUAL",
 }
 
@@ -2960,17 +3375,43 @@ export type CheckoutUserInputError = {
 };
 
 export enum CheckoutUserInputErrorCodes {
-  /** @deprecated  */
   InsufficientStock = "INSUFFICIENT_STOCK",
-  /** @deprecated  */
   NotSalable = "NOT_SALABLE",
-  /** @deprecated  */
   ProductNotFound = "PRODUCT_NOT_FOUND",
-  /** @deprecated  */
   ReorderNotAvailable = "REORDER_NOT_AVAILABLE",
-  /** @deprecated  */
   Undefined = "UNDEFINED",
 }
+
+/** Contains details about errors encountered when a customer clear cart. */
+export type ClearCartError = {
+  __typename: "ClearCartError";
+  /** A localized error message */
+  message: Scalars["String"]["output"];
+  /** A cart-specific error type. */
+  type: ClearCartErrorType;
+};
+
+export enum ClearCartErrorType {
+  Inactive = "INACTIVE",
+  NotFound = "NOT_FOUND",
+  Unauthorised = "UNAUTHORISED",
+  Undefined = "UNDEFINED",
+}
+
+/** Assigns a specific `cart_id` to the empty cart. */
+export type ClearCartInput = {
+  /** The unique ID of a `Cart` object. */
+  uid: Scalars["ID"]["input"];
+};
+
+/** Output of the request to clear the customer cart. */
+export type ClearCartOutput = {
+  __typename: "ClearCartOutput";
+  /** The cart after clear cart items. */
+  cart?: Maybe<Cart>;
+  /** An array of errors encountered while clearing the cart item */
+  errors?: Maybe<Array<Maybe<ClearCartError>>>;
+};
 
 /** Contains details about a specific CMS block. */
 export type CmsBlock = {
@@ -3117,6 +3558,8 @@ export type ConfigurableCartItem = CartItemInterface & {
   gift_wrapping?: Maybe<GiftWrapping>;
   /** @deprecated Use `uid` instead. */
   id: Scalars["String"]["output"];
+  /** True if requested quantity is less than available stock, false otherwise. */
+  is_available: Scalars["Boolean"]["output"];
   /** Indicates whether the product is available in the store */
   is_in_store?: Maybe<Scalars["Boolean"]["output"]>;
   /** Contains details about the price of the item, including taxes and discounts. */
@@ -3176,6 +3619,8 @@ export type ConfigurableProduct = CustomizableProductInterface &
     created_at?: Maybe<Scalars["String"]["output"]>;
     /** An array of cross-sell products. */
     crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** Product custom attributes. */
+    custom_attributesV2?: Maybe<ProductCustomAttributes>;
     /** @deprecated Use the `custom_attributes` field instead. */
     delivery_promise?: Maybe<Scalars["String"]["output"]>;
     /** Detailed information about the product. The value can include simple HTML tags. */
@@ -3358,6 +3803,11 @@ export type ConfigurableProductConfigurable_Product_Options_SelectionArgs = {
 };
 
 /** Defines basic features of a configurable product and its simple product variants. */
+export type ConfigurableProductCustom_AttributesV2Args = {
+  filters: InputMaybe<AttributeFilterInput>;
+};
+
+/** Defines basic features of a configurable product and its simple product variants. */
 export type ConfigurableProductReviewsArgs = {
   currentPage?: InputMaybe<Scalars["Int"]["input"]>;
   pageSize?: InputMaybe<Scalars["Int"]["input"]>;
@@ -3513,6 +3963,22 @@ export type ConfigurableWishlistItem = WishlistItemInterface & {
   quantity: Scalars["Float"]["output"];
 };
 
+/** Contains details about a customer email address to confirm. */
+export type ConfirmEmailInput = {
+  /** The key to confirm the email address. */
+  confirmation_key: Scalars["String"]["input"];
+  /** The email address to be confirmed. */
+  email: Scalars["String"]["input"];
+};
+
+/** List of account confirmation statuses. */
+export enum ConfirmationStatusEnum {
+  /** Account confirmation not required */
+  AccountConfirmationNotRequired = "ACCOUNT_CONFIRMATION_NOT_REQUIRED",
+  /** Account confirmed */
+  AccountConfirmed = "ACCOUNT_CONFIRMED",
+}
+
 export type ConnectPositionInput = {
   /** Connect document after specified document */
   after?: InputMaybe<Scalars["ID"]["input"]>;
@@ -3522,6 +3988,24 @@ export type ConnectPositionInput = {
   end?: InputMaybe<Scalars["Boolean"]["input"]>;
   /** Connect document at first position */
   start?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+export type ContactUsInput = {
+  /** The shopper's comment to the merchant. */
+  comment: Scalars["String"]["input"];
+  /** The email address of the shopper. */
+  email: Scalars["String"]["input"];
+  /** The full name of the shopper. */
+  name: Scalars["String"]["input"];
+  /** The shopper's telephone number. */
+  telephone?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Contains the status of the request. */
+export type ContactUsOutput = {
+  __typename: "ContactUsOutput";
+  /** Indicates whether the request was successful. */
+  status: Scalars["Boolean"]["output"];
 };
 
 /** Contains the source and target wish lists after copying products. */
@@ -3553,1230 +4037,495 @@ export type Country = {
 
 /** The list of country codes. */
 export enum CountryCodeEnum {
-  /**
-   * Andorra
-   * @deprecated
-   */
+  /** Andorra */
   Ad = "AD",
-  /**
-   * United Arab Emirates
-   * @deprecated
-   */
+  /** United Arab Emirates */
   Ae = "AE",
-  /**
-   * Afghanistan
-   * @deprecated
-   */
+  /** Afghanistan */
   Af = "AF",
-  /**
-   * Antigua & Barbuda
-   * @deprecated
-   */
+  /** Antigua & Barbuda */
   Ag = "AG",
-  /**
-   * Anguilla
-   * @deprecated
-   */
+  /** Anguilla */
   Ai = "AI",
-  /**
-   * Albania
-   * @deprecated
-   */
+  /** Albania */
   Al = "AL",
-  /**
-   * Armenia
-   * @deprecated
-   */
+  /** Armenia */
   Am = "AM",
-  /**
-   * Netherlands Antilles
-   * @deprecated
-   */
+  /** Netherlands Antilles */
   An = "AN",
-  /**
-   * Angola
-   * @deprecated
-   */
+  /** Angola */
   Ao = "AO",
-  /**
-   * Antarctica
-   * @deprecated
-   */
+  /** Antarctica */
   Aq = "AQ",
-  /**
-   * Argentina
-   * @deprecated
-   */
+  /** Argentina */
   Ar = "AR",
-  /**
-   * American Samoa
-   * @deprecated
-   */
+  /** American Samoa */
   As = "AS",
-  /**
-   * Austria
-   * @deprecated
-   */
+  /** Austria */
   At = "AT",
-  /**
-   * Australia
-   * @deprecated
-   */
+  /** Australia */
   Au = "AU",
-  /**
-   * Aruba
-   * @deprecated
-   */
+  /** Aruba */
   Aw = "AW",
-  /**
-   * Åland Islands
-   * @deprecated
-   */
+  /** Åland Islands */
   Ax = "AX",
-  /**
-   * Azerbaijan
-   * @deprecated
-   */
+  /** Azerbaijan */
   Az = "AZ",
-  /**
-   * Bosnia & Herzegovina
-   * @deprecated
-   */
+  /** Bosnia & Herzegovina */
   Ba = "BA",
-  /**
-   * Barbados
-   * @deprecated
-   */
+  /** Barbados */
   Bb = "BB",
-  /**
-   * Bangladesh
-   * @deprecated
-   */
+  /** Bangladesh */
   Bd = "BD",
-  /**
-   * Belgium
-   * @deprecated
-   */
+  /** Belgium */
   Be = "BE",
-  /**
-   * Burkina Faso
-   * @deprecated
-   */
+  /** Burkina Faso */
   Bf = "BF",
-  /**
-   * Bulgaria
-   * @deprecated
-   */
+  /** Bulgaria */
   Bg = "BG",
-  /**
-   * Bahrain
-   * @deprecated
-   */
+  /** Bahrain */
   Bh = "BH",
-  /**
-   * Burundi
-   * @deprecated
-   */
+  /** Burundi */
   Bi = "BI",
-  /**
-   * Benin
-   * @deprecated
-   */
+  /** Benin */
   Bj = "BJ",
-  /**
-   * St. Barthélemy
-   * @deprecated
-   */
+  /** St. Barthélemy */
   Bl = "BL",
-  /**
-   * Bermuda
-   * @deprecated
-   */
+  /** Bermuda */
   Bm = "BM",
-  /**
-   * Brunei
-   * @deprecated
-   */
+  /** Brunei */
   Bn = "BN",
-  /**
-   * Bolivia
-   * @deprecated
-   */
+  /** Bolivia */
   Bo = "BO",
-  /**
-   * Brazil
-   * @deprecated
-   */
+  /** Brazil */
   Br = "BR",
-  /**
-   * Bahamas
-   * @deprecated
-   */
+  /** Bahamas */
   Bs = "BS",
-  /**
-   * Bhutan
-   * @deprecated
-   */
+  /** Bhutan */
   Bt = "BT",
-  /**
-   * Bouvet Island
-   * @deprecated
-   */
+  /** Bouvet Island */
   Bv = "BV",
-  /**
-   * Botswana
-   * @deprecated
-   */
+  /** Botswana */
   Bw = "BW",
-  /**
-   * Belarus
-   * @deprecated
-   */
+  /** Belarus */
   By = "BY",
-  /**
-   * Belize
-   * @deprecated
-   */
+  /** Belize */
   Bz = "BZ",
-  /**
-   * Canada
-   * @deprecated
-   */
+  /** Canada */
   Ca = "CA",
-  /**
-   * Cocos (Keeling) Islands
-   * @deprecated
-   */
+  /** Cocos (Keeling) Islands */
   Cc = "CC",
-  /**
-   * Congo-Kinshasa
-   * @deprecated
-   */
+  /** Congo-Kinshasa */
   Cd = "CD",
-  /**
-   * Central African Republic
-   * @deprecated
-   */
+  /** Central African Republic */
   Cf = "CF",
-  /**
-   * Congo-Brazzaville
-   * @deprecated
-   */
+  /** Congo-Brazzaville */
   Cg = "CG",
-  /**
-   * Switzerland
-   * @deprecated
-   */
+  /** Switzerland */
   Ch = "CH",
-  /**
-   * Côte d’Ivoire
-   * @deprecated
-   */
+  /** Côte d’Ivoire */
   Ci = "CI",
-  /**
-   * Cook Islands
-   * @deprecated
-   */
+  /** Cook Islands */
   Ck = "CK",
-  /**
-   * Chile
-   * @deprecated
-   */
+  /** Chile */
   Cl = "CL",
-  /**
-   * Cameroon
-   * @deprecated
-   */
+  /** Cameroon */
   Cm = "CM",
-  /**
-   * China
-   * @deprecated
-   */
+  /** China */
   Cn = "CN",
-  /**
-   * Colombia
-   * @deprecated
-   */
+  /** Colombia */
   Co = "CO",
-  /**
-   * Costa Rica
-   * @deprecated
-   */
+  /** Costa Rica */
   Cr = "CR",
-  /**
-   * Cuba
-   * @deprecated
-   */
+  /** Cuba */
   Cu = "CU",
-  /**
-   * Cape Verde
-   * @deprecated
-   */
+  /** Cape Verde */
   Cv = "CV",
-  /**
-   * Christmas Island
-   * @deprecated
-   */
+  /** Christmas Island */
   Cx = "CX",
-  /**
-   * Cyprus
-   * @deprecated
-   */
+  /** Cyprus */
   Cy = "CY",
-  /**
-   * Czech Republic
-   * @deprecated
-   */
+  /** Czech Republic */
   Cz = "CZ",
-  /**
-   * Germany
-   * @deprecated
-   */
+  /** Germany */
   De = "DE",
-  /**
-   * Djibouti
-   * @deprecated
-   */
+  /** Djibouti */
   Dj = "DJ",
-  /**
-   * Denmark
-   * @deprecated
-   */
+  /** Denmark */
   Dk = "DK",
-  /**
-   * Dominica
-   * @deprecated
-   */
+  /** Dominica */
   Dm = "DM",
-  /**
-   * Dominican Republic
-   * @deprecated
-   */
+  /** Dominican Republic */
   Do = "DO",
-  /**
-   * Algeria
-   * @deprecated
-   */
+  /** Algeria */
   Dz = "DZ",
-  /**
-   * Ecuador
-   * @deprecated
-   */
+  /** Ecuador */
   Ec = "EC",
-  /**
-   * Estonia
-   * @deprecated
-   */
+  /** Estonia */
   Ee = "EE",
-  /**
-   * Egypt
-   * @deprecated
-   */
+  /** Egypt */
   Eg = "EG",
-  /**
-   * Western Sahara
-   * @deprecated
-   */
+  /** Western Sahara */
   Eh = "EH",
-  /**
-   * Eritrea
-   * @deprecated
-   */
+  /** Eritrea */
   Er = "ER",
-  /**
-   * Spain
-   * @deprecated
-   */
+  /** Spain */
   Es = "ES",
-  /**
-   * Ethiopia
-   * @deprecated
-   */
+  /** Ethiopia */
   Et = "ET",
-  /**
-   * Finland
-   * @deprecated
-   */
+  /** Finland */
   Fi = "FI",
-  /**
-   * Fiji
-   * @deprecated
-   */
+  /** Fiji */
   Fj = "FJ",
-  /**
-   * Falkland Islands
-   * @deprecated
-   */
+  /** Falkland Islands */
   Fk = "FK",
-  /**
-   * Micronesia
-   * @deprecated
-   */
+  /** Micronesia */
   Fm = "FM",
-  /**
-   * Faroe Islands
-   * @deprecated
-   */
+  /** Faroe Islands */
   Fo = "FO",
-  /**
-   * France
-   * @deprecated
-   */
+  /** France */
   Fr = "FR",
-  /**
-   * Gabon
-   * @deprecated
-   */
+  /** Gabon */
   Ga = "GA",
-  /**
-   * United Kingdom
-   * @deprecated
-   */
+  /** United Kingdom */
   Gb = "GB",
-  /**
-   * Grenada
-   * @deprecated
-   */
+  /** Grenada */
   Gd = "GD",
-  /**
-   * Georgia
-   * @deprecated
-   */
+  /** Georgia */
   Ge = "GE",
-  /**
-   * French Guiana
-   * @deprecated
-   */
+  /** French Guiana */
   Gf = "GF",
-  /**
-   * Guernsey
-   * @deprecated
-   */
+  /** Guernsey */
   Gg = "GG",
-  /**
-   * Ghana
-   * @deprecated
-   */
+  /** Ghana */
   Gh = "GH",
-  /**
-   * Gibraltar
-   * @deprecated
-   */
+  /** Gibraltar */
   Gi = "GI",
-  /**
-   * Greenland
-   * @deprecated
-   */
+  /** Greenland */
   Gl = "GL",
-  /**
-   * Gambia
-   * @deprecated
-   */
+  /** Gambia */
   Gm = "GM",
-  /**
-   * Guinea
-   * @deprecated
-   */
+  /** Guinea */
   Gn = "GN",
-  /**
-   * Guadeloupe
-   * @deprecated
-   */
+  /** Guadeloupe */
   Gp = "GP",
-  /**
-   * Equatorial Guinea
-   * @deprecated
-   */
+  /** Equatorial Guinea */
   Gq = "GQ",
-  /**
-   * Greece
-   * @deprecated
-   */
+  /** Greece */
   Gr = "GR",
-  /**
-   * South Georgia & South Sandwich Islands
-   * @deprecated
-   */
+  /** South Georgia & South Sandwich Islands */
   Gs = "GS",
-  /**
-   * Guatemala
-   * @deprecated
-   */
+  /** Guatemala */
   Gt = "GT",
-  /**
-   * Guam
-   * @deprecated
-   */
+  /** Guam */
   Gu = "GU",
-  /**
-   * Guinea-Bissau
-   * @deprecated
-   */
+  /** Guinea-Bissau */
   Gw = "GW",
-  /**
-   * Guyana
-   * @deprecated
-   */
+  /** Guyana */
   Gy = "GY",
-  /**
-   * Hong Kong SAR China
-   * @deprecated
-   */
+  /** Hong Kong SAR China */
   Hk = "HK",
-  /**
-   * Heard &amp; McDonald Islands
-   * @deprecated
-   */
+  /** Heard &amp; McDonald Islands */
   Hm = "HM",
-  /**
-   * Honduras
-   * @deprecated
-   */
+  /** Honduras */
   Hn = "HN",
-  /**
-   * Croatia
-   * @deprecated
-   */
+  /** Croatia */
   Hr = "HR",
-  /**
-   * Haiti
-   * @deprecated
-   */
+  /** Haiti */
   Ht = "HT",
-  /**
-   * Hungary
-   * @deprecated
-   */
+  /** Hungary */
   Hu = "HU",
-  /**
-   * Indonesia
-   * @deprecated
-   */
+  /** Indonesia */
   Id = "ID",
-  /**
-   * Ireland
-   * @deprecated
-   */
+  /** Ireland */
   Ie = "IE",
-  /**
-   * Israel
-   * @deprecated
-   */
+  /** Israel */
   Il = "IL",
-  /**
-   * Isle of Man
-   * @deprecated
-   */
+  /** Isle of Man */
   Im = "IM",
-  /**
-   * India
-   * @deprecated
-   */
+  /** India */
   In = "IN",
-  /**
-   * British Indian Ocean Territory
-   * @deprecated
-   */
+  /** British Indian Ocean Territory */
   Io = "IO",
-  /**
-   * Iraq
-   * @deprecated
-   */
+  /** Iraq */
   Iq = "IQ",
-  /**
-   * Iran
-   * @deprecated
-   */
+  /** Iran */
   Ir = "IR",
-  /**
-   * Iceland
-   * @deprecated
-   */
+  /** Iceland */
   Is = "IS",
-  /**
-   * Italy
-   * @deprecated
-   */
+  /** Italy */
   It = "IT",
-  /**
-   * Jersey
-   * @deprecated
-   */
+  /** Jersey */
   Je = "JE",
-  /**
-   * Jamaica
-   * @deprecated
-   */
+  /** Jamaica */
   Jm = "JM",
-  /**
-   * Jordan
-   * @deprecated
-   */
+  /** Jordan */
   Jo = "JO",
-  /**
-   * Japan
-   * @deprecated
-   */
+  /** Japan */
   Jp = "JP",
-  /**
-   * Kenya
-   * @deprecated
-   */
+  /** Kenya */
   Ke = "KE",
-  /**
-   * Kyrgyzstan
-   * @deprecated
-   */
+  /** Kyrgyzstan */
   Kg = "KG",
-  /**
-   * Cambodia
-   * @deprecated
-   */
+  /** Cambodia */
   Kh = "KH",
-  /**
-   * Kiribati
-   * @deprecated
-   */
+  /** Kiribati */
   Ki = "KI",
-  /**
-   * Comoros
-   * @deprecated
-   */
+  /** Comoros */
   Km = "KM",
-  /**
-   * St. Kitts & Nevis
-   * @deprecated
-   */
+  /** St. Kitts & Nevis */
   Kn = "KN",
-  /**
-   * North Korea
-   * @deprecated
-   */
+  /** North Korea */
   Kp = "KP",
-  /**
-   * South Korea
-   * @deprecated
-   */
+  /** South Korea */
   Kr = "KR",
-  /**
-   * Kuwait
-   * @deprecated
-   */
+  /** Kuwait */
   Kw = "KW",
-  /**
-   * Cayman Islands
-   * @deprecated
-   */
+  /** Cayman Islands */
   Ky = "KY",
-  /**
-   * Kazakhstan
-   * @deprecated
-   */
+  /** Kazakhstan */
   Kz = "KZ",
-  /**
-   * Laos
-   * @deprecated
-   */
+  /** Laos */
   La = "LA",
-  /**
-   * Lebanon
-   * @deprecated
-   */
+  /** Lebanon */
   Lb = "LB",
-  /**
-   * St. Lucia
-   * @deprecated
-   */
+  /** St. Lucia */
   Lc = "LC",
-  /**
-   * Liechtenstein
-   * @deprecated
-   */
+  /** Liechtenstein */
   Li = "LI",
-  /**
-   * Sri Lanka
-   * @deprecated
-   */
+  /** Sri Lanka */
   Lk = "LK",
-  /**
-   * Liberia
-   * @deprecated
-   */
+  /** Liberia */
   Lr = "LR",
-  /**
-   * Lesotho
-   * @deprecated
-   */
+  /** Lesotho */
   Ls = "LS",
-  /**
-   * Lithuania
-   * @deprecated
-   */
+  /** Lithuania */
   Lt = "LT",
-  /**
-   * Luxembourg
-   * @deprecated
-   */
+  /** Luxembourg */
   Lu = "LU",
-  /**
-   * Latvia
-   * @deprecated
-   */
+  /** Latvia */
   Lv = "LV",
-  /**
-   * Libya
-   * @deprecated
-   */
+  /** Libya */
   Ly = "LY",
-  /**
-   * Morocco
-   * @deprecated
-   */
+  /** Morocco */
   Ma = "MA",
-  /**
-   * Monaco
-   * @deprecated
-   */
+  /** Monaco */
   Mc = "MC",
-  /**
-   * Moldova
-   * @deprecated
-   */
+  /** Moldova */
   Md = "MD",
-  /**
-   * Montenegro
-   * @deprecated
-   */
+  /** Montenegro */
   Me = "ME",
-  /**
-   * St. Martin
-   * @deprecated
-   */
+  /** St. Martin */
   Mf = "MF",
-  /**
-   * Madagascar
-   * @deprecated
-   */
+  /** Madagascar */
   Mg = "MG",
-  /**
-   * Marshall Islands
-   * @deprecated
-   */
+  /** Marshall Islands */
   Mh = "MH",
-  /**
-   * Macedonia
-   * @deprecated
-   */
+  /** Macedonia */
   Mk = "MK",
-  /**
-   * Mali
-   * @deprecated
-   */
+  /** Mali */
   Ml = "ML",
-  /**
-   * Myanmar (Burma)
-   * @deprecated
-   */
+  /** Myanmar (Burma) */
   Mm = "MM",
-  /**
-   * Mongolia
-   * @deprecated
-   */
+  /** Mongolia */
   Mn = "MN",
-  /**
-   * Macau SAR China
-   * @deprecated
-   */
+  /** Macau SAR China */
   Mo = "MO",
-  /**
-   * Northern Mariana Islands
-   * @deprecated
-   */
+  /** Northern Mariana Islands */
   Mp = "MP",
-  /**
-   * Martinique
-   * @deprecated
-   */
+  /** Martinique */
   Mq = "MQ",
-  /**
-   * Mauritania
-   * @deprecated
-   */
+  /** Mauritania */
   Mr = "MR",
-  /**
-   * Montserrat
-   * @deprecated
-   */
+  /** Montserrat */
   Ms = "MS",
-  /**
-   * Malta
-   * @deprecated
-   */
+  /** Malta */
   Mt = "MT",
-  /**
-   * Mauritius
-   * @deprecated
-   */
+  /** Mauritius */
   Mu = "MU",
-  /**
-   * Maldives
-   * @deprecated
-   */
+  /** Maldives */
   Mv = "MV",
-  /**
-   * Malawi
-   * @deprecated
-   */
+  /** Malawi */
   Mw = "MW",
-  /**
-   * Mexico
-   * @deprecated
-   */
+  /** Mexico */
   Mx = "MX",
-  /**
-   * Malaysia
-   * @deprecated
-   */
+  /** Malaysia */
   My = "MY",
-  /**
-   * Mozambique
-   * @deprecated
-   */
+  /** Mozambique */
   Mz = "MZ",
-  /**
-   * Namibia
-   * @deprecated
-   */
+  /** Namibia */
   Na = "NA",
-  /**
-   * New Caledonia
-   * @deprecated
-   */
+  /** New Caledonia */
   Nc = "NC",
-  /**
-   * Niger
-   * @deprecated
-   */
+  /** Niger */
   Ne = "NE",
-  /**
-   * Norfolk Island
-   * @deprecated
-   */
+  /** Norfolk Island */
   Nf = "NF",
-  /**
-   * Nigeria
-   * @deprecated
-   */
+  /** Nigeria */
   Ng = "NG",
-  /**
-   * Nicaragua
-   * @deprecated
-   */
+  /** Nicaragua */
   Ni = "NI",
-  /**
-   * Netherlands
-   * @deprecated
-   */
+  /** Netherlands */
   Nl = "NL",
-  /**
-   * Norway
-   * @deprecated
-   */
+  /** Norway */
   No = "NO",
-  /**
-   * Nepal
-   * @deprecated
-   */
+  /** Nepal */
   Np = "NP",
-  /**
-   * Nauru
-   * @deprecated
-   */
+  /** Nauru */
   Nr = "NR",
-  /**
-   * Niue
-   * @deprecated
-   */
+  /** Niue */
   Nu = "NU",
-  /**
-   * New Zealand
-   * @deprecated
-   */
+  /** New Zealand */
   Nz = "NZ",
-  /**
-   * Oman
-   * @deprecated
-   */
+  /** Oman */
   Om = "OM",
-  /**
-   * Panama
-   * @deprecated
-   */
+  /** Panama */
   Pa = "PA",
-  /**
-   * Peru
-   * @deprecated
-   */
+  /** Peru */
   Pe = "PE",
-  /**
-   * French Polynesia
-   * @deprecated
-   */
+  /** French Polynesia */
   Pf = "PF",
-  /**
-   * Papua New Guinea
-   * @deprecated
-   */
+  /** Papua New Guinea */
   Pg = "PG",
-  /**
-   * Philippines
-   * @deprecated
-   */
+  /** Philippines */
   Ph = "PH",
-  /**
-   * Pakistan
-   * @deprecated
-   */
+  /** Pakistan */
   Pk = "PK",
-  /**
-   * Poland
-   * @deprecated
-   */
+  /** Poland */
   Pl = "PL",
-  /**
-   * St. Pierre & Miquelon
-   * @deprecated
-   */
+  /** St. Pierre & Miquelon */
   Pm = "PM",
-  /**
-   * Pitcairn Islands
-   * @deprecated
-   */
+  /** Pitcairn Islands */
   Pn = "PN",
-  /**
-   * Palestinian Territories
-   * @deprecated
-   */
+  /** Palestinian Territories */
   Ps = "PS",
-  /**
-   * Portugal
-   * @deprecated
-   */
+  /** Portugal */
   Pt = "PT",
-  /**
-   * Palau
-   * @deprecated
-   */
+  /** Palau */
   Pw = "PW",
-  /**
-   * Paraguay
-   * @deprecated
-   */
+  /** Paraguay */
   Py = "PY",
-  /**
-   * Qatar
-   * @deprecated
-   */
+  /** Qatar */
   Qa = "QA",
-  /**
-   * Réunion
-   * @deprecated
-   */
+  /** Réunion */
   Re = "RE",
-  /**
-   * Romania
-   * @deprecated
-   */
+  /** Romania */
   Ro = "RO",
-  /**
-   * Serbia
-   * @deprecated
-   */
+  /** Serbia */
   Rs = "RS",
-  /**
-   * Russia
-   * @deprecated
-   */
+  /** Russia */
   Ru = "RU",
-  /**
-   * Rwanda
-   * @deprecated
-   */
+  /** Rwanda */
   Rw = "RW",
-  /**
-   * Saudi Arabia
-   * @deprecated
-   */
+  /** Saudi Arabia */
   Sa = "SA",
-  /**
-   * Solomon Islands
-   * @deprecated
-   */
+  /** Solomon Islands */
   Sb = "SB",
-  /**
-   * Seychelles
-   * @deprecated
-   */
+  /** Seychelles */
   Sc = "SC",
-  /**
-   * Sudan
-   * @deprecated
-   */
+  /** Sudan */
   Sd = "SD",
-  /**
-   * Sweden
-   * @deprecated
-   */
+  /** Sweden */
   Se = "SE",
-  /**
-   * Singapore
-   * @deprecated
-   */
+  /** Singapore */
   Sg = "SG",
-  /**
-   * St. Helena
-   * @deprecated
-   */
+  /** St. Helena */
   Sh = "SH",
-  /**
-   * Slovenia
-   * @deprecated
-   */
+  /** Slovenia */
   Si = "SI",
-  /**
-   * Svalbard & Jan Mayen
-   * @deprecated
-   */
+  /** Svalbard & Jan Mayen */
   Sj = "SJ",
-  /**
-   * Slovakia
-   * @deprecated
-   */
+  /** Slovakia */
   Sk = "SK",
-  /**
-   * Sierra Leone
-   * @deprecated
-   */
+  /** Sierra Leone */
   Sl = "SL",
-  /**
-   * San Marino
-   * @deprecated
-   */
+  /** San Marino */
   Sm = "SM",
-  /**
-   * Senegal
-   * @deprecated
-   */
+  /** Senegal */
   Sn = "SN",
-  /**
-   * Somalia
-   * @deprecated
-   */
+  /** Somalia */
   So = "SO",
-  /**
-   * Suriname
-   * @deprecated
-   */
+  /** Suriname */
   Sr = "SR",
-  /**
-   * São Tomé & Príncipe
-   * @deprecated
-   */
+  /** São Tomé & Príncipe */
   St = "ST",
-  /**
-   * El Salvador
-   * @deprecated
-   */
+  /** El Salvador */
   Sv = "SV",
-  /**
-   * Syria
-   * @deprecated
-   */
+  /** Syria */
   Sy = "SY",
-  /**
-   * Swaziland
-   * @deprecated
-   */
+  /** Eswatini */
   Sz = "SZ",
-  /**
-   * Turks & Caicos Islands
-   * @deprecated
-   */
+  /** Turks & Caicos Islands */
   Tc = "TC",
-  /**
-   * Chad
-   * @deprecated
-   */
+  /** Chad */
   Td = "TD",
-  /**
-   * French Southern Territories
-   * @deprecated
-   */
+  /** French Southern Territories */
   Tf = "TF",
-  /**
-   * Togo
-   * @deprecated
-   */
+  /** Togo */
   Tg = "TG",
-  /**
-   * Thailand
-   * @deprecated
-   */
+  /** Thailand */
   Th = "TH",
-  /**
-   * Tajikistan
-   * @deprecated
-   */
+  /** Tajikistan */
   Tj = "TJ",
-  /**
-   * Tokelau
-   * @deprecated
-   */
+  /** Tokelau */
   Tk = "TK",
-  /**
-   * Timor-Leste
-   * @deprecated
-   */
+  /** Timor-Leste */
   Tl = "TL",
-  /**
-   * Turkmenistan
-   * @deprecated
-   */
+  /** Turkmenistan */
   Tm = "TM",
-  /**
-   * Tunisia
-   * @deprecated
-   */
+  /** Tunisia */
   Tn = "TN",
-  /**
-   * Tonga
-   * @deprecated
-   */
+  /** Tonga */
   To = "TO",
-  /**
-   * Turkey
-   * @deprecated
-   */
+  /** Turkey */
   Tr = "TR",
-  /**
-   * Trinidad & Tobago
-   * @deprecated
-   */
+  /** Trinidad & Tobago */
   Tt = "TT",
-  /**
-   * Tuvalu
-   * @deprecated
-   */
+  /** Tuvalu */
   Tv = "TV",
-  /**
-   * Taiwan
-   * @deprecated
-   */
+  /** Taiwan */
   Tw = "TW",
-  /**
-   * Tanzania
-   * @deprecated
-   */
+  /** Tanzania */
   Tz = "TZ",
-  /**
-   * Ukraine
-   * @deprecated
-   */
+  /** Ukraine */
   Ua = "UA",
-  /**
-   * Uganda
-   * @deprecated
-   */
+  /** Uganda */
   Ug = "UG",
-  /**
-   * U.S. Outlying Islands
-   * @deprecated
-   */
+  /** U.S. Outlying Islands */
   Um = "UM",
-  /**
-   * United States
-   * @deprecated
-   */
+  /** United States */
   Us = "US",
-  /**
-   * Uruguay
-   * @deprecated
-   */
+  /** Uruguay */
   Uy = "UY",
-  /**
-   * Uzbekistan
-   * @deprecated
-   */
+  /** Uzbekistan */
   Uz = "UZ",
-  /**
-   * Vatican City
-   * @deprecated
-   */
+  /** Vatican City */
   Va = "VA",
-  /**
-   * St. Vincent & Grenadines
-   * @deprecated
-   */
+  /** St. Vincent & Grenadines */
   Vc = "VC",
-  /**
-   * Venezuela
-   * @deprecated
-   */
+  /** Venezuela */
   Ve = "VE",
-  /**
-   * British Virgin Islands
-   * @deprecated
-   */
+  /** British Virgin Islands */
   Vg = "VG",
-  /**
-   * U.S. Virgin Islands
-   * @deprecated
-   */
+  /** U.S. Virgin Islands */
   Vi = "VI",
-  /**
-   * Vietnam
-   * @deprecated
-   */
+  /** Vietnam */
   Vn = "VN",
-  /**
-   * Vanuatu
-   * @deprecated
-   */
+  /** Vanuatu */
   Vu = "VU",
-  /**
-   * Wallis & Futuna
-   * @deprecated
-   */
+  /** Wallis & Futuna */
   Wf = "WF",
-  /**
-   * Samoa
-   * @deprecated
-   */
+  /** Samoa */
   Ws = "WS",
-  /**
-   * Yemen
-   * @deprecated
-   */
+  /** Yemen */
   Ye = "YE",
-  /**
-   * Mayotte
-   * @deprecated
-   */
+  /** Mayotte */
   Yt = "YT",
-  /**
-   * South Africa
-   * @deprecated
-   */
+  /** South Africa */
   Za = "ZA",
-  /**
-   * Zambia
-   * @deprecated
-   */
+  /** Zambia */
   Zm = "ZM",
-  /**
-   * Zimbabwe
-   * @deprecated
-   */
+  /** Zimbabwe */
   Zw = "ZW",
 }
 
@@ -4815,6 +4564,17 @@ export type CreateGiftRegistryOutput = {
   gift_registry?: Maybe<GiftRegistry>;
 };
 
+export type CreateGuestCartInput = {
+  /** Optional client-generated ID */
+  cart_uid?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+export type CreateGuestCartOutput = {
+  __typename: "CreateGuestCartOutput";
+  /** The newly created cart. */
+  cart?: Maybe<Cart>;
+};
+
 /** Contains the secure information used to authorize transaction. Applies to Payflow Pro and Payments Pro payment methods. */
 export type CreatePayflowProTokenOutput = {
   __typename: "CreatePayflowProTokenOutput";
@@ -4828,6 +4588,35 @@ export type CreatePayflowProTokenOutput = {
   secure_token: Scalars["String"]["output"];
   /** A secure token ID generated by PayPal. */
   secure_token_id: Scalars["String"]["output"];
+};
+
+/** Contains payment order details that are used while processing the payment order */
+export type CreatePaymentOrderInput = {
+  /** The customer cart ID */
+  cartId: Scalars["String"]["input"];
+  /** Defines the origin location for that payment request */
+  location: PaymentLocation;
+  /** The code for the payment method used in the order */
+  methodCode: Scalars["String"]["input"];
+  /** The identifiable payment source for the payment method */
+  paymentSource: Scalars["String"]["input"];
+  /** Indicates whether the payment information should be vaulted */
+  vaultIntent?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Contains payment order details that are used while processing the payment order */
+export type CreatePaymentOrderOutput = {
+  __typename: "CreatePaymentOrderOutput";
+  /** The amount of the payment order */
+  amount?: Maybe<Scalars["Float"]["output"]>;
+  /** The currency of the payment order */
+  currency_code?: Maybe<Scalars["String"]["output"]>;
+  /** PayPal order ID */
+  id?: Maybe<Scalars["String"]["output"]>;
+  /** The order ID generated by Payment Services */
+  mp_order_id?: Maybe<Scalars["String"]["output"]>;
+  /** The status of the payment order */
+  status?: Maybe<Scalars["String"]["output"]>;
 };
 
 /** Defines a new product review. */
@@ -4974,345 +4763,175 @@ export type Currency = {
 
 /** The list of available currency codes. */
 export enum CurrencyEnum {
-  /** @deprecated  */
   Aed = "AED",
-  /** @deprecated  */
   Afn = "AFN",
-  /** @deprecated  */
   All = "ALL",
-  /** @deprecated  */
   Amd = "AMD",
-  /** @deprecated  */
   Ang = "ANG",
-  /** @deprecated  */
   Aoa = "AOA",
-  /** @deprecated  */
   Ars = "ARS",
-  /** @deprecated  */
   Aud = "AUD",
-  /** @deprecated  */
   Awg = "AWG",
-  /** @deprecated  */
   Azm = "AZM",
-  /** @deprecated  */
   Azn = "AZN",
-  /** @deprecated  */
   Bam = "BAM",
-  /** @deprecated  */
   Bbd = "BBD",
-  /** @deprecated  */
   Bdt = "BDT",
-  /** @deprecated  */
   Bgn = "BGN",
-  /** @deprecated  */
   Bhd = "BHD",
-  /** @deprecated  */
   Bif = "BIF",
-  /** @deprecated  */
   Bmd = "BMD",
-  /** @deprecated  */
   Bnd = "BND",
-  /** @deprecated  */
   Bob = "BOB",
-  /** @deprecated  */
   Brl = "BRL",
-  /** @deprecated  */
   Bsd = "BSD",
-  /** @deprecated  */
   Btn = "BTN",
-  /** @deprecated  */
   Buk = "BUK",
-  /** @deprecated  */
   Bwp = "BWP",
-  /** @deprecated  */
   Byn = "BYN",
-  /** @deprecated  */
   Bzd = "BZD",
-  /** @deprecated  */
   Cad = "CAD",
-  /** @deprecated  */
   Cdf = "CDF",
-  /** @deprecated  */
   Che = "CHE",
-  /** @deprecated  */
   Chf = "CHF",
-  /** @deprecated  */
   Chw = "CHW",
-  /** @deprecated  */
   Clp = "CLP",
-  /** @deprecated  */
   Cny = "CNY",
-  /** @deprecated  */
   Cop = "COP",
-  /** @deprecated  */
   Crc = "CRC",
-  /** @deprecated  */
   Cup = "CUP",
-  /** @deprecated  */
   Cve = "CVE",
-  /** @deprecated  */
   Czk = "CZK",
-  /** @deprecated  */
   Djf = "DJF",
-  /** @deprecated  */
   Dkk = "DKK",
-  /** @deprecated  */
   Dop = "DOP",
-  /** @deprecated  */
   Dzd = "DZD",
-  /** @deprecated  */
   Eek = "EEK",
-  /** @deprecated  */
   Egp = "EGP",
-  /** @deprecated  */
   Ern = "ERN",
-  /** @deprecated  */
   Etb = "ETB",
-  /** @deprecated  */
   Eur = "EUR",
-  /** @deprecated  */
   Fjd = "FJD",
-  /** @deprecated  */
   Fkp = "FKP",
-  /** @deprecated  */
   Gbp = "GBP",
-  /** @deprecated  */
   Gek = "GEK",
-  /** @deprecated  */
   Gel = "GEL",
-  /** @deprecated  */
   Ghs = "GHS",
-  /** @deprecated  */
   Gip = "GIP",
-  /** @deprecated  */
   Gmd = "GMD",
-  /** @deprecated  */
   Gnf = "GNF",
-  /** @deprecated  */
   Gqe = "GQE",
-  /** @deprecated  */
   Gtq = "GTQ",
-  /** @deprecated  */
   Gyd = "GYD",
-  /** @deprecated  */
   Hkd = "HKD",
-  /** @deprecated  */
   Hnl = "HNL",
-  /** @deprecated  */
   Hrk = "HRK",
-  /** @deprecated  */
   Htg = "HTG",
-  /** @deprecated  */
   Huf = "HUF",
-  /** @deprecated  */
   Idr = "IDR",
-  /** @deprecated  */
   Ils = "ILS",
-  /** @deprecated  */
   Inr = "INR",
-  /** @deprecated  */
   Iqd = "IQD",
-  /** @deprecated  */
   Irr = "IRR",
-  /** @deprecated  */
   Isk = "ISK",
-  /** @deprecated  */
   Jmd = "JMD",
-  /** @deprecated  */
   Jod = "JOD",
-  /** @deprecated  */
   Jpy = "JPY",
-  /** @deprecated  */
   Kes = "KES",
-  /** @deprecated  */
   Kgs = "KGS",
-  /** @deprecated  */
   Khr = "KHR",
-  /** @deprecated  */
   Kmf = "KMF",
-  /** @deprecated  */
   Kpw = "KPW",
-  /** @deprecated  */
   Krw = "KRW",
-  /** @deprecated  */
   Kwd = "KWD",
-  /** @deprecated  */
   Kyd = "KYD",
-  /** @deprecated  */
   Kzt = "KZT",
-  /** @deprecated  */
   Lak = "LAK",
-  /** @deprecated  */
   Lbp = "LBP",
-  /** @deprecated  */
   Lkr = "LKR",
-  /** @deprecated  */
   Lrd = "LRD",
-  /** @deprecated  */
   Lsl = "LSL",
-  /** @deprecated  */
   Lsm = "LSM",
-  /** @deprecated  */
   Ltl = "LTL",
-  /** @deprecated  */
   Lvl = "LVL",
-  /** @deprecated  */
   Lyd = "LYD",
-  /** @deprecated  */
   Mad = "MAD",
-  /** @deprecated  */
   Mdl = "MDL",
-  /** @deprecated  */
   Mga = "MGA",
-  /** @deprecated  */
   Mkd = "MKD",
-  /** @deprecated  */
   Mmk = "MMK",
-  /** @deprecated  */
   Mnt = "MNT",
-  /** @deprecated  */
   Mop = "MOP",
-  /** @deprecated  */
   Mro = "MRO",
-  /** @deprecated  */
   Mur = "MUR",
-  /** @deprecated  */
   Mvr = "MVR",
-  /** @deprecated  */
   Mwk = "MWK",
-  /** @deprecated  */
   Mxn = "MXN",
-  /** @deprecated  */
   Myr = "MYR",
-  /** @deprecated  */
   Mzn = "MZN",
-  /** @deprecated  */
   Nad = "NAD",
-  /** @deprecated  */
   Ngn = "NGN",
-  /** @deprecated  */
   Nic = "NIC",
-  /** @deprecated  */
   Nok = "NOK",
-  /** @deprecated  */
   Npr = "NPR",
-  /** @deprecated  */
   Nzd = "NZD",
-  /** @deprecated  */
   Omr = "OMR",
-  /** @deprecated  */
   Pab = "PAB",
-  /** @deprecated  */
   Pen = "PEN",
-  /** @deprecated  */
   Pgk = "PGK",
-  /** @deprecated  */
   Php = "PHP",
-  /** @deprecated  */
   Pkr = "PKR",
-  /** @deprecated  */
   Pln = "PLN",
-  /** @deprecated  */
   Pyg = "PYG",
-  /** @deprecated  */
   Qar = "QAR",
-  /** @deprecated  */
   Rhd = "RHD",
-  /** @deprecated  */
   Rol = "ROL",
-  /** @deprecated  */
   Ron = "RON",
-  /** @deprecated  */
   Rsd = "RSD",
-  /** @deprecated  */
   Rub = "RUB",
-  /** @deprecated  */
   Rwf = "RWF",
-  /** @deprecated  */
   Sar = "SAR",
-  /** @deprecated  */
   Sbd = "SBD",
-  /** @deprecated  */
   Scr = "SCR",
-  /** @deprecated  */
   Sdg = "SDG",
-  /** @deprecated  */
   Sek = "SEK",
-  /** @deprecated  */
   Sgd = "SGD",
-  /** @deprecated  */
   Shp = "SHP",
-  /** @deprecated  */
   Skk = "SKK",
-  /** @deprecated  */
   Sll = "SLL",
-  /** @deprecated  */
   Sos = "SOS",
-  /** @deprecated  */
   Srd = "SRD",
-  /** @deprecated  */
   Std = "STD",
-  /** @deprecated  */
   Svc = "SVC",
-  /** @deprecated  */
   Syp = "SYP",
-  /** @deprecated  */
   Szl = "SZL",
-  /** @deprecated  */
   Thb = "THB",
-  /** @deprecated  */
   Tjs = "TJS",
-  /** @deprecated  */
   Tmm = "TMM",
-  /** @deprecated  */
   Tnd = "TND",
-  /** @deprecated  */
   Top = "TOP",
-  /** @deprecated  */
   Trl = "TRL",
-  /** @deprecated  */
   Try = "TRY",
-  /** @deprecated  */
   Ttd = "TTD",
-  /** @deprecated  */
   Twd = "TWD",
-  /** @deprecated  */
   Tzs = "TZS",
-  /** @deprecated  */
   Uah = "UAH",
-  /** @deprecated  */
   Ugx = "UGX",
-  /** @deprecated  */
   Usd = "USD",
-  /** @deprecated  */
   Uyu = "UYU",
-  /** @deprecated  */
   Uzs = "UZS",
-  /** @deprecated  */
   Veb = "VEB",
-  /** @deprecated  */
   Vef = "VEF",
-  /** @deprecated  */
   Vnd = "VND",
-  /** @deprecated  */
   Vuv = "VUV",
-  /** @deprecated  */
   Wst = "WST",
-  /** @deprecated  */
   Xcd = "XCD",
-  /** @deprecated  */
   Xof = "XOF",
-  /** @deprecated  */
   Xpf = "XPF",
-  /** @deprecated  */
   Yer = "YER",
-  /** @deprecated  */
   Ytl = "YTL",
-  /** @deprecated  */
   Zar = "ZAR",
-  /** @deprecated  */
   Zmk = "ZMK",
-  /** @deprecated  */
   Zwd = "ZWD",
 }
 
@@ -5321,6 +4940,37 @@ export type CustomAttributeMetadata = {
   __typename: "CustomAttributeMetadata";
   /** An array of attributes. */
   items?: Maybe<Array<Maybe<Attribute>>>;
+};
+
+/** An interface containing fields that define the EAV attribute. */
+export type CustomAttributeMetadataInterface = {
+  /** The unique identifier for an attribute code. This value should be in lowercase letters without spaces. */
+  code: Scalars["ID"]["output"];
+  /** Default attribute value. */
+  default_value?: Maybe<Scalars["String"]["output"]>;
+  /** The type of entity that defines the attribute. */
+  entity_type: AttributeEntityTypeEnum;
+  /** The frontend class of the attribute. */
+  frontend_class?: Maybe<Scalars["String"]["output"]>;
+  /** The frontend input type of the attribute. */
+  frontend_input?: Maybe<AttributeFrontendInputEnum>;
+  /** Whether the attribute value is required. */
+  is_required: Scalars["Boolean"]["output"];
+  /** Whether the attribute value must be unique. */
+  is_unique: Scalars["Boolean"]["output"];
+  /** The label assigned to the attribute. */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /** Attribute options. */
+  options: Array<Maybe<CustomAttributeOptionInterface>>;
+};
+
+export type CustomAttributeOptionInterface = {
+  /** Is the option value default. */
+  is_default: Scalars["Boolean"]["output"];
+  /** The label assigned to the attribute option. */
+  label: Scalars["String"]["output"];
+  /** The attribute option value. */
+  value: Scalars["String"]["output"];
 };
 
 /** Defines the customer name, addresses, and other details. */
@@ -5352,10 +5002,14 @@ export type Customer = {
   allow_remote_shopping_assistance: Scalars["Boolean"]["output"];
   /** The contents of the customer's compare list. */
   compare_list?: Maybe<CompareList>;
+  /** The customer's confirmation status. */
+  confirmation_status: ConfirmationStatusEnum;
   /** Customer consent list. */
   consents?: Maybe<Array<Maybe<CustomerConsent>>>;
   /** Timestamp indicating when the account was created. */
   created_at?: Maybe<Scalars["String"]["output"]>;
+  /** Customer's custom attributes. */
+  custom_attributes?: Maybe<Array<Maybe<AttributeValueInterface>>>;
   /** The customer's date of birth. */
   date_of_birth?: Maybe<Scalars["String"]["output"]>;
   /** The ID assigned to the billing address. */
@@ -5423,6 +5077,11 @@ export type Customer = {
 };
 
 /** Defines the customer name, addresses, and other details. */
+export type CustomerCustom_AttributesArgs = {
+  attributeCodes: InputMaybe<Array<Scalars["ID"]["input"]>>;
+};
+
+/** Defines the customer name, addresses, and other details. */
 export type CustomerGift_RegistryArgs = {
   giftRegistryUid: Scalars["ID"]["input"];
 };
@@ -5478,8 +5137,10 @@ export type CustomerAddress = {
    * @deprecated Use `country_code` instead.
    */
   country_id?: Maybe<Scalars["String"]["output"]>;
-  /** @deprecated Custom attributes should not be put into a container. */
+  /** @deprecated Use custom_attributesV2 instead. */
   custom_attributes?: Maybe<Array<Maybe<CustomerAddressAttribute>>>;
+  /** Custom attributes assigned to the customer address. */
+  custom_attributesV2: Array<Maybe<AttributeValueInterface>>;
   /**
    * The customer ID
    * @deprecated `customer_id` is not needed as part of `CustomerAddress`. The `id` is a unique identifier for the addresses.
@@ -5519,12 +5180,17 @@ export type CustomerAddress = {
   vat_id?: Maybe<Scalars["String"]["output"]>;
 };
 
+/** Contains detailed information about a customer's billing or shipping address. */
+export type CustomerAddressCustom_AttributesV2Args = {
+  attributeCodes: InputMaybe<Array<Scalars["ID"]["input"]>>;
+};
+
 /** Specifies the attribute code and value of a customer address attribute. */
 export type CustomerAddressAttribute = {
   __typename: "CustomerAddressAttribute";
   /** The name assigned to the customer address attribute. */
   attribute_code?: Maybe<Scalars["String"]["output"]>;
-  /** The valuue assigned to the customer address attribute. */
+  /** The value assigned to the customer address attribute. */
   value?: Maybe<Scalars["String"]["output"]>;
 };
 
@@ -5546,10 +5212,12 @@ export type CustomerAddressInput = {
   country_code?: InputMaybe<CountryCodeEnum>;
   /** Deprecated: use `country_code` instead. */
   country_id?: InputMaybe<CountryCodeEnum>;
-  /** Deprecated: Custom attributes should not be put into container. */
+  /** Deprecated. Use custom_attributesV2 instead. */
   custom_attributes?: InputMaybe<
     Array<InputMaybe<CustomerAddressAttributeInput>>
   >;
+  /** Custom attributes assigned to the customer address. */
+  custom_attributesV2?: InputMaybe<Array<InputMaybe<AttributeValueInput>>>;
   /** Indicates whether the address is the default billing address. */
   default_billing?: InputMaybe<Scalars["Boolean"]["input"]>;
   /** Indicates whether the address is the default shipping address. */
@@ -5599,6 +5267,37 @@ export type CustomerAddressRegionInput = {
   region_id?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
+/** Customer attribute metadata. */
+export type CustomerAttributeMetadata = CustomAttributeMetadataInterface & {
+  __typename: "CustomerAttributeMetadata";
+  /** The unique identifier for an attribute code. This value should be in lowercase letters without spaces. */
+  code: Scalars["ID"]["output"];
+  /** Default attribute value. */
+  default_value?: Maybe<Scalars["String"]["output"]>;
+  /** The type of entity that defines the attribute. */
+  entity_type: AttributeEntityTypeEnum;
+  /** The frontend class of the attribute. */
+  frontend_class?: Maybe<Scalars["String"]["output"]>;
+  /** The frontend input type of the attribute. */
+  frontend_input?: Maybe<AttributeFrontendInputEnum>;
+  /** The template used for the input of the attribute (e.g., 'date'). */
+  input_filter?: Maybe<InputFilterEnum>;
+  /** Whether the attribute value is required. */
+  is_required: Scalars["Boolean"]["output"];
+  /** Whether the attribute value must be unique. */
+  is_unique: Scalars["Boolean"]["output"];
+  /** The label assigned to the attribute. */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /** The number of lines of the attribute value. */
+  multiline_count?: Maybe<Scalars["Int"]["output"]>;
+  /** Attribute options. */
+  options: Array<Maybe<CustomAttributeOptionInterface>>;
+  /** The position of the attribute in the form. */
+  sort_order?: Maybe<Scalars["Int"]["output"]>;
+  /** The validation rules of the attribute value. */
+  validate_rules?: Maybe<Array<Maybe<ValidationRule>>>;
+};
+
 export type CustomerConsent = {
   __typename: "CustomerConsent";
   code: Scalars["String"]["output"];
@@ -5633,6 +5332,8 @@ export type CustomerCreateInput = {
   allow_remote_shopping_assistance?: InputMaybe<Scalars["Boolean"]["input"]>;
   /** The customer's city or town. */
   city: Scalars["String"]["input"];
+  /** The customer's custom attributes. */
+  custom_attributes?: InputMaybe<Array<InputMaybe<AttributeValueInput>>>;
   /** The customer's date of birth. */
   date_of_birth?: InputMaybe<Scalars["String"]["input"]>;
   /** Deprecated: Use `date_of_birth` instead. */
@@ -5718,6 +5419,8 @@ export type CustomerInput = {
 /** Contains details about each of the customer's orders. */
 export type CustomerOrder = {
   __typename: "CustomerOrder";
+  /** Coupons applied to the order. */
+  applied_coupons: Array<Maybe<AppliedCoupon>>;
   /** The billing address for the order. */
   billing_address?: Maybe<OrderAddress>;
   /** The shipping carrier for the order delivery. */
@@ -5732,6 +5435,8 @@ export type CustomerOrder = {
   credit_memos?: Maybe<Array<Maybe<CreditMemo>>>;
   /** Currency of the order. */
   currency: Scalars["String"]["output"];
+  /** Order customer email. */
+  email?: Maybe<Scalars["String"]["output"]>;
   /** The entered gift message for the order */
   gift_message?: Maybe<GiftMessage>;
   /** Indicates whether the customer requested a gift receipt for the order. */
@@ -5774,6 +5479,8 @@ export type CustomerOrder = {
   status: Scalars["String"]["output"];
   /** Store name in which order purchased. */
   store: Scalars["String"]["output"];
+  /** The token that can be used to retrieve the order using order query. */
+  token: Scalars["String"]["output"];
   /** Details about the calculated totals for this order. */
   total?: Maybe<OrderTotal>;
 };
@@ -5804,15 +5511,9 @@ export type CustomerOrderSortInput = {
 
 /** Specifies the field to use for sorting */
 export enum CustomerOrderSortableField {
-  /**
-   * Sorts customer orders by created_at field
-   * @deprecated
-   */
+  /** Sorts customer orders by created_at field */
   CreatedAt = "CREATED_AT",
-  /**
-   * Sorts customer orders by number
-   * @deprecated
-   */
+  /** Sorts customer orders by number */
   Number = "NUMBER",
 }
 
@@ -5919,6 +5620,8 @@ export type CustomerUpdateInput = {
   accepts_twin?: InputMaybe<Scalars["Boolean"]["input"]>;
   /** Indicates whether the customer has enabled remote shopping assistance. */
   allow_remote_shopping_assistance?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** The customer's custom attributes. */
+  custom_attributes?: InputMaybe<Array<InputMaybe<AttributeValueInput>>>;
   /** The customer's date of birth. */
   date_of_birth?: InputMaybe<Scalars["String"]["input"]>;
   /** Deprecated: Use `date_of_birth` instead. */
@@ -6045,11 +5748,8 @@ export type CustomizableDateOption = CustomizableOptionInterface & {
 
 /** Defines the customizable date type. */
 export enum CustomizableDateTypeEnum {
-  /** @deprecated  */
   Date = "DATE",
-  /** @deprecated  */
   DateTime = "DATE_TIME",
-  /** @deprecated  */
   Time = "TIME",
 }
 
@@ -6228,6 +5928,8 @@ export type CustomizableMultipleValue = {
 export type CustomizableOptionInput = {
   /** The customizable option ID of the product. */
   id?: InputMaybe<Scalars["Int"]["input"]>;
+  /** The unique ID for a `CartItemInterface` object. */
+  uid?: InputMaybe<Scalars["ID"]["input"]>;
   /** The string value of the option. */
   value_string: Scalars["String"]["input"];
 };
@@ -6319,11 +6021,15 @@ export type DeleteWishlistOutput = {
   wishlists: Array<Maybe<Wishlist>>;
 };
 
-/** Defines an individual discount. A discount can be applied to the cart as a whole or to an item. */
+/** Defines an individual discount. A discount can be applied to the cart as a whole or to an item, shipping. */
 export type Discount = {
   __typename: "Discount";
   /** The amount of the discount. */
   amount: Money;
+  /** The type of the entity the discount is applied to. */
+  applied_to: CartDiscountType;
+  /** The coupon related to the discount. */
+  coupon?: Maybe<AppliedCoupon>;
   /** A description of the discount. */
   label: Scalars["String"]["output"];
 };
@@ -6389,6 +6095,8 @@ export type DownloadableCartItem = CartItemInterface & {
   errors?: Maybe<Array<Maybe<CartItemError>>>;
   /** @deprecated Use `uid` instead. */
   id: Scalars["String"]["output"];
+  /** True if requested quantity is less than available stock, false otherwise. */
+  is_available: Scalars["Boolean"]["output"];
   /** Indicates whether the product is available in the store */
   is_in_store?: Maybe<Scalars["Boolean"]["output"]>;
   /** An array containing information about the links for the downloadable product added to the cart. */
@@ -6482,6 +6190,8 @@ export type DownloadableOrderItem = OrderItemInterface & {
   gift_wrapping?: Maybe<GiftWrapping>;
   /** The unique ID for an `OrderItemInterface` object. */
   id: Scalars["ID"]["output"];
+  /** The ProductInterface object, which contains details about the base product */
+  product?: Maybe<ProductInterface>;
   /** The name of the base product. */
   product_name?: Maybe<Scalars["String"]["output"]>;
   /** The sale price of the base product, including selected options. */
@@ -6543,6 +6253,8 @@ export type DownloadableProduct = CustomizableProductInterface &
     created_at?: Maybe<Scalars["String"]["output"]>;
     /** An array of cross-sell products. */
     crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** Product custom attributes. */
+    custom_attributesV2?: Maybe<ProductCustomAttributes>;
     /** @deprecated Use the `custom_attributes` field instead. */
     delivery_promise?: Maybe<Scalars["String"]["output"]>;
     /** Detailed information about the product. The value can include simple HTML tags. */
@@ -6726,6 +6438,11 @@ export type DownloadableProduct = CustomizableProductInterface &
   };
 
 /** Defines a product that the shopper downloads. */
+export type DownloadableProductCustom_AttributesV2Args = {
+  filters: InputMaybe<AttributeFilterInput>;
+};
+
+/** Defines a product that the shopper downloads. */
 export type DownloadableProductReviewsArgs = {
   currentPage?: InputMaybe<Scalars["Int"]["input"]>;
   pageSize?: InputMaybe<Scalars["Int"]["input"]>;
@@ -6825,25 +6542,17 @@ export type DynamicBlock = {
 
 /** Indicates the locations the dynamic block can be placed. If this field is not specified, the query returns all locations. */
 export enum DynamicBlockLocationEnum {
-  /** @deprecated  */
   Content = "CONTENT",
-  /** @deprecated  */
   Footer = "FOOTER",
-  /** @deprecated  */
   Header = "HEADER",
-  /** @deprecated  */
   Left = "LEFT",
-  /** @deprecated  */
   Right = "RIGHT",
 }
 
 /** Indicates the selected Dynamic Blocks Rotator inline widget. */
 export enum DynamicBlockTypeEnum {
-  /** @deprecated  */
   CartPriceRuleRelated = "CART_PRICE_RULE_RELATED",
-  /** @deprecated  */
   CatalogPriceRuleRelated = "CATALOG_PRICE_RULE_RELATED",
-  /** @deprecated  */
   Specified = "SPECIFIED",
 }
 
@@ -7372,6 +7081,32 @@ export type ErrorInterface = {
   message: Scalars["String"]["output"];
 };
 
+/** Contains details about an address. */
+export type EstimateAddressInput = {
+  /** The two-letter code representing the customer's country. */
+  country_code: CountryCodeEnum;
+  /** The customer's ZIP or postal code. */
+  postcode?: InputMaybe<Scalars["String"]["input"]>;
+  /** An object containing the region name, region code, and region ID. */
+  region?: InputMaybe<CustomerAddressRegionInput>;
+};
+
+export type EstimateTotalsInput = {
+  /** Customer's address to estimate totals. */
+  address: EstimateAddressInput;
+  /** The unique ID of the cart to query. */
+  cart_id: Scalars["String"]["input"];
+  /** Selected shipping method to estimate totals. */
+  shipping_method?: InputMaybe<ShippingMethodInput>;
+};
+
+/** Estimate totals output. */
+export type EstimateTotalsOutput = {
+  __typename: "EstimateTotalsOutput";
+  /** Cart after totals estimation */
+  cart?: Maybe<Cart>;
+};
+
 /** Lists the exchange rate. */
 export type ExchangeRate = {
   __typename: "ExchangeRate";
@@ -7389,10 +7124,17 @@ export type FilterEqualTypeInput = {
   in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
 };
 
+export enum FilterMatchTypeEnum {
+  Full = "FULL",
+  Partial = "PARTIAL",
+}
+
 /** Defines a filter that performs a fuzzy search. */
 export type FilterMatchTypeInput = {
-  /** Use this attribute to exactly match the specified string. For example, to filter on a specific SKU, specify a value such as `24-MB01`. */
+  /** Use this attribute to fuzzy match the specified string. For example, to filter on a specific SKU, specify a value such as `24-MB01`. */
   match?: InputMaybe<Scalars["String"]["input"]>;
+  /** Filter match type for fine-tuned results. Possible values FULL or PARTIAL. If match_type is not provided, returned results will default to FULL match. */
+  match_type?: InputMaybe<FilterMatchTypeEnum>;
 };
 
 /** Defines a filter that matches a range of values, such as prices or dates. */
@@ -7457,30 +7199,15 @@ export type FixedProductTax = {
 
 /** Lists display settings for the Fixed Product Tax. */
 export enum FixedProductTaxDisplaySettings {
-  /**
-   * The displayed price does not include the FPT amount. The values of `ProductPrice.fixed_product_taxes` and the price including the FPT are displayed separately. This value corresponds to 'Excluding FPT, Including FPT description and final price.'
-   * @deprecated
-   */
+  /** The displayed price does not include the FPT amount. The values of `ProductPrice.fixed_product_taxes` and the price including the FPT are displayed separately. This value corresponds to 'Excluding FPT, Including FPT description and final price.' */
   ExcludeFptAndIncludeWithDetails = "EXCLUDE_FPT_AND_INCLUDE_WITH_DETAILS",
-  /**
-   * The displayed price does not include the FPT amount. The values from `ProductPrice.fixed_product_taxes` are not displayed. This value corresponds to 'Excluding FPT'.
-   * @deprecated
-   */
+  /** The displayed price does not include the FPT amount. The values from `ProductPrice.fixed_product_taxes` are not displayed. This value corresponds to 'Excluding FPT'. */
   ExcludeFptWithoutDetails = "EXCLUDE_FPT_WITHOUT_DETAILS",
-  /**
-   * The FPT feature is not enabled. You can omit `ProductPrice.fixed_product_taxes` from your query.
-   * @deprecated
-   */
+  /** The FPT feature is not enabled. You can omit `ProductPrice.fixed_product_taxes` from your query. */
   FptDisabled = "FPT_DISABLED",
-  /**
-   * The displayed price includes the FPT amount without displaying the `ProductPrice.fixed_product_taxes` values. This value corresponds to 'Including FPT only'.
-   * @deprecated
-   */
+  /** The displayed price includes the FPT amount without displaying the `ProductPrice.fixed_product_taxes` values. This value corresponds to 'Including FPT only'. */
   IncludeFptWithoutDetails = "INCLUDE_FPT_WITHOUT_DETAILS",
-  /**
-   * The displayed price includes the FPT amount while displaying the values of `ProductPrice.fixed_product_taxes` separately. This value corresponds to 'Including FPT and FPT description'.
-   * @deprecated
-   */
+  /** The displayed price includes the FPT amount while displaying the values of `ProductPrice.fixed_product_taxes` separately. This value corresponds to 'Including FPT and FPT description'. */
   IncludeFptWithDetails = "INCLUDE_FPT_WITH_DETAILS",
 }
 
@@ -7495,6 +7222,13 @@ export type GenerateCustomerTokenAsAdminOutput = {
   __typename: "GenerateCustomerTokenAsAdminOutput";
   /** The generated customer token. */
   customer_token: Scalars["String"]["output"];
+};
+
+/** Gets the payment SDK URLs and values */
+export type GetPaymentSdkOutput = {
+  __typename: "GetPaymentSDKOutput";
+  /** The payment SDK parameters */
+  sdkParams?: Maybe<Array<Maybe<PaymentSdkParamsItem>>>;
 };
 
 /** Contains details about the gift card account. */
@@ -7545,6 +7279,8 @@ export type GiftCardCartItem = CartItemInterface & {
   errors?: Maybe<Array<Maybe<CartItemError>>>;
   /** @deprecated Use `uid` instead. */
   id: Scalars["String"]["output"];
+  /** True if requested quantity is less than available stock, false otherwise. */
+  is_available: Scalars["Boolean"]["output"];
   /** Indicates whether the product is available in the store */
   is_in_store?: Maybe<Scalars["Boolean"]["output"]>;
   /** The message from the sender to the recipient. */
@@ -7657,6 +7393,8 @@ export type GiftCardOrderItem = OrderItemInterface & {
   gift_wrapping?: Maybe<GiftWrapping>;
   /** The unique ID for an `OrderItemInterface` object. */
   id: Scalars["ID"]["output"];
+  /** The ProductInterface object, which contains details about the base product */
+  product?: Maybe<ProductInterface>;
   /** The name of the base product. */
   product_name?: Maybe<Scalars["String"]["output"]>;
   /** The sale price of the base product, including selected options. */
@@ -7723,6 +7461,8 @@ export type GiftCardProduct = CustomizableProductInterface &
     created_at?: Maybe<Scalars["String"]["output"]>;
     /** An array of cross-sell products. */
     crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** Product custom attributes. */
+    custom_attributesV2?: Maybe<ProductCustomAttributes>;
     /** @deprecated Use the `custom_attributes` field instead. */
     delivery_promise?: Maybe<Scalars["String"]["output"]>;
     /** Detailed information about the product. The value can include simple HTML tags. */
@@ -7914,6 +7654,11 @@ export type GiftCardProduct = CustomizableProductInterface &
   };
 
 /** Defines properties of a gift card. */
+export type GiftCardProductCustom_AttributesV2Args = {
+  filters: InputMaybe<AttributeFilterInput>;
+};
+
+/** Defines properties of a gift card. */
 export type GiftCardProductReviewsArgs = {
   currentPage?: InputMaybe<Scalars["Int"]["input"]>;
   pageSize?: InputMaybe<Scalars["Int"]["input"]>;
@@ -7939,11 +7684,8 @@ export type GiftCardShipmentItem = ShipmentItemInterface & {
 
 /** Specifies the gift card type. */
 export enum GiftCardTypeEnum {
-  /** @deprecated  */
   Combined = "COMBINED",
-  /** @deprecated  */
   Physical = "PHYSICAL",
-  /** @deprecated  */
   Virtual = "VIRTUAL",
 }
 
@@ -8042,17 +7784,11 @@ export type GiftRegistryDynamicAttribute =
 
 /** Defines the group type of a gift registry dynamic attribute. */
 export enum GiftRegistryDynamicAttributeGroup {
-  /** @deprecated  */
   DetailedInformation = "DETAILED_INFORMATION",
-  /** @deprecated  */
   EventInformation = "EVENT_INFORMATION",
-  /** @deprecated  */
   GeneralInformation = "GENERAL_INFORMATION",
-  /** @deprecated  */
   PrivacySettings = "PRIVACY_SETTINGS",
-  /** @deprecated  */
   Registrant = "REGISTRANT",
-  /** @deprecated  */
   ShippingAddress = "SHIPPING_ADDRESS",
 }
 
@@ -8170,20 +7906,11 @@ export type GiftRegistryItemsUserError = {
 
 /** Defines the error type. */
 export enum GiftRegistryItemsUserErrorType {
-  /**
-   * Used for exceptions like EntityNotFound.
-   * @deprecated
-   */
+  /** Used for exceptions like EntityNotFound. */
   NotFound = "NOT_FOUND",
-  /**
-   * Used for handling out of stock products.
-   * @deprecated
-   */
+  /** Used for handling out of stock products. */
   OutOfStock = "OUT_OF_STOCK",
-  /**
-   * Used for other exceptions, such as database connection failures.
-   * @deprecated
-   */
+  /** Used for other exceptions, such as database connection failures. */
   Undefined = "UNDEFINED",
 }
 
@@ -8202,9 +7929,7 @@ export type GiftRegistryOutputInterface = {
 
 /** Defines the privacy setting of the gift registry. */
 export enum GiftRegistryPrivacySettings {
-  /** @deprecated  */
   Private = "PRIVATE",
-  /** @deprecated  */
   Public = "PUBLIC",
 }
 
@@ -8263,9 +7988,7 @@ export type GiftRegistryShippingAddressInput = {
 
 /** Defines the status of the gift registry. */
 export enum GiftRegistryStatus {
-  /** @deprecated  */
   Active = "ACTIVE",
-  /** @deprecated  */
   Inactive = "INACTIVE",
 }
 
@@ -8309,6 +8032,46 @@ export type GiftWrappingImage = {
   url: Scalars["String"]["output"];
 };
 
+export type GooglePayButtonStyles = {
+  __typename: "GooglePayButtonStyles";
+  /** The button color */
+  color?: Maybe<Scalars["String"]["output"]>;
+  /** The button height in pixels */
+  height?: Maybe<Scalars["Int"]["output"]>;
+  /** The button type */
+  type?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type GooglePayConfig = PaymentConfigItem & {
+  __typename: "GooglePayConfig";
+  /** The styles for the GooglePay Button configuration */
+  button_styles?: Maybe<GooglePayButtonStyles>;
+  /** The payment method code as defined in the payment gateway */
+  code?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether the payment method is displayed */
+  is_visible?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Defines the payment intent (Authorize or Capture */
+  payment_intent?: Maybe<Scalars["String"]["output"]>;
+  /** The payment source for the payment method */
+  payment_source?: Maybe<Scalars["String"]["output"]>;
+  /** The PayPal parameters required to load the JS SDK */
+  sdk_params?: Maybe<Array<Maybe<SdkParams>>>;
+  /** The relative order the payment method is displayed on the checkout page */
+  sort_order?: Maybe<Scalars["String"]["output"]>;
+  /** The name displayed for the payment method */
+  title?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Google Pay inputs */
+export type GooglePayMethodInput = {
+  /** The payment source for the payment method */
+  payment_source?: InputMaybe<Scalars["String"]["input"]>;
+  /** The payment services order ID */
+  payments_order_id?: InputMaybe<Scalars["String"]["input"]>;
+  /** PayPal order ID */
+  paypal_order_id?: InputMaybe<Scalars["String"]["input"]>;
+};
+
 /** Defines a grouped product, which consists of simple standalone products that are presented as a group. */
 export type GroupedProduct = PhysicalProductInterface &
   ProductInterface &
@@ -8342,6 +8105,8 @@ export type GroupedProduct = PhysicalProductInterface &
     created_at?: Maybe<Scalars["String"]["output"]>;
     /** An array of cross-sell products. */
     crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** Product custom attributes. */
+    custom_attributesV2?: Maybe<ProductCustomAttributes>;
     /** @deprecated Use the `custom_attributes` field instead. */
     delivery_promise?: Maybe<Scalars["String"]["output"]>;
     /** Detailed information about the product. The value can include simple HTML tags. */
@@ -8517,6 +8282,11 @@ export type GroupedProduct = PhysicalProductInterface &
   };
 
 /** Defines a grouped product, which consists of simple standalone products that are presented as a group. */
+export type GroupedProductCustom_AttributesV2Args = {
+  filters: InputMaybe<AttributeFilterInput>;
+};
+
+/** Defines a grouped product, which consists of simple standalone products that are presented as a group. */
 export type GroupedProductReviewsArgs = {
   currentPage?: InputMaybe<Scalars["Int"]["input"]>;
   pageSize?: InputMaybe<Scalars["Int"]["input"]>;
@@ -8548,6 +8318,54 @@ export type GroupedProductWishlistItem = WishlistItemInterface & {
   product?: Maybe<ProductInterface>;
   /** The quantity of this wish list item. */
   quantity: Scalars["Float"]["output"];
+};
+
+export type HostedFieldsConfig = PaymentConfigItem & {
+  __typename: "HostedFieldsConfig";
+  /** Vault payment method code */
+  cc_vault_code?: Maybe<Scalars["String"]["output"]>;
+  /** The payment method code as defined in the payment gateway */
+  code?: Maybe<Scalars["String"]["output"]>;
+  /** Card vault enabled */
+  is_vault_enabled?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Indicates whether the payment method is displayed */
+  is_visible?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Defines the payment intent (Authorize or Capture */
+  payment_intent?: Maybe<Scalars["String"]["output"]>;
+  /** The payment source for the payment method */
+  payment_source?: Maybe<Scalars["String"]["output"]>;
+  /** Card and bin details required */
+  requires_card_details?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The PayPal parameters required to load the JS SDK */
+  sdk_params?: Maybe<Array<Maybe<SdkParams>>>;
+  /** The relative order the payment method is displayed on the checkout page */
+  sort_order?: Maybe<Scalars["String"]["output"]>;
+  /** 3DS mode */
+  three_ds?: Maybe<Scalars["Boolean"]["output"]>;
+  /** The name displayed for the payment method */
+  title?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Hosted Fields payment inputs */
+export type HostedFieldsInput = {
+  /** Card bin number */
+  cardBin?: InputMaybe<Scalars["String"]["input"]>;
+  /** Expiration month of the card */
+  cardExpiryMonth?: InputMaybe<Scalars["String"]["input"]>;
+  /** Expiration year of the card */
+  cardExpiryYear?: InputMaybe<Scalars["String"]["input"]>;
+  /** Last four digits of the card */
+  cardLast4?: InputMaybe<Scalars["String"]["input"]>;
+  /** Name on the card */
+  holderName?: InputMaybe<Scalars["String"]["input"]>;
+  /** Indicates whether details about the shopper's credit/debit card should be tokenized for later usage. Required only if Vault is enabled for the Payment Services payment integration. */
+  is_active_payment_token_enabler?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** The payment source for the payment method */
+  payment_source?: InputMaybe<Scalars["String"]["input"]>;
+  /** The payment services order ID */
+  payments_order_id?: InputMaybe<Scalars["String"]["input"]>;
+  /** PayPal order ID */
+  paypal_order_id?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 /** Contains a set of relative URLs that PayPal uses in response to various actions during the authorization process. Magento prepends the base URL to this value to create a full URL. For example, if the full URL is https://www.example.com/path/to/page.html, the relative URL is path/to/page.html. Use this input for Payments Pro Hosted Solution payment method. */
@@ -9060,6 +8878,20 @@ export type ImageTransformationInput = {
   /** Sharpens the image. */
   sharpen?: InputMaybe<ImageSharpenInput>;
 };
+
+/** List of templates/filters applied to customer attribute input. */
+export enum InputFilterEnum {
+  /** Forces attribute input to follow the date format. */
+  Date = "DATE",
+  /** Escape HTML Entities. */
+  Escapehtml = "ESCAPEHTML",
+  /** There are no templates or filters to be applied. */
+  None = "NONE",
+  /** Strip HTML Tags. */
+  Striptags = "STRIPTAGS",
+  /** Strip whitespace (or other characters) from the beginning and end of the input. */
+  Trim = "TRIM",
+}
 
 /** Contains an error message when an internal error occurred. */
 export type InternalError = ErrorInterface & {
@@ -11503,6 +11335,20 @@ export type MenulinksUnionWhereUniqueInput = {
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownWhereUniqueInput>;
 };
 
+export type MessageStyleLogo = {
+  __typename: "MessageStyleLogo";
+  /** The type of logo for the PayPal Pay Later messaging */
+  type?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type MessageStyles = {
+  __typename: "MessageStyles";
+  /** The message layout */
+  layout?: Maybe<Scalars["String"]["output"]>;
+  /** The message logo */
+  logo?: Maybe<MessageStyleLogo>;
+};
+
 export enum MetaRobots {
   IndexFollow = "INDEX_FOLLOW",
   IndexNofollow = "INDEX_NOFOLLOW",
@@ -11571,6 +11417,8 @@ export type Mutation = {
   addWishlistItemsToCart?: Maybe<AddWishlistItemsToCartOutput>;
   /** Apply a pre-defined coupon code to the specified cart. */
   applyCouponToCart?: Maybe<ApplyCouponToCartOutput>;
+  /** Apply a pre-defined coupon code to the specified cart. */
+  applyCouponsToCart?: Maybe<ApplyCouponToCartOutput>;
   /** Apply a pre-defined gift card code to the specified cart. */
   applyGiftCardToCart?: Maybe<ApplyGiftCardToCartOutput>;
   /** Apply all available points, up to the cart total. Partial redemption is not available. */
@@ -11581,8 +11429,16 @@ export type Mutation = {
   assignCompareListToCustomer?: Maybe<AssignCompareListToCustomerOutput>;
   /** Assign a logged-in customer to the specified guest shopping cart. */
   assignCustomerToGuestCart: Cart;
+  /** Cancel the specified customer order. */
+  cancelOrder?: Maybe<CancelOrderOutput>;
   /** Change the password for the logged-in customer. */
   changeCustomerPassword?: Maybe<Customer>;
+  /** Remove all items from the specified cart. */
+  clearCart: ClearCartOutput;
+  /** Confirms the email address for a customer. */
+  confirmEmail?: Maybe<CustomerOutput>;
+  /** Send a 'Contact Us' email to the merchant. */
+  contactUs?: Maybe<ContactUsOutput>;
   /** Copy products from one wish list to another. The original wish list is unchanged. */
   copyProductsBetweenWishlists?: Maybe<CopyProductsBetweenWishlistsOutput>;
   /** Create an asset. Use the returned info to finish the creation process by uploading the asset. */
@@ -11591,6 +11447,10 @@ export type Mutation = {
   createBanner?: Maybe<Banner>;
   /** Creates Client Token for Braintree Javascript SDK initialization. */
   createBraintreeClientToken: Scalars["String"]["output"];
+  /** Creates Client Token for Braintree PayPal Javascript SDK initialization. */
+  createBraintreePayPalClientToken: Scalars["String"]["output"];
+  /** Creates Client Token for Braintree PayPal Vault Javascript SDK initialization. */
+  createBraintreePayPalVaultClientToken: Scalars["String"]["output"];
   /** Create a new compare list. The compare list is saved for logged in customers. */
   createCompareList?: Maybe<CompareList>;
   /** Use `createCustomerV2` instead. */
@@ -11601,16 +11461,23 @@ export type Mutation = {
   createCustomerV2?: Maybe<CustomerOutput>;
   /** Create one dynamicHeader */
   createDynamicHeader?: Maybe<DynamicHeader>;
-  /** Create an empty shopping cart for a guest or logged in user */
+  /**
+   * Create an empty shopping cart for a guest or logged in user
+   * @deprecated Use `Mutation.createGuestCart` or `Query.customerCart` for logged in customer
+   */
   createEmptyCart?: Maybe<Scalars["String"]["output"]>;
   /** Create a gift registry on behalf of the customer. */
   createGiftRegistry?: Maybe<CreateGiftRegistryOutput>;
+  /** Create a new shopping cart */
+  createGuestCart?: Maybe<CreateGuestCartOutput>;
   /** Create one menu */
   createMenu?: Maybe<Menu>;
   /** Create one page */
   createPage?: Maybe<Page>;
   /** Initiate a transaction and receive a token. Use this mutation for Payflow Pro and Payments Pro payment methods */
   createPayflowProToken?: Maybe<CreatePayflowProTokenOutput>;
+  /** Creates a payment order for further payment processing */
+  createPaymentOrder?: Maybe<CreatePaymentOrderOutput>;
   /** Initiate an Express Checkout transaction and receive a token. Use this mutation for Express Checkout and Payments Standard payment methods. */
   createPaypalExpressToken?: Maybe<PaypalExpressTokenOutput>;
   /** Create a product review for the specified product. */
@@ -11700,6 +11567,10 @@ export type Mutation = {
   deleteStaticPageConfiguration?: Maybe<StaticPageConfiguration>;
   /** Delete the specified wish list. You cannot delete the customer's default (first) wish list. */
   deleteWishlist?: Maybe<DeleteWishlistOutput>;
+  /** Estimate shipping method(s) for cart based on address */
+  estimateShippingMethods?: Maybe<Array<Maybe<AvailableShippingMethod>>>;
+  /** Estimate totals for cart based on the address */
+  estimateTotals: EstimateTotalsOutput;
   /** Generate a token for specified customer. */
   generateCustomerToken?: Maybe<CustomerToken>;
   /** Request a customer token so that an administrator can perform remote shopping assistance. */
@@ -11781,6 +11652,8 @@ export type Mutation = {
   redeemGiftCardBalanceAsStoreCredit?: Maybe<GiftCardAccount>;
   /** Remove a previously-applied coupon from the cart. The cart must contain at least one item in order to remove the coupon. */
   removeCouponFromCart?: Maybe<RemoveCouponFromCartOutput>;
+  /** Remove a previously-applied coupon from the cart. The cart must contain at least one item in order to remove the coupon. */
+  removeCouponsFromCart?: Maybe<RemoveCouponFromCartOutput>;
   /** Removes a gift card from the cart. */
   removeGiftCardFromCart?: Maybe<RemoveGiftCardFromCartOutput>;
   /** Delete the specified gift registry. */
@@ -11862,6 +11735,8 @@ export type Mutation = {
   shareGiftRegistry?: Maybe<ShareGiftRegistryOutput>;
   /** Subscribe the specified email to the store's newsletter. */
   subscribeEmailToNewsletter?: Maybe<SubscribeEmailToNewsletterOutput>;
+  /** Synchronizes the payment order details for further payment processing */
+  syncPaymentOrder?: Maybe<Scalars["Boolean"]["output"]>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishAsset?: Maybe<Asset>;
   /** Unpublish one banner from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -12087,6 +11962,10 @@ export type MutationApplyCouponToCartArgs = {
   input: InputMaybe<ApplyCouponToCartInput>;
 };
 
+export type MutationApplyCouponsToCartArgs = {
+  input: InputMaybe<ApplyCouponsToCartInput>;
+};
+
 export type MutationApplyGiftCardToCartArgs = {
   input: InputMaybe<ApplyGiftCardToCartInput>;
 };
@@ -12107,9 +11986,25 @@ export type MutationAssignCustomerToGuestCartArgs = {
   cart_id: Scalars["String"]["input"];
 };
 
+export type MutationCancelOrderArgs = {
+  input: CancelOrderInput;
+};
+
 export type MutationChangeCustomerPasswordArgs = {
   currentPassword: Scalars["String"]["input"];
   newPassword: Scalars["String"]["input"];
+};
+
+export type MutationClearCartArgs = {
+  input: ClearCartInput;
+};
+
+export type MutationConfirmEmailArgs = {
+  input: ConfirmEmailInput;
+};
+
+export type MutationContactUsArgs = {
+  input: ContactUsInput;
 };
 
 export type MutationCopyProductsBetweenWishlistsArgs = {
@@ -12124,6 +12019,10 @@ export type MutationCreateAssetArgs = {
 
 export type MutationCreateBannerArgs = {
   data: BannerCreateInput;
+};
+
+export type MutationCreateBraintreePayPalVaultClientTokenArgs = {
+  input: InputMaybe<BraintreeVaultInput>;
 };
 
 export type MutationCreateCompareListArgs = {
@@ -12154,6 +12053,10 @@ export type MutationCreateGiftRegistryArgs = {
   giftRegistry: CreateGiftRegistryInput;
 };
 
+export type MutationCreateGuestCartArgs = {
+  input: InputMaybe<CreateGuestCartInput>;
+};
+
 export type MutationCreateMenuArgs = {
   data: MenuCreateInput;
 };
@@ -12164,6 +12067,10 @@ export type MutationCreatePageArgs = {
 
 export type MutationCreatePayflowProTokenArgs = {
   input: PayflowProTokenInput;
+};
+
+export type MutationCreatePaymentOrderArgs = {
+  input: CreatePaymentOrderInput;
 };
 
 export type MutationCreatePaypalExpressTokenArgs = {
@@ -12331,6 +12238,14 @@ export type MutationDeleteStaticPageConfigurationArgs = {
 
 export type MutationDeleteWishlistArgs = {
   wishlistId: Scalars["ID"]["input"];
+};
+
+export type MutationEstimateShippingMethodsArgs = {
+  input: EstimateTotalsInput;
+};
+
+export type MutationEstimateTotalsArgs = {
+  input: EstimateTotalsInput;
 };
 
 export type MutationGenerateCustomerTokenArgs = {
@@ -12528,6 +12443,10 @@ export type MutationRedeemGiftCardBalanceAsStoreCreditArgs = {
 
 export type MutationRemoveCouponFromCartArgs = {
   input: InputMaybe<RemoveCouponFromCartInput>;
+};
+
+export type MutationRemoveCouponsFromCartArgs = {
+  input: InputMaybe<RemoveCouponsFromCartInput>;
 };
 
 export type MutationRemoveGiftCardFromCartArgs = {
@@ -12734,6 +12653,10 @@ export type MutationShareGiftRegistryArgs = {
 
 export type MutationSubscribeEmailToNewsletterArgs = {
   email: Scalars["String"]["input"];
+};
+
+export type MutationSyncPaymentOrderArgs = {
+  input: InputMaybe<SyncPaymentOrderInput>;
 };
 
 export type MutationUnpublishAssetArgs = {
@@ -13191,6 +13114,16 @@ export type OrderAddress = {
   vat_id?: Maybe<Scalars["String"]["output"]>;
 };
 
+/** Input to retrieve an order based on details. */
+export type OrderInformationInput = {
+  /** Order billing address email. */
+  email: Scalars["String"]["input"];
+  /** Order number. */
+  number: Scalars["String"]["input"];
+  /** Order billing address postcode. */
+  postcode: Scalars["String"]["input"];
+};
+
 export type OrderItem = OrderItemInterface & {
   __typename: "OrderItem";
   /** The final discount information for the product. */
@@ -13205,6 +13138,8 @@ export type OrderItem = OrderItemInterface & {
   gift_wrapping?: Maybe<GiftWrapping>;
   /** The unique ID for an `OrderItemInterface` object. */
   id: Scalars["ID"]["output"];
+  /** The ProductInterface object, which contains details about the base product */
+  product?: Maybe<ProductInterface>;
   /** The name of the base product. */
   product_name?: Maybe<Scalars["String"]["output"]>;
   /** The sale price of the base product, including selected options. */
@@ -13247,6 +13182,8 @@ export type OrderItemInterface = {
   gift_wrapping?: Maybe<GiftWrapping>;
   /** The unique ID for an `OrderItemInterface` object. */
   id: Scalars["ID"]["output"];
+  /** The ProductInterface object, which contains details about the base product */
+  product?: Maybe<ProductInterface>;
   /** The name of the base product. */
   product_name?: Maybe<Scalars["String"]["output"]>;
   /** The sale price of the base product, including selected options. */
@@ -13308,6 +13245,12 @@ export type OrderShipment = {
   number: Scalars["String"]["output"];
   /** An array of shipment tracking details. */
   tracking?: Maybe<Array<Maybe<ShipmentTracking>>>;
+};
+
+/** Input to retrieve an order based on token. */
+export type OrderTokenInput = {
+  /** Order token. */
+  token: Scalars["String"]["input"];
 };
 
 /** Contains details about the sales total amounts used to calculate the final price. */
@@ -14118,9 +14061,7 @@ export type PayflowLinkInput = {
 
 /** Indicates the mode for payment. Applies to the Payflow Link and Payments Advanced payment methods. */
 export enum PayflowLinkMode {
-  /** @deprecated  */
   Live = "LIVE",
-  /** @deprecated  */
   Test = "TEST",
 }
 
@@ -14198,10 +14139,70 @@ export type PayflowProUrlInput = {
   return_url: Scalars["String"]["input"];
 };
 
+export type PaymentCommonConfig = PaymentConfigItem & {
+  __typename: "PaymentCommonConfig";
+  /** The payment method code as defined in the payment gateway */
+  code?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether the payment method is displayed */
+  is_visible?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Defines the payment intent (Authorize or Capture */
+  payment_intent?: Maybe<Scalars["String"]["output"]>;
+  /** The PayPal parameters required to load the JS SDK */
+  sdk_params?: Maybe<Array<Maybe<SdkParams>>>;
+  /** The relative order the payment method is displayed on the checkout page */
+  sort_order?: Maybe<Scalars["String"]["output"]>;
+  /** The name displayed for the payment method */
+  title?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Contains payment fields that are common to all types of payment methods. */
+export type PaymentConfigItem = {
+  /** The payment method code as defined in the payment gateway */
+  code?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether the payment method is displayed */
+  is_visible?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Defines the payment intent (Authorize or Capture */
+  payment_intent?: Maybe<Scalars["String"]["output"]>;
+  /** The PayPal parameters required to load the JS SDK */
+  sdk_params?: Maybe<Array<Maybe<SdkParams>>>;
+  /** The relative order the payment method is displayed on the checkout page */
+  sort_order?: Maybe<Scalars["String"]["output"]>;
+  /** The name displayed for the payment method */
+  title?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** Retrieves the payment configuration for a given location */
+export type PaymentConfigOutput = {
+  __typename: "PaymentConfigOutput";
+  /** ApplePay payment method configuration */
+  apple_pay?: Maybe<ApplePayConfig>;
+  /** GooglePay payment method configuration */
+  google_pay?: Maybe<GooglePayConfig>;
+  /** Hosted fields payment method configuration */
+  hosted_fields?: Maybe<HostedFieldsConfig>;
+  /** Smart Buttons payment method configuration */
+  smart_buttons?: Maybe<SmartButtonsConfig>;
+};
+
+/** Defines the origin location for that payment request */
+export enum PaymentLocation {
+  Admin = "ADMIN",
+  Cart = "CART",
+  Checkout = "CHECKOUT",
+  Minicart = "MINICART",
+  ProductDetail = "PRODUCT_DETAIL",
+}
+
 /** Defines the payment method. */
 export type PaymentMethodInput = {
   braintree?: InputMaybe<BraintreeInput>;
+  braintree_ach_direct_debit?: InputMaybe<BraintreeInput>;
+  braintree_ach_direct_debit_vault?: InputMaybe<BraintreeVaultInput>;
+  braintree_applepay_vault?: InputMaybe<BraintreeVaultInput>;
   braintree_cc_vault?: InputMaybe<BraintreeCcVaultInput>;
+  braintree_googlepay_vault?: InputMaybe<BraintreeVaultInput>;
+  braintree_paypal?: InputMaybe<BraintreeInput>;
+  braintree_paypal_vault?: InputMaybe<BraintreeVaultInput>;
   /** The internal name for the payment method. */
   code: Scalars["String"]["input"];
   /** Required input for PayPal Hosted pro payments. */
@@ -14214,10 +14215,47 @@ export type PaymentMethodInput = {
   payflowpro?: InputMaybe<PayflowProInput>;
   /** Required input for PayPal Payflow Pro vault payments. */
   payflowpro_cc_vault?: InputMaybe<VaultTokenInput>;
+  /** Required input for Apple Pay button */
+  payment_services_paypal_apple_pay?: InputMaybe<ApplePayMethodInput>;
+  /** Required input for Google Pay button */
+  payment_services_paypal_google_pay?: InputMaybe<GooglePayMethodInput>;
+  /** Required input for Hosted Fields */
+  payment_services_paypal_hosted_fields?: InputMaybe<HostedFieldsInput>;
+  /** Required input for Smart buttons */
+  payment_services_paypal_smart_buttons?: InputMaybe<SmartButtonMethodInput>;
+  /** Required input for vault */
+  payment_services_paypal_vault?: InputMaybe<VaultMethodInput>;
   /** Required input for Express Checkout and Payments Standard payments. */
   paypal_express?: InputMaybe<PaypalExpressInput>;
   /** The purchase order number. Optional for most payment methods. */
   purchase_order_number?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** Contains the payment order details */
+export type PaymentOrderOutput = {
+  __typename: "PaymentOrderOutput";
+  /** PayPal order ID */
+  id?: Maybe<Scalars["String"]["output"]>;
+  /** The order ID generated by Payment Services */
+  mp_order_id?: Maybe<Scalars["String"]["output"]>;
+  /** Details about the card used on the order */
+  payment_source_details?: Maybe<PaymentSourceDetails>;
+  /** The status of the payment order */
+  status?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type PaymentSdkParamsItem = {
+  __typename: "PaymentSDKParamsItem";
+  /** The payment method code used in the order */
+  code?: Maybe<Scalars["String"]["output"]>;
+  /** The payment SDK parameters */
+  params?: Maybe<Array<Maybe<SdkParams>>>;
+};
+
+export type PaymentSourceDetails = {
+  __typename: "PaymentSourceDetails";
+  /** Details about the card used on the order */
+  card?: Maybe<Card>;
 };
 
 /** The stored payment method available to the customer. */
@@ -14235,15 +14273,9 @@ export type PaymentToken = {
 
 /** The list of available payment token types. */
 export enum PaymentTokenTypeEnum {
-  /**
-   * phpcs:ignore Magento2.GraphQL.ValidArgumentName
-   * @deprecated
-   */
+  /** phpcs:ignore Magento2.GraphQL.ValidArgumentName */
   Account = "account",
-  /**
-   * phpcs:ignore Magento2.GraphQL.ValidArgumentName
-   * @deprecated
-   */
+  /** phpcs:ignore Magento2.GraphQL.ValidArgumentName */
   Card = "card",
 }
 
@@ -14407,6 +14439,23 @@ export type PickupLocations = {
   total_count?: Maybe<Scalars["Int"]["output"]>;
 };
 
+/** An error encountered while placing an order. */
+export type PlaceOrderError = {
+  __typename: "PlaceOrderError";
+  /** An error code that is specific to place order. */
+  code: PlaceOrderErrorCodes;
+  /** A localized error message. */
+  message: Scalars["String"]["output"];
+};
+
+export enum PlaceOrderErrorCodes {
+  CartNotActive = "CART_NOT_ACTIVE",
+  CartNotFound = "CART_NOT_FOUND",
+  GuestEmailMissing = "GUEST_EMAIL_MISSING",
+  UnableToPlaceOrder = "UNABLE_TO_PLACE_ORDER",
+  Undefined = "UNDEFINED",
+}
+
 /** Specifies the quote to be converted to an order. */
 export type PlaceOrderInput = {
   /** The unique ID of a `Cart` object. */
@@ -14416,8 +14465,15 @@ export type PlaceOrderInput = {
 /** Contains the results of the request to place an order. */
 export type PlaceOrderOutput = {
   __typename: "PlaceOrderOutput";
-  /** The ID of the order. */
-  order: Order;
+  /** An array of place order errors. */
+  errors: Array<Maybe<PlaceOrderError>>;
+  /**
+   * The ID of the order.
+   * @deprecated Use `orderV2` instead.
+   */
+  order?: Maybe<Order>;
+  /** Full order information. */
+  orderV2?: Maybe<CustomerOrder>;
 };
 
 export enum Position {
@@ -14469,11 +14525,20 @@ export enum PriceAdjustmentCodesEnum {
 
 /** `PriceAdjustmentDescriptionEnum` is deprecated. States whether a price adjustment is included or excluded. */
 export enum PriceAdjustmentDescriptionEnum {
-  /** @deprecated  */
   Excluded = "EXCLUDED",
-  /** @deprecated  */
   Included = "INCLUDED",
 }
+
+/** Can be used to retrieve the main price details in case of bundle product */
+export type PriceDetails = {
+  __typename: "PriceDetails";
+  /** The percentage of discount applied to the main product price */
+  discount_percentage?: Maybe<Scalars["Float"]["output"]>;
+  /** The final price after applying the discount to the main product */
+  main_final_price?: Maybe<Scalars["Float"]["output"]>;
+  /** The regular price of the main product */
+  main_price?: Maybe<Scalars["Float"]["output"]>;
+};
 
 /** Contains the price range for a product. If the product has a single price, the minimum and maximum price will be the same. */
 export type PriceRange = {
@@ -14486,19 +14551,14 @@ export type PriceRange = {
 
 /** Defines the price type. */
 export enum PriceTypeEnum {
-  /** @deprecated  */
   Dynamic = "DYNAMIC",
-  /** @deprecated  */
   Fixed = "FIXED",
-  /** @deprecated  */
   Percent = "PERCENT",
 }
 
 /** Defines whether a bundle product's price is displayed as the lowest possible value or as a range. */
 export enum PriceViewEnum {
-  /** @deprecated  */
   AsLowAs = "AS_LOW_AS",
-  /** @deprecated  */
   PriceRange = "PRICE_RANGE",
 }
 
@@ -14521,6 +14581,8 @@ export type ProductAttributeFilterInput = {
   category_id?: InputMaybe<FilterEqualTypeInput>;
   /** Filter product by the unique ID for a `CategoryInterface` object. */
   category_uid?: InputMaybe<FilterEqualTypeInput>;
+  /** Filter product by category URL path. */
+  category_url_path?: InputMaybe<FilterEqualTypeInput>;
   /** Attribute label: Farge */
   color?: InputMaybe<FilterEqualTypeInput>;
   /** Attribute label: Beskrivelse */
@@ -14565,6 +14627,15 @@ export type ProductAttributeSortInput = {
   price?: InputMaybe<SortEnum>;
   /** Sort by the search relevance score (default). */
   relevance?: InputMaybe<SortEnum>;
+};
+
+/** Product custom attributes */
+export type ProductCustomAttributes = {
+  __typename: "ProductCustomAttributes";
+  /** Errors when retrieving custom attributes metadata. */
+  errors: Array<Maybe<AttributeMetadataError>>;
+  /** Requested custom attributes */
+  items: Array<Maybe<AttributeValueInterface>>;
 };
 
 /** Contains the discount applied to a product price. */
@@ -14706,6 +14777,8 @@ export type ProductInterface = {
   created_at?: Maybe<Scalars["String"]["output"]>;
   /** An array of cross-sell products. */
   crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+  /** Product custom attributes. */
+  custom_attributesV2?: Maybe<ProductCustomAttributes>;
   /** @deprecated Use the `custom_attributes` field instead. */
   delivery_promise?: Maybe<Scalars["String"]["output"]>;
   /** Detailed information about the product. The value can include simple HTML tags. */
@@ -14871,6 +14944,11 @@ export type ProductInterface = {
 };
 
 /** Contains fields that are common to all types of products. */
+export type ProductInterfaceCustom_AttributesV2Args = {
+  filters: InputMaybe<AttributeFilterInput>;
+};
+
+/** Contains fields that are common to all types of products. */
 export type ProductInterfaceReviewsArgs = {
   currentPage?: InputMaybe<Scalars["Int"]["input"]>;
   pageSize?: InputMaybe<Scalars["Int"]["input"]>;
@@ -14890,17 +14968,11 @@ export type ProductInterfaceStoreItem = {
 };
 
 export enum ProductLabels {
-  /** @deprecated  */
   BlackFriday = "BLACK_FRIDAY",
-  /** @deprecated  */
   ClearanceSale = "CLEARANCE_SALE",
-  /** @deprecated  */
   CustomerClub = "CUSTOMER_CLUB",
-  /** @deprecated  */
   LowPrice = "LOW_PRICE",
-  /** @deprecated  */
   RaskLavering = "RASK_LAVERING",
-  /** @deprecated  */
   Upcoming = "UPCOMING",
 }
 
@@ -15667,9 +15739,7 @@ export type ProductSortInput = {
 
 /** This enumeration states whether a product stock status is in stock or out of stock */
 export enum ProductStockStatus {
-  /** @deprecated  */
   InStock = "IN_STOCK",
-  /** @deprecated  */
   OutOfStock = "OUT_OF_STOCK",
 }
 
@@ -15762,6 +15832,10 @@ export type Query = {
   assets: Array<Asset>;
   /** Retrieve multiple assets using the Relay connection interface */
   assetsConnection: AssetConnection;
+  /** Retrieve EAV attributes associated to a frontend form. Use countries query provided by DirectoryGraphQl module to retrieve region_id and country_id attribute options. */
+  attributesForm: AttributesFormOutput;
+  /** Returns a list of attributes metadata for a given entity type. */
+  attributesList?: Maybe<AttributesMetadataOutput>;
   /** Get a list of available store views and their config information. */
   availableStores?: Maybe<Array<Maybe<StoreConfig>>>;
   /** Retrieve a single banner */
@@ -15802,8 +15876,13 @@ export type Query = {
   country?: Maybe<Country>;
   /** Return information about the store's currency. */
   currency?: Maybe<Currency>;
-  /** Return the attribute type, given an attribute code and entity type. */
+  /**
+   * Return the attribute type, given an attribute code and entity type.
+   * @deprecated Use `customAttributeMetadataV2` query instead.
+   */
   customAttributeMetadata?: Maybe<CustomAttributeMetadata>;
+  /** Retrieve EAV attributes metadata. */
+  customAttributeMetadataV2: AttributesMetadataOutput;
   /** Return detailed information about a customer account. */
   customer?: Maybe<Customer>;
   /** Return information about the customer's shopping cart. */
@@ -15830,6 +15909,12 @@ export type Query = {
   getHostedProUrl?: Maybe<HostedProUrl>;
   /** Retrieve payment credentials for a transaction. Use this query for Payflow Link and Payments Advanced payment methods. */
   getPayflowLinkToken?: Maybe<PayflowLinkToken>;
+  /** Retrieves the payment configuration for a given location */
+  getPaymentConfig?: Maybe<PaymentConfigOutput>;
+  /** Retrieves the payment details for the order */
+  getPaymentOrder?: Maybe<PaymentOrderOutput>;
+  /** Gets the payment SDK urls and values */
+  getPaymentSDK?: Maybe<GetPaymentSdkOutput>;
   /** Return store information by given id. */
   getStore?: Maybe<Array<Maybe<Store>>>;
   /** Return stores list with information. */
@@ -15846,6 +15931,10 @@ export type Query = {
   giftRegistryTypeSearch?: Maybe<Array<Maybe<GiftRegistrySearchResult>>>;
   /** Get a list of available gift registry types. */
   giftRegistryTypes?: Maybe<Array<Maybe<GiftRegistryType>>>;
+  /** Retrieve guest order details based on number, email and postcode. */
+  guestOrder: CustomerOrder;
+  /** Retrieve guest order details based on token. */
+  guestOrderByToken: CustomerOrder;
   /** Check whether the specified email has already been used to create a customer account. */
   isEmailAvailable?: Maybe<IsEmailAvailableOutput>;
   /** Retrieve a single menu */
@@ -15883,6 +15972,8 @@ export type Query = {
   products?: Maybe<Products>;
   /** Get products query by labels assigned to them. */
   productsByLabel?: Maybe<Array<Maybe<ProductInterface>>>;
+  /** Returns details about Google reCAPTCHA V3-Invisible configuration. */
+  recaptchaV3Config?: Maybe<ReCaptchaConfigurationV3>;
   /** Return the full details for a specified product, category, or CMS page. */
   route?: Maybe<RoutableInterface>;
   /** Retrieve a single scheduledOperation */
@@ -15965,6 +16056,15 @@ export type QueryAssetsConnectionArgs = {
   skip: InputMaybe<Scalars["Int"]["input"]>;
   stage?: Stage;
   where: InputMaybe<AssetWhereInput>;
+};
+
+export type QueryAttributesFormArgs = {
+  formCode: Scalars["String"]["input"];
+};
+
+export type QueryAttributesListArgs = {
+  entityType: AttributeEntityTypeEnum;
+  filters: InputMaybe<AttributeFilterInput>;
 };
 
 export type QueryAvailableStoresArgs = {
@@ -16050,6 +16150,10 @@ export type QueryCustomAttributeMetadataArgs = {
   attributes: Array<AttributeInput>;
 };
 
+export type QueryCustomAttributeMetadataV2Args = {
+  attributes: InputMaybe<Array<AttributeInput>>;
+};
+
 export type QueryDynamicBlocksArgs = {
   currentPage?: InputMaybe<Scalars["Int"]["input"]>;
   input: InputMaybe<DynamicBlocksFilterInput>;
@@ -16103,6 +16207,19 @@ export type QueryGetPayflowLinkTokenArgs = {
   input: PayflowLinkTokenInput;
 };
 
+export type QueryGetPaymentConfigArgs = {
+  location: PaymentLocation;
+};
+
+export type QueryGetPaymentOrderArgs = {
+  cartId: Scalars["String"]["input"];
+  id: Scalars["String"]["input"];
+};
+
+export type QueryGetPaymentSdkArgs = {
+  location: PaymentLocation;
+};
+
 export type QueryGetStoreArgs = {
   storeId: InputMaybe<Scalars["String"]["input"]>;
 };
@@ -16127,6 +16244,14 @@ export type QueryGiftRegistryTypeSearchArgs = {
   firstName: Scalars["String"]["input"];
   giftRegistryTypeUid: InputMaybe<Scalars["ID"]["input"]>;
   lastName: Scalars["String"]["input"];
+};
+
+export type QueryGuestOrderArgs = {
+  input: OrderInformationInput;
+};
+
+export type QueryGuestOrderByTokenArgs = {
+  input: OrderTokenInput;
 };
 
 export type QueryIsEmailAvailableArgs = {
@@ -16416,6 +16541,14 @@ export type QueryVippsGetPaymentDetailsArgs = {
   order_number: Scalars["String"]["input"];
 };
 
+/** Specifies the field to use for sorting quote items */
+export type QuoteItemsSortInput = {
+  /** Specifies the quote items field to sort by */
+  field: SortQuoteItemsEnum;
+  /** Specifies the order of quote items' sorting */
+  order: SortEnum;
+};
+
 /** Representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
 export type Rgba = {
   __typename: "RGBA";
@@ -16432,6 +16565,38 @@ export type RgbaInput = {
   g: Scalars["RGBAHue"]["input"];
   r: Scalars["RGBAHue"]["input"];
 };
+
+/** Contains reCAPTCHA V3-Invisible configuration details. */
+export type ReCaptchaConfigurationV3 = {
+  __typename: "ReCaptchaConfigurationV3";
+  /** The position of the invisible reCAPTCHA badge on each page. */
+  badge_position: Scalars["String"]["output"];
+  /** The message that appears to the user if validation fails. */
+  failure_message: Scalars["String"]["output"];
+  /** A list of forms on the storefront that have been configured to use reCAPTCHA V3. */
+  forms: Array<Maybe<ReCaptchaFormEnum>>;
+  /** Return whether recaptcha is enabled or not */
+  is_enabled: Scalars["Boolean"]["output"];
+  /** A two-character code that specifies the language that is used for Google reCAPTCHA text and messaging. */
+  language_code?: Maybe<Scalars["String"]["output"]>;
+  /** The minimum score that identifies a user interaction as a potential risk. */
+  minimum_score: Scalars["Float"]["output"];
+  /** The website key generated when the Google reCAPTCHA account was registered. */
+  website_key: Scalars["String"]["output"];
+};
+
+export enum ReCaptchaFormEnum {
+  Braintree = "BRAINTREE",
+  Contact = "CONTACT",
+  CustomerCreate = "CUSTOMER_CREATE",
+  CustomerEdit = "CUSTOMER_EDIT",
+  CustomerForgotPassword = "CUSTOMER_FORGOT_PASSWORD",
+  CustomerLogin = "CUSTOMER_LOGIN",
+  Newsletter = "NEWSLETTER",
+  PlaceOrder = "PLACE_ORDER",
+  ProductReview = "PRODUCT_REVIEW",
+  Sendfriend = "SENDFRIEND",
+}
 
 export type Region = {
   __typename: "Region";
@@ -16454,6 +16619,14 @@ export type RemoveCouponFromCartOutput = {
   __typename: "RemoveCouponFromCartOutput";
   /** The cart after removing a coupon. */
   cart?: Maybe<Cart>;
+};
+
+/** Remove coupons from the cart. */
+export type RemoveCouponsFromCartInput = {
+  /** The unique ID of a `Cart` object. */
+  cart_id: Scalars["String"]["input"];
+  /** An array of coupon codes to be removed from the quote. If coupon_codes is empty all coupons will be removed from the quote. */
+  coupon_codes: Array<InputMaybe<Scalars["String"]["input"]>>;
 };
 
 /** Defines the input required to run the `removeGiftCardFromCart` mutation. */
@@ -16674,8 +16847,13 @@ export type ReturnCustomer = {
 /** Contains details about a product being returned. */
 export type ReturnItem = {
   __typename: "ReturnItem";
-  /** Return item custom attributes that are visible on the storefront. */
+  /**
+   * Return item custom attributes that are visible on the storefront.
+   * @deprecated Use custom_attributesV2 instead.
+   */
   custom_attributes?: Maybe<Array<Maybe<ReturnCustomAttribute>>>;
+  /** Custom attributes that are visible on the storefront. */
+  custom_attributesV2?: Maybe<Array<Maybe<AttributeValueInterface>>>;
   /** Provides access to the product being returned, including information about selected and entered options. */
   order_item: OrderItemInterface;
   /** The quantity of the item the merchant authorized to be returned. */
@@ -16688,18 +16866,43 @@ export type ReturnItem = {
   uid: Scalars["ID"]["output"];
 };
 
+/** Return Item attribute metadata. */
+export type ReturnItemAttributeMetadata = CustomAttributeMetadataInterface & {
+  __typename: "ReturnItemAttributeMetadata";
+  /** The unique identifier for an attribute code. This value should be in lowercase letters without spaces. */
+  code: Scalars["ID"]["output"];
+  /** Default attribute value. */
+  default_value?: Maybe<Scalars["String"]["output"]>;
+  /** The type of entity that defines the attribute. */
+  entity_type: AttributeEntityTypeEnum;
+  /** The frontend class of the attribute. */
+  frontend_class?: Maybe<Scalars["String"]["output"]>;
+  /** The frontend input type of the attribute. */
+  frontend_input?: Maybe<AttributeFrontendInputEnum>;
+  /** The template used for the input of the attribute (e.g., 'date'). */
+  input_filter?: Maybe<InputFilterEnum>;
+  /** Whether the attribute value is required. */
+  is_required: Scalars["Boolean"]["output"];
+  /** Whether the attribute value must be unique. */
+  is_unique: Scalars["Boolean"]["output"];
+  /** The label assigned to the attribute. */
+  label?: Maybe<Scalars["String"]["output"]>;
+  /** The number of lines of the attribute value. */
+  multiline_count?: Maybe<Scalars["Int"]["output"]>;
+  /** Attribute options. */
+  options: Array<Maybe<CustomAttributeOptionInterface>>;
+  /** The position of the attribute in the form. */
+  sort_order?: Maybe<Scalars["Int"]["output"]>;
+  /** The validation rules of the attribute value. */
+  validate_rules?: Maybe<Array<Maybe<ValidationRule>>>;
+};
+
 export enum ReturnItemStatus {
-  /** @deprecated  */
   Approved = "APPROVED",
-  /** @deprecated  */
   Authorized = "AUTHORIZED",
-  /** @deprecated  */
   Denied = "DENIED",
-  /** @deprecated  */
   Pending = "PENDING",
-  /** @deprecated  */
   Received = "RECEIVED",
-  /** @deprecated  */
   Rejected = "REJECTED",
 }
 
@@ -16768,36 +16971,22 @@ export type ReturnShippingTrackingStatus = {
 };
 
 export enum ReturnShippingTrackingStatusType {
-  /** @deprecated  */
   Error = "ERROR",
-  /** @deprecated  */
   Information = "INFORMATION",
 }
 
 export enum ReturnStatus {
-  /** @deprecated  */
   Approved = "APPROVED",
-  /** @deprecated  */
   Authorized = "AUTHORIZED",
-  /** @deprecated  */
   Closed = "CLOSED",
-  /** @deprecated  */
   Denied = "DENIED",
-  /** @deprecated  */
   PartiallyApproved = "PARTIALLY_APPROVED",
-  /** @deprecated  */
   PartiallyAuthorized = "PARTIALLY_AUTHORIZED",
-  /** @deprecated  */
   PartiallyReceived = "PARTIALLY_RECEIVED",
-  /** @deprecated  */
   PartiallyRejected = "PARTIALLY_REJECTED",
-  /** @deprecated  */
   Pending = "PENDING",
-  /** @deprecated  */
   ProcessedAndClosed = "PROCESSED_AND_CLOSED",
-  /** @deprecated  */
   Received = "RECEIVED",
-  /** @deprecated  */
   Rejected = "REJECTED",
 }
 
@@ -16881,9 +17070,7 @@ export type RewardPointsSubscriptionStatus = {
 };
 
 export enum RewardPointsSubscriptionStatusesEnum {
-  /** @deprecated  */
   NotSubscribed = "NOT_SUBSCRIBED",
-  /** @deprecated  */
   Subscribed = "SUBSCRIBED",
 }
 
@@ -16902,6 +17089,17 @@ export type RichText = {
 
 /** Routable entities serve as the model for a rendered page. */
 export type RoutableInterface = {
+  /** Contains 0 when there is no redirect error. A value of 301 indicates the URL of the requested resource has been changed permanently, while a value of 302 indicates a temporary redirect. */
+  redirect_code: Scalars["Int"]["output"];
+  /** The internal relative URL. If the specified URL is a redirect, the query returns the redirected URL, not the original. */
+  relative_url?: Maybe<Scalars["String"]["output"]>;
+  /** One of PRODUCT, CATEGORY, or CMS_PAGE. */
+  type?: Maybe<UrlRewriteEntityTypeEnum>;
+};
+
+/** Default implementation of RoutableInterface. This type is returned when the URL is not linked to an entity. */
+export type RoutableUrl = RoutableInterface & {
+  __typename: "RoutableUrl";
   /** Contains 0 when there is no redirect error. A value of 301 indicates the URL of the requested resource has been changed permanently, while a value of 302 indicates a temporary redirect. */
   redirect_code: Scalars["Int"]["output"];
   /** The internal relative URL. If the specified URL is a redirect, the query returns the redirected URL, not the original. */
@@ -17238,6 +17436,15 @@ export type RuleBlockWhereInput = {
 /** References RuleBlock record uniquely */
 export type RuleBlockWhereUniqueInput = {
   id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+/** Defines the name and value of a SDK parameter */
+export type SdkParams = {
+  __typename: "SDKParams";
+  /** The name of the SDK parameter */
+  name?: Maybe<Scalars["String"]["output"]>;
+  /** The value of the SDK parameter */
+  value?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type SaleBubble = Entity & {
@@ -18795,11 +19002,8 @@ export type ScheduledReleaseWhereUniqueInput = {
 
 /** This enumeration defines the scope type for customer orders. */
 export enum ScopeTypeEnum {
-  /** @deprecated  */
   Global = "GLOBAL",
-  /** @deprecated  */
   Store = "STORE",
-  /** @deprecated  */
   Website = "WEBSITE",
 }
 
@@ -19142,9 +19346,7 @@ export type ShareGiftRegistrySenderInput = {
 
 /** Defines whether bundle items must be shipped together. */
 export enum ShipBundleItemsEnum {
-  /** @deprecated  */
   Separately = "SEPARATELY",
-  /** @deprecated  */
   Together = "TOGETHER",
 }
 
@@ -19218,23 +19420,33 @@ export type ShippingCartAddress = CartAddressInterface & {
   company?: Maybe<Scalars["String"]["output"]>;
   /** An object containing the country label and code. */
   country: CartAddressCountry;
+  /** The custom attribute values of the billing or shipping address. */
+  custom_attributes: Array<Maybe<AttributeValueInterface>>;
   /** Text provided by the shopper. */
   customer_notes?: Maybe<Scalars["String"]["output"]>;
+  /** The customer's fax number. */
+  fax?: Maybe<Scalars["String"]["output"]>;
   /** The first name of the customer or guest. */
   firstname: Scalars["String"]["output"];
   /** @deprecated This information should not be exposed on the frontend. */
   items_weight?: Maybe<Scalars["Float"]["output"]>;
   /** The last name of the customer or guest. */
   lastname: Scalars["String"]["output"];
+  /** The middle name of the person associated with the billing/shipping address. */
+  middlename?: Maybe<Scalars["String"]["output"]>;
   pickup_location_code?: Maybe<Scalars["String"]["output"]>;
   /** The ZIP or postal code of the billing or shipping address. */
   postcode?: Maybe<Scalars["String"]["output"]>;
+  /** An honorific, such as Dr., Mr., or Mrs. */
+  prefix?: Maybe<Scalars["String"]["output"]>;
   /** An object containing the region label and code. */
   region?: Maybe<CartAddressRegion>;
   /** An object that describes the selected shipping method. */
   selected_shipping_method?: Maybe<SelectedShippingMethod>;
   /** An array containing the street for the billing or shipping address. */
   street: Array<Maybe<Scalars["String"]["output"]>>;
+  /** A value such as Sr., Jr., or III. */
+  suffix?: Maybe<Scalars["String"]["output"]>;
   /** The telephone number for the billing or shipping address. */
   telephone?: Maybe<Scalars["String"]["output"]>;
   /** The unique id of the customer address. */
@@ -19288,6 +19500,8 @@ export type SimpleCartItem = CartItemInterface & {
   gift_wrapping?: Maybe<GiftWrapping>;
   /** @deprecated Use `uid` instead. */
   id: Scalars["String"]["output"];
+  /** True if requested quantity is less than available stock, false otherwise. */
+  is_available: Scalars["Boolean"]["output"];
   /** Indicates whether the product is available in the store */
   is_in_store?: Maybe<Scalars["Boolean"]["output"]>;
   /** Contains details about the price of the item, including taxes and discounts. */
@@ -19334,6 +19548,8 @@ export type SimpleProduct = CustomizableProductInterface &
     created_at?: Maybe<Scalars["String"]["output"]>;
     /** An array of cross-sell products. */
     crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** Product custom attributes. */
+    custom_attributesV2?: Maybe<ProductCustomAttributes>;
     /** @deprecated Use the `custom_attributes` field instead. */
     delivery_promise?: Maybe<Scalars["String"]["output"]>;
     /** Detailed information about the product. The value can include simple HTML tags. */
@@ -19509,6 +19725,11 @@ export type SimpleProduct = CustomizableProductInterface &
   };
 
 /** Defines a simple product, which is tangible and is usually sold in single units or in fixed quantities. */
+export type SimpleProductCustom_AttributesV2Args = {
+  filters: InputMaybe<AttributeFilterInput>;
+};
+
+/** Defines a simple product, which is tangible and is usually sold in single units or in fixed quantities. */
 export type SimpleProductReviewsArgs = {
   currentPage?: InputMaybe<Scalars["Int"]["input"]>;
   pageSize?: InputMaybe<Scalars["Int"]["input"]>;
@@ -19537,6 +19758,40 @@ export type SimpleWishlistItem = WishlistItemInterface & {
   product?: Maybe<ProductInterface>;
   /** The quantity of this wish list item. */
   quantity: Scalars["Float"]["output"];
+};
+
+/** Smart button payment inputs */
+export type SmartButtonMethodInput = {
+  /** The payment source for the payment method */
+  payment_source?: InputMaybe<Scalars["String"]["input"]>;
+  /** The payment services order ID */
+  payments_order_id?: InputMaybe<Scalars["String"]["input"]>;
+  /** PayPal order ID */
+  paypal_order_id?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type SmartButtonsConfig = PaymentConfigItem & {
+  __typename: "SmartButtonsConfig";
+  /** The styles for the PayPal Smart Button configuration */
+  button_styles?: Maybe<ButtonStyles>;
+  /** The payment method code as defined in the payment gateway */
+  code?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether to display the PayPal Pay Later message */
+  display_message?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Indicates whether to display Venmo */
+  display_venmo?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Indicates whether the payment method is displayed */
+  is_visible?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Contains details about the styles for the PayPal Pay Later message */
+  message_styles?: Maybe<MessageStyles>;
+  /** Defines the payment intent (Authorize or Capture */
+  payment_intent?: Maybe<Scalars["String"]["output"]>;
+  /** The PayPal parameters required to load the JS SDK */
+  sdk_params?: Maybe<Array<Maybe<SdkParams>>>;
+  /** The relative order the payment method is displayed on the checkout page */
+  sort_order?: Maybe<Scalars["String"]["output"]>;
+  /** The name displayed for the payment method */
+  title?: Maybe<Scalars["String"]["output"]>;
 };
 
 /** SnowdogMenu defines all menu information */
@@ -19780,9 +20035,7 @@ export type SnowdogMenus = {
 
 /** Indicates whether to return results in ascending or descending order. */
 export enum SortEnum {
-  /** @deprecated  */
   Asc = "ASC",
-  /** @deprecated  */
   Desc = "DESC",
 }
 
@@ -19803,6 +20056,43 @@ export type SortFields = {
   /** An array of possible sort fields. */
   options?: Maybe<Array<Maybe<SortField>>>;
 };
+
+/** Specifies the field to use for sorting quote items */
+export enum SortQuoteItemsEnum {
+  BaseDiscountAmount = "BASE_DISCOUNT_AMOUNT",
+  BaseDiscountTaxCompensationAmount = "BASE_DISCOUNT_TAX_COMPENSATION_AMOUNT",
+  BasePrice = "BASE_PRICE",
+  BasePriceIncTax = "BASE_PRICE_INC_TAX",
+  BaseRowTotal = "BASE_ROW_TOTAL",
+  BaseRowTotalIncTax = "BASE_ROW_TOTAL_INC_TAX",
+  BaseTaxAmount = "BASE_TAX_AMOUNT",
+  BaseTaxBeforeDiscount = "BASE_TAX_BEFORE_DISCOUNT",
+  CreatedAt = "CREATED_AT",
+  CustomPrice = "CUSTOM_PRICE",
+  Description = "DESCRIPTION",
+  DiscountAmount = "DISCOUNT_AMOUNT",
+  DiscountPercent = "DISCOUNT_PERCENT",
+  DiscountTaxCompensationAmount = "DISCOUNT_TAX_COMPENSATION_AMOUNT",
+  FreeShipping = "FREE_SHIPPING",
+  ItemId = "ITEM_ID",
+  Name = "NAME",
+  OriginalCustomPrice = "ORIGINAL_CUSTOM_PRICE",
+  Price = "PRICE",
+  PriceIncTax = "PRICE_INC_TAX",
+  ProductId = "PRODUCT_ID",
+  ProductType = "PRODUCT_TYPE",
+  Qty = "QTY",
+  RowTotal = "ROW_TOTAL",
+  RowTotalIncTax = "ROW_TOTAL_INC_TAX",
+  RowTotalWithDiscount = "ROW_TOTAL_WITH_DISCOUNT",
+  RowWeight = "ROW_WEIGHT",
+  Sku = "SKU",
+  TaxAmount = "TAX_AMOUNT",
+  TaxBeforeDiscount = "TAX_BEFORE_DISCOUNT",
+  TaxPercent = "TAX_PERCENT",
+  UpdatedAt = "UPDATED_AT",
+  Weight = "WEIGHT",
+}
 
 /** Stage system enumeration */
 export enum Stage {
@@ -20307,14 +20597,278 @@ export type StoreConfig = {
   base_static_url?: Maybe<Scalars["String"]["output"]>;
   /** The store’s fully-qualified base URL. */
   base_url?: Maybe<Scalars["String"]["output"]>;
+  /** Braintree 3D Secure, should 3D Secure be used for specific countries. */
+  braintree_3dsecure_allowspecific?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Braintree 3D Secure, always request 3D Secure flag. */
+  braintree_3dsecure_always_request_3ds?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Braintree 3D Secure, the specific countries to use 3D Secure in, to be used if allow specific is status is enabled. */
+  braintree_3dsecure_specificcountry?: Maybe<Scalars["String"]["output"]>;
+  /** Braintree 3D Secure, threshold above which 3D Secure should be requested. */
+  braintree_3dsecure_threshold_amount?: Maybe<Scalars["String"]["output"]>;
+  /** Braintree 3D Secure enabled/active status. */
+  braintree_3dsecure_verify_3dsecure?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Braintree ACH vault status. */
+  braintree_ach_direct_debit_vault_active?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Braintree Apple Pay merchant name. */
+  braintree_applepay_merchant_name?: Maybe<Scalars["String"]["output"]>;
+  /** Braintree Apple Pay vault status. */
+  braintree_applepay_vault_active?: Maybe<Scalars["Boolean"]["output"]>;
   /** Braintree cc vault status. */
   braintree_cc_vault_active?: Maybe<Scalars["String"]["output"]>;
+  /** Braintree cc vault CVV re-verification enabled status. */
+  braintree_cc_vault_cvv?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Braintree environment. */
+  braintree_environment?: Maybe<Scalars["String"]["output"]>;
+  /** Braintree Google Pay button color. */
+  braintree_googlepay_btn_color?: Maybe<Scalars["String"]["output"]>;
+  /** Braintree Google Pay Card types supported. */
+  braintree_googlepay_cctypes?: Maybe<Scalars["String"]["output"]>;
+  /** Braintree Google Pay merchant ID. */
+  braintree_googlepay_merchant_id?: Maybe<Scalars["String"]["output"]>;
+  /** Braintree Google Pay vault status. */
+  braintree_googlepay_vault_active?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Braintree Local Payment Methods allowed payment methods. */
+  braintree_local_payment_allowed_methods?: Maybe<Scalars["String"]["output"]>;
+  /** Braintree Local Payment Methods fallback button text. */
+  braintree_local_payment_fallback_button_text?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree Local Payment Methods redirect URL on failed payment. */
+  braintree_local_payment_redirect_on_fail?: Maybe<Scalars["String"]["output"]>;
+  /** Braintree Merchant Account ID. */
+  braintree_merchant_account_id?: Maybe<Scalars["String"]["output"]>;
+  /** Braintree PayPal Credit mini-cart & cart button style color. */
+  braintree_paypal_button_location_cart_type_credit_color?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Credit mini-cart & cart button style label. */
+  braintree_paypal_button_location_cart_type_credit_label?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Credit mini-cart & cart button style shape. */
+  braintree_paypal_button_location_cart_type_credit_shape?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Credit mini-cart & cart button show status. */
+  braintree_paypal_button_location_cart_type_credit_show?: Maybe<
+    Scalars["Boolean"]["output"]
+  >;
+  /** Braintree PayPal Pay Later messaging mini-cart & cart style layout. */
+  braintree_paypal_button_location_cart_type_messaging_layout?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Pay Later messaging mini-cart & cart style logo. */
+  braintree_paypal_button_location_cart_type_messaging_logo?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Pay Later messaging mini-cart & cart style logo position. */
+  braintree_paypal_button_location_cart_type_messaging_logo_position?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Pay Later messaging mini-cart & cart show status. */
+  braintree_paypal_button_location_cart_type_messaging_show?: Maybe<
+    Scalars["Boolean"]["output"]
+  >;
+  /** Braintree PayPal Pay Later messaging checkout style text color. */
+  braintree_paypal_button_location_cart_type_messaging_text_color?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Pay Later mini-cart & cart button style color. */
+  braintree_paypal_button_location_cart_type_paylater_color?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Pay Later mini-cart & cart button style label. */
+  braintree_paypal_button_location_cart_type_paylater_label?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Pay Later mini-cart & cart button style shape. */
+  braintree_paypal_button_location_cart_type_paylater_shape?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Pay Later mini-cart & cart button show status. */
+  braintree_paypal_button_location_cart_type_paylater_show?: Maybe<
+    Scalars["Boolean"]["output"]
+  >;
+  /** Braintree PayPal mini-cart & cart button style color. */
+  braintree_paypal_button_location_cart_type_paypal_color?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal mini-cart & cart button style label. */
+  braintree_paypal_button_location_cart_type_paypal_label?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal mini-cart & cart button style shape. */
+  braintree_paypal_button_location_cart_type_paypal_shape?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal mini-cart & cart button show. */
+  braintree_paypal_button_location_cart_type_paypal_show?: Maybe<
+    Scalars["Boolean"]["output"]
+  >;
+  /** Braintree PayPal Credit checkout button style color. */
+  braintree_paypal_button_location_checkout_type_credit_color?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Credit checkout button style label. */
+  braintree_paypal_button_location_checkout_type_credit_label?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Credit checkout button style shape. */
+  braintree_paypal_button_location_checkout_type_credit_shape?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Credit checkout button show status. */
+  braintree_paypal_button_location_checkout_type_credit_show?: Maybe<
+    Scalars["Boolean"]["output"]
+  >;
+  /** Braintree PayPal Pay Later messaging checkout style layout. */
+  braintree_paypal_button_location_checkout_type_messaging_layout?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Pay Later messaging checkout style logo. */
+  braintree_paypal_button_location_checkout_type_messaging_logo?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Pay Later messaging checkout style logo position. */
+  braintree_paypal_button_location_checkout_type_messaging_logo_position?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Pay Later messaging checkout show status. */
+  braintree_paypal_button_location_checkout_type_messaging_show?: Maybe<
+    Scalars["Boolean"]["output"]
+  >;
+  /** Braintree PayPal Pay Later messaging checkout style text color. */
+  braintree_paypal_button_location_checkout_type_messaging_text_color?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Pay Later checkout button style color. */
+  braintree_paypal_button_location_checkout_type_paylater_color?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Pay Later checkout button style label. */
+  braintree_paypal_button_location_checkout_type_paylater_label?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Pay Later checkout button style shape. */
+  braintree_paypal_button_location_checkout_type_paylater_shape?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Pay Later checkout button show status. */
+  braintree_paypal_button_location_checkout_type_paylater_show?: Maybe<
+    Scalars["Boolean"]["output"]
+  >;
+  /** Braintree PayPal checkout button style color. */
+  braintree_paypal_button_location_checkout_type_paypal_color?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal checkout button style label. */
+  braintree_paypal_button_location_checkout_type_paypal_label?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal checkout button style shape. */
+  braintree_paypal_button_location_checkout_type_paypal_shape?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal checkout button show. */
+  braintree_paypal_button_location_checkout_type_paypal_show?: Maybe<
+    Scalars["Boolean"]["output"]
+  >;
+  /** Braintree PayPal Credit PDP button style color. */
+  braintree_paypal_button_location_productpage_type_credit_color?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Credit PDP button style label. */
+  braintree_paypal_button_location_productpage_type_credit_label?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Credit PDP button style shape. */
+  braintree_paypal_button_location_productpage_type_credit_shape?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Credit PDP button show status. */
+  braintree_paypal_button_location_productpage_type_credit_show?: Maybe<
+    Scalars["Boolean"]["output"]
+  >;
+  /** Braintree PayPal Pay Later messaging PDP style layout. */
+  braintree_paypal_button_location_productpage_type_messaging_layout?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Pay Later messaging PDP style logo. */
+  braintree_paypal_button_location_productpage_type_messaging_logo?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Pay Later messaging PDP style logo position. */
+  braintree_paypal_button_location_productpage_type_messaging_logo_position?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Pay Later messaging PDP show status. */
+  braintree_paypal_button_location_productpage_type_messaging_show?: Maybe<
+    Scalars["Boolean"]["output"]
+  >;
+  /** Braintree PayPal Pay Later messaging PDP style text color. */
+  braintree_paypal_button_location_productpage_type_messaging_text_color?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Pay Later PDP button style color. */
+  braintree_paypal_button_location_productpage_type_paylater_color?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Pay Later PDP button style label. */
+  braintree_paypal_button_location_productpage_type_paylater_label?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Pay Later PDP button style shape. */
+  braintree_paypal_button_location_productpage_type_paylater_shape?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal Pay Later PDP button show status. */
+  braintree_paypal_button_location_productpage_type_paylater_show?: Maybe<
+    Scalars["Boolean"]["output"]
+  >;
+  /** Braintree PayPal PDP button style color. */
+  braintree_paypal_button_location_productpage_type_paypal_color?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal PDP button style label. */
+  braintree_paypal_button_location_productpage_type_paypal_label?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal PDP button style shape. */
+  braintree_paypal_button_location_productpage_type_paypal_shape?: Maybe<
+    Scalars["String"]["output"]
+  >;
+  /** Braintree PayPal PDP button show. */
+  braintree_paypal_button_location_productpage_type_paypal_show?: Maybe<
+    Scalars["Boolean"]["output"]
+  >;
+  /** Braintree PayPal Credit Merchant Name on the FCA Register. */
+  braintree_paypal_credit_uk_merchant_name?: Maybe<Scalars["String"]["output"]>;
+  /** Should display Braintree PayPal in mini-cart & cart? */
+  braintree_paypal_display_on_shopping_cart?: Maybe<
+    Scalars["Boolean"]["output"]
+  >;
+  /** Braintree PayPal merchant's country. */
+  braintree_paypal_merchant_country?: Maybe<Scalars["String"]["output"]>;
+  /** Braintree PayPal override for Merchant Name. */
+  braintree_paypal_merchant_name_override?: Maybe<Scalars["String"]["output"]>;
+  /** Does Braintree PayPal require the customer's billing address? */
+  braintree_paypal_require_billing_address?: Maybe<
+    Scalars["Boolean"]["output"]
+  >;
+  /** Does Braintree PayPal require the order line items? */
+  braintree_paypal_send_cart_line_items?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Braintree PayPal vault status. */
+  braintree_paypal_vault_active?: Maybe<Scalars["Boolean"]["output"]>;
   /** Brands category id */
   brands_category?: Maybe<Scalars["Int"]["output"]>;
+  /** Extended Config Data - checkout/cart/delete_quote_after */
+  cart_expires_in_days?: Maybe<Scalars["Int"]["output"]>;
   /** Indicates if gift wrapping prices are displayed on the Shopping Cart page. Possible values: 1 (Yes) and 0 (No). */
   cart_gift_wrapping?: Maybe<Scalars["String"]["output"]>;
   /** Indicates if printed card prices are displayed on the Shopping Cart page. Possible values: 1 (Yes) and 0 (No). */
   cart_printed_card?: Maybe<Scalars["String"]["output"]>;
+  /** Extended Config Data - checkout/cart_link/use_qty */
+  cart_summary_display_quantity?: Maybe<Scalars["Int"]["output"]>;
   /** The default sort order of the search results list. */
   catalog_default_sort_by?: Maybe<Scalars["String"]["output"]>;
   /** Corresponds to the 'Display Prices In Product Lists' field in the Admin. It indicates how FPT information is displayed on category pages. */
@@ -20360,8 +20914,18 @@ export type StoreConfig = {
   configurable_thumbnail_source?: Maybe<Scalars["String"]["output"]>;
   /** Config consent list. */
   consents?: Maybe<Array<Maybe<ConfigConsent>>>;
+  /** Indicates whether the Contact Us form in enabled. */
+  contact_enabled: Scalars["Boolean"]["output"];
   /** The copyright statement that appears at the bottom of each page. */
   copyright?: Maybe<Scalars["String"]["output"]>;
+  /** Extended Config Data - general/region/state_required */
+  countries_with_required_region?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates if the new accounts need confirmation. */
+  create_account_confirmation?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Customer access token lifetime. */
+  customer_access_token_lifetime?: Maybe<Scalars["Float"]["output"]>;
+  /** Extended Config Data - general/country/default */
+  default_country?: Maybe<Scalars["String"]["output"]>;
   /** The description that provides a summary of your site for search engine listings. It should not be more than 160 characters in length. */
   default_description?: Maybe<Scalars["String"]["output"]>;
   /** The default display currency code. */
@@ -20372,6 +20936,8 @@ export type StoreConfig = {
   default_title?: Maybe<Scalars["String"]["output"]>;
   /** Controls the display of the demo store notice at the top of the page. Options: 0 (No) or 1 (Yes). */
   demonotice?: Maybe<Scalars["Int"]["output"]>;
+  /** Extended Config Data - general/region/display_all */
+  display_state_if_optional?: Maybe<Scalars["Boolean"]["output"]>;
   /** Indicates whether customers can have multiple wish lists. Possible values: 1 (Yes) and 0 (No). */
   enable_multiple_wishlists?: Maybe<Scalars["String"]["output"]>;
   /** The landing page that is associated with the base URL. */
@@ -20397,6 +20963,10 @@ export type StoreConfig = {
   is_default_store?: Maybe<Scalars["Boolean"]["output"]>;
   /** Indicates whether the store group has been designated as the default within the website. */
   is_default_store_group?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Extended Config Data - checkout/options/guest_checkout */
+  is_guest_checkout_enabled?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Extended Config Data - checkout/options/onepage_checkout_enabled */
+  is_one_page_checkout_enabled?: Maybe<Scalars["Boolean"]["output"]>;
   /** The format of the search results list. */
   list_mode?: Maybe<Scalars["String"]["output"]>;
   /** The default number of products per page in List View. */
@@ -20449,12 +21019,26 @@ export type StoreConfig = {
   magento_reward_points_review_limit?: Maybe<Scalars["String"]["output"]>;
   /** Indicates whether wishlists are enabled (1) or disabled (0). */
   magento_wishlist_general_is_enabled?: Maybe<Scalars["String"]["output"]>;
+  /** Extended Config Data - checkout/options/max_items_display_count */
+  max_items_in_order_summary?: Maybe<Scalars["Int"]["output"]>;
   /** If multiple wish lists are enabled, the maximum number of wish lists the customer can have. */
   maximum_number_of_wishlists?: Maybe<Scalars["String"]["output"]>;
+  /** Extended Config Data - checkout/sidebar/display */
+  minicart_display?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Extended Config Data - checkout/sidebar/count */
+  minicart_max_items?: Maybe<Scalars["Int"]["output"]>;
   /** The minimum number of characters required for a valid password. */
   minimum_password_length?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether newsletters are enabled. */
+  newsletter_enabled: Scalars["Boolean"]["output"];
   /** The default page that displays when a 404 'Page not Found' error occurs. */
   no_route?: Maybe<Scalars["String"]["output"]>;
+  /** Extended Config Data - general/country/optional_zip_countries */
+  optional_zip_countries?: Maybe<Scalars["String"]["output"]>;
+  /** Indicates whether orders can be cancelled by customers or not. */
+  order_cancellation_enabled: Scalars["Boolean"]["output"];
+  /** An array containing available cancellation reasons. */
+  order_cancellation_reasons: Array<Maybe<CancellationReason>>;
   /** Payflow Pro vault status. */
   payment_payflowpro_cc_vault_active?: Maybe<Scalars["String"]["output"]>;
   /** The default price of a printed card that accompanies an order. */
@@ -20492,6 +21076,20 @@ export type StoreConfig = {
   secure_base_url?: Maybe<Scalars["String"]["output"]>;
   /** Email to a Friend configuration. */
   send_friend?: Maybe<SendFriendConfiguration>;
+  /** Extended Config Data - tax/cart_display/full_summary */
+  shopping_cart_display_full_summary?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Extended Config Data - tax/cart_display/grandtotal */
+  shopping_cart_display_grand_total?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Extended Config Data - tax/cart_display/price */
+  shopping_cart_display_price?: Maybe<Scalars["Int"]["output"]>;
+  /** Extended Config Data - tax/cart_display/shipping */
+  shopping_cart_display_shipping?: Maybe<Scalars["Int"]["output"]>;
+  /** Extended Config Data - tax/cart_display/subtotal */
+  shopping_cart_display_subtotal?: Maybe<Scalars["Int"]["output"]>;
+  /** Extended Config Data - tax/cart_display/gift_wrapping */
+  shopping_cart_display_tax_gift_wrapping?: Maybe<TaxWrappingEnum>;
+  /** Extended Config Data - tax/cart_display/zero_tax */
+  shopping_cart_display_zero_tax?: Maybe<Scalars["Boolean"]["output"]>;
   /** Indicates whether a breadcrumb trail appears on all CMS pages in the catalog. 0 (No) or 1 (Yes). */
   show_cms_breadcrumbs?: Maybe<Scalars["Int"]["output"]>;
   /** The unique ID of the store view. In the Admin, this is called the Store View Code. When making a GraphQL call, assign this value to the `Store` header to provide the scope. */
@@ -20514,6 +21112,10 @@ export type StoreConfig = {
   title_suffix?: Maybe<Scalars["String"]["output"]>;
   /** Indicates whether the store code should be used in the URL. */
   use_store_in_url?: Maybe<Scalars["Boolean"]["output"]>;
+  /** Vipps payment label. */
+  vipps_label?: Maybe<Scalars["String"]["output"]>;
+  /** Vipps api version (vipps, mobilepay). */
+  vipps_version?: Maybe<Scalars["String"]["output"]>;
   /** The unique ID for the website. */
   website_code?: Maybe<Scalars["ID"]["output"]>;
   /**
@@ -20573,13 +21175,9 @@ export type SubscribeEmailToNewsletterOutput = {
 
 /** Indicates the status of the request. */
 export enum SubscriptionStatusesEnum {
-  /** @deprecated  */
   NotActive = "NOT_ACTIVE",
-  /** @deprecated  */
   Subscribed = "SUBSCRIBED",
-  /** @deprecated  */
   Unconfirmed = "UNCONFIRMED",
-  /** @deprecated  */
   Unsubscribed = "UNSUBSCRIBED",
 }
 
@@ -20596,6 +21194,28 @@ export type SwatchDataInterface = {
   /** The value can be represented as color (HEX code), image link, or text. */
   value?: Maybe<Scalars["String"]["output"]>;
 };
+
+/** Swatch attribute metadata input types. */
+export enum SwatchInputTypeEnum {
+  Boolean = "BOOLEAN",
+  Date = "DATE",
+  Datetime = "DATETIME",
+  Dropdown = "DROPDOWN",
+  File = "FILE",
+  Gallery = "GALLERY",
+  Hidden = "HIDDEN",
+  Image = "IMAGE",
+  MediaImage = "MEDIA_IMAGE",
+  Multiline = "MULTILINE",
+  Multiselect = "MULTISELECT",
+  Price = "PRICE",
+  Select = "SELECT",
+  Text = "TEXT",
+  Textarea = "TEXTAREA",
+  Undefined = "UNDEFINED",
+  Visual = "VISUAL",
+  Weight = "WEIGHT",
+}
 
 export type SwatchLayerFilterItem = LayerFilterItemInterface &
   SwatchLayerFilterItemInterface & {
@@ -20624,6 +21244,14 @@ export type SwatchLayerFilterItemInterface = {
   swatch_data?: Maybe<SwatchData>;
 };
 
+/** Synchronizes the payment order details */
+export type SyncPaymentOrderInput = {
+  /** The customer cart ID */
+  cartId: Scalars["String"]["input"];
+  /** PayPal order ID */
+  id: Scalars["String"]["input"];
+};
+
 export enum SystemDateTimeFieldVariation {
   Base = "BASE",
   Combined = "COMBINED",
@@ -20640,6 +21268,12 @@ export type TaxItem = {
   /** A title that describes the tax. */
   title: Scalars["String"]["output"];
 };
+
+export enum TaxWrappingEnum {
+  DisplayExcludingTax = "DISPLAY_EXCLUDING_TAX",
+  DisplayIncludingTax = "DISPLAY_INCLUDING_TAX",
+  DisplayTypeBoth = "DISPLAY_TYPE_BOTH",
+}
 
 export type TextSwatchData = SwatchDataInterface & {
   __typename: "TextSwatchData";
@@ -20782,21 +21416,15 @@ export type UrlRewrite = {
 
 /** This enumeration defines the entity type. */
 export enum UrlRewriteEntityTypeEnum {
-  /** @deprecated  */
   Category = "CATEGORY",
-  /** @deprecated  */
   CmsPage = "CMS_PAGE",
-  /** @deprecated  */
   Product = "PRODUCT",
 }
 
 /** Defines whether the attribute is filterable in layered navigation. */
 export enum UseInLayeredNavigationOptions {
-  /** @deprecated  */
   FilterableNoResult = "FILTERABLE_NO_RESULT",
-  /** @deprecated  */
   FilterableWithResults = "FILTERABLE_WITH_RESULTS",
-  /** @deprecated  */
   No = "NO",
 }
 
@@ -21204,6 +21832,40 @@ export type UserWhereUniqueInput = {
   id?: InputMaybe<Scalars["ID"]["input"]>;
 };
 
+/** Defines a customer attribute validation rule. */
+export type ValidationRule = {
+  __typename: "ValidationRule";
+  /** Validation rule name applied to a customer attribute. */
+  name?: Maybe<ValidationRuleEnum>;
+  /** Validation rule value. */
+  value?: Maybe<Scalars["String"]["output"]>;
+};
+
+/** List of validation rule names applied to a customer attribute. */
+export enum ValidationRuleEnum {
+  DateRangeMax = "DATE_RANGE_MAX",
+  DateRangeMin = "DATE_RANGE_MIN",
+  FileExtensions = "FILE_EXTENSIONS",
+  InputValidation = "INPUT_VALIDATION",
+  MaxFileSize = "MAX_FILE_SIZE",
+  MaxImageHeight = "MAX_IMAGE_HEIGHT",
+  MaxImageWidth = "MAX_IMAGE_WIDTH",
+  MaxTextLength = "MAX_TEXT_LENGTH",
+  MinTextLength = "MIN_TEXT_LENGTH",
+}
+
+/** Vault payment inputs */
+export type VaultMethodInput = {
+  /** The payment source for the payment method */
+  payment_source?: InputMaybe<Scalars["String"]["input"]>;
+  /** The payment services order ID */
+  payments_order_id?: InputMaybe<Scalars["String"]["input"]>;
+  /** PayPal order ID */
+  paypal_order_id?: InputMaybe<Scalars["String"]["input"]>;
+  /** The public hash of the token. */
+  public_hash?: InputMaybe<Scalars["String"]["input"]>;
+};
+
 /** Contains required input for payment methods with Vault support. */
 export type VaultTokenInput = {
   /** The public hash of the payment token. */
@@ -21248,6 +21910,8 @@ export type VirtualCartItem = CartItemInterface & {
   errors?: Maybe<Array<Maybe<CartItemError>>>;
   /** @deprecated Use `uid` instead. */
   id: Scalars["String"]["output"];
+  /** True if requested quantity is less than available stock, false otherwise. */
+  is_available: Scalars["Boolean"]["output"];
   /** Indicates whether the product is available in the store */
   is_in_store?: Maybe<Scalars["Boolean"]["output"]>;
   /** Contains details about the price of the item, including taxes and discounts. */
@@ -21293,6 +21957,8 @@ export type VirtualProduct = CustomizableProductInterface &
     created_at?: Maybe<Scalars["String"]["output"]>;
     /** An array of cross-sell products. */
     crosssell_products?: Maybe<Array<Maybe<ProductInterface>>>;
+    /** Product custom attributes. */
+    custom_attributesV2?: Maybe<ProductCustomAttributes>;
     /** @deprecated Use the `custom_attributes` field instead. */
     delivery_promise?: Maybe<Scalars["String"]["output"]>;
     /** Detailed information about the product. The value can include simple HTML tags. */
@@ -21466,6 +22132,11 @@ export type VirtualProduct = CustomizableProductInterface &
   };
 
 /** Defines a virtual product, which is a non-tangible product that does not require shipping and is not kept in inventory. */
+export type VirtualProductCustom_AttributesV2Args = {
+  filters: InputMaybe<AttributeFilterInput>;
+};
+
+/** Defines a virtual product, which is a non-tangible product that does not require shipping and is not kept in inventory. */
 export type VirtualProductReviewsArgs = {
   currentPage?: InputMaybe<Scalars["Int"]["input"]>;
   pageSize?: InputMaybe<Scalars["Int"]["input"]>;
@@ -21542,9 +22213,7 @@ export type WishListUserInputError = {
 
 /** A list of possible error types. */
 export enum WishListUserInputErrorType {
-  /** @deprecated  */
   ProductNotFound = "PRODUCT_NOT_FOUND",
-  /** @deprecated  */
   Undefined = "UNDEFINED",
 }
 
@@ -21590,13 +22259,9 @@ export type WishlistCartUserInputError = {
 
 /** A list of possible error types. */
 export enum WishlistCartUserInputErrorType {
-  /** @deprecated  */
   InsufficientStock = "INSUFFICIENT_STOCK",
-  /** @deprecated  */
   NotSalable = "NOT_SALABLE",
-  /** @deprecated  */
   ProductNotFound = "PRODUCT_NOT_FOUND",
-  /** @deprecated  */
   Undefined = "UNDEFINED",
 }
 
@@ -21716,9 +22381,7 @@ export type WishlistOutput = {
 
 /** Defines the wish list visibility types. */
 export enum WishlistVisibilityEnum {
-  /** @deprecated  */
   Private = "PRIVATE",
-  /** @deprecated  */
   Public = "PUBLIC",
 }
 
@@ -21837,6 +22500,7 @@ export type OpeningHours = {
 
 export type VippsInitPaymentInput = {
   cart_id: Scalars["String"]["input"];
+  deactivate_cart?: InputMaybe<Scalars["Boolean"]["input"]>;
   fallback_url?: InputMaybe<Scalars["String"]["input"]>;
 };
 
@@ -31600,11 +32264,11 @@ export type PlaceOrderMutation = {
   __typename: "Mutation";
   placeOrder?: {
     __typename: "PlaceOrderOutput";
-    order: {
+    order?: {
       __typename: "Order";
       order_id?: string | null;
       order_number: string;
-    };
+    } | null;
   } | null;
 };
 
@@ -79980,6 +80644,12 @@ export type RouteQuery = {
       }
     | {
         __typename: "GroupedProduct";
+        redirect_code: number;
+        relative_url?: string | null;
+        type?: UrlRewriteEntityTypeEnum | null;
+      }
+    | {
+        __typename: "RoutableUrl";
         redirect_code: number;
         relative_url?: string | null;
         type?: UrlRewriteEntityTypeEnum | null;

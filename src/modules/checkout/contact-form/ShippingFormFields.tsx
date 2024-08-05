@@ -2,12 +2,15 @@
 
 import React from "react";
 
+import { Control } from "react-hook-form";
+
 import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
 import { Input } from "@/components/_ui/input/Input";
+import { CheckoutFormData } from "@/modules/checkout/factories";
 import { useSession } from "@/utils/hooks/useSession";
 
 interface Props {
-  control: any;
+  control: Control<CheckoutFormData>;
   formDisabled?: boolean;
 }
 
@@ -45,7 +48,7 @@ export const ShippingFormFields: React.FC<Props> = ({
           }}
           control={control}
           label="Fornavn *"
-          name="shipping.firstname"
+          name="shipping.address.firstname"
         >
           <Input variant="bordered" />
         </FieldWrapper>
@@ -58,7 +61,7 @@ export const ShippingFormFields: React.FC<Props> = ({
           }}
           control={control}
           label="Etternavn *"
-          name="shipping.lastname"
+          name="shipping.address.lastname"
         >
           <Input variant="bordered" />
         </FieldWrapper>
@@ -71,7 +74,7 @@ export const ShippingFormFields: React.FC<Props> = ({
           }}
           control={control}
           label="Mobilnummer *"
-          name="shipping.telephone"
+          name="shipping.address.telephone"
         >
           <Input variant="bordered" />
         </FieldWrapper>
@@ -84,7 +87,7 @@ export const ShippingFormFields: React.FC<Props> = ({
           }}
           control={control}
           label="By *"
-          name="shipping.city"
+          name="shipping.address.city"
         >
           <Input variant="bordered" />
         </FieldWrapper>
@@ -97,7 +100,7 @@ export const ShippingFormFields: React.FC<Props> = ({
           }}
           control={control}
           label="Gateadresse *"
-          name="shipping.street"
+          name="shipping.address.street"
         >
           <Input variant="bordered" />
         </FieldWrapper>
@@ -110,7 +113,7 @@ export const ShippingFormFields: React.FC<Props> = ({
           }}
           control={control}
           label="Postnumer *"
-          name="shipping.postcode"
+          name="shipping.address.postcode"
         >
           <Input variant="bordered" />
         </FieldWrapper>

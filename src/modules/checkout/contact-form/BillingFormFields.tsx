@@ -1,12 +1,14 @@
 import React from "react";
 
 import { Checkbox } from "@nextui-org/react";
+import { Control } from "react-hook-form";
 
 import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
 import { Input } from "@/components/_ui/input/Input";
+import { CheckoutFormData } from "@/modules/checkout/factories";
 
 interface Props {
-  control: any;
+  control: Control<CheckoutFormData>;
   isDifferentBillingAddress: boolean;
 }
 
@@ -35,7 +37,7 @@ export const BillingFormFields: React.FC<Props> = ({
               }}
               control={control}
               label="Fornavn *"
-              name="billing.firstname"
+              name="billing.address.firstname"
             >
               <Input variant="bordered" />
             </FieldWrapper>
@@ -49,7 +51,7 @@ export const BillingFormFields: React.FC<Props> = ({
               }}
               control={control}
               label="Etternavn *"
-              name="billing.lastname"
+              name="billing.address.lastname"
             >
               <Input variant="bordered" />
             </FieldWrapper>
@@ -63,7 +65,7 @@ export const BillingFormFields: React.FC<Props> = ({
               }}
               control={control}
               label="Mobilnummer *"
-              name="billing.telephone"
+              name="billing.address.telephone"
             >
               <Input variant="bordered" />
             </FieldWrapper>
@@ -77,7 +79,7 @@ export const BillingFormFields: React.FC<Props> = ({
               }}
               control={control}
               label="By *"
-              name="billing.city"
+              name="billing.address.city"
             >
               <Input variant="bordered" />
             </FieldWrapper>
@@ -91,7 +93,7 @@ export const BillingFormFields: React.FC<Props> = ({
               }}
               control={control}
               label="Gateadresse *"
-              name="billing.street"
+              name="billing.address.street"
             >
               <Input variant="bordered" />
             </FieldWrapper>
@@ -105,7 +107,7 @@ export const BillingFormFields: React.FC<Props> = ({
               }}
               control={control}
               label="Postnumer *"
-              name="billing.postcode"
+              name="billing.address.postcode"
             >
               <Input variant="bordered" />
             </FieldWrapper>

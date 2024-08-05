@@ -3,16 +3,12 @@
 import { revalidateTag } from "next/cache";
 
 import { getToken } from "@/modules/auth/actions";
+import { CheckoutFormData } from "@/modules/checkout/factories";
 import {
   SetBillingAddressOnCart,
   SetGuestEmailOnCart,
   SetShippingAddressOnCart,
 } from "@/queries/cart.queries";
-import {
-  InputMaybe,
-  SetBillingAddressOnCartInput,
-  ShippingAddressInput,
-} from "@/types";
 import {
   authorizedMagentoClient,
   baseMagentoClient,
@@ -20,15 +16,30 @@ import {
 
 export async function setAddressesOnCart(
   cartId: string,
-  shippingAddress: InputMaybe<ShippingAddressInput>,
-  billingAddress: SetBillingAddressOnCartInput["billing_address"],
+  values: CheckoutFormData,
 ) {
+  if (!values.shipping.customer_address_id) {
+    delete values.shipping.customer_address_id;
+  }
+
+  if (!values.shipping.address) {
+    delete values.shipping.address;
+  }
+
+  if (!values.billing.customer_address_id) {
+    delete values.billing.customer_address_id;
+  }
+
+  if (!values.billing.address) {
+    delete values.billing.address;
+  }
+
   const token = await getToken();
   const data = await authorizedMagentoClient(token, "POST").request(
     SetShippingAddressOnCart,
     {
       cartId,
-      shipping_addresses: [shippingAddress],
+      shipping_addresses: [values.shipping],
     },
   );
 
@@ -36,7 +47,9 @@ export async function setAddressesOnCart(
     SetBillingAddressOnCart,
     {
       cartId,
-      billing_address: billingAddress,
+      billing_address: values.different_billing_address
+        ? values.billing
+        : values.shipping,
     },
   );
 

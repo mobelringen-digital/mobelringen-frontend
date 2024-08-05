@@ -3,23 +3,22 @@ import React from "react";
 import { Modal, ModalBody, ModalContent, ModalHeader } from "@nextui-org/modal";
 import { RadioGroup } from "@nextui-org/radio";
 
-import { Loader } from "@/components/_ui/loader/Loader";
 import { RadioBlock } from "@/components/_ui/radio/RadioBlock";
-import { useCustomerQuery } from "@/modules/account/hooks/useCustomerQuery";
+import { CustomerQuery } from "@/types";
 
 interface Props {
+  customer?: CustomerQuery;
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
   onSelect: (customerAddressId: number) => void;
 }
 
 export const AddressSelectModal: React.FC<Props> = ({
+  customer,
   isOpen,
   onOpenChange,
   onSelect,
 }) => {
-  const { data: customer, isLoading } = useCustomerQuery();
-
   return (
     <Modal
       size="2xl"
@@ -35,33 +34,28 @@ export const AddressSelectModal: React.FC<Props> = ({
               Velg adresse
             </ModalHeader>
             <ModalBody className="py-6 px-2 lg:px-5">
-              {isLoading ? <Loader /> : null}
               <div className="max-h-64 overflow-auto">
-                {customer?.addresses && customer.addresses.length > 0 ? (
-                  <RadioGroup color="primary">
-                    {customer?.addresses?.map((address) => (
-                      <RadioBlock
-                        onClick={() => {
-                          if (address?.id) {
-                            onSelect(address.id);
-                          }
+                <RadioGroup color="primary">
+                  {customer?.customer?.addresses?.map((address) => (
+                    <RadioBlock
+                      onClick={() => {
+                        if (address?.id) {
+                          onSelect(address.id);
+                        }
 
-                          onClose();
-                        }}
-                        key={address?.id}
-                        value={String(address?.id)}
-                      >
-                        <b>
-                          {address?.firstname} {address?.lastname}
-                        </b>
-                        <br />
-                        {address?.city}, {address?.street} {address?.postcode}
-                      </RadioBlock>
-                    ))}
-                  </RadioGroup>
-                ) : (
-                  <span>Ingen lagrede adresser funnet</span>
-                )}
+                        onClose();
+                      }}
+                      key={address?.id}
+                      value={String(address?.id)}
+                    >
+                      <b>
+                        {address?.firstname} {address?.lastname}
+                      </b>
+                      <br />
+                      {address?.city}, {address?.street} {address?.postcode}
+                    </RadioBlock>
+                  ))}
+                </RadioGroup>
               </div>
             </ModalBody>
           </>
