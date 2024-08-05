@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
 
 import { getToken } from "@/modules/auth/actions";
 import {
@@ -17,42 +17,6 @@ import {
   authorizedMagentoClient,
   baseMagentoClient,
 } from "@/utils/lib/graphql";
-
-export async function setBillingAddressOnCart(
-  cartId: string,
-  address: SetBillingAddressOnCartInput["billing_address"],
-) {
-  const token = await getToken();
-  const data = await authorizedMagentoClient(token, "POST").request(
-    SetBillingAddressOnCart,
-    {
-      cartId: cartId,
-      billing_address: address,
-    },
-  );
-
-  revalidatePath("/cart");
-
-  return data;
-}
-
-export async function setShippingAddressOnCart(
-  cartId: string,
-  address: InputMaybe<ShippingAddressInput>,
-) {
-  const token = await getToken();
-  const data = await authorizedMagentoClient(token, "POST").request(
-    SetShippingAddressOnCart,
-    {
-      cartId: cartId,
-      shipping_addresses: [address],
-    },
-  );
-
-  revalidatePath("/cart");
-
-  return data;
-}
 
 export async function setAddressesOnCart(
   cartId: string,
@@ -76,7 +40,7 @@ export async function setAddressesOnCart(
     },
   );
 
-  revalidatePath("/cart");
+  revalidateTag("cart");
 
   return data;
 }
