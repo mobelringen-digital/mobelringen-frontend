@@ -69,7 +69,8 @@ export const ContactForm: React.FC<Props> = ({
   });
 
   const watchDifferentBillingAddress = watch("different_billing_address");
-  const watchCustomerAddressId = watch("customer_address_id");
+  const watchShippingAddressId = watch("shipping.customer_address_id");
+  const watchBillingAddressId = watch("billing.customer_address_id");
 
   const onSubmit: SubmitHandler<CheckoutFormData> = async (values) => {
     setIsLoading(true);
@@ -88,38 +89,26 @@ export const ContactForm: React.FC<Props> = ({
     ).finally(() => setIsLoading(false));
   };
 
-  const selectedCustomerAddress = React.useMemo(() => {
+  const selectedShippingCustomerAddress = React.useMemo(() => {
     return customer?.customer?.addresses?.find(
-      (a) => a?.id === watchCustomerAddressId,
+      (a) => a?.id === watchShippingAddressId,
     );
-  }, [customer, watchCustomerAddressId]);
+  }, [customer, watchShippingAddressId]);
+
+  const selectedBillingCustomerAddress = React.useMemo(() => {
+    return customer?.customer?.addresses?.find(
+      (a) => a?.id === watchBillingAddressId,
+    );
+  }, [customer, watchBillingAddressId]);
 
   const onAddressSelect = (customerAddressId: number) => {
-    if (customerAddressId) {
-      setValue("customer_address_id", customerAddressId);
-    }
     const addressValues = customer?.customer?.addresses?.find(
       (a) => a?.id === customerAddressId,
     );
 
     if (addressValues) {
-      setValue("shipping.firstname", addressValues.firstname ?? "");
-      setValue("shipping.lastname", addressValues.lastname ?? "");
-      setValue("shipping.city", addressValues.city ?? "");
-      setValue("shipping.street", addressValues?.street?.toString() ?? "");
-      setValue("shipping.postcode", addressValues.postcode ?? "");
-      setValue("shipping.telephone", addressValues.telephone ?? "");
-      setValue("shipping.company", addressValues.company ?? "");
-
-      if (!watchDifferentBillingAddress) {
-        setValue("billing.firstname", addressValues.firstname ?? "");
-        setValue("billing.lastname", addressValues.lastname ?? "");
-        setValue("billing.city", addressValues.city ?? "");
-        setValue("billing.street", addressValues.street?.toString() ?? "");
-        setValue("billing.postcode", addressValues.postcode ?? "");
-        setValue("billing.telephone", addressValues.telephone ?? "");
-        setValue("billing.company", addressValues.company ?? "");
-      }
+      setValue("shipping.customer_address_id", addressValues.id as number);
+      setValue("billing.customer_address_id", addressValues.id as number);
     }
   };
 
@@ -129,7 +118,8 @@ export const ContactForm: React.FC<Props> = ({
   };
 
   const resetCustomerAddressId = () => {
-    setValue("customer_address_id", null);
+    setValue("shipping.customer_address_id", null);
+    setValue("billing.customer_address_id", null);
   };
 
   return (
@@ -166,21 +156,24 @@ export const ContactForm: React.FC<Props> = ({
           onOpenChange={() => setShowAddressModal((prev) => !prev)}
           onSelect={onAddressSelect}
         />
-        {selectedCustomerAddress ? (
+        {selectedShippingCustomerAddress ? (
           <SelectedCustomerAddress
-            address={selectedCustomerAddress}
+            shippingAddress={selectedShippingCustomerAddress}
+            billingAddress={selectedBillingCustomerAddress}
             onReset={resetCustomerAddressId}
           />
-        ) : null}
-        <ShippingFormFields
-          formDisabled={!!watchCustomerAddressId}
-          control={control}
-        />
-
-        <BillingFormFields
-          isDifferentBillingAddress={watchDifferentBillingAddress}
-          control={control}
-        />
+        ) : (
+          <>
+            <ShippingFormFields
+              formDisabled={!!watchShippingAddressId}
+              control={control}
+            />
+            <BillingFormFields
+              isDifferentBillingAddress={watchDifferentBillingAddress}
+              control={control}
+            />
+          </>
+        )}
 
         <div className="col-span-12 flex justify-end mt-6">
           <Button

@@ -1,31 +1,51 @@
 import React from "react";
 
+import { Button } from "@/components/_ui/button/Button";
 import { CustomerAddressFragment } from "@/types";
 
 interface Props {
-  address: CustomerAddressFragment;
+  shippingAddress: CustomerAddressFragment;
+  billingAddress?: CustomerAddressFragment | null;
   onReset: () => void;
 }
 
 export const SelectedCustomerAddress: React.FC<Props> = ({
-  address,
+  shippingAddress,
+  billingAddress,
   onReset,
 }) => {
   return (
     <div className="col-span-12">
-      <div className="rounded-2xl py-2 px-4 text-sm bg-black text-white">
-        <div className="flex justify-between items-center">
-          <div className="flex flex-col gap-1">
-            <span className="mr-2">Adresse valgt:</span>
-            <span>
-              {address.firstname} {address.lastname}, {address.city},{" "}
-              {address.street}, {address.postcode}
-            </span>
-          </div>
-          <button className="underline" onClick={onReset}>
-            Rediger
-          </button>
+      <div className="flex gap-4 lg:gap-8">
+        <div className="flex flex-col text-sm">
+          <span className="font-semibold text-base">Sendingsadresse</span>
+          <span>
+            {shippingAddress.firstname} {shippingAddress.lastname}
+          </span>
+          <span>{shippingAddress.street}</span>
+          <span>{shippingAddress.city}</span>
+          <span>{shippingAddress.postcode}</span>
+          <span>T: {shippingAddress.telephone}</span>
+          <Button
+            color="secondary"
+            className="mt-4 p-2 text-sm"
+            onClick={onReset}
+          >
+            <span className="text-sm">Endre adresse</span>
+          </Button>
         </div>
+        {billingAddress ? (
+          <div className="flex flex-col text-sm">
+            <span className="font-semibold text-base">Faktureringsadresse</span>
+            <span>
+              {billingAddress.firstname} {billingAddress.lastname}
+            </span>
+            <span>{billingAddress.street}</span>
+            <span>{billingAddress.city}</span>
+            <span>{billingAddress.postcode}</span>
+            <span>T: {billingAddress.telephone}</span>
+          </div>
+        ) : null}
       </div>
     </div>
   );

@@ -17,12 +17,12 @@ export type CheckoutAddressFields = {
   telephone: string;
   vat_id: string;
   save_in_address_book: boolean;
+  customer_address_id: number | null;
 };
 
 export type CheckoutFormData = {
   email?: string | null;
   different_billing_address: boolean;
-  customer_address_id: number | null;
   shipping: CheckoutAddressFields;
   billing: CheckoutAddressFields;
 };
@@ -35,11 +35,9 @@ export const mapFormAddressValues = (
   values: CheckoutFormData,
   type: "billing" | "shipping",
 ) => {
-  if (values.customer_address_id) {
+  if (values[type].customer_address_id) {
     return {
-      customer_address_id: values.customer_address_id
-        ? values.customer_address_id
-        : null,
+      customer_address_id: values[type].customer_address_id,
     };
   }
 
@@ -52,6 +50,7 @@ export const mapFormAddressValues = (
       postcode: values[type].postcode,
       telephone: values[type].telephone,
       country_code: "NO",
+      customer_address_id: values[type].customer_address_id,
     },
   };
 };
@@ -70,10 +69,10 @@ export const setDefaultFormValues = (
   const cartBillingAddress = cart?.billing_address;
 
   return {
-    customer_address_id: !cartShippingAddress
-      ? defaultShippingAddress?.id ?? null
-      : null,
     shipping: {
+      customer_address_id: !cartShippingAddress
+        ? defaultShippingAddress?.id ?? null
+        : null,
       city: cartShippingAddress?.city ?? defaultShippingAddress?.city ?? "",
       firstname:
         cartShippingAddress?.firstname ??
@@ -94,6 +93,9 @@ export const setDefaultFormValues = (
       save_in_address_book: false,
     },
     billing: {
+      customer_address_id: !cartBillingAddress
+        ? defaultBillingAddress?.id ?? null
+        : null,
       city: cartBillingAddress?.city ?? defaultBillingAddress?.city ?? "",
       firstname:
         cartBillingAddress?.firstname ?? defaultBillingAddress?.firstname ?? "",
