@@ -6,23 +6,24 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import { Button } from "@/components/_ui/button/Button";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
-import { AddressSelectModal } from "@/modules/checkout/contact-form/AddressSelectModal";
-import { BillingFormFields } from "@/modules/checkout/contact-form/BillingFormFields";
-import { SelectedCustomerAddress } from "@/modules/checkout/contact-form/SelectedCustomerAddress";
-import { ShippingFormFields } from "@/modules/checkout/contact-form/ShippingFormFields";
+import { CollectFormFields } from "@/modules/checkout/contact-form/method-click-and-collect/CollectFormFields";
+import { MethodOnline } from "@/modules/checkout/contact-form/method-online/MethodOnline";
 import {
   CheckoutFormData,
   setDefaultFormValues,
 } from "@/modules/checkout/factories";
-import { BaseCartFragment, CustomerQuery } from "@/types";
+import { BaseCartFragment, CustomerQuery, ReserveOrderMutation } from "@/types";
 
 import { navigate } from "../../../app/actions";
 
 interface Props {
   cart: BaseCartFragment;
-  onCheckoutFormSubmit: (values: CheckoutFormData) => Promise<void>;
+  onCheckoutFormSubmit: (
+    values: CheckoutFormData,
+  ) => Promise<void | ReserveOrderMutation>;
   isAuthorized?: boolean;
   customer?: CustomerQuery;
+  isClickAndCollect?: boolean;
 }
 
 export const ContactForm: React.FC<Props> = ({
@@ -30,10 +31,9 @@ export const ContactForm: React.FC<Props> = ({
   onCheckoutFormSubmit,
   isAuthorized,
   customer,
+  isClickAndCollect,
 }) => {
   const [isLoading, setIsLoading] = React.useState(false);
-  const [showAddressModal, setShowAddressModal] = React.useState(false);
-
   const isDifferentBillingAddress = React.useMemo(() => {
     return (
       !!cart.shipping_addresses[0]?.postcode &&
@@ -66,18 +66,6 @@ export const ContactForm: React.FC<Props> = ({
 
     return onCheckoutFormSubmit(values).finally(() => setIsLoading(false));
   };
-
-  const selectedShippingCustomerAddress = React.useMemo(() => {
-    return customer?.customer?.addresses?.find(
-      (a) => a?.id === watchShippingAddressId,
-    );
-  }, [customer, watchShippingAddressId]);
-
-  const selectedBillingCustomerAddress = React.useMemo(() => {
-    return customer?.customer?.addresses?.find(
-      (a) => a?.id === watchBillingAddressId,
-    );
-  }, [customer, watchBillingAddressId]);
 
   const onAddressSelect = (customerAddressId: number) => {
     const addressValues = customer?.customer?.addresses?.find(
@@ -116,42 +104,17 @@ export const ContactForm: React.FC<Props> = ({
           </div>
         ) : null}
 
-        <div className="col-span-12 flex justify-between items-center">
-          <span className="font-semibold mb-2">Leveringsadresse</span>
-          {isAuthorized ? (
-            <button
-              type="button"
-              className="text-sm"
-              onClick={() => setShowAddressModal((prev) => !prev)}
-            >
-              Legg til adresse
-            </button>
-          ) : null}
-        </div>
-
-        <AddressSelectModal
-          customer={customer}
-          isOpen={showAddressModal}
-          onOpenChange={() => setShowAddressModal((prev) => !prev)}
-          onSelect={onAddressSelect}
-        />
-        {selectedShippingCustomerAddress ? (
-          <SelectedCustomerAddress
-            shippingAddress={selectedShippingCustomerAddress}
-            billingAddress={selectedBillingCustomerAddress}
-            onReset={resetCustomerAddressId}
-          />
+        {isClickAndCollect ? (
+          <CollectFormFields control={control} />
         ) : (
-          <>
-            <ShippingFormFields
-              formDisabled={!!watchShippingAddressId}
-              control={control}
-            />
-            <BillingFormFields
-              isDifferentBillingAddress={watchDifferentBillingAddress}
-              control={control}
-            />
-          </>
+          <MethodOnline
+            onAddressSelect={onAddressSelect}
+            watchShippingAddressId={watchShippingAddressId}
+            watchBillingAddressId={watchBillingAddressId}
+            resetCustomerAddressId={resetCustomerAddressId}
+            control={control}
+            isDifferentBillingAddress={watchDifferentBillingAddress}
+          />
         )}
 
         <div className="col-span-12 flex justify-end mt-6">

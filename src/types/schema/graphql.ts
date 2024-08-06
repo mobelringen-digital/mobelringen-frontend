@@ -11680,6 +11680,7 @@ export type Mutation = {
   requestPasswordResetEmail?: Maybe<Scalars["Boolean"]["output"]>;
   /** Initiates a buyer's request to return items for replacement or refund. */
   requestReturn?: Maybe<RequestReturnOutput>;
+  reserveOrder?: Maybe<ReserveOrderOutput>;
   /** Reset a customer's password using the reset password token that the customer received in an email after requesting it using `requestPasswordResetEmail`. */
   resetPassword?: Maybe<Scalars["Boolean"]["output"]>;
   /** Revoke the customer token. */
@@ -12502,6 +12503,14 @@ export type MutationRequestPasswordResetEmailArgs = {
 
 export type MutationRequestReturnArgs = {
   input: RequestReturnInput;
+};
+
+export type MutationReserveOrderArgs = {
+  cartId: Scalars["String"]["input"];
+  email: Scalars["String"]["input"];
+  firstname: Scalars["String"]["input"];
+  lastname: Scalars["String"]["input"];
+  telephone: Scalars["String"]["input"];
 };
 
 export type MutationResetPasswordArgs = {
@@ -22496,6 +22505,11 @@ export type OpeningHours = {
   thursday?: Maybe<Scalars["String"]["output"]>;
   tuesday?: Maybe<Scalars["String"]["output"]>;
   wednesday?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type ReserveOrderOutput = {
+  __typename: "reserveOrderOutput";
+  order_id?: Maybe<Scalars["String"]["output"]>;
 };
 
 export type VippsInitPaymentInput = {
@@ -40487,6 +40501,22 @@ export type SetGuestEmailOnCartMutation = {
         | null
       > | null;
     };
+  } | null;
+};
+
+export type ReserveOrderMutationVariables = Exact<{
+  cartId: Scalars["String"]["input"];
+  email: Scalars["String"]["input"];
+  firstname: Scalars["String"]["input"];
+  lastname: Scalars["String"]["input"];
+  telephone: Scalars["String"]["input"];
+}>;
+
+export type ReserveOrderMutation = {
+  __typename: "Mutation";
+  reserveOrder?: {
+    __typename: "reserveOrderOutput";
+    order_id?: string | null;
   } | null;
 };
 
@@ -96293,6 +96323,148 @@ export const SetGuestEmailOnCartDocument = {
 } as unknown as DocumentNode<
   SetGuestEmailOnCartMutation,
   SetGuestEmailOnCartMutationVariables
+>;
+export const ReserveOrderDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "ReserveOrder" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "cartId" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "email" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "firstname" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "lastname" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "telephone" },
+          },
+          type: {
+            kind: "NonNullType",
+            type: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "String" },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "reserveOrder" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "cartId" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "cartId" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "email" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "email" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "firstname" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "firstname" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "lastname" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "lastname" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "telephone" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "telephone" },
+                },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "order_id" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  ReserveOrderMutation,
+  ReserveOrderMutationVariables
 >;
 export const CategoryDocument = {
   kind: "Document",

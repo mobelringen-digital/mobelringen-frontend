@@ -1,6 +1,10 @@
 "use server";
 
+import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
+
+import { AssignCustomerToGuestCart } from "@/queries/cart.queries";
+import { authorizedMagentoClient } from "@/utils/lib/graphql";
 
 interface LoginInput {
   email: string;
@@ -27,12 +31,38 @@ export async function login({ email, password }: LoginInput) {
   ).then((res) => res.json());
 
   if (data?.token) {
+    await assignCustomerToGuestCart(data.token);
+
     const today = new Date();
     const oneWeekFromNow = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
     cookiesStore.set("token", data.token, {
       expires: oneWeekFromNow,
     });
   }
+
+  return data;
+}
+
+export async function assignCustomerToGuestCart(token: string) {
+  const cookiesStore = cookies();
+  const guestCartId = cookiesStore.get("cart")?.value;
+
+  if (!token || !guestCartId) {
+    return false;
+  }
+
+  const data = await authorizedMagentoClient(token, "POST").request(
+    AssignCustomerToGuestCart,
+    {
+      cartId: guestCartId,
+    },
+  );
+
+  cookiesStore.set("cart", "", {
+    expires: new Date(0),
+  });
+
+  revalidateTag("cart");
 
   return data;
 }

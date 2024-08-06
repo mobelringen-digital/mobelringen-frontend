@@ -29,6 +29,8 @@ export const CheckoutSteps: React.FC<Props> = ({
   const cookiesStore = cookies();
   const isOnlineMethod =
     cookiesStore.get("preferredMethod")?.value !== "collect";
+  const isClickAndCollect =
+    cookiesStore.get("preferredMethod")?.value === "collect";
 
   return (
     <div className="flex flex-col gap-6">
@@ -37,7 +39,13 @@ export const CheckoutSteps: React.FC<Props> = ({
         type="contact"
         title="Kontaktopplysninger"
         isActive={!searchParams?.step || searchParams?.step === "contact"}
-        content={<ContactFormController cart={cart} customer={customer} />}
+        content={
+          <ContactFormController
+            isClickAndCollect={isClickAndCollect}
+            cart={cart}
+            customer={customer}
+          />
+        }
       />
       {isOnlineMethod ? (
         <>

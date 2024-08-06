@@ -14,7 +14,7 @@ interface Props {
   formDisabled?: boolean;
 }
 
-export const ShippingFormFields: React.FC<Props> = ({
+export const OnlineShippingFormFields: React.FC<Props> = ({
   control,
   formDisabled,
 }) => {

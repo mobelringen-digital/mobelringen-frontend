@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 import getCart from "@/components/cart/actions";
@@ -58,20 +58,24 @@ export async function updateCartItemsInStore() {
   const cart = await getCart();
   const store = await getSelectedStore();
 
-  if (!cart?.id || !store?.id) {
+  if (!cart?.id || !store?.external_id) {
     return;
   }
 
-  const data = await baseMagentoClient("POST", {
-    cache: "no-store",
-  }).request(UpdateCartItemsIsInStore, {
-    cartId: cart.id,
-    storeId: store?.id,
-  });
+  try {
+    const data = await baseMagentoClient("POST", {
+      cache: "no-store",
+    }).request(UpdateCartItemsIsInStore, {
+      cartId: cart.id,
+      storeId: store?.external_id,
+    });
 
-  revalidatePath("/cart");
+    revalidateTag("cart");
 
-  return data.updateCartItemsIsInStore;
+    return data.updateCartItemsIsInStore;
+  } catch (e) {
+    // Do nothing
+  }
 }
 
 export async function setFavoriteStoreId(storeId: string) {
@@ -94,7 +98,7 @@ export async function setFavoriteStoreId(storeId: string) {
 
   revalidateTag("store");
   revalidateTag("customer");
-  revalidatePath("/cart");
+  revalidateTag("cart");
 
   return storeId;
 }

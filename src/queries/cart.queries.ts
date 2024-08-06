@@ -401,3 +401,23 @@ export const SetGuestEmailOnCart = graphql(`
     }
   }
 `);
+
+export const ReserveOrder = graphql(`
+  mutation ReserveOrder(
+    $cartId: String!
+    $email: String!
+    $firstname: String!
+    $lastname: String!
+    $telephone: String!
+  ) {
+    reserveOrder(
+      cartId: $cartId
+      email: $email
+      firstname: $firstname
+      lastname: $lastname
+      telephone: $telephone
+    ) {
+      order_id
+    }
+  }
+`);

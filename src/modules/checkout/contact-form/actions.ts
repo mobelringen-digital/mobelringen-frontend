@@ -5,6 +5,7 @@ import { revalidateTag } from "next/cache";
 import { getToken } from "@/modules/auth/actions";
 import { CheckoutFormData } from "@/modules/checkout/factories";
 import {
+  ReserveOrder,
   SetBillingAddressOnCart,
   SetGuestEmailOnCart,
   SetShippingAddressOnCart,
@@ -13,6 +14,8 @@ import {
   authorizedMagentoClient,
   baseMagentoClient,
 } from "@/utils/lib/graphql";
+
+import { navigate } from "../../../app/actions";
 
 export async function setAddressesOnCart(
   cartId: string,
@@ -63,4 +66,27 @@ export async function setGuestEmailOnCart(cartId: string, email: string) {
     cartId: cartId,
     email: email,
   });
+}
+
+export async function reserveOrder(cartId: string, values: CheckoutFormData) {
+  const token = await getToken();
+
+  const data = await authorizedMagentoClient(token, "POST").request(
+    ReserveOrder,
+    {
+      cartId,
+      firstname: values.shipping.address?.firstname ?? "",
+      lastname: values.shipping.address?.lastname ?? "",
+      email: values.email ?? "",
+      telephone: values.shipping.address?.telephone ?? "",
+    },
+  );
+
+  revalidateTag("cart");
+
+  if (data.reserveOrder?.order_id) {
+    return navigate(`/cart/success?order_id=${data?.reserveOrder?.order_id}`);
+  }
+
+  return data;
 }

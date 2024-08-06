@@ -12,7 +12,7 @@ interface Props {
   isDifferentBillingAddress: boolean;
 }
 
-export const BillingFormFields: React.FC<Props> = ({
+export const OnlineBillingFormFields: React.FC<Props> = ({
   control,
   isDifferentBillingAddress,
 }) => {
