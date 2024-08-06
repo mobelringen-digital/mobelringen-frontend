@@ -21,7 +21,9 @@ export const CartMethodLinks: React.FC<Props> = ({ selectedStore }) => {
   const [_cookies, setCookie] = useCookies();
 
   const setPreferredMethod = (method: "online" | "collect") => {
-    setCookie("preferredMethod", method);
+    setCookie("preferredMethod", method, {
+      path: "/",
+    });
   };
 
   return (

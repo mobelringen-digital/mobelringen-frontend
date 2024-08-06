@@ -28,7 +28,9 @@ export async function addToCart(
   );
 
   if (preferredMethod) {
-    cookieStore.set("preferredMethod", preferredMethod);
+    cookieStore.set("preferredMethod", preferredMethod, {
+      path: "/",
+    });
   }
 
   revalidateTag("cart");
