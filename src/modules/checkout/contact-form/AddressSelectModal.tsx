@@ -4,6 +4,7 @@ import { Modal, ModalBody, ModalContent, ModalHeader } from "@nextui-org/modal";
 import { RadioGroup } from "@nextui-org/radio";
 
 import { RadioBlock } from "@/components/_ui/radio/RadioBlock";
+import { useCustomerQuery } from "@/modules/account/hooks/useCustomerQuery";
 import { CustomerQuery } from "@/types";
 
 interface Props {
@@ -14,11 +15,12 @@ interface Props {
 }
 
 export const AddressSelectModal: React.FC<Props> = ({
-  customer,
   isOpen,
   onOpenChange,
   onSelect,
 }) => {
+  const { data: customer } = useCustomerQuery();
+
   return (
     <Modal
       size="2xl"
@@ -36,7 +38,7 @@ export const AddressSelectModal: React.FC<Props> = ({
             <ModalBody className="py-6 px-2 lg:px-5">
               <div className="max-h-64 overflow-auto">
                 <RadioGroup color="primary">
-                  {customer?.customer?.addresses?.map((address) => (
+                  {customer?.addresses?.map((address) => (
                     <RadioBlock
                       onClick={() => {
                         if (address?.id) {
