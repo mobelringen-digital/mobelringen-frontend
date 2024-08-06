@@ -5,11 +5,11 @@ import Link from "next/link";
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { getSelectedStore } from "@/components/store-selector/actions";
+import { PageTitle } from "@/components/typography/PageTitle";
 import { CartItem } from "@/modules/cart/cart-item/CartItem";
 import { CartMethodLinks } from "@/modules/cart/cart-methods/CartMethodLinks";
 import { CartPrice } from "@/modules/cart/cart-price/CartPrice";
 import { CartBreadcrumbs } from "@/modules/cart/CartBreadcrumbs";
-import { CartTitle } from "@/modules/cart/CartTitle";
 import { CartWarnings } from "@/modules/cart/CartWarnings";
 import { BaseCartFragment } from "@/types";
 
@@ -24,7 +24,7 @@ export async function CartPage({ data }: Props) {
   return (
     <ContainerLayout>
       <CartBreadcrumbs />
-      <CartTitle />
+      <PageTitle>Handlekurv</PageTitle>
       {isEmptyCart ? (
         <div className="flex flex-col text-center gap-2">
           <span>Du har ingen produkter i handlekurven.</span>

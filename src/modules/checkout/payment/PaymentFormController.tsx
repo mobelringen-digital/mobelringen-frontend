@@ -39,7 +39,7 @@ export const PaymentFormController: React.FC<Props> = ({ cart }) => {
         }
       }
 
-      return navigate("/cart/success");
+      return navigate("/cart/error/unknown-error");
     });
   };
 

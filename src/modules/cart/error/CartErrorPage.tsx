@@ -4,11 +4,11 @@ import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { PageTitle } from "@/components/typography/PageTitle";
 import { CartBreadcrumbs } from "@/modules/cart/CartBreadcrumbs";
 
-export const CartSuccessPage = () => {
+export const CartErrorPage = () => {
   return (
     <ContainerLayout>
       <CartBreadcrumbs />
-      <PageTitle>Takk for kjøpet!</PageTitle>
+      <PageTitle>Noe gikk galt</PageTitle>
     </ContainerLayout>
   );
 };

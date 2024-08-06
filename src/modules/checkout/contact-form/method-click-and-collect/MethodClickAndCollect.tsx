@@ -14,7 +14,7 @@ interface Props {
   formDisabled?: boolean;
 }
 
-export const CollectFormFields: React.FC<Props> = ({
+export const MethodClickAndCollect: React.FC<Props> = ({
   control,
   formDisabled,
 }) => {

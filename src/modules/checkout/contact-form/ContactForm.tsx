@@ -6,7 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 
 import { Button } from "@/components/_ui/button/Button";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
-import { CollectFormFields } from "@/modules/checkout/contact-form/method-click-and-collect/CollectFormFields";
+import { MethodClickAndCollect } from "@/modules/checkout/contact-form/method-click-and-collect/MethodClickAndCollect";
 import { MethodOnline } from "@/modules/checkout/contact-form/method-online/MethodOnline";
 import {
   CheckoutFormData,
@@ -105,7 +105,7 @@ export const ContactForm: React.FC<Props> = ({
         ) : null}
 
         {isClickAndCollect ? (
-          <CollectFormFields control={control} />
+          <MethodClickAndCollect control={control} />
         ) : (
           <MethodOnline
             onAddressSelect={onAddressSelect}
@@ -114,6 +114,8 @@ export const ContactForm: React.FC<Props> = ({
             resetCustomerAddressId={resetCustomerAddressId}
             control={control}
             isDifferentBillingAddress={watchDifferentBillingAddress}
+            isAuthorized={isAuthorized}
+            customer={customer}
           />
         )}
 

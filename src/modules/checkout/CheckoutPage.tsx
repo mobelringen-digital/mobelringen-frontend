@@ -2,11 +2,11 @@ import React from "react";
 
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
+import { PageTitle } from "@/components/typography/PageTitle";
 import { getCustomerDetails } from "@/modules/account/actions";
 import { CheckoutBreadcrumbs } from "@/modules/checkout/CheckoutBreadcrumbs";
 import { CheckoutSteps } from "@/modules/checkout/CheckoutSteps";
 import { CheckoutSummary } from "@/modules/checkout/CheckoutSummary";
-import { CheckoutTitle } from "@/modules/checkout/CheckoutTitle";
 import { BaseCartFragment } from "@/types";
 import { NextSearchParams } from "@/utils/ts-utils";
 
@@ -28,7 +28,7 @@ export async function CheckoutPage({
   return (
     <ContainerLayout>
       <CheckoutBreadcrumbs />
-      <CheckoutTitle />
+      <PageTitle>Gjennomfør bestilling</PageTitle>
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-12 lg:col-span-7">
           <CheckoutSteps
