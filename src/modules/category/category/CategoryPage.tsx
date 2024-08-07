@@ -1,7 +1,14 @@
+"use client";
+
 import React from "react";
 
+import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
+import { CategoryFilters } from "@/modules/category/category/category-filters/CategoryFilters";
+import { useCategoryFilters } from "@/modules/category/category/category-filters/useCategoryFilters";
 import { ProductsList } from "@/modules/category/category/ProductsList";
+import { ProductsListSkeleton } from "@/modules/category/category/ProductsListSkeleton";
+import { useProductsQuery } from "@/modules/category/category/useProductsQuery";
 import { CategoryItemEntity } from "@/modules/category/types";
 
 interface Props {
@@ -9,9 +16,23 @@ interface Props {
 }
 
 export const CategoryPage: React.FC<Props> = ({ category }) => {
+  const { filtersFormValues, filterValuesForQuery } = useCategoryFilters();
+  const { data, isLoading } = useProductsQuery({
+    category_id: {
+      eq: String(category?.id),
+    },
+    ...filterValuesForQuery,
+  });
+
   return (
     <ContainerLayout>
-      <ProductsList categoryId={category?.id} />
+      {isLoading ? <PageTopLoader /> : null}
+      <CategoryFilters
+        totalCount={data?.total_count}
+        defaultFilterValues={filtersFormValues}
+        filters={data?.aggregations}
+      />
+      {isLoading ? <ProductsListSkeleton /> : <ProductsList products={data} />}
     </ContainerLayout>
   );
 };

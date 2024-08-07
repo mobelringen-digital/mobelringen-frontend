@@ -2,34 +2,22 @@
 
 import React from "react";
 
-import { Loader } from "@/components/_ui/loader/Loader";
-import { LoaderInnerWrapper } from "@/components/_ui/loader/LoaderInnerWrapper";
 import { ProductCard } from "@/components/product/ProductCard";
-import { useProductsQuery } from "@/modules/category/category/useProductsQuery";
+import { ProductsQuery } from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
 
 interface Props {
-  categoryId?: number | null;
+  products?: ProductsQuery["products"];
 }
-export const ProductsList: React.FC<Props> = ({ categoryId }) => {
-  const { data, isLoading } = useProductsQuery(categoryId);
-
-  if (isLoading) {
-    return (
-      <LoaderInnerWrapper>
-        <Loader />
-      </LoaderInnerWrapper>
-    );
-  }
-
+export const ProductsList: React.FC<Props> = ({ products }) => {
   return (
     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8">
-      {data?.map((product, idx) => (
+      {products?.items?.map((product, idx) => (
         <React.Fragment key={idx}>
           {product &&
           isTypename(product, ["SimpleProduct", "ConfigurableProduct"]) ? (
-                <ProductCard key={idx} product={product} />
-              ) : null}
+            <ProductCard key={idx} product={product} />
+          ) : null}
         </React.Fragment>
       ))}
     </div>

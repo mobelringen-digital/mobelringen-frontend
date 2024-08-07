@@ -155,9 +155,30 @@ export const BaseProductFragment = graphql(`
   }
 `);
 
+export const ProductAggregationsFragment = graphql(`
+  fragment ProductAggregations on Aggregation {
+    attribute_code
+    count
+    frontend_input
+    has_more
+    label
+    options {
+      count
+      label
+      value
+    }
+    position
+    rel_nofollow
+  }
+`);
+
 export const ProductsQueryDocument = graphql(`
   query Products($pageSize: Int = 12, $filter: ProductAttributeFilterInput) {
     products(pageSize: $pageSize, filter: $filter) {
+      total_count
+      aggregations {
+        ...ProductAggregations
+      }
       items {
         ... on SimpleProduct {
           ...SimpleProduct

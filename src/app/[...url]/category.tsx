@@ -76,7 +76,8 @@ export default async function Category({ url }: Props) {
   if (currentCategory && isLastCategoryWithChildren(currentCategory)) {
     await queryClient.prefetchQuery({
       queryKey: [...PRODUCTS_QUERY_KEY, currentCategory.id],
-      queryFn: () => fetchProducts(currentCategory?.id),
+      queryFn: () =>
+        fetchProducts({ category_id: { eq: String(currentCategory?.id) } }),
     });
   }
 

@@ -15916,6 +15916,7 @@ export type Query = {
   entities?: Maybe<Array<Entity>>;
   /** Retrieve the secure PayPal URL for a Payments Pro Hosted Solution transaction. */
   getHostedProUrl?: Maybe<HostedProUrl>;
+  getOrderByMask?: Maybe<CustomerOrder>;
   /** Retrieve payment credentials for a transaction. Use this query for Payflow Link and Payments Advanced payment methods. */
   getPayflowLinkToken?: Maybe<PayflowLinkToken>;
   /** Retrieves the payment configuration for a given location */
@@ -16210,6 +16211,10 @@ export type QueryEntitiesArgs = {
 
 export type QueryGetHostedProUrlArgs = {
   input: HostedProUrlInput;
+};
+
+export type QueryGetOrderByMaskArgs = {
+  mask: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type QueryGetPayflowLinkTokenArgs = {
@@ -43538,6 +43543,23 @@ export type BaseProductFragment =
   | BaseProduct_SimpleProduct_Fragment
   | BaseProduct_VirtualProduct_Fragment;
 
+export type ProductAggregationsFragment = {
+  __typename: "Aggregation";
+  attribute_code: string;
+  count?: number | null;
+  frontend_input?: string | null;
+  has_more?: boolean | null;
+  label?: string | null;
+  position?: number | null;
+  rel_nofollow?: boolean | null;
+  options?: Array<{
+    __typename: "AggregationOption";
+    count?: number | null;
+    label?: string | null;
+    value: string;
+  } | null> | null;
+};
+
 export type ProductsQueryVariables = Exact<{
   pageSize?: InputMaybe<Scalars["Int"]["input"]>;
   filter: InputMaybe<ProductAttributeFilterInput>;
@@ -43547,6 +43569,23 @@ export type ProductsQuery = {
   __typename: "Query";
   products?: {
     __typename: "Products";
+    total_count?: number | null;
+    aggregations?: Array<{
+      __typename: "Aggregation";
+      attribute_code: string;
+      count?: number | null;
+      frontend_input?: string | null;
+      has_more?: boolean | null;
+      label?: string | null;
+      position?: number | null;
+      rel_nofollow?: boolean | null;
+      options?: Array<{
+        __typename: "AggregationOption";
+        count?: number | null;
+        label?: string | null;
+        value: string;
+      } | null> | null;
+    } | null> | null;
     items?: Array<
       | { __typename: "BundleProduct" }
       | {
@@ -85244,6 +85283,43 @@ export const ConfigurableProductFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ConfigurableProductFragment, unknown>;
+export const ProductAggregationsFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductAggregations" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Aggregation" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "attribute_code" } },
+          { kind: "Field", name: { kind: "Name", value: "count" } },
+          { kind: "Field", name: { kind: "Name", value: "frontend_input" } },
+          { kind: "Field", name: { kind: "Name", value: "has_more" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "options" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "count" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "rel_nofollow" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ProductAggregationsFragment, unknown>;
 export const SimpleProductFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -98217,6 +98293,20 @@ export const ProductsDocument = {
             selectionSet: {
               kind: "SelectionSet",
               selections: [
+                { kind: "Field", name: { kind: "Name", value: "total_count" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "aggregations" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "ProductAggregations" },
+                      },
+                    ],
+                  },
+                },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "items" },
@@ -98794,6 +98884,38 @@ export const ProductsDocument = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductAggregations" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Aggregation" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "attribute_code" } },
+          { kind: "Field", name: { kind: "Name", value: "count" } },
+          { kind: "Field", name: { kind: "Name", value: "frontend_input" } },
+          { kind: "Field", name: { kind: "Name", value: "has_more" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "options" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "count" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "value" } },
+              ],
+            },
+          },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "rel_nofollow" } },
         ],
       },
     },
