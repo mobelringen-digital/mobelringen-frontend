@@ -4,7 +4,7 @@ import React from "react";
 
 import cx from "classnames";
 
-import { CloseIcon } from "@/components/_ui/icons/CloseIcon";
+import { Close } from "@/components/_ui/icons/figma/Close";
 
 interface Props {
   isOpen: boolean;
@@ -42,7 +42,7 @@ export const FiltersDrawer = React.forwardRef<HTMLDivElement, Props>(
             <div className="flex items-center justify-between px-8 py-6 border-b border-cold-grey-dark">
               <span className="font-semibold text-lg">{title}</span>
               <button onClick={onClose}>
-                <CloseIcon />
+                <Close />
               </button>
             </div>
           ) : null}
