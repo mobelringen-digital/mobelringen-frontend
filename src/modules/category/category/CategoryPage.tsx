@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const CategoryPage: React.FC<Props> = ({ category }) => {
-  const { filtersFormValues, filterValuesForQuery } = useCategoryFilters();
+  const { filterValuesForQuery } = useCategoryFilters();
   const { data, isLoading } = useProductsQuery({
     category_id: {
       eq: String(category?.id),
@@ -29,7 +29,6 @@ export const CategoryPage: React.FC<Props> = ({ category }) => {
       {isLoading ? <PageTopLoader /> : null}
       <CategoryFilters
         totalCount={data?.total_count}
-        defaultFilterValues={filtersFormValues}
         filters={data?.aggregations}
       />
       {isLoading ? <ProductsListSkeleton /> : <ProductsList products={data} />}

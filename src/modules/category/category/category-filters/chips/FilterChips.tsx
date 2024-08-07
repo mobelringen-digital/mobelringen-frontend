@@ -1,6 +1,6 @@
 import React from "react";
 
-import { FilterChip } from "@/modules/category/category/category-filters/FilterChip";
+import { FilterChip } from "@/modules/category/category/category-filters/chips/FilterChip";
 import { useCategoryFilters } from "@/modules/category/category/category-filters/useCategoryFilters";
 import {
   isBooleanFilter,

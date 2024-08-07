@@ -1,28 +1,34 @@
 import React from "react";
 
 import { Slider } from "@nextui-org/react";
-import { Control } from "react-hook-form";
 
-import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
-import { FiltersFormData } from "@/modules/category/category/category-filters/CategoryFilters";
 import { FilterWrapper } from "@/modules/category/category/category-filters/FilterWrapper";
 import { useCategoryFilters } from "@/modules/category/category/category-filters/useCategoryFilters";
-import {
-  ProductAggregationsFragment,
-  ProductAttributeFilterInput,
-} from "@/types";
+import { ProductAggregationsFragment } from "@/types";
 
 interface Props {
   data: ProductAggregationsFragment | null;
-  control: Control<FiltersFormData>;
 }
 
-export const FilterPrice: React.FC<Props> = ({ data, control }) => {
-  const { setQueryFilter } = useCategoryFilters();
+export const FilterPrice: React.FC<Props> = ({ data }) => {
+  const { setQueryFilter, getQueryFilter } = useCategoryFilters();
+
+  const value = getQueryFilter<{ from: number; to: number }>(
+    `${data?.attribute_code}|${data?.frontend_input}`,
+  );
+
+  const sliderValue = React.useMemo(() => {
+    if (value?.from && value?.to) {
+      return [value.from, value.to];
+    }
+
+    return undefined;
+  }, [value]);
+
   if (!data) return null;
 
-  const onFilterChange = (value: number | number[]) => {
-    setQueryFilter(data.attribute_code, value, data.frontend_input);
+  const onFilterChange = (val: number | number[]) => {
+    setQueryFilter(data.attribute_code, val, data.frontend_input);
   };
 
   const getMinMax = () => {
@@ -30,14 +36,14 @@ export const FilterPrice: React.FC<Props> = ({ data, control }) => {
     let max = 118640;
 
     data.options?.forEach((option) => {
-      const value = Number(option?.value);
+      const opt = Number(option?.value);
 
-      if (value < min) {
-        min = value;
+      if (opt < min) {
+        min = opt;
       }
 
-      if (value > max) {
-        max = value;
+      if (opt > max) {
+        max = opt;
       }
     });
 
@@ -46,22 +52,17 @@ export const FilterPrice: React.FC<Props> = ({ data, control }) => {
 
   return (
     <FilterWrapper title={data.label}>
-      <FieldWrapper
-        aria-label={data.label}
-        control={control}
-        name={data.attribute_code as keyof ProductAttributeFilterInput}
-      >
-        <Slider
-          onChange={onFilterChange}
-          aria-label={String(data.label)}
-          step={1000}
-          minValue={getMinMax().min || 9999}
-          maxValue={getMinMax().max || 200000}
-          defaultValue={[getMinMax().min || 9999, getMinMax().max || 200000]}
-          formatOptions={{ style: "currency", currency: "NOK" }}
-          showTooltip={true}
-        />
-      </FieldWrapper>
+      <Slider
+        value={sliderValue}
+        onChange={onFilterChange}
+        aria-label={String(data.label)}
+        step={1000}
+        minValue={getMinMax().min || 9999}
+        maxValue={getMinMax().max || 200000}
+        defaultValue={[getMinMax().min || 9999, getMinMax().max || 200000]}
+        formatOptions={{ style: "currency", currency: "NOK" }}
+        showTooltip={true}
+      />
 
       <div className="flex justify-center mt-2 text-grey text-sm">
         {data.count} produkter

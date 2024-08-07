@@ -2,7 +2,6 @@ import React from "react";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-import { FiltersFormData } from "@/modules/category/category/category-filters/CategoryFilters";
 import {
   isBooleanFilter,
   isRangeFilter,
@@ -32,21 +31,9 @@ export const useCategoryFilters = () => {
             return [filterKey, [filterValue.from, filterValue.to]];
           }
 
-          if (isTextFilter(filterType)) {
-            return [filterKey, filterValue];
-          }
-
-          if (isBooleanFilter(filterType)) {
-            return [filterKey, filterValue];
-          }
-
-          if (isSelectFilter(filterType)) {
-            return [filterKey, filterValue];
-          }
-
           return [filterKey, filterValue];
         }),
-      ) as FiltersFormData;
+      );
     }
   }, [searchParams]);
 
@@ -86,8 +73,16 @@ export const useCategoryFilters = () => {
 
         return [filterKey, filterValue];
       }),
-    ) as FiltersFormData;
+    );
   }, [searchParams]);
+
+  const getQueryFilter = <T>(key: string) => {
+    const value = searchParams.get(key);
+
+    if (!value) return undefined;
+
+    return JSON.parse(value) as T;
+  };
 
   const setQueryFilter = (
     key: string,
@@ -155,6 +150,7 @@ export const useCategoryFilters = () => {
     filtersFormValues,
     filterValuesForQuery,
     setQueryFilter,
+    getQueryFilter,
     removeQueryFilter,
     resetQueryFilters,
   };
