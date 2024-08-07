@@ -47,7 +47,7 @@ export const CategoryFilters: React.FC<Props> = ({
   };
 
   return (
-    <div className="mb-8">
+    <div className="mb-4">
       <FiltersDrawer
         title="Filter"
         onClose={() => setIsActive(false)}
@@ -79,7 +79,9 @@ export const CategoryFilters: React.FC<Props> = ({
         <FilterChips filters={filters} />
 
         {totalCount ? (
-          <div className="text-grey text-sm my-4">{totalCount} produkter</div>
+          <div className="text-grey text-sm mt-8 mb-4">
+            {totalCount} produkter
+          </div>
         ) : null}
       </div>
     </div>

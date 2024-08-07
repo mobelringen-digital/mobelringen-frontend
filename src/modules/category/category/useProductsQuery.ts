@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 import { ProductsQueryDocument } from "@/queries/product/product.queries";
 import {
@@ -32,5 +32,6 @@ export const useProductsQuery = (
     queryFn: () => fetchProducts(filter),
     enabled: !!filter?.category_id,
     staleTime: 3600,
+    placeholderData: keepPreviousData,
   });
 };

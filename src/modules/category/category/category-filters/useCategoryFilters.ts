@@ -99,30 +99,42 @@ export const useCategoryFilters = () => {
 
     if (!filterType) return;
 
-    if (
-      isRangeFilter(filterType) &&
-      Array.isArray(value) &&
-      value.length === 2
-    ) {
-      query.append(
-        filterKey,
-        JSON.stringify({
-          from: value[0],
-          to: value[1],
-        }),
-      );
+    if (isRangeFilter(filterType) && Array.isArray(value)) {
+      if (value && value.length === 2) {
+        query.append(
+          filterKey,
+          JSON.stringify({
+            from: value[0],
+            to: value[1],
+          }),
+        );
+      } else {
+        query.delete(filterKey);
+      }
     }
 
     if (isTextFilter(filterType)) {
-      query.set(filterKey, value as string);
+      if (value) {
+        query.set(filterKey, JSON.stringify(value));
+      } else {
+        query.delete(filterKey);
+      }
     }
 
     if (isBooleanFilter(filterType)) {
-      query.set(filterKey, JSON.stringify(value));
+      if (value) {
+        query.set(filterKey, JSON.stringify(value));
+      } else {
+        query.delete(filterKey);
+      }
     }
 
-    if (isSelectFilter(filterType)) {
-      query.set(filterKey, JSON.stringify(value));
+    if (isSelectFilter(filterType) && Array.isArray(value)) {
+      if (value && value.length > 0) {
+        query.set(filterKey, JSON.stringify(value));
+      } else {
+        query.delete(filterKey);
+      }
     }
 
     router.push(`${pathname}?${query}`);

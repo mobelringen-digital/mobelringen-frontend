@@ -32,7 +32,7 @@ export const ProductLabels: React.FC<Props> = ({
           </>
         ) : null}
       </div>
-      <div className="absolute bottom-0 right-0 z-50">
+      <div className="absolute bottom-0 right-0 z-20">
         {addToWishList ? addToWishList : null}
       </div>
     </>
