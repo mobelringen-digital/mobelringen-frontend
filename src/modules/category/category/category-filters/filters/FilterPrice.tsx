@@ -6,6 +6,7 @@ import { Control } from "react-hook-form";
 import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
 import { FiltersFormData } from "@/modules/category/category/category-filters/CategoryFilters";
 import { FilterWrapper } from "@/modules/category/category/category-filters/FilterWrapper";
+import { useCategoryFilters } from "@/modules/category/category/category-filters/useCategoryFilters";
 import {
   ProductAggregationsFragment,
   ProductAttributeFilterInput,
@@ -17,7 +18,12 @@ interface Props {
 }
 
 export const FilterPrice: React.FC<Props> = ({ data, control }) => {
+  const { setQueryFilter } = useCategoryFilters();
   if (!data) return null;
+
+  const onFilterChange = (value: number | number[]) => {
+    setQueryFilter(data.attribute_code, value, data.frontend_input);
+  };
 
   const getMinMax = () => {
     let min = 9999;
@@ -46,6 +52,7 @@ export const FilterPrice: React.FC<Props> = ({ data, control }) => {
         name={data.attribute_code as keyof ProductAttributeFilterInput}
       >
         <Slider
+          onChange={onFilterChange}
           aria-label={String(data.label)}
           step={1000}
           minValue={getMinMax().min || 9999}

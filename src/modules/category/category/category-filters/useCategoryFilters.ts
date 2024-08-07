@@ -9,10 +9,6 @@ import {
   isSelectFilter,
   isTextFilter,
 } from "@/modules/category/factories";
-import {
-  ProductAggregationsFragment,
-  ProductAttributeFilterInput,
-} from "@/types";
 
 import { navigate } from "../../../../app/actions";
 
@@ -23,8 +19,7 @@ export const useCategoryFilters = () => {
 
   const filtersFormValues = React.useMemo(() => {
     if (searchParams) {
-      const params = searchParams.toString();
-      const search = new URLSearchParams(params);
+      const search = new URLSearchParams(searchParams.toString());
       const filter = Object.fromEntries(search.entries());
 
       return Object.fromEntries(
@@ -56,8 +51,7 @@ export const useCategoryFilters = () => {
   }, [searchParams]);
 
   const filterValuesForQuery = React.useMemo(() => {
-    const params = searchParams.toString();
-    const search = new URLSearchParams(params);
+    const search = new URLSearchParams(searchParams.toString());
     const filter = Object.fromEntries(search.entries());
 
     return Object.fromEntries(
@@ -90,73 +84,48 @@ export const useCategoryFilters = () => {
           return [filterKey, { in: filterValue }];
         }
 
-        return [];
+        return [filterKey, filterValue];
       }),
-    );
+    ) as FiltersFormData;
   }, [searchParams]);
 
-  const setQueryFilters = (
-    values: ProductAttributeFilterInput,
-    filters?: Array<ProductAggregationsFragment | null> | null,
+  const setQueryFilter = (
+    key: string,
+    value: string | number | boolean | Array<string> | Array<number>,
+    filterType?: string | null,
   ) => {
-    const query = new URLSearchParams();
+    const query = new URLSearchParams(searchParams.toString());
+    const filterKey = `${key}|${filterType}`;
 
-    const getFilter = (key: string) => {
-      return filters?.find((f) => f?.attribute_code === key);
-    };
+    if (!filterType) return;
 
-    Object.entries(values).forEach(([key, value]) => {
-      const filter = getFilter(key);
-      const filterKey = `${key}|${filter?.frontend_input}`;
-      const filterValue = JSON.stringify(value);
+    if (
+      isRangeFilter(filterType) &&
+      Array.isArray(value) &&
+      value.length === 2
+    ) {
+      query.append(
+        filterKey,
+        JSON.stringify({
+          from: value[0],
+          to: value[1],
+        }),
+      );
+    }
 
-      if (!filter || !filter.frontend_input) return;
-      if (!filterValue) return;
+    if (isTextFilter(filterType)) {
+      query.set(filterKey, value as string);
+    }
 
-      if (isTextFilter(filter.frontend_input)) {
-        if (value) {
-          query.append(filterKey, filterValue);
-        } else {
-          query.delete(filterKey);
-        }
-      }
+    if (isBooleanFilter(filterType)) {
+      query.set(filterKey, JSON.stringify(value));
+    }
 
-      if (isBooleanFilter(filter.frontend_input)) {
-        if (value) {
-          query.append(filterKey, filterValue);
-        } else {
-          query.delete(filterKey);
-        }
-      }
+    if (isSelectFilter(filterType)) {
+      query.set(filterKey, JSON.stringify(value));
+    }
 
-      if (isSelectFilter(filter.frontend_input)) {
-        if (Array.isArray(value)) {
-          if (value.length > 0) {
-            query.append(filterKey, filterValue);
-          } else {
-            query.delete(filterKey);
-          }
-        }
-      }
-
-      if (isRangeFilter(filter.frontend_input)) {
-        if (Array.isArray(value)) {
-          if (value.length > 0) {
-            query.append(
-              filterKey,
-              JSON.stringify({
-                from: value[0],
-                to: value[1],
-              }),
-            );
-          } else {
-            query.delete(filterKey);
-          }
-        }
-      }
-    });
-
-    router.push(`${pathname}?${query.toString()}`);
+    router.push(`${pathname}?${query}`);
   };
 
   const removeQueryFilter = (key: string) => {
@@ -173,7 +142,7 @@ export const useCategoryFilters = () => {
   return {
     filtersFormValues,
     filterValuesForQuery,
-    setQueryFilters,
+    setQueryFilter,
     removeQueryFilter,
     resetQueryFilters,
   };

@@ -36,14 +36,13 @@ export const CategoryFilters: React.FC<Props> = ({
   const { control, handleSubmit, reset } = useForm<FiltersFormData>({
     defaultValues: defaultFilterValues,
   });
-  const { setQueryFilters, resetQueryFilters } = useCategoryFilters();
+  const { resetQueryFilters } = useCategoryFilters();
 
-  const onSubmit: SubmitHandler<FiltersFormData> = async (values) => {
-    return setQueryFilters(values, filters);
+  const onSubmit: SubmitHandler<FiltersFormData> = async () => {
+    return setIsActive(false);
   };
 
   const resetForm = async () => {
-    setIsActive(false);
     return resetQueryFilters().then(() => reset());
   };
 
