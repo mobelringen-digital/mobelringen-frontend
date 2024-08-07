@@ -14,6 +14,8 @@ import {
   ProductAttributeFilterInput,
 } from "@/types";
 
+import { navigate } from "../../../../app/actions";
+
 export const useCategoryFilters = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -164,8 +166,8 @@ export const useCategoryFilters = () => {
     router.push(`${pathname}?${query}`);
   };
 
-  const resetQueryFilters = () => {
-    router.push(pathname);
+  const resetQueryFilters = async () => {
+    return navigate(pathname);
   };
 
   return {

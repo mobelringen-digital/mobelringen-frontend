@@ -33,13 +33,18 @@ export const CategoryFilters: React.FC<Props> = ({
 }) => {
   const ref = React.useRef(null);
   const [isActive, setIsActive] = useDetectOutsideClick(ref, false);
-  const { control, handleSubmit } = useForm<FiltersFormData>({
+  const { control, handleSubmit, reset } = useForm<FiltersFormData>({
     defaultValues: defaultFilterValues,
   });
   const { setQueryFilters, resetQueryFilters } = useCategoryFilters();
 
   const onSubmit: SubmitHandler<FiltersFormData> = async (values) => {
     return setQueryFilters(values, filters);
+  };
+
+  const resetForm = async () => {
+    setIsActive(false);
+    return resetQueryFilters().then(() => reset());
   };
 
   return (
@@ -57,7 +62,7 @@ export const CategoryFilters: React.FC<Props> = ({
             );
           })}
           <FilterActions
-            onReset={resetQueryFilters}
+            onReset={resetForm}
             onClose={() => setIsActive(false)}
           />
         </form>
