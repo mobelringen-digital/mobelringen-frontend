@@ -2,20 +2,20 @@
 
 import React from "react";
 
-import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/_ui/button/Button";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { ProductAddedModal } from "@/components/cart/add-to-cart/ProductAddedModal";
-import { BaseProductFragment } from "@/types";
-
-import { navigate } from "../../../app/actions";
+import { AddProductToCartMutation, BaseProductFragment } from "@/types";
 
 interface Props {
   isDisabled?: boolean;
   product: BaseProductFragment;
   quantity: number;
-  onAddToCart: (preferredMethod: "online" | "collect") => Promise<void>;
+  onAddToCart: (
+    preferredMethod: "online" | "collect",
+  ) => Promise<string | AddProductToCartMutation | undefined>;
 }
 
 export const AddToCartController: React.FC<Props> = ({
@@ -25,16 +25,18 @@ export const AddToCartController: React.FC<Props> = ({
 }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
   const isOpen = searchParams.get("cart") === "true";
 
-  const setClose = async () => {
-    return navigate("?");
+  const setClose = () => {
+    return router.push(pathname);
   };
 
   const handleAddItemToCart = async (preferredMethod: "online" | "collect") => {
     setIsLoading(true);
     await onAddToCart(preferredMethod).finally(() => {
-      setIsLoading(false);
+      router.push(`${pathname}?cart=true`);
     });
   };
 

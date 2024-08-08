@@ -31,6 +31,8 @@ export const PurchaseBlock: React.FC<Props> = ({ product, cart }) => {
     isTypename(product, ["ConfigurableProduct"]) &&
     !activeProductVariant.variant;
   const isInStock = product.stock_status === ProductStockStatus.InStock;
+  const isDisabled =
+    isVariantNotSelected && !isInStock && product.addable_to_cart !== 1;
 
   return (
     <div className="bg-white p-4 lg:p-8 rounded-2xl flex flex-col gap-4">
@@ -63,7 +65,7 @@ export const PurchaseBlock: React.FC<Props> = ({ product, cart }) => {
         cart={cart}
         product={product}
         quantity={quantity}
-        isDisabled={isVariantNotSelected || !isInStock}
+        isDisabled={isDisabled}
       />
 
       <KlarnaInformation />
