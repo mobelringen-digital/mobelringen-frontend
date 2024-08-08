@@ -6,6 +6,7 @@ import { FilterChips } from "@/modules/category/category/category-filters/chips/
 import { FilterActions } from "@/modules/category/category/category-filters/FilterActions";
 import { FilterController } from "@/modules/category/category/category-filters/FilterController";
 import { FiltersDrawer } from "@/modules/category/category/category-filters/FiltersDrawer";
+import { SortButton } from "@/modules/category/category/category-filters/SortButton";
 import { useCategoryFilters } from "@/modules/category/category/category-filters/useCategoryFilters";
 import { ProductAggregationsFragment } from "@/types";
 import { useDetectOutsideClick } from "@/utils/hooks/useDetectOutsideClick";
@@ -38,15 +39,17 @@ export const CategoryFilters: React.FC<Props> = ({ filters, totalCount }) => {
         <FilterActions onReset={resetForm} onClose={() => setIsActive(false)} />
       </FiltersDrawer>
 
-      <div className="flex flex-col gap-4">
+      <div className="flex justify-between items-start">
         <Button
           color="grey"
-          className="flex items-center gap-2 w-44"
+          className="flex items-center gap-2"
           onClick={() => setIsActive((prev) => !prev)}
         >
           Alle filtre <Filters />
         </Button>
-
+        <SortButton />
+      </div>
+      <div className="flex flex-col gap-4">
         <FilterChips filters={filters} />
 
         {totalCount ? (

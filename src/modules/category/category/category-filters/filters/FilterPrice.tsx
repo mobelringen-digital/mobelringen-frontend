@@ -1,10 +1,12 @@
 import React from "react";
 
+import qs from "qs";
 import RangeSlider from "react-range-slider-input";
 
 import { FilterWrapper } from "@/modules/category/category/category-filters/FilterWrapper";
 import { useCategoryFilters } from "@/modules/category/category/category-filters/useCategoryFilters";
 import { FilterRangeTypeInput, ProductAggregationsFragment } from "@/types";
+
 import "react-range-slider-input/dist/style.css";
 
 interface Props {
@@ -36,16 +38,21 @@ export const FilterPrice: React.FC<Props> = ({ data }) => {
     if (val.length === 2) {
       setQueryFilter(
         data.attribute_code,
-        JSON.stringify({ from: val[0], to: val[1] }),
+        qs.stringify({ from: val[0], to: val[1] }, { encode: false }),
       );
     } else {
       removeQueryFilter(data.attribute_code);
     }
   };
 
-  const getMinMax = () => {
+  const getDefaultValues = () => {
     let min = 9999;
     let max = 118640;
+    let step = 1000;
+
+    if (data.options && data.options.length > 1) {
+      step = Number(data.options[0]?.value) - Number(data.options[1]?.value);
+    }
 
     data.options?.forEach((option) => {
       const opt = Number(option?.value);
@@ -59,7 +66,7 @@ export const FilterPrice: React.FC<Props> = ({ data }) => {
       }
     });
 
-    return { min, max };
+    return { min, max, step };
   };
 
   const displayValue = () => {
@@ -71,17 +78,20 @@ export const FilterPrice: React.FC<Props> = ({ data }) => {
       return `${value?.[0]} NOK - ${value?.[1]} NOK`;
     }
 
-    return `${getMinMax().min} NOK - ${getMinMax().max} NOK`;
+    return `${getDefaultValues().min} NOK - ${getDefaultValues().max} NOK`;
   };
 
   return (
     <FilterWrapper title={data.label}>
       <RangeSlider
         className="filter-range-slider"
-        min={getMinMax().min || 9999}
-        max={getMinMax().max || 200000}
-        step={1000}
-        defaultValue={[getMinMax().min || 9999, getMinMax().max || 200000]}
+        min={getDefaultValues().min || 9999}
+        max={getDefaultValues().max || 200000}
+        step={getDefaultValues().step}
+        defaultValue={[
+          getDefaultValues().min || 9999,
+          getDefaultValues().max || 200000,
+        ]}
         value={sliderValue ?? value}
         onInput={(val) => setSliderValue(val)}
         onRangeDragEnd={() => onFilterChange(sliderValue)}

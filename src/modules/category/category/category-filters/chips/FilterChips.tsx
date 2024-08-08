@@ -51,7 +51,11 @@ export const FilterChips: React.FC<Props> = ({ filters }) => {
         };
       }
 
-      if (isBooleanFilter(filter.frontend_input)) {
+      if (
+        isBooleanFilter(filter.frontend_input) &&
+        value.in &&
+        Array.isArray(value.in)
+      ) {
         return {
           key,
           label: filter.label,
@@ -60,7 +64,11 @@ export const FilterChips: React.FC<Props> = ({ filters }) => {
         };
       }
 
-      if (isSelectFilter(filter.frontend_input)) {
+      if (
+        isSelectFilter(filter.frontend_input) &&
+        value.in &&
+        Array.isArray(value.in)
+      ) {
         return {
           key,
           label: filter.label,
@@ -74,7 +82,7 @@ export const FilterChips: React.FC<Props> = ({ filters }) => {
   return (
     <>
       {mappedFilterValuesForChip && mappedFilterValuesForChip.length > 0 ? (
-        <div className="flex flex-wrap items-center gap-4 my-4">
+        <div className="flex flex-wrap items-center gap-2 lg:gap-4 my-4">
           {mappedFilterValuesForChip?.map((f, idx) => {
             if (!f?.key) return null;
 

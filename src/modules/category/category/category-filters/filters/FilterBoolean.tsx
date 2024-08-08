@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Checkbox, CheckboxGroup } from "@nextui-org/react";
+import qs from "qs";
 
 import { FilterWrapper } from "@/modules/category/category/category-filters/FilterWrapper";
 import { useCategoryFilters } from "@/modules/category/category/category-filters/useCategoryFilters";
@@ -18,7 +19,10 @@ export const FilterBoolean: React.FC<Props> = ({ data }) => {
 
   const onFilterChange = (value: string[]) => {
     if (value.length > 0) {
-      setQueryFilter(data.attribute_code, JSON.stringify({ in: value }));
+      setQueryFilter(
+        data.attribute_code,
+        qs.stringify({ in: value }, { encode: false }),
+      );
     } else {
       removeQueryFilter(data.attribute_code);
     }

@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Radio, RadioGroup } from "@nextui-org/react";
+import qs from "qs";
 
 import { FilterWrapper } from "@/modules/category/category/category-filters/FilterWrapper";
 import { useCategoryFilters } from "@/modules/category/category/category-filters/useCategoryFilters";
@@ -17,7 +18,10 @@ export const FilterText: React.FC<Props> = ({ data }) => {
 
   const onFilterChange = (value: string) => {
     if (value) {
-      setQueryFilter(data.attribute_code, JSON.stringify({ match: value }));
+      setQueryFilter(
+        data.attribute_code,
+        qs.stringify({ match: value }, { encode: false }),
+      );
     } else {
       removeQueryFilter(data.attribute_code);
     }

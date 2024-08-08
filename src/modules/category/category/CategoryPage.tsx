@@ -16,13 +16,18 @@ interface Props {
 }
 
 export const CategoryPage: React.FC<Props> = ({ category }) => {
-  const { filterValues } = useCategoryFilters();
-  const { data, isLoading } = useProductsQuery({
-    category_id: {
-      eq: String(category?.id),
+  const { filterValues, sortValues } = useCategoryFilters();
+  const { data, isLoading } = useProductsQuery(
+    {
+      category_id: {
+        eq: String(category?.id),
+      },
+      ...filterValues,
     },
-    ...filterValues,
-  });
+    {
+      ...sortValues,
+    },
+  );
 
   return (
     <ContainerLayout>

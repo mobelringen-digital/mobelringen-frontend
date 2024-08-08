@@ -1,5 +1,7 @@
 import React from "react";
 
+import qs from "qs";
+
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export const useCategoryFilters = () => {
@@ -12,11 +14,28 @@ export const useCategoryFilters = () => {
       const search = new URLSearchParams(searchParams.toString());
       const filter = Object.fromEntries(search.entries());
 
-      return Object.fromEntries(
+      const values = Object.fromEntries(
         Object.entries(filter).map(([key, value]) => {
-          return [key, JSON.parse(value)];
+          return [key, qs.parse(value)];
         }),
       );
+
+      if ("sort" in values) {
+        delete values.sort;
+      }
+
+      return values;
+    }
+  }, [searchParams]);
+
+  const sortValues = React.useMemo(() => {
+    if (searchParams) {
+      const search = new URLSearchParams(searchParams.toString());
+      const sort = search.get("sort");
+
+      if (sort) {
+        return qs.parse(sort);
+      }
     }
   }, [searchParams]);
 
@@ -25,7 +44,7 @@ export const useCategoryFilters = () => {
 
     if (!value) return undefined;
 
-    return JSON.parse(value) as T;
+    return qs.parse(value) as T;
   };
 
   const setQueryFilter = (key: string, value: string) => {
@@ -53,6 +72,7 @@ export const useCategoryFilters = () => {
 
   return {
     filterValues,
+    sortValues,
     setQueryFilter,
     getQueryFilter,
     removeQueryFilter,

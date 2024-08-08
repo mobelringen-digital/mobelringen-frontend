@@ -125,7 +125,7 @@ const documents = {
     types.BaseProductFragmentDoc,
   "\n  fragment ProductAggregations on Aggregation {\n    attribute_code\n    count\n    frontend_input\n    has_more\n    label\n    options {\n      count\n      label\n      value\n    }\n    position\n    rel_nofollow\n  }\n":
     types.ProductAggregationsFragmentDoc,
-  "\n  query Products($pageSize: Int = 12, $filter: ProductAttributeFilterInput) {\n    products(pageSize: $pageSize, filter: $filter) {\n      total_count\n      aggregations {\n        ...ProductAggregations\n      }\n      items {\n        ... on SimpleProduct {\n          ...SimpleProduct\n        }\n        ... on ConfigurableProduct {\n          ...ConfigurableProduct\n        }\n      }\n    }\n  }\n":
+  "\n  query Products(\n    $pageSize: Int = 12\n    $filter: ProductAttributeFilterInput\n    $sort: ProductAttributeSortInput\n  ) {\n    products(pageSize: $pageSize, filter: $filter, sort: $sort) {\n      total_count\n      aggregations {\n        ...ProductAggregations\n      }\n      items {\n        ... on SimpleProduct {\n          ...SimpleProduct\n        }\n        ... on ConfigurableProduct {\n          ...ConfigurableProduct\n        }\n      }\n    }\n  }\n":
     types.ProductsDocument,
   "\n  query ProductReviews(\n    $pageSize: Int = 1\n    $filter: ProductAttributeFilterInput\n  ) {\n    products(pageSize: $pageSize, filter: $filter) {\n      items {\n        rating_summary\n        review_count\n        reviews {\n          items {\n            average_rating\n            nickname\n            summary\n            text\n          }\n        }\n      }\n    }\n  }\n":
     types.ProductReviewsDocument,
@@ -517,8 +517,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  query Products($pageSize: Int = 12, $filter: ProductAttributeFilterInput) {\n    products(pageSize: $pageSize, filter: $filter) {\n      total_count\n      aggregations {\n        ...ProductAggregations\n      }\n      items {\n        ... on SimpleProduct {\n          ...SimpleProduct\n        }\n        ... on ConfigurableProduct {\n          ...ConfigurableProduct\n        }\n      }\n    }\n  }\n",
-): (typeof documents)["\n  query Products($pageSize: Int = 12, $filter: ProductAttributeFilterInput) {\n    products(pageSize: $pageSize, filter: $filter) {\n      total_count\n      aggregations {\n        ...ProductAggregations\n      }\n      items {\n        ... on SimpleProduct {\n          ...SimpleProduct\n        }\n        ... on ConfigurableProduct {\n          ...ConfigurableProduct\n        }\n      }\n    }\n  }\n"];
+  source: "\n  query Products(\n    $pageSize: Int = 12\n    $filter: ProductAttributeFilterInput\n    $sort: ProductAttributeSortInput\n  ) {\n    products(pageSize: $pageSize, filter: $filter, sort: $sort) {\n      total_count\n      aggregations {\n        ...ProductAggregations\n      }\n      items {\n        ... on SimpleProduct {\n          ...SimpleProduct\n        }\n        ... on ConfigurableProduct {\n          ...ConfigurableProduct\n        }\n      }\n    }\n  }\n",
+): (typeof documents)["\n  query Products(\n    $pageSize: Int = 12\n    $filter: ProductAttributeFilterInput\n    $sort: ProductAttributeSortInput\n  ) {\n    products(pageSize: $pageSize, filter: $filter, sort: $sort) {\n      total_count\n      aggregations {\n        ...ProductAggregations\n      }\n      items {\n        ... on SimpleProduct {\n          ...SimpleProduct\n        }\n        ... on ConfigurableProduct {\n          ...ConfigurableProduct\n        }\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

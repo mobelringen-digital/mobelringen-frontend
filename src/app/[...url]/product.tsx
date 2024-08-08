@@ -20,6 +20,7 @@ async function getProduct(sku: string) {
     ProductsQueryVariables
   >(ProductsQueryDocument, {
     filter: { sku: { eq: sku } },
+    sort: {},
   });
 }
 

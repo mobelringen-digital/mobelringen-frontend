@@ -43563,6 +43563,7 @@ export type ProductAggregationsFragment = {
 export type ProductsQueryVariables = Exact<{
   pageSize?: InputMaybe<Scalars["Int"]["input"]>;
   filter: InputMaybe<ProductAttributeFilterInput>;
+  sort: InputMaybe<ProductAttributeSortInput>;
 }>;
 
 export type ProductsQuery = {
@@ -98265,6 +98266,14 @@ export const ProductsDocument = {
             name: { kind: "Name", value: "ProductAttributeFilterInput" },
           },
         },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "sort" } },
+          type: {
+            kind: "NamedType",
+            name: { kind: "Name", value: "ProductAttributeSortInput" },
+          },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -98287,6 +98296,14 @@ export const ProductsDocument = {
                 value: {
                   kind: "Variable",
                   name: { kind: "Name", value: "filter" },
+                },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "sort" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "sort" },
                 },
               },
             ],
