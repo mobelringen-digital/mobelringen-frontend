@@ -4,23 +4,27 @@ import { Radio, RadioGroup } from "@nextui-org/react";
 
 import { FilterWrapper } from "@/modules/category/category/category-filters/FilterWrapper";
 import { useCategoryFilters } from "@/modules/category/category/category-filters/useCategoryFilters";
-import { ProductAggregationsFragment } from "@/types";
+import { FilterStringTypeInput, ProductAggregationsFragment } from "@/types";
 
 interface Props {
   data: ProductAggregationsFragment | null;
 }
 
 export const FilterText: React.FC<Props> = ({ data }) => {
-  const { setQueryFilter, getQueryFilter } = useCategoryFilters();
+  const { setQueryFilter, getQueryFilter, removeQueryFilter } =
+    useCategoryFilters();
   if (!data) return null;
 
   const onFilterChange = (value: string) => {
-    setQueryFilter(data.attribute_code, value, data.frontend_input);
+    if (value) {
+      setQueryFilter(data.attribute_code, JSON.stringify({ match: value }));
+    } else {
+      removeQueryFilter(data.attribute_code);
+    }
   };
 
-  const value =
-    getQueryFilter<string>(`${data.attribute_code}|${data.frontend_input}`) ??
-    "";
+  const filter = getQueryFilter<FilterStringTypeInput>(data.attribute_code);
+  const value = (filter?.match as string) ?? "";
 
   return (
     <FilterWrapper title={data.label}>

@@ -16,12 +16,12 @@ interface Props {
 }
 
 export const CategoryPage: React.FC<Props> = ({ category }) => {
-  const { filterValuesForQuery } = useCategoryFilters();
+  const { filterValues } = useCategoryFilters();
   const { data, isLoading } = useProductsQuery({
     category_id: {
       eq: String(category?.id),
     },
-    ...filterValuesForQuery,
+    ...filterValues,
   });
 
   return (

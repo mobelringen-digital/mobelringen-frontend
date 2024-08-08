@@ -15,7 +15,7 @@ interface Props {
 }
 
 export const FilterChips: React.FC<Props> = ({ filters }) => {
-  const { filtersFormValues, removeQueryFilter, resetQueryFilters } =
+  const { filterValues, removeQueryFilter, resetQueryFilters } =
     useCategoryFilters();
 
   const getFilter = React.useCallback(
@@ -26,50 +26,50 @@ export const FilterChips: React.FC<Props> = ({ filters }) => {
   );
 
   const mappedFilterValuesForChip = React.useMemo(() => {
-    if (!filtersFormValues) return;
+    if (!filterValues) return;
 
-    return Object.entries(filtersFormValues).map(([key, value]) => {
+    return Object.entries(filterValues).map(([key, value]) => {
       const filter = getFilter(key);
 
       if (!filter || !filter.frontend_input) return;
 
-      if (isRangeFilter(filter.frontend_input) && Array.isArray(value)) {
+      if (isRangeFilter(filter.frontend_input)) {
         return {
-          key: `${key}|${filter.frontend_input}`,
+          key,
           label: filter.label,
-          value: `${value[0]} - ${value[1]}`,
+          value: `${value.from} - ${value.to}`,
           type: filter.frontend_input,
         };
       }
 
-      if (isTextFilter(filter.frontend_input) && value) {
+      if (isTextFilter(filter.frontend_input)) {
         return {
-          key: `${key}|${filter.frontend_input}`,
+          key,
           label: filter.label,
-          value: value as string,
+          value: value.match as string,
           type: filter.frontend_input,
         };
       }
 
-      if (isBooleanFilter(filter.frontend_input) && value) {
+      if (isBooleanFilter(filter.frontend_input)) {
         return {
-          key: `${key}|${filter.frontend_input}`,
+          key,
           label: filter.label,
-          value: value ? "Ja" : "Nej",
+          value: value.in ? "Ja" : "Nej",
           type: filter.frontend_input,
         };
       }
 
-      if (isSelectFilter(filter.frontend_input) && Array.isArray(value)) {
+      if (isSelectFilter(filter.frontend_input)) {
         return {
-          key: `${key}|${filter.frontend_input}`,
+          key,
           label: filter.label,
-          value: value.join(", "),
+          value: value.in.join(", "),
           type: filter.frontend_input,
         };
       }
     });
-  }, [filtersFormValues, getFilter]);
+  }, [filterValues, getFilter]);
 
   return (
     <>

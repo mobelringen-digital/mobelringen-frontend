@@ -4,31 +4,41 @@ import { Slider } from "@nextui-org/react";
 
 import { FilterWrapper } from "@/modules/category/category/category-filters/FilterWrapper";
 import { useCategoryFilters } from "@/modules/category/category/category-filters/useCategoryFilters";
-import { ProductAggregationsFragment } from "@/types";
+import { FilterRangeTypeInput, ProductAggregationsFragment } from "@/types";
 
 interface Props {
   data: ProductAggregationsFragment | null;
 }
 
 export const FilterPrice: React.FC<Props> = ({ data }) => {
-  const { setQueryFilter, getQueryFilter } = useCategoryFilters();
+  const { setQueryFilter, getQueryFilter, removeQueryFilter } =
+    useCategoryFilters();
 
-  const value = getQueryFilter<{ from: number; to: number }>(
-    `${data?.attribute_code}|${data?.frontend_input}`,
+  const filter = getQueryFilter<FilterRangeTypeInput>(
+    data?.attribute_code ?? "",
   );
+  const value = React.useMemo(() => {
+    if (!filter) return undefined;
 
-  const sliderValue = React.useMemo(() => {
-    if (value?.from && value?.to) {
-      return [value.from, value.to];
+    if (filter.from && filter.to) {
+      return [parseInt(filter.from), parseInt(filter.to)];
     }
+  }, [filter]);
 
-    return undefined;
-  }, [value]);
-
+  if (!data?.attribute_code) return null;
   if (!data) return null;
 
   const onFilterChange = (val: number | number[]) => {
-    setQueryFilter(data.attribute_code, val, data.frontend_input);
+    if (!Array.isArray(val)) return;
+
+    if (val.length === 2) {
+      setQueryFilter(
+        data.attribute_code,
+        JSON.stringify({ from: val[0], to: val[1] }),
+      );
+    } else {
+      removeQueryFilter(data.attribute_code);
+    }
   };
 
   const getMinMax = () => {
@@ -53,7 +63,7 @@ export const FilterPrice: React.FC<Props> = ({ data }) => {
   return (
     <FilterWrapper title={data.label}>
       <Slider
-        value={sliderValue}
+        value={value}
         onChange={onFilterChange}
         aria-label={String(data.label)}
         step={1000}
