@@ -18,6 +18,34 @@ body {
   min-width: 0;
 }
 
+.filter-range-slider {
+  /* */
+}
+.filter-range-slider[data-disabled] {
+  /* CSS for disabled range slider element */
+}
+.filter-range-slider .range-slider__range {
+  @apply !bg-powder;
+}
+.filter-range-slider .range-slider__range[data-active] {
+  /* CSS for active (actively being dragged) range */
+}
+.filter-range-slider .range-slider__thumb {
+  @apply !bg-red !w-2 !rounded-2xl;
+}
+.filter-range-slider .range-slider__thumb[data-lower] {
+  /* CSS for lower thumb */
+}
+.filter-range-slider .range-slider__thumb[data-upper] {
+  /* CSS for upper thumb */
+}
+.filter-range-slider .range-slider__thumb[data-active] {
+  /* CSS for active (actively being dragged) thumbs */
+}
+.filter-range-slider .range-slider__thumb[data-disabled] {
+  /* CSS for disabled thumbs */
+}
+
 .slick-active button#navigation-link {
   @apply border border-black;
 }

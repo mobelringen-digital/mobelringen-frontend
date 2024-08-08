@@ -1,16 +1,18 @@
 import React from "react";
 
-import { Slider } from "@nextui-org/react";
+import RangeSlider from "react-range-slider-input";
 
 import { FilterWrapper } from "@/modules/category/category/category-filters/FilterWrapper";
 import { useCategoryFilters } from "@/modules/category/category/category-filters/useCategoryFilters";
 import { FilterRangeTypeInput, ProductAggregationsFragment } from "@/types";
+import "react-range-slider-input/dist/style.css";
 
 interface Props {
   data: ProductAggregationsFragment | null;
 }
 
 export const FilterPrice: React.FC<Props> = ({ data }) => {
+  const [sliderValue, setSliderValue] = React.useState<[number, number]>();
   const { setQueryFilter, getQueryFilter, removeQueryFilter } =
     useCategoryFilters();
 
@@ -21,14 +23,14 @@ export const FilterPrice: React.FC<Props> = ({ data }) => {
     if (!filter) return undefined;
 
     if (filter.from && filter.to) {
-      return [parseInt(filter.from), parseInt(filter.to)];
+      return [parseInt(filter.from), parseInt(filter.to)] as [number, number];
     }
   }, [filter]);
 
   if (!data?.attribute_code) return null;
   if (!data) return null;
 
-  const onFilterChange = (val: number | number[]) => {
+  const onFilterChange = (val?: number | number[]) => {
     if (!Array.isArray(val)) return;
 
     if (val.length === 2) {
@@ -60,19 +62,35 @@ export const FilterPrice: React.FC<Props> = ({ data }) => {
     return { min, max };
   };
 
+  const displayValue = () => {
+    if (sliderValue) {
+      return `${sliderValue?.[0]} NOK - ${sliderValue?.[1]} NOK`;
+    }
+
+    if (value) {
+      return `${value?.[0]} NOK - ${value?.[1]} NOK`;
+    }
+
+    return `${getMinMax().min} NOK - ${getMinMax().max} NOK`;
+  };
+
   return (
     <FilterWrapper title={data.label}>
-      <Slider
-        value={value}
-        onChange={onFilterChange}
-        aria-label={String(data.label)}
+      <RangeSlider
+        className="filter-range-slider"
+        min={getMinMax().min || 9999}
+        max={getMinMax().max || 200000}
         step={1000}
-        minValue={getMinMax().min || 9999}
-        maxValue={getMinMax().max || 200000}
         defaultValue={[getMinMax().min || 9999, getMinMax().max || 200000]}
-        formatOptions={{ style: "currency", currency: "NOK" }}
-        showTooltip={true}
+        value={sliderValue ?? value}
+        onInput={(val) => setSliderValue(val)}
+        onRangeDragEnd={() => onFilterChange(sliderValue)}
+        onThumbDragEnd={() => onFilterChange(sliderValue)}
       />
+
+      <div className="flex justify-center mt-2 text-grey text-xs">
+        {`Pris: ${displayValue()}`}
+      </div>
 
       <div className="flex justify-center mt-2 text-grey text-sm">
         {data.count} produkter
