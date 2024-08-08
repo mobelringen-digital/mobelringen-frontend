@@ -1,4 +1,4 @@
-import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { keepPreviousData, useInfiniteQuery } from "@tanstack/react-query";
 
 import { ProductsQueryDocument } from "@/queries/product/product.queries";
 import {
@@ -15,6 +15,7 @@ export const PRODUCTS_QUERY_KEY = ["products"];
 export const fetchProducts = async (
   filter: InputMaybe<ProductAttributeFilterInput>,
   sort?: InputMaybe<ProductAttributeSortInput>,
+  currentPage?: number,
 ) => {
   const data = await baseMagentoClient("GET").request<
     ProductsQuery,
@@ -22,6 +23,7 @@ export const fetchProducts = async (
   >(ProductsQueryDocument, {
     filter,
     sort: sort ?? {},
+    currentPage: currentPage ?? 1,
   });
 
   return data.products;
@@ -31,13 +33,20 @@ export const useProductsQuery = (
   filter: InputMaybe<ProductAttributeFilterInput>,
   sort?: InputMaybe<ProductAttributeSortInput>,
 ) => {
-  return useQuery({
+  return useInfiniteQuery<ProductsQuery["products"]>({
     queryKey: [
       ...PRODUCTS_QUERY_KEY,
       JSON.stringify(filter),
       JSON.stringify(sort),
     ],
-    queryFn: () => fetchProducts(filter, sort),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) =>
+      (lastPage?.page_info?.current_page ?? 1) <
+      (lastPage?.page_info?.total_pages ?? 1)
+        ? (lastPage?.page_info?.current_page ?? 1) + 1
+        : undefined,
+    queryFn: ({ pageParam }) =>
+      fetchProducts(filter, sort, pageParam as number),
     enabled: !!filter?.category_id,
     staleTime: 3600,
     placeholderData: keepPreviousData,

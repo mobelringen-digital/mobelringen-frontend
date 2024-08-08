@@ -11,7 +11,7 @@ interface Props {
 }
 export const ProductsList: React.FC<Props> = ({ products }) => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8">
+    <>
       {products?.items?.map((product, idx) => {
         const isSupportedProductType =
           product &&
@@ -24,6 +24,6 @@ export const ProductsList: React.FC<Props> = ({ products }) => {
           </React.Fragment>
         );
       })}
-    </div>
+    </>
   );
 };

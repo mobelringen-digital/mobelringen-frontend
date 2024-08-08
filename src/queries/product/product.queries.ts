@@ -177,9 +177,20 @@ export const ProductsQueryDocument = graphql(`
     $pageSize: Int = 12
     $filter: ProductAttributeFilterInput
     $sort: ProductAttributeSortInput
+    $currentPage: Int
   ) {
-    products(pageSize: $pageSize, filter: $filter, sort: $sort) {
+    products(
+      pageSize: $pageSize
+      filter: $filter
+      sort: $sort
+      currentPage: $currentPage
+    ) {
       total_count
+      page_info {
+        current_page
+        page_size
+        total_pages
+      }
       aggregations {
         ...ProductAggregations
       }

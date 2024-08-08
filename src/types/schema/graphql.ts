@@ -43564,6 +43564,7 @@ export type ProductsQueryVariables = Exact<{
   pageSize?: InputMaybe<Scalars["Int"]["input"]>;
   filter: InputMaybe<ProductAttributeFilterInput>;
   sort: InputMaybe<ProductAttributeSortInput>;
+  currentPage: InputMaybe<Scalars["Int"]["input"]>;
 }>;
 
 export type ProductsQuery = {
@@ -43571,6 +43572,12 @@ export type ProductsQuery = {
   products?: {
     __typename: "Products";
     total_count?: number | null;
+    page_info?: {
+      __typename: "SearchResultPageInfo";
+      current_page?: number | null;
+      page_size?: number | null;
+      total_pages?: number | null;
+    } | null;
     aggregations?: Array<{
       __typename: "Aggregation";
       attribute_code: string;
@@ -98274,6 +98281,14 @@ export const ProductsDocument = {
             name: { kind: "Name", value: "ProductAttributeSortInput" },
           },
         },
+        {
+          kind: "VariableDefinition",
+          variable: {
+            kind: "Variable",
+            name: { kind: "Name", value: "currentPage" },
+          },
+          type: { kind: "NamedType", name: { kind: "Name", value: "Int" } },
+        },
       ],
       selectionSet: {
         kind: "SelectionSet",
@@ -98306,11 +98321,40 @@ export const ProductsDocument = {
                   name: { kind: "Name", value: "sort" },
                 },
               },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "currentPage" },
+                value: {
+                  kind: "Variable",
+                  name: { kind: "Name", value: "currentPage" },
+                },
+              },
             ],
             selectionSet: {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "total_count" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "page_info" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "current_page" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "page_size" },
+                      },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "total_pages" },
+                      },
+                    ],
+                  },
+                },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "aggregations" },

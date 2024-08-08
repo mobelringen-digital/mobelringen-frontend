@@ -21,6 +21,7 @@ async function getProduct(sku: string) {
   >(ProductsQueryDocument, {
     filter: { sku: { eq: sku } },
     sort: {},
+    currentPage: 1,
   });
 }
 
