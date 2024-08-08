@@ -51,21 +51,21 @@ export const CategoryPage: React.FC<Props> = ({ category }) => {
         })}
       </div>
 
-      {hasNextPage ? (
-        <div className="flex w-full items-center justify-center mt-8 pt-8 border-t border-cold-grey-dark">
-          <div className="flex flex-col gap-3">
-            <span className="text-black text-base">
-              Viser {currentlyLoaded} av {totalCount} produkter
-            </span>
+      <div className="flex w-full items-center justify-center mt-8 pt-8 border-t border-cold-grey-dark">
+        <div className="flex flex-col gap-3">
+          <span className="text-black text-base">
+            Viser {currentlyLoaded} av {totalCount} produkter
+          </span>
+          {hasNextPage ? (
             <Button
               disabled={isFetchingNextPage}
               onClick={() => fetchNextPage()}
             >
               Last inn flere
             </Button>
-          </div>
+          ) : null}
         </div>
-      ) : null}
+      </div>
     </ContainerLayout>
   );
 };
