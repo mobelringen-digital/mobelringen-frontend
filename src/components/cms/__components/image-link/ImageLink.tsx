@@ -21,7 +21,7 @@ export const ImageLink: React.FC<Props> = ({ data }) => {
           alt={data.label}
         />
         {data.caption ? (
-          <p className="text-left font-light text-sm text-black mt-4">
+          <p className="text-left font-light text-xs lg:text-sm text-black mt-2 lg:mt-4">
             {data.caption}
           </p>
         ) : null}

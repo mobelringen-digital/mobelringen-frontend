@@ -16,18 +16,18 @@ const TEXT_ALIGN: Record<Position, string> = {
 };
 
 const BUTTON_JUSTIFY: Record<Position, string> = {
-  LEFT: "justify-start",
-  CENTER: "justify-center",
-  RIGHT: "justify-end",
+  LEFT: "lg:justify-start",
+  CENTER: "lg:justify-center",
+  RIGHT: "lg:justify-end",
 };
 
 export const TextBlock: React.FC<Props> = ({ data }) => {
   return (
-    <div className="flex flex-col justify-center gap-8">
+    <div className="flex flex-col justify-center gap-4 lg:gap-8">
       {data.title ? (
         <h2
           className={cx(
-            "text-4xl font-medium font-feature",
+            "text-3xl lg:text-4xl font-medium font-feature",
             TEXT_ALIGN[data.textAlign ?? "LEFT"],
           )}
         >
@@ -36,13 +36,19 @@ export const TextBlock: React.FC<Props> = ({ data }) => {
       ) : null}
       {data.content?.html ? (
         <div
-          className={cx("prose text-xl", TEXT_ALIGN[data.textAlign ?? "LEFT"])}
+          className={cx(
+            "prose text-lg lg:text-xl font-normal",
+            TEXT_ALIGN[data.textAlign ?? "LEFT"],
+          )}
           dangerouslySetInnerHTML={{ __html: data.content.html }}
         />
       ) : null}
       {data.links ? (
         <div
-          className={cx("flex gap-4", BUTTON_JUSTIFY[data.textAlign ?? "LEFT"])}
+          className={cx(
+            "flex flex-wrap gap-4 justify-center",
+            BUTTON_JUSTIFY[data.textAlign ?? "LEFT"],
+          )}
         >
           {data.links.map((link, idx) => (
             <CmsLink
