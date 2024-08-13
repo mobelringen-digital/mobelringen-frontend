@@ -4,8 +4,8 @@ import React from "react";
 
 import cx from "classnames";
 
-import { Column } from "@/components/cms/__components/column";
-import { ContainerLayout } from "@/components/layouts/ContainerLayout";
+import { Column } from "@/components/cms/__components/column/Column";
+import { CmsBlockWrapper } from "@/components/cms/cms-block-wrapper";
 import { CmsBlockRowFragment } from "@/types";
 
 interface Props {
@@ -52,9 +52,9 @@ const BACKGROUND_COLOR: Record<string, string> = {
 
 export const BlockRow: React.FC<Props> = ({ data }) => {
   return (
-    <ContainerLayout
-      fullWidth={data.useFullPageWidth === true}
-      className={cx("py-16", BACKGROUND_COLOR[data.backgroundColor ?? "none"])}
+    <CmsBlockWrapper
+      isFullWidth={data.useFullPageWidth === true}
+      backgroundColor={BACKGROUND_COLOR[data.backgroundColor ?? "none"]}
     >
       <div className={cx("grid gap-8", COLUMNS[data.columns.length])}>
         {data.columns.map((column, idx) => {
@@ -73,6 +73,6 @@ export const BlockRow: React.FC<Props> = ({ data }) => {
           );
         })}
       </div>
-    </ContainerLayout>
+    </CmsBlockWrapper>
   );
 };

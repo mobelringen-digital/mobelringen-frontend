@@ -6,7 +6,7 @@ interface Props {
   salesBubble: CmsSalesBubbleFragment;
 }
 
-export const CmsSalesBubble: React.FC<Props> = ({ salesBubble }) => {
+export const SalesBubble: React.FC<Props> = ({ salesBubble }) => {
   return (
     <div className="bg-purple-light text-center text-black py-4 px-12 rounded-full rounded-bl-none">
       <ul className="flex justify-center items-center flex-col gap-2 list-none">

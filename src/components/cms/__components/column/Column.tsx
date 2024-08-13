@@ -1,7 +1,7 @@
 import React from "react";
 
-import { ImageLink } from "@/components/cms/__components/image-link";
-import { TextBlock } from "@/components/cms/__components/text-block";
+import { ImageLink } from "@/components/cms/__components/image-link/ImageLink";
+import { TextBlock } from "@/components/cms/__components/text-block/TextBlock";
 import { CmsColumnFragment } from "@/types";
 
 interface Props {

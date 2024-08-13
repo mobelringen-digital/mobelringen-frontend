@@ -4,7 +4,7 @@ import cx from "classnames";
 
 import Link from "next/link";
 
-import { CmsSalesBubble } from "@/components/cms/__components/sales-bubble/CmsSalesBubble";
+import { SalesBubble } from "@/components/cms/__components/sales-bubble/SalesBubble";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { CmsSalesBubbleFragment, Position } from "@/types";
 
@@ -29,10 +29,10 @@ export const SalesBubbleWrapper: React.FC<Props> = ({ data }) => {
       >
         {salesBubble.url ? (
           <Link href={salesBubble.url}>
-            <CmsSalesBubble salesBubble={salesBubble} />
+            <SalesBubble salesBubble={salesBubble} />
           </Link>
         ) : (
-          <CmsSalesBubble salesBubble={salesBubble} />
+          <SalesBubble salesBubble={salesBubble} />
         )}
       </ContainerLayout>
     </div>
