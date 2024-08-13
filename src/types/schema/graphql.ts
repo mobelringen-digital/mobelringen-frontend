@@ -2127,6 +2127,566 @@ export type BillingCartAddress = CartAddressInterface & {
   vat_id?: Maybe<Scalars["String"]["output"]>;
 };
 
+export type BlockRow = Entity &
+  Node & {
+    __typename: "BlockRow";
+    columns: Array<BlockRowcolumnsUnion>;
+    /** The time the document was created */
+    createdAt: Scalars["DateTime"]["output"];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    /** Get the document in other stages */
+    documentInStages: Array<BlockRow>;
+    /** List of BlockRow versions */
+    history: Array<Version>;
+    /** The unique identifier */
+    id: Scalars["ID"]["output"];
+    identify: Scalars["String"]["output"];
+    pages: Array<Page>;
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    scheduledIn: Array<ScheduledOperation>;
+    /** System stage field */
+    stage: Stage;
+    /** The time the document was updated */
+    updatedAt: Scalars["DateTime"]["output"];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+  };
+
+export type BlockRowColumnsArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export type BlockRowCreatedByArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type BlockRowDocumentInStagesArgs = {
+  includeCurrent?: Scalars["Boolean"]["input"];
+  inheritLocale?: Scalars["Boolean"]["input"];
+  stages?: Array<Stage>;
+};
+
+export type BlockRowHistoryArgs = {
+  limit?: Scalars["Int"]["input"];
+  skip?: Scalars["Int"]["input"];
+  stageOverride: InputMaybe<Stage>;
+};
+
+export type BlockRowPagesArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<PageWhereInput>;
+};
+
+export type BlockRowPublishedByArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type BlockRowScheduledInArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+export type BlockRowUpdatedByArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type BlockRowConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: BlockRowWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type BlockRowConnection = {
+  __typename: "BlockRowConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<BlockRowEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type BlockRowCreateInput = {
+  columns?: InputMaybe<BlockRowcolumnsUnionCreateManyInlineInput>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  identify: Scalars["String"]["input"];
+  pages?: InputMaybe<PageCreateManyInlineInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+};
+
+export type BlockRowCreateManyInlineInput = {
+  /** Connect multiple existing BlockRow documents */
+  connect?: InputMaybe<Array<BlockRowWhereUniqueInput>>;
+  /** Create and connect multiple existing BlockRow documents */
+  create?: InputMaybe<Array<BlockRowCreateInput>>;
+};
+
+export type BlockRowCreateOneInlineInput = {
+  /** Connect one existing BlockRow document */
+  connect?: InputMaybe<BlockRowWhereUniqueInput>;
+  /** Create and connect one BlockRow document */
+  create?: InputMaybe<BlockRowCreateInput>;
+};
+
+/** An edge in a connection. */
+export type BlockRowEdge = {
+  __typename: "BlockRowEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: BlockRow;
+};
+
+/** Identifies documents */
+export type BlockRowManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BlockRowWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BlockRowWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BlockRowWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values in which the union is empty. */
+  columns_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Matches if the modular component contains at least one connection to the item provided to the filter */
+  columns_some?: InputMaybe<BlockRowcolumnsUnionWhereInput>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<BlockRowWhereStageInput>;
+  documentInStages_none?: InputMaybe<BlockRowWhereStageInput>;
+  documentInStages_some?: InputMaybe<BlockRowWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  identify_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  pages_every?: InputMaybe<PageWhereInput>;
+  pages_none?: InputMaybe<PageWhereInput>;
+  pages_some?: InputMaybe<PageWhereInput>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum BlockRowOrderByInput {
+  CreatedAtAsc = "createdAt_ASC",
+  CreatedAtDesc = "createdAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  IdentifyAsc = "identify_ASC",
+  IdentifyDesc = "identify_DESC",
+  PublishedAtAsc = "publishedAt_ASC",
+  PublishedAtDesc = "publishedAt_DESC",
+  UpdatedAtAsc = "updatedAt_ASC",
+  UpdatedAtDesc = "updatedAt_DESC",
+}
+
+export type BlockRowUpdateInput = {
+  columns?: InputMaybe<BlockRowcolumnsUnionUpdateManyInlineInput>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  pages?: InputMaybe<PageUpdateManyInlineInput>;
+};
+
+export type BlockRowUpdateManyInlineInput = {
+  /** Connect multiple existing BlockRow documents */
+  connect?: InputMaybe<Array<BlockRowConnectInput>>;
+  /** Create and connect multiple BlockRow documents */
+  create?: InputMaybe<Array<BlockRowCreateInput>>;
+  /** Delete multiple BlockRow documents */
+  delete?: InputMaybe<Array<BlockRowWhereUniqueInput>>;
+  /** Disconnect multiple BlockRow documents */
+  disconnect?: InputMaybe<Array<BlockRowWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing BlockRow documents */
+  set?: InputMaybe<Array<BlockRowWhereUniqueInput>>;
+  /** Update multiple BlockRow documents */
+  update?: InputMaybe<Array<BlockRowUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple BlockRow documents */
+  upsert?: InputMaybe<Array<BlockRowUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type BlockRowUpdateManyInput = {
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type BlockRowUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: BlockRowUpdateManyInput;
+  /** Document search */
+  where: BlockRowWhereInput;
+};
+
+export type BlockRowUpdateOneInlineInput = {
+  /** Connect existing BlockRow document */
+  connect?: InputMaybe<BlockRowWhereUniqueInput>;
+  /** Create and connect one BlockRow document */
+  create?: InputMaybe<BlockRowCreateInput>;
+  /** Delete currently connected BlockRow document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected BlockRow document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single BlockRow document */
+  update?: InputMaybe<BlockRowUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single BlockRow document */
+  upsert?: InputMaybe<BlockRowUpsertWithNestedWhereUniqueInput>;
+};
+
+export type BlockRowUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: BlockRowUpdateInput;
+  /** Unique document search */
+  where: BlockRowWhereUniqueInput;
+};
+
+export type BlockRowUpsertInput = {
+  /** Create document if it didn't exist */
+  create: BlockRowCreateInput;
+  /** Update document if it exists */
+  update: BlockRowUpdateInput;
+};
+
+export type BlockRowUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: BlockRowUpsertInput;
+  /** Unique document search */
+  where: BlockRowWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type BlockRowWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Identifies documents */
+export type BlockRowWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BlockRowWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BlockRowWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BlockRowWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values in which the union is empty. */
+  columns_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Matches if the modular component contains at least one connection to the item provided to the filter */
+  columns_some?: InputMaybe<BlockRowcolumnsUnionWhereInput>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<BlockRowWhereStageInput>;
+  documentInStages_none?: InputMaybe<BlockRowWhereStageInput>;
+  documentInStages_some?: InputMaybe<BlockRowWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  identify_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  pages_every?: InputMaybe<PageWhereInput>;
+  pages_none?: InputMaybe<PageWhereInput>;
+  pages_some?: InputMaybe<PageWhereInput>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type BlockRowWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BlockRowWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BlockRowWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BlockRowWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<BlockRowWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References BlockRow record uniquely */
+export type BlockRowWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+export type BlockRowcolumnsUnion = Column;
+
+export type BlockRowcolumnsUnionConnectInput = {
+  Column?: InputMaybe<ColumnConnectInput>;
+};
+
+export type BlockRowcolumnsUnionCreateInput = {
+  Column?: InputMaybe<ColumnCreateInput>;
+};
+
+export type BlockRowcolumnsUnionCreateManyInlineInput = {
+  /** Create and connect multiple existing BlockRowcolumnsUnion documents */
+  create?: InputMaybe<Array<BlockRowcolumnsUnionCreateInput>>;
+};
+
+export type BlockRowcolumnsUnionCreateOneInlineInput = {
+  /** Create and connect one BlockRowcolumnsUnion document */
+  create?: InputMaybe<BlockRowcolumnsUnionCreateInput>;
+};
+
+export type BlockRowcolumnsUnionCreateWithPositionInput = {
+  Column?: InputMaybe<ColumnCreateWithPositionInput>;
+};
+
+export type BlockRowcolumnsUnionUpdateInput = {
+  Column?: InputMaybe<ColumnUpdateInput>;
+};
+
+export type BlockRowcolumnsUnionUpdateManyInlineInput = {
+  /** Create and connect multiple BlockRowcolumnsUnion component instances */
+  create?: InputMaybe<Array<BlockRowcolumnsUnionCreateWithPositionInput>>;
+  /** Delete multiple BlockRowcolumnsUnion documents */
+  delete?: InputMaybe<Array<BlockRowcolumnsUnionWhereUniqueInput>>;
+  /** Update multiple BlockRowcolumnsUnion component instances */
+  update?: InputMaybe<
+    Array<BlockRowcolumnsUnionUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
+  /** Upsert multiple BlockRowcolumnsUnion component instances */
+  upsert?: InputMaybe<
+    Array<BlockRowcolumnsUnionUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
+};
+
+export type BlockRowcolumnsUnionUpdateManyWithNestedWhereInput = {
+  Column?: InputMaybe<ColumnUpdateManyWithNestedWhereInput>;
+};
+
+export type BlockRowcolumnsUnionUpdateOneInlineInput = {
+  /** Create and connect one BlockRowcolumnsUnion document */
+  create?: InputMaybe<BlockRowcolumnsUnionCreateInput>;
+  /** Delete currently connected BlockRowcolumnsUnion document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single BlockRowcolumnsUnion document */
+  update?: InputMaybe<BlockRowcolumnsUnionUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single BlockRowcolumnsUnion document */
+  upsert?: InputMaybe<BlockRowcolumnsUnionUpsertWithNestedWhereUniqueInput>;
+};
+
+export type BlockRowcolumnsUnionUpdateWithNestedWhereUniqueAndPositionInput = {
+  Column?: InputMaybe<ColumnUpdateWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type BlockRowcolumnsUnionUpdateWithNestedWhereUniqueInput = {
+  Column?: InputMaybe<ColumnUpdateWithNestedWhereUniqueInput>;
+};
+
+export type BlockRowcolumnsUnionUpsertWithNestedWhereUniqueAndPositionInput = {
+  Column?: InputMaybe<ColumnUpsertWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type BlockRowcolumnsUnionUpsertWithNestedWhereUniqueInput = {
+  Column?: InputMaybe<ColumnUpsertWithNestedWhereUniqueInput>;
+};
+
+export type BlockRowcolumnsUnionWhereInput = {
+  Column?: InputMaybe<ColumnWhereInput>;
+};
+
+export type BlockRowcolumnsUnionWhereUniqueInput = {
+  Column?: InputMaybe<ColumnWhereUniqueInput>;
+};
+
 export type BraintreeCcVaultInput = {
   device_data?: InputMaybe<Scalars["String"]["input"]>;
   public_hash: Scalars["String"]["input"];
@@ -3478,6 +4038,519 @@ export type ColorSwatchData = SwatchDataInterface & {
   __typename: "ColorSwatchData";
   /** The value can be represented as color (HEX code), image link, or text. */
   value?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type Column = Entity & {
+  __typename: "Column";
+  content?: Maybe<ColumncontentUnion>;
+  desktopPosition?: Maybe<Scalars["Int"]["output"]>;
+  /** The unique identifier */
+  id: Scalars["ID"]["output"];
+  identify?: Maybe<Scalars["String"]["output"]>;
+  mobilePosition?: Maybe<Scalars["Int"]["output"]>;
+  /** System stage field */
+  stage: Stage;
+};
+
+export type ColumnContentArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type ColumnConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: ColumnWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type ColumnConnection = {
+  __typename: "ColumnConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<ColumnEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type ColumnCreateInput = {
+  content?: InputMaybe<ColumncontentUnionCreateOneInlineInput>;
+  desktopPosition?: InputMaybe<Scalars["Int"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  mobilePosition?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export type ColumnCreateManyInlineInput = {
+  /** Create and connect multiple existing Column documents */
+  create?: InputMaybe<Array<ColumnCreateInput>>;
+};
+
+export type ColumnCreateOneInlineInput = {
+  /** Create and connect one Column document */
+  create?: InputMaybe<ColumnCreateInput>;
+};
+
+export type ColumnCreateWithPositionInput = {
+  /** Document to create */
+  data: ColumnCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type ColumnEdge = {
+  __typename: "ColumnEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: Column;
+};
+
+/** Identifies documents */
+export type ColumnManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ColumnWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ColumnWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ColumnWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values in which the modular component is connected to the given models */
+  content?: InputMaybe<ColumncontentUnionWhereInput>;
+  /** All values in which the union is empty. */
+  content_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
+  desktopPosition?: InputMaybe<Scalars["Int"]["input"]>;
+  /** All values greater than the given value. */
+  desktopPosition_gt?: InputMaybe<Scalars["Int"]["input"]>;
+  /** All values greater than or equal the given value. */
+  desktopPosition_gte?: InputMaybe<Scalars["Int"]["input"]>;
+  /** All values that are contained in given list. */
+  desktopPosition_in?: InputMaybe<Array<InputMaybe<Scalars["Int"]["input"]>>>;
+  /** All values less than the given value. */
+  desktopPosition_lt?: InputMaybe<Scalars["Int"]["input"]>;
+  /** All values less than or equal the given value. */
+  desktopPosition_lte?: InputMaybe<Scalars["Int"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  desktopPosition_not?: InputMaybe<Scalars["Int"]["input"]>;
+  /** All values that are not contained in given list. */
+  desktopPosition_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["Int"]["input"]>>
+  >;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  identify_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  mobilePosition?: InputMaybe<Scalars["Int"]["input"]>;
+  /** All values greater than the given value. */
+  mobilePosition_gt?: InputMaybe<Scalars["Int"]["input"]>;
+  /** All values greater than or equal the given value. */
+  mobilePosition_gte?: InputMaybe<Scalars["Int"]["input"]>;
+  /** All values that are contained in given list. */
+  mobilePosition_in?: InputMaybe<Array<InputMaybe<Scalars["Int"]["input"]>>>;
+  /** All values less than the given value. */
+  mobilePosition_lt?: InputMaybe<Scalars["Int"]["input"]>;
+  /** All values less than or equal the given value. */
+  mobilePosition_lte?: InputMaybe<Scalars["Int"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  mobilePosition_not?: InputMaybe<Scalars["Int"]["input"]>;
+  /** All values that are not contained in given list. */
+  mobilePosition_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["Int"]["input"]>>
+  >;
+};
+
+export enum ColumnOrderByInput {
+  DesktopPositionAsc = "desktopPosition_ASC",
+  DesktopPositionDesc = "desktopPosition_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  IdentifyAsc = "identify_ASC",
+  IdentifyDesc = "identify_DESC",
+  MobilePositionAsc = "mobilePosition_ASC",
+  MobilePositionDesc = "mobilePosition_DESC",
+}
+
+export type ColumnParent = BlockRow;
+
+export type ColumnParentConnectInput = {
+  BlockRow?: InputMaybe<BlockRowConnectInput>;
+};
+
+export type ColumnParentCreateInput = {
+  BlockRow?: InputMaybe<BlockRowCreateInput>;
+};
+
+export type ColumnParentCreateManyInlineInput = {
+  /** Connect multiple existing ColumnParent documents */
+  connect?: InputMaybe<Array<ColumnParentWhereUniqueInput>>;
+  /** Create and connect multiple existing ColumnParent documents */
+  create?: InputMaybe<Array<ColumnParentCreateInput>>;
+};
+
+export type ColumnParentCreateOneInlineInput = {
+  /** Connect one existing ColumnParent document */
+  connect?: InputMaybe<ColumnParentWhereUniqueInput>;
+  /** Create and connect one ColumnParent document */
+  create?: InputMaybe<ColumnParentCreateInput>;
+};
+
+export type ColumnParentUpdateInput = {
+  BlockRow?: InputMaybe<BlockRowUpdateInput>;
+};
+
+export type ColumnParentUpdateManyInlineInput = {
+  /** Connect multiple existing ColumnParent documents */
+  connect?: InputMaybe<Array<ColumnParentConnectInput>>;
+  /** Create and connect multiple ColumnParent documents */
+  create?: InputMaybe<Array<ColumnParentCreateInput>>;
+  /** Delete multiple ColumnParent documents */
+  delete?: InputMaybe<Array<ColumnParentWhereUniqueInput>>;
+  /** Disconnect multiple ColumnParent documents */
+  disconnect?: InputMaybe<Array<ColumnParentWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing ColumnParent documents */
+  set?: InputMaybe<Array<ColumnParentWhereUniqueInput>>;
+  /** Update multiple ColumnParent documents */
+  update?: InputMaybe<Array<ColumnParentUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple ColumnParent documents */
+  upsert?: InputMaybe<Array<ColumnParentUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type ColumnParentUpdateManyWithNestedWhereInput = {
+  BlockRow?: InputMaybe<BlockRowUpdateManyWithNestedWhereInput>;
+};
+
+export type ColumnParentUpdateOneInlineInput = {
+  /** Connect existing ColumnParent document */
+  connect?: InputMaybe<ColumnParentWhereUniqueInput>;
+  /** Create and connect one ColumnParent document */
+  create?: InputMaybe<ColumnParentCreateInput>;
+  /** Delete currently connected ColumnParent document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected ColumnParent document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single ColumnParent document */
+  update?: InputMaybe<ColumnParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single ColumnParent document */
+  upsert?: InputMaybe<ColumnParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ColumnParentUpdateWithNestedWhereUniqueInput = {
+  BlockRow?: InputMaybe<BlockRowUpdateWithNestedWhereUniqueInput>;
+};
+
+export type ColumnParentUpsertWithNestedWhereUniqueInput = {
+  BlockRow?: InputMaybe<BlockRowUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ColumnParentWhereInput = {
+  BlockRow?: InputMaybe<BlockRowWhereInput>;
+};
+
+export type ColumnParentWhereUniqueInput = {
+  BlockRow?: InputMaybe<BlockRowWhereUniqueInput>;
+};
+
+export type ColumnUpdateInput = {
+  content?: InputMaybe<ColumncontentUnionUpdateOneInlineInput>;
+  desktopPosition?: InputMaybe<Scalars["Int"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  mobilePosition?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export type ColumnUpdateManyInlineInput = {
+  /** Create and connect multiple Column component instances */
+  create?: InputMaybe<Array<ColumnCreateWithPositionInput>>;
+  /** Delete multiple Column documents */
+  delete?: InputMaybe<Array<ColumnWhereUniqueInput>>;
+  /** Update multiple Column component instances */
+  update?: InputMaybe<Array<ColumnUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple Column component instances */
+  upsert?: InputMaybe<Array<ColumnUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type ColumnUpdateManyInput = {
+  desktopPosition?: InputMaybe<Scalars["Int"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  mobilePosition?: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export type ColumnUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: ColumnUpdateManyInput;
+  /** Document search */
+  where: ColumnWhereInput;
+};
+
+export type ColumnUpdateOneInlineInput = {
+  /** Create and connect one Column document */
+  create?: InputMaybe<ColumnCreateInput>;
+  /** Delete currently connected Column document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single Column document */
+  update?: InputMaybe<ColumnUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Column document */
+  upsert?: InputMaybe<ColumnUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ColumnUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<ColumnUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: ColumnWhereUniqueInput;
+};
+
+export type ColumnUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: ColumnUpdateInput;
+  /** Unique document search */
+  where: ColumnWhereUniqueInput;
+};
+
+export type ColumnUpsertInput = {
+  /** Create document if it didn't exist */
+  create: ColumnCreateInput;
+  /** Update document if it exists */
+  update: ColumnUpdateInput;
+};
+
+export type ColumnUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<ColumnUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: ColumnWhereUniqueInput;
+};
+
+export type ColumnUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: ColumnUpsertInput;
+  /** Unique document search */
+  where: ColumnWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type ColumnWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ColumnWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ColumnWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ColumnWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values in which the modular component is connected to the given models */
+  content?: InputMaybe<ColumncontentUnionWhereInput>;
+  /** All values in which the union is empty. */
+  content_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
+  desktopPosition?: InputMaybe<Scalars["Int"]["input"]>;
+  /** All values greater than the given value. */
+  desktopPosition_gt?: InputMaybe<Scalars["Int"]["input"]>;
+  /** All values greater than or equal the given value. */
+  desktopPosition_gte?: InputMaybe<Scalars["Int"]["input"]>;
+  /** All values that are contained in given list. */
+  desktopPosition_in?: InputMaybe<Array<InputMaybe<Scalars["Int"]["input"]>>>;
+  /** All values less than the given value. */
+  desktopPosition_lt?: InputMaybe<Scalars["Int"]["input"]>;
+  /** All values less than or equal the given value. */
+  desktopPosition_lte?: InputMaybe<Scalars["Int"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  desktopPosition_not?: InputMaybe<Scalars["Int"]["input"]>;
+  /** All values that are not contained in given list. */
+  desktopPosition_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["Int"]["input"]>>
+  >;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  identify_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  mobilePosition?: InputMaybe<Scalars["Int"]["input"]>;
+  /** All values greater than the given value. */
+  mobilePosition_gt?: InputMaybe<Scalars["Int"]["input"]>;
+  /** All values greater than or equal the given value. */
+  mobilePosition_gte?: InputMaybe<Scalars["Int"]["input"]>;
+  /** All values that are contained in given list. */
+  mobilePosition_in?: InputMaybe<Array<InputMaybe<Scalars["Int"]["input"]>>>;
+  /** All values less than the given value. */
+  mobilePosition_lt?: InputMaybe<Scalars["Int"]["input"]>;
+  /** All values less than or equal the given value. */
+  mobilePosition_lte?: InputMaybe<Scalars["Int"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  mobilePosition_not?: InputMaybe<Scalars["Int"]["input"]>;
+  /** All values that are not contained in given list. */
+  mobilePosition_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["Int"]["input"]>>
+  >;
+};
+
+/** References Column record uniquely */
+export type ColumnWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+export type ColumncontentUnion = ImageLink | TextBlock;
+
+export type ColumncontentUnionConnectInput = {
+  ImageLink?: InputMaybe<ImageLinkConnectInput>;
+  TextBlock?: InputMaybe<TextBlockConnectInput>;
+};
+
+export type ColumncontentUnionCreateInput = {
+  ImageLink?: InputMaybe<ImageLinkCreateInput>;
+  TextBlock?: InputMaybe<TextBlockCreateInput>;
+};
+
+export type ColumncontentUnionCreateManyInlineInput = {
+  /** Create and connect multiple existing ColumncontentUnion documents */
+  create?: InputMaybe<Array<ColumncontentUnionCreateInput>>;
+};
+
+export type ColumncontentUnionCreateOneInlineInput = {
+  /** Create and connect one ColumncontentUnion document */
+  create?: InputMaybe<ColumncontentUnionCreateInput>;
+};
+
+export type ColumncontentUnionCreateWithPositionInput = {
+  ImageLink?: InputMaybe<ImageLinkCreateWithPositionInput>;
+  TextBlock?: InputMaybe<TextBlockCreateWithPositionInput>;
+};
+
+export type ColumncontentUnionUpdateInput = {
+  ImageLink?: InputMaybe<ImageLinkUpdateInput>;
+  TextBlock?: InputMaybe<TextBlockUpdateInput>;
+};
+
+export type ColumncontentUnionUpdateManyInlineInput = {
+  /** Create and connect multiple ColumncontentUnion component instances */
+  create?: InputMaybe<Array<ColumncontentUnionCreateWithPositionInput>>;
+  /** Delete multiple ColumncontentUnion documents */
+  delete?: InputMaybe<Array<ColumncontentUnionWhereUniqueInput>>;
+  /** Update multiple ColumncontentUnion component instances */
+  update?: InputMaybe<
+    Array<ColumncontentUnionUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
+  /** Upsert multiple ColumncontentUnion component instances */
+  upsert?: InputMaybe<
+    Array<ColumncontentUnionUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
+};
+
+export type ColumncontentUnionUpdateManyWithNestedWhereInput = {
+  ImageLink?: InputMaybe<ImageLinkUpdateManyWithNestedWhereInput>;
+  TextBlock?: InputMaybe<TextBlockUpdateManyWithNestedWhereInput>;
+};
+
+export type ColumncontentUnionUpdateOneInlineInput = {
+  /** Create and connect one ColumncontentUnion document */
+  create?: InputMaybe<ColumncontentUnionCreateInput>;
+  /** Delete currently connected ColumncontentUnion document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single ColumncontentUnion document */
+  update?: InputMaybe<ColumncontentUnionUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single ColumncontentUnion document */
+  upsert?: InputMaybe<ColumncontentUnionUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ColumncontentUnionUpdateWithNestedWhereUniqueAndPositionInput = {
+  ImageLink?: InputMaybe<ImageLinkUpdateWithNestedWhereUniqueAndPositionInput>;
+  TextBlock?: InputMaybe<TextBlockUpdateWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type ColumncontentUnionUpdateWithNestedWhereUniqueInput = {
+  ImageLink?: InputMaybe<ImageLinkUpdateWithNestedWhereUniqueInput>;
+  TextBlock?: InputMaybe<TextBlockUpdateWithNestedWhereUniqueInput>;
+};
+
+export type ColumncontentUnionUpsertWithNestedWhereUniqueAndPositionInput = {
+  ImageLink?: InputMaybe<ImageLinkUpsertWithNestedWhereUniqueAndPositionInput>;
+  TextBlock?: InputMaybe<TextBlockUpsertWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type ColumncontentUnionUpsertWithNestedWhereUniqueInput = {
+  ImageLink?: InputMaybe<ImageLinkUpsertWithNestedWhereUniqueInput>;
+  TextBlock?: InputMaybe<TextBlockUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ColumncontentUnionWhereInput = {
+  ImageLink?: InputMaybe<ImageLinkWhereInput>;
+  TextBlock?: InputMaybe<TextBlockWhereInput>;
+};
+
+export type ColumncontentUnionWhereUniqueInput = {
+  ImageLink?: InputMaybe<ImageLinkWhereUniqueInput>;
+  TextBlock?: InputMaybe<TextBlockWhereUniqueInput>;
 };
 
 /** Contains an attribute code that is used for product comparisons. */
@@ -7025,6 +8098,8 @@ export enum EntityTypeName {
   /** Asset system model */
   Asset = "Asset",
   Banner = "Banner",
+  BlockRow = "BlockRow",
+  Column = "Column",
   DynamicHeader = "DynamicHeader",
   ImageLink = "ImageLink",
   Link = "Link",
@@ -7042,6 +8117,7 @@ export enum EntityTypeName {
   /** Scheduled Release system model */
   ScheduledRelease = "ScheduledRelease",
   StaticPageConfiguration = "StaticPageConfiguration",
+  TextBlock = "TextBlock",
   /** User system model */
   User = "User",
 }
@@ -8591,13 +9667,15 @@ export enum ImageLinkOrderByInput {
   UrlDesc = "url_DESC",
 }
 
-export type ImageLinkParent = MegaMenuDropdown;
+export type ImageLinkParent = Column | MegaMenuDropdown;
 
 export type ImageLinkParentConnectInput = {
+  Column?: InputMaybe<ColumnConnectInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownConnectInput>;
 };
 
 export type ImageLinkParentCreateInput = {
+  Column?: InputMaybe<ColumnCreateInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownCreateInput>;
 };
 
@@ -8612,10 +9690,12 @@ export type ImageLinkParentCreateOneInlineInput = {
 };
 
 export type ImageLinkParentCreateWithPositionInput = {
+  Column?: InputMaybe<ColumnCreateWithPositionInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownCreateWithPositionInput>;
 };
 
 export type ImageLinkParentUpdateInput = {
+  Column?: InputMaybe<ColumnUpdateInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateInput>;
 };
 
@@ -8635,6 +9715,7 @@ export type ImageLinkParentUpdateManyInlineInput = {
 };
 
 export type ImageLinkParentUpdateManyWithNestedWhereInput = {
+  Column?: InputMaybe<ColumnUpdateManyWithNestedWhereInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateManyWithNestedWhereInput>;
 };
 
@@ -8650,26 +9731,32 @@ export type ImageLinkParentUpdateOneInlineInput = {
 };
 
 export type ImageLinkParentUpdateWithNestedWhereUniqueAndPositionInput = {
+  Column?: InputMaybe<ColumnUpdateWithNestedWhereUniqueAndPositionInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type ImageLinkParentUpdateWithNestedWhereUniqueInput = {
+  Column?: InputMaybe<ColumnUpdateWithNestedWhereUniqueInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateWithNestedWhereUniqueInput>;
 };
 
 export type ImageLinkParentUpsertWithNestedWhereUniqueAndPositionInput = {
+  Column?: InputMaybe<ColumnUpsertWithNestedWhereUniqueAndPositionInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpsertWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type ImageLinkParentUpsertWithNestedWhereUniqueInput = {
+  Column?: InputMaybe<ColumnUpsertWithNestedWhereUniqueInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpsertWithNestedWhereUniqueInput>;
 };
 
 export type ImageLinkParentWhereInput = {
+  Column?: InputMaybe<ColumnWhereInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownWhereInput>;
 };
 
 export type ImageLinkParentWhereUniqueInput = {
+  Column?: InputMaybe<ColumnWhereUniqueInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownWhereUniqueInput>;
 };
 
@@ -9672,18 +10759,20 @@ export enum LinkOrderByInput {
   UrlDesc = "url_DESC",
 }
 
-export type LinkParent = LinkBlock | MegaMenuDropdown | Menu;
+export type LinkParent = LinkBlock | MegaMenuDropdown | Menu | TextBlock;
 
 export type LinkParentConnectInput = {
   LinkBlock?: InputMaybe<LinkBlockConnectInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownConnectInput>;
   Menu?: InputMaybe<MenuConnectInput>;
+  TextBlock?: InputMaybe<TextBlockConnectInput>;
 };
 
 export type LinkParentCreateInput = {
   LinkBlock?: InputMaybe<LinkBlockCreateInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownCreateInput>;
   Menu?: InputMaybe<MenuCreateInput>;
+  TextBlock?: InputMaybe<TextBlockCreateInput>;
 };
 
 export type LinkParentCreateManyInlineInput = {
@@ -9704,6 +10793,7 @@ export type LinkParentUpdateInput = {
   LinkBlock?: InputMaybe<LinkBlockUpdateInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateInput>;
   Menu?: InputMaybe<MenuUpdateInput>;
+  TextBlock?: InputMaybe<TextBlockUpdateInput>;
 };
 
 export type LinkParentUpdateManyInlineInput = {
@@ -9727,6 +10817,7 @@ export type LinkParentUpdateManyWithNestedWhereInput = {
   LinkBlock?: InputMaybe<LinkBlockUpdateManyWithNestedWhereInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateManyWithNestedWhereInput>;
   Menu?: InputMaybe<MenuUpdateManyWithNestedWhereInput>;
+  TextBlock?: InputMaybe<TextBlockUpdateManyWithNestedWhereInput>;
 };
 
 export type LinkParentUpdateOneInlineInput = {
@@ -9748,24 +10839,28 @@ export type LinkParentUpdateWithNestedWhereUniqueInput = {
   LinkBlock?: InputMaybe<LinkBlockUpdateWithNestedWhereUniqueInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateWithNestedWhereUniqueInput>;
   Menu?: InputMaybe<MenuUpdateWithNestedWhereUniqueInput>;
+  TextBlock?: InputMaybe<TextBlockUpdateWithNestedWhereUniqueInput>;
 };
 
 export type LinkParentUpsertWithNestedWhereUniqueInput = {
   LinkBlock?: InputMaybe<LinkBlockUpsertWithNestedWhereUniqueInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpsertWithNestedWhereUniqueInput>;
   Menu?: InputMaybe<MenuUpsertWithNestedWhereUniqueInput>;
+  TextBlock?: InputMaybe<TextBlockUpsertWithNestedWhereUniqueInput>;
 };
 
 export type LinkParentWhereInput = {
   LinkBlock?: InputMaybe<LinkBlockWhereInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownWhereInput>;
   Menu?: InputMaybe<MenuWhereInput>;
+  TextBlock?: InputMaybe<TextBlockWhereInput>;
 };
 
 export type LinkParentWhereUniqueInput = {
   LinkBlock?: InputMaybe<LinkBlockWhereUniqueInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownWhereUniqueInput>;
   Menu?: InputMaybe<MenuWhereUniqueInput>;
+  TextBlock?: InputMaybe<TextBlockWhereUniqueInput>;
 };
 
 export type LinkUpdateInput = {
@@ -11349,13 +12444,6 @@ export type MessageStyles = {
   logo?: Maybe<MessageStyleLogo>;
 };
 
-export enum MetaRobots {
-  IndexFollow = "INDEX_FOLLOW",
-  IndexNofollow = "INDEX_NOFOLLOW",
-  NoindexFollow = "NOINDEX_FOLLOW",
-  NoindexNofollow = "NOINDEX_NOFOLLOW",
-}
-
 /** Defines a monetary value, including a numeric value and a currency code. */
 export type Money = {
   __typename: "Money";
@@ -11445,6 +12533,8 @@ export type Mutation = {
   createAsset?: Maybe<Asset>;
   /** Create one banner */
   createBanner?: Maybe<Banner>;
+  /** Create one blockRow */
+  createBlockRow?: Maybe<BlockRow>;
   /** Creates Client Token for Braintree Javascript SDK initialization. */
   createBraintreeClientToken: Scalars["String"]["output"];
   /** Creates Client Token for Braintree PayPal Javascript SDK initialization. */
@@ -11494,6 +12584,8 @@ export type Mutation = {
   deleteAsset?: Maybe<Asset>;
   /** Delete one banner from _all_ existing stages. Returns deleted document. */
   deleteBanner?: Maybe<Banner>;
+  /** Delete one blockRow from _all_ existing stages. Returns deleted document. */
+  deleteBlockRow?: Maybe<BlockRow>;
   /** Delete the specified compare list. */
   deleteCompareList?: Maybe<DeleteCompareListOutput>;
   /** Delete customer account */
@@ -11516,6 +12608,13 @@ export type Mutation = {
   deleteManyBanners: BatchPayload;
   /** Delete many Banner documents, return deleted documents */
   deleteManyBannersConnection: BannerConnection;
+  /**
+   * Delete many BlockRow documents
+   * @deprecated Please use the new paginated many mutation (deleteManyBlockRowsConnection)
+   */
+  deleteManyBlockRows: BatchPayload;
+  /** Delete many BlockRow documents, return deleted documents */
+  deleteManyBlockRowsConnection: BlockRowConnection;
   /**
    * Delete many DynamicHeader documents
    * @deprecated Please use the new paginated many mutation (deleteManyDynamicHeadersConnection)
@@ -11589,6 +12688,8 @@ export type Mutation = {
   publishAsset?: Maybe<Asset>;
   /** Publish one banner */
   publishBanner?: Maybe<Banner>;
+  /** Publish one blockRow */
+  publishBlockRow?: Maybe<BlockRow>;
   /** Publish one dynamicHeader */
   publishDynamicHeader?: Maybe<DynamicHeader>;
   /**
@@ -11605,6 +12706,13 @@ export type Mutation = {
   publishManyBanners: BatchPayload;
   /** Publish many Banner documents */
   publishManyBannersConnection: BannerConnection;
+  /**
+   * Publish many BlockRow documents
+   * @deprecated Please use the new paginated many mutation (publishManyBlockRowsConnection)
+   */
+  publishManyBlockRows: BatchPayload;
+  /** Publish many BlockRow documents */
+  publishManyBlockRowsConnection: BlockRowConnection;
   /**
    * Publish many DynamicHeader documents
    * @deprecated Please use the new paginated many mutation (publishManyDynamicHeadersConnection)
@@ -11689,6 +12797,8 @@ export type Mutation = {
   schedulePublishAsset?: Maybe<Asset>;
   /** Schedule to publish one banner */
   schedulePublishBanner?: Maybe<Banner>;
+  /** Schedule to publish one blockRow */
+  schedulePublishBlockRow?: Maybe<BlockRow>;
   /** Schedule to publish one dynamicHeader */
   schedulePublishDynamicHeader?: Maybe<DynamicHeader>;
   /** Schedule to publish one menu */
@@ -11703,6 +12813,8 @@ export type Mutation = {
   scheduleUnpublishAsset?: Maybe<Asset>;
   /** Unpublish one banner from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishBanner?: Maybe<Banner>;
+  /** Unpublish one blockRow from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishBlockRow?: Maybe<BlockRow>;
   /** Unpublish one dynamicHeader from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishDynamicHeader?: Maybe<DynamicHeader>;
   /** Unpublish one menu from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -11742,6 +12854,8 @@ export type Mutation = {
   unpublishAsset?: Maybe<Asset>;
   /** Unpublish one banner from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishBanner?: Maybe<Banner>;
+  /** Unpublish one blockRow from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishBlockRow?: Maybe<BlockRow>;
   /** Unpublish one dynamicHeader from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishDynamicHeader?: Maybe<DynamicHeader>;
   /**
@@ -11758,6 +12872,13 @@ export type Mutation = {
   unpublishManyBanners: BatchPayload;
   /** Find many Banner documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyBannersConnection: BannerConnection;
+  /**
+   * Unpublish many BlockRow documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyBlockRowsConnection)
+   */
+  unpublishManyBlockRows: BatchPayload;
+  /** Find many BlockRow documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyBlockRowsConnection: BlockRowConnection;
   /**
    * Unpublish many DynamicHeader documents
    * @deprecated Please use the new paginated many mutation (unpublishManyDynamicHeadersConnection)
@@ -11805,6 +12926,8 @@ export type Mutation = {
   updateAsset?: Maybe<Asset>;
   /** Update one banner */
   updateBanner?: Maybe<Banner>;
+  /** Update one blockRow */
+  updateBlockRow?: Maybe<BlockRow>;
   /** Modify items in the cart. */
   updateCartItems?: Maybe<UpdateCartItemsOutput>;
   updateCartItemsIsInStore?: Maybe<UpdateCartItemsIsInStoreOutput>;
@@ -11838,6 +12961,13 @@ export type Mutation = {
   updateManyBanners: BatchPayload;
   /** Update many Banner documents */
   updateManyBannersConnection: BannerConnection;
+  /**
+   * Update many blockRows
+   * @deprecated Please use the new paginated many mutation (updateManyBlockRowsConnection)
+   */
+  updateManyBlockRows: BatchPayload;
+  /** Update many BlockRow documents */
+  updateManyBlockRowsConnection: BlockRowConnection;
   /**
    * Update many dynamicHeaders
    * @deprecated Please use the new paginated many mutation (updateManyDynamicHeadersConnection)
@@ -11891,6 +13021,8 @@ export type Mutation = {
   upsertAsset?: Maybe<Asset>;
   /** Upsert one banner */
   upsertBanner?: Maybe<Banner>;
+  /** Upsert one blockRow */
+  upsertBlockRow?: Maybe<BlockRow>;
   /** Upsert one dynamicHeader */
   upsertDynamicHeader?: Maybe<DynamicHeader>;
   /** Upsert one menu */
@@ -12022,6 +13154,10 @@ export type MutationCreateBannerArgs = {
   data: BannerCreateInput;
 };
 
+export type MutationCreateBlockRowArgs = {
+  data: BlockRowCreateInput;
+};
+
 export type MutationCreateBraintreePayPalVaultClientTokenArgs = {
   input: InputMaybe<BraintreeVaultInput>;
 };
@@ -12106,6 +13242,10 @@ export type MutationDeleteBannerArgs = {
   where: BannerWhereUniqueInput;
 };
 
+export type MutationDeleteBlockRowArgs = {
+  where: BlockRowWhereUniqueInput;
+};
+
 export type MutationDeleteCompareListArgs = {
   uid: Scalars["ID"]["input"];
 };
@@ -12142,6 +13282,19 @@ export type MutationDeleteManyBannersConnectionArgs = {
   last: InputMaybe<Scalars["Int"]["input"]>;
   skip: InputMaybe<Scalars["Int"]["input"]>;
   where: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationDeleteManyBlockRowsArgs = {
+  where: InputMaybe<BlockRowManyWhereInput>;
+};
+
+export type MutationDeleteManyBlockRowsConnectionArgs = {
+  after: InputMaybe<Scalars["ID"]["input"]>;
+  before: InputMaybe<Scalars["ID"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<BlockRowManyWhereInput>;
 };
 
 export type MutationDeleteManyDynamicHeadersArgs = {
@@ -12295,6 +13448,11 @@ export type MutationPublishBannerArgs = {
   where: BannerWhereUniqueInput;
 };
 
+export type MutationPublishBlockRowArgs = {
+  to?: Array<Stage>;
+  where: BlockRowWhereUniqueInput;
+};
+
 export type MutationPublishDynamicHeaderArgs = {
   to?: Array<Stage>;
   where: DynamicHeaderWhereUniqueInput;
@@ -12336,6 +13494,22 @@ export type MutationPublishManyBannersConnectionArgs = {
   skip: InputMaybe<Scalars["Int"]["input"]>;
   to?: Array<Stage>;
   where: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationPublishManyBlockRowsArgs = {
+  to?: Array<Stage>;
+  where: InputMaybe<BlockRowManyWhereInput>;
+};
+
+export type MutationPublishManyBlockRowsConnectionArgs = {
+  after: InputMaybe<Scalars["ID"]["input"]>;
+  before: InputMaybe<Scalars["ID"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  from?: InputMaybe<Stage>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  to?: Array<Stage>;
+  where: InputMaybe<BlockRowManyWhereInput>;
 };
 
 export type MutationPublishManyDynamicHeadersArgs = {
@@ -12536,6 +13710,13 @@ export type MutationSchedulePublishBannerArgs = {
   where: BannerWhereUniqueInput;
 };
 
+export type MutationSchedulePublishBlockRowArgs = {
+  releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId: InputMaybe<Scalars["String"]["input"]>;
+  to?: Array<Stage>;
+  where: BlockRowWhereUniqueInput;
+};
+
 export type MutationSchedulePublishDynamicHeaderArgs = {
   releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
   releaseId: InputMaybe<Scalars["String"]["input"]>;
@@ -12585,6 +13766,13 @@ export type MutationScheduleUnpublishBannerArgs = {
   releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
   releaseId: InputMaybe<Scalars["String"]["input"]>;
   where: BannerWhereUniqueInput;
+};
+
+export type MutationScheduleUnpublishBlockRowArgs = {
+  from?: Array<Stage>;
+  releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId: InputMaybe<Scalars["String"]["input"]>;
+  where: BlockRowWhereUniqueInput;
 };
 
 export type MutationScheduleUnpublishDynamicHeaderArgs = {
@@ -12680,6 +13868,11 @@ export type MutationUnpublishBannerArgs = {
   where: BannerWhereUniqueInput;
 };
 
+export type MutationUnpublishBlockRowArgs = {
+  from?: Array<Stage>;
+  where: BlockRowWhereUniqueInput;
+};
+
 export type MutationUnpublishDynamicHeaderArgs = {
   from?: Array<Stage>;
   where: DynamicHeaderWhereUniqueInput;
@@ -12719,6 +13912,22 @@ export type MutationUnpublishManyBannersConnectionArgs = {
   skip: InputMaybe<Scalars["Int"]["input"]>;
   stage?: InputMaybe<Stage>;
   where: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationUnpublishManyBlockRowsArgs = {
+  from?: Array<Stage>;
+  where: InputMaybe<BlockRowManyWhereInput>;
+};
+
+export type MutationUnpublishManyBlockRowsConnectionArgs = {
+  after: InputMaybe<Scalars["ID"]["input"]>;
+  before: InputMaybe<Scalars["ID"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  from?: Array<Stage>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: InputMaybe<Stage>;
+  where: InputMaybe<BlockRowManyWhereInput>;
 };
 
 export type MutationUnpublishManyDynamicHeadersArgs = {
@@ -12831,6 +14040,11 @@ export type MutationUpdateBannerArgs = {
   where: BannerWhereUniqueInput;
 };
 
+export type MutationUpdateBlockRowArgs = {
+  data: BlockRowUpdateInput;
+  where: BlockRowWhereUniqueInput;
+};
+
 export type MutationUpdateCartItemsArgs = {
   input: InputMaybe<UpdateCartItemsInput>;
 };
@@ -12906,6 +14120,21 @@ export type MutationUpdateManyBannersConnectionArgs = {
   last: InputMaybe<Scalars["Int"]["input"]>;
   skip: InputMaybe<Scalars["Int"]["input"]>;
   where: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationUpdateManyBlockRowsArgs = {
+  data: BlockRowUpdateManyInput;
+  where: InputMaybe<BlockRowManyWhereInput>;
+};
+
+export type MutationUpdateManyBlockRowsConnectionArgs = {
+  after: InputMaybe<Scalars["ID"]["input"]>;
+  before: InputMaybe<Scalars["ID"]["input"]>;
+  data: BlockRowUpdateManyInput;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<BlockRowManyWhereInput>;
 };
 
 export type MutationUpdateManyDynamicHeadersArgs = {
@@ -13027,6 +14256,11 @@ export type MutationUpsertAssetArgs = {
 export type MutationUpsertBannerArgs = {
   upsert: BannerUpsertInput;
   where: BannerWhereUniqueInput;
+};
+
+export type MutationUpsertBlockRowArgs = {
+  upsert: BlockRowUpsertInput;
+  where: BlockRowWhereUniqueInput;
 };
 
 export type MutationUpsertDynamicHeaderArgs = {
@@ -13301,8 +14535,8 @@ export type Page = Entity &
     id: Scalars["ID"]["output"];
     identify?: Maybe<Scalars["String"]["output"]>;
     metaDescription?: Maybe<Scalars["String"]["output"]>;
-    metaRobots: MetaRobots;
     metaTitle: Scalars["String"]["output"];
+    pageType: PageType;
     /** The time the document was published. Null on documents in draft stage. */
     publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
     /** User that last published this document */
@@ -13310,7 +14544,6 @@ export type Page = Entity &
     scheduledIn: Array<ScheduledOperation>;
     /** System stage field */
     stage: Stage;
-    title: Scalars["String"]["output"];
     /** The time the document was updated */
     updatedAt: Scalars["DateTime"]["output"];
     /** User that last updated this document */
@@ -13383,15 +14616,17 @@ export type PageConnection = {
   pageInfo: PageInfo;
 };
 
-export type PageContent = Banner | ProductSlider;
+export type PageContent = Banner | BlockRow | ProductSlider;
 
 export type PageContentConnectInput = {
   Banner?: InputMaybe<BannerConnectInput>;
+  BlockRow?: InputMaybe<BlockRowConnectInput>;
   ProductSlider?: InputMaybe<ProductSliderConnectInput>;
 };
 
 export type PageContentCreateInput = {
   Banner?: InputMaybe<BannerCreateInput>;
+  BlockRow?: InputMaybe<BlockRowCreateInput>;
   ProductSlider?: InputMaybe<ProductSliderCreateInput>;
 };
 
@@ -13411,6 +14646,7 @@ export type PageContentCreateOneInlineInput = {
 
 export type PageContentUpdateInput = {
   Banner?: InputMaybe<BannerUpdateInput>;
+  BlockRow?: InputMaybe<BlockRowUpdateInput>;
   ProductSlider?: InputMaybe<ProductSliderUpdateInput>;
 };
 
@@ -13433,6 +14669,7 @@ export type PageContentUpdateManyInlineInput = {
 
 export type PageContentUpdateManyWithNestedWhereInput = {
   Banner?: InputMaybe<BannerUpdateManyWithNestedWhereInput>;
+  BlockRow?: InputMaybe<BlockRowUpdateManyWithNestedWhereInput>;
   ProductSlider?: InputMaybe<ProductSliderUpdateManyWithNestedWhereInput>;
 };
 
@@ -13453,21 +14690,25 @@ export type PageContentUpdateOneInlineInput = {
 
 export type PageContentUpdateWithNestedWhereUniqueInput = {
   Banner?: InputMaybe<BannerUpdateWithNestedWhereUniqueInput>;
+  BlockRow?: InputMaybe<BlockRowUpdateWithNestedWhereUniqueInput>;
   ProductSlider?: InputMaybe<ProductSliderUpdateWithNestedWhereUniqueInput>;
 };
 
 export type PageContentUpsertWithNestedWhereUniqueInput = {
   Banner?: InputMaybe<BannerUpsertWithNestedWhereUniqueInput>;
+  BlockRow?: InputMaybe<BlockRowUpsertWithNestedWhereUniqueInput>;
   ProductSlider?: InputMaybe<ProductSliderUpsertWithNestedWhereUniqueInput>;
 };
 
 export type PageContentWhereInput = {
   Banner?: InputMaybe<BannerWhereInput>;
+  BlockRow?: InputMaybe<BlockRowWhereInput>;
   ProductSlider?: InputMaybe<ProductSliderWhereInput>;
 };
 
 export type PageContentWhereUniqueInput = {
   Banner?: InputMaybe<BannerWhereUniqueInput>;
+  BlockRow?: InputMaybe<BlockRowWhereUniqueInput>;
   ProductSlider?: InputMaybe<ProductSliderWhereUniqueInput>;
 };
 
@@ -13476,9 +14717,8 @@ export type PageCreateInput = {
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   identify?: InputMaybe<Scalars["String"]["input"]>;
   metaDescription?: InputMaybe<Scalars["String"]["input"]>;
-  metaRobots: MetaRobots;
   metaTitle: Scalars["String"]["input"];
-  title: Scalars["String"]["input"];
+  pageType: PageType;
   updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   url: Scalars["String"]["input"];
 };
@@ -13617,13 +14857,6 @@ export type PageManyWhereInput = {
   metaDescription_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   /** All values starting with the given string. */
   metaDescription_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  metaRobots?: InputMaybe<MetaRobots>;
-  /** All values that are contained in given list. */
-  metaRobots_in?: InputMaybe<Array<InputMaybe<MetaRobots>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  metaRobots_not?: InputMaybe<MetaRobots>;
-  /** All values that are not contained in given list. */
-  metaRobots_not_in?: InputMaybe<Array<InputMaybe<MetaRobots>>>;
   metaTitle?: InputMaybe<Scalars["String"]["input"]>;
   /** All values containing the given string. */
   metaTitle_contains?: InputMaybe<Scalars["String"]["input"]>;
@@ -13643,6 +14876,13 @@ export type PageManyWhereInput = {
   metaTitle_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   /** All values starting with the given string. */
   metaTitle_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  pageType?: InputMaybe<PageType>;
+  /** All values that are contained in given list. */
+  pageType_in?: InputMaybe<Array<InputMaybe<PageType>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  pageType_not?: InputMaybe<PageType>;
+  /** All values that are not contained in given list. */
+  pageType_not_in?: InputMaybe<Array<InputMaybe<PageType>>>;
   publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
@@ -13664,25 +14904,6 @@ export type PageManyWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
-  title?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values containing the given string. */
-  title_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values ending with the given string. */
-  title_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are contained in given list. */
-  title_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  title_not?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not containing the given string. */
-  title_not_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not ending with the given string */
-  title_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are not contained in given list. */
-  title_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** All values not starting with the given string. */
-  title_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values starting with the given string. */
-  title_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
@@ -13731,27 +14952,31 @@ export enum PageOrderByInput {
   IdentifyDesc = "identify_DESC",
   MetaDescriptionAsc = "metaDescription_ASC",
   MetaDescriptionDesc = "metaDescription_DESC",
-  MetaRobotsAsc = "metaRobots_ASC",
-  MetaRobotsDesc = "metaRobots_DESC",
   MetaTitleAsc = "metaTitle_ASC",
   MetaTitleDesc = "metaTitle_DESC",
+  PageTypeAsc = "pageType_ASC",
+  PageTypeDesc = "pageType_DESC",
   PublishedAtAsc = "publishedAt_ASC",
   PublishedAtDesc = "publishedAt_DESC",
-  TitleAsc = "title_ASC",
-  TitleDesc = "title_DESC",
   UpdatedAtAsc = "updatedAt_ASC",
   UpdatedAtDesc = "updatedAt_DESC",
   UrlAsc = "url_ASC",
   UrlDesc = "url_DESC",
 }
 
+export enum PageType {
+  Blog = "blog",
+  Campaign = "campaign",
+  Inspiration = "inspiration",
+  Landing = "landing",
+}
+
 export type PageUpdateInput = {
   content?: InputMaybe<PageContentUpdateManyInlineInput>;
   identify?: InputMaybe<Scalars["String"]["input"]>;
   metaDescription?: InputMaybe<Scalars["String"]["input"]>;
-  metaRobots?: InputMaybe<MetaRobots>;
   metaTitle?: InputMaybe<Scalars["String"]["input"]>;
-  title?: InputMaybe<Scalars["String"]["input"]>;
+  pageType?: InputMaybe<PageType>;
   url?: InputMaybe<Scalars["String"]["input"]>;
 };
 
@@ -13775,9 +15000,8 @@ export type PageUpdateManyInlineInput = {
 export type PageUpdateManyInput = {
   identify?: InputMaybe<Scalars["String"]["input"]>;
   metaDescription?: InputMaybe<Scalars["String"]["input"]>;
-  metaRobots?: InputMaybe<MetaRobots>;
   metaTitle?: InputMaybe<Scalars["String"]["input"]>;
-  title?: InputMaybe<Scalars["String"]["input"]>;
+  pageType?: InputMaybe<PageType>;
   url?: InputMaybe<Scalars["String"]["input"]>;
 };
 
@@ -13926,13 +15150,6 @@ export type PageWhereInput = {
   metaDescription_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   /** All values starting with the given string. */
   metaDescription_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  metaRobots?: InputMaybe<MetaRobots>;
-  /** All values that are contained in given list. */
-  metaRobots_in?: InputMaybe<Array<InputMaybe<MetaRobots>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  metaRobots_not?: InputMaybe<MetaRobots>;
-  /** All values that are not contained in given list. */
-  metaRobots_not_in?: InputMaybe<Array<InputMaybe<MetaRobots>>>;
   metaTitle?: InputMaybe<Scalars["String"]["input"]>;
   /** All values containing the given string. */
   metaTitle_contains?: InputMaybe<Scalars["String"]["input"]>;
@@ -13952,6 +15169,13 @@ export type PageWhereInput = {
   metaTitle_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   /** All values starting with the given string. */
   metaTitle_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  pageType?: InputMaybe<PageType>;
+  /** All values that are contained in given list. */
+  pageType_in?: InputMaybe<Array<InputMaybe<PageType>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  pageType_not?: InputMaybe<PageType>;
+  /** All values that are not contained in given list. */
+  pageType_not_in?: InputMaybe<Array<InputMaybe<PageType>>>;
   publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
@@ -13973,25 +15197,6 @@ export type PageWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
-  title?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values containing the given string. */
-  title_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values ending with the given string. */
-  title_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are contained in given list. */
-  title_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  title_not?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not containing the given string. */
-  title_not_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not ending with the given string */
-  title_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are not contained in given list. */
-  title_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** All values not starting with the given string. */
-  title_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values starting with the given string. */
-  title_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
@@ -15162,6 +16367,7 @@ export type ProductSlider = Entity &
     history: Array<Version>;
     /** The unique identifier */
     id: Scalars["ID"]["output"];
+    identify: Scalars["String"]["output"];
     pages: Array<Page>;
     /** The time the document was published. Null on documents in draft stage. */
     publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
@@ -15247,6 +16453,7 @@ export type ProductSliderConnection = {
 export type ProductSliderCreateInput = {
   categoryId?: InputMaybe<Scalars["String"]["input"]>;
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  identify: Scalars["String"]["input"];
   pages?: InputMaybe<PageCreateManyInlineInput>;
   title: Scalars["String"]["input"];
   type: ProductSliderType;
@@ -15345,6 +16552,25 @@ export type ProductSliderManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  identify_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   pages_every?: InputMaybe<PageWhereInput>;
   pages_none?: InputMaybe<PageWhereInput>;
   pages_some?: InputMaybe<PageWhereInput>;
@@ -15422,6 +16648,8 @@ export enum ProductSliderOrderByInput {
   CreatedAtDesc = "createdAt_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
+  IdentifyAsc = "identify_ASC",
+  IdentifyDesc = "identify_DESC",
   PublishedAtAsc = "publishedAt_ASC",
   PublishedAtDesc = "publishedAt_DESC",
   TitleAsc = "title_ASC",
@@ -15438,6 +16666,7 @@ export enum ProductSliderType {
 
 export type ProductSliderUpdateInput = {
   categoryId?: InputMaybe<Scalars["String"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
   pages?: InputMaybe<PageUpdateManyInlineInput>;
   title?: InputMaybe<Scalars["String"]["input"]>;
   type?: InputMaybe<ProductSliderType>;
@@ -15462,6 +16691,7 @@ export type ProductSliderUpdateManyInlineInput = {
 
 export type ProductSliderUpdateManyInput = {
   categoryId?: InputMaybe<Scalars["String"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
   title?: InputMaybe<Scalars["String"]["input"]>;
   type?: InputMaybe<ProductSliderType>;
 };
@@ -15584,6 +16814,25 @@ export type ProductSliderWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  identify_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   pages_every?: InputMaybe<PageWhereInput>;
   pages_none?: InputMaybe<PageWhereInput>;
   pages_some?: InputMaybe<PageWhereInput>;
@@ -15857,6 +17106,14 @@ export type Query = {
   bannersConnection: BannerConnection;
   /** Get best selling products by category */
   bestSellingProductsByCategory?: Maybe<Array<Maybe<ProductInterface>>>;
+  /** Retrieve a single blockRow */
+  blockRow?: Maybe<BlockRow>;
+  /** Retrieve document version */
+  blockRowVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple blockRows */
+  blockRows: Array<BlockRow>;
+  /** Retrieve multiple blockRows using the Relay connection interface */
+  blockRowsConnection: BlockRowConnection;
   /** Return information about the specified shopping cart. */
   cart?: Maybe<Cart>;
   /** Return a list of categories that match the specified filter. */
@@ -16117,6 +17374,40 @@ export type QueryBannersConnectionArgs = {
 
 export type QueryBestSellingProductsByCategoryArgs = {
   categoryId: Scalars["Int"]["input"];
+};
+
+export type QueryBlockRowArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: BlockRowWhereUniqueInput;
+};
+
+export type QueryBlockRowVersionArgs = {
+  where: VersionWhereInput;
+};
+
+export type QueryBlockRowsArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy: InputMaybe<BlockRowOrderByInput>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where: InputMaybe<BlockRowWhereInput>;
+};
+
+export type QueryBlockRowsConnectionArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy: InputMaybe<BlockRowOrderByInput>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where: InputMaybe<BlockRowWhereInput>;
 };
 
 export type QueryCartArgs = {
@@ -18037,6 +19328,7 @@ export type ScheduledOperationUpdatedByArgs = {
 export type ScheduledOperationAffectedDocument =
   | Asset
   | Banner
+  | BlockRow
   | DynamicHeader
   | Menu
   | Page
@@ -21288,6 +22580,507 @@ export enum TaxWrappingEnum {
   DisplayIncludingTax = "DISPLAY_INCLUDING_TAX",
   DisplayTypeBoth = "DISPLAY_TYPE_BOTH",
 }
+
+export type TextBlock = Entity & {
+  __typename: "TextBlock";
+  content?: Maybe<RichText>;
+  /** The unique identifier */
+  id: Scalars["ID"]["output"];
+  identify: Scalars["String"]["output"];
+  links: Array<TextBlocklinksUnion>;
+  /** System stage field */
+  stage: Stage;
+  textAlign?: Maybe<Position>;
+  title?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type TextBlockLinksArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export type TextBlockConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: TextBlockWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type TextBlockConnection = {
+  __typename: "TextBlockConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<TextBlockEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type TextBlockCreateInput = {
+  content?: InputMaybe<Scalars["RichTextAST"]["input"]>;
+  identify: Scalars["String"]["input"];
+  links?: InputMaybe<TextBlocklinksUnionCreateManyInlineInput>;
+  textAlign?: InputMaybe<Position>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type TextBlockCreateManyInlineInput = {
+  /** Create and connect multiple existing TextBlock documents */
+  create?: InputMaybe<Array<TextBlockCreateInput>>;
+};
+
+export type TextBlockCreateOneInlineInput = {
+  /** Create and connect one TextBlock document */
+  create?: InputMaybe<TextBlockCreateInput>;
+};
+
+export type TextBlockCreateWithPositionInput = {
+  /** Document to create */
+  data: TextBlockCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type TextBlockEdge = {
+  __typename: "TextBlockEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: TextBlock;
+};
+
+/** Identifies documents */
+export type TextBlockManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<TextBlockWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<TextBlockWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<TextBlockWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  identify_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values in which the union is empty. */
+  links_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Matches if the modular component contains at least one connection to the item provided to the filter */
+  links_some?: InputMaybe<TextBlocklinksUnionWhereInput>;
+  textAlign?: InputMaybe<Position>;
+  /** All values that are contained in given list. */
+  textAlign_in?: InputMaybe<Array<InputMaybe<Position>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  textAlign_not?: InputMaybe<Position>;
+  /** All values that are not contained in given list. */
+  textAlign_not_in?: InputMaybe<Array<InputMaybe<Position>>>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  title_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export enum TextBlockOrderByInput {
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  IdentifyAsc = "identify_ASC",
+  IdentifyDesc = "identify_DESC",
+  TextAlignAsc = "textAlign_ASC",
+  TextAlignDesc = "textAlign_DESC",
+  TitleAsc = "title_ASC",
+  TitleDesc = "title_DESC",
+}
+
+export type TextBlockParent = Column;
+
+export type TextBlockParentConnectInput = {
+  Column?: InputMaybe<ColumnConnectInput>;
+};
+
+export type TextBlockParentCreateInput = {
+  Column?: InputMaybe<ColumnCreateInput>;
+};
+
+export type TextBlockParentCreateManyInlineInput = {
+  /** Create and connect multiple existing TextBlockParent documents */
+  create?: InputMaybe<Array<TextBlockParentCreateInput>>;
+};
+
+export type TextBlockParentCreateOneInlineInput = {
+  /** Create and connect one TextBlockParent document */
+  create?: InputMaybe<TextBlockParentCreateInput>;
+};
+
+export type TextBlockParentCreateWithPositionInput = {
+  Column?: InputMaybe<ColumnCreateWithPositionInput>;
+};
+
+export type TextBlockParentUpdateInput = {
+  Column?: InputMaybe<ColumnUpdateInput>;
+};
+
+export type TextBlockParentUpdateManyInlineInput = {
+  /** Create and connect multiple TextBlockParent component instances */
+  create?: InputMaybe<Array<TextBlockParentCreateWithPositionInput>>;
+  /** Delete multiple TextBlockParent documents */
+  delete?: InputMaybe<Array<TextBlockParentWhereUniqueInput>>;
+  /** Update multiple TextBlockParent component instances */
+  update?: InputMaybe<
+    Array<TextBlockParentUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
+  /** Upsert multiple TextBlockParent component instances */
+  upsert?: InputMaybe<
+    Array<TextBlockParentUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
+};
+
+export type TextBlockParentUpdateManyWithNestedWhereInput = {
+  Column?: InputMaybe<ColumnUpdateManyWithNestedWhereInput>;
+};
+
+export type TextBlockParentUpdateOneInlineInput = {
+  /** Create and connect one TextBlockParent document */
+  create?: InputMaybe<TextBlockParentCreateInput>;
+  /** Delete currently connected TextBlockParent document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single TextBlockParent document */
+  update?: InputMaybe<TextBlockParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single TextBlockParent document */
+  upsert?: InputMaybe<TextBlockParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type TextBlockParentUpdateWithNestedWhereUniqueAndPositionInput = {
+  Column?: InputMaybe<ColumnUpdateWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type TextBlockParentUpdateWithNestedWhereUniqueInput = {
+  Column?: InputMaybe<ColumnUpdateWithNestedWhereUniqueInput>;
+};
+
+export type TextBlockParentUpsertWithNestedWhereUniqueAndPositionInput = {
+  Column?: InputMaybe<ColumnUpsertWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type TextBlockParentUpsertWithNestedWhereUniqueInput = {
+  Column?: InputMaybe<ColumnUpsertWithNestedWhereUniqueInput>;
+};
+
+export type TextBlockParentWhereInput = {
+  Column?: InputMaybe<ColumnWhereInput>;
+};
+
+export type TextBlockParentWhereUniqueInput = {
+  Column?: InputMaybe<ColumnWhereUniqueInput>;
+};
+
+export type TextBlockUpdateInput = {
+  content?: InputMaybe<Scalars["RichTextAST"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  links?: InputMaybe<TextBlocklinksUnionUpdateManyInlineInput>;
+  textAlign?: InputMaybe<Position>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type TextBlockUpdateManyInlineInput = {
+  /** Create and connect multiple TextBlock component instances */
+  create?: InputMaybe<Array<TextBlockCreateWithPositionInput>>;
+  /** Delete multiple TextBlock documents */
+  delete?: InputMaybe<Array<TextBlockWhereUniqueInput>>;
+  /** Update multiple TextBlock component instances */
+  update?: InputMaybe<
+    Array<TextBlockUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
+  /** Upsert multiple TextBlock component instances */
+  upsert?: InputMaybe<
+    Array<TextBlockUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
+};
+
+export type TextBlockUpdateManyInput = {
+  content?: InputMaybe<Scalars["RichTextAST"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  textAlign?: InputMaybe<Position>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type TextBlockUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: TextBlockUpdateManyInput;
+  /** Document search */
+  where: TextBlockWhereInput;
+};
+
+export type TextBlockUpdateOneInlineInput = {
+  /** Create and connect one TextBlock document */
+  create?: InputMaybe<TextBlockCreateInput>;
+  /** Delete currently connected TextBlock document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single TextBlock document */
+  update?: InputMaybe<TextBlockUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single TextBlock document */
+  upsert?: InputMaybe<TextBlockUpsertWithNestedWhereUniqueInput>;
+};
+
+export type TextBlockUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<TextBlockUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: TextBlockWhereUniqueInput;
+};
+
+export type TextBlockUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: TextBlockUpdateInput;
+  /** Unique document search */
+  where: TextBlockWhereUniqueInput;
+};
+
+export type TextBlockUpsertInput = {
+  /** Create document if it didn't exist */
+  create: TextBlockCreateInput;
+  /** Update document if it exists */
+  update: TextBlockUpdateInput;
+};
+
+export type TextBlockUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<TextBlockUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: TextBlockWhereUniqueInput;
+};
+
+export type TextBlockUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: TextBlockUpsertInput;
+  /** Unique document search */
+  where: TextBlockWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type TextBlockWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<TextBlockWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<TextBlockWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<TextBlockWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  identify_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values in which the union is empty. */
+  links_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Matches if the modular component contains at least one connection to the item provided to the filter */
+  links_some?: InputMaybe<TextBlocklinksUnionWhereInput>;
+  textAlign?: InputMaybe<Position>;
+  /** All values that are contained in given list. */
+  textAlign_in?: InputMaybe<Array<InputMaybe<Position>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  textAlign_not?: InputMaybe<Position>;
+  /** All values that are not contained in given list. */
+  textAlign_not_in?: InputMaybe<Array<InputMaybe<Position>>>;
+  title?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  title_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** References TextBlock record uniquely */
+export type TextBlockWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+export type TextBlocklinksUnion = Link;
+
+export type TextBlocklinksUnionConnectInput = {
+  Link?: InputMaybe<LinkConnectInput>;
+};
+
+export type TextBlocklinksUnionCreateInput = {
+  Link?: InputMaybe<LinkCreateInput>;
+};
+
+export type TextBlocklinksUnionCreateManyInlineInput = {
+  /** Create and connect multiple existing TextBlocklinksUnion documents */
+  create?: InputMaybe<Array<TextBlocklinksUnionCreateInput>>;
+};
+
+export type TextBlocklinksUnionCreateOneInlineInput = {
+  /** Create and connect one TextBlocklinksUnion document */
+  create?: InputMaybe<TextBlocklinksUnionCreateInput>;
+};
+
+export type TextBlocklinksUnionCreateWithPositionInput = {
+  Link?: InputMaybe<LinkCreateWithPositionInput>;
+};
+
+export type TextBlocklinksUnionUpdateInput = {
+  Link?: InputMaybe<LinkUpdateInput>;
+};
+
+export type TextBlocklinksUnionUpdateManyInlineInput = {
+  /** Create and connect multiple TextBlocklinksUnion component instances */
+  create?: InputMaybe<Array<TextBlocklinksUnionCreateWithPositionInput>>;
+  /** Delete multiple TextBlocklinksUnion documents */
+  delete?: InputMaybe<Array<TextBlocklinksUnionWhereUniqueInput>>;
+  /** Update multiple TextBlocklinksUnion component instances */
+  update?: InputMaybe<
+    Array<TextBlocklinksUnionUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
+  /** Upsert multiple TextBlocklinksUnion component instances */
+  upsert?: InputMaybe<
+    Array<TextBlocklinksUnionUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
+};
+
+export type TextBlocklinksUnionUpdateManyWithNestedWhereInput = {
+  Link?: InputMaybe<LinkUpdateManyWithNestedWhereInput>;
+};
+
+export type TextBlocklinksUnionUpdateOneInlineInput = {
+  /** Create and connect one TextBlocklinksUnion document */
+  create?: InputMaybe<TextBlocklinksUnionCreateInput>;
+  /** Delete currently connected TextBlocklinksUnion document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single TextBlocklinksUnion document */
+  update?: InputMaybe<TextBlocklinksUnionUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single TextBlocklinksUnion document */
+  upsert?: InputMaybe<TextBlocklinksUnionUpsertWithNestedWhereUniqueInput>;
+};
+
+export type TextBlocklinksUnionUpdateWithNestedWhereUniqueAndPositionInput = {
+  Link?: InputMaybe<LinkUpdateWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type TextBlocklinksUnionUpdateWithNestedWhereUniqueInput = {
+  Link?: InputMaybe<LinkUpdateWithNestedWhereUniqueInput>;
+};
+
+export type TextBlocklinksUnionUpsertWithNestedWhereUniqueAndPositionInput = {
+  Link?: InputMaybe<LinkUpsertWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type TextBlocklinksUnionUpsertWithNestedWhereUniqueInput = {
+  Link?: InputMaybe<LinkUpsertWithNestedWhereUniqueInput>;
+};
+
+export type TextBlocklinksUnionWhereInput = {
+  Link?: InputMaybe<LinkWhereInput>;
+};
+
+export type TextBlocklinksUnionWhereUniqueInput = {
+  Link?: InputMaybe<LinkWhereUniqueInput>;
+};
 
 export type TextSwatchData = SwatchDataInterface & {
   __typename: "TextSwatchData";
@@ -40880,7 +42673,6 @@ export type CmsPagesQuery = {
     identify?: string | null;
     metaDescription?: string | null;
     metaTitle: string;
-    title: string;
     url: string;
     content: Array<
       | {
@@ -40904,6 +42696,7 @@ export type CmsPagesQuery = {
             bottomLine?: string | null;
           } | null;
         }
+      | { __typename: "BlockRow" }
       | {
           __typename: "ProductSlider";
           categoryId?: string | null;
@@ -97352,7 +99145,6 @@ export const CmsPagesDocument = {
                   name: { kind: "Name", value: "metaDescription" },
                 },
                 { kind: "Field", name: { kind: "Name", value: "metaTitle" } },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
                 { kind: "Field", name: { kind: "Name", value: "url" } },
                 {
                   kind: "Field",

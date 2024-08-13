@@ -93,7 +93,7 @@ const documents = {
     types.CustomerDocument,
   "\n  mutation UpdateCustomer($input: CustomerUpdateInput!) {\n    updateCustomerV2(input: $input) {\n      customer {\n        ...CustomerData\n      }\n    }\n  }\n":
     types.UpdateCustomerDocument,
-  "\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      title\n      url\n      content {\n        ...CmsBanner\n        ...CmsProductSlider\n      }\n    }\n  }\n":
+  "\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      url\n      content {\n        ...CmsBanner\n        ...CmsProductSlider\n      }\n    }\n  }\n":
     types.CmsPagesDocument,
   "\n  fragment CmsStaticPageConfiguration on StaticPageConfiguration {\n    translations\n  }\n":
     types.CmsStaticPageConfigurationFragmentDoc,
@@ -421,8 +421,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      title\n      url\n      content {\n        ...CmsBanner\n        ...CmsProductSlider\n      }\n    }\n  }\n",
-): (typeof documents)["\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      title\n      url\n      content {\n        ...CmsBanner\n        ...CmsProductSlider\n      }\n    }\n  }\n"];
+  source: "\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      url\n      content {\n        ...CmsBanner\n        ...CmsProductSlider\n      }\n    }\n  }\n",
+): (typeof documents)["\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      url\n      content {\n        ...CmsBanner\n        ...CmsProductSlider\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

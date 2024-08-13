@@ -7,7 +7,6 @@ export const CmsPagesQueryDocument = graphql(`
       identify
       metaDescription
       metaTitle
-      title
       url
       content {
         ...CmsBanner
