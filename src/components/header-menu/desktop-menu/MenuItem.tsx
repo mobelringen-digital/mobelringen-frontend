@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 
-import { CmsLink } from "@/components/cms/link/CmsLink";
+import { CmsLink } from "@/components/cms/__components/link/CmsLink";
 import { MegaMenuCategoriesDropdown } from "@/components/header-menu/cms-components/MegaMenuCategoriesDropdown/MegaMenuCategoriesDropdown";
 import { MegaMenuDropdown } from "@/components/header-menu/cms-components/MegaMenuDropdown/MegaMenuDropdown";
 import { DropdownMenuProvider } from "@/components/header-menu/desktop-menu/DropdownMenuProvider";

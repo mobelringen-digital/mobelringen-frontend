@@ -1470,6 +1470,11 @@ export type AvailableShippingMethod = {
   price_incl_tax: Money;
 };
 
+export enum BackgroundColor {
+  White = "White",
+  Yellow = "Yellow",
+}
+
 export type Banner = Entity &
   Node & {
     __typename: "Banner";
@@ -2130,6 +2135,7 @@ export type BillingCartAddress = CartAddressInterface & {
 export type BlockRow = Entity &
   Node & {
     __typename: "BlockRow";
+    backgroundColor?: Maybe<BackgroundColor>;
     columns: Array<BlockRowcolumnsUnion>;
     /** The time the document was created */
     createdAt: Scalars["DateTime"]["output"];
@@ -2154,6 +2160,7 @@ export type BlockRow = Entity &
     updatedAt: Scalars["DateTime"]["output"];
     /** User that last updated this document */
     updatedBy?: Maybe<User>;
+    useFullPageWidth?: Maybe<Scalars["Boolean"]["output"]>;
   };
 
 export type BlockRowColumnsArgs = {
@@ -2233,11 +2240,13 @@ export type BlockRowConnection = {
 };
 
 export type BlockRowCreateInput = {
+  backgroundColor?: InputMaybe<BackgroundColor>;
   columns?: InputMaybe<BlockRowcolumnsUnionCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   identify: Scalars["String"]["input"];
   pages?: InputMaybe<PageCreateManyInlineInput>;
   updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  useFullPageWidth?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
 export type BlockRowCreateManyInlineInput = {
@@ -2273,6 +2282,13 @@ export type BlockRowManyWhereInput = {
   OR?: InputMaybe<Array<BlockRowWhereInput>>;
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars["String"]["input"]>;
+  backgroundColor?: InputMaybe<BackgroundColor>;
+  /** All values that are contained in given list. */
+  backgroundColor_in?: InputMaybe<Array<InputMaybe<BackgroundColor>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  backgroundColor_not?: InputMaybe<BackgroundColor>;
+  /** All values that are not contained in given list. */
+  backgroundColor_not_in?: InputMaybe<Array<InputMaybe<BackgroundColor>>>;
   /** All values in which the union is empty. */
   columns_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
   /** Matches if the modular component contains at least one connection to the item provided to the filter */
@@ -2378,9 +2394,14 @@ export type BlockRowManyWhereInput = {
     Array<InputMaybe<Scalars["DateTime"]["input"]>>
   >;
   updatedBy?: InputMaybe<UserWhereInput>;
+  useFullPageWidth?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  useFullPageWidth_not?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
 export enum BlockRowOrderByInput {
+  BackgroundColorAsc = "backgroundColor_ASC",
+  BackgroundColorDesc = "backgroundColor_DESC",
   CreatedAtAsc = "createdAt_ASC",
   CreatedAtDesc = "createdAt_DESC",
   IdAsc = "id_ASC",
@@ -2391,12 +2412,16 @@ export enum BlockRowOrderByInput {
   PublishedAtDesc = "publishedAt_DESC",
   UpdatedAtAsc = "updatedAt_ASC",
   UpdatedAtDesc = "updatedAt_DESC",
+  UseFullPageWidthAsc = "useFullPageWidth_ASC",
+  UseFullPageWidthDesc = "useFullPageWidth_DESC",
 }
 
 export type BlockRowUpdateInput = {
+  backgroundColor?: InputMaybe<BackgroundColor>;
   columns?: InputMaybe<BlockRowcolumnsUnionUpdateManyInlineInput>;
   identify?: InputMaybe<Scalars["String"]["input"]>;
   pages?: InputMaybe<PageUpdateManyInlineInput>;
+  useFullPageWidth?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
 export type BlockRowUpdateManyInlineInput = {
@@ -2417,7 +2442,9 @@ export type BlockRowUpdateManyInlineInput = {
 };
 
 export type BlockRowUpdateManyInput = {
+  backgroundColor?: InputMaybe<BackgroundColor>;
   identify?: InputMaybe<Scalars["String"]["input"]>;
+  useFullPageWidth?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
 export type BlockRowUpdateManyWithNestedWhereInput = {
@@ -2479,6 +2506,13 @@ export type BlockRowWhereInput = {
   OR?: InputMaybe<Array<BlockRowWhereInput>>;
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars["String"]["input"]>;
+  backgroundColor?: InputMaybe<BackgroundColor>;
+  /** All values that are contained in given list. */
+  backgroundColor_in?: InputMaybe<Array<InputMaybe<BackgroundColor>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  backgroundColor_not?: InputMaybe<BackgroundColor>;
+  /** All values that are not contained in given list. */
+  backgroundColor_not_in?: InputMaybe<Array<InputMaybe<BackgroundColor>>>;
   /** All values in which the union is empty. */
   columns_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
   /** Matches if the modular component contains at least one connection to the item provided to the filter */
@@ -2584,6 +2618,9 @@ export type BlockRowWhereInput = {
     Array<InputMaybe<Scalars["DateTime"]["input"]>>
   >;
   updatedBy?: InputMaybe<UserWhereInput>;
+  useFullPageWidth?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  useFullPageWidth_not?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
 /** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
@@ -42696,7 +42733,45 @@ export type CmsPagesQuery = {
             bottomLine?: string | null;
           } | null;
         }
-      | { __typename: "BlockRow" }
+      | {
+          __typename: "BlockRow";
+          id: string;
+          backgroundColor?: BackgroundColor | null;
+          useFullPageWidth?: boolean | null;
+          columns: Array<{
+            __typename: "Column";
+            id: string;
+            desktopPosition?: number | null;
+            mobilePosition?: number | null;
+            content?:
+              | {
+                  __typename: "ImageLink";
+                  id: string;
+                  label: string;
+                  url: string;
+                  image: {
+                    __typename: "Asset";
+                    url: string;
+                    width?: number | null;
+                    height?: number | null;
+                  };
+                }
+              | {
+                  __typename: "TextBlock";
+                  id: string;
+                  title?: string | null;
+                  textAlign?: Position | null;
+                  content?: { __typename: "RichText"; html: string } | null;
+                  links: Array<{
+                    __typename: "Link";
+                    id: string;
+                    label: string;
+                    url: string;
+                  }>;
+                }
+              | null;
+          }>;
+        }
       | {
           __typename: "ProductSlider";
           categoryId?: string | null;
@@ -42792,6 +42867,102 @@ export type CmsDynamicHeadersQuery = {
         bottomLine?: string | null;
       } | null;
     } | null;
+  }>;
+};
+
+export type CmsImageLinkFragment = {
+  __typename: "ImageLink";
+  id: string;
+  label: string;
+  url: string;
+  image: {
+    __typename: "Asset";
+    url: string;
+    width?: number | null;
+    height?: number | null;
+  };
+};
+
+export type CmsTextBlockFragment = {
+  __typename: "TextBlock";
+  id: string;
+  title?: string | null;
+  textAlign?: Position | null;
+  content?: { __typename: "RichText"; html: string } | null;
+  links: Array<{ __typename: "Link"; id: string; label: string; url: string }>;
+};
+
+export type CmsColumnFragment = {
+  __typename: "Column";
+  id: string;
+  desktopPosition?: number | null;
+  mobilePosition?: number | null;
+  content?:
+    | {
+        __typename: "ImageLink";
+        id: string;
+        label: string;
+        url: string;
+        image: {
+          __typename: "Asset";
+          url: string;
+          width?: number | null;
+          height?: number | null;
+        };
+      }
+    | {
+        __typename: "TextBlock";
+        id: string;
+        title?: string | null;
+        textAlign?: Position | null;
+        content?: { __typename: "RichText"; html: string } | null;
+        links: Array<{
+          __typename: "Link";
+          id: string;
+          label: string;
+          url: string;
+        }>;
+      }
+    | null;
+};
+
+export type CmsBlockRowFragment = {
+  __typename: "BlockRow";
+  id: string;
+  backgroundColor?: BackgroundColor | null;
+  useFullPageWidth?: boolean | null;
+  columns: Array<{
+    __typename: "Column";
+    id: string;
+    desktopPosition?: number | null;
+    mobilePosition?: number | null;
+    content?:
+      | {
+          __typename: "ImageLink";
+          id: string;
+          label: string;
+          url: string;
+          image: {
+            __typename: "Asset";
+            url: string;
+            width?: number | null;
+            height?: number | null;
+          };
+        }
+      | {
+          __typename: "TextBlock";
+          id: string;
+          title?: string | null;
+          textAlign?: Position | null;
+          content?: { __typename: "RichText"; html: string } | null;
+          links: Array<{
+            __typename: "Link";
+            id: string;
+            label: string;
+            url: string;
+          }>;
+        }
+      | null;
   }>;
 };
 
@@ -85148,6 +85319,526 @@ export const CmsDynamicHeaderFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<CmsDynamicHeaderFragment, unknown>;
+export const CmsTextBlockFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsTextBlock" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TextBlock" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "TextBlock" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "textAlign" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "content" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "html" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "links" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "Link" },
+                        },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "id" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "label" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "url" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CmsTextBlockFragment, unknown>;
+export const CmsImageLinkFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsImageLink" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ImageLink" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "ImageLink" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "height" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CmsImageLinkFragment, unknown>;
+export const CmsColumnFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsColumn" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Column" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "Column" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "content" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsTextBlock" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsImageLink" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "desktopPosition" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "mobilePosition" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsTextBlock" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TextBlock" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "TextBlock" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "textAlign" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "content" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "html" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "links" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "Link" },
+                        },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "id" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "label" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "url" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsImageLink" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ImageLink" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "ImageLink" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "height" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CmsColumnFragment, unknown>;
+export const CmsBlockRowFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsBlockRow" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "BlockRow" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "BlockRow" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundColor" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "useFullPageWidth" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "columns" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsColumn" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsTextBlock" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TextBlock" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "TextBlock" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "textAlign" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "content" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "html" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "links" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "Link" },
+                        },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "id" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "label" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "url" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsImageLink" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ImageLink" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "ImageLink" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "height" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsColumn" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Column" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "Column" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "content" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsTextBlock" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsImageLink" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "desktopPosition" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "mobilePosition" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CmsBlockRowFragment, unknown>;
 export const ProductVideoFragmentFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -99160,6 +99851,10 @@ export const CmsPagesDocument = {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "CmsProductSlider" },
                       },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsBlockRow" },
+                      },
                     ],
                   },
                 },
@@ -99184,6 +99879,174 @@ export const CmsPagesDocument = {
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "topLine" } },
           { kind: "Field", name: { kind: "Name", value: "bottomLine" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsTextBlock" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "TextBlock" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "TextBlock" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "textAlign" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "content" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "html" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "links" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "Link" },
+                        },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "id" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "label" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "url" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsImageLink" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ImageLink" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "ImageLink" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "height" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsColumn" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Column" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "Column" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "content" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsTextBlock" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsImageLink" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "desktopPosition" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "mobilePosition" },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -99268,6 +100131,54 @@ export const CmsPagesDocument = {
                 { kind: "Field", name: { kind: "Name", value: "categoryId" } },
                 { kind: "Field", name: { kind: "Name", value: "type" } },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsBlockRow" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "BlockRow" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "BlockRow" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundColor" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "useFullPageWidth" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "columns" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsColumn" },
+                      },
+                    ],
+                  },
+                },
               ],
             },
           },

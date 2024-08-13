@@ -1,6 +1,6 @@
 import React from "react";
 
-import { CmsLink } from "@/components/cms/link/CmsLink";
+import { CmsLink } from "@/components/cms/__components/link/CmsLink";
 import { CmsLinkBlockFragment } from "@/types";
 import { filterByTypename } from "@/types/graphql-helpers";
 

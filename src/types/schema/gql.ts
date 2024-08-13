@@ -93,7 +93,7 @@ const documents = {
     types.CustomerDocument,
   "\n  mutation UpdateCustomer($input: CustomerUpdateInput!) {\n    updateCustomerV2(input: $input) {\n      customer {\n        ...CustomerData\n      }\n    }\n  }\n":
     types.UpdateCustomerDocument,
-  "\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      url\n      content {\n        ...CmsBanner\n        ...CmsProductSlider\n      }\n    }\n  }\n":
+  "\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      url\n      content {\n        ...CmsBanner\n        ...CmsProductSlider\n        ...CmsBlockRow\n      }\n    }\n  }\n":
     types.CmsPagesDocument,
   "\n  fragment CmsStaticPageConfiguration on StaticPageConfiguration {\n    translations\n  }\n":
     types.CmsStaticPageConfigurationFragmentDoc,
@@ -103,6 +103,14 @@ const documents = {
     types.CmsDynamicHeaderFragmentDoc,
   "\n  query CmsDynamicHeaders($where: DynamicHeaderWhereInput) {\n    dynamicHeaders(where: $where) {\n      ...CmsDynamicHeader\n    }\n  }\n":
     types.CmsDynamicHeadersDocument,
+  "\n  fragment CmsImageLink on ImageLink {\n    ... on ImageLink {\n      __typename\n      id\n      label\n      url\n      image {\n        url\n        width\n        height\n      }\n    }\n  }\n":
+    types.CmsImageLinkFragmentDoc,
+  "\n  fragment CmsTextBlock on TextBlock {\n    ... on TextBlock {\n      __typename\n      id\n      title\n      textAlign\n      content {\n        html\n      }\n      links {\n        ... on Link {\n          id\n          label\n          url\n        }\n      }\n    }\n  }\n":
+    types.CmsTextBlockFragmentDoc,
+  "\n  fragment CmsColumn on Column {\n    ... on Column {\n      __typename\n      id\n      content {\n        ...CmsTextBlock\n        ...CmsImageLink\n      }\n      desktopPosition\n      mobilePosition\n    }\n  }\n":
+    types.CmsColumnFragmentDoc,
+  "\n  fragment CmsBlockRow on BlockRow {\n    ... on BlockRow {\n      __typename\n      id\n      backgroundColor\n      useFullPageWidth\n      columns {\n        ...CmsColumn\n      }\n    }\n  }\n":
+    types.CmsBlockRowFragmentDoc,
   "\n  fragment ConfigurableProductOptions on ConfigurableProductOptions {\n    __typename\n    values {\n      default_label\n      label\n      store_label\n      uid\n      use_default_value\n      value_index\n    }\n    attribute_code\n    attribute_uid\n    label\n    position\n    uid\n    use_default\n  }\n":
     types.ConfigurableProductOptionsFragmentDoc,
   "\n  fragment ConfigurableProductVariants on ConfigurableVariant {\n    __typename\n    attributes {\n      code\n      label\n      uid\n      value_index\n    }\n    product {\n      ...BaseProduct\n    }\n  }\n":
@@ -421,8 +429,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      url\n      content {\n        ...CmsBanner\n        ...CmsProductSlider\n      }\n    }\n  }\n",
-): (typeof documents)["\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      url\n      content {\n        ...CmsBanner\n        ...CmsProductSlider\n      }\n    }\n  }\n"];
+  source: "\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      url\n      content {\n        ...CmsBanner\n        ...CmsProductSlider\n        ...CmsBlockRow\n      }\n    }\n  }\n",
+): (typeof documents)["\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      url\n      content {\n        ...CmsBanner\n        ...CmsProductSlider\n        ...CmsBlockRow\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -447,6 +455,30 @@ export function graphql(
 export function graphql(
   source: "\n  query CmsDynamicHeaders($where: DynamicHeaderWhereInput) {\n    dynamicHeaders(where: $where) {\n      ...CmsDynamicHeader\n    }\n  }\n",
 ): (typeof documents)["\n  query CmsDynamicHeaders($where: DynamicHeaderWhereInput) {\n    dynamicHeaders(where: $where) {\n      ...CmsDynamicHeader\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment CmsImageLink on ImageLink {\n    ... on ImageLink {\n      __typename\n      id\n      label\n      url\n      image {\n        url\n        width\n        height\n      }\n    }\n  }\n",
+): (typeof documents)["\n  fragment CmsImageLink on ImageLink {\n    ... on ImageLink {\n      __typename\n      id\n      label\n      url\n      image {\n        url\n        width\n        height\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment CmsTextBlock on TextBlock {\n    ... on TextBlock {\n      __typename\n      id\n      title\n      textAlign\n      content {\n        html\n      }\n      links {\n        ... on Link {\n          id\n          label\n          url\n        }\n      }\n    }\n  }\n",
+): (typeof documents)["\n  fragment CmsTextBlock on TextBlock {\n    ... on TextBlock {\n      __typename\n      id\n      title\n      textAlign\n      content {\n        html\n      }\n      links {\n        ... on Link {\n          id\n          label\n          url\n        }\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment CmsColumn on Column {\n    ... on Column {\n      __typename\n      id\n      content {\n        ...CmsTextBlock\n        ...CmsImageLink\n      }\n      desktopPosition\n      mobilePosition\n    }\n  }\n",
+): (typeof documents)["\n  fragment CmsColumn on Column {\n    ... on Column {\n      __typename\n      id\n      content {\n        ...CmsTextBlock\n        ...CmsImageLink\n      }\n      desktopPosition\n      mobilePosition\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: "\n  fragment CmsBlockRow on BlockRow {\n    ... on BlockRow {\n      __typename\n      id\n      backgroundColor\n      useFullPageWidth\n      columns {\n        ...CmsColumn\n      }\n    }\n  }\n",
+): (typeof documents)["\n  fragment CmsBlockRow on BlockRow {\n    ... on BlockRow {\n      __typename\n      id\n      backgroundColor\n      useFullPageWidth\n      columns {\n        ...CmsColumn\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

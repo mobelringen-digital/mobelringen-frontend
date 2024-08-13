@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ChevronRight } from "@/components/_ui/icons/ChevronRight";
-import { CmsLink } from "@/components/cms/link/CmsLink";
+import { CmsLink } from "@/components/cms/__components/link/CmsLink";
 import { CmsLinkBlockFragment } from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
 

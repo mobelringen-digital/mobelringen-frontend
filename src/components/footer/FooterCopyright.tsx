@@ -2,7 +2,7 @@ import React from "react";
 
 import Image from "next/image";
 
-import { CmsLink } from "@/components/cms/link/CmsLink";
+import { CmsLink } from "@/components/cms/__components/link/CmsLink";
 import { MenuQuery, MenuType } from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
 import { ArrayElement } from "@/utils/ts-utils";

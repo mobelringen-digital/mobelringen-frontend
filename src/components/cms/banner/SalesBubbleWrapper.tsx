@@ -4,7 +4,7 @@ import cx from "classnames";
 
 import Link from "next/link";
 
-import { CmsSalesBubble } from "@/components/cms/sales-bubble/CmsSalesBubble";
+import { CmsSalesBubble } from "@/components/cms/__components/sales-bubble/CmsSalesBubble";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { CmsSalesBubbleFragment, Position } from "@/types";
 

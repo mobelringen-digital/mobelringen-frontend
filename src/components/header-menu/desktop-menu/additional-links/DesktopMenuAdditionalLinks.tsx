@@ -1,6 +1,6 @@
 import React from "react";
 
-import { CmsLink } from "@/components/cms/link/CmsLink";
+import { CmsLink } from "@/components/cms/__components/link/CmsLink";
 import { DesktopMenuAdditionalLinksBlock } from "@/components/header-menu/desktop-menu/additional-links/DesktopMenuAdditionalLinksBlock";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { StoreSelector } from "@/components/store-selector/StoreSelector";

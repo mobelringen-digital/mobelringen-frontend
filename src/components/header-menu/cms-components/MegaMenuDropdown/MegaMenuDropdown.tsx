@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { CmsLink } from "@/components/cms/link/CmsLink";
+import { CmsLink } from "@/components/cms/__components/link/CmsLink";
 import { CmsMegamenuDropdownFragment } from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
 

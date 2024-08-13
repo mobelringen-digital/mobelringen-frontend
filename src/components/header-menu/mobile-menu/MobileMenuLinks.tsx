@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ChevronRight } from "@/components/_ui/icons/ChevronRight";
-import { CmsLink } from "@/components/cms/link/CmsLink";
+import { CmsLink } from "@/components/cms/__components/link/CmsLink";
 import { MegaMenuCategoriesDropdown } from "@/components/header-menu/cms-components/MegaMenuCategoriesDropdown/MegaMenuCategoriesDropdown";
 import { MegaMenuDropdown } from "@/components/header-menu/cms-components/MegaMenuDropdown/MegaMenuDropdown";
 import { MobileMenuWithChildren } from "@/components/header-menu/mobile-menu/MobileMenuWithChildren";

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { ChevronRight } from "@/components/_ui/icons/ChevronRight";
-import { CmsLink } from "@/components/cms/link/CmsLink";
+import { CmsLink } from "@/components/cms/__components/link/CmsLink";
 import { MobileMenuAdditionalLinksBlock } from "@/components/header-menu/mobile-menu/additional-links/MobileMenuAdditionalLinksBlock";
 import { StoreSelector } from "@/components/store-selector/StoreSelector";
 import { MenuQueryDocument } from "@/queries/menu.queries";
