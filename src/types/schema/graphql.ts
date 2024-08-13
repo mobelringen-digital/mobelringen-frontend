@@ -1502,6 +1502,7 @@ export type Banner = Entity &
     scheduledIn: Array<ScheduledOperation>;
     /** System stage field */
     stage: Stage;
+    staticPageConfiguration?: Maybe<StaticPageConfiguration>;
     /** The time the document was updated */
     updatedAt: Scalars["DateTime"]["output"];
     /** User that last updated this document */
@@ -1564,6 +1565,11 @@ export type BannerScheduledInArgs = {
   where: InputMaybe<ScheduledOperationWhereInput>;
 };
 
+export type BannerStaticPageConfigurationArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
 export type BannerUpdatedByArgs = {
   forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
   locales: InputMaybe<Array<Locale>>;
@@ -1595,6 +1601,7 @@ export type BannerCreateInput = {
   identify?: InputMaybe<Scalars["String"]["input"]>;
   pages?: InputMaybe<PageCreateManyInlineInput>;
   salesBubble?: InputMaybe<SaleBubbleCreateOneInlineInput>;
+  staticPageConfiguration?: InputMaybe<StaticPageConfigurationCreateOneInlineInput>;
   updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   variant: BannerVariant;
 };
@@ -1755,6 +1762,7 @@ export type BannerManyWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  staticPageConfiguration?: InputMaybe<StaticPageConfigurationWhereInput>;
   updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
@@ -1809,6 +1817,7 @@ export type BannerUpdateInput = {
   identify?: InputMaybe<Scalars["String"]["input"]>;
   pages?: InputMaybe<PageUpdateManyInlineInput>;
   salesBubble?: InputMaybe<SaleBubbleUpdateOneInlineInput>;
+  staticPageConfiguration?: InputMaybe<StaticPageConfigurationUpdateOneInlineInput>;
   variant?: InputMaybe<BannerVariant>;
 };
 
@@ -2023,6 +2032,7 @@ export type BannerWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  staticPageConfiguration?: InputMaybe<StaticPageConfigurationWhereInput>;
   updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
@@ -2156,6 +2166,7 @@ export type BlockRow = Entity &
     scheduledIn: Array<ScheduledOperation>;
     /** System stage field */
     stage: Stage;
+    staticPageConfiguration?: Maybe<StaticPageConfiguration>;
     /** The time the document was updated */
     updatedAt: Scalars["DateTime"]["output"];
     /** User that last updated this document */
@@ -2217,6 +2228,11 @@ export type BlockRowScheduledInArgs = {
   where: InputMaybe<ScheduledOperationWhereInput>;
 };
 
+export type BlockRowStaticPageConfigurationArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
 export type BlockRowUpdatedByArgs = {
   forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
   locales: InputMaybe<Array<Locale>>;
@@ -2245,6 +2261,7 @@ export type BlockRowCreateInput = {
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   identify: Scalars["String"]["input"];
   pages?: InputMaybe<PageCreateManyInlineInput>;
+  staticPageConfiguration?: InputMaybe<StaticPageConfigurationCreateOneInlineInput>;
   updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   useFullPageWidth?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
@@ -2376,6 +2393,7 @@ export type BlockRowManyWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  staticPageConfiguration?: InputMaybe<StaticPageConfigurationWhereInput>;
   updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
@@ -2421,6 +2439,7 @@ export type BlockRowUpdateInput = {
   columns?: InputMaybe<BlockRowcolumnsUnionUpdateManyInlineInput>;
   identify?: InputMaybe<Scalars["String"]["input"]>;
   pages?: InputMaybe<PageUpdateManyInlineInput>;
+  staticPageConfiguration?: InputMaybe<StaticPageConfigurationUpdateOneInlineInput>;
   useFullPageWidth?: InputMaybe<Scalars["Boolean"]["input"]>;
 };
 
@@ -2600,6 +2619,7 @@ export type BlockRowWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  staticPageConfiguration?: InputMaybe<StaticPageConfigurationWhereInput>;
   updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
@@ -16459,6 +16479,7 @@ export type ProductSlider = Entity &
     scheduledIn: Array<ScheduledOperation>;
     /** System stage field */
     stage: Stage;
+    staticPageConfiguration?: Maybe<StaticPageConfiguration>;
     title: Scalars["String"]["output"];
     type: ProductSliderType;
     /** The time the document was updated */
@@ -16511,6 +16532,11 @@ export type ProductSliderScheduledInArgs = {
   where: InputMaybe<ScheduledOperationWhereInput>;
 };
 
+export type ProductSliderStaticPageConfigurationArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
 export type ProductSliderUpdatedByArgs = {
   forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
   locales: InputMaybe<Array<Locale>>;
@@ -16538,6 +16564,7 @@ export type ProductSliderCreateInput = {
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   identify: Scalars["String"]["input"];
   pages?: InputMaybe<PageCreateManyInlineInput>;
+  staticPageConfiguration?: InputMaybe<StaticPageConfigurationCreateOneInlineInput>;
   title: Scalars["String"]["input"];
   type: ProductSliderType;
   updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
@@ -16678,6 +16705,7 @@ export type ProductSliderManyWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  staticPageConfiguration?: InputMaybe<StaticPageConfigurationWhereInput>;
   title?: InputMaybe<Scalars["String"]["input"]>;
   /** All values containing the given string. */
   title_contains?: InputMaybe<Scalars["String"]["input"]>;
@@ -16751,6 +16779,7 @@ export type ProductSliderUpdateInput = {
   categoryId?: InputMaybe<Scalars["String"]["input"]>;
   identify?: InputMaybe<Scalars["String"]["input"]>;
   pages?: InputMaybe<PageUpdateManyInlineInput>;
+  staticPageConfiguration?: InputMaybe<StaticPageConfigurationUpdateOneInlineInput>;
   title?: InputMaybe<Scalars["String"]["input"]>;
   type?: InputMaybe<ProductSliderType>;
 };
@@ -16940,6 +16969,7 @@ export type ProductSliderWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  staticPageConfiguration?: InputMaybe<StaticPageConfigurationWhereInput>;
   title?: InputMaybe<Scalars["String"]["input"]>;
   /** All values containing the given string. */
   title_contains?: InputMaybe<Scalars["String"]["input"]>;
@@ -21494,6 +21524,7 @@ export enum Stage {
 export type StaticPageConfiguration = Entity &
   Node & {
     __typename: "StaticPageConfiguration";
+    content?: Maybe<StaticPageConfigurationContent>;
     /** The time the document was created */
     createdAt: Scalars["DateTime"]["output"];
     /** User that created this document */
@@ -21512,12 +21543,16 @@ export type StaticPageConfiguration = Entity &
     scheduledIn: Array<ScheduledOperation>;
     /** System stage field */
     stage: Stage;
-    translations?: Maybe<Scalars["Json"]["output"]>;
     /** The time the document was updated */
     updatedAt: Scalars["DateTime"]["output"];
     /** User that last updated this document */
     updatedBy?: Maybe<User>;
   };
+
+export type StaticPageConfigurationContentArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
 
 export type StaticPageConfigurationCreatedByArgs = {
   forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
@@ -21574,10 +21609,112 @@ export type StaticPageConfigurationConnection = {
   pageInfo: PageInfo;
 };
 
+export type StaticPageConfigurationContent = Banner | BlockRow | ProductSlider;
+
+export type StaticPageConfigurationContentConnectInput = {
+  Banner?: InputMaybe<BannerConnectInput>;
+  BlockRow?: InputMaybe<BlockRowConnectInput>;
+  ProductSlider?: InputMaybe<ProductSliderConnectInput>;
+};
+
+export type StaticPageConfigurationContentCreateInput = {
+  Banner?: InputMaybe<BannerCreateInput>;
+  BlockRow?: InputMaybe<BlockRowCreateInput>;
+  ProductSlider?: InputMaybe<ProductSliderCreateInput>;
+};
+
+export type StaticPageConfigurationContentCreateManyInlineInput = {
+  /** Connect multiple existing StaticPageConfigurationContent documents */
+  connect?: InputMaybe<Array<StaticPageConfigurationContentWhereUniqueInput>>;
+  /** Create and connect multiple existing StaticPageConfigurationContent documents */
+  create?: InputMaybe<Array<StaticPageConfigurationContentCreateInput>>;
+};
+
+export type StaticPageConfigurationContentCreateOneInlineInput = {
+  /** Connect one existing StaticPageConfigurationContent document */
+  connect?: InputMaybe<StaticPageConfigurationContentWhereUniqueInput>;
+  /** Create and connect one StaticPageConfigurationContent document */
+  create?: InputMaybe<StaticPageConfigurationContentCreateInput>;
+};
+
+export type StaticPageConfigurationContentUpdateInput = {
+  Banner?: InputMaybe<BannerUpdateInput>;
+  BlockRow?: InputMaybe<BlockRowUpdateInput>;
+  ProductSlider?: InputMaybe<ProductSliderUpdateInput>;
+};
+
+export type StaticPageConfigurationContentUpdateManyInlineInput = {
+  /** Connect multiple existing StaticPageConfigurationContent documents */
+  connect?: InputMaybe<Array<StaticPageConfigurationContentConnectInput>>;
+  /** Create and connect multiple StaticPageConfigurationContent documents */
+  create?: InputMaybe<Array<StaticPageConfigurationContentCreateInput>>;
+  /** Delete multiple StaticPageConfigurationContent documents */
+  delete?: InputMaybe<Array<StaticPageConfigurationContentWhereUniqueInput>>;
+  /** Disconnect multiple StaticPageConfigurationContent documents */
+  disconnect?: InputMaybe<
+    Array<StaticPageConfigurationContentWhereUniqueInput>
+  >;
+  /** Override currently-connected documents with multiple existing StaticPageConfigurationContent documents */
+  set?: InputMaybe<Array<StaticPageConfigurationContentWhereUniqueInput>>;
+  /** Update multiple StaticPageConfigurationContent documents */
+  update?: InputMaybe<
+    Array<StaticPageConfigurationContentUpdateWithNestedWhereUniqueInput>
+  >;
+  /** Upsert multiple StaticPageConfigurationContent documents */
+  upsert?: InputMaybe<
+    Array<StaticPageConfigurationContentUpsertWithNestedWhereUniqueInput>
+  >;
+};
+
+export type StaticPageConfigurationContentUpdateManyWithNestedWhereInput = {
+  Banner?: InputMaybe<BannerUpdateManyWithNestedWhereInput>;
+  BlockRow?: InputMaybe<BlockRowUpdateManyWithNestedWhereInput>;
+  ProductSlider?: InputMaybe<ProductSliderUpdateManyWithNestedWhereInput>;
+};
+
+export type StaticPageConfigurationContentUpdateOneInlineInput = {
+  /** Connect existing StaticPageConfigurationContent document */
+  connect?: InputMaybe<StaticPageConfigurationContentWhereUniqueInput>;
+  /** Create and connect one StaticPageConfigurationContent document */
+  create?: InputMaybe<StaticPageConfigurationContentCreateInput>;
+  /** Delete currently connected StaticPageConfigurationContent document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected StaticPageConfigurationContent document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single StaticPageConfigurationContent document */
+  update?: InputMaybe<StaticPageConfigurationContentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single StaticPageConfigurationContent document */
+  upsert?: InputMaybe<StaticPageConfigurationContentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type StaticPageConfigurationContentUpdateWithNestedWhereUniqueInput = {
+  Banner?: InputMaybe<BannerUpdateWithNestedWhereUniqueInput>;
+  BlockRow?: InputMaybe<BlockRowUpdateWithNestedWhereUniqueInput>;
+  ProductSlider?: InputMaybe<ProductSliderUpdateWithNestedWhereUniqueInput>;
+};
+
+export type StaticPageConfigurationContentUpsertWithNestedWhereUniqueInput = {
+  Banner?: InputMaybe<BannerUpsertWithNestedWhereUniqueInput>;
+  BlockRow?: InputMaybe<BlockRowUpsertWithNestedWhereUniqueInput>;
+  ProductSlider?: InputMaybe<ProductSliderUpsertWithNestedWhereUniqueInput>;
+};
+
+export type StaticPageConfigurationContentWhereInput = {
+  Banner?: InputMaybe<BannerWhereInput>;
+  BlockRow?: InputMaybe<BlockRowWhereInput>;
+  ProductSlider?: InputMaybe<ProductSliderWhereInput>;
+};
+
+export type StaticPageConfigurationContentWhereUniqueInput = {
+  Banner?: InputMaybe<BannerWhereUniqueInput>;
+  BlockRow?: InputMaybe<BlockRowWhereUniqueInput>;
+  ProductSlider?: InputMaybe<ProductSliderWhereUniqueInput>;
+};
+
 export type StaticPageConfigurationCreateInput = {
+  content?: InputMaybe<StaticPageConfigurationContentCreateOneInlineInput>;
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   pageType: StaticPageType;
-  translations?: InputMaybe<Scalars["Json"]["input"]>;
   updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
 };
 
@@ -21614,6 +21751,10 @@ export type StaticPageConfigurationManyWhereInput = {
   OR?: InputMaybe<Array<StaticPageConfigurationWhereInput>>;
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values in which the union is connected to the given models */
+  content?: InputMaybe<StaticPageConfigurationContentWhereInput>;
+  /** All values in which the union is empty */
+  content_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
@@ -21682,15 +21823,6 @@ export type StaticPageConfigurationManyWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
-  /** All values containing the given json path. */
-  translations_json_path_exists?: InputMaybe<Scalars["String"]["input"]>;
-  /**
-   * Recursively tries to find the provided JSON scalar value inside the field.
-   * It does use an exact match when comparing values.
-   * If you pass `null` as value the filter will be ignored.
-   * Note: This filter fails if you try to look for a non scalar JSON value!
-   */
-  translations_value_recursive?: InputMaybe<Scalars["Json"]["input"]>;
   updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
@@ -21725,8 +21857,8 @@ export enum StaticPageConfigurationOrderByInput {
 }
 
 export type StaticPageConfigurationUpdateInput = {
+  content?: InputMaybe<StaticPageConfigurationContentUpdateOneInlineInput>;
   pageType?: InputMaybe<StaticPageType>;
-  translations?: InputMaybe<Scalars["Json"]["input"]>;
 };
 
 export type StaticPageConfigurationUpdateManyInlineInput = {
@@ -21751,7 +21883,8 @@ export type StaticPageConfigurationUpdateManyInlineInput = {
 };
 
 export type StaticPageConfigurationUpdateManyInput = {
-  translations?: InputMaybe<Scalars["Json"]["input"]>;
+  /** No fields in updateMany data input */
+  _?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export type StaticPageConfigurationUpdateManyWithNestedWhereInput = {
@@ -21813,6 +21946,10 @@ export type StaticPageConfigurationWhereInput = {
   OR?: InputMaybe<Array<StaticPageConfigurationWhereInput>>;
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values in which the union is connected to the given models */
+  content?: InputMaybe<StaticPageConfigurationContentWhereInput>;
+  /** All values in which the union is empty */
+  content_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
@@ -21881,15 +22018,6 @@ export type StaticPageConfigurationWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
-  /** All values containing the given json path. */
-  translations_json_path_exists?: InputMaybe<Scalars["String"]["input"]>;
-  /**
-   * Recursively tries to find the provided JSON scalar value inside the field.
-   * It does use an exact match when comparing values.
-   * If you pass `null` as value the filter will be ignored.
-   * Note: This filter fails if you try to look for a non scalar JSON value!
-   */
-  translations_value_recursive?: InputMaybe<Scalars["Json"]["input"]>;
   updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
@@ -21931,8 +22059,12 @@ export type StaticPageConfigurationWhereUniqueInput = {
 };
 
 export enum StaticPageType {
+  CartPage = "CART_PAGE",
   CategoryPage = "CATEGORY_PAGE",
+  CheckoutPage = "CHECKOUT_PAGE",
+  CheckoutSuccessPage = "CHECKOUT_SUCCESS_PAGE",
   LoginPage = "LOGIN_PAGE",
+  ProductPage = "PRODUCT_PAGE",
 }
 
 export type Store = {
@@ -42829,11 +42961,6 @@ export type CmsPagesQuery = {
   }>;
 };
 
-export type CmsStaticPageConfigurationFragment = {
-  __typename: "StaticPageConfiguration";
-  translations?: any | null;
-};
-
 export type CmsStaticPageConfigurationQueryVariables = Exact<{
   where: StaticPageConfigurationWhereUniqueInput;
 }>;
@@ -42842,7 +42969,75 @@ export type CmsStaticPageConfigurationQuery = {
   __typename: "Query";
   staticPageConfiguration?: {
     __typename: "StaticPageConfiguration";
-    translations?: any | null;
+    content?:
+      | {
+          __typename: "Banner";
+          alt?: string | null;
+          identify?: string | null;
+          variant: BannerVariant;
+          centerText?: string | null;
+          bannerImage?: {
+            __typename: "Asset";
+            mimeType?: string | null;
+            url: string;
+            width?: number | null;
+          } | null;
+          salesBubble?: {
+            __typename: "SaleBubble";
+            url?: string | null;
+            middleLine: string;
+            position: Position;
+            topLine?: string | null;
+            bottomLine?: string | null;
+          } | null;
+        }
+      | {
+          __typename: "BlockRow";
+          id: string;
+          backgroundColor?: BackgroundColor | null;
+          useFullPageWidth?: boolean | null;
+          columns: Array<{
+            __typename: "Column";
+            id: string;
+            desktopPosition?: number | null;
+            mobilePosition?: number | null;
+            content?:
+              | {
+                  __typename: "ImageLink";
+                  id: string;
+                  label: string;
+                  url: string;
+                  caption?: string | null;
+                  image: {
+                    __typename: "Asset";
+                    url: string;
+                    width?: number | null;
+                    height?: number | null;
+                  };
+                }
+              | {
+                  __typename: "TextBlock";
+                  id: string;
+                  title?: string | null;
+                  textAlign?: Position | null;
+                  content?: { __typename: "RichText"; html: string } | null;
+                  links: Array<{
+                    __typename: "Link";
+                    id: string;
+                    label: string;
+                    url: string;
+                  }>;
+                }
+              | null;
+          }>;
+        }
+      | {
+          __typename: "ProductSlider";
+          categoryId?: string | null;
+          type: ProductSliderType;
+          title: string;
+        }
+      | null;
   } | null;
 };
 
@@ -85111,25 +85306,6 @@ export const CustomerDataFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<CustomerDataFragment, unknown>;
-export const CmsStaticPageConfigurationFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "CmsStaticPageConfiguration" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "StaticPageConfiguration" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "translations" } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<CmsStaticPageConfigurationFragment, unknown>;
 export const CmsSalesBubbleFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -100287,8 +100463,25 @@ export const CmsStaticPageConfigurationDocument = {
               kind: "SelectionSet",
               selections: [
                 {
-                  kind: "FragmentSpread",
-                  name: { kind: "Name", value: "CmsStaticPageConfiguration" },
+                  kind: "Field",
+                  name: { kind: "Name", value: "content" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsBlockRow" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsBanner" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsProductSlider" },
+                      },
+                    ],
+                  },
                 },
               ],
             },
@@ -100298,15 +100491,323 @@ export const CmsStaticPageConfigurationDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "CmsStaticPageConfiguration" },
+      name: { kind: "Name", value: "CmsTextBlock" },
       typeCondition: {
         kind: "NamedType",
-        name: { kind: "Name", value: "StaticPageConfiguration" },
+        name: { kind: "Name", value: "TextBlock" },
       },
       selectionSet: {
         kind: "SelectionSet",
         selections: [
-          { kind: "Field", name: { kind: "Name", value: "translations" } },
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "TextBlock" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+                { kind: "Field", name: { kind: "Name", value: "textAlign" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "content" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "html" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "links" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "InlineFragment",
+                        typeCondition: {
+                          kind: "NamedType",
+                          name: { kind: "Name", value: "Link" },
+                        },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "id" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "label" },
+                            },
+                            {
+                              kind: "Field",
+                              name: { kind: "Name", value: "url" },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsImageLink" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ImageLink" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "ImageLink" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "label" } },
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+                { kind: "Field", name: { kind: "Name", value: "caption" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "height" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsColumn" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Column" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "Column" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "content" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsTextBlock" },
+                      },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsImageLink" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "desktopPosition" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "mobilePosition" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsSalesBubble" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SaleBubble" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "topLine" } },
+          { kind: "Field", name: { kind: "Name", value: "bottomLine" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsBlockRow" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "BlockRow" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "BlockRow" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundColor" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "useFullPageWidth" },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "columns" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsColumn" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsBanner" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Banner" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "Banner" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "alt" } },
+                { kind: "Field", name: { kind: "Name", value: "identify" } },
+                { kind: "Field", name: { kind: "Name", value: "variant" } },
+                { kind: "Field", name: { kind: "Name", value: "centerText" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "bannerImage" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "mimeType" },
+                      },
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "salesBubble" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsSalesBubble" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsProductSlider" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "ProductSlider" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "ProductSlider" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "categoryId" } },
+                { kind: "Field", name: { kind: "Name", value: "type" } },
+                { kind: "Field", name: { kind: "Name", value: "title" } },
+              ],
+            },
+          },
         ],
       },
     },

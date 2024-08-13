@@ -95,9 +95,7 @@ const documents = {
     types.UpdateCustomerDocument,
   "\n  query CmsPages($url: String!) {\n    pages(where: { url: $url }) {\n      id\n      identify\n      metaDescription\n      metaTitle\n      url\n      content {\n        ...CmsBanner\n        ...CmsProductSlider\n        ...CmsBlockRow\n      }\n    }\n  }\n":
     types.CmsPagesDocument,
-  "\n  fragment CmsStaticPageConfiguration on StaticPageConfiguration {\n    translations\n  }\n":
-    types.CmsStaticPageConfigurationFragmentDoc,
-  "\n  query CmsStaticPageConfiguration(\n    $where: StaticPageConfigurationWhereUniqueInput!\n  ) {\n    staticPageConfiguration(where: $where) {\n      ...CmsStaticPageConfiguration\n    }\n  }\n":
+  "\n  query CmsStaticPageConfiguration(\n    $where: StaticPageConfigurationWhereUniqueInput!\n  ) {\n    staticPageConfiguration(where: $where) {\n      content {\n        ...CmsBlockRow\n        ...CmsBanner\n        ...CmsProductSlider\n      }\n    }\n  }\n":
     types.CmsStaticPageConfigurationDocument,
   "\n  fragment CmsDynamicHeader on DynamicHeader {\n    id\n    rule {\n      ... on RuleBlock {\n        id\n        value\n        contentType\n      }\n    }\n    banner {\n      ...CmsBanner\n    }\n  }\n":
     types.CmsDynamicHeaderFragmentDoc,
@@ -435,14 +433,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment CmsStaticPageConfiguration on StaticPageConfiguration {\n    translations\n  }\n",
-): (typeof documents)["\n  fragment CmsStaticPageConfiguration on StaticPageConfiguration {\n    translations\n  }\n"];
-/**
- * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function graphql(
-  source: "\n  query CmsStaticPageConfiguration(\n    $where: StaticPageConfigurationWhereUniqueInput!\n  ) {\n    staticPageConfiguration(where: $where) {\n      ...CmsStaticPageConfiguration\n    }\n  }\n",
-): (typeof documents)["\n  query CmsStaticPageConfiguration(\n    $where: StaticPageConfigurationWhereUniqueInput!\n  ) {\n    staticPageConfiguration(where: $where) {\n      ...CmsStaticPageConfiguration\n    }\n  }\n"];
+  source: "\n  query CmsStaticPageConfiguration(\n    $where: StaticPageConfigurationWhereUniqueInput!\n  ) {\n    staticPageConfiguration(where: $where) {\n      content {\n        ...CmsBlockRow\n        ...CmsBanner\n        ...CmsProductSlider\n      }\n    }\n  }\n",
+): (typeof documents)["\n  query CmsStaticPageConfiguration(\n    $where: StaticPageConfigurationWhereUniqueInput!\n  ) {\n    staticPageConfiguration(where: $where) {\n      content {\n        ...CmsBlockRow\n        ...CmsBanner\n        ...CmsProductSlider\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

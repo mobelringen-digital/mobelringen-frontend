@@ -17,18 +17,16 @@ export const CmsPagesQueryDocument = graphql(`
   }
 `);
 
-export const CmsStaticPageConfigurationFragment = graphql(`
-  fragment CmsStaticPageConfiguration on StaticPageConfiguration {
-    translations
-  }
-`);
-
 export const CmsStaticPageConfigurationDocument = graphql(`
   query CmsStaticPageConfiguration(
     $where: StaticPageConfigurationWhereUniqueInput!
   ) {
     staticPageConfiguration(where: $where) {
-      ...CmsStaticPageConfiguration
+      content {
+        ...CmsBlockRow
+        ...CmsBanner
+        ...CmsProductSlider
+      }
     }
   }
 `);
