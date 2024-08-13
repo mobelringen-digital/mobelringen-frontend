@@ -9561,6 +9561,8 @@ export enum ImageFit {
 
 export type ImageLink = Entity & {
   __typename: "ImageLink";
+  /** Displayed under image */
+  caption?: Maybe<Scalars["String"]["output"]>;
   /** The unique identifier */
   id: Scalars["ID"]["output"];
   image: Asset;
@@ -9594,6 +9596,7 @@ export type ImageLinkConnection = {
 };
 
 export type ImageLinkCreateInput = {
+  caption?: InputMaybe<Scalars["String"]["input"]>;
   image: AssetCreateOneInlineInput;
   label: Scalars["String"]["input"];
   url: Scalars["String"]["input"];
@@ -9635,6 +9638,25 @@ export type ImageLinkManyWhereInput = {
   OR?: InputMaybe<Array<ImageLinkWhereInput>>;
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars["String"]["input"]>;
+  caption?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  caption_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  caption_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  caption_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  caption_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  caption_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  caption_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  caption_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  caption_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  caption_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   id?: InputMaybe<Scalars["ID"]["input"]>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars["ID"]["input"]>;
@@ -9696,6 +9718,8 @@ export type ImageLinkManyWhereInput = {
 };
 
 export enum ImageLinkOrderByInput {
+  CaptionAsc = "caption_ASC",
+  CaptionDesc = "caption_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
   LabelAsc = "label_ASC",
@@ -9798,6 +9822,7 @@ export type ImageLinkParentWhereUniqueInput = {
 };
 
 export type ImageLinkUpdateInput = {
+  caption?: InputMaybe<Scalars["String"]["input"]>;
   image?: InputMaybe<AssetUpdateOneInlineInput>;
   label?: InputMaybe<Scalars["String"]["input"]>;
   url?: InputMaybe<Scalars["String"]["input"]>;
@@ -9819,6 +9844,7 @@ export type ImageLinkUpdateManyInlineInput = {
 };
 
 export type ImageLinkUpdateManyInput = {
+  caption?: InputMaybe<Scalars["String"]["input"]>;
   label?: InputMaybe<Scalars["String"]["input"]>;
   url?: InputMaybe<Scalars["String"]["input"]>;
 };
@@ -9890,6 +9916,25 @@ export type ImageLinkWhereInput = {
   OR?: InputMaybe<Array<ImageLinkWhereInput>>;
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars["String"]["input"]>;
+  caption?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  caption_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  caption_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  caption_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  caption_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  caption_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  caption_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  caption_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  caption_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  caption_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   id?: InputMaybe<Scalars["ID"]["input"]>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars["ID"]["input"]>;
@@ -42750,6 +42795,7 @@ export type CmsPagesQuery = {
                   id: string;
                   label: string;
                   url: string;
+                  caption?: string | null;
                   image: {
                     __typename: "Asset";
                     url: string;
@@ -42876,6 +42922,7 @@ export type CmsImageLinkFragment = {
   id: string;
   label: string;
   url: string;
+  caption?: string | null;
   image: {
     __typename: "Asset";
     url: string;
@@ -42904,6 +42951,7 @@ export type CmsColumnFragment = {
         id: string;
         label: string;
         url: string;
+        caption?: string | null;
         image: {
           __typename: "Asset";
           url: string;
@@ -42943,6 +42991,7 @@ export type CmsBlockRowFragment = {
           id: string;
           label: string;
           url: string;
+          caption?: string | null;
           image: {
             __typename: "Asset";
             url: string;
@@ -85423,6 +85472,7 @@ export const CmsImageLinkFragmentDoc = {
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "label" } },
                 { kind: "Field", name: { kind: "Name", value: "url" } },
+                { kind: "Field", name: { kind: "Name", value: "caption" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "image" },
@@ -85596,6 +85646,7 @@ export const CmsColumnFragmentDoc = {
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "label" } },
                 { kind: "Field", name: { kind: "Name", value: "url" } },
+                { kind: "Field", name: { kind: "Name", value: "caption" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "image" },
@@ -85765,6 +85816,7 @@ export const CmsBlockRowFragmentDoc = {
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "label" } },
                 { kind: "Field", name: { kind: "Name", value: "url" } },
+                { kind: "Field", name: { kind: "Name", value: "caption" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "image" },
@@ -99978,6 +100030,7 @@ export const CmsPagesDocument = {
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 { kind: "Field", name: { kind: "Name", value: "label" } },
                 { kind: "Field", name: { kind: "Name", value: "url" } },
+                { kind: "Field", name: { kind: "Name", value: "caption" } },
                 {
                   kind: "Field",
                   name: { kind: "Name", value: "image" },

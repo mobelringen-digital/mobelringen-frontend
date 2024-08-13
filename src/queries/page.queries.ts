@@ -64,6 +64,7 @@ export const CmsImageLinkFragment = graphql(`
       id
       label
       url
+      caption
       image {
         url
         width

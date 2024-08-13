@@ -20,6 +20,11 @@ export const ImageLink: React.FC<Props> = ({ data }) => {
           height={data.image.height ?? 700}
           alt={data.label}
         />
+        {data.caption ? (
+          <p className="text-left font-light text-sm text-black mt-4">
+            {data.caption}
+          </p>
+        ) : null}
       </Link>
     </div>
   );
