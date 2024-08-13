@@ -11,10 +11,10 @@ interface Props {
 
 export const ImageLink: React.FC<Props> = ({ data }) => {
   return (
-    <div className="rounded-2xl">
+    <div className="rounded-3xl">
       <Link href={data.url}>
         <Image
-          className="rounded-2xl"
+          className="rounded-3xl"
           src={data.image.url}
           width={data.image.width ?? 700}
           height={data.image.height ?? 700}

@@ -6,7 +6,7 @@ import cx from "classnames";
 
 import { Column } from "@/components/cms/__components/column/Column";
 import { CmsBlockWrapper } from "@/components/cms/cms-block-wrapper";
-import { CmsBlockRowFragment } from "@/types";
+import { BackgroundColor, CmsBlockRowFragment } from "@/types";
 
 interface Props {
   data: CmsBlockRowFragment;
@@ -44,17 +44,17 @@ const DESKTOP_ORDER: Record<number, string> = {
   4: "lg:order-4",
 };
 
-const BACKGROUND_COLOR: Record<string, string> = {
-  none: "",
-  white: "bg-white",
-  yellow: "bg-powder",
+const BACKGROUND_COLOR: Record<BackgroundColor, string> & { None: "" } = {
+  None: "",
+  White: "bg-white",
+  Yellow: "bg-cream",
 };
 
 export const BlockRow: React.FC<Props> = ({ data }) => {
   return (
     <CmsBlockWrapper
       isFullWidth={data.useFullPageWidth === true}
-      backgroundColor={BACKGROUND_COLOR[data.backgroundColor ?? "none"]}
+      backgroundColor={BACKGROUND_COLOR[data.backgroundColor ?? "None"]}
     >
       <div className={cx("grid gap-8", COLUMNS[data.columns.length])}>
         {data.columns.map((column, idx) => {

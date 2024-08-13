@@ -16,7 +16,7 @@ export const CmsBlockWrapper: React.FC<Props> = ({
   children,
 }) => {
   return (
-    <div className={cx("py-16", backgroundColor)}>
+    <div className={cx("py-16 w-full", backgroundColor)}>
       <ContainerLayout fullWidth={isFullWidth}>{children}</ContainerLayout>
     </div>
   );
