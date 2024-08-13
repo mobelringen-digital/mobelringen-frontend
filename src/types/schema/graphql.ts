@@ -15728,6 +15728,7 @@ export type PlaceOrderOutput = {
 };
 
 export enum Position {
+  Center = "CENTER",
   Left = "LEFT",
   Right = "RIGHT",
 }
