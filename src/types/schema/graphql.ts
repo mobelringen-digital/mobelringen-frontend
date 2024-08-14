@@ -1208,6 +1208,14 @@ export type AssetWhereUniqueInput = {
   id?: InputMaybe<Scalars["ID"]["input"]>;
 };
 
+export type Assets = {
+  __typename: "Assets";
+  /** The payment method logo url (descriptive) */
+  descriptive?: Maybe<Scalars["String"]["output"]>;
+  /** The payment method logo url (standard) */
+  standard?: Maybe<Scalars["String"]["output"]>;
+};
+
 /** Contains the results of the request to assign a compare list. */
 export type AssignCompareListToCustomerOutput = {
   __typename: "AssignCompareListToCustomerOutput";
@@ -3717,6 +3725,16 @@ export type CatalogAttributeMetadata = CustomAttributeMetadataInterface & {
   used_in_product_listing?: Maybe<Scalars["Boolean"]["output"]>;
 };
 
+export type Categories = {
+  __typename: "Categories";
+  /** The payment method assets */
+  asset_urls?: Maybe<Array<Maybe<Assets>>>;
+  /** The payment method identifier */
+  identifier: Scalars["String"]["output"];
+  /** The payment method name */
+  name: Scalars["String"]["output"];
+};
+
 /** Defines the filters to be used in the search. A filter contains at least one attribute, a comparison operator, and the value that is being searched for. */
 export type CategoryFilterInput = {
   /** Filter by the unique category ID for a `CategoryInterface` object. */
@@ -5703,6 +5721,14 @@ export type CreateGuestCartOutput = {
   __typename: "CreateGuestCartOutput";
   /** The newly created cart. */
   cart?: Maybe<Cart>;
+};
+
+export type CreateKlarnaPaymentsSessionOutput = {
+  __typename: "CreateKlarnaPaymentsSessionOutput";
+  /** The payment method client token */
+  client_token?: Maybe<Scalars["String"]["output"]>;
+  /** The payment method categories */
+  payment_method_categories?: Maybe<Array<Maybe<Categories>>>;
 };
 
 /** Contains the secure information used to authorize transaction. Applies to Payflow Pro and Payments Pro payment methods. */
@@ -8166,6 +8192,7 @@ export enum EntityTypeName {
   MegaMenuDropdown = "MegaMenuDropdown",
   Menu = "Menu",
   Page = "Page",
+  PageCategory = "PageCategory",
   ProductSlider = "ProductSlider",
   RuleBlock = "RuleBlock",
   SaleBubble = "SaleBubble",
@@ -10221,6 +10248,11 @@ export type KeyValue = {
   name?: Maybe<Scalars["String"]["output"]>;
   /** The value part of the key/value pair. */
   value?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type KlarnaInput = {
+  /** The authorization token must be provided to set any Klarna Payments method */
+  authorization_token: Scalars["String"]["input"];
 };
 
 export type Label = {
@@ -12672,10 +12704,14 @@ export type Mutation = {
   createGiftRegistry?: Maybe<CreateGiftRegistryOutput>;
   /** Create a new shopping cart */
   createGuestCart?: Maybe<CreateGuestCartOutput>;
+  /** Creates a Klarna Payments Session. */
+  createKlarnaPaymentsSession?: Maybe<CreateKlarnaPaymentsSessionOutput>;
   /** Create one menu */
   createMenu?: Maybe<Menu>;
   /** Create one page */
   createPage?: Maybe<Page>;
+  /** Create one pageCategory */
+  createPageCategory?: Maybe<PageCategory>;
   /** Initiate a transaction and receive a token. Use this mutation for Payflow Pro and Payments Pro payment methods */
   createPayflowProToken?: Maybe<CreatePayflowProTokenOutput>;
   /** Creates a payment order for further payment processing */
@@ -12742,6 +12778,13 @@ export type Mutation = {
   /** Delete many Menu documents, return deleted documents */
   deleteManyMenusConnection: MenuConnection;
   /**
+   * Delete many PageCategory documents
+   * @deprecated Please use the new paginated many mutation (deleteManyPageCategoriesConnection)
+   */
+  deleteManyPageCategories: BatchPayload;
+  /** Delete many PageCategory documents, return deleted documents */
+  deleteManyPageCategoriesConnection: PageCategoryConnection;
+  /**
    * Delete many Page documents
    * @deprecated Please use the new paginated many mutation (deleteManyPagesConnection)
    */
@@ -12766,6 +12809,8 @@ export type Mutation = {
   deleteMenu?: Maybe<Menu>;
   /** Delete one page from _all_ existing stages. Returns deleted document. */
   deletePage?: Maybe<Page>;
+  /** Delete one pageCategory from _all_ existing stages. Returns deleted document. */
+  deletePageCategory?: Maybe<PageCategory>;
   /** Delete a customer's payment token. */
   deletePaymentToken?: Maybe<DeletePaymentTokenOutput>;
   /** Delete one productSlider from _all_ existing stages. Returns deleted document. */
@@ -12840,6 +12885,13 @@ export type Mutation = {
   /** Publish many Menu documents */
   publishManyMenusConnection: MenuConnection;
   /**
+   * Publish many PageCategory documents
+   * @deprecated Please use the new paginated many mutation (publishManyPageCategoriesConnection)
+   */
+  publishManyPageCategories: BatchPayload;
+  /** Publish many PageCategory documents */
+  publishManyPageCategoriesConnection: PageCategoryConnection;
+  /**
    * Publish many Page documents
    * @deprecated Please use the new paginated many mutation (publishManyPagesConnection)
    */
@@ -12864,6 +12916,8 @@ export type Mutation = {
   publishMenu?: Maybe<Menu>;
   /** Publish one page */
   publishPage?: Maybe<Page>;
+  /** Publish one pageCategory */
+  publishPageCategory?: Maybe<PageCategory>;
   /** Publish one productSlider */
   publishProductSlider?: Maybe<ProductSlider>;
   /** Publish one staticPageConfiguration */
@@ -12917,6 +12971,8 @@ export type Mutation = {
   schedulePublishMenu?: Maybe<Menu>;
   /** Schedule to publish one page */
   schedulePublishPage?: Maybe<Page>;
+  /** Schedule to publish one pageCategory */
+  schedulePublishPageCategory?: Maybe<PageCategory>;
   /** Schedule to publish one productSlider */
   schedulePublishProductSlider?: Maybe<ProductSlider>;
   /** Schedule to publish one staticPageConfiguration */
@@ -12933,6 +12989,8 @@ export type Mutation = {
   scheduleUnpublishMenu?: Maybe<Menu>;
   /** Unpublish one page from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishPage?: Maybe<Page>;
+  /** Unpublish one pageCategory from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishPageCategory?: Maybe<PageCategory>;
   /** Unpublish one productSlider from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishProductSlider?: Maybe<ProductSlider>;
   /** Unpublish one staticPageConfiguration from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -13006,6 +13064,13 @@ export type Mutation = {
   /** Find many Menu documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyMenusConnection: MenuConnection;
   /**
+   * Unpublish many PageCategory documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyPageCategoriesConnection)
+   */
+  unpublishManyPageCategories: BatchPayload;
+  /** Find many PageCategory documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyPageCategoriesConnection: PageCategoryConnection;
+  /**
    * Unpublish many Page documents
    * @deprecated Please use the new paginated many mutation (unpublishManyPagesConnection)
    */
@@ -13030,6 +13095,8 @@ export type Mutation = {
   unpublishMenu?: Maybe<Menu>;
   /** Unpublish one page from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishPage?: Maybe<Page>;
+  /** Unpublish one pageCategory from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishPageCategory?: Maybe<PageCategory>;
   /** Unpublish one productSlider from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishProductSlider?: Maybe<ProductSlider>;
   /** Unpublish one staticPageConfiguration from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -13095,6 +13162,13 @@ export type Mutation = {
   /** Update many Menu documents */
   updateManyMenusConnection: MenuConnection;
   /**
+   * Update many pageCategories
+   * @deprecated Please use the new paginated many mutation (updateManyPageCategoriesConnection)
+   */
+  updateManyPageCategories: BatchPayload;
+  /** Update many PageCategory documents */
+  updateManyPageCategoriesConnection: PageCategoryConnection;
+  /**
    * Update many pages
    * @deprecated Please use the new paginated many mutation (updateManyPagesConnection)
    */
@@ -13119,6 +13193,8 @@ export type Mutation = {
   updateMenu?: Maybe<Menu>;
   /** Update one page */
   updatePage?: Maybe<Page>;
+  /** Update one pageCategory */
+  updatePageCategory?: Maybe<PageCategory>;
   /** Update one productSlider */
   updateProductSlider?: Maybe<ProductSlider>;
   /** Update one or more products in the specified wish list. */
@@ -13141,6 +13217,8 @@ export type Mutation = {
   upsertMenu?: Maybe<Menu>;
   /** Upsert one page */
   upsertPage?: Maybe<Page>;
+  /** Upsert one pageCategory */
+  upsertPageCategory?: Maybe<PageCategory>;
   /** Upsert one productSlider */
   upsertProductSlider?: Maybe<ProductSlider>;
   /** Upsert one staticPageConfiguration */
@@ -13306,12 +13384,20 @@ export type MutationCreateGuestCartArgs = {
   input: InputMaybe<CreateGuestCartInput>;
 };
 
+export type MutationCreateKlarnaPaymentsSessionArgs = {
+  input: InputMaybe<CreateKlarnaPaymentsSessionInput>;
+};
+
 export type MutationCreateMenuArgs = {
   data: MenuCreateInput;
 };
 
 export type MutationCreatePageArgs = {
   data: PageCreateInput;
+};
+
+export type MutationCreatePageCategoryArgs = {
+  data: PageCategoryCreateInput;
 };
 
 export type MutationCreatePayflowProTokenArgs = {
@@ -13435,6 +13521,19 @@ export type MutationDeleteManyMenusConnectionArgs = {
   where: InputMaybe<MenuManyWhereInput>;
 };
 
+export type MutationDeleteManyPageCategoriesArgs = {
+  where: InputMaybe<PageCategoryManyWhereInput>;
+};
+
+export type MutationDeleteManyPageCategoriesConnectionArgs = {
+  after: InputMaybe<Scalars["ID"]["input"]>;
+  before: InputMaybe<Scalars["ID"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<PageCategoryManyWhereInput>;
+};
+
 export type MutationDeleteManyPagesArgs = {
   where: InputMaybe<PageManyWhereInput>;
 };
@@ -13480,6 +13579,10 @@ export type MutationDeleteMenuArgs = {
 
 export type MutationDeletePageArgs = {
   where: PageWhereUniqueInput;
+};
+
+export type MutationDeletePageCategoryArgs = {
+  where: PageCategoryWhereUniqueInput;
 };
 
 export type MutationDeletePaymentTokenArgs = {
@@ -13656,6 +13759,22 @@ export type MutationPublishManyMenusConnectionArgs = {
   where: InputMaybe<MenuManyWhereInput>;
 };
 
+export type MutationPublishManyPageCategoriesArgs = {
+  to?: Array<Stage>;
+  where: InputMaybe<PageCategoryManyWhereInput>;
+};
+
+export type MutationPublishManyPageCategoriesConnectionArgs = {
+  after: InputMaybe<Scalars["ID"]["input"]>;
+  before: InputMaybe<Scalars["ID"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  from?: InputMaybe<Stage>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  to?: Array<Stage>;
+  where: InputMaybe<PageCategoryManyWhereInput>;
+};
+
 export type MutationPublishManyPagesArgs = {
   to?: Array<Stage>;
   where: InputMaybe<PageManyWhereInput>;
@@ -13712,6 +13831,11 @@ export type MutationPublishMenuArgs = {
 export type MutationPublishPageArgs = {
   to?: Array<Stage>;
   where: PageWhereUniqueInput;
+};
+
+export type MutationPublishPageCategoryArgs = {
+  to?: Array<Stage>;
+  where: PageCategoryWhereUniqueInput;
 };
 
 export type MutationPublishProductSliderArgs = {
@@ -13850,6 +13974,13 @@ export type MutationSchedulePublishPageArgs = {
   where: PageWhereUniqueInput;
 };
 
+export type MutationSchedulePublishPageCategoryArgs = {
+  releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId: InputMaybe<Scalars["String"]["input"]>;
+  to?: Array<Stage>;
+  where: PageCategoryWhereUniqueInput;
+};
+
 export type MutationSchedulePublishProductSliderArgs = {
   releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
   releaseId: InputMaybe<Scalars["String"]["input"]>;
@@ -13906,6 +14037,13 @@ export type MutationScheduleUnpublishPageArgs = {
   releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
   releaseId: InputMaybe<Scalars["String"]["input"]>;
   where: PageWhereUniqueInput;
+};
+
+export type MutationScheduleUnpublishPageCategoryArgs = {
+  from?: Array<Stage>;
+  releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId: InputMaybe<Scalars["String"]["input"]>;
+  where: PageCategoryWhereUniqueInput;
 };
 
 export type MutationScheduleUnpublishProductSliderArgs = {
@@ -14074,6 +14212,22 @@ export type MutationUnpublishManyMenusConnectionArgs = {
   where: InputMaybe<MenuManyWhereInput>;
 };
 
+export type MutationUnpublishManyPageCategoriesArgs = {
+  from?: Array<Stage>;
+  where: InputMaybe<PageCategoryManyWhereInput>;
+};
+
+export type MutationUnpublishManyPageCategoriesConnectionArgs = {
+  after: InputMaybe<Scalars["ID"]["input"]>;
+  before: InputMaybe<Scalars["ID"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  from?: Array<Stage>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: InputMaybe<Stage>;
+  where: InputMaybe<PageCategoryManyWhereInput>;
+};
+
 export type MutationUnpublishManyPagesArgs = {
   from?: Array<Stage>;
   where: InputMaybe<PageManyWhereInput>;
@@ -14130,6 +14284,11 @@ export type MutationUnpublishMenuArgs = {
 export type MutationUnpublishPageArgs = {
   from?: Array<Stage>;
   where: PageWhereUniqueInput;
+};
+
+export type MutationUnpublishPageCategoryArgs = {
+  from?: Array<Stage>;
+  where: PageCategoryWhereUniqueInput;
 };
 
 export type MutationUnpublishProductSliderArgs = {
@@ -14279,6 +14438,21 @@ export type MutationUpdateManyMenusConnectionArgs = {
   where: InputMaybe<MenuManyWhereInput>;
 };
 
+export type MutationUpdateManyPageCategoriesArgs = {
+  data: PageCategoryUpdateManyInput;
+  where: InputMaybe<PageCategoryManyWhereInput>;
+};
+
+export type MutationUpdateManyPageCategoriesConnectionArgs = {
+  after: InputMaybe<Scalars["ID"]["input"]>;
+  before: InputMaybe<Scalars["ID"]["input"]>;
+  data: PageCategoryUpdateManyInput;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<PageCategoryManyWhereInput>;
+};
+
 export type MutationUpdateManyPagesArgs = {
   data: PageUpdateManyInput;
   where: InputMaybe<PageManyWhereInput>;
@@ -14332,6 +14506,11 @@ export type MutationUpdateMenuArgs = {
 export type MutationUpdatePageArgs = {
   data: PageUpdateInput;
   where: PageWhereUniqueInput;
+};
+
+export type MutationUpdatePageCategoryArgs = {
+  data: PageCategoryUpdateInput;
+  where: PageCategoryWhereUniqueInput;
 };
 
 export type MutationUpdateProductSliderArgs = {
@@ -14388,6 +14567,11 @@ export type MutationUpsertMenuArgs = {
 export type MutationUpsertPageArgs = {
   upsert: PageUpsertInput;
   where: PageWhereUniqueInput;
+};
+
+export type MutationUpsertPageCategoryArgs = {
+  upsert: PageCategoryUpsertInput;
+  where: PageCategoryWhereUniqueInput;
 };
 
 export type MutationUpsertProductSliderArgs = {
@@ -14648,6 +14832,7 @@ export type Page = Entity &
     identify?: Maybe<Scalars["String"]["output"]>;
     metaDescription?: Maybe<Scalars["String"]["output"]>;
     metaTitle: Scalars["String"]["output"];
+    pageCategory: Array<PageCategory>;
     pageType: PageType;
     /** The time the document was published. Null on documents in draft stage. */
     publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
@@ -14690,6 +14875,18 @@ export type PageHistoryArgs = {
   stageOverride: InputMaybe<Stage>;
 };
 
+export type PagePageCategoryArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+  orderBy: InputMaybe<PageCategoryOrderByInput>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<PageCategoryWhereInput>;
+};
+
 export type PagePublishedByArgs = {
   forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
   locales: InputMaybe<Array<Locale>>;
@@ -14709,6 +14906,484 @@ export type PageScheduledInArgs = {
 export type PageUpdatedByArgs = {
   forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
   locales: InputMaybe<Array<Locale>>;
+};
+
+export type PageCategory = Entity &
+  Node & {
+    __typename: "PageCategory";
+    /** The time the document was created */
+    createdAt: Scalars["DateTime"]["output"];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    /** Get the document in other stages */
+    documentInStages: Array<PageCategory>;
+    /** List of PageCategory versions */
+    history: Array<Version>;
+    /** The unique identifier */
+    id: Scalars["ID"]["output"];
+    name: Scalars["String"]["output"];
+    page: Array<Page>;
+    pageType?: Maybe<PageType>;
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    scheduledIn: Array<ScheduledOperation>;
+    /** System stage field */
+    stage: Stage;
+    /** The time the document was updated */
+    updatedAt: Scalars["DateTime"]["output"];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+  };
+
+export type PageCategoryCreatedByArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type PageCategoryDocumentInStagesArgs = {
+  includeCurrent?: Scalars["Boolean"]["input"];
+  inheritLocale?: Scalars["Boolean"]["input"];
+  stages?: Array<Stage>;
+};
+
+export type PageCategoryHistoryArgs = {
+  limit?: Scalars["Int"]["input"];
+  skip?: Scalars["Int"]["input"];
+  stageOverride: InputMaybe<Stage>;
+};
+
+export type PageCategoryPageArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+  orderBy: InputMaybe<PageOrderByInput>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<PageWhereInput>;
+};
+
+export type PageCategoryPublishedByArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type PageCategoryScheduledInArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+export type PageCategoryUpdatedByArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type PageCategoryConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: PageCategoryWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type PageCategoryConnection = {
+  __typename: "PageCategoryConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<PageCategoryEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type PageCategoryCreateInput = {
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  name: Scalars["String"]["input"];
+  page?: InputMaybe<PageCreateManyInlineInput>;
+  pageType?: InputMaybe<PageType>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+};
+
+export type PageCategoryCreateManyInlineInput = {
+  /** Connect multiple existing PageCategory documents */
+  connect?: InputMaybe<Array<PageCategoryWhereUniqueInput>>;
+  /** Create and connect multiple existing PageCategory documents */
+  create?: InputMaybe<Array<PageCategoryCreateInput>>;
+};
+
+export type PageCategoryCreateOneInlineInput = {
+  /** Connect one existing PageCategory document */
+  connect?: InputMaybe<PageCategoryWhereUniqueInput>;
+  /** Create and connect one PageCategory document */
+  create?: InputMaybe<PageCategoryCreateInput>;
+};
+
+/** An edge in a connection. */
+export type PageCategoryEdge = {
+  __typename: "PageCategoryEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: PageCategory;
+};
+
+/** Identifies documents */
+export type PageCategoryManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<PageCategoryWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<PageCategoryWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<PageCategoryWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<PageCategoryWhereStageInput>;
+  documentInStages_none?: InputMaybe<PageCategoryWhereStageInput>;
+  documentInStages_some?: InputMaybe<PageCategoryWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  name?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  name_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  name_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  name_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  name_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  name_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  name_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  name_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  pageType?: InputMaybe<PageType>;
+  /** All values that are contained in given list. */
+  pageType_in?: InputMaybe<Array<InputMaybe<PageType>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  pageType_not?: InputMaybe<PageType>;
+  /** All values that are not contained in given list. */
+  pageType_not_in?: InputMaybe<Array<InputMaybe<PageType>>>;
+  page_every?: InputMaybe<PageWhereInput>;
+  page_none?: InputMaybe<PageWhereInput>;
+  page_some?: InputMaybe<PageWhereInput>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum PageCategoryOrderByInput {
+  CreatedAtAsc = "createdAt_ASC",
+  CreatedAtDesc = "createdAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  NameAsc = "name_ASC",
+  NameDesc = "name_DESC",
+  PageTypeAsc = "pageType_ASC",
+  PageTypeDesc = "pageType_DESC",
+  PublishedAtAsc = "publishedAt_ASC",
+  PublishedAtDesc = "publishedAt_DESC",
+  UpdatedAtAsc = "updatedAt_ASC",
+  UpdatedAtDesc = "updatedAt_DESC",
+}
+
+export type PageCategoryUpdateInput = {
+  name?: InputMaybe<Scalars["String"]["input"]>;
+  page?: InputMaybe<PageUpdateManyInlineInput>;
+  pageType?: InputMaybe<PageType>;
+};
+
+export type PageCategoryUpdateManyInlineInput = {
+  /** Connect multiple existing PageCategory documents */
+  connect?: InputMaybe<Array<PageCategoryConnectInput>>;
+  /** Create and connect multiple PageCategory documents */
+  create?: InputMaybe<Array<PageCategoryCreateInput>>;
+  /** Delete multiple PageCategory documents */
+  delete?: InputMaybe<Array<PageCategoryWhereUniqueInput>>;
+  /** Disconnect multiple PageCategory documents */
+  disconnect?: InputMaybe<Array<PageCategoryWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing PageCategory documents */
+  set?: InputMaybe<Array<PageCategoryWhereUniqueInput>>;
+  /** Update multiple PageCategory documents */
+  update?: InputMaybe<Array<PageCategoryUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple PageCategory documents */
+  upsert?: InputMaybe<Array<PageCategoryUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type PageCategoryUpdateManyInput = {
+  name?: InputMaybe<Scalars["String"]["input"]>;
+  pageType?: InputMaybe<PageType>;
+};
+
+export type PageCategoryUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: PageCategoryUpdateManyInput;
+  /** Document search */
+  where: PageCategoryWhereInput;
+};
+
+export type PageCategoryUpdateOneInlineInput = {
+  /** Connect existing PageCategory document */
+  connect?: InputMaybe<PageCategoryWhereUniqueInput>;
+  /** Create and connect one PageCategory document */
+  create?: InputMaybe<PageCategoryCreateInput>;
+  /** Delete currently connected PageCategory document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected PageCategory document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single PageCategory document */
+  update?: InputMaybe<PageCategoryUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single PageCategory document */
+  upsert?: InputMaybe<PageCategoryUpsertWithNestedWhereUniqueInput>;
+};
+
+export type PageCategoryUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: PageCategoryUpdateInput;
+  /** Unique document search */
+  where: PageCategoryWhereUniqueInput;
+};
+
+export type PageCategoryUpsertInput = {
+  /** Create document if it didn't exist */
+  create: PageCategoryCreateInput;
+  /** Update document if it exists */
+  update: PageCategoryUpdateInput;
+};
+
+export type PageCategoryUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: PageCategoryUpsertInput;
+  /** Unique document search */
+  where: PageCategoryWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type PageCategoryWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Identifies documents */
+export type PageCategoryWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<PageCategoryWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<PageCategoryWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<PageCategoryWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<PageCategoryWhereStageInput>;
+  documentInStages_none?: InputMaybe<PageCategoryWhereStageInput>;
+  documentInStages_some?: InputMaybe<PageCategoryWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  name?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  name_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  name_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  name_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  name_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  name_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  name_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  name_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  pageType?: InputMaybe<PageType>;
+  /** All values that are contained in given list. */
+  pageType_in?: InputMaybe<Array<InputMaybe<PageType>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  pageType_not?: InputMaybe<PageType>;
+  /** All values that are not contained in given list. */
+  pageType_not_in?: InputMaybe<Array<InputMaybe<PageType>>>;
+  page_every?: InputMaybe<PageWhereInput>;
+  page_none?: InputMaybe<PageWhereInput>;
+  page_some?: InputMaybe<PageWhereInput>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type PageCategoryWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<PageCategoryWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<PageCategoryWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<PageCategoryWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<PageCategoryWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References PageCategory record uniquely */
+export type PageCategoryWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
 };
 
 export type PageConnectInput = {
@@ -14830,6 +15505,7 @@ export type PageCreateInput = {
   identify?: InputMaybe<Scalars["String"]["input"]>;
   metaDescription?: InputMaybe<Scalars["String"]["input"]>;
   metaTitle: Scalars["String"]["input"];
+  pageCategory?: InputMaybe<PageCategoryCreateManyInlineInput>;
   pageType: PageType;
   updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   url: Scalars["String"]["input"];
@@ -14988,6 +15664,9 @@ export type PageManyWhereInput = {
   metaTitle_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   /** All values starting with the given string. */
   metaTitle_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  pageCategory_every?: InputMaybe<PageCategoryWhereInput>;
+  pageCategory_none?: InputMaybe<PageCategoryWhereInput>;
+  pageCategory_some?: InputMaybe<PageCategoryWhereInput>;
   pageType?: InputMaybe<PageType>;
   /** All values that are contained in given list. */
   pageType_in?: InputMaybe<Array<InputMaybe<PageType>>>;
@@ -15088,6 +15767,7 @@ export type PageUpdateInput = {
   identify?: InputMaybe<Scalars["String"]["input"]>;
   metaDescription?: InputMaybe<Scalars["String"]["input"]>;
   metaTitle?: InputMaybe<Scalars["String"]["input"]>;
+  pageCategory?: InputMaybe<PageCategoryUpdateManyInlineInput>;
   pageType?: InputMaybe<PageType>;
   url?: InputMaybe<Scalars["String"]["input"]>;
 };
@@ -15281,6 +15961,9 @@ export type PageWhereInput = {
   metaTitle_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   /** All values starting with the given string. */
   metaTitle_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  pageCategory_every?: InputMaybe<PageCategoryWhereInput>;
+  pageCategory_none?: InputMaybe<PageCategoryWhereInput>;
+  pageCategory_some?: InputMaybe<PageCategoryWhereInput>;
   pageType?: InputMaybe<PageType>;
   /** All values that are contained in given list. */
   pageType_in?: InputMaybe<Array<InputMaybe<PageType>>>;
@@ -15533,6 +16216,7 @@ export type PaymentMethodInput = {
   code: Scalars["String"]["input"];
   /** Required input for PayPal Hosted pro payments. */
   hosted_pro?: InputMaybe<HostedProInput>;
+  klarna?: InputMaybe<KlarnaInput>;
   /** Required input for Payflow Express Checkout payments. */
   payflow_express?: InputMaybe<PayflowExpressInput>;
   /** Required input for PayPal Payflow Link and Payments Advanced payments. */
@@ -17339,6 +18023,14 @@ export type Query = {
   node?: Maybe<Node>;
   /** Retrieve a single page */
   page?: Maybe<Page>;
+  /** Retrieve multiple pageCategories */
+  pageCategories: Array<PageCategory>;
+  /** Retrieve multiple pageCategories using the Relay connection interface */
+  pageCategoriesConnection: PageCategoryConnection;
+  /** Retrieve a single pageCategory */
+  pageCategory?: Maybe<PageCategory>;
+  /** Retrieve document version */
+  pageCategoryVersion?: Maybe<DocumentVersion>;
   /** Retrieve document version */
   pageVersion?: Maybe<DocumentVersion>;
   /** Retrieve multiple pages */
@@ -17730,6 +18422,40 @@ export type QueryPageArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
   where: PageWhereUniqueInput;
+};
+
+export type QueryPageCategoriesArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy: InputMaybe<PageCategoryOrderByInput>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where: InputMaybe<PageCategoryWhereInput>;
+};
+
+export type QueryPageCategoriesConnectionArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy: InputMaybe<PageCategoryOrderByInput>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where: InputMaybe<PageCategoryWhereInput>;
+};
+
+export type QueryPageCategoryArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: PageCategoryWhereUniqueInput;
+};
+
+export type QueryPageCategoryVersionArgs = {
+  where: VersionWhereInput;
 };
 
 export type QueryPageVersionArgs = {
@@ -19463,6 +20189,7 @@ export type ScheduledOperationAffectedDocument =
   | DynamicHeader
   | Menu
   | Page
+  | PageCategory
   | ProductSlider
   | StaticPageConfiguration;
 
@@ -22824,7 +23551,7 @@ export type TextBlock = Entity & {
   /** System stage field */
   stage: Stage;
   textAlign?: Maybe<Position>;
-  title?: Maybe<Scalars["String"]["output"]>;
+  title?: Maybe<RichText>;
 };
 
 export type TextBlockLinksArgs = {
@@ -22859,7 +23586,7 @@ export type TextBlockCreateInput = {
   identify: Scalars["String"]["input"];
   links?: InputMaybe<TextBlocklinksUnionCreateManyInlineInput>;
   textAlign?: InputMaybe<Position>;
-  title?: InputMaybe<Scalars["String"]["input"]>;
+  title?: InputMaybe<Scalars["RichTextAST"]["input"]>;
 };
 
 export type TextBlockCreateManyInlineInput = {
@@ -22947,25 +23674,6 @@ export type TextBlockManyWhereInput = {
   textAlign_not?: InputMaybe<Position>;
   /** All values that are not contained in given list. */
   textAlign_not_in?: InputMaybe<Array<InputMaybe<Position>>>;
-  title?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values containing the given string. */
-  title_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values ending with the given string. */
-  title_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are contained in given list. */
-  title_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  title_not?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not containing the given string. */
-  title_not_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not ending with the given string */
-  title_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are not contained in given list. */
-  title_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** All values not starting with the given string. */
-  title_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values starting with the given string. */
-  title_starts_with?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 export enum TextBlockOrderByInput {
@@ -22975,8 +23683,6 @@ export enum TextBlockOrderByInput {
   IdentifyDesc = "identify_DESC",
   TextAlignAsc = "textAlign_ASC",
   TextAlignDesc = "textAlign_DESC",
-  TitleAsc = "title_ASC",
-  TitleDesc = "title_DESC",
 }
 
 export type TextBlockParent = Column;
@@ -23066,7 +23772,7 @@ export type TextBlockUpdateInput = {
   identify?: InputMaybe<Scalars["String"]["input"]>;
   links?: InputMaybe<TextBlocklinksUnionUpdateManyInlineInput>;
   textAlign?: InputMaybe<Position>;
-  title?: InputMaybe<Scalars["String"]["input"]>;
+  title?: InputMaybe<Scalars["RichTextAST"]["input"]>;
 };
 
 export type TextBlockUpdateManyInlineInput = {
@@ -23088,7 +23794,7 @@ export type TextBlockUpdateManyInput = {
   content?: InputMaybe<Scalars["RichTextAST"]["input"]>;
   identify?: InputMaybe<Scalars["String"]["input"]>;
   textAlign?: InputMaybe<Position>;
-  title?: InputMaybe<Scalars["String"]["input"]>;
+  title?: InputMaybe<Scalars["RichTextAST"]["input"]>;
 };
 
 export type TextBlockUpdateManyWithNestedWhereInput = {
@@ -23207,25 +23913,6 @@ export type TextBlockWhereInput = {
   textAlign_not?: InputMaybe<Position>;
   /** All values that are not contained in given list. */
   textAlign_not_in?: InputMaybe<Array<InputMaybe<Position>>>;
-  title?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values containing the given string. */
-  title_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values ending with the given string. */
-  title_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are contained in given list. */
-  title_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  title_not?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not containing the given string. */
-  title_not_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not ending with the given string */
-  title_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are not contained in given list. */
-  title_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** All values not starting with the given string. */
-  title_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values starting with the given string. */
-  title_starts_with?: InputMaybe<Scalars["String"]["input"]>;
 };
 
 /** References TextBlock record uniquely */
@@ -24515,6 +25202,10 @@ export enum _SystemDateTimeFieldVariation {
 export type CreateEmptyCartInput = {
   /** The ID to assign to the cart. */
   cart_id?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type CreateKlarnaPaymentsSessionInput = {
+  cart_id: Scalars["String"]["input"];
 };
 
 export type Hero_Hotspot = {
@@ -42964,8 +43655,8 @@ export type CmsPagesQuery = {
               | {
                   __typename: "TextBlock";
                   id: string;
-                  title?: string | null;
                   textAlign?: Position | null;
+                  title?: { __typename: "RichText"; html: string } | null;
                   content?: { __typename: "RichText"; html: string } | null;
                   links: Array<{
                     __typename: "Link";
@@ -43052,8 +43743,8 @@ export type CmsStaticPageConfigurationQuery = {
               | {
                   __typename: "TextBlock";
                   id: string;
-                  title?: string | null;
                   textAlign?: Position | null;
+                  title?: { __typename: "RichText"; html: string } | null;
                   content?: { __typename: "RichText"; html: string } | null;
                   links: Array<{
                     __typename: "Link";
@@ -43171,8 +43862,8 @@ export type CmsImageLinkFragment = {
 export type CmsTextBlockFragment = {
   __typename: "TextBlock";
   id: string;
-  title?: string | null;
   textAlign?: Position | null;
+  title?: { __typename: "RichText"; html: string } | null;
   content?: { __typename: "RichText"; html: string } | null;
   links: Array<{ __typename: "Link"; id: string; label: string; url: string }>;
 };
@@ -43207,8 +43898,8 @@ export type CmsColumnFragment = {
     | {
         __typename: "TextBlock";
         id: string;
-        title?: string | null;
         textAlign?: Position | null;
+        title?: { __typename: "RichText"; html: string } | null;
         content?: { __typename: "RichText"; html: string } | null;
         links: Array<{
           __typename: "Link";
@@ -43255,8 +43946,8 @@ export type CmsBlockRowFragment = {
       | {
           __typename: "TextBlock";
           id: string;
-          title?: string | null;
           textAlign?: Position | null;
+          title?: { __typename: "RichText"; html: string } | null;
           content?: { __typename: "RichText"; html: string } | null;
           links: Array<{
             __typename: "Link";
@@ -85627,7 +86318,16 @@ export const CmsTextBlockFragmentDoc = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "title" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "html" } },
+                    ],
+                  },
+                },
                 { kind: "Field", name: { kind: "Name", value: "textAlign" } },
                 {
                   kind: "Field",
@@ -85855,7 +86555,16 @@ export const CmsColumnFragmentDoc = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "title" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "html" } },
+                    ],
+                  },
+                },
                 { kind: "Field", name: { kind: "Name", value: "textAlign" } },
                 {
                   kind: "Field",
@@ -86038,7 +86747,16 @@ export const CmsBlockRowFragmentDoc = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "title" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "html" } },
+                    ],
+                  },
+                },
                 { kind: "Field", name: { kind: "Name", value: "textAlign" } },
                 {
                   kind: "Field",
@@ -100283,7 +101001,16 @@ export const CmsPagesDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "title" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "html" } },
+                    ],
+                  },
+                },
                 { kind: "Field", name: { kind: "Name", value: "textAlign" } },
                 {
                   kind: "Field",
@@ -100674,7 +101401,16 @@ export const CmsStaticPageConfigurationDocument = {
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "__typename" } },
                 { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "title" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "html" } },
+                    ],
+                  },
+                },
                 { kind: "Field", name: { kind: "Name", value: "textAlign" } },
                 {
                   kind: "Field",

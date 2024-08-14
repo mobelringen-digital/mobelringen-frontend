@@ -25,14 +25,14 @@ export const TextBlock: React.FC<Props> = ({ data }) => {
   return (
     <div className="flex flex-col justify-center max-w-[900px] mx-auto gap-4 lg:gap-8">
       {data.title ? (
-        <h2
+        <div
           className={cx(
             "text-3xl lg:text-4xl font-medium font-feature",
             TEXT_ALIGN[data.textAlign ?? "LEFT"],
           )}
         >
-          {data.title}
-        </h2>
+          <div dangerouslySetInnerHTML={{ __html: data.title.html }} />
+        </div>
       ) : null}
       {data.content?.html ? (
         <div

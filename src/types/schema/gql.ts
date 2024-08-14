@@ -103,7 +103,7 @@ const documents = {
     types.CmsDynamicHeadersDocument,
   "\n  fragment CmsImageLink on ImageLink {\n    ... on ImageLink {\n      __typename\n      id\n      label\n      url\n      caption\n      image {\n        url\n        width\n        height\n      }\n      salesBubble {\n        ...CmsSalesBubble\n      }\n    }\n  }\n":
     types.CmsImageLinkFragmentDoc,
-  "\n  fragment CmsTextBlock on TextBlock {\n    ... on TextBlock {\n      __typename\n      id\n      title\n      textAlign\n      content {\n        html\n      }\n      links {\n        ... on Link {\n          id\n          label\n          url\n        }\n      }\n    }\n  }\n":
+  "\n  fragment CmsTextBlock on TextBlock {\n    ... on TextBlock {\n      __typename\n      id\n      title {\n        html\n      }\n      textAlign\n      content {\n        html\n      }\n      links {\n        ... on Link {\n          id\n          label\n          url\n        }\n      }\n    }\n  }\n":
     types.CmsTextBlockFragmentDoc,
   "\n  fragment CmsColumn on Column {\n    ... on Column {\n      __typename\n      id\n      content {\n        ...CmsTextBlock\n        ...CmsImageLink\n      }\n      desktopPosition\n      mobilePosition\n    }\n  }\n":
     types.CmsColumnFragmentDoc,
@@ -457,8 +457,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment CmsTextBlock on TextBlock {\n    ... on TextBlock {\n      __typename\n      id\n      title\n      textAlign\n      content {\n        html\n      }\n      links {\n        ... on Link {\n          id\n          label\n          url\n        }\n      }\n    }\n  }\n",
-): (typeof documents)["\n  fragment CmsTextBlock on TextBlock {\n    ... on TextBlock {\n      __typename\n      id\n      title\n      textAlign\n      content {\n        html\n      }\n      links {\n        ... on Link {\n          id\n          label\n          url\n        }\n      }\n    }\n  }\n"];
+  source: "\n  fragment CmsTextBlock on TextBlock {\n    ... on TextBlock {\n      __typename\n      id\n      title {\n        html\n      }\n      textAlign\n      content {\n        html\n      }\n      links {\n        ... on Link {\n          id\n          label\n          url\n        }\n      }\n    }\n  }\n",
+): (typeof documents)["\n  fragment CmsTextBlock on TextBlock {\n    ... on TextBlock {\n      __typename\n      id\n      title {\n        html\n      }\n      textAlign\n      content {\n        html\n      }\n      links {\n        ... on Link {\n          id\n          label\n          url\n        }\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

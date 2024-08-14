@@ -80,7 +80,9 @@ export const CmsTextBlockFragment = graphql(`
     ... on TextBlock {
       __typename
       id
-      title
+      title {
+        html
+      }
       textAlign
       content {
         html
