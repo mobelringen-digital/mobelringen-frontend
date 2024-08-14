@@ -23,7 +23,7 @@ const BUTTON_JUSTIFY: Record<Position, string> = {
 
 export const TextBlock: React.FC<Props> = ({ data }) => {
   return (
-    <div className="flex flex-col justify-center gap-4 lg:gap-8">
+    <div className="flex flex-col justify-center max-w-[900px] mx-auto gap-4 lg:gap-8">
       {data.title ? (
         <h2
           className={cx(
