@@ -21,20 +21,25 @@ const BUTTON_JUSTIFY: Record<Position, string> = {
   RIGHT: "lg:justify-end",
 };
 
+const isEmptyHTML = (html: string) => html === "<p></p>";
+
 export const TextBlock: React.FC<Props> = ({ data }) => {
   return (
-    <div className="flex flex-col justify-center max-w-[900px] mx-auto gap-4 lg:gap-8">
-      {data.title ? (
+    <div
+      id="cms-text-block"
+      className="flex flex-col justify-center max-w-[950px] mx-auto gap-4 lg:gap-8"
+    >
+      {data.title && !isEmptyHTML(data.title.html) ? (
         <div
           className={cx(
-            "text-3xl lg:text-4xl font-medium font-feature",
+            "text-3xl font-normal lg:text-4xl font-feature",
             TEXT_ALIGN[data.textAlign ?? "LEFT"],
           )}
         >
           <div dangerouslySetInnerHTML={{ __html: data.title.html }} />
         </div>
       ) : null}
-      {data.content?.html ? (
+      {data.content?.html && !isEmptyHTML(data.content.html) ? (
         <div
           className={cx(
             "prose text-lg lg:text-xl font-normal",

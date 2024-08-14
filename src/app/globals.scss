@@ -18,6 +18,18 @@ body {
   min-width: 0;
 }
 
+#cms-text-block {
+  p {
+    &:not(:first-of-type),
+    &:not(:last-of-type) {
+      @apply my-4;
+    }
+  }
+  strong {
+    @apply font-medium;
+  }
+}
+
 .filter-range-slider {
   /* */
 }
@@ -25,13 +37,13 @@ body {
   /* CSS for disabled range slider element */
 }
 .filter-range-slider .range-slider__range {
-  @apply !bg-powder;
+  @apply bg-powder #{!important};
 }
 .filter-range-slider .range-slider__range[data-active] {
   /* CSS for active (actively being dragged) range */
 }
 .filter-range-slider .range-slider__thumb {
-  @apply !bg-red !w-2 !rounded-2xl;
+  @apply bg-red w-2 rounded-2xl #{!important};
 }
 .filter-range-slider .range-slider__thumb[data-lower] {
   /* CSS for lower thumb */

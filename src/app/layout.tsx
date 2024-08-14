@@ -7,7 +7,7 @@ import { Providers } from "@/components/Providers";
 
 import Loading from "./loading";
 
-import "./globals.css";
+import "./globals.scss";
 
 export default async function RootLayout({
   children,

@@ -34,7 +34,7 @@ export const ImageLink: React.FC<Props> = ({ data }) => {
         ) : null}
       </div>
       {data.caption ? (
-        <p className="text-left font-light text-xs lg:text-sm text-black lg:mt-4">
+        <p className="text-left font-light text-xs lg:text-sm text-black">
           {data.caption}
         </p>
       ) : null}
