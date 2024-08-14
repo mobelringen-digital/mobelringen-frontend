@@ -17,8 +17,6 @@ const COLUMNS: Record<number, string> = {
   2: "grid-cols-2",
   3: "grid-cols-3",
   4: "grid-cols-4",
-  5: "grid-cols-5",
-  6: "grid-cols-6",
 };
 
 const COLSPAN: Record<number, string> = {
@@ -26,8 +24,6 @@ const COLSPAN: Record<number, string> = {
   2: "col-span-2",
   3: "col-span-3",
   4: "col-span-4",
-  5: "col-span-5",
-  6: "col-span-6",
 };
 
 const MOBILE_ORDER: Record<number, string> = {
@@ -50,19 +46,35 @@ const BACKGROUND_COLOR: Record<BackgroundColor, string> & { None: "" } = {
   Yellow: "bg-cream",
 };
 
+const calculateColumns = (columns: number) => {
+  if (columns > 4) {
+    return COLUMNS[4];
+  }
+
+  return COLUMNS[columns];
+};
+
+const calculateSpan = (columns: number) => {
+  if (columns > 4) {
+    return COLSPAN[4];
+  }
+
+  return COLSPAN[columns];
+};
+
 export const BlockRow: React.FC<Props> = ({ data }) => {
   return (
     <CmsBlockWrapper
       isFullWidth={data.useFullPageWidth === true}
       backgroundColor={BACKGROUND_COLOR[data.backgroundColor ?? "None"]}
     >
-      <div className={cx("grid gap-8", COLUMNS[data.columns.length])}>
+      <div className={cx("grid gap-8", calculateColumns(data.columns.length))}>
         {data.columns.map((column, idx) => {
           return (
             <div
               key={idx}
               className={cx(
-                COLSPAN[data.columns.length],
+                calculateSpan(data.columns.length),
                 MOBILE_ORDER[column.mobilePosition ?? 1],
                 DESKTOP_ORDER[column.desktopPosition ?? 1],
                 "flex lg:col-span-1",
