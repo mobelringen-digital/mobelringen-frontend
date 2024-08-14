@@ -11,7 +11,7 @@ interface Props {
 
 const SIZE_VARIANTS = {
   default: "py-4 px-12",
-  small: "py-3 px-8",
+  small: "py-2 px-10",
 };
 
 export const SalesBubble: React.FC<Props> = ({
