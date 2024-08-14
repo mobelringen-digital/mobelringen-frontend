@@ -12,7 +12,7 @@ interface Props {
   data: CmsSalesBubbleFragment;
 }
 
-export const SalesBubbleWrapper: React.FC<Props> = ({ data }) => {
+export const BannerSalesBubbleWrapper: React.FC<Props> = ({ data }) => {
   const salesBubble = data;
 
   return (

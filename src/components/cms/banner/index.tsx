@@ -2,7 +2,7 @@ import React from "react";
 
 import cx from "classnames";
 
-import { SalesBubbleWrapper } from "@/components/cms/banner/SalesBubbleWrapper";
+import { BannerSalesBubbleWrapper } from "@/components/cms/banner/BannerSalesBubbleWrapper";
 import { BannerVariant, CmsBannerFragment } from "@/types";
 
 interface Props {
@@ -40,7 +40,7 @@ export const Banner: React.FC<Props> = ({ data, children }) => {
         </div>
       ) : null}
       {children}
-      {salesBubble ? <SalesBubbleWrapper data={salesBubble} /> : null}
+      {salesBubble ? <BannerSalesBubbleWrapper data={salesBubble} /> : null}
     </div>
   );
 };

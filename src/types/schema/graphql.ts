@@ -9587,6 +9587,7 @@ export type ImageLink = Entity & {
   id: Scalars["ID"]["output"];
   image: Asset;
   label: Scalars["String"]["output"];
+  salesBubble?: Maybe<SaleBubble>;
   /** System stage field */
   stage: Stage;
   url: Scalars["String"]["output"];
@@ -9596,6 +9597,11 @@ export type ImageLinkImageArgs = {
   forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
   locales: InputMaybe<Array<Locale>>;
   where: InputMaybe<AssetSingleRelationWhereInput>;
+};
+
+export type ImageLinkSalesBubbleArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
 };
 
 export type ImageLinkConnectInput = {
@@ -9619,6 +9625,7 @@ export type ImageLinkCreateInput = {
   caption?: InputMaybe<Scalars["String"]["input"]>;
   image: AssetCreateOneInlineInput;
   label: Scalars["String"]["input"];
+  salesBubble?: InputMaybe<SaleBubbleCreateOneInlineInput>;
   url: Scalars["String"]["input"];
 };
 
@@ -9716,6 +9723,7 @@ export type ImageLinkManyWhereInput = {
   label_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   /** All values starting with the given string. */
   label_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  salesBubble?: InputMaybe<SaleBubbleWhereInput>;
   url?: InputMaybe<Scalars["String"]["input"]>;
   /** All values containing the given string. */
   url_contains?: InputMaybe<Scalars["String"]["input"]>;
@@ -9845,6 +9853,7 @@ export type ImageLinkUpdateInput = {
   caption?: InputMaybe<Scalars["String"]["input"]>;
   image?: InputMaybe<AssetUpdateOneInlineInput>;
   label?: InputMaybe<Scalars["String"]["input"]>;
+  salesBubble?: InputMaybe<SaleBubbleUpdateOneInlineInput>;
   url?: InputMaybe<Scalars["String"]["input"]>;
 };
 
@@ -9994,6 +10003,7 @@ export type ImageLinkWhereInput = {
   label_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   /** All values starting with the given string. */
   label_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  salesBubble?: InputMaybe<SaleBubbleWhereInput>;
   url?: InputMaybe<Scalars["String"]["input"]>;
   /** All values containing the given string. */
   url_contains?: InputMaybe<Scalars["String"]["input"]>;
@@ -19059,14 +19069,16 @@ export enum SaleBubbleOrderByInput {
   UrlDesc = "url_DESC",
 }
 
-export type SaleBubbleParent = Banner;
+export type SaleBubbleParent = Banner | ImageLink;
 
 export type SaleBubbleParentConnectInput = {
   Banner?: InputMaybe<BannerConnectInput>;
+  ImageLink?: InputMaybe<ImageLinkConnectInput>;
 };
 
 export type SaleBubbleParentCreateInput = {
   Banner?: InputMaybe<BannerCreateInput>;
+  ImageLink?: InputMaybe<ImageLinkCreateInput>;
 };
 
 export type SaleBubbleParentCreateManyInlineInput = {
@@ -19085,6 +19097,7 @@ export type SaleBubbleParentCreateOneInlineInput = {
 
 export type SaleBubbleParentUpdateInput = {
   Banner?: InputMaybe<BannerUpdateInput>;
+  ImageLink?: InputMaybe<ImageLinkUpdateInput>;
 };
 
 export type SaleBubbleParentUpdateManyInlineInput = {
@@ -19106,6 +19119,7 @@ export type SaleBubbleParentUpdateManyInlineInput = {
 
 export type SaleBubbleParentUpdateManyWithNestedWhereInput = {
   Banner?: InputMaybe<BannerUpdateManyWithNestedWhereInput>;
+  ImageLink?: InputMaybe<ImageLinkUpdateManyWithNestedWhereInput>;
 };
 
 export type SaleBubbleParentUpdateOneInlineInput = {
@@ -19125,18 +19139,22 @@ export type SaleBubbleParentUpdateOneInlineInput = {
 
 export type SaleBubbleParentUpdateWithNestedWhereUniqueInput = {
   Banner?: InputMaybe<BannerUpdateWithNestedWhereUniqueInput>;
+  ImageLink?: InputMaybe<ImageLinkUpdateWithNestedWhereUniqueInput>;
 };
 
 export type SaleBubbleParentUpsertWithNestedWhereUniqueInput = {
   Banner?: InputMaybe<BannerUpsertWithNestedWhereUniqueInput>;
+  ImageLink?: InputMaybe<ImageLinkUpsertWithNestedWhereUniqueInput>;
 };
 
 export type SaleBubbleParentWhereInput = {
   Banner?: InputMaybe<BannerWhereInput>;
+  ImageLink?: InputMaybe<ImageLinkWhereInput>;
 };
 
 export type SaleBubbleParentWhereUniqueInput = {
   Banner?: InputMaybe<BannerWhereUniqueInput>;
+  ImageLink?: InputMaybe<ImageLinkWhereUniqueInput>;
 };
 
 export type SaleBubbleUpdateInput = {
@@ -42934,6 +42952,14 @@ export type CmsPagesQuery = {
                     width?: number | null;
                     height?: number | null;
                   };
+                  salesBubble?: {
+                    __typename: "SaleBubble";
+                    url?: string | null;
+                    middleLine: string;
+                    position: Position;
+                    topLine?: string | null;
+                    bottomLine?: string | null;
+                  } | null;
                 }
               | {
                   __typename: "TextBlock";
@@ -43014,6 +43040,14 @@ export type CmsStaticPageConfigurationQuery = {
                     width?: number | null;
                     height?: number | null;
                   };
+                  salesBubble?: {
+                    __typename: "SaleBubble";
+                    url?: string | null;
+                    middleLine: string;
+                    position: Position;
+                    topLine?: string | null;
+                    bottomLine?: string | null;
+                  } | null;
                 }
               | {
                   __typename: "TextBlock";
@@ -43124,6 +43158,14 @@ export type CmsImageLinkFragment = {
     width?: number | null;
     height?: number | null;
   };
+  salesBubble?: {
+    __typename: "SaleBubble";
+    url?: string | null;
+    middleLine: string;
+    position: Position;
+    topLine?: string | null;
+    bottomLine?: string | null;
+  } | null;
 };
 
 export type CmsTextBlockFragment = {
@@ -43153,6 +43195,14 @@ export type CmsColumnFragment = {
           width?: number | null;
           height?: number | null;
         };
+        salesBubble?: {
+          __typename: "SaleBubble";
+          url?: string | null;
+          middleLine: string;
+          position: Position;
+          topLine?: string | null;
+          bottomLine?: string | null;
+        } | null;
       }
     | {
         __typename: "TextBlock";
@@ -43193,6 +43243,14 @@ export type CmsBlockRowFragment = {
             width?: number | null;
             height?: number | null;
           };
+          salesBubble?: {
+            __typename: "SaleBubble";
+            url?: string | null;
+            middleLine: string;
+            position: Position;
+            topLine?: string | null;
+            bottomLine?: string | null;
+          } | null;
         }
       | {
           __typename: "TextBlock";
@@ -85664,9 +85722,40 @@ export const CmsImageLinkFragmentDoc = {
                     ],
                   },
                 },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "salesBubble" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsSalesBubble" },
+                      },
+                    ],
+                  },
+                },
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsSalesBubble" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SaleBubble" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "topLine" } },
+          { kind: "Field", name: { kind: "Name", value: "bottomLine" } },
         ],
       },
     },
@@ -85724,6 +85813,24 @@ export const CmsColumnFragmentDoc = {
               ],
             },
           },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsSalesBubble" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SaleBubble" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "topLine" } },
+          { kind: "Field", name: { kind: "Name", value: "bottomLine" } },
         ],
       },
     },
@@ -85834,6 +85941,19 @@ export const CmsColumnFragmentDoc = {
                       {
                         kind: "Field",
                         name: { kind: "Name", value: "height" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "salesBubble" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsSalesBubble" },
                       },
                     ],
                   },
@@ -85971,6 +86091,24 @@ export const CmsBlockRowFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsSalesBubble" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SaleBubble" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "topLine" } },
+          { kind: "Field", name: { kind: "Name", value: "bottomLine" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "CmsImageLink" },
       typeCondition: {
         kind: "NamedType",
@@ -86004,6 +86142,19 @@ export const CmsBlockRowFragmentDoc = {
                       {
                         kind: "Field",
                         name: { kind: "Name", value: "height" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "salesBubble" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsSalesBubble" },
                       },
                     ],
                   },
@@ -100222,6 +100373,19 @@ export const CmsPagesDocument = {
                     ],
                   },
                 },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "salesBubble" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsSalesBubble" },
+                      },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -100563,6 +100727,24 @@ export const CmsStaticPageConfigurationDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsSalesBubble" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "SaleBubble" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "topLine" } },
+          { kind: "Field", name: { kind: "Name", value: "bottomLine" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "CmsImageLink" },
       typeCondition: {
         kind: "NamedType",
@@ -100596,6 +100778,19 @@ export const CmsStaticPageConfigurationDocument = {
                       {
                         kind: "Field",
                         name: { kind: "Name", value: "height" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "salesBubble" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsSalesBubble" },
                       },
                     ],
                   },
@@ -100655,24 +100850,6 @@ export const CmsStaticPageConfigurationDocument = {
               ],
             },
           },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "CmsSalesBubble" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "SaleBubble" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "url" } },
-          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
-          { kind: "Field", name: { kind: "Name", value: "position" } },
-          { kind: "Field", name: { kind: "Name", value: "topLine" } },
-          { kind: "Field", name: { kind: "Name", value: "bottomLine" } },
         ],
       },
     },

@@ -68,6 +68,9 @@ export const CmsImageLinkFragment = graphql(`
         width
         height
       }
+      salesBubble {
+        ...CmsSalesBubble
+      }
     }
   }
 `);
