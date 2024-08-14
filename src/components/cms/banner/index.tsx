@@ -11,8 +11,8 @@ interface Props {
 }
 
 const VARIANTS: Record<BannerVariant, string> = {
-  default: "h-[430px] lg:h-[820px] max-h-screen w-full",
-  small: "h-[200px] lg:h-[320px] max-h-screen w-full",
+  default: "h-[430px] lg:h-[820px] max-h-[calc(100vh-115px)] w-full",
+  small: "h-[200px] lg:h-[320px] max-h-[calc(100vh-115px)] w-full",
 };
 
 export const Banner: React.FC<Props> = ({ data, children }) => {
