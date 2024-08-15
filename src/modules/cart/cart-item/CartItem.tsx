@@ -8,27 +8,27 @@ import Link from "next/link";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { QuantityInput } from "@/components/_ui/quantity-input/QuantityInput";
 import { useConfirm } from "@/components/confirm/hooks/useConfirm";
-import {
-  removeProductFromCart,
-  updateCartItems,
-} from "@/modules/cart/cart-item/actions";
+import { updateCartItems } from "@/modules/cart/cart-item/actions";
 import { CartItemDeliveryInfo } from "@/modules/cart/cart-item/CartItemDeliveryInfo";
 import { CartItemPrice } from "@/modules/cart/cart-item/CartItemPrice";
-import { CartItemFragment } from "@/types";
+import { CartItemFragment, RemoveProductFromCartMutation } from "@/types";
 
 interface Props {
   item: CartItemFragment | null;
+  onRemoveProduct: (
+    itemId: number,
+  ) => Promise<RemoveProductFromCartMutation | undefined>;
 }
 
-export const CartItem: React.FC<Props> = ({ item }) => {
+export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const { showConfirmation } = useConfirm();
 
   if (!item) return null;
 
   const handleUpdateQuantity = async (quantity: number) => {
-    setIsLoading(true);
     if (quantity > 0) {
+      setIsLoading(true);
       return updateCartItems([
         {
           cart_item_id: parseInt(item.id, 10),
@@ -54,9 +54,9 @@ export const CartItem: React.FC<Props> = ({ item }) => {
     });
 
     if (confirmed) {
-      return removeProductFromCart(parseInt(item.id, 10)).finally(() =>
-        setIsLoading(false),
-      );
+      return restProps
+        .onRemoveProduct(parseInt(item.id, 10))
+        .finally(() => setIsLoading(false));
     }
 
     setIsLoading(false);
