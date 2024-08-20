@@ -71,7 +71,7 @@ const documents = {
     types.CmsSalesBubbleFragmentDoc,
   "\n  fragment CmsBanner on Banner {\n    ... on Banner {\n      __typename\n      alt\n      identify\n      variant\n      centerText\n      bannerImage {\n        mimeType\n        url\n        width\n      }\n      salesBubble {\n        ...CmsSalesBubble\n      }\n    }\n  }\n":
     types.CmsBannerFragmentDoc,
-  "\n  fragment CmsProductSlider on ProductSlider {\n    ... on ProductSlider {\n      __typename\n      categoryId\n      type\n      title\n    }\n  }\n":
+  "\n  fragment CmsProductSlider on ProductSlider {\n    ... on ProductSlider {\n      __typename\n      categoryId\n      type\n      title\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n":
     types.CmsProductSliderFragmentDoc,
   "\n  fragment CmsBlockConfig on BlockConfig {\n    ... on BlockConfig {\n      __typename\n      id\n      backgroundColor\n    }\n  }\n":
     types.CmsBlockConfigFragmentDoc,
@@ -365,8 +365,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment CmsProductSlider on ProductSlider {\n    ... on ProductSlider {\n      __typename\n      categoryId\n      type\n      title\n    }\n  }\n",
-): (typeof documents)["\n  fragment CmsProductSlider on ProductSlider {\n    ... on ProductSlider {\n      __typename\n      categoryId\n      type\n      title\n    }\n  }\n"];
+  source: "\n  fragment CmsProductSlider on ProductSlider {\n    ... on ProductSlider {\n      __typename\n      categoryId\n      type\n      title\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n",
+): (typeof documents)["\n  fragment CmsProductSlider on ProductSlider {\n    ... on ProductSlider {\n      __typename\n      categoryId\n      type\n      title\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

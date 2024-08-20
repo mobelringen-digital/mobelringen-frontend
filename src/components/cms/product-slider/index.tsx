@@ -2,8 +2,8 @@
 
 import React from "react";
 
+import { CmsBlockWrapper } from "@/components/cms/cms-block-wrapper";
 import { useBestSellingProductsQuery } from "@/components/cms/product-slider/hooks/useBestSellingProductsQuery";
-import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { ProductSlider } from "@/components/product-slider/ProductSlider";
 import { ProductSliderSkeleton } from "@/components/product-slider/ProductSliderSkeleton";
 import { CmsProductSliderFragment } from "@/types";
@@ -19,17 +19,17 @@ export const CmsProductSlider: React.FC<Props> = ({ data }) => {
 
   if (isLoading) {
     return (
-      <ContainerLayout>
+      <CmsBlockWrapper>
         <ProductSliderSkeleton />
-      </ContainerLayout>
+      </CmsBlockWrapper>
     );
   }
 
   if (popularProducts && popularProducts.length > 0) {
     return (
-      <ContainerLayout>
+      <CmsBlockWrapper config={data.blockConfig}>
         <ProductSlider title={title} data={popularProducts} />
-      </ContainerLayout>
+      </CmsBlockWrapper>
     );
   }
 

@@ -2258,6 +2258,7 @@ export type BlockConfigCreateInput = {
   backgroundColor?: InputMaybe<BackgroundColor>;
   cm023mmze0xjl07un7it033v6?: InputMaybe<BlockQuoteCreateManyInlineInput>;
   cm023n1x80xik07up2if7en8j?: InputMaybe<BlockRowCreateManyInlineInput>;
+  cm0243gbi0xtv07un2cqn8xnq?: InputMaybe<ProductSliderCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
 };
@@ -2400,6 +2401,7 @@ export type BlockConfigUpdateInput = {
   backgroundColor?: InputMaybe<BackgroundColor>;
   cm023mmze0xjl07un7it033v6?: InputMaybe<BlockQuoteUpdateManyInlineInput>;
   cm023n1x80xik07up2if7en8j?: InputMaybe<BlockRowUpdateManyInlineInput>;
+  cm0243gbi0xtv07un2cqn8xnq?: InputMaybe<ProductSliderUpdateManyInlineInput>;
 };
 
 export type BlockConfigUpdateManyInlineInput = {
@@ -18385,6 +18387,7 @@ export type ProductReviews = {
 export type ProductSlider = Entity &
   Node & {
     __typename: "ProductSlider";
+    blockConfig?: Maybe<BlockConfig>;
     /** Must be entered if slider type is "Popular products" */
     categoryId?: Maybe<Scalars["String"]["output"]>;
     /** The time the document was created */
@@ -18414,6 +18417,11 @@ export type ProductSlider = Entity &
     /** User that last updated this document */
     updatedBy?: Maybe<User>;
   };
+
+export type ProductSliderBlockConfigArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
 
 export type ProductSliderCreatedByArgs = {
   forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
@@ -18487,6 +18495,7 @@ export type ProductSliderConnection = {
 };
 
 export type ProductSliderCreateInput = {
+  blockConfig?: InputMaybe<BlockConfigCreateOneInlineInput>;
   categoryId?: InputMaybe<Scalars["String"]["input"]>;
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   identify: Scalars["String"]["input"];
@@ -18530,6 +18539,7 @@ export type ProductSliderManyWhereInput = {
   OR?: InputMaybe<Array<ProductSliderWhereInput>>;
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars["String"]["input"]>;
+  blockConfig?: InputMaybe<BlockConfigWhereInput>;
   categoryId?: InputMaybe<Scalars["String"]["input"]>;
   /** All values containing the given string. */
   categoryId_contains?: InputMaybe<Scalars["String"]["input"]>;
@@ -18703,6 +18713,7 @@ export enum ProductSliderType {
 }
 
 export type ProductSliderUpdateInput = {
+  blockConfig?: InputMaybe<BlockConfigUpdateOneInlineInput>;
   categoryId?: InputMaybe<Scalars["String"]["input"]>;
   identify?: InputMaybe<Scalars["String"]["input"]>;
   pages?: InputMaybe<PageUpdateManyInlineInput>;
@@ -18794,6 +18805,7 @@ export type ProductSliderWhereInput = {
   OR?: InputMaybe<Array<ProductSliderWhereInput>>;
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars["String"]["input"]>;
+  blockConfig?: InputMaybe<BlockConfigWhereInput>;
   categoryId?: InputMaybe<Scalars["String"]["input"]>;
   /** All values containing the given string. */
   categoryId_contains?: InputMaybe<Scalars["String"]["input"]>;
@@ -44667,6 +44679,11 @@ export type CmsProductSliderFragment = {
   categoryId?: string | null;
   type: ProductSliderType;
   title: string;
+  blockConfig?: {
+    __typename: "BlockConfig";
+    id: string;
+    backgroundColor?: BackgroundColor | null;
+  } | null;
 };
 
 export type CmsBlockConfigFragment = {
@@ -45019,6 +45036,11 @@ export type CmsPagesQuery = {
           categoryId?: string | null;
           type: ProductSliderType;
           title: string;
+          blockConfig?: {
+            __typename: "BlockConfig";
+            id: string;
+            backgroundColor?: BackgroundColor | null;
+          } | null;
         }
     >;
   }>;
@@ -45111,6 +45133,11 @@ export type CmsStaticPageConfigurationQuery = {
           categoryId?: string | null;
           type: ProductSliderType;
           title: string;
+          blockConfig?: {
+            __typename: "BlockConfig";
+            id: string;
+            backgroundColor?: BackgroundColor | null;
+          } | null;
         }
       | null;
   } | null;
@@ -87058,6 +87085,42 @@ export const BaseCategoryDataFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<BaseCategoryDataFragment, unknown>;
+export const CmsBlockConfigFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsBlockConfig" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "BlockConfig" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "BlockConfig" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundColor" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CmsBlockConfigFragment, unknown>;
 export const CmsProductSliderFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -87084,6 +87147,50 @@ export const CmsProductSliderFragmentDoc = {
                 { kind: "Field", name: { kind: "Name", value: "categoryId" } },
                 { kind: "Field", name: { kind: "Name", value: "type" } },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "blockConfig" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsBlockConfig" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsBlockConfig" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "BlockConfig" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "BlockConfig" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundColor" },
+                },
               ],
             },
           },
@@ -88047,42 +88154,6 @@ export const CmsColumnFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<CmsColumnFragment, unknown>;
-export const CmsBlockConfigFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "CmsBlockConfig" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "BlockConfig" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "InlineFragment",
-            typeCondition: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "BlockConfig" },
-            },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "backgroundColor" },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<CmsBlockConfigFragment, unknown>;
 export const CmsBlockRowFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -102536,6 +102607,37 @@ export const CmsPagesDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsBlockConfig" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "BlockConfig" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "BlockConfig" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundColor" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "CmsTextBlock" },
       typeCondition: {
         kind: "NamedType",
@@ -102727,37 +102829,6 @@ export const CmsPagesDocument = {
     },
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "CmsBlockConfig" },
-      typeCondition: {
-        kind: "NamedType",
-        name: { kind: "Name", value: "BlockConfig" },
-      },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "InlineFragment",
-            typeCondition: {
-              kind: "NamedType",
-              name: { kind: "Name", value: "BlockConfig" },
-            },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "__typename" } },
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "backgroundColor" },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      kind: "FragmentDefinition",
       name: { kind: "Name", value: "CmsBanner" },
       typeCondition: {
         kind: "NamedType",
@@ -102837,6 +102908,19 @@ export const CmsPagesDocument = {
                 { kind: "Field", name: { kind: "Name", value: "categoryId" } },
                 { kind: "Field", name: { kind: "Name", value: "type" } },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "blockConfig" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsBlockConfig" },
+                      },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -103418,6 +103502,19 @@ export const CmsStaticPageConfigurationDocument = {
                 { kind: "Field", name: { kind: "Name", value: "categoryId" } },
                 { kind: "Field", name: { kind: "Name", value: "type" } },
                 { kind: "Field", name: { kind: "Name", value: "title" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "blockConfig" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsBlockConfig" },
+                      },
+                    ],
+                  },
+                },
               ],
             },
           },

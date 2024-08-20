@@ -37,6 +37,9 @@ export const CmsProductSliderFragment = graphql(`
       categoryId
       type
       title
+      blockConfig {
+        ...CmsBlockConfig
+      }
     }
   }
 `);
