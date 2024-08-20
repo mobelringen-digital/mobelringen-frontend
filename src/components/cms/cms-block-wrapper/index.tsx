@@ -3,20 +3,32 @@ import React from "react";
 import cx from "classnames";
 
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
+import { BackgroundColor, CmsBlockConfigFragment } from "@/types";
 
 interface Props {
   isFullWidth?: boolean;
-  backgroundColor?: string;
   children: React.ReactNode;
+  config?: CmsBlockConfigFragment | null;
 }
+
+const BACKGROUND_COLOR: Record<BackgroundColor, string> & { None: "" } = {
+  None: "",
+  White: "bg-white",
+  Yellow: "bg-cream",
+};
 
 export const CmsBlockWrapper: React.FC<Props> = ({
   isFullWidth,
-  backgroundColor,
   children,
+  config,
 }) => {
   return (
-    <div className={cx("py-16 w-full", backgroundColor)}>
+    <div
+      className={cx(
+        "py-16 w-full",
+        BACKGROUND_COLOR[config?.backgroundColor ?? "None"],
+      )}
+    >
       <ContainerLayout fullWidth={isFullWidth}>{children}</ContainerLayout>
     </div>
   );

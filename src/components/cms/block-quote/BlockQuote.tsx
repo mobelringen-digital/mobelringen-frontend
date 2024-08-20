@@ -38,7 +38,7 @@ export const BlockQuote: React.FC<Props> = ({ data }) => {
 
   if (data.image?.url) {
     return (
-      <CmsBlockWrapper>
+      <CmsBlockWrapper config={data.blockConfig}>
         <div className="grid grid-cols-2">
           <div className="col-span-2 lg:col-span-1 relative">
             <Image
@@ -56,7 +56,7 @@ export const BlockQuote: React.FC<Props> = ({ data }) => {
   }
 
   return (
-    <CmsBlockWrapper>
+    <CmsBlockWrapper config={data.blockConfig}>
       <div className="grid grid-cols-1 text-center">
         <div className="flex justify-center">
           <BlockQuoteComponent hasImage={false} />

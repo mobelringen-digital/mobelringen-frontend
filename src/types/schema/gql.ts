@@ -73,6 +73,8 @@ const documents = {
     types.CmsBannerFragmentDoc,
   "\n  fragment CmsProductSlider on ProductSlider {\n    ... on ProductSlider {\n      __typename\n      categoryId\n      type\n      title\n    }\n  }\n":
     types.CmsProductSliderFragmentDoc,
+  "\n  fragment CmsBlockConfig on BlockConfig {\n    ... on BlockConfig {\n      __typename\n      id\n      backgroundColor\n    }\n  }\n":
+    types.CmsBlockConfigFragmentDoc,
   "\n  fragment CmsLink on Link {\n    __typename\n    label\n    url\n    icon {\n      url\n    }\n  }\n":
     types.CmsLinkFragmentDoc,
   "\n  fragment CmsMegamenuDropdown on MegaMenuDropdown {\n    __typename\n    label\n    items {\n      ... on Link {\n        ...CmsLink\n      }\n      ... on ImageLink {\n        __typename\n        label\n        url\n        image {\n          url\n        }\n      }\n    }\n  }\n":
@@ -107,9 +109,9 @@ const documents = {
     types.CmsTextBlockFragmentDoc,
   "\n  fragment CmsColumn on Column {\n    ... on Column {\n      __typename\n      id\n      content {\n        ...CmsTextBlock\n        ...CmsImageLink\n      }\n      desktopPosition\n      mobilePosition\n    }\n  }\n":
     types.CmsColumnFragmentDoc,
-  "\n  fragment CmsBlockRow on BlockRow {\n    ... on BlockRow {\n      __typename\n      id\n      backgroundColor\n      useFullPageWidth\n      columns {\n        ...CmsColumn\n      }\n    }\n  }\n":
+  "\n  fragment CmsBlockRow on BlockRow {\n    ... on BlockRow {\n      __typename\n      id\n      useFullPageWidth\n      columns {\n        ...CmsColumn\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n":
     types.CmsBlockRowFragmentDoc,
-  "\n  fragment CmsBlockQuote on BlockQuote {\n    ... on BlockQuote {\n      __typename\n      id\n      image {\n        url\n        width\n        height\n      }\n      quote {\n        html\n      }\n      author\n    }\n  }\n":
+  "\n  fragment CmsBlockQuote on BlockQuote {\n    ... on BlockQuote {\n      __typename\n      id\n      image {\n        url\n        width\n        height\n      }\n      quote {\n        html\n      }\n      author\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n":
     types.CmsBlockQuoteFragmentDoc,
   "\n  fragment ConfigurableProductOptions on ConfigurableProductOptions {\n    __typename\n    values {\n      default_label\n      label\n      store_label\n      uid\n      use_default_value\n      value_index\n    }\n    attribute_code\n    attribute_uid\n    label\n    position\n    uid\n    use_default\n  }\n":
     types.ConfigurableProductOptionsFragmentDoc,
@@ -369,6 +371,12 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
+  source: "\n  fragment CmsBlockConfig on BlockConfig {\n    ... on BlockConfig {\n      __typename\n      id\n      backgroundColor\n    }\n  }\n",
+): (typeof documents)["\n  fragment CmsBlockConfig on BlockConfig {\n    ... on BlockConfig {\n      __typename\n      id\n      backgroundColor\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
   source: "\n  fragment CmsLink on Link {\n    __typename\n    label\n    url\n    icon {\n      url\n    }\n  }\n",
 ): (typeof documents)["\n  fragment CmsLink on Link {\n    __typename\n    label\n    url\n    icon {\n      url\n    }\n  }\n"];
 /**
@@ -471,14 +479,14 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment CmsBlockRow on BlockRow {\n    ... on BlockRow {\n      __typename\n      id\n      backgroundColor\n      useFullPageWidth\n      columns {\n        ...CmsColumn\n      }\n    }\n  }\n",
-): (typeof documents)["\n  fragment CmsBlockRow on BlockRow {\n    ... on BlockRow {\n      __typename\n      id\n      backgroundColor\n      useFullPageWidth\n      columns {\n        ...CmsColumn\n      }\n    }\n  }\n"];
+  source: "\n  fragment CmsBlockRow on BlockRow {\n    ... on BlockRow {\n      __typename\n      id\n      useFullPageWidth\n      columns {\n        ...CmsColumn\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n",
+): (typeof documents)["\n  fragment CmsBlockRow on BlockRow {\n    ... on BlockRow {\n      __typename\n      id\n      useFullPageWidth\n      columns {\n        ...CmsColumn\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment CmsBlockQuote on BlockQuote {\n    ... on BlockQuote {\n      __typename\n      id\n      image {\n        url\n        width\n        height\n      }\n      quote {\n        html\n      }\n      author\n    }\n  }\n",
-): (typeof documents)["\n  fragment CmsBlockQuote on BlockQuote {\n    ... on BlockQuote {\n      __typename\n      id\n      image {\n        url\n        width\n        height\n      }\n      quote {\n        html\n      }\n      author\n    }\n  }\n"];
+  source: "\n  fragment CmsBlockQuote on BlockQuote {\n    ... on BlockQuote {\n      __typename\n      id\n      image {\n        url\n        width\n        height\n      }\n      quote {\n        html\n      }\n      author\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n",
+): (typeof documents)["\n  fragment CmsBlockQuote on BlockQuote {\n    ... on BlockQuote {\n      __typename\n      id\n      image {\n        url\n        width\n        height\n      }\n      quote {\n        html\n      }\n      author\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

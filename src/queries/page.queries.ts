@@ -119,10 +119,12 @@ export const CmsBlockRowFragment = graphql(`
     ... on BlockRow {
       __typename
       id
-      backgroundColor
       useFullPageWidth
       columns {
         ...CmsColumn
+      }
+      blockConfig {
+        ...CmsBlockConfig
       }
     }
   }
@@ -142,6 +144,9 @@ export const CmsBlockQuoteFragment = graphql(`
         html
       }
       author
+      blockConfig {
+        ...CmsBlockConfig
+      }
     }
   }
 `);

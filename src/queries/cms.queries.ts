@@ -40,3 +40,13 @@ export const CmsProductSliderFragment = graphql(`
     }
   }
 `);
+
+export const CmsBlockConfigFragment = graphql(`
+  fragment CmsBlockConfig on BlockConfig {
+    ... on BlockConfig {
+      __typename
+      id
+      backgroundColor
+    }
+  }
+`);

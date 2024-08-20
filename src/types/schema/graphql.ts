@@ -2172,10 +2172,428 @@ export type BillingCartAddress = CartAddressInterface & {
   vat_id?: Maybe<Scalars["String"]["output"]>;
 };
 
+export type BlockConfig = Entity &
+  Node & {
+    __typename: "BlockConfig";
+    backgroundColor?: Maybe<BackgroundColor>;
+    /** The time the document was created */
+    createdAt: Scalars["DateTime"]["output"];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    /** Get the document in other stages */
+    documentInStages: Array<BlockConfig>;
+    /** List of BlockConfig versions */
+    history: Array<Version>;
+    /** The unique identifier */
+    id: Scalars["ID"]["output"];
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    scheduledIn: Array<ScheduledOperation>;
+    /** System stage field */
+    stage: Stage;
+    /** The time the document was updated */
+    updatedAt: Scalars["DateTime"]["output"];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+  };
+
+export type BlockConfigCreatedByArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type BlockConfigDocumentInStagesArgs = {
+  includeCurrent?: Scalars["Boolean"]["input"];
+  inheritLocale?: Scalars["Boolean"]["input"];
+  stages?: Array<Stage>;
+};
+
+export type BlockConfigHistoryArgs = {
+  limit?: Scalars["Int"]["input"];
+  skip?: Scalars["Int"]["input"];
+  stageOverride: InputMaybe<Stage>;
+};
+
+export type BlockConfigPublishedByArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type BlockConfigScheduledInArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+export type BlockConfigUpdatedByArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type BlockConfigConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: BlockConfigWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type BlockConfigConnection = {
+  __typename: "BlockConfigConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<BlockConfigEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type BlockConfigCreateInput = {
+  backgroundColor?: InputMaybe<BackgroundColor>;
+  cm023mmze0xjl07un7it033v6?: InputMaybe<BlockQuoteCreateManyInlineInput>;
+  cm023n1x80xik07up2if7en8j?: InputMaybe<BlockRowCreateManyInlineInput>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+};
+
+export type BlockConfigCreateManyInlineInput = {
+  /** Connect multiple existing BlockConfig documents */
+  connect?: InputMaybe<Array<BlockConfigWhereUniqueInput>>;
+  /** Create and connect multiple existing BlockConfig documents */
+  create?: InputMaybe<Array<BlockConfigCreateInput>>;
+};
+
+export type BlockConfigCreateOneInlineInput = {
+  /** Connect one existing BlockConfig document */
+  connect?: InputMaybe<BlockConfigWhereUniqueInput>;
+  /** Create and connect one BlockConfig document */
+  create?: InputMaybe<BlockConfigCreateInput>;
+};
+
+/** An edge in a connection. */
+export type BlockConfigEdge = {
+  __typename: "BlockConfigEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: BlockConfig;
+};
+
+/** Identifies documents */
+export type BlockConfigManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BlockConfigWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BlockConfigWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BlockConfigWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  backgroundColor?: InputMaybe<BackgroundColor>;
+  /** All values that are contained in given list. */
+  backgroundColor_in?: InputMaybe<Array<InputMaybe<BackgroundColor>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  backgroundColor_not?: InputMaybe<BackgroundColor>;
+  /** All values that are not contained in given list. */
+  backgroundColor_not_in?: InputMaybe<Array<InputMaybe<BackgroundColor>>>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<BlockConfigWhereStageInput>;
+  documentInStages_none?: InputMaybe<BlockConfigWhereStageInput>;
+  documentInStages_some?: InputMaybe<BlockConfigWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum BlockConfigOrderByInput {
+  BackgroundColorAsc = "backgroundColor_ASC",
+  BackgroundColorDesc = "backgroundColor_DESC",
+  CreatedAtAsc = "createdAt_ASC",
+  CreatedAtDesc = "createdAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  PublishedAtAsc = "publishedAt_ASC",
+  PublishedAtDesc = "publishedAt_DESC",
+  UpdatedAtAsc = "updatedAt_ASC",
+  UpdatedAtDesc = "updatedAt_DESC",
+}
+
+export type BlockConfigUpdateInput = {
+  backgroundColor?: InputMaybe<BackgroundColor>;
+  cm023mmze0xjl07un7it033v6?: InputMaybe<BlockQuoteUpdateManyInlineInput>;
+  cm023n1x80xik07up2if7en8j?: InputMaybe<BlockRowUpdateManyInlineInput>;
+};
+
+export type BlockConfigUpdateManyInlineInput = {
+  /** Connect multiple existing BlockConfig documents */
+  connect?: InputMaybe<Array<BlockConfigConnectInput>>;
+  /** Create and connect multiple BlockConfig documents */
+  create?: InputMaybe<Array<BlockConfigCreateInput>>;
+  /** Delete multiple BlockConfig documents */
+  delete?: InputMaybe<Array<BlockConfigWhereUniqueInput>>;
+  /** Disconnect multiple BlockConfig documents */
+  disconnect?: InputMaybe<Array<BlockConfigWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing BlockConfig documents */
+  set?: InputMaybe<Array<BlockConfigWhereUniqueInput>>;
+  /** Update multiple BlockConfig documents */
+  update?: InputMaybe<Array<BlockConfigUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple BlockConfig documents */
+  upsert?: InputMaybe<Array<BlockConfigUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type BlockConfigUpdateManyInput = {
+  backgroundColor?: InputMaybe<BackgroundColor>;
+};
+
+export type BlockConfigUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: BlockConfigUpdateManyInput;
+  /** Document search */
+  where: BlockConfigWhereInput;
+};
+
+export type BlockConfigUpdateOneInlineInput = {
+  /** Connect existing BlockConfig document */
+  connect?: InputMaybe<BlockConfigWhereUniqueInput>;
+  /** Create and connect one BlockConfig document */
+  create?: InputMaybe<BlockConfigCreateInput>;
+  /** Delete currently connected BlockConfig document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected BlockConfig document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single BlockConfig document */
+  update?: InputMaybe<BlockConfigUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single BlockConfig document */
+  upsert?: InputMaybe<BlockConfigUpsertWithNestedWhereUniqueInput>;
+};
+
+export type BlockConfigUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: BlockConfigUpdateInput;
+  /** Unique document search */
+  where: BlockConfigWhereUniqueInput;
+};
+
+export type BlockConfigUpsertInput = {
+  /** Create document if it didn't exist */
+  create: BlockConfigCreateInput;
+  /** Update document if it exists */
+  update: BlockConfigUpdateInput;
+};
+
+export type BlockConfigUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: BlockConfigUpsertInput;
+  /** Unique document search */
+  where: BlockConfigWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type BlockConfigWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Identifies documents */
+export type BlockConfigWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BlockConfigWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BlockConfigWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BlockConfigWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  backgroundColor?: InputMaybe<BackgroundColor>;
+  /** All values that are contained in given list. */
+  backgroundColor_in?: InputMaybe<Array<InputMaybe<BackgroundColor>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  backgroundColor_not?: InputMaybe<BackgroundColor>;
+  /** All values that are not contained in given list. */
+  backgroundColor_not_in?: InputMaybe<Array<InputMaybe<BackgroundColor>>>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<BlockConfigWhereStageInput>;
+  documentInStages_none?: InputMaybe<BlockConfigWhereStageInput>;
+  documentInStages_some?: InputMaybe<BlockConfigWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type BlockConfigWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BlockConfigWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BlockConfigWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BlockConfigWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<BlockConfigWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References BlockConfig record uniquely */
+export type BlockConfigWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
 export type BlockQuote = Entity &
   Node & {
     __typename: "BlockQuote";
     author?: Maybe<Scalars["String"]["output"]>;
+    blockConfig?: Maybe<BlockConfig>;
     /** The time the document was created */
     createdAt: Scalars["DateTime"]["output"];
     /** User that created this document */
@@ -2202,6 +2620,11 @@ export type BlockQuote = Entity &
     /** User that last updated this document */
     updatedBy?: Maybe<User>;
   };
+
+export type BlockQuoteBlockConfigArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
 
 export type BlockQuoteCreatedByArgs = {
   forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
@@ -2277,6 +2700,7 @@ export type BlockQuoteConnection = {
 
 export type BlockQuoteCreateInput = {
   author?: InputMaybe<Scalars["String"]["input"]>;
+  blockConfig?: InputMaybe<BlockConfigCreateOneInlineInput>;
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   identify?: InputMaybe<Scalars["String"]["input"]>;
   image?: InputMaybe<AssetCreateOneInlineInput>;
@@ -2337,6 +2761,7 @@ export type BlockQuoteManyWhereInput = {
   author_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   /** All values starting with the given string. */
   author_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  blockConfig?: InputMaybe<BlockConfigWhereInput>;
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
@@ -2458,6 +2883,7 @@ export enum BlockQuoteOrderByInput {
 
 export type BlockQuoteUpdateInput = {
   author?: InputMaybe<Scalars["String"]["input"]>;
+  blockConfig?: InputMaybe<BlockConfigUpdateOneInlineInput>;
   identify?: InputMaybe<Scalars["String"]["input"]>;
   image?: InputMaybe<AssetUpdateOneInlineInput>;
   pages?: InputMaybe<PageUpdateManyInlineInput>;
@@ -2565,6 +2991,7 @@ export type BlockQuoteWhereInput = {
   author_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   /** All values starting with the given string. */
   author_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  blockConfig?: InputMaybe<BlockConfigWhereInput>;
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
@@ -2692,6 +3119,7 @@ export type BlockRow = Entity &
   Node & {
     __typename: "BlockRow";
     backgroundColor?: Maybe<BackgroundColor>;
+    blockConfig?: Maybe<BlockConfig>;
     columns: Array<BlockRowcolumnsUnion>;
     /** The time the document was created */
     createdAt: Scalars["DateTime"]["output"];
@@ -2719,6 +3147,11 @@ export type BlockRow = Entity &
     updatedBy?: Maybe<User>;
     useFullPageWidth?: Maybe<Scalars["Boolean"]["output"]>;
   };
+
+export type BlockRowBlockConfigArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
 
 export type BlockRowColumnsArgs = {
   after: InputMaybe<Scalars["String"]["input"]>;
@@ -2803,6 +3236,7 @@ export type BlockRowConnection = {
 
 export type BlockRowCreateInput = {
   backgroundColor?: InputMaybe<BackgroundColor>;
+  blockConfig?: InputMaybe<BlockConfigCreateOneInlineInput>;
   columns?: InputMaybe<BlockRowcolumnsUnionCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   identify: Scalars["String"]["input"];
@@ -2852,6 +3286,7 @@ export type BlockRowManyWhereInput = {
   backgroundColor_not?: InputMaybe<BackgroundColor>;
   /** All values that are not contained in given list. */
   backgroundColor_not_in?: InputMaybe<Array<InputMaybe<BackgroundColor>>>;
+  blockConfig?: InputMaybe<BlockConfigWhereInput>;
   /** All values in which the union is empty. */
   columns_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
   /** Matches if the modular component contains at least one connection to the item provided to the filter */
@@ -2982,6 +3417,7 @@ export enum BlockRowOrderByInput {
 
 export type BlockRowUpdateInput = {
   backgroundColor?: InputMaybe<BackgroundColor>;
+  blockConfig?: InputMaybe<BlockConfigUpdateOneInlineInput>;
   columns?: InputMaybe<BlockRowcolumnsUnionUpdateManyInlineInput>;
   identify?: InputMaybe<Scalars["String"]["input"]>;
   pages?: InputMaybe<PageUpdateManyInlineInput>;
@@ -3078,6 +3514,7 @@ export type BlockRowWhereInput = {
   backgroundColor_not?: InputMaybe<BackgroundColor>;
   /** All values that are not contained in given list. */
   backgroundColor_not_in?: InputMaybe<Array<InputMaybe<BackgroundColor>>>;
+  blockConfig?: InputMaybe<BlockConfigWhereInput>;
   /** All values in which the union is empty. */
   columns_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
   /** Matches if the modular component contains at least one connection to the item provided to the filter */
@@ -8675,6 +9112,7 @@ export enum EntityTypeName {
   /** Asset system model */
   Asset = "Asset",
   Banner = "Banner",
+  BlockConfig = "BlockConfig",
   BlockQuote = "BlockQuote",
   BlockRow = "BlockRow",
   Column = "Column",
@@ -13172,6 +13610,8 @@ export type Mutation = {
   createAsset?: Maybe<Asset>;
   /** Create one banner */
   createBanner?: Maybe<Banner>;
+  /** Create one blockConfig */
+  createBlockConfig?: Maybe<BlockConfig>;
   /** Create one blockQuote */
   createBlockQuote?: Maybe<BlockQuote>;
   /** Create one blockRow */
@@ -13229,6 +13669,8 @@ export type Mutation = {
   deleteAsset?: Maybe<Asset>;
   /** Delete one banner from _all_ existing stages. Returns deleted document. */
   deleteBanner?: Maybe<Banner>;
+  /** Delete one blockConfig from _all_ existing stages. Returns deleted document. */
+  deleteBlockConfig?: Maybe<BlockConfig>;
   /** Delete one blockQuote from _all_ existing stages. Returns deleted document. */
   deleteBlockQuote?: Maybe<BlockQuote>;
   /** Delete one blockRow from _all_ existing stages. Returns deleted document. */
@@ -13255,6 +13697,13 @@ export type Mutation = {
   deleteManyBanners: BatchPayload;
   /** Delete many Banner documents, return deleted documents */
   deleteManyBannersConnection: BannerConnection;
+  /**
+   * Delete many BlockConfig documents
+   * @deprecated Please use the new paginated many mutation (deleteManyBlockConfigsConnection)
+   */
+  deleteManyBlockConfigs: BatchPayload;
+  /** Delete many BlockConfig documents, return deleted documents */
+  deleteManyBlockConfigsConnection: BlockConfigConnection;
   /**
    * Delete many BlockQuote documents
    * @deprecated Please use the new paginated many mutation (deleteManyBlockQuotesConnection)
@@ -13351,6 +13800,8 @@ export type Mutation = {
   publishAsset?: Maybe<Asset>;
   /** Publish one banner */
   publishBanner?: Maybe<Banner>;
+  /** Publish one blockConfig */
+  publishBlockConfig?: Maybe<BlockConfig>;
   /** Publish one blockQuote */
   publishBlockQuote?: Maybe<BlockQuote>;
   /** Publish one blockRow */
@@ -13371,6 +13822,13 @@ export type Mutation = {
   publishManyBanners: BatchPayload;
   /** Publish many Banner documents */
   publishManyBannersConnection: BannerConnection;
+  /**
+   * Publish many BlockConfig documents
+   * @deprecated Please use the new paginated many mutation (publishManyBlockConfigsConnection)
+   */
+  publishManyBlockConfigs: BatchPayload;
+  /** Publish many BlockConfig documents */
+  publishManyBlockConfigsConnection: BlockConfigConnection;
   /**
    * Publish many BlockQuote documents
    * @deprecated Please use the new paginated many mutation (publishManyBlockQuotesConnection)
@@ -13478,6 +13936,8 @@ export type Mutation = {
   schedulePublishAsset?: Maybe<Asset>;
   /** Schedule to publish one banner */
   schedulePublishBanner?: Maybe<Banner>;
+  /** Schedule to publish one blockConfig */
+  schedulePublishBlockConfig?: Maybe<BlockConfig>;
   /** Schedule to publish one blockQuote */
   schedulePublishBlockQuote?: Maybe<BlockQuote>;
   /** Schedule to publish one blockRow */
@@ -13498,6 +13958,8 @@ export type Mutation = {
   scheduleUnpublishAsset?: Maybe<Asset>;
   /** Unpublish one banner from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishBanner?: Maybe<Banner>;
+  /** Unpublish one blockConfig from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishBlockConfig?: Maybe<BlockConfig>;
   /** Unpublish one blockQuote from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishBlockQuote?: Maybe<BlockQuote>;
   /** Unpublish one blockRow from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -13543,6 +14005,8 @@ export type Mutation = {
   unpublishAsset?: Maybe<Asset>;
   /** Unpublish one banner from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishBanner?: Maybe<Banner>;
+  /** Unpublish one blockConfig from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishBlockConfig?: Maybe<BlockConfig>;
   /** Unpublish one blockQuote from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishBlockQuote?: Maybe<BlockQuote>;
   /** Unpublish one blockRow from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -13563,6 +14027,13 @@ export type Mutation = {
   unpublishManyBanners: BatchPayload;
   /** Find many Banner documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyBannersConnection: BannerConnection;
+  /**
+   * Unpublish many BlockConfig documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyBlockConfigsConnection)
+   */
+  unpublishManyBlockConfigs: BatchPayload;
+  /** Find many BlockConfig documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyBlockConfigsConnection: BlockConfigConnection;
   /**
    * Unpublish many BlockQuote documents
    * @deprecated Please use the new paginated many mutation (unpublishManyBlockQuotesConnection)
@@ -13633,6 +14104,8 @@ export type Mutation = {
   updateAsset?: Maybe<Asset>;
   /** Update one banner */
   updateBanner?: Maybe<Banner>;
+  /** Update one blockConfig */
+  updateBlockConfig?: Maybe<BlockConfig>;
   /** Update one blockQuote */
   updateBlockQuote?: Maybe<BlockQuote>;
   /** Update one blockRow */
@@ -13670,6 +14143,13 @@ export type Mutation = {
   updateManyBanners: BatchPayload;
   /** Update many Banner documents */
   updateManyBannersConnection: BannerConnection;
+  /**
+   * Update many blockConfigs
+   * @deprecated Please use the new paginated many mutation (updateManyBlockConfigsConnection)
+   */
+  updateManyBlockConfigs: BatchPayload;
+  /** Update many BlockConfig documents */
+  updateManyBlockConfigsConnection: BlockConfigConnection;
   /**
    * Update many blockQuotes
    * @deprecated Please use the new paginated many mutation (updateManyBlockQuotesConnection)
@@ -13746,6 +14226,8 @@ export type Mutation = {
   upsertAsset?: Maybe<Asset>;
   /** Upsert one banner */
   upsertBanner?: Maybe<Banner>;
+  /** Upsert one blockConfig */
+  upsertBlockConfig?: Maybe<BlockConfig>;
   /** Upsert one blockQuote */
   upsertBlockQuote?: Maybe<BlockQuote>;
   /** Upsert one blockRow */
@@ -13883,6 +14365,10 @@ export type MutationCreateBannerArgs = {
   data: BannerCreateInput;
 };
 
+export type MutationCreateBlockConfigArgs = {
+  data: BlockConfigCreateInput;
+};
+
 export type MutationCreateBlockQuoteArgs = {
   data: BlockQuoteCreateInput;
 };
@@ -13983,6 +14469,10 @@ export type MutationDeleteBannerArgs = {
   where: BannerWhereUniqueInput;
 };
 
+export type MutationDeleteBlockConfigArgs = {
+  where: BlockConfigWhereUniqueInput;
+};
+
 export type MutationDeleteBlockQuoteArgs = {
   where: BlockQuoteWhereUniqueInput;
 };
@@ -14027,6 +14517,19 @@ export type MutationDeleteManyBannersConnectionArgs = {
   last: InputMaybe<Scalars["Int"]["input"]>;
   skip: InputMaybe<Scalars["Int"]["input"]>;
   where: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationDeleteManyBlockConfigsArgs = {
+  where: InputMaybe<BlockConfigManyWhereInput>;
+};
+
+export type MutationDeleteManyBlockConfigsConnectionArgs = {
+  after: InputMaybe<Scalars["ID"]["input"]>;
+  before: InputMaybe<Scalars["ID"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<BlockConfigManyWhereInput>;
 };
 
 export type MutationDeleteManyBlockQuotesArgs = {
@@ -14223,6 +14726,11 @@ export type MutationPublishBannerArgs = {
   where: BannerWhereUniqueInput;
 };
 
+export type MutationPublishBlockConfigArgs = {
+  to?: Array<Stage>;
+  where: BlockConfigWhereUniqueInput;
+};
+
 export type MutationPublishBlockQuoteArgs = {
   to?: Array<Stage>;
   where: BlockQuoteWhereUniqueInput;
@@ -14274,6 +14782,22 @@ export type MutationPublishManyBannersConnectionArgs = {
   skip: InputMaybe<Scalars["Int"]["input"]>;
   to?: Array<Stage>;
   where: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationPublishManyBlockConfigsArgs = {
+  to?: Array<Stage>;
+  where: InputMaybe<BlockConfigManyWhereInput>;
+};
+
+export type MutationPublishManyBlockConfigsConnectionArgs = {
+  after: InputMaybe<Scalars["ID"]["input"]>;
+  before: InputMaybe<Scalars["ID"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  from?: InputMaybe<Stage>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  to?: Array<Stage>;
+  where: InputMaybe<BlockConfigManyWhereInput>;
 };
 
 export type MutationPublishManyBlockQuotesArgs = {
@@ -14527,6 +15051,13 @@ export type MutationSchedulePublishBannerArgs = {
   where: BannerWhereUniqueInput;
 };
 
+export type MutationSchedulePublishBlockConfigArgs = {
+  releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId: InputMaybe<Scalars["String"]["input"]>;
+  to?: Array<Stage>;
+  where: BlockConfigWhereUniqueInput;
+};
+
 export type MutationSchedulePublishBlockQuoteArgs = {
   releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
   releaseId: InputMaybe<Scalars["String"]["input"]>;
@@ -14597,6 +15128,13 @@ export type MutationScheduleUnpublishBannerArgs = {
   releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
   releaseId: InputMaybe<Scalars["String"]["input"]>;
   where: BannerWhereUniqueInput;
+};
+
+export type MutationScheduleUnpublishBlockConfigArgs = {
+  from?: Array<Stage>;
+  releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId: InputMaybe<Scalars["String"]["input"]>;
+  where: BlockConfigWhereUniqueInput;
 };
 
 export type MutationScheduleUnpublishBlockQuoteArgs = {
@@ -14713,6 +15251,11 @@ export type MutationUnpublishBannerArgs = {
   where: BannerWhereUniqueInput;
 };
 
+export type MutationUnpublishBlockConfigArgs = {
+  from?: Array<Stage>;
+  where: BlockConfigWhereUniqueInput;
+};
+
 export type MutationUnpublishBlockQuoteArgs = {
   from?: Array<Stage>;
   where: BlockQuoteWhereUniqueInput;
@@ -14762,6 +15305,22 @@ export type MutationUnpublishManyBannersConnectionArgs = {
   skip: InputMaybe<Scalars["Int"]["input"]>;
   stage?: InputMaybe<Stage>;
   where: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationUnpublishManyBlockConfigsArgs = {
+  from?: Array<Stage>;
+  where: InputMaybe<BlockConfigManyWhereInput>;
+};
+
+export type MutationUnpublishManyBlockConfigsConnectionArgs = {
+  after: InputMaybe<Scalars["ID"]["input"]>;
+  before: InputMaybe<Scalars["ID"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  from?: Array<Stage>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: InputMaybe<Stage>;
+  where: InputMaybe<BlockConfigManyWhereInput>;
 };
 
 export type MutationUnpublishManyBlockQuotesArgs = {
@@ -14927,6 +15486,11 @@ export type MutationUpdateBannerArgs = {
   where: BannerWhereUniqueInput;
 };
 
+export type MutationUpdateBlockConfigArgs = {
+  data: BlockConfigUpdateInput;
+  where: BlockConfigWhereUniqueInput;
+};
+
 export type MutationUpdateBlockQuoteArgs = {
   data: BlockQuoteUpdateInput;
   where: BlockQuoteWhereUniqueInput;
@@ -15012,6 +15576,21 @@ export type MutationUpdateManyBannersConnectionArgs = {
   last: InputMaybe<Scalars["Int"]["input"]>;
   skip: InputMaybe<Scalars["Int"]["input"]>;
   where: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationUpdateManyBlockConfigsArgs = {
+  data: BlockConfigUpdateManyInput;
+  where: InputMaybe<BlockConfigManyWhereInput>;
+};
+
+export type MutationUpdateManyBlockConfigsConnectionArgs = {
+  after: InputMaybe<Scalars["ID"]["input"]>;
+  before: InputMaybe<Scalars["ID"]["input"]>;
+  data: BlockConfigUpdateManyInput;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<BlockConfigManyWhereInput>;
 };
 
 export type MutationUpdateManyBlockQuotesArgs = {
@@ -15183,6 +15762,11 @@ export type MutationUpsertAssetArgs = {
 export type MutationUpsertBannerArgs = {
   upsert: BannerUpsertInput;
   where: BannerWhereUniqueInput;
+};
+
+export type MutationUpsertBlockConfigArgs = {
+  upsert: BlockConfigUpsertInput;
+  where: BlockConfigWhereUniqueInput;
 };
 
 export type MutationUpsertBlockQuoteArgs = {
@@ -18562,6 +19146,14 @@ export type Query = {
   bannersConnection: BannerConnection;
   /** Get best selling products by category */
   bestSellingProductsByCategory?: Maybe<Array<Maybe<ProductInterface>>>;
+  /** Retrieve a single blockConfig */
+  blockConfig?: Maybe<BlockConfig>;
+  /** Retrieve document version */
+  blockConfigVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple blockConfigs */
+  blockConfigs: Array<BlockConfig>;
+  /** Retrieve multiple blockConfigs using the Relay connection interface */
+  blockConfigsConnection: BlockConfigConnection;
   /** Retrieve a single blockQuote */
   blockQuote?: Maybe<BlockQuote>;
   /** Retrieve document version */
@@ -18846,6 +19438,40 @@ export type QueryBannersConnectionArgs = {
 
 export type QueryBestSellingProductsByCategoryArgs = {
   categoryId: Scalars["Int"]["input"];
+};
+
+export type QueryBlockConfigArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: BlockConfigWhereUniqueInput;
+};
+
+export type QueryBlockConfigVersionArgs = {
+  where: VersionWhereInput;
+};
+
+export type QueryBlockConfigsArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy: InputMaybe<BlockConfigOrderByInput>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where: InputMaybe<BlockConfigWhereInput>;
+};
+
+export type QueryBlockConfigsConnectionArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy: InputMaybe<BlockConfigOrderByInput>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where: InputMaybe<BlockConfigWhereInput>;
 };
 
 export type QueryBlockQuoteArgs = {
@@ -20876,6 +21502,7 @@ export type ScheduledOperationUpdatedByArgs = {
 export type ScheduledOperationAffectedDocument =
   | Asset
   | Banner
+  | BlockConfig
   | BlockQuote
   | BlockRow
   | DynamicHeader
@@ -44042,6 +44669,12 @@ export type CmsProductSliderFragment = {
   title: string;
 };
 
+export type CmsBlockConfigFragment = {
+  __typename: "BlockConfig";
+  id: string;
+  backgroundColor?: BackgroundColor | null;
+};
+
 export type CmsLinkFragment = {
   __typename: "Link";
   label: string;
@@ -44323,11 +44956,15 @@ export type CmsPagesQuery = {
             height?: number | null;
           } | null;
           quote?: { __typename: "RichText"; html: string } | null;
+          blockConfig?: {
+            __typename: "BlockConfig";
+            id: string;
+            backgroundColor?: BackgroundColor | null;
+          } | null;
         }
       | {
           __typename: "BlockRow";
           id: string;
-          backgroundColor?: BackgroundColor | null;
           useFullPageWidth?: boolean | null;
           columns: Array<{
             __typename: "Column";
@@ -44371,6 +45008,11 @@ export type CmsPagesQuery = {
                 }
               | null;
           }>;
+          blockConfig?: {
+            __typename: "BlockConfig";
+            id: string;
+            backgroundColor?: BackgroundColor | null;
+          } | null;
         }
       | {
           __typename: "ProductSlider";
@@ -44415,7 +45057,6 @@ export type CmsStaticPageConfigurationQuery = {
       | {
           __typename: "BlockRow";
           id: string;
-          backgroundColor?: BackgroundColor | null;
           useFullPageWidth?: boolean | null;
           columns: Array<{
             __typename: "Column";
@@ -44459,6 +45100,11 @@ export type CmsStaticPageConfigurationQuery = {
                 }
               | null;
           }>;
+          blockConfig?: {
+            __typename: "BlockConfig";
+            id: string;
+            backgroundColor?: BackgroundColor | null;
+          } | null;
         }
       | {
           __typename: "ProductSlider";
@@ -44618,7 +45264,6 @@ export type CmsColumnFragment = {
 export type CmsBlockRowFragment = {
   __typename: "BlockRow";
   id: string;
-  backgroundColor?: BackgroundColor | null;
   useFullPageWidth?: boolean | null;
   columns: Array<{
     __typename: "Column";
@@ -44662,6 +45307,11 @@ export type CmsBlockRowFragment = {
         }
       | null;
   }>;
+  blockConfig?: {
+    __typename: "BlockConfig";
+    id: string;
+    backgroundColor?: BackgroundColor | null;
+  } | null;
 };
 
 export type CmsBlockQuoteFragment = {
@@ -44675,6 +45325,11 @@ export type CmsBlockQuoteFragment = {
     height?: number | null;
   } | null;
   quote?: { __typename: "RichText"; html: string } | null;
+  blockConfig?: {
+    __typename: "BlockConfig";
+    id: string;
+    backgroundColor?: BackgroundColor | null;
+  } | null;
 };
 
 export type ConfigurableProductOptionsFragment = {
@@ -87392,6 +88047,42 @@ export const CmsColumnFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<CmsColumnFragment, unknown>;
+export const CmsBlockConfigFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsBlockConfig" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "BlockConfig" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "BlockConfig" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundColor" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CmsBlockConfigFragment, unknown>;
 export const CmsBlockRowFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -87418,10 +88109,6 @@ export const CmsBlockRowFragmentDoc = {
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
-                  name: { kind: "Name", value: "backgroundColor" },
-                },
-                {
-                  kind: "Field",
                   name: { kind: "Name", value: "useFullPageWidth" },
                 },
                 {
@@ -87433,6 +88120,19 @@ export const CmsBlockRowFragmentDoc = {
                       {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "CmsColumn" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "blockConfig" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsBlockConfig" },
                       },
                     ],
                   },
@@ -87652,6 +88352,37 @@ export const CmsBlockRowFragmentDoc = {
         ],
       },
     },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsBlockConfig" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "BlockConfig" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "BlockConfig" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundColor" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
   ],
 } as unknown as DocumentNode<CmsBlockRowFragment, unknown>;
 export const CmsBlockQuoteFragmentDoc = {
@@ -87704,6 +88435,50 @@ export const CmsBlockQuoteFragmentDoc = {
                   },
                 },
                 { kind: "Field", name: { kind: "Name", value: "author" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "blockConfig" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsBlockConfig" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsBlockConfig" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "BlockConfig" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "BlockConfig" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundColor" },
+                },
               ],
             },
           },
@@ -101952,6 +102727,37 @@ export const CmsPagesDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsBlockConfig" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "BlockConfig" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "BlockConfig" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundColor" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "CmsBanner" },
       typeCondition: {
         kind: "NamedType",
@@ -102060,10 +102866,6 @@ export const CmsPagesDocument = {
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
-                  name: { kind: "Name", value: "backgroundColor" },
-                },
-                {
-                  kind: "Field",
                   name: { kind: "Name", value: "useFullPageWidth" },
                 },
                 {
@@ -102075,6 +102877,19 @@ export const CmsPagesDocument = {
                       {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "CmsColumn" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "blockConfig" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsBlockConfig" },
                       },
                     ],
                   },
@@ -102132,6 +102947,19 @@ export const CmsPagesDocument = {
                   },
                 },
                 { kind: "Field", name: { kind: "Name", value: "author" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "blockConfig" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsBlockConfig" },
+                      },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -102423,6 +103251,37 @@ export const CmsStaticPageConfigurationDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsBlockConfig" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "BlockConfig" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "BlockConfig" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "backgroundColor" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "CmsBlockRow" },
       typeCondition: {
         kind: "NamedType",
@@ -102444,10 +103303,6 @@ export const CmsStaticPageConfigurationDocument = {
                 { kind: "Field", name: { kind: "Name", value: "id" } },
                 {
                   kind: "Field",
-                  name: { kind: "Name", value: "backgroundColor" },
-                },
-                {
-                  kind: "Field",
                   name: { kind: "Name", value: "useFullPageWidth" },
                 },
                 {
@@ -102459,6 +103314,19 @@ export const CmsStaticPageConfigurationDocument = {
                       {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "CmsColumn" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "blockConfig" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsBlockConfig" },
                       },
                     ],
                   },

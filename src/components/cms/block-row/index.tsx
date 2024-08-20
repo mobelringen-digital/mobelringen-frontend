@@ -6,7 +6,7 @@ import cx from "classnames";
 
 import { Column } from "@/components/cms/__components/column/Column";
 import { CmsBlockWrapper } from "@/components/cms/cms-block-wrapper";
-import { BackgroundColor, CmsBlockRowFragment } from "@/types";
+import { CmsBlockRowFragment } from "@/types";
 
 interface Props {
   data: CmsBlockRowFragment;
@@ -40,12 +40,6 @@ const DESKTOP_ORDER: Record<number, string> = {
   4: "lg:order-4",
 };
 
-const BACKGROUND_COLOR: Record<BackgroundColor, string> & { None: "" } = {
-  None: "",
-  White: "bg-white",
-  Yellow: "bg-cream",
-};
-
 const calculateColumns = (columns: number) => {
   if (columns > 4) {
     return COLUMNS[4];
@@ -65,8 +59,8 @@ const calculateSpan = (columns: number) => {
 export const BlockRow: React.FC<Props> = ({ data }) => {
   return (
     <CmsBlockWrapper
+      config={data.blockConfig}
       isFullWidth={data.useFullPageWidth === true}
-      backgroundColor={BACKGROUND_COLOR[data.backgroundColor ?? "None"]}
     >
       <div className={cx("grid gap-8", calculateColumns(data.columns.length))}>
         {data.columns.map((column, idx) => {
