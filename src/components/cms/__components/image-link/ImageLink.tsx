@@ -15,7 +15,11 @@ interface Props {
 
 export const ImageLink: React.FC<Props> = ({ data }) => {
   return (
-    <div className="flex flex-col gap-2 group">
+    <div
+      className={cx("flex flex-col gap-2 group", {
+        "pb-5 lg:pb-10": !!data.promotionBubble,
+      })}
+    >
       <div
         className={cx("relative rounded-3xl", {
           "mb-4 lg:mb-0": !!data.salesBubble,
