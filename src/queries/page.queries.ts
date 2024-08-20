@@ -12,6 +12,7 @@ export const CmsPagesQueryDocument = graphql(`
         ...CmsBanner
         ...CmsProductSlider
         ...CmsBlockRow
+        ...CmsBlockQuote
       }
     }
   }
@@ -123,6 +124,24 @@ export const CmsBlockRowFragment = graphql(`
       columns {
         ...CmsColumn
       }
+    }
+  }
+`);
+
+export const CmsBlockQuoteFragment = graphql(`
+  fragment CmsBlockQuote on BlockQuote {
+    ... on BlockQuote {
+      __typename
+      id
+      image {
+        url
+        width
+        height
+      }
+      quote {
+        html
+      }
+      author
     }
   }
 `);

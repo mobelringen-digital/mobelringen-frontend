@@ -443,6 +443,7 @@ export type Asset = Entity &
     history: Array<Version>;
     /** The unique identifier */
     id: Scalars["ID"]["output"];
+    imageBlockQuote: Array<BlockQuote>;
     /** System Locale field */
     locale: Locale;
     /** Get the other localizations for this document */
@@ -506,6 +507,19 @@ export type AssetHistoryArgs = {
   limit?: Scalars["Int"]["input"];
   skip?: Scalars["Int"]["input"];
   stageOverride: InputMaybe<Stage>;
+};
+
+/** Asset system model */
+export type AssetImageBlockQuoteArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+  orderBy: InputMaybe<BlockQuoteOrderByInput>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<BlockQuoteWhereInput>;
 };
 
 /** Asset system model */
@@ -575,6 +589,7 @@ export type AssetCreateInput = {
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   fileName?: InputMaybe<Scalars["String"]["input"]>;
   iconLink?: InputMaybe<LinkCreateManyInlineInput>;
+  imageBlockQuote?: InputMaybe<BlockQuoteCreateManyInlineInput>;
   imageImageLink?: InputMaybe<ImageLinkCreateManyInlineInput>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: InputMaybe<AssetCreateLocalizationsInput>;
@@ -678,6 +693,9 @@ export type AssetManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  imageBlockQuote_every?: InputMaybe<BlockQuoteWhereInput>;
+  imageBlockQuote_none?: InputMaybe<BlockQuoteWhereInput>;
+  imageBlockQuote_some?: InputMaybe<BlockQuoteWhereInput>;
   publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
@@ -766,6 +784,7 @@ export type AssetUpdateInput = {
   bannerImageBanner?: InputMaybe<BannerUpdateManyInlineInput>;
   fileName?: InputMaybe<Scalars["String"]["input"]>;
   iconLink?: InputMaybe<LinkUpdateManyInlineInput>;
+  imageBlockQuote?: InputMaybe<BlockQuoteUpdateManyInlineInput>;
   imageImageLink?: InputMaybe<ImageLinkUpdateManyInlineInput>;
   /** Manage document localizations */
   localizations?: InputMaybe<AssetUpdateLocalizationsInput>;
@@ -1098,6 +1117,9 @@ export type AssetWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  imageBlockQuote_every?: InputMaybe<BlockQuoteWhereInput>;
+  imageBlockQuote_none?: InputMaybe<BlockQuoteWhereInput>;
+  imageBlockQuote_some?: InputMaybe<BlockQuoteWhereInput>;
   mimeType?: InputMaybe<Scalars["String"]["input"]>;
   /** All values containing the given string. */
   mimeType_contains?: InputMaybe<Scalars["String"]["input"]>;
@@ -2148,6 +2170,522 @@ export type BillingCartAddress = CartAddressInterface & {
   uid: Scalars["String"]["output"];
   /** The VAT company number for billing or shipping address. */
   vat_id?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type BlockQuote = Entity &
+  Node & {
+    __typename: "BlockQuote";
+    author?: Maybe<Scalars["String"]["output"]>;
+    /** The time the document was created */
+    createdAt: Scalars["DateTime"]["output"];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    /** Get the document in other stages */
+    documentInStages: Array<BlockQuote>;
+    /** List of BlockQuote versions */
+    history: Array<Version>;
+    /** The unique identifier */
+    id: Scalars["ID"]["output"];
+    identify?: Maybe<Scalars["String"]["output"]>;
+    image?: Maybe<Asset>;
+    pages: Array<Page>;
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    quote?: Maybe<RichText>;
+    scheduledIn: Array<ScheduledOperation>;
+    /** System stage field */
+    stage: Stage;
+    /** The time the document was updated */
+    updatedAt: Scalars["DateTime"]["output"];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+  };
+
+export type BlockQuoteCreatedByArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type BlockQuoteDocumentInStagesArgs = {
+  includeCurrent?: Scalars["Boolean"]["input"];
+  inheritLocale?: Scalars["Boolean"]["input"];
+  stages?: Array<Stage>;
+};
+
+export type BlockQuoteHistoryArgs = {
+  limit?: Scalars["Int"]["input"];
+  skip?: Scalars["Int"]["input"];
+  stageOverride: InputMaybe<Stage>;
+};
+
+export type BlockQuoteImageArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+  where: InputMaybe<AssetSingleRelationWhereInput>;
+};
+
+export type BlockQuotePagesArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<PageWhereInput>;
+};
+
+export type BlockQuotePublishedByArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type BlockQuoteScheduledInArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+export type BlockQuoteUpdatedByArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type BlockQuoteConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: BlockQuoteWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type BlockQuoteConnection = {
+  __typename: "BlockQuoteConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<BlockQuoteEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type BlockQuoteCreateInput = {
+  author?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  image?: InputMaybe<AssetCreateOneInlineInput>;
+  pages?: InputMaybe<PageCreateManyInlineInput>;
+  quote?: InputMaybe<Scalars["RichTextAST"]["input"]>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+};
+
+export type BlockQuoteCreateManyInlineInput = {
+  /** Connect multiple existing BlockQuote documents */
+  connect?: InputMaybe<Array<BlockQuoteWhereUniqueInput>>;
+  /** Create and connect multiple existing BlockQuote documents */
+  create?: InputMaybe<Array<BlockQuoteCreateInput>>;
+};
+
+export type BlockQuoteCreateOneInlineInput = {
+  /** Connect one existing BlockQuote document */
+  connect?: InputMaybe<BlockQuoteWhereUniqueInput>;
+  /** Create and connect one BlockQuote document */
+  create?: InputMaybe<BlockQuoteCreateInput>;
+};
+
+/** An edge in a connection. */
+export type BlockQuoteEdge = {
+  __typename: "BlockQuoteEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: BlockQuote;
+};
+
+/** Identifies documents */
+export type BlockQuoteManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BlockQuoteWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BlockQuoteWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BlockQuoteWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  author?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  author_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  author_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  author_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  author_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  author_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  author_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  author_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  author_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  author_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<BlockQuoteWhereStageInput>;
+  documentInStages_none?: InputMaybe<BlockQuoteWhereStageInput>;
+  documentInStages_some?: InputMaybe<BlockQuoteWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  identify_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  image?: InputMaybe<AssetWhereInput>;
+  pages_every?: InputMaybe<PageWhereInput>;
+  pages_none?: InputMaybe<PageWhereInput>;
+  pages_some?: InputMaybe<PageWhereInput>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum BlockQuoteOrderByInput {
+  AuthorAsc = "author_ASC",
+  AuthorDesc = "author_DESC",
+  CreatedAtAsc = "createdAt_ASC",
+  CreatedAtDesc = "createdAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  IdentifyAsc = "identify_ASC",
+  IdentifyDesc = "identify_DESC",
+  PublishedAtAsc = "publishedAt_ASC",
+  PublishedAtDesc = "publishedAt_DESC",
+  UpdatedAtAsc = "updatedAt_ASC",
+  UpdatedAtDesc = "updatedAt_DESC",
+}
+
+export type BlockQuoteUpdateInput = {
+  author?: InputMaybe<Scalars["String"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  image?: InputMaybe<AssetUpdateOneInlineInput>;
+  pages?: InputMaybe<PageUpdateManyInlineInput>;
+  quote?: InputMaybe<Scalars["RichTextAST"]["input"]>;
+};
+
+export type BlockQuoteUpdateManyInlineInput = {
+  /** Connect multiple existing BlockQuote documents */
+  connect?: InputMaybe<Array<BlockQuoteConnectInput>>;
+  /** Create and connect multiple BlockQuote documents */
+  create?: InputMaybe<Array<BlockQuoteCreateInput>>;
+  /** Delete multiple BlockQuote documents */
+  delete?: InputMaybe<Array<BlockQuoteWhereUniqueInput>>;
+  /** Disconnect multiple BlockQuote documents */
+  disconnect?: InputMaybe<Array<BlockQuoteWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing BlockQuote documents */
+  set?: InputMaybe<Array<BlockQuoteWhereUniqueInput>>;
+  /** Update multiple BlockQuote documents */
+  update?: InputMaybe<Array<BlockQuoteUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple BlockQuote documents */
+  upsert?: InputMaybe<Array<BlockQuoteUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type BlockQuoteUpdateManyInput = {
+  author?: InputMaybe<Scalars["String"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  quote?: InputMaybe<Scalars["RichTextAST"]["input"]>;
+};
+
+export type BlockQuoteUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: BlockQuoteUpdateManyInput;
+  /** Document search */
+  where: BlockQuoteWhereInput;
+};
+
+export type BlockQuoteUpdateOneInlineInput = {
+  /** Connect existing BlockQuote document */
+  connect?: InputMaybe<BlockQuoteWhereUniqueInput>;
+  /** Create and connect one BlockQuote document */
+  create?: InputMaybe<BlockQuoteCreateInput>;
+  /** Delete currently connected BlockQuote document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected BlockQuote document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single BlockQuote document */
+  update?: InputMaybe<BlockQuoteUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single BlockQuote document */
+  upsert?: InputMaybe<BlockQuoteUpsertWithNestedWhereUniqueInput>;
+};
+
+export type BlockQuoteUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: BlockQuoteUpdateInput;
+  /** Unique document search */
+  where: BlockQuoteWhereUniqueInput;
+};
+
+export type BlockQuoteUpsertInput = {
+  /** Create document if it didn't exist */
+  create: BlockQuoteCreateInput;
+  /** Update document if it exists */
+  update: BlockQuoteUpdateInput;
+};
+
+export type BlockQuoteUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: BlockQuoteUpsertInput;
+  /** Unique document search */
+  where: BlockQuoteWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type BlockQuoteWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Identifies documents */
+export type BlockQuoteWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BlockQuoteWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BlockQuoteWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BlockQuoteWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  author?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  author_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  author_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  author_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  author_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  author_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  author_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  author_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  author_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  author_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<BlockQuoteWhereStageInput>;
+  documentInStages_none?: InputMaybe<BlockQuoteWhereStageInput>;
+  documentInStages_some?: InputMaybe<BlockQuoteWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  identify_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  image?: InputMaybe<AssetWhereInput>;
+  pages_every?: InputMaybe<PageWhereInput>;
+  pages_none?: InputMaybe<PageWhereInput>;
+  pages_some?: InputMaybe<PageWhereInput>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type BlockQuoteWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BlockQuoteWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BlockQuoteWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BlockQuoteWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<BlockQuoteWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References BlockQuote record uniquely */
+export type BlockQuoteWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
 };
 
 export type BlockRow = Entity &
@@ -4121,7 +4659,6 @@ export type Column = Entity & {
   desktopPosition?: Maybe<Scalars["Int"]["output"]>;
   /** The unique identifier */
   id: Scalars["ID"]["output"];
-  identify?: Maybe<Scalars["String"]["output"]>;
   mobilePosition?: Maybe<Scalars["Int"]["output"]>;
   /** System stage field */
   stage: Stage;
@@ -4152,7 +4689,6 @@ export type ColumnConnection = {
 export type ColumnCreateInput = {
   content?: InputMaybe<ColumncontentUnionCreateOneInlineInput>;
   desktopPosition?: InputMaybe<Scalars["Int"]["input"]>;
-  identify?: InputMaybe<Scalars["String"]["input"]>;
   mobilePosition?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
@@ -4232,25 +4768,6 @@ export type ColumnManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
-  identify?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values containing the given string. */
-  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values ending with the given string. */
-  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are contained in given list. */
-  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  identify_not?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not containing the given string. */
-  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not ending with the given string */
-  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are not contained in given list. */
-  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** All values not starting with the given string. */
-  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values starting with the given string. */
-  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   mobilePosition?: InputMaybe<Scalars["Int"]["input"]>;
   /** All values greater than the given value. */
   mobilePosition_gt?: InputMaybe<Scalars["Int"]["input"]>;
@@ -4275,8 +4792,6 @@ export enum ColumnOrderByInput {
   DesktopPositionDesc = "desktopPosition_DESC",
   IdAsc = "id_ASC",
   IdDesc = "id_DESC",
-  IdentifyAsc = "identify_ASC",
-  IdentifyDesc = "identify_DESC",
   MobilePositionAsc = "mobilePosition_ASC",
   MobilePositionDesc = "mobilePosition_DESC",
 }
@@ -4364,7 +4879,6 @@ export type ColumnParentWhereUniqueInput = {
 export type ColumnUpdateInput = {
   content?: InputMaybe<ColumncontentUnionUpdateOneInlineInput>;
   desktopPosition?: InputMaybe<Scalars["Int"]["input"]>;
-  identify?: InputMaybe<Scalars["String"]["input"]>;
   mobilePosition?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
@@ -4381,7 +4895,6 @@ export type ColumnUpdateManyInlineInput = {
 
 export type ColumnUpdateManyInput = {
   desktopPosition?: InputMaybe<Scalars["Int"]["input"]>;
-  identify?: InputMaybe<Scalars["String"]["input"]>;
   mobilePosition?: InputMaybe<Scalars["Int"]["input"]>;
 };
 
@@ -4492,25 +5005,6 @@ export type ColumnWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
-  identify?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values containing the given string. */
-  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values ending with the given string. */
-  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are contained in given list. */
-  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  identify_not?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not containing the given string. */
-  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values not ending with the given string */
-  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values that are not contained in given list. */
-  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
-  /** All values not starting with the given string. */
-  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
-  /** All values starting with the given string. */
-  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   mobilePosition?: InputMaybe<Scalars["Int"]["input"]>;
   /** All values greater than the given value. */
   mobilePosition_gt?: InputMaybe<Scalars["Int"]["input"]>;
@@ -8181,6 +8675,7 @@ export enum EntityTypeName {
   /** Asset system model */
   Asset = "Asset",
   Banner = "Banner",
+  BlockQuote = "BlockQuote",
   BlockRow = "BlockRow",
   Column = "Column",
   DynamicHeader = "DynamicHeader",
@@ -12677,6 +13172,8 @@ export type Mutation = {
   createAsset?: Maybe<Asset>;
   /** Create one banner */
   createBanner?: Maybe<Banner>;
+  /** Create one blockQuote */
+  createBlockQuote?: Maybe<BlockQuote>;
   /** Create one blockRow */
   createBlockRow?: Maybe<BlockRow>;
   /** Creates Client Token for Braintree Javascript SDK initialization. */
@@ -12732,6 +13229,8 @@ export type Mutation = {
   deleteAsset?: Maybe<Asset>;
   /** Delete one banner from _all_ existing stages. Returns deleted document. */
   deleteBanner?: Maybe<Banner>;
+  /** Delete one blockQuote from _all_ existing stages. Returns deleted document. */
+  deleteBlockQuote?: Maybe<BlockQuote>;
   /** Delete one blockRow from _all_ existing stages. Returns deleted document. */
   deleteBlockRow?: Maybe<BlockRow>;
   /** Delete the specified compare list. */
@@ -12756,6 +13255,13 @@ export type Mutation = {
   deleteManyBanners: BatchPayload;
   /** Delete many Banner documents, return deleted documents */
   deleteManyBannersConnection: BannerConnection;
+  /**
+   * Delete many BlockQuote documents
+   * @deprecated Please use the new paginated many mutation (deleteManyBlockQuotesConnection)
+   */
+  deleteManyBlockQuotes: BatchPayload;
+  /** Delete many BlockQuote documents, return deleted documents */
+  deleteManyBlockQuotesConnection: BlockQuoteConnection;
   /**
    * Delete many BlockRow documents
    * @deprecated Please use the new paginated many mutation (deleteManyBlockRowsConnection)
@@ -12845,6 +13351,8 @@ export type Mutation = {
   publishAsset?: Maybe<Asset>;
   /** Publish one banner */
   publishBanner?: Maybe<Banner>;
+  /** Publish one blockQuote */
+  publishBlockQuote?: Maybe<BlockQuote>;
   /** Publish one blockRow */
   publishBlockRow?: Maybe<BlockRow>;
   /** Publish one dynamicHeader */
@@ -12863,6 +13371,13 @@ export type Mutation = {
   publishManyBanners: BatchPayload;
   /** Publish many Banner documents */
   publishManyBannersConnection: BannerConnection;
+  /**
+   * Publish many BlockQuote documents
+   * @deprecated Please use the new paginated many mutation (publishManyBlockQuotesConnection)
+   */
+  publishManyBlockQuotes: BatchPayload;
+  /** Publish many BlockQuote documents */
+  publishManyBlockQuotesConnection: BlockQuoteConnection;
   /**
    * Publish many BlockRow documents
    * @deprecated Please use the new paginated many mutation (publishManyBlockRowsConnection)
@@ -12963,6 +13478,8 @@ export type Mutation = {
   schedulePublishAsset?: Maybe<Asset>;
   /** Schedule to publish one banner */
   schedulePublishBanner?: Maybe<Banner>;
+  /** Schedule to publish one blockQuote */
+  schedulePublishBlockQuote?: Maybe<BlockQuote>;
   /** Schedule to publish one blockRow */
   schedulePublishBlockRow?: Maybe<BlockRow>;
   /** Schedule to publish one dynamicHeader */
@@ -12981,6 +13498,8 @@ export type Mutation = {
   scheduleUnpublishAsset?: Maybe<Asset>;
   /** Unpublish one banner from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishBanner?: Maybe<Banner>;
+  /** Unpublish one blockQuote from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishBlockQuote?: Maybe<BlockQuote>;
   /** Unpublish one blockRow from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishBlockRow?: Maybe<BlockRow>;
   /** Unpublish one dynamicHeader from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -13024,6 +13543,8 @@ export type Mutation = {
   unpublishAsset?: Maybe<Asset>;
   /** Unpublish one banner from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishBanner?: Maybe<Banner>;
+  /** Unpublish one blockQuote from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishBlockQuote?: Maybe<BlockQuote>;
   /** Unpublish one blockRow from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishBlockRow?: Maybe<BlockRow>;
   /** Unpublish one dynamicHeader from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -13042,6 +13563,13 @@ export type Mutation = {
   unpublishManyBanners: BatchPayload;
   /** Find many Banner documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyBannersConnection: BannerConnection;
+  /**
+   * Unpublish many BlockQuote documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyBlockQuotesConnection)
+   */
+  unpublishManyBlockQuotes: BatchPayload;
+  /** Find many BlockQuote documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyBlockQuotesConnection: BlockQuoteConnection;
   /**
    * Unpublish many BlockRow documents
    * @deprecated Please use the new paginated many mutation (unpublishManyBlockRowsConnection)
@@ -13105,6 +13633,8 @@ export type Mutation = {
   updateAsset?: Maybe<Asset>;
   /** Update one banner */
   updateBanner?: Maybe<Banner>;
+  /** Update one blockQuote */
+  updateBlockQuote?: Maybe<BlockQuote>;
   /** Update one blockRow */
   updateBlockRow?: Maybe<BlockRow>;
   /** Modify items in the cart. */
@@ -13140,6 +13670,13 @@ export type Mutation = {
   updateManyBanners: BatchPayload;
   /** Update many Banner documents */
   updateManyBannersConnection: BannerConnection;
+  /**
+   * Update many blockQuotes
+   * @deprecated Please use the new paginated many mutation (updateManyBlockQuotesConnection)
+   */
+  updateManyBlockQuotes: BatchPayload;
+  /** Update many BlockQuote documents */
+  updateManyBlockQuotesConnection: BlockQuoteConnection;
   /**
    * Update many blockRows
    * @deprecated Please use the new paginated many mutation (updateManyBlockRowsConnection)
@@ -13209,6 +13746,8 @@ export type Mutation = {
   upsertAsset?: Maybe<Asset>;
   /** Upsert one banner */
   upsertBanner?: Maybe<Banner>;
+  /** Upsert one blockQuote */
+  upsertBlockQuote?: Maybe<BlockQuote>;
   /** Upsert one blockRow */
   upsertBlockRow?: Maybe<BlockRow>;
   /** Upsert one dynamicHeader */
@@ -13344,6 +13883,10 @@ export type MutationCreateBannerArgs = {
   data: BannerCreateInput;
 };
 
+export type MutationCreateBlockQuoteArgs = {
+  data: BlockQuoteCreateInput;
+};
+
 export type MutationCreateBlockRowArgs = {
   data: BlockRowCreateInput;
 };
@@ -13440,6 +13983,10 @@ export type MutationDeleteBannerArgs = {
   where: BannerWhereUniqueInput;
 };
 
+export type MutationDeleteBlockQuoteArgs = {
+  where: BlockQuoteWhereUniqueInput;
+};
+
 export type MutationDeleteBlockRowArgs = {
   where: BlockRowWhereUniqueInput;
 };
@@ -13480,6 +14027,19 @@ export type MutationDeleteManyBannersConnectionArgs = {
   last: InputMaybe<Scalars["Int"]["input"]>;
   skip: InputMaybe<Scalars["Int"]["input"]>;
   where: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationDeleteManyBlockQuotesArgs = {
+  where: InputMaybe<BlockQuoteManyWhereInput>;
+};
+
+export type MutationDeleteManyBlockQuotesConnectionArgs = {
+  after: InputMaybe<Scalars["ID"]["input"]>;
+  before: InputMaybe<Scalars["ID"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<BlockQuoteManyWhereInput>;
 };
 
 export type MutationDeleteManyBlockRowsArgs = {
@@ -13663,6 +14223,11 @@ export type MutationPublishBannerArgs = {
   where: BannerWhereUniqueInput;
 };
 
+export type MutationPublishBlockQuoteArgs = {
+  to?: Array<Stage>;
+  where: BlockQuoteWhereUniqueInput;
+};
+
 export type MutationPublishBlockRowArgs = {
   to?: Array<Stage>;
   where: BlockRowWhereUniqueInput;
@@ -13709,6 +14274,22 @@ export type MutationPublishManyBannersConnectionArgs = {
   skip: InputMaybe<Scalars["Int"]["input"]>;
   to?: Array<Stage>;
   where: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationPublishManyBlockQuotesArgs = {
+  to?: Array<Stage>;
+  where: InputMaybe<BlockQuoteManyWhereInput>;
+};
+
+export type MutationPublishManyBlockQuotesConnectionArgs = {
+  after: InputMaybe<Scalars["ID"]["input"]>;
+  before: InputMaybe<Scalars["ID"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  from?: InputMaybe<Stage>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  to?: Array<Stage>;
+  where: InputMaybe<BlockQuoteManyWhereInput>;
 };
 
 export type MutationPublishManyBlockRowsArgs = {
@@ -13946,6 +14527,13 @@ export type MutationSchedulePublishBannerArgs = {
   where: BannerWhereUniqueInput;
 };
 
+export type MutationSchedulePublishBlockQuoteArgs = {
+  releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId: InputMaybe<Scalars["String"]["input"]>;
+  to?: Array<Stage>;
+  where: BlockQuoteWhereUniqueInput;
+};
+
 export type MutationSchedulePublishBlockRowArgs = {
   releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
   releaseId: InputMaybe<Scalars["String"]["input"]>;
@@ -14009,6 +14597,13 @@ export type MutationScheduleUnpublishBannerArgs = {
   releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
   releaseId: InputMaybe<Scalars["String"]["input"]>;
   where: BannerWhereUniqueInput;
+};
+
+export type MutationScheduleUnpublishBlockQuoteArgs = {
+  from?: Array<Stage>;
+  releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId: InputMaybe<Scalars["String"]["input"]>;
+  where: BlockQuoteWhereUniqueInput;
 };
 
 export type MutationScheduleUnpublishBlockRowArgs = {
@@ -14118,6 +14713,11 @@ export type MutationUnpublishBannerArgs = {
   where: BannerWhereUniqueInput;
 };
 
+export type MutationUnpublishBlockQuoteArgs = {
+  from?: Array<Stage>;
+  where: BlockQuoteWhereUniqueInput;
+};
+
 export type MutationUnpublishBlockRowArgs = {
   from?: Array<Stage>;
   where: BlockRowWhereUniqueInput;
@@ -14162,6 +14762,22 @@ export type MutationUnpublishManyBannersConnectionArgs = {
   skip: InputMaybe<Scalars["Int"]["input"]>;
   stage?: InputMaybe<Stage>;
   where: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationUnpublishManyBlockQuotesArgs = {
+  from?: Array<Stage>;
+  where: InputMaybe<BlockQuoteManyWhereInput>;
+};
+
+export type MutationUnpublishManyBlockQuotesConnectionArgs = {
+  after: InputMaybe<Scalars["ID"]["input"]>;
+  before: InputMaybe<Scalars["ID"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  from?: Array<Stage>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: InputMaybe<Stage>;
+  where: InputMaybe<BlockQuoteManyWhereInput>;
 };
 
 export type MutationUnpublishManyBlockRowsArgs = {
@@ -14311,6 +14927,11 @@ export type MutationUpdateBannerArgs = {
   where: BannerWhereUniqueInput;
 };
 
+export type MutationUpdateBlockQuoteArgs = {
+  data: BlockQuoteUpdateInput;
+  where: BlockQuoteWhereUniqueInput;
+};
+
 export type MutationUpdateBlockRowArgs = {
   data: BlockRowUpdateInput;
   where: BlockRowWhereUniqueInput;
@@ -14391,6 +15012,21 @@ export type MutationUpdateManyBannersConnectionArgs = {
   last: InputMaybe<Scalars["Int"]["input"]>;
   skip: InputMaybe<Scalars["Int"]["input"]>;
   where: InputMaybe<BannerManyWhereInput>;
+};
+
+export type MutationUpdateManyBlockQuotesArgs = {
+  data: BlockQuoteUpdateManyInput;
+  where: InputMaybe<BlockQuoteManyWhereInput>;
+};
+
+export type MutationUpdateManyBlockQuotesConnectionArgs = {
+  after: InputMaybe<Scalars["ID"]["input"]>;
+  before: InputMaybe<Scalars["ID"]["input"]>;
+  data: BlockQuoteUpdateManyInput;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<BlockQuoteManyWhereInput>;
 };
 
 export type MutationUpdateManyBlockRowsArgs = {
@@ -14547,6 +15183,11 @@ export type MutationUpsertAssetArgs = {
 export type MutationUpsertBannerArgs = {
   upsert: BannerUpsertInput;
   where: BannerWhereUniqueInput;
+};
+
+export type MutationUpsertBlockQuoteArgs = {
+  upsert: BlockQuoteUpsertInput;
+  where: BlockQuoteWhereUniqueInput;
 };
 
 export type MutationUpsertBlockRowArgs = {
@@ -15403,16 +16044,18 @@ export type PageConnection = {
   pageInfo: PageInfo;
 };
 
-export type PageContent = Banner | BlockRow | ProductSlider;
+export type PageContent = Banner | BlockQuote | BlockRow | ProductSlider;
 
 export type PageContentConnectInput = {
   Banner?: InputMaybe<BannerConnectInput>;
+  BlockQuote?: InputMaybe<BlockQuoteConnectInput>;
   BlockRow?: InputMaybe<BlockRowConnectInput>;
   ProductSlider?: InputMaybe<ProductSliderConnectInput>;
 };
 
 export type PageContentCreateInput = {
   Banner?: InputMaybe<BannerCreateInput>;
+  BlockQuote?: InputMaybe<BlockQuoteCreateInput>;
   BlockRow?: InputMaybe<BlockRowCreateInput>;
   ProductSlider?: InputMaybe<ProductSliderCreateInput>;
 };
@@ -15433,6 +16076,7 @@ export type PageContentCreateOneInlineInput = {
 
 export type PageContentUpdateInput = {
   Banner?: InputMaybe<BannerUpdateInput>;
+  BlockQuote?: InputMaybe<BlockQuoteUpdateInput>;
   BlockRow?: InputMaybe<BlockRowUpdateInput>;
   ProductSlider?: InputMaybe<ProductSliderUpdateInput>;
 };
@@ -15456,6 +16100,7 @@ export type PageContentUpdateManyInlineInput = {
 
 export type PageContentUpdateManyWithNestedWhereInput = {
   Banner?: InputMaybe<BannerUpdateManyWithNestedWhereInput>;
+  BlockQuote?: InputMaybe<BlockQuoteUpdateManyWithNestedWhereInput>;
   BlockRow?: InputMaybe<BlockRowUpdateManyWithNestedWhereInput>;
   ProductSlider?: InputMaybe<ProductSliderUpdateManyWithNestedWhereInput>;
 };
@@ -15477,24 +16122,28 @@ export type PageContentUpdateOneInlineInput = {
 
 export type PageContentUpdateWithNestedWhereUniqueInput = {
   Banner?: InputMaybe<BannerUpdateWithNestedWhereUniqueInput>;
+  BlockQuote?: InputMaybe<BlockQuoteUpdateWithNestedWhereUniqueInput>;
   BlockRow?: InputMaybe<BlockRowUpdateWithNestedWhereUniqueInput>;
   ProductSlider?: InputMaybe<ProductSliderUpdateWithNestedWhereUniqueInput>;
 };
 
 export type PageContentUpsertWithNestedWhereUniqueInput = {
   Banner?: InputMaybe<BannerUpsertWithNestedWhereUniqueInput>;
+  BlockQuote?: InputMaybe<BlockQuoteUpsertWithNestedWhereUniqueInput>;
   BlockRow?: InputMaybe<BlockRowUpsertWithNestedWhereUniqueInput>;
   ProductSlider?: InputMaybe<ProductSliderUpsertWithNestedWhereUniqueInput>;
 };
 
 export type PageContentWhereInput = {
   Banner?: InputMaybe<BannerWhereInput>;
+  BlockQuote?: InputMaybe<BlockQuoteWhereInput>;
   BlockRow?: InputMaybe<BlockRowWhereInput>;
   ProductSlider?: InputMaybe<ProductSliderWhereInput>;
 };
 
 export type PageContentWhereUniqueInput = {
   Banner?: InputMaybe<BannerWhereUniqueInput>;
+  BlockQuote?: InputMaybe<BlockQuoteWhereUniqueInput>;
   BlockRow?: InputMaybe<BlockRowWhereUniqueInput>;
   ProductSlider?: InputMaybe<ProductSliderWhereUniqueInput>;
 };
@@ -17913,6 +18562,14 @@ export type Query = {
   bannersConnection: BannerConnection;
   /** Get best selling products by category */
   bestSellingProductsByCategory?: Maybe<Array<Maybe<ProductInterface>>>;
+  /** Retrieve a single blockQuote */
+  blockQuote?: Maybe<BlockQuote>;
+  /** Retrieve document version */
+  blockQuoteVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple blockQuotes */
+  blockQuotes: Array<BlockQuote>;
+  /** Retrieve multiple blockQuotes using the Relay connection interface */
+  blockQuotesConnection: BlockQuoteConnection;
   /** Retrieve a single blockRow */
   blockRow?: Maybe<BlockRow>;
   /** Retrieve document version */
@@ -18189,6 +18846,40 @@ export type QueryBannersConnectionArgs = {
 
 export type QueryBestSellingProductsByCategoryArgs = {
   categoryId: Scalars["Int"]["input"];
+};
+
+export type QueryBlockQuoteArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: BlockQuoteWhereUniqueInput;
+};
+
+export type QueryBlockQuoteVersionArgs = {
+  where: VersionWhereInput;
+};
+
+export type QueryBlockQuotesArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy: InputMaybe<BlockQuoteOrderByInput>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where: InputMaybe<BlockQuoteWhereInput>;
+};
+
+export type QueryBlockQuotesConnectionArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy: InputMaybe<BlockQuoteOrderByInput>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where: InputMaybe<BlockQuoteWhereInput>;
 };
 
 export type QueryBlockRowArgs = {
@@ -20185,6 +20876,7 @@ export type ScheduledOperationUpdatedByArgs = {
 export type ScheduledOperationAffectedDocument =
   | Asset
   | Banner
+  | BlockQuote
   | BlockRow
   | DynamicHeader
   | Menu
@@ -43621,6 +44313,18 @@ export type CmsPagesQuery = {
           } | null;
         }
       | {
+          __typename: "BlockQuote";
+          id: string;
+          author?: string | null;
+          image?: {
+            __typename: "Asset";
+            url: string;
+            width?: number | null;
+            height?: number | null;
+          } | null;
+          quote?: { __typename: "RichText"; html: string } | null;
+        }
+      | {
           __typename: "BlockRow";
           id: string;
           backgroundColor?: BackgroundColor | null;
@@ -43958,6 +44662,19 @@ export type CmsBlockRowFragment = {
         }
       | null;
   }>;
+};
+
+export type CmsBlockQuoteFragment = {
+  __typename: "BlockQuote";
+  id: string;
+  author?: string | null;
+  image?: {
+    __typename: "Asset";
+    url: string;
+    width?: number | null;
+    height?: number | null;
+  } | null;
+  quote?: { __typename: "RichText"; html: string } | null;
 };
 
 export type ConfigurableProductOptionsFragment = {
@@ -86937,6 +87654,64 @@ export const CmsBlockRowFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<CmsBlockRowFragment, unknown>;
+export const CmsBlockQuoteFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsBlockQuote" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "BlockQuote" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "BlockQuote" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "height" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "quote" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "html" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "author" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CmsBlockQuoteFragment, unknown>;
 export const ProductVideoFragmentFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -100953,6 +101728,10 @@ export const CmsPagesDocument = {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "CmsBlockRow" },
                       },
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsBlockQuote" },
+                      },
                     ],
                   },
                 },
@@ -101300,6 +102079,59 @@ export const CmsPagesDocument = {
                     ],
                   },
                 },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsBlockQuote" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "BlockQuote" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "InlineFragment",
+            typeCondition: {
+              kind: "NamedType",
+              name: { kind: "Name", value: "BlockQuote" },
+            },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "__typename" } },
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "image" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "url" } },
+                      { kind: "Field", name: { kind: "Name", value: "width" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "height" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "quote" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "html" } },
+                    ],
+                  },
+                },
+                { kind: "Field", name: { kind: "Name", value: "author" } },
               ],
             },
           },

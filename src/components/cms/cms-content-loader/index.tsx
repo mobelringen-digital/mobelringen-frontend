@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Banner } from "@/components/cms/banner";
+import { BlockQuote } from "@/components/cms/block-quote/BlockQuote";
 import { BlockRow } from "@/components/cms/block-row";
 import { CmsProductSlider } from "@/components/cms/product-slider";
 import { CmsPagesQuery } from "@/types";
@@ -26,6 +27,9 @@ export const CmsContentLoader: React.FC<CmsContentProps> = ({ data }) => {
 
     case "BlockRow":
       return <BlockRow data={data} />;
+
+    case "BlockQuote":
+      return <BlockQuote data={data} />;
 
     default:
       return null;
