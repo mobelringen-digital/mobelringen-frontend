@@ -13,15 +13,11 @@ interface Props {
 }
 
 export const BlockQuote: React.FC<Props> = ({ data }) => {
-  const BlockQuoteComponent = ({ hasImage }: { hasImage: boolean }) => {
+  const BlockQuoteComponent = () => {
     return (
       <blockquote
         className={cx(
-          {
-            "absolute lg:right-0 lg:top-1/2 lg:-translate-y-1/2 lg:translate-x-3/4 lg:mx-0 top-full -translate-y-1/4 mx-4":
-              hasImage,
-          },
-          "bg-powder lg:w-[800px] p-6 lg:p-12 rounded-[56px] rounded-bl-none font-feature flex font-normal justify-center items-center flex-col gap-4",
+          "bg-powder mx-4 lg:mx-0 lg:w-[800px] p-6 lg:p-12 rounded-[56px] rounded-bl-none font-feature flex font-normal justify-center items-center flex-col gap-4",
         )}
       >
         <Quote />
@@ -39,7 +35,7 @@ export const BlockQuote: React.FC<Props> = ({ data }) => {
   if (data.image?.url) {
     return (
       <CmsBlockWrapper config={data.blockConfig}>
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-2 items-center">
           <div className="col-span-2 lg:col-span-1 relative">
             <Image
               width={data.image.width ?? 700}
@@ -47,9 +43,10 @@ export const BlockQuote: React.FC<Props> = ({ data }) => {
               src={data.image.url}
               alt={data.author ?? "quote"}
             />
-            <BlockQuoteComponent hasImage={true} />
           </div>
-          <div />
+          <div className="col-span-2 lg:max-h-full lg:col-span-1 -translate-y-1/4 lg:translate-y-0 lg:-translate-x-1/4">
+            <BlockQuoteComponent />
+          </div>
         </div>
       </CmsBlockWrapper>
     );
@@ -59,7 +56,7 @@ export const BlockQuote: React.FC<Props> = ({ data }) => {
     <CmsBlockWrapper config={data.blockConfig}>
       <div className="grid grid-cols-1 text-center">
         <div className="flex justify-center">
-          <BlockQuoteComponent hasImage={false} />
+          <BlockQuoteComponent />
         </div>
       </div>
     </CmsBlockWrapper>
