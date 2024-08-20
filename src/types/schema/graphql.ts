@@ -2258,6 +2258,7 @@ export type BlockConfigCreateInput = {
   backgroundColor?: InputMaybe<BackgroundColor>;
   cm023mmze0xjl07un7it033v6?: InputMaybe<BlockQuoteCreateManyInlineInput>;
   cm023n1x80xik07up2if7en8j?: InputMaybe<BlockRowCreateManyInlineInput>;
+  cm024e62y0xy807unc9s6g9mb?: InputMaybe<BlockPagesListCreateManyInlineInput>;
   cm0243gbi0xtv07un2cqn8xnq?: InputMaybe<ProductSliderCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
   updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
@@ -2401,6 +2402,7 @@ export type BlockConfigUpdateInput = {
   backgroundColor?: InputMaybe<BackgroundColor>;
   cm023mmze0xjl07un7it033v6?: InputMaybe<BlockQuoteUpdateManyInlineInput>;
   cm023n1x80xik07up2if7en8j?: InputMaybe<BlockRowUpdateManyInlineInput>;
+  cm024e62y0xy807unc9s6g9mb?: InputMaybe<BlockPagesListUpdateManyInlineInput>;
   cm0243gbi0xtv07un2cqn8xnq?: InputMaybe<ProductSliderUpdateManyInlineInput>;
 };
 
@@ -2588,6 +2590,493 @@ export type BlockConfigWhereStageInput = {
 
 /** References BlockConfig record uniquely */
 export type BlockConfigWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+export type BlockPagesList = Entity &
+  Node & {
+    __typename: "BlockPagesList";
+    blockConfig?: Maybe<BlockConfig>;
+    /** The time the document was created */
+    createdAt: Scalars["DateTime"]["output"];
+    /** User that created this document */
+    createdBy?: Maybe<User>;
+    /** Get the document in other stages */
+    documentInStages: Array<BlockPagesList>;
+    /** List of BlockPagesList versions */
+    history: Array<Version>;
+    /** The unique identifier */
+    id: Scalars["ID"]["output"];
+    identify?: Maybe<Scalars["String"]["output"]>;
+    pageType: PageType;
+    pages: Array<Page>;
+    /** The time the document was published. Null on documents in draft stage. */
+    publishedAt?: Maybe<Scalars["DateTime"]["output"]>;
+    /** User that last published this document */
+    publishedBy?: Maybe<User>;
+    scheduledIn: Array<ScheduledOperation>;
+    /** System stage field */
+    stage: Stage;
+    /** The time the document was updated */
+    updatedAt: Scalars["DateTime"]["output"];
+    /** User that last updated this document */
+    updatedBy?: Maybe<User>;
+  };
+
+export type BlockPagesListBlockConfigArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type BlockPagesListCreatedByArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type BlockPagesListDocumentInStagesArgs = {
+  includeCurrent?: Scalars["Boolean"]["input"];
+  inheritLocale?: Scalars["Boolean"]["input"];
+  stages?: Array<Stage>;
+};
+
+export type BlockPagesListHistoryArgs = {
+  limit?: Scalars["Int"]["input"];
+  skip?: Scalars["Int"]["input"];
+  stageOverride: InputMaybe<Stage>;
+};
+
+export type BlockPagesListPagesArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<PageWhereInput>;
+};
+
+export type BlockPagesListPublishedByArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type BlockPagesListScheduledInArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+export type BlockPagesListUpdatedByArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type BlockPagesListConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: BlockPagesListWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type BlockPagesListConnection = {
+  __typename: "BlockPagesListConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<BlockPagesListEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type BlockPagesListCreateInput = {
+  blockConfig?: InputMaybe<BlockConfigCreateOneInlineInput>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  pageType: PageType;
+  pages?: InputMaybe<PageCreateManyInlineInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+};
+
+export type BlockPagesListCreateManyInlineInput = {
+  /** Connect multiple existing BlockPagesList documents */
+  connect?: InputMaybe<Array<BlockPagesListWhereUniqueInput>>;
+  /** Create and connect multiple existing BlockPagesList documents */
+  create?: InputMaybe<Array<BlockPagesListCreateInput>>;
+};
+
+export type BlockPagesListCreateOneInlineInput = {
+  /** Connect one existing BlockPagesList document */
+  connect?: InputMaybe<BlockPagesListWhereUniqueInput>;
+  /** Create and connect one BlockPagesList document */
+  create?: InputMaybe<BlockPagesListCreateInput>;
+};
+
+/** An edge in a connection. */
+export type BlockPagesListEdge = {
+  __typename: "BlockPagesListEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: BlockPagesList;
+};
+
+/** Identifies documents */
+export type BlockPagesListManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BlockPagesListWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BlockPagesListWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BlockPagesListWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  blockConfig?: InputMaybe<BlockConfigWhereInput>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<BlockPagesListWhereStageInput>;
+  documentInStages_none?: InputMaybe<BlockPagesListWhereStageInput>;
+  documentInStages_some?: InputMaybe<BlockPagesListWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  identify_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  pageType?: InputMaybe<PageType>;
+  /** All values that are contained in given list. */
+  pageType_in?: InputMaybe<Array<InputMaybe<PageType>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  pageType_not?: InputMaybe<PageType>;
+  /** All values that are not contained in given list. */
+  pageType_not_in?: InputMaybe<Array<InputMaybe<PageType>>>;
+  pages_every?: InputMaybe<PageWhereInput>;
+  pages_none?: InputMaybe<PageWhereInput>;
+  pages_some?: InputMaybe<PageWhereInput>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum BlockPagesListOrderByInput {
+  CreatedAtAsc = "createdAt_ASC",
+  CreatedAtDesc = "createdAt_DESC",
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  IdentifyAsc = "identify_ASC",
+  IdentifyDesc = "identify_DESC",
+  PageTypeAsc = "pageType_ASC",
+  PageTypeDesc = "pageType_DESC",
+  PublishedAtAsc = "publishedAt_ASC",
+  PublishedAtDesc = "publishedAt_DESC",
+  UpdatedAtAsc = "updatedAt_ASC",
+  UpdatedAtDesc = "updatedAt_DESC",
+}
+
+export type BlockPagesListUpdateInput = {
+  blockConfig?: InputMaybe<BlockConfigUpdateOneInlineInput>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  pageType?: InputMaybe<PageType>;
+  pages?: InputMaybe<PageUpdateManyInlineInput>;
+};
+
+export type BlockPagesListUpdateManyInlineInput = {
+  /** Connect multiple existing BlockPagesList documents */
+  connect?: InputMaybe<Array<BlockPagesListConnectInput>>;
+  /** Create and connect multiple BlockPagesList documents */
+  create?: InputMaybe<Array<BlockPagesListCreateInput>>;
+  /** Delete multiple BlockPagesList documents */
+  delete?: InputMaybe<Array<BlockPagesListWhereUniqueInput>>;
+  /** Disconnect multiple BlockPagesList documents */
+  disconnect?: InputMaybe<Array<BlockPagesListWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing BlockPagesList documents */
+  set?: InputMaybe<Array<BlockPagesListWhereUniqueInput>>;
+  /** Update multiple BlockPagesList documents */
+  update?: InputMaybe<Array<BlockPagesListUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple BlockPagesList documents */
+  upsert?: InputMaybe<Array<BlockPagesListUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type BlockPagesListUpdateManyInput = {
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  pageType?: InputMaybe<PageType>;
+};
+
+export type BlockPagesListUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: BlockPagesListUpdateManyInput;
+  /** Document search */
+  where: BlockPagesListWhereInput;
+};
+
+export type BlockPagesListUpdateOneInlineInput = {
+  /** Connect existing BlockPagesList document */
+  connect?: InputMaybe<BlockPagesListWhereUniqueInput>;
+  /** Create and connect one BlockPagesList document */
+  create?: InputMaybe<BlockPagesListCreateInput>;
+  /** Delete currently connected BlockPagesList document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Disconnect currently connected BlockPagesList document */
+  disconnect?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single BlockPagesList document */
+  update?: InputMaybe<BlockPagesListUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single BlockPagesList document */
+  upsert?: InputMaybe<BlockPagesListUpsertWithNestedWhereUniqueInput>;
+};
+
+export type BlockPagesListUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: BlockPagesListUpdateInput;
+  /** Unique document search */
+  where: BlockPagesListWhereUniqueInput;
+};
+
+export type BlockPagesListUpsertInput = {
+  /** Create document if it didn't exist */
+  create: BlockPagesListCreateInput;
+  /** Update document if it exists */
+  update: BlockPagesListUpdateInput;
+};
+
+export type BlockPagesListUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: BlockPagesListUpsertInput;
+  /** Unique document search */
+  where: BlockPagesListWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type BlockPagesListWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars["Boolean"]["input"]>;
+};
+
+/** Identifies documents */
+export type BlockPagesListWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BlockPagesListWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BlockPagesListWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BlockPagesListWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  blockConfig?: InputMaybe<BlockConfigWhereInput>;
+  createdAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<BlockPagesListWhereStageInput>;
+  documentInStages_none?: InputMaybe<BlockPagesListWhereStageInput>;
+  documentInStages_some?: InputMaybe<BlockPagesListWhereStageInput>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  identify?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  identify_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  identify_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  identify_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  identify_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  identify_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  identify_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  identify_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  identify_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  identify_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  pageType?: InputMaybe<PageType>;
+  /** All values that are contained in given list. */
+  pageType_in?: InputMaybe<Array<InputMaybe<PageType>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  pageType_not?: InputMaybe<PageType>;
+  /** All values that are not contained in given list. */
+  pageType_not_in?: InputMaybe<Array<InputMaybe<PageType>>>;
+  pages_every?: InputMaybe<PageWhereInput>;
+  pages_none?: InputMaybe<PageWhereInput>;
+  pages_some?: InputMaybe<PageWhereInput>;
+  publishedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars["DateTime"]["input"]>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars["DateTime"]["input"]>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<
+    Array<InputMaybe<Scalars["DateTime"]["input"]>>
+  >;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type BlockPagesListWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BlockPagesListWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BlockPagesListWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BlockPagesListWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<BlockPagesListWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References BlockPagesList record uniquely */
+export type BlockPagesListWhereUniqueInput = {
   id?: InputMaybe<Scalars["ID"]["input"]>;
 };
 
@@ -9115,6 +9604,7 @@ export enum EntityTypeName {
   Asset = "Asset",
   Banner = "Banner",
   BlockConfig = "BlockConfig",
+  BlockPagesList = "BlockPagesList",
   BlockQuote = "BlockQuote",
   BlockRow = "BlockRow",
   Column = "Column",
@@ -9129,6 +9619,7 @@ export enum EntityTypeName {
   Page = "Page",
   PageCategory = "PageCategory",
   ProductSlider = "ProductSlider",
+  PromotionBubble = "PromotionBubble",
   RuleBlock = "RuleBlock",
   SaleBubble = "SaleBubble",
   /** Scheduled Operation system model */
@@ -10549,6 +11040,9 @@ export type ImageLink = Entity & {
   id: Scalars["ID"]["output"];
   image: Asset;
   label: Scalars["String"]["output"];
+  /** Bubble that can contain links */
+  promotionBubble?: Maybe<PromotionBubble>;
+  /** Pink bubble to display discounts */
   salesBubble?: Maybe<SaleBubble>;
   /** System stage field */
   stage: Stage;
@@ -10559,6 +11053,11 @@ export type ImageLinkImageArgs = {
   forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
   locales: InputMaybe<Array<Locale>>;
   where: InputMaybe<AssetSingleRelationWhereInput>;
+};
+
+export type ImageLinkPromotionBubbleArgs = {
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
 };
 
 export type ImageLinkSalesBubbleArgs = {
@@ -10587,6 +11086,7 @@ export type ImageLinkCreateInput = {
   caption?: InputMaybe<Scalars["String"]["input"]>;
   image: AssetCreateOneInlineInput;
   label: Scalars["String"]["input"];
+  promotionBubble?: InputMaybe<PromotionBubbleCreateOneInlineInput>;
   salesBubble?: InputMaybe<SaleBubbleCreateOneInlineInput>;
   url: Scalars["String"]["input"];
 };
@@ -10685,6 +11185,7 @@ export type ImageLinkManyWhereInput = {
   label_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   /** All values starting with the given string. */
   label_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  promotionBubble?: InputMaybe<PromotionBubbleWhereInput>;
   salesBubble?: InputMaybe<SaleBubbleWhereInput>;
   url?: InputMaybe<Scalars["String"]["input"]>;
   /** All values containing the given string. */
@@ -10815,6 +11316,7 @@ export type ImageLinkUpdateInput = {
   caption?: InputMaybe<Scalars["String"]["input"]>;
   image?: InputMaybe<AssetUpdateOneInlineInput>;
   label?: InputMaybe<Scalars["String"]["input"]>;
+  promotionBubble?: InputMaybe<PromotionBubbleUpdateOneInlineInput>;
   salesBubble?: InputMaybe<SaleBubbleUpdateOneInlineInput>;
   url?: InputMaybe<Scalars["String"]["input"]>;
 };
@@ -10965,6 +11467,7 @@ export type ImageLinkWhereInput = {
   label_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
   /** All values starting with the given string. */
   label_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  promotionBubble?: InputMaybe<PromotionBubbleWhereInput>;
   salesBubble?: InputMaybe<SaleBubbleWhereInput>;
   url?: InputMaybe<Scalars["String"]["input"]>;
   /** All values containing the given string. */
@@ -11838,12 +12341,18 @@ export enum LinkOrderByInput {
   UrlDesc = "url_DESC",
 }
 
-export type LinkParent = LinkBlock | MegaMenuDropdown | Menu | TextBlock;
+export type LinkParent =
+  | LinkBlock
+  | MegaMenuDropdown
+  | Menu
+  | PromotionBubble
+  | TextBlock;
 
 export type LinkParentConnectInput = {
   LinkBlock?: InputMaybe<LinkBlockConnectInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownConnectInput>;
   Menu?: InputMaybe<MenuConnectInput>;
+  PromotionBubble?: InputMaybe<PromotionBubbleConnectInput>;
   TextBlock?: InputMaybe<TextBlockConnectInput>;
 };
 
@@ -11851,6 +12360,7 @@ export type LinkParentCreateInput = {
   LinkBlock?: InputMaybe<LinkBlockCreateInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownCreateInput>;
   Menu?: InputMaybe<MenuCreateInput>;
+  PromotionBubble?: InputMaybe<PromotionBubbleCreateInput>;
   TextBlock?: InputMaybe<TextBlockCreateInput>;
 };
 
@@ -11872,6 +12382,7 @@ export type LinkParentUpdateInput = {
   LinkBlock?: InputMaybe<LinkBlockUpdateInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateInput>;
   Menu?: InputMaybe<MenuUpdateInput>;
+  PromotionBubble?: InputMaybe<PromotionBubbleUpdateInput>;
   TextBlock?: InputMaybe<TextBlockUpdateInput>;
 };
 
@@ -11896,6 +12407,7 @@ export type LinkParentUpdateManyWithNestedWhereInput = {
   LinkBlock?: InputMaybe<LinkBlockUpdateManyWithNestedWhereInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateManyWithNestedWhereInput>;
   Menu?: InputMaybe<MenuUpdateManyWithNestedWhereInput>;
+  PromotionBubble?: InputMaybe<PromotionBubbleUpdateManyWithNestedWhereInput>;
   TextBlock?: InputMaybe<TextBlockUpdateManyWithNestedWhereInput>;
 };
 
@@ -11918,6 +12430,7 @@ export type LinkParentUpdateWithNestedWhereUniqueInput = {
   LinkBlock?: InputMaybe<LinkBlockUpdateWithNestedWhereUniqueInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateWithNestedWhereUniqueInput>;
   Menu?: InputMaybe<MenuUpdateWithNestedWhereUniqueInput>;
+  PromotionBubble?: InputMaybe<PromotionBubbleUpdateWithNestedWhereUniqueInput>;
   TextBlock?: InputMaybe<TextBlockUpdateWithNestedWhereUniqueInput>;
 };
 
@@ -11925,6 +12438,7 @@ export type LinkParentUpsertWithNestedWhereUniqueInput = {
   LinkBlock?: InputMaybe<LinkBlockUpsertWithNestedWhereUniqueInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpsertWithNestedWhereUniqueInput>;
   Menu?: InputMaybe<MenuUpsertWithNestedWhereUniqueInput>;
+  PromotionBubble?: InputMaybe<PromotionBubbleUpsertWithNestedWhereUniqueInput>;
   TextBlock?: InputMaybe<TextBlockUpsertWithNestedWhereUniqueInput>;
 };
 
@@ -11932,6 +12446,7 @@ export type LinkParentWhereInput = {
   LinkBlock?: InputMaybe<LinkBlockWhereInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownWhereInput>;
   Menu?: InputMaybe<MenuWhereInput>;
+  PromotionBubble?: InputMaybe<PromotionBubbleWhereInput>;
   TextBlock?: InputMaybe<TextBlockWhereInput>;
 };
 
@@ -11939,6 +12454,7 @@ export type LinkParentWhereUniqueInput = {
   LinkBlock?: InputMaybe<LinkBlockWhereUniqueInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownWhereUniqueInput>;
   Menu?: InputMaybe<MenuWhereUniqueInput>;
+  PromotionBubble?: InputMaybe<PromotionBubbleWhereUniqueInput>;
   TextBlock?: InputMaybe<TextBlockWhereUniqueInput>;
 };
 
@@ -13614,6 +14130,8 @@ export type Mutation = {
   createBanner?: Maybe<Banner>;
   /** Create one blockConfig */
   createBlockConfig?: Maybe<BlockConfig>;
+  /** Create one blockPagesList */
+  createBlockPagesList?: Maybe<BlockPagesList>;
   /** Create one blockQuote */
   createBlockQuote?: Maybe<BlockQuote>;
   /** Create one blockRow */
@@ -13673,6 +14191,8 @@ export type Mutation = {
   deleteBanner?: Maybe<Banner>;
   /** Delete one blockConfig from _all_ existing stages. Returns deleted document. */
   deleteBlockConfig?: Maybe<BlockConfig>;
+  /** Delete one blockPagesList from _all_ existing stages. Returns deleted document. */
+  deleteBlockPagesList?: Maybe<BlockPagesList>;
   /** Delete one blockQuote from _all_ existing stages. Returns deleted document. */
   deleteBlockQuote?: Maybe<BlockQuote>;
   /** Delete one blockRow from _all_ existing stages. Returns deleted document. */
@@ -13706,6 +14226,13 @@ export type Mutation = {
   deleteManyBlockConfigs: BatchPayload;
   /** Delete many BlockConfig documents, return deleted documents */
   deleteManyBlockConfigsConnection: BlockConfigConnection;
+  /**
+   * Delete many BlockPagesList documents
+   * @deprecated Please use the new paginated many mutation (deleteManyBlockPagesListsConnection)
+   */
+  deleteManyBlockPagesLists: BatchPayload;
+  /** Delete many BlockPagesList documents, return deleted documents */
+  deleteManyBlockPagesListsConnection: BlockPagesListConnection;
   /**
    * Delete many BlockQuote documents
    * @deprecated Please use the new paginated many mutation (deleteManyBlockQuotesConnection)
@@ -13804,6 +14331,8 @@ export type Mutation = {
   publishBanner?: Maybe<Banner>;
   /** Publish one blockConfig */
   publishBlockConfig?: Maybe<BlockConfig>;
+  /** Publish one blockPagesList */
+  publishBlockPagesList?: Maybe<BlockPagesList>;
   /** Publish one blockQuote */
   publishBlockQuote?: Maybe<BlockQuote>;
   /** Publish one blockRow */
@@ -13831,6 +14360,13 @@ export type Mutation = {
   publishManyBlockConfigs: BatchPayload;
   /** Publish many BlockConfig documents */
   publishManyBlockConfigsConnection: BlockConfigConnection;
+  /**
+   * Publish many BlockPagesList documents
+   * @deprecated Please use the new paginated many mutation (publishManyBlockPagesListsConnection)
+   */
+  publishManyBlockPagesLists: BatchPayload;
+  /** Publish many BlockPagesList documents */
+  publishManyBlockPagesListsConnection: BlockPagesListConnection;
   /**
    * Publish many BlockQuote documents
    * @deprecated Please use the new paginated many mutation (publishManyBlockQuotesConnection)
@@ -13940,6 +14476,8 @@ export type Mutation = {
   schedulePublishBanner?: Maybe<Banner>;
   /** Schedule to publish one blockConfig */
   schedulePublishBlockConfig?: Maybe<BlockConfig>;
+  /** Schedule to publish one blockPagesList */
+  schedulePublishBlockPagesList?: Maybe<BlockPagesList>;
   /** Schedule to publish one blockQuote */
   schedulePublishBlockQuote?: Maybe<BlockQuote>;
   /** Schedule to publish one blockRow */
@@ -13962,6 +14500,8 @@ export type Mutation = {
   scheduleUnpublishBanner?: Maybe<Banner>;
   /** Unpublish one blockConfig from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishBlockConfig?: Maybe<BlockConfig>;
+  /** Unpublish one blockPagesList from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishBlockPagesList?: Maybe<BlockPagesList>;
   /** Unpublish one blockQuote from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishBlockQuote?: Maybe<BlockQuote>;
   /** Unpublish one blockRow from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -14009,6 +14549,8 @@ export type Mutation = {
   unpublishBanner?: Maybe<Banner>;
   /** Unpublish one blockConfig from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishBlockConfig?: Maybe<BlockConfig>;
+  /** Unpublish one blockPagesList from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishBlockPagesList?: Maybe<BlockPagesList>;
   /** Unpublish one blockQuote from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishBlockQuote?: Maybe<BlockQuote>;
   /** Unpublish one blockRow from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -14036,6 +14578,13 @@ export type Mutation = {
   unpublishManyBlockConfigs: BatchPayload;
   /** Find many BlockConfig documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyBlockConfigsConnection: BlockConfigConnection;
+  /**
+   * Unpublish many BlockPagesList documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyBlockPagesListsConnection)
+   */
+  unpublishManyBlockPagesLists: BatchPayload;
+  /** Find many BlockPagesList documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyBlockPagesListsConnection: BlockPagesListConnection;
   /**
    * Unpublish many BlockQuote documents
    * @deprecated Please use the new paginated many mutation (unpublishManyBlockQuotesConnection)
@@ -14108,6 +14657,8 @@ export type Mutation = {
   updateBanner?: Maybe<Banner>;
   /** Update one blockConfig */
   updateBlockConfig?: Maybe<BlockConfig>;
+  /** Update one blockPagesList */
+  updateBlockPagesList?: Maybe<BlockPagesList>;
   /** Update one blockQuote */
   updateBlockQuote?: Maybe<BlockQuote>;
   /** Update one blockRow */
@@ -14152,6 +14703,13 @@ export type Mutation = {
   updateManyBlockConfigs: BatchPayload;
   /** Update many BlockConfig documents */
   updateManyBlockConfigsConnection: BlockConfigConnection;
+  /**
+   * Update many blockPagesLists
+   * @deprecated Please use the new paginated many mutation (updateManyBlockPagesListsConnection)
+   */
+  updateManyBlockPagesLists: BatchPayload;
+  /** Update many BlockPagesList documents */
+  updateManyBlockPagesListsConnection: BlockPagesListConnection;
   /**
    * Update many blockQuotes
    * @deprecated Please use the new paginated many mutation (updateManyBlockQuotesConnection)
@@ -14230,6 +14788,8 @@ export type Mutation = {
   upsertBanner?: Maybe<Banner>;
   /** Upsert one blockConfig */
   upsertBlockConfig?: Maybe<BlockConfig>;
+  /** Upsert one blockPagesList */
+  upsertBlockPagesList?: Maybe<BlockPagesList>;
   /** Upsert one blockQuote */
   upsertBlockQuote?: Maybe<BlockQuote>;
   /** Upsert one blockRow */
@@ -14371,6 +14931,10 @@ export type MutationCreateBlockConfigArgs = {
   data: BlockConfigCreateInput;
 };
 
+export type MutationCreateBlockPagesListArgs = {
+  data: BlockPagesListCreateInput;
+};
+
 export type MutationCreateBlockQuoteArgs = {
   data: BlockQuoteCreateInput;
 };
@@ -14475,6 +15039,10 @@ export type MutationDeleteBlockConfigArgs = {
   where: BlockConfigWhereUniqueInput;
 };
 
+export type MutationDeleteBlockPagesListArgs = {
+  where: BlockPagesListWhereUniqueInput;
+};
+
 export type MutationDeleteBlockQuoteArgs = {
   where: BlockQuoteWhereUniqueInput;
 };
@@ -14532,6 +15100,19 @@ export type MutationDeleteManyBlockConfigsConnectionArgs = {
   last: InputMaybe<Scalars["Int"]["input"]>;
   skip: InputMaybe<Scalars["Int"]["input"]>;
   where: InputMaybe<BlockConfigManyWhereInput>;
+};
+
+export type MutationDeleteManyBlockPagesListsArgs = {
+  where: InputMaybe<BlockPagesListManyWhereInput>;
+};
+
+export type MutationDeleteManyBlockPagesListsConnectionArgs = {
+  after: InputMaybe<Scalars["ID"]["input"]>;
+  before: InputMaybe<Scalars["ID"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<BlockPagesListManyWhereInput>;
 };
 
 export type MutationDeleteManyBlockQuotesArgs = {
@@ -14733,6 +15314,11 @@ export type MutationPublishBlockConfigArgs = {
   where: BlockConfigWhereUniqueInput;
 };
 
+export type MutationPublishBlockPagesListArgs = {
+  to?: Array<Stage>;
+  where: BlockPagesListWhereUniqueInput;
+};
+
 export type MutationPublishBlockQuoteArgs = {
   to?: Array<Stage>;
   where: BlockQuoteWhereUniqueInput;
@@ -14800,6 +15386,22 @@ export type MutationPublishManyBlockConfigsConnectionArgs = {
   skip: InputMaybe<Scalars["Int"]["input"]>;
   to?: Array<Stage>;
   where: InputMaybe<BlockConfigManyWhereInput>;
+};
+
+export type MutationPublishManyBlockPagesListsArgs = {
+  to?: Array<Stage>;
+  where: InputMaybe<BlockPagesListManyWhereInput>;
+};
+
+export type MutationPublishManyBlockPagesListsConnectionArgs = {
+  after: InputMaybe<Scalars["ID"]["input"]>;
+  before: InputMaybe<Scalars["ID"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  from?: InputMaybe<Stage>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  to?: Array<Stage>;
+  where: InputMaybe<BlockPagesListManyWhereInput>;
 };
 
 export type MutationPublishManyBlockQuotesArgs = {
@@ -15060,6 +15662,13 @@ export type MutationSchedulePublishBlockConfigArgs = {
   where: BlockConfigWhereUniqueInput;
 };
 
+export type MutationSchedulePublishBlockPagesListArgs = {
+  releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId: InputMaybe<Scalars["String"]["input"]>;
+  to?: Array<Stage>;
+  where: BlockPagesListWhereUniqueInput;
+};
+
 export type MutationSchedulePublishBlockQuoteArgs = {
   releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
   releaseId: InputMaybe<Scalars["String"]["input"]>;
@@ -15137,6 +15746,13 @@ export type MutationScheduleUnpublishBlockConfigArgs = {
   releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
   releaseId: InputMaybe<Scalars["String"]["input"]>;
   where: BlockConfigWhereUniqueInput;
+};
+
+export type MutationScheduleUnpublishBlockPagesListArgs = {
+  from?: Array<Stage>;
+  releaseAt: InputMaybe<Scalars["DateTime"]["input"]>;
+  releaseId: InputMaybe<Scalars["String"]["input"]>;
+  where: BlockPagesListWhereUniqueInput;
 };
 
 export type MutationScheduleUnpublishBlockQuoteArgs = {
@@ -15258,6 +15874,11 @@ export type MutationUnpublishBlockConfigArgs = {
   where: BlockConfigWhereUniqueInput;
 };
 
+export type MutationUnpublishBlockPagesListArgs = {
+  from?: Array<Stage>;
+  where: BlockPagesListWhereUniqueInput;
+};
+
 export type MutationUnpublishBlockQuoteArgs = {
   from?: Array<Stage>;
   where: BlockQuoteWhereUniqueInput;
@@ -15323,6 +15944,22 @@ export type MutationUnpublishManyBlockConfigsConnectionArgs = {
   skip: InputMaybe<Scalars["Int"]["input"]>;
   stage?: InputMaybe<Stage>;
   where: InputMaybe<BlockConfigManyWhereInput>;
+};
+
+export type MutationUnpublishManyBlockPagesListsArgs = {
+  from?: Array<Stage>;
+  where: InputMaybe<BlockPagesListManyWhereInput>;
+};
+
+export type MutationUnpublishManyBlockPagesListsConnectionArgs = {
+  after: InputMaybe<Scalars["ID"]["input"]>;
+  before: InputMaybe<Scalars["ID"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  from?: Array<Stage>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: InputMaybe<Stage>;
+  where: InputMaybe<BlockPagesListManyWhereInput>;
 };
 
 export type MutationUnpublishManyBlockQuotesArgs = {
@@ -15493,6 +16130,11 @@ export type MutationUpdateBlockConfigArgs = {
   where: BlockConfigWhereUniqueInput;
 };
 
+export type MutationUpdateBlockPagesListArgs = {
+  data: BlockPagesListUpdateInput;
+  where: BlockPagesListWhereUniqueInput;
+};
+
 export type MutationUpdateBlockQuoteArgs = {
   data: BlockQuoteUpdateInput;
   where: BlockQuoteWhereUniqueInput;
@@ -15593,6 +16235,21 @@ export type MutationUpdateManyBlockConfigsConnectionArgs = {
   last: InputMaybe<Scalars["Int"]["input"]>;
   skip: InputMaybe<Scalars["Int"]["input"]>;
   where: InputMaybe<BlockConfigManyWhereInput>;
+};
+
+export type MutationUpdateManyBlockPagesListsArgs = {
+  data: BlockPagesListUpdateManyInput;
+  where: InputMaybe<BlockPagesListManyWhereInput>;
+};
+
+export type MutationUpdateManyBlockPagesListsConnectionArgs = {
+  after: InputMaybe<Scalars["ID"]["input"]>;
+  before: InputMaybe<Scalars["ID"]["input"]>;
+  data: BlockPagesListUpdateManyInput;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  where: InputMaybe<BlockPagesListManyWhereInput>;
 };
 
 export type MutationUpdateManyBlockQuotesArgs = {
@@ -15769,6 +16426,11 @@ export type MutationUpsertBannerArgs = {
 export type MutationUpsertBlockConfigArgs = {
   upsert: BlockConfigUpsertInput;
   where: BlockConfigWhereUniqueInput;
+};
+
+export type MutationUpsertBlockPagesListArgs = {
+  upsert: BlockPagesListUpsertInput;
+  where: BlockPagesListWhereUniqueInput;
 };
 
 export type MutationUpsertBlockQuoteArgs = {
@@ -16630,10 +17292,16 @@ export type PageConnection = {
   pageInfo: PageInfo;
 };
 
-export type PageContent = Banner | BlockQuote | BlockRow | ProductSlider;
+export type PageContent =
+  | Banner
+  | BlockPagesList
+  | BlockQuote
+  | BlockRow
+  | ProductSlider;
 
 export type PageContentConnectInput = {
   Banner?: InputMaybe<BannerConnectInput>;
+  BlockPagesList?: InputMaybe<BlockPagesListConnectInput>;
   BlockQuote?: InputMaybe<BlockQuoteConnectInput>;
   BlockRow?: InputMaybe<BlockRowConnectInput>;
   ProductSlider?: InputMaybe<ProductSliderConnectInput>;
@@ -16641,6 +17309,7 @@ export type PageContentConnectInput = {
 
 export type PageContentCreateInput = {
   Banner?: InputMaybe<BannerCreateInput>;
+  BlockPagesList?: InputMaybe<BlockPagesListCreateInput>;
   BlockQuote?: InputMaybe<BlockQuoteCreateInput>;
   BlockRow?: InputMaybe<BlockRowCreateInput>;
   ProductSlider?: InputMaybe<ProductSliderCreateInput>;
@@ -16662,6 +17331,7 @@ export type PageContentCreateOneInlineInput = {
 
 export type PageContentUpdateInput = {
   Banner?: InputMaybe<BannerUpdateInput>;
+  BlockPagesList?: InputMaybe<BlockPagesListUpdateInput>;
   BlockQuote?: InputMaybe<BlockQuoteUpdateInput>;
   BlockRow?: InputMaybe<BlockRowUpdateInput>;
   ProductSlider?: InputMaybe<ProductSliderUpdateInput>;
@@ -16686,6 +17356,7 @@ export type PageContentUpdateManyInlineInput = {
 
 export type PageContentUpdateManyWithNestedWhereInput = {
   Banner?: InputMaybe<BannerUpdateManyWithNestedWhereInput>;
+  BlockPagesList?: InputMaybe<BlockPagesListUpdateManyWithNestedWhereInput>;
   BlockQuote?: InputMaybe<BlockQuoteUpdateManyWithNestedWhereInput>;
   BlockRow?: InputMaybe<BlockRowUpdateManyWithNestedWhereInput>;
   ProductSlider?: InputMaybe<ProductSliderUpdateManyWithNestedWhereInput>;
@@ -16708,6 +17379,7 @@ export type PageContentUpdateOneInlineInput = {
 
 export type PageContentUpdateWithNestedWhereUniqueInput = {
   Banner?: InputMaybe<BannerUpdateWithNestedWhereUniqueInput>;
+  BlockPagesList?: InputMaybe<BlockPagesListUpdateWithNestedWhereUniqueInput>;
   BlockQuote?: InputMaybe<BlockQuoteUpdateWithNestedWhereUniqueInput>;
   BlockRow?: InputMaybe<BlockRowUpdateWithNestedWhereUniqueInput>;
   ProductSlider?: InputMaybe<ProductSliderUpdateWithNestedWhereUniqueInput>;
@@ -16715,6 +17387,7 @@ export type PageContentUpdateWithNestedWhereUniqueInput = {
 
 export type PageContentUpsertWithNestedWhereUniqueInput = {
   Banner?: InputMaybe<BannerUpsertWithNestedWhereUniqueInput>;
+  BlockPagesList?: InputMaybe<BlockPagesListUpsertWithNestedWhereUniqueInput>;
   BlockQuote?: InputMaybe<BlockQuoteUpsertWithNestedWhereUniqueInput>;
   BlockRow?: InputMaybe<BlockRowUpsertWithNestedWhereUniqueInput>;
   ProductSlider?: InputMaybe<ProductSliderUpsertWithNestedWhereUniqueInput>;
@@ -16722,6 +17395,7 @@ export type PageContentUpsertWithNestedWhereUniqueInput = {
 
 export type PageContentWhereInput = {
   Banner?: InputMaybe<BannerWhereInput>;
+  BlockPagesList?: InputMaybe<BlockPagesListWhereInput>;
   BlockQuote?: InputMaybe<BlockQuoteWhereInput>;
   BlockRow?: InputMaybe<BlockRowWhereInput>;
   ProductSlider?: InputMaybe<ProductSliderWhereInput>;
@@ -16729,6 +17403,7 @@ export type PageContentWhereInput = {
 
 export type PageContentWhereUniqueInput = {
   Banner?: InputMaybe<BannerWhereUniqueInput>;
+  BlockPagesList?: InputMaybe<BlockPagesListWhereUniqueInput>;
   BlockQuote?: InputMaybe<BlockQuoteWhereUniqueInput>;
   BlockRow?: InputMaybe<BlockRowWhereUniqueInput>;
   ProductSlider?: InputMaybe<ProductSliderWhereUniqueInput>;
@@ -19125,6 +19800,505 @@ export type ProductsAggregationsArgs = {
   filter: InputMaybe<AggregationsFilterInput>;
 };
 
+export type PromotionBubble = Entity & {
+  __typename: "PromotionBubble";
+  /** The unique identifier */
+  id: Scalars["ID"]["output"];
+  links: Array<PromotionBubblelinksUnion>;
+  middleLine?: Maybe<Scalars["String"]["output"]>;
+  position?: Maybe<Position>;
+  /** System stage field */
+  stage: Stage;
+  topLine: Scalars["String"]["output"];
+};
+
+export type PromotionBubbleLinksArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  forceParentLocale: InputMaybe<Scalars["Boolean"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales: InputMaybe<Array<Locale>>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+};
+
+export type PromotionBubbleConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: PromotionBubbleWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type PromotionBubbleConnection = {
+  __typename: "PromotionBubbleConnection";
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<PromotionBubbleEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type PromotionBubbleCreateInput = {
+  links?: InputMaybe<PromotionBubblelinksUnionCreateManyInlineInput>;
+  middleLine?: InputMaybe<Scalars["String"]["input"]>;
+  position?: InputMaybe<Position>;
+  topLine: Scalars["String"]["input"];
+};
+
+export type PromotionBubbleCreateManyInlineInput = {
+  /** Create and connect multiple existing PromotionBubble documents */
+  create?: InputMaybe<Array<PromotionBubbleCreateInput>>;
+};
+
+export type PromotionBubbleCreateOneInlineInput = {
+  /** Create and connect one PromotionBubble document */
+  create?: InputMaybe<PromotionBubbleCreateInput>;
+};
+
+export type PromotionBubbleCreateWithPositionInput = {
+  /** Document to create */
+  data: PromotionBubbleCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type PromotionBubbleEdge = {
+  __typename: "PromotionBubbleEdge";
+  /** A cursor for use in pagination. */
+  cursor: Scalars["String"]["output"];
+  /** The item at the end of the edge. */
+  node: PromotionBubble;
+};
+
+/** Identifies documents */
+export type PromotionBubbleManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<PromotionBubbleWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<PromotionBubbleWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<PromotionBubbleWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values in which the union is empty. */
+  links_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Matches if the modular component contains at least one connection to the item provided to the filter */
+  links_some?: InputMaybe<PromotionBubblelinksUnionWhereInput>;
+  middleLine?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  middleLine_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  middleLine_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  middleLine_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  middleLine_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  middleLine_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  middleLine_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  middleLine_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  middleLine_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  middleLine_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  position?: InputMaybe<Position>;
+  /** All values that are contained in given list. */
+  position_in?: InputMaybe<Array<InputMaybe<Position>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  position_not?: InputMaybe<Position>;
+  /** All values that are not contained in given list. */
+  position_not_in?: InputMaybe<Array<InputMaybe<Position>>>;
+  topLine?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  topLine_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  topLine_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  topLine_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  topLine_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  topLine_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  topLine_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  topLine_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  topLine_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  topLine_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export enum PromotionBubbleOrderByInput {
+  IdAsc = "id_ASC",
+  IdDesc = "id_DESC",
+  MiddleLineAsc = "middleLine_ASC",
+  MiddleLineDesc = "middleLine_DESC",
+  PositionAsc = "position_ASC",
+  PositionDesc = "position_DESC",
+  TopLineAsc = "topLine_ASC",
+  TopLineDesc = "topLine_DESC",
+}
+
+export type PromotionBubbleParent = ImageLink;
+
+export type PromotionBubbleParentConnectInput = {
+  ImageLink?: InputMaybe<ImageLinkConnectInput>;
+};
+
+export type PromotionBubbleParentCreateInput = {
+  ImageLink?: InputMaybe<ImageLinkCreateInput>;
+};
+
+export type PromotionBubbleParentCreateManyInlineInput = {
+  /** Create and connect multiple existing PromotionBubbleParent documents */
+  create?: InputMaybe<Array<PromotionBubbleParentCreateInput>>;
+};
+
+export type PromotionBubbleParentCreateOneInlineInput = {
+  /** Create and connect one PromotionBubbleParent document */
+  create?: InputMaybe<PromotionBubbleParentCreateInput>;
+};
+
+export type PromotionBubbleParentCreateWithPositionInput = {
+  ImageLink?: InputMaybe<ImageLinkCreateWithPositionInput>;
+};
+
+export type PromotionBubbleParentUpdateInput = {
+  ImageLink?: InputMaybe<ImageLinkUpdateInput>;
+};
+
+export type PromotionBubbleParentUpdateManyInlineInput = {
+  /** Create and connect multiple PromotionBubbleParent component instances */
+  create?: InputMaybe<Array<PromotionBubbleParentCreateWithPositionInput>>;
+  /** Delete multiple PromotionBubbleParent documents */
+  delete?: InputMaybe<Array<PromotionBubbleParentWhereUniqueInput>>;
+  /** Update multiple PromotionBubbleParent component instances */
+  update?: InputMaybe<
+    Array<PromotionBubbleParentUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
+  /** Upsert multiple PromotionBubbleParent component instances */
+  upsert?: InputMaybe<
+    Array<PromotionBubbleParentUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
+};
+
+export type PromotionBubbleParentUpdateManyWithNestedWhereInput = {
+  ImageLink?: InputMaybe<ImageLinkUpdateManyWithNestedWhereInput>;
+};
+
+export type PromotionBubbleParentUpdateOneInlineInput = {
+  /** Create and connect one PromotionBubbleParent document */
+  create?: InputMaybe<PromotionBubbleParentCreateInput>;
+  /** Delete currently connected PromotionBubbleParent document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single PromotionBubbleParent document */
+  update?: InputMaybe<PromotionBubbleParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single PromotionBubbleParent document */
+  upsert?: InputMaybe<PromotionBubbleParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type PromotionBubbleParentUpdateWithNestedWhereUniqueAndPositionInput = {
+  ImageLink?: InputMaybe<ImageLinkUpdateWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type PromotionBubbleParentUpdateWithNestedWhereUniqueInput = {
+  ImageLink?: InputMaybe<ImageLinkUpdateWithNestedWhereUniqueInput>;
+};
+
+export type PromotionBubbleParentUpsertWithNestedWhereUniqueAndPositionInput = {
+  ImageLink?: InputMaybe<ImageLinkUpsertWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type PromotionBubbleParentUpsertWithNestedWhereUniqueInput = {
+  ImageLink?: InputMaybe<ImageLinkUpsertWithNestedWhereUniqueInput>;
+};
+
+export type PromotionBubbleParentWhereInput = {
+  ImageLink?: InputMaybe<ImageLinkWhereInput>;
+};
+
+export type PromotionBubbleParentWhereUniqueInput = {
+  ImageLink?: InputMaybe<ImageLinkWhereUniqueInput>;
+};
+
+export type PromotionBubbleUpdateInput = {
+  links?: InputMaybe<PromotionBubblelinksUnionUpdateManyInlineInput>;
+  middleLine?: InputMaybe<Scalars["String"]["input"]>;
+  position?: InputMaybe<Position>;
+  topLine?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type PromotionBubbleUpdateManyInlineInput = {
+  /** Create and connect multiple PromotionBubble component instances */
+  create?: InputMaybe<Array<PromotionBubbleCreateWithPositionInput>>;
+  /** Delete multiple PromotionBubble documents */
+  delete?: InputMaybe<Array<PromotionBubbleWhereUniqueInput>>;
+  /** Update multiple PromotionBubble component instances */
+  update?: InputMaybe<
+    Array<PromotionBubbleUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
+  /** Upsert multiple PromotionBubble component instances */
+  upsert?: InputMaybe<
+    Array<PromotionBubbleUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
+};
+
+export type PromotionBubbleUpdateManyInput = {
+  middleLine?: InputMaybe<Scalars["String"]["input"]>;
+  position?: InputMaybe<Position>;
+  topLine?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+export type PromotionBubbleUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: PromotionBubbleUpdateManyInput;
+  /** Document search */
+  where: PromotionBubbleWhereInput;
+};
+
+export type PromotionBubbleUpdateOneInlineInput = {
+  /** Create and connect one PromotionBubble document */
+  create?: InputMaybe<PromotionBubbleCreateInput>;
+  /** Delete currently connected PromotionBubble document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single PromotionBubble document */
+  update?: InputMaybe<PromotionBubbleUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single PromotionBubble document */
+  upsert?: InputMaybe<PromotionBubbleUpsertWithNestedWhereUniqueInput>;
+};
+
+export type PromotionBubbleUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<PromotionBubbleUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: PromotionBubbleWhereUniqueInput;
+};
+
+export type PromotionBubbleUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: PromotionBubbleUpdateInput;
+  /** Unique document search */
+  where: PromotionBubbleWhereUniqueInput;
+};
+
+export type PromotionBubbleUpsertInput = {
+  /** Create document if it didn't exist */
+  create: PromotionBubbleCreateInput;
+  /** Update document if it exists */
+  update: PromotionBubbleUpdateInput;
+};
+
+export type PromotionBubbleUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<PromotionBubbleUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: PromotionBubbleWhereUniqueInput;
+};
+
+export type PromotionBubbleUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: PromotionBubbleUpsertInput;
+  /** Unique document search */
+  where: PromotionBubbleWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type PromotionBubbleWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<PromotionBubbleWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<PromotionBubbleWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<PromotionBubbleWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars["String"]["input"]>;
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars["ID"]["input"]>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars["ID"]["input"]>;
+  /** All values in which the union is empty. */
+  links_empty?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Matches if the modular component contains at least one connection to the item provided to the filter */
+  links_some?: InputMaybe<PromotionBubblelinksUnionWhereInput>;
+  middleLine?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  middleLine_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  middleLine_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  middleLine_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  middleLine_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  middleLine_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  middleLine_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  middleLine_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  middleLine_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  middleLine_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  position?: InputMaybe<Position>;
+  /** All values that are contained in given list. */
+  position_in?: InputMaybe<Array<InputMaybe<Position>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  position_not?: InputMaybe<Position>;
+  /** All values that are not contained in given list. */
+  position_not_in?: InputMaybe<Array<InputMaybe<Position>>>;
+  topLine?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values containing the given string. */
+  topLine_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values ending with the given string. */
+  topLine_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are contained in given list. */
+  topLine_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  topLine_not?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not containing the given string. */
+  topLine_not_contains?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values not ending with the given string */
+  topLine_not_ends_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values that are not contained in given list. */
+  topLine_not_in?: InputMaybe<Array<InputMaybe<Scalars["String"]["input"]>>>;
+  /** All values not starting with the given string. */
+  topLine_not_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+  /** All values starting with the given string. */
+  topLine_starts_with?: InputMaybe<Scalars["String"]["input"]>;
+};
+
+/** References PromotionBubble record uniquely */
+export type PromotionBubbleWhereUniqueInput = {
+  id?: InputMaybe<Scalars["ID"]["input"]>;
+};
+
+export type PromotionBubblelinksUnion = Link;
+
+export type PromotionBubblelinksUnionConnectInput = {
+  Link?: InputMaybe<LinkConnectInput>;
+};
+
+export type PromotionBubblelinksUnionCreateInput = {
+  Link?: InputMaybe<LinkCreateInput>;
+};
+
+export type PromotionBubblelinksUnionCreateManyInlineInput = {
+  /** Create and connect multiple existing PromotionBubblelinksUnion documents */
+  create?: InputMaybe<Array<PromotionBubblelinksUnionCreateInput>>;
+};
+
+export type PromotionBubblelinksUnionCreateOneInlineInput = {
+  /** Create and connect one PromotionBubblelinksUnion document */
+  create?: InputMaybe<PromotionBubblelinksUnionCreateInput>;
+};
+
+export type PromotionBubblelinksUnionCreateWithPositionInput = {
+  Link?: InputMaybe<LinkCreateWithPositionInput>;
+};
+
+export type PromotionBubblelinksUnionUpdateInput = {
+  Link?: InputMaybe<LinkUpdateInput>;
+};
+
+export type PromotionBubblelinksUnionUpdateManyInlineInput = {
+  /** Create and connect multiple PromotionBubblelinksUnion component instances */
+  create?: InputMaybe<Array<PromotionBubblelinksUnionCreateWithPositionInput>>;
+  /** Delete multiple PromotionBubblelinksUnion documents */
+  delete?: InputMaybe<Array<PromotionBubblelinksUnionWhereUniqueInput>>;
+  /** Update multiple PromotionBubblelinksUnion component instances */
+  update?: InputMaybe<
+    Array<PromotionBubblelinksUnionUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
+  /** Upsert multiple PromotionBubblelinksUnion component instances */
+  upsert?: InputMaybe<
+    Array<PromotionBubblelinksUnionUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
+};
+
+export type PromotionBubblelinksUnionUpdateManyWithNestedWhereInput = {
+  Link?: InputMaybe<LinkUpdateManyWithNestedWhereInput>;
+};
+
+export type PromotionBubblelinksUnionUpdateOneInlineInput = {
+  /** Create and connect one PromotionBubblelinksUnion document */
+  create?: InputMaybe<PromotionBubblelinksUnionCreateInput>;
+  /** Delete currently connected PromotionBubblelinksUnion document */
+  delete?: InputMaybe<Scalars["Boolean"]["input"]>;
+  /** Update single PromotionBubblelinksUnion document */
+  update?: InputMaybe<PromotionBubblelinksUnionUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single PromotionBubblelinksUnion document */
+  upsert?: InputMaybe<PromotionBubblelinksUnionUpsertWithNestedWhereUniqueInput>;
+};
+
+export type PromotionBubblelinksUnionUpdateWithNestedWhereUniqueAndPositionInput =
+  {
+    Link?: InputMaybe<LinkUpdateWithNestedWhereUniqueAndPositionInput>;
+  };
+
+export type PromotionBubblelinksUnionUpdateWithNestedWhereUniqueInput = {
+  Link?: InputMaybe<LinkUpdateWithNestedWhereUniqueInput>;
+};
+
+export type PromotionBubblelinksUnionUpsertWithNestedWhereUniqueAndPositionInput =
+  {
+    Link?: InputMaybe<LinkUpsertWithNestedWhereUniqueAndPositionInput>;
+  };
+
+export type PromotionBubblelinksUnionUpsertWithNestedWhereUniqueInput = {
+  Link?: InputMaybe<LinkUpsertWithNestedWhereUniqueInput>;
+};
+
+export type PromotionBubblelinksUnionWhereInput = {
+  Link?: InputMaybe<LinkWhereInput>;
+};
+
+export type PromotionBubblelinksUnionWhereUniqueInput = {
+  Link?: InputMaybe<LinkWhereUniqueInput>;
+};
+
 export type PublishLocaleInput = {
   /** Locales to publish */
   locale: Locale;
@@ -19166,6 +20340,14 @@ export type Query = {
   blockConfigs: Array<BlockConfig>;
   /** Retrieve multiple blockConfigs using the Relay connection interface */
   blockConfigsConnection: BlockConfigConnection;
+  /** Retrieve a single blockPagesList */
+  blockPagesList?: Maybe<BlockPagesList>;
+  /** Retrieve document version */
+  blockPagesListVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple blockPagesLists */
+  blockPagesLists: Array<BlockPagesList>;
+  /** Retrieve multiple blockPagesLists using the Relay connection interface */
+  blockPagesListsConnection: BlockPagesListConnection;
   /** Retrieve a single blockQuote */
   blockQuote?: Maybe<BlockQuote>;
   /** Retrieve document version */
@@ -19484,6 +20666,40 @@ export type QueryBlockConfigsConnectionArgs = {
   skip: InputMaybe<Scalars["Int"]["input"]>;
   stage?: Stage;
   where: InputMaybe<BlockConfigWhereInput>;
+};
+
+export type QueryBlockPagesListArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: BlockPagesListWhereUniqueInput;
+};
+
+export type QueryBlockPagesListVersionArgs = {
+  where: VersionWhereInput;
+};
+
+export type QueryBlockPagesListsArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy: InputMaybe<BlockPagesListOrderByInput>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where: InputMaybe<BlockPagesListWhereInput>;
+};
+
+export type QueryBlockPagesListsConnectionArgs = {
+  after: InputMaybe<Scalars["String"]["input"]>;
+  before: InputMaybe<Scalars["String"]["input"]>;
+  first: InputMaybe<Scalars["Int"]["input"]>;
+  last: InputMaybe<Scalars["Int"]["input"]>;
+  locales?: Array<Locale>;
+  orderBy: InputMaybe<BlockPagesListOrderByInput>;
+  skip: InputMaybe<Scalars["Int"]["input"]>;
+  stage?: Stage;
+  where: InputMaybe<BlockPagesListWhereInput>;
 };
 
 export type QueryBlockQuoteArgs = {
@@ -21515,6 +22731,7 @@ export type ScheduledOperationAffectedDocument =
   | Asset
   | Banner
   | BlockConfig
+  | BlockPagesList
   | BlockQuote
   | BlockRow
   | DynamicHeader
@@ -44652,6 +45869,19 @@ export type CmsSalesBubbleFragment = {
   bottomLine?: string | null;
 };
 
+export type CmsPromotionBubbleFragment = {
+  __typename: "PromotionBubble";
+  middleLine?: string | null;
+  position?: Position | null;
+  topLine: string;
+  links: Array<{
+    __typename: "Link";
+    label: string;
+    url: string;
+    icon?: { __typename: "Asset"; url: string } | null;
+  }>;
+};
+
 export type CmsBannerFragment = {
   __typename: "Banner";
   alt?: string | null;
@@ -44962,6 +46192,7 @@ export type CmsPagesQuery = {
             bottomLine?: string | null;
           } | null;
         }
+      | { __typename: "BlockPagesList" }
       | {
           __typename: "BlockQuote";
           id: string;
@@ -45008,6 +46239,18 @@ export type CmsPagesQuery = {
                     position: Position;
                     topLine?: string | null;
                     bottomLine?: string | null;
+                  } | null;
+                  promotionBubble?: {
+                    __typename: "PromotionBubble";
+                    middleLine?: string | null;
+                    position?: Position | null;
+                    topLine: string;
+                    links: Array<{
+                      __typename: "Link";
+                      label: string;
+                      url: string;
+                      icon?: { __typename: "Asset"; url: string } | null;
+                    }>;
                   } | null;
                 }
               | {
@@ -45105,6 +46348,18 @@ export type CmsStaticPageConfigurationQuery = {
                     position: Position;
                     topLine?: string | null;
                     bottomLine?: string | null;
+                  } | null;
+                  promotionBubble?: {
+                    __typename: "PromotionBubble";
+                    middleLine?: string | null;
+                    position?: Position | null;
+                    topLine: string;
+                    links: Array<{
+                      __typename: "Link";
+                      label: string;
+                      url: string;
+                      icon?: { __typename: "Asset"; url: string } | null;
+                    }>;
                   } | null;
                 }
               | {
@@ -45234,6 +46489,18 @@ export type CmsImageLinkFragment = {
     topLine?: string | null;
     bottomLine?: string | null;
   } | null;
+  promotionBubble?: {
+    __typename: "PromotionBubble";
+    middleLine?: string | null;
+    position?: Position | null;
+    topLine: string;
+    links: Array<{
+      __typename: "Link";
+      label: string;
+      url: string;
+      icon?: { __typename: "Asset"; url: string } | null;
+    }>;
+  } | null;
 };
 
 export type CmsTextBlockFragment = {
@@ -45270,6 +46537,18 @@ export type CmsColumnFragment = {
           position: Position;
           topLine?: string | null;
           bottomLine?: string | null;
+        } | null;
+        promotionBubble?: {
+          __typename: "PromotionBubble";
+          middleLine?: string | null;
+          position?: Position | null;
+          topLine: string;
+          links: Array<{
+            __typename: "Link";
+            label: string;
+            url: string;
+            icon?: { __typename: "Asset"; url: string } | null;
+          }>;
         } | null;
       }
     | {
@@ -45317,6 +46596,18 @@ export type CmsBlockRowFragment = {
             position: Position;
             topLine?: string | null;
             bottomLine?: string | null;
+          } | null;
+          promotionBubble?: {
+            __typename: "PromotionBubble";
+            middleLine?: string | null;
+            position?: Position | null;
+            topLine: string;
+            links: Array<{
+              __typename: "Link";
+              label: string;
+              url: string;
+              icon?: { __typename: "Asset"; url: string } | null;
+            }>;
           } | null;
         }
       | {
@@ -87859,6 +89150,66 @@ export const CmsTextBlockFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<CmsTextBlockFragment, unknown>;
+export const CmsPromotionBubbleFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsPromotionBubble" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PromotionBubble" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "topLine" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "links" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CmsLink" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsLink" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Link" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<CmsPromotionBubbleFragment, unknown>;
 export const CmsImageLinkFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -87914,6 +89265,45 @@ export const CmsImageLinkFragmentDoc = {
                     ],
                   },
                 },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "promotionBubble" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsPromotionBubble" },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsLink" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Link" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url" } },
               ],
             },
           },
@@ -87935,6 +89325,35 @@ export const CmsImageLinkFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "topLine" } },
           { kind: "Field", name: { kind: "Name", value: "bottomLine" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsPromotionBubble" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PromotionBubble" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "topLine" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "links" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CmsLink" },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -88010,6 +89429,61 @@ export const CmsColumnFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "position" } },
           { kind: "Field", name: { kind: "Name", value: "topLine" } },
           { kind: "Field", name: { kind: "Name", value: "bottomLine" } },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsLink" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Link" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsPromotionBubble" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PromotionBubble" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "topLine" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "links" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CmsLink" },
+                },
+              ],
+            },
+          },
         ],
       },
     },
@@ -88142,6 +89616,19 @@ export const CmsColumnFragmentDoc = {
                       {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "CmsSalesBubble" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "promotionBubble" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsPromotionBubble" },
                       },
                     ],
                   },
@@ -88315,6 +89802,61 @@ export const CmsBlockRowFragmentDoc = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsLink" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Link" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsPromotionBubble" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PromotionBubble" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "topLine" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "links" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CmsLink" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "CmsImageLink" },
       typeCondition: {
         kind: "NamedType",
@@ -88361,6 +89903,19 @@ export const CmsBlockRowFragmentDoc = {
                       {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "CmsSalesBubble" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "promotionBubble" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsPromotionBubble" },
                       },
                     ],
                   },
@@ -102719,6 +104274,61 @@ export const CmsPagesDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsLink" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Link" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsPromotionBubble" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PromotionBubble" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "topLine" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "links" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CmsLink" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "CmsImageLink" },
       typeCondition: {
         kind: "NamedType",
@@ -102765,6 +104375,19 @@ export const CmsPagesDocument = {
                       {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "CmsSalesBubble" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "promotionBubble" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsPromotionBubble" },
                       },
                     ],
                   },
@@ -103225,6 +104848,61 @@ export const CmsStaticPageConfigurationDocument = {
     },
     {
       kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsLink" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "Link" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "__typename" } },
+          { kind: "Field", name: { kind: "Name", value: "label" } },
+          { kind: "Field", name: { kind: "Name", value: "url" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "icon" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "url" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "CmsPromotionBubble" },
+      typeCondition: {
+        kind: "NamedType",
+        name: { kind: "Name", value: "PromotionBubble" },
+      },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "middleLine" } },
+          { kind: "Field", name: { kind: "Name", value: "position" } },
+          { kind: "Field", name: { kind: "Name", value: "topLine" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "links" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                {
+                  kind: "FragmentSpread",
+                  name: { kind: "Name", value: "CmsLink" },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      kind: "FragmentDefinition",
       name: { kind: "Name", value: "CmsImageLink" },
       typeCondition: {
         kind: "NamedType",
@@ -103271,6 +104949,19 @@ export const CmsStaticPageConfigurationDocument = {
                       {
                         kind: "FragmentSpread",
                         name: { kind: "Name", value: "CmsSalesBubble" },
+                      },
+                    ],
+                  },
+                },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "promotionBubble" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      {
+                        kind: "FragmentSpread",
+                        name: { kind: "Name", value: "CmsPromotionBubble" },
                       },
                     ],
                   },

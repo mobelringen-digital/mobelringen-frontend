@@ -5,6 +5,7 @@ import cx from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 
+import { ImageLinkPromotionBubbleWrapper } from "@/components/cms/__components/image-link/ImageLinkPromotionBubbleWrapper";
 import { ImageLinkSalesBubbleWrapper } from "@/components/cms/__components/image-link/ImageLinkSalesBubbleWrapper";
 import { CmsImageLinkFragment } from "@/types";
 
@@ -37,6 +38,9 @@ export const ImageLink: React.FC<Props> = ({ data }) => {
         </Link>
         {data.salesBubble ? (
           <ImageLinkSalesBubbleWrapper data={data.salesBubble} />
+        ) : null}
+        {data.promotionBubble ? (
+          <ImageLinkPromotionBubbleWrapper data={data.promotionBubble} />
         ) : null}
       </div>
       {data.caption ? (

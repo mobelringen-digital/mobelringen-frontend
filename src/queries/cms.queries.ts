@@ -10,6 +10,17 @@ export const SalesBubbleFragment = graphql(`
   }
 `);
 
+export const PromotionBubbleFragment = graphql(`
+  fragment CmsPromotionBubble on PromotionBubble {
+    middleLine
+    position
+    topLine
+    links {
+      ...CmsLink
+    }
+  }
+`);
+
 export const BannerFragment = graphql(`
   fragment CmsBanner on Banner {
     ... on Banner {

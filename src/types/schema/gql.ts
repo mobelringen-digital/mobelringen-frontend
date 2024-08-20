@@ -69,6 +69,8 @@ const documents = {
     types.CategoryDocument,
   "\n  fragment CmsSalesBubble on SaleBubble {\n    url\n    middleLine\n    position\n    topLine\n    bottomLine\n  }\n":
     types.CmsSalesBubbleFragmentDoc,
+  "\n  fragment CmsPromotionBubble on PromotionBubble {\n    middleLine\n    position\n    topLine\n    links {\n      ...CmsLink\n    }\n  }\n":
+    types.CmsPromotionBubbleFragmentDoc,
   "\n  fragment CmsBanner on Banner {\n    ... on Banner {\n      __typename\n      alt\n      identify\n      variant\n      centerText\n      bannerImage {\n        mimeType\n        url\n        width\n      }\n      salesBubble {\n        ...CmsSalesBubble\n      }\n    }\n  }\n":
     types.CmsBannerFragmentDoc,
   "\n  fragment CmsProductSlider on ProductSlider {\n    ... on ProductSlider {\n      __typename\n      categoryId\n      type\n      title\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n":
@@ -103,7 +105,7 @@ const documents = {
     types.CmsDynamicHeaderFragmentDoc,
   "\n  query CmsDynamicHeaders($where: DynamicHeaderWhereInput) {\n    dynamicHeaders(where: $where) {\n      ...CmsDynamicHeader\n    }\n  }\n":
     types.CmsDynamicHeadersDocument,
-  "\n  fragment CmsImageLink on ImageLink {\n    ... on ImageLink {\n      __typename\n      id\n      label\n      url\n      caption\n      image {\n        url\n        width\n        height\n      }\n      salesBubble {\n        ...CmsSalesBubble\n      }\n    }\n  }\n":
+  "\n  fragment CmsImageLink on ImageLink {\n    ... on ImageLink {\n      __typename\n      id\n      label\n      url\n      caption\n      image {\n        url\n        width\n        height\n      }\n      salesBubble {\n        ...CmsSalesBubble\n      }\n      promotionBubble {\n        ...CmsPromotionBubble\n      }\n    }\n  }\n":
     types.CmsImageLinkFragmentDoc,
   "\n  fragment CmsTextBlock on TextBlock {\n    ... on TextBlock {\n      __typename\n      id\n      title {\n        html\n      }\n      textAlign\n      content {\n        html\n      }\n      links {\n        ... on Link {\n          id\n          label\n          url\n        }\n      }\n    }\n  }\n":
     types.CmsTextBlockFragmentDoc,
@@ -359,6 +361,12 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
+  source: "\n  fragment CmsPromotionBubble on PromotionBubble {\n    middleLine\n    position\n    topLine\n    links {\n      ...CmsLink\n    }\n  }\n",
+): (typeof documents)["\n  fragment CmsPromotionBubble on PromotionBubble {\n    middleLine\n    position\n    topLine\n    links {\n      ...CmsLink\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
   source: "\n  fragment CmsBanner on Banner {\n    ... on Banner {\n      __typename\n      alt\n      identify\n      variant\n      centerText\n      bannerImage {\n        mimeType\n        url\n        width\n      }\n      salesBubble {\n        ...CmsSalesBubble\n      }\n    }\n  }\n",
 ): (typeof documents)["\n  fragment CmsBanner on Banner {\n    ... on Banner {\n      __typename\n      alt\n      identify\n      variant\n      centerText\n      bannerImage {\n        mimeType\n        url\n        width\n      }\n      salesBubble {\n        ...CmsSalesBubble\n      }\n    }\n  }\n"];
 /**
@@ -461,8 +469,8 @@ export function graphql(
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: "\n  fragment CmsImageLink on ImageLink {\n    ... on ImageLink {\n      __typename\n      id\n      label\n      url\n      caption\n      image {\n        url\n        width\n        height\n      }\n      salesBubble {\n        ...CmsSalesBubble\n      }\n    }\n  }\n",
-): (typeof documents)["\n  fragment CmsImageLink on ImageLink {\n    ... on ImageLink {\n      __typename\n      id\n      label\n      url\n      caption\n      image {\n        url\n        width\n        height\n      }\n      salesBubble {\n        ...CmsSalesBubble\n      }\n    }\n  }\n"];
+  source: "\n  fragment CmsImageLink on ImageLink {\n    ... on ImageLink {\n      __typename\n      id\n      label\n      url\n      caption\n      image {\n        url\n        width\n        height\n      }\n      salesBubble {\n        ...CmsSalesBubble\n      }\n      promotionBubble {\n        ...CmsPromotionBubble\n      }\n    }\n  }\n",
+): (typeof documents)["\n  fragment CmsImageLink on ImageLink {\n    ... on ImageLink {\n      __typename\n      id\n      label\n      url\n      caption\n      image {\n        url\n        width\n        height\n      }\n      salesBubble {\n        ...CmsSalesBubble\n      }\n      promotionBubble {\n        ...CmsPromotionBubble\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
