@@ -27,7 +27,7 @@ export const BlockQuote: React.FC<Props> = ({ data }) => {
             __html: data.quote?.html ?? "",
           }}
         />
-        <p className="text-center">- {data.author}</p>
+        {data.author ? <p className="text-center">- {data.author}</p> : null}
       </blockquote>
     );
   };
