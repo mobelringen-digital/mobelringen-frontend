@@ -57,7 +57,7 @@ export const CmsPagesList: React.FC<Props> = ({ data }) => {
                   />
                   {page.node.pageThumbnail?.url ? (
                     <Image
-                      className="rounded-3xl h-[250px] lg:h-[350px] object-fill"
+                      className="rounded-3xl h-[250px] lg:h-[350px] object-cover"
                       src={page.node.pageThumbnail?.url}
                       alt={page.node.metaTitle}
                       width={page.node.pageThumbnail.width ?? 420}
