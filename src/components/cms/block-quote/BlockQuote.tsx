@@ -38,6 +38,7 @@ export const BlockQuote: React.FC<Props> = ({ data }) => {
         <div className="grid grid-cols-2 items-center">
           <div className="col-span-2 lg:col-span-1 relative">
             <Image
+              className="rounded-3xl"
               width={data.image.width ?? 700}
               height={data.image.height ?? 700}
               src={data.image.url}
