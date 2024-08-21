@@ -59,7 +59,7 @@ export const TextBlock: React.FC<Props> = ({ data }) => {
             <CmsLink
               className={cx(
                 "bg-powder text-black hover:bg-blend-darken hover:bg-powder-dark",
-                "rounded-full py-4 px-6 lg:px-8 text-sm lg:text-base",
+                "rounded-full py-4 px-6 lg:px-8 text-sm lg:text-base !no-underline",
               )}
               link={link}
               key={idx}
