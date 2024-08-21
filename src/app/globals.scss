@@ -37,6 +37,12 @@ body {
   a {
     @apply underline;
   }
+  ul {
+    @apply list-disc;
+  }
+  ol {
+    @apply list-decimal;
+  }
   h1 {
     @apply font-feature text-4xl;
 
