@@ -57,14 +57,14 @@ export const CmsPagesList: React.FC<Props> = ({ data }) => {
                   />
                   {page.node.pageThumbnail?.url ? (
                     <Image
-                      className="rounded-3xl h-[350px] object-fill"
+                      className="rounded-3xl h-[250px] lg:h-[350px] object-fill"
                       src={page.node.pageThumbnail?.url}
                       alt={page.node.metaTitle}
                       width={page.node.pageThumbnail.width ?? 420}
                       height={page.node.pageThumbnail.height ?? 350}
                     />
                   ) : (
-                    <div className="h-[350px] bg-white rounded-3xl flex justify-center items-center">
+                    <div className="h-[250px] lg:h-[350px] bg-white rounded-3xl flex justify-center items-center">
                       <span className="text-black text-2xl font-bold">
                         No Image
                       </span>
