@@ -44,7 +44,7 @@ body {
     @apply pl-4 list-decimal;
   }
   blockquote {
-    @apply p-4 my-4 border-s-3 border-dark-grey bg-warm-grey;
+    @apply bg-powder p-2 lg:p-4 rounded-xl rounded-bl-none font-feature font-normal gap-4;
   }
   h1 {
     @apply font-feature text-4xl;
