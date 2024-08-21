@@ -35,7 +35,7 @@ export const SubCategoriesSelect: React.FC<Props> = ({ category, url }) => {
         {hasChildren(category) ? (
           <div className="flex gap-2 lg:gap-3 mt-8 flex-wrap">
             {category?.children
-              ?.filter((c) => !!c?.product_count)
+              ?.filter((c) => !!c?.products?.total_count)
               .map((child) => (
                 <Link
                   href={
@@ -55,7 +55,7 @@ export const SubCategoriesSelect: React.FC<Props> = ({ category, url }) => {
                 >
                   {child?.name}
                   {!hasChildren(child) ? (
-                    <span className="ml-3">{child?.product_count}</span>
+                    <span className="ml-3">{child?.products?.total_count}</span>
                   ) : null}
                 </Link>
               ))}

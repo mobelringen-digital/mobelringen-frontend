@@ -12,18 +12,27 @@ export const BaseCategoryDataFragment = graphql(`
     meta_keywords
     meta_description
     include_in_menu
+    products {
+      total_count
+    }
     children {
       name
       uid
       url_path
       product_count
       include_in_menu
+      products {
+        total_count
+      }
       children {
         name
         uid
         url_path
         product_count
         include_in_menu
+        products {
+          total_count
+        }
       }
     }
   }
@@ -43,18 +52,27 @@ export const CategoryQueryDocument = graphql(`
         meta_keywords
         meta_description
         include_in_menu
+        products {
+          total_count
+        }
         children {
           name
           uid
           url_path
           product_count
           include_in_menu
+          products {
+            total_count
+          }
           children {
             name
             uid
             url_path
             product_count
             include_in_menu
+            products {
+              total_count
+            }
           }
         }
       }
