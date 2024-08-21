@@ -10,7 +10,7 @@ async function getPage() {
     CmsPagesQuery,
     CmsPagesQueryVariables
   >(CmsPagesQueryDocument, {
-    url: "/",
+    where: { url: "/" },
   });
 }
 

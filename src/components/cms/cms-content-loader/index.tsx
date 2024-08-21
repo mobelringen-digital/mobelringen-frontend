@@ -3,6 +3,7 @@ import React from "react";
 import { Banner } from "@/components/cms/banner";
 import { BlockQuote } from "@/components/cms/block-quote/BlockQuote";
 import { BlockRow } from "@/components/cms/block-row";
+import { CmsPagesList } from "@/components/cms/cms-pages-list/CmsPagesList";
 import { CmsProductSlider } from "@/components/cms/product-slider";
 import { CmsPagesQuery } from "@/types";
 import { ArrayElement } from "@/utils/ts-utils";
@@ -30,6 +31,9 @@ export const CmsContentLoader: React.FC<CmsContentProps> = ({ data }) => {
 
     case "BlockQuote":
       return <BlockQuote data={data} />;
+
+    case "BlockPagesList":
+      return <CmsPagesList data={data} />;
 
     default:
       return null;

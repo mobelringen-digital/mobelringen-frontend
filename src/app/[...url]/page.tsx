@@ -28,7 +28,9 @@ async function getPage(url: string) {
     CmsPagesQuery,
     CmsPagesQueryVariables
   >(CmsPagesQueryDocument, {
-    url,
+    where: {
+      url,
+    },
   });
 }
 

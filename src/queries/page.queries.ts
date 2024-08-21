@@ -1,10 +1,53 @@
 import { graphql } from "@/types/schema";
 
+export const CmsPageNodeFragment = graphql(`
+  fragment CmsPageNode on Page {
+    id
+    metaDescription
+    metaTitle
+    url
+    pageThumbnail {
+      url
+      width
+      height
+    }
+    pageCategory {
+      name
+    }
+    createdAt
+  }
+`);
+
+export const CmsPagesConnectionDocument = graphql(`
+  query CmsPagesConnection(
+    $first: Int = 12
+    $skip: Int = 0
+    $where: PageWhereInput
+  ) {
+    pagesConnection(where: $where, first: $first, skip: $skip) {
+      edges {
+        node {
+          ...CmsPageNode
+        }
+      }
+      aggregate {
+        count
+      }
+      pageInfo {
+        endCursor
+        hasNextPage
+        hasPreviousPage
+        pageSize
+        startCursor
+      }
+    }
+  }
+`);
+
 export const CmsPagesQueryDocument = graphql(`
-  query CmsPages($url: String!) {
-    pages(where: { url: $url }) {
+  query CmsPages($first: Int = 1, $where: PageWhereInput) {
+    pages(where: $where, first: $first) {
       id
-      identify
       metaDescription
       metaTitle
       url
@@ -13,6 +56,7 @@ export const CmsPagesQueryDocument = graphql(`
         ...CmsProductSlider
         ...CmsBlockRow
         ...CmsBlockQuote
+        ...CmsPagesList
       }
     }
   }

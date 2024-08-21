@@ -64,3 +64,16 @@ export const CmsBlockConfigFragment = graphql(`
     }
   }
 `);
+
+export const CmsPagesListFragment = graphql(`
+  fragment CmsPagesList on BlockPagesList {
+    ... on BlockPagesList {
+      __typename
+      pageType
+      title
+      blockConfig {
+        ...CmsBlockConfig
+      }
+    }
+  }
+`);
