@@ -43,11 +43,11 @@ export const CmsPagesList: React.FC<Props> = ({ data }) => {
       <h2 className="text-5xl font-medium font-feature mb-8 lg:mb-16">
         {data.title}
       </h2>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
         {queryData?.pages.map((pageData, idx) => (
           <React.Fragment key={idx}>
             {pageData.edges.map((page) => (
-              <div className="flex flex-col gap-2 lg:gap-4" key={page.node.id}>
+              <div className="flex flex-col gap-2" key={page.node.id}>
                 <Link href={page.node.url} className="relative group">
                   <div
                     className={cx(
@@ -71,7 +71,7 @@ export const CmsPagesList: React.FC<Props> = ({ data }) => {
                     </div>
                   )}
                 </Link>
-                <div className="flex gap-4 text-sm lg:text-base text-dark-grey">
+                <div className="flex mt-2 gap-4 text-sm lg:text-base text-dark-grey">
                   {page.node.pageCategory[0]?.name}
                   {page.node.pageCategory[0]?.name ? <span>|</span> : ""}
                   {formatStringToReadableDate(page.node.createdAt)}
