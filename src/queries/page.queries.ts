@@ -56,6 +56,27 @@ export const CmsDynamicHeadersDocument = graphql(`
   }
 `);
 
+export const CmsImageFragment = graphql(`
+  fragment CmsImage on Image {
+    ... on Image {
+      __typename
+      label
+      caption
+      image {
+        url
+        width
+        height
+      }
+      salesBubble {
+        ...CmsSalesBubble
+      }
+      promotionBubble {
+        ...CmsPromotionBubble
+      }
+    }
+  }
+`);
+
 export const CmsImageLinkFragment = graphql(`
   fragment CmsImageLink on ImageLink {
     ... on ImageLink {
@@ -110,6 +131,7 @@ export const CmsColumnFragment = graphql(`
       content {
         ...CmsTextBlock
         ...CmsImageLink
+        ...CmsImage
       }
       desktopPosition
       mobilePosition

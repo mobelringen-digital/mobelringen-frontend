@@ -2,11 +2,13 @@ import { graphql } from "@/types/schema";
 
 export const CmsLinkFragment = graphql(`
   fragment CmsLink on Link {
-    __typename
-    label
-    url
-    icon {
+    ... on Link {
+      __typename
+      label
       url
+      icon {
+        url
+      }
     }
   }
 `);
@@ -16,17 +18,8 @@ export const CmsMegamenuDropdownFragment = graphql(`
     __typename
     label
     items {
-      ... on Link {
-        ...CmsLink
-      }
-      ... on ImageLink {
-        __typename
-        label
-        url
-        image {
-          url
-        }
-      }
+      ...CmsLink
+      ...CmsImageLink
     }
   }
 `);
@@ -44,9 +37,7 @@ export const CmsLinkBlockFragment = graphql(`
     id
     label
     links {
-      ... on Link {
-        ...CmsLink
-      }
+      ...CmsLink
     }
   }
 `);
@@ -59,9 +50,7 @@ export const MenuQueryDocument = graphql(`
         ... on LinkBlock {
           ...CmsLinkBlock
         }
-        ... on Link {
-          ...CmsLink
-        }
+        ...CmsLink
         ... on MegaMenuCategoriesDropdown {
           ...CmsMegaMenuCategoriesDropdown
         }
