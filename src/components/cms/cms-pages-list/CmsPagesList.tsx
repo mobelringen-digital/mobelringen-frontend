@@ -43,7 +43,7 @@ export const CmsPagesList: React.FC<Props> = ({ data }) => {
       <h2 className="text-5xl font-medium font-feature mb-8 lg:mb-16">
         {data.title}
       </h2>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
         {queryData?.pages.map((pageData, idx) => (
           <React.Fragment key={idx}>
             {pageData.edges.map((page) => (
