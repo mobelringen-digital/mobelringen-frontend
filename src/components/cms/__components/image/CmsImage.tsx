@@ -31,8 +31,8 @@ export const CmsImage: React.FC<Props> = ({ data, className }) => {
         <Image
           className="rounded-3xl"
           src={data.image.url}
-          width={data.image.width ?? 700}
-          height={data.image.height ?? 700}
+          width={data.width ?? data.image.width ?? 700}
+          height={data.height ?? data.image.height ?? 700}
           alt={data.label}
         />
         {data.salesBubble ? (

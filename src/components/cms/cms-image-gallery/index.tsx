@@ -26,12 +26,12 @@ interface ImageProps extends RenderImageProps {
 }
 
 export const CmsImageGallery: React.FC<Props> = ({ data }) => {
-  const images = data.images.map((image) => ({
-    src: image.image.url,
-    width: image.image.width ?? 250,
-    height: image.image.height ?? 250,
-    alt: image.label,
-    url: isTypename(image, ["ImageLink"]) ? image.url : undefined,
+  const images = data.images.map((imageData) => ({
+    src: imageData.image.url,
+    width: imageData.width ?? imageData.image.width ?? 250,
+    height: imageData.height ?? imageData.image.height ?? 250,
+    alt: imageData.label,
+    url: isTypename(imageData, ["ImageLink"]) ? imageData.url : undefined,
   }));
 
   const imageRenderer = ({ top, left, photo }: ImageProps) => {

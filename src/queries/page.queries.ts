@@ -113,6 +113,8 @@ export const CmsImageFragment = graphql(`
         width
         height
       }
+      width
+      height
       salesBubble {
         ...CmsSalesBubble
       }
@@ -136,6 +138,8 @@ export const CmsImageLinkFragment = graphql(`
         width
         height
       }
+      width
+      height
       salesBubble {
         ...CmsSalesBubble
       }
