@@ -46,9 +46,15 @@ export const CmsImageGallery: React.FC<Props> = ({ data }) => {
       return (
         <Link
           href={photo.url}
-          className={cx({ absolute: direction === "column" })}
+          className={cx("relative group", { absolute: direction === "column" })}
           style={{ top, left, margin }}
         >
+          <div
+            className={cx(
+              "absolute left-0 right-0 top-0 bottom-0",
+              "transition-all rounded-3xl bg-black opacity-0 group-hover:opacity-10 pointer-events-none",
+            )}
+          />
           <Image
             className="rounded-3xl"
             src={photo.src}

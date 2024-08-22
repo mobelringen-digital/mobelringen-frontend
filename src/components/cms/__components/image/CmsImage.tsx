@@ -15,19 +15,13 @@ interface Props {
 
 export const CmsImage: React.FC<Props> = ({ data, className }) => {
   return (
-    <div className={cx("flex flex-col gap-2 group", className)}>
+    <div className={cx("flex flex-col gap-2", className)}>
       <div
-        className={cx("relative rounded-3xl", {
+        className={cx("rounded-3xl", {
           "mb-4 lg:mb-0": !!data.salesBubble,
           "mb-6 lg:mb-12": !!data.promotionBubble,
         })}
       >
-        <div
-          className={cx(
-            "absolute left-0 right-0 top-0 bottom-0",
-            "transition-all rounded-3xl bg-black opacity-0 group-hover:opacity-10 pointer-events-none",
-          )}
-        />
         <Image
           className="rounded-3xl"
           src={data.image.url}
