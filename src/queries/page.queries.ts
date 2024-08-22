@@ -51,7 +51,7 @@ export const CmsPagesQueryDocument = graphql(`
       metaDescription
       metaTitle
       url
-      content {
+      content(first: 100) {
         ...CmsBanner
         ...CmsProductSlider
         ...CmsBlockRow
