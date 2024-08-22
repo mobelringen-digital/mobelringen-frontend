@@ -11,11 +11,12 @@ import { CmsImageLinkFragment } from "@/types";
 
 interface Props {
   data: CmsImageLinkFragment;
+  className?: string;
 }
 
-export const ImageLink: React.FC<Props> = ({ data }) => {
+export const ImageLink: React.FC<Props> = ({ data, className }) => {
   return (
-    <div className="flex flex-col gap-2 group">
+    <div className={cx("flex flex-col gap-2 group", className)}>
       <div
         className={cx("relative rounded-3xl", {
           "mb-4 lg:mb-0": !!data.salesBubble,

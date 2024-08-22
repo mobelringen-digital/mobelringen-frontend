@@ -58,6 +58,7 @@ export const CmsPagesQueryDocument = graphql(`
         ...CmsBlockQuote
         ...CmsPagesList
         ...CmsSimilarPagesRow
+        ...CmsImagesGallery
       }
     }
   }

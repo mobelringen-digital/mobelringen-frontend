@@ -12276,6 +12276,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"prop-types@npm:~15.7.2":
+  version: 15.7.2
+  resolution: "prop-types@npm:15.7.2"
+  dependencies:
+    loose-envify: "npm:^1.4.0"
+    object-assign: "npm:^4.1.1"
+    react-is: "npm:^16.8.1"
+  checksum: 10c0/4eb527daec962acd789c621ce3234a6f077ce202049291642d8efd13b19805adf07227672c570531cdb56a357640ea27e336527682b7ed4be0c5b392a01662ab
+  languageName: node
+  linkType: hard
+
 "proxy-from-env@npm:^1.1.0":
   version: 1.1.0
   resolution: "proxy-from-env@npm:1.1.0"
@@ -12388,7 +12399,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-is@npm:^16.13.1, react-is@npm:^16.7.0":
+"react-is@npm:^16.13.1, react-is@npm:^16.7.0, react-is@npm:^16.8.1":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: 10c0/33977da7a5f1a287936a0c85639fec6ca74f4f15ef1e59a6bc20338fc73dc69555381e211f7a3529b8150a1f71e4225525b41b60b52965bda53ce7d47377ada1
@@ -12426,6 +12437,19 @@ __metadata:
     react: ^0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
     react-dom: ^0.14 || ^15.0.0 || ^16.0.0 || ^17.0.0 || ^18.0.0
   checksum: 10c0/19785cbf7fcb6db7e34d29136ac8daf1708b46bba2a38e2e8851a65bd1e9c6463b13c31f17de156afbf681da43a2934565be9d8955aec23084a19a8d45f79149
+  languageName: node
+  linkType: hard
+
+"react-photo-gallery@npm:^8.0.0":
+  version: 8.0.0
+  resolution: "react-photo-gallery@npm:8.0.0"
+  dependencies:
+    prop-types: "npm:~15.7.2"
+    resize-observer-polyfill: "npm:^1.5.0"
+  peerDependencies:
+    react: ^16.8.0
+    react-dom: ^16.8.0
+  checksum: 10c0/2e70b6004c7a94d2a0f8762d3bdb81366c3c74db8ee8c4149d5d6f698dd18c8764f7db122238cf32f9c938b8388b7917bc48047d380d33a63af1e03e280f30e6
   languageName: node
   linkType: hard
 
@@ -14151,6 +14175,7 @@ __metadata:
     react-hot-toast: "npm:^2.4.1"
     react-image-lightbox: "npm:^5.1.4"
     react-number-format: "npm:^5.4.0"
+    react-photo-gallery: "npm:^8.0.0"
     react-range-slider-input: "npm:^3.0.7"
     react-slick: "npm:^0.30.2"
     sass: "npm:^1.77.8"

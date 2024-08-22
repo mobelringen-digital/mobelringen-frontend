@@ -92,3 +92,22 @@ export const CmsSimilarPagesRowFragment = graphql(`
     }
   }
 `);
+
+export const CmsImagesGalleryFragment = graphql(`
+  fragment CmsImagesGallery on BlockImageGallery {
+    ... on BlockImageGallery {
+      __typename
+      title
+      description {
+        html
+      }
+      images {
+        ...CmsImage
+        ...CmsImageLink
+      }
+      blockConfig {
+        ...CmsBlockConfig
+      }
+    }
+  }
+`);

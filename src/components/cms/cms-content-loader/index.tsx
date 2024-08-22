@@ -3,6 +3,7 @@ import React from "react";
 import { Banner } from "@/components/cms/banner";
 import { BlockQuote } from "@/components/cms/block-quote/BlockQuote";
 import { BlockRow } from "@/components/cms/block-row";
+import { CmsImageGallery } from "@/components/cms/cms-image-gallery";
 import { CmsPagesList } from "@/components/cms/cms-pages-list/CmsPagesList";
 import { CmsSimilarPagesRow } from "@/components/cms/cms-similar-pages-row/CmsSimilarPagesRow";
 import { CmsProductSlider } from "@/components/cms/product-slider";
@@ -38,6 +39,9 @@ export const CmsContentLoader: React.FC<CmsContentProps> = ({ data }) => {
 
     case "BlockSimilarPagesRow":
       return <CmsSimilarPagesRow data={data} />;
+
+    case "BlockImageGallery":
+      return <CmsImageGallery data={data} />;
 
     default:
       return null;
