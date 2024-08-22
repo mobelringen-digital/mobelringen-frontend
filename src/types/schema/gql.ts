@@ -46,6 +46,7 @@ const documents = {
     "\n  fragment CmsProductSlider on ProductSlider {\n    ... on ProductSlider {\n      __typename\n      categoryId\n      type\n      title\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsProductSliderFragmentDoc,
     "\n  fragment CmsBlockConfig on BlockConfig {\n    ... on BlockConfig {\n      __typename\n      id\n      backgroundColor\n    }\n  }\n": types.CmsBlockConfigFragmentDoc,
     "\n  fragment CmsPagesList on BlockPagesList {\n    ... on BlockPagesList {\n      __typename\n      pageType\n      title\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsPagesListFragmentDoc,
+    "\n  fragment CmsSimilarPagesRow on BlockSimilarPagesRow {\n    ... on BlockSimilarPagesRow {\n      __typename\n      title\n      page {\n        ...CmsPageNode\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsSimilarPagesRowFragmentDoc,
     "\n  fragment CmsLink on Link {\n    ... on Link {\n      __typename\n      label\n      url\n      icon {\n        url\n      }\n    }\n  }\n": types.CmsLinkFragmentDoc,
     "\n  fragment CmsMegamenuDropdown on MegaMenuDropdown {\n    __typename\n    label\n    items {\n      ...CmsLink\n      ...CmsImageLink\n    }\n  }\n": types.CmsMegamenuDropdownFragmentDoc,
     "\n  fragment CmsMegaMenuCategoriesDropdown on MegaMenuCategoriesDropdown {\n    __typename\n    label\n  }\n": types.CmsMegaMenuCategoriesDropdownFragmentDoc,
@@ -58,7 +59,7 @@ const documents = {
     "\n  mutation UpdateCustomer($input: CustomerUpdateInput!) {\n    updateCustomerV2(input: $input) {\n      customer {\n        ...CustomerData\n      }\n    }\n  }\n": types.UpdateCustomerDocument,
     "\n  fragment CmsPageNode on Page {\n    id\n    metaDescription\n    metaTitle\n    url\n    pageThumbnail {\n      url\n      width\n      height\n    }\n    pageCategory {\n      name\n    }\n    createdAt\n  }\n": types.CmsPageNodeFragmentDoc,
     "\n  query CmsPagesConnection(\n    $first: Int = 12\n    $skip: Int = 0\n    $where: PageWhereInput\n  ) {\n    pagesConnection(where: $where, first: $first, skip: $skip) {\n      edges {\n        node {\n          ...CmsPageNode\n        }\n      }\n      aggregate {\n        count\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n        hasPreviousPage\n        pageSize\n        startCursor\n      }\n    }\n  }\n": types.CmsPagesConnectionDocument,
-    "\n  query CmsPages($first: Int = 1, $where: PageWhereInput) {\n    pages(where: $where, first: $first) {\n      id\n      metaDescription\n      metaTitle\n      url\n      content {\n        ...CmsBanner\n        ...CmsProductSlider\n        ...CmsBlockRow\n        ...CmsBlockQuote\n        ...CmsPagesList\n      }\n    }\n  }\n": types.CmsPagesDocument,
+    "\n  query CmsPages($first: Int = 1, $where: PageWhereInput) {\n    pages(where: $where, first: $first) {\n      id\n      metaDescription\n      metaTitle\n      url\n      content {\n        ...CmsBanner\n        ...CmsProductSlider\n        ...CmsBlockRow\n        ...CmsBlockQuote\n        ...CmsPagesList\n        ...CmsSimilarPagesRow\n      }\n    }\n  }\n": types.CmsPagesDocument,
     "\n  query CmsStaticPageConfiguration(\n    $where: StaticPageConfigurationWhereUniqueInput!\n  ) {\n    staticPageConfiguration(where: $where) {\n      content {\n        ...CmsBlockRow\n        ...CmsBanner\n        ...CmsProductSlider\n      }\n    }\n  }\n": types.CmsStaticPageConfigurationDocument,
     "\n  fragment CmsDynamicHeader on DynamicHeader {\n    id\n    rule {\n      ... on RuleBlock {\n        id\n        value\n        contentType\n      }\n    }\n    banner {\n      ...CmsBanner\n    }\n  }\n": types.CmsDynamicHeaderFragmentDoc,
     "\n  query CmsDynamicHeaders($where: DynamicHeaderWhereInput) {\n    dynamicHeaders(where: $where) {\n      ...CmsDynamicHeader\n    }\n  }\n": types.CmsDynamicHeadersDocument,
@@ -248,6 +249,10 @@ export function graphql(source: "\n  fragment CmsPagesList on BlockPagesList {\n
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function graphql(source: "\n  fragment CmsSimilarPagesRow on BlockSimilarPagesRow {\n    ... on BlockSimilarPagesRow {\n      __typename\n      title\n      page {\n        ...CmsPageNode\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"): (typeof documents)["\n  fragment CmsSimilarPagesRow on BlockSimilarPagesRow {\n    ... on BlockSimilarPagesRow {\n      __typename\n      title\n      page {\n        ...CmsPageNode\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function graphql(source: "\n  fragment CmsLink on Link {\n    ... on Link {\n      __typename\n      label\n      url\n      icon {\n        url\n      }\n    }\n  }\n"): (typeof documents)["\n  fragment CmsLink on Link {\n    ... on Link {\n      __typename\n      label\n      url\n      icon {\n        url\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -296,7 +301,7 @@ export function graphql(source: "\n  query CmsPagesConnection(\n    $first: Int 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query CmsPages($first: Int = 1, $where: PageWhereInput) {\n    pages(where: $where, first: $first) {\n      id\n      metaDescription\n      metaTitle\n      url\n      content {\n        ...CmsBanner\n        ...CmsProductSlider\n        ...CmsBlockRow\n        ...CmsBlockQuote\n        ...CmsPagesList\n      }\n    }\n  }\n"): (typeof documents)["\n  query CmsPages($first: Int = 1, $where: PageWhereInput) {\n    pages(where: $where, first: $first) {\n      id\n      metaDescription\n      metaTitle\n      url\n      content {\n        ...CmsBanner\n        ...CmsProductSlider\n        ...CmsBlockRow\n        ...CmsBlockQuote\n        ...CmsPagesList\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  query CmsPages($first: Int = 1, $where: PageWhereInput) {\n    pages(where: $where, first: $first) {\n      id\n      metaDescription\n      metaTitle\n      url\n      content {\n        ...CmsBanner\n        ...CmsProductSlider\n        ...CmsBlockRow\n        ...CmsBlockQuote\n        ...CmsPagesList\n        ...CmsSimilarPagesRow\n      }\n    }\n  }\n"): (typeof documents)["\n  query CmsPages($first: Int = 1, $where: PageWhereInput) {\n    pages(where: $where, first: $first) {\n      id\n      metaDescription\n      metaTitle\n      url\n      content {\n        ...CmsBanner\n        ...CmsProductSlider\n        ...CmsBlockRow\n        ...CmsBlockQuote\n        ...CmsPagesList\n        ...CmsSimilarPagesRow\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

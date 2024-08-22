@@ -77,3 +77,18 @@ export const CmsPagesListFragment = graphql(`
     }
   }
 `);
+
+export const CmsSimilarPagesRowFragment = graphql(`
+  fragment CmsSimilarPagesRow on BlockSimilarPagesRow {
+    ... on BlockSimilarPagesRow {
+      __typename
+      title
+      page {
+        ...CmsPageNode
+      }
+      blockConfig {
+        ...CmsBlockConfig
+      }
+    }
+  }
+`);
