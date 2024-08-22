@@ -78,7 +78,7 @@ export const CmsImageGallery: React.FC<Props> = ({ data }) => {
         <Gallery
           renderImage={(props) => imageRenderer(props)}
           direction="column"
-          columns={3}
+          columns={data.columnsCount ?? 2}
           margin={12}
           photos={images}
         />
