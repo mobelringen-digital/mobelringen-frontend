@@ -105,6 +105,7 @@ export const CmsImagesGalleryFragment = graphql(`
         ...CmsImage
         ...CmsImageLink
       }
+      imagesDirection
       columnsCount
       blockConfig {
         ...CmsBlockConfig

@@ -2,6 +2,7 @@
 
 import React from "react";
 
+import cx from "classnames";
 import Gallery, { RenderImageProps } from "react-photo-gallery";
 
 import Image from "next/image";
@@ -34,10 +35,20 @@ export const CmsImageGallery: React.FC<Props> = ({ data }) => {
     url: isTypename(imageData, ["ImageLink"]) ? imageData.url : undefined,
   }));
 
-  const imageRenderer = ({ top, left, photo }: ImageProps) => {
+  const imageRenderer = ({
+    top,
+    left,
+    photo,
+    direction,
+    margin,
+  }: ImageProps) => {
     if (photo.url) {
       return (
-        <Link href={photo.url} className="absolute" style={{ top, left }}>
+        <Link
+          href={photo.url}
+          className={cx({ absolute: direction === "column" })}
+          style={{ top, left, margin }}
+        >
           <Image
             className="rounded-3xl"
             src={photo.src}
@@ -51,8 +62,8 @@ export const CmsImageGallery: React.FC<Props> = ({ data }) => {
 
     return (
       <Image
-        className="absolute rounded-3xl"
-        style={{ top, left }}
+        className={cx("rounded-3xl", { absolute: direction === "column" })}
+        style={{ top, left, margin }}
         src={photo.src}
         alt={photo.alt ?? ""}
         width={photo.width}
@@ -77,8 +88,9 @@ export const CmsImageGallery: React.FC<Props> = ({ data }) => {
       <div className="w-full">
         <Gallery
           renderImage={(props) => imageRenderer(props)}
-          direction="column"
+          direction={data.imagesDirection ?? "row"}
           columns={data.columnsCount ?? 2}
+          targetRowHeight={450}
           margin={12}
           photos={images}
         />
