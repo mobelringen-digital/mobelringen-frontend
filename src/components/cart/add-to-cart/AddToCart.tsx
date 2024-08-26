@@ -21,6 +21,10 @@ export const AddToCart: React.FC<Props> = ({
   cart,
 }) => {
   const handleAddItemToCart = async (preferredMethod: "online" | "collect") => {
+    if (preferredMethod === "online" && isDisabled) {
+      return;
+    }
+
     if (cart?.id && product.sku && quantity) {
       return addToCart(
         cart?.id,
