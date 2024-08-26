@@ -12507,13 +12507,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-responsive-masonry@npm:^2.3.0":
-  version: 2.3.0
-  resolution: "react-responsive-masonry@npm:2.3.0"
-  checksum: 10c0/eef962fa3c4ce85c09e5ff733ea59b2028886a9a0b4b89b9f05a7e8508f221ace2949546cd18ee6af83556e347bc167eb2b3ad3df93b2be4d5c8d6a42f52e227
-  languageName: node
-  linkType: hard
-
 "react-slick@npm:^0.30.2":
   version: 0.30.2
   resolution: "react-slick@npm:0.30.2"
@@ -14194,7 +14187,6 @@ __metadata:
     react-number-format: "npm:^5.4.0"
     react-photo-gallery: "npm:^8.0.0"
     react-range-slider-input: "npm:^3.0.7"
-    react-responsive-masonry: "npm:^2.3.0"
     react-slick: "npm:^0.30.2"
     sass: "npm:^1.77.8"
     slick-carousel: "npm:^1.8.1"
