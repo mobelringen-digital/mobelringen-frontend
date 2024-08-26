@@ -25,7 +25,7 @@ body {
     @screen lg {
       @apply text-xl;
     }
-    
+
     &:not(:first-of-type),
     &:not(:last-of-type) {
       @apply my-4;

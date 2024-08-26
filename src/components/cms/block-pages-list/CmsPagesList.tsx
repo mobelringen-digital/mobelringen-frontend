@@ -3,8 +3,8 @@
 import React from "react";
 
 import { Button } from "@/components/_ui/button/Button";
+import { useCmsPagesQuery } from "@/components/cms/block-pages-list/usePagesQuery";
 import { CmsBlockWrapper } from "@/components/cms/cms-block-wrapper";
-import { useCmsPagesQuery } from "@/components/cms/cms-pages-list/usePagesQuery";
 import { PageThumbnail } from "@/components/page-thumbnail/PageThumbnail";
 import { CmsPagesListFragment } from "@/types";
 

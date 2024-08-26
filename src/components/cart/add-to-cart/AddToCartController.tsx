@@ -58,7 +58,7 @@ export const AddToCartController: React.FC<Props> = ({
         </Button>
         <Button
           onClick={() => handleAddItemToCart("collect")}
-          disabled={isDisabled || isLoading}
+          disabled={isLoading}
           color="secondary"
         >
           Klikk og hent

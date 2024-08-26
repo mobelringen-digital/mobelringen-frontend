@@ -1,12 +1,13 @@
 import React from "react";
 
-import { Banner } from "@/components/cms/banner";
+import { Banner } from "components/cms/block-banner";
+import { CmsImageGallery } from "components/cms/block-image-gallery";
+import { CmsProductSlider } from "components/cms/block-product-slider";
+
+import { CmsPagesList } from "@/components/cms/block-pages-list/CmsPagesList";
 import { BlockQuote } from "@/components/cms/block-quote/BlockQuote";
 import { BlockRow } from "@/components/cms/block-row";
-import { CmsImageGallery } from "@/components/cms/cms-image-gallery";
-import { CmsPagesList } from "@/components/cms/cms-pages-list/CmsPagesList";
-import { CmsSimilarPagesRow } from "@/components/cms/cms-similar-pages-row/CmsSimilarPagesRow";
-import { CmsProductSlider } from "@/components/cms/product-slider";
+import { CmsSimilarPagesRow } from "@/components/cms/block-similar-pages-row/CmsSimilarPagesRow";
 import { CmsPagesQuery } from "@/types";
 import { ArrayElement } from "@/utils/ts-utils";
 

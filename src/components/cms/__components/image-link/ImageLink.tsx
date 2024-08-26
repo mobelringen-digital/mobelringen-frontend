@@ -12,9 +12,10 @@ import { CmsImageLinkFragment } from "@/types";
 interface Props {
   data: CmsImageLinkFragment;
   className?: string;
+  imageStyle?: React.CSSProperties;
 }
 
-export const ImageLink: React.FC<Props> = ({ data, className }) => {
+export const ImageLink: React.FC<Props> = ({ data, className, imageStyle }) => {
   return (
     <div className={cx("flex flex-col gap-2 group", className)}>
       <div
@@ -36,6 +37,7 @@ export const ImageLink: React.FC<Props> = ({ data, className }) => {
             width={data.width ?? data.image.width ?? 700}
             height={data.height ?? data.image.height ?? 700}
             alt={data.label}
+            style={imageStyle}
           />
         </Link>
         {data.salesBubble ? (

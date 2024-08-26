@@ -4,7 +4,8 @@ import React from "react";
 
 import { usePathname } from "next/navigation";
 
-import { Banner } from "@/components/cms/banner";
+import { Banner } from "components/cms/block-banner";
+
 import { CmsDynamicHeaderFragment, DynamicContentType } from "@/types";
 
 interface Props {

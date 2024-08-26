@@ -2,8 +2,8 @@
 
 import React from "react";
 
+import { useBestSellingProductsQuery } from "@/components/cms/block-product-slider/hooks/useBestSellingProductsQuery";
 import { CmsBlockWrapper } from "@/components/cms/cms-block-wrapper";
-import { useBestSellingProductsQuery } from "@/components/cms/product-slider/hooks/useBestSellingProductsQuery";
 import { ProductSlider } from "@/components/product-slider/ProductSlider";
 import { ProductSliderSkeleton } from "@/components/product-slider/ProductSliderSkeleton";
 import { CmsProductSliderFragment } from "@/types";

@@ -32,7 +32,7 @@ export const PurchaseBlock: React.FC<Props> = ({ product, cart }) => {
     !activeProductVariant.variant;
   const isInStock = product.stock_status === ProductStockStatus.InStock;
   const isDisabled =
-    isVariantNotSelected && !isInStock && product.addable_to_cart !== 1;
+    isVariantNotSelected || !isInStock || product.addable_to_cart !== 1;
 
   return (
     <div className="bg-white p-4 lg:p-8 rounded-2xl flex flex-col gap-4">

@@ -2,7 +2,7 @@ import React from "react";
 
 import cx from "classnames";
 
-import { BannerSalesBubbleWrapper } from "@/components/cms/banner/BannerSalesBubbleWrapper";
+import { BannerSalesBubbleWrapper } from "@/components/cms/block-banner/BannerSalesBubbleWrapper";
 import { BannerVariant, CmsBannerFragment } from "@/types";
 
 interface Props {
