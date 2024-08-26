@@ -34,6 +34,10 @@ export const AddToCartController: React.FC<Props> = ({
   };
 
   const handleAddItemToCart = async (preferredMethod: "online" | "collect") => {
+    if (preferredMethod === "online" && isDisabled) {
+      return;
+    }
+
     setIsLoading(true);
     await onAddToCart(preferredMethod).finally(() => {
       router.push(`${pathname}?cart=true`);
