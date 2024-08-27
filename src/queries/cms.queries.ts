@@ -149,3 +149,18 @@ export const BlockNavigationButtonsFragment = graphql(`
     }
   }
 `);
+
+export const BlockImageLinksSliderFragment = graphql(`
+  fragment CmsBlockImageLinksSlider on BlockImageLinksSlider {
+    ... on BlockImageLinksSlider {
+      __typename
+      title
+      images {
+        ...CmsImageLink
+      }
+      blockConfig {
+        ...CmsBlockConfig
+      }
+    }
+  }
+`);
