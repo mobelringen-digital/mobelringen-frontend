@@ -18,7 +18,6 @@ interface Props {
 
 const sliderConfig: Settings = {
   ...productSliderConfig,
-  infinite: false,
   dots: false,
   responsive: [
     {
