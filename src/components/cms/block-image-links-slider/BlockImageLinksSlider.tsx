@@ -39,7 +39,8 @@ const sliderConfig: Settings = {
       breakpoint: 480,
       settings: {
         arrows: false,
-        slidesToShow: 2,
+        dots: true,
+        slidesToShow: 1,
         slidesToScroll: 1,
       },
     },
