@@ -28,7 +28,7 @@ export const Accordion: React.FC<Props> = ({ data }) => {
           indicator={({ isOpen }) =>
             isOpen ? <MinusIcon className="rotate-90" /> : <PlusIcon />
           }
-          className="py-2 text-lg lg:text-xl font-normal border-b-1 border-dark-grey border-opacity-20"
+          className="py-2 text-lg lg:text-xl font-normal"
           title={item.title}
           key={idx}
         >
