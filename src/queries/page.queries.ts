@@ -13,6 +13,7 @@ export const CmsPageNodeFragment = graphql(`
     }
     pageCategory {
       name
+      categoryUrl
     }
     createdAt
   }

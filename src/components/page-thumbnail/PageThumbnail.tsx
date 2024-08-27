@@ -45,8 +45,12 @@ export const PageThumbnail: React.FC<Props> = ({ page }) => {
         )}
       </Link>
       <div className="flex mt-2 gap-4 text-sm lg:text-base text-dark-grey">
-        {page.pageCategory[0]?.name}
-        {page.pageCategory[0]?.name ? <span>|</span> : ""}
+        {page.pageCategory.map((category, idx) => (
+          <Link href={category.categoryUrl ?? ""} key={idx}>
+            <span>{category.name}</span>
+          </Link>
+        ))}
+        {page.pageCategory.length > 0 ? <span>|</span> : ""}
         {formatStringToReadableDate(page.createdAt)}
       </div>
       <h3 className="font-feature text-xl lg:text-3xl font-light">
