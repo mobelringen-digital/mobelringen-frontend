@@ -23,7 +23,16 @@ const sliderConfig: Settings = {
   adaptiveHeight: true,
   infinite: true,
   slidesToScroll: 1,
-  responsive: [],
+  responsive: [
+    {
+      breakpoint: 640,
+      settings: {
+        variableWidth: false,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
 };
 
 export const BlockImageLinksSlider: React.FC<Props> = ({ data }) => {
