@@ -131,3 +131,18 @@ export const BlockFaqFragment = graphql(`
     }
   }
 `);
+
+export const BlockNavigationButtonsFragment = graphql(`
+  fragment CmsBlockNavigationButtons on BlockNavigationButton {
+    ... on BlockNavigationButton {
+      __typename
+      title
+      links {
+        ...CmsLink
+      }
+      blockConfig {
+        ...CmsBlockConfig
+      }
+    }
+  }
+`);
