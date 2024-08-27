@@ -45,7 +45,7 @@ const documents = {
     "\n  fragment CmsBanner on Banner {\n    ... on Banner {\n      __typename\n      alt\n      identify\n      variant\n      centerText\n      bannerImage {\n        mimeType\n        url\n        width\n      }\n      salesBubble {\n        ...CmsSalesBubble\n      }\n    }\n  }\n": types.CmsBannerFragmentDoc,
     "\n  fragment CmsProductSlider on ProductSlider {\n    ... on ProductSlider {\n      __typename\n      categoryId\n      type\n      title\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsProductSliderFragmentDoc,
     "\n  fragment CmsBlockConfig on BlockConfig {\n    ... on BlockConfig {\n      __typename\n      id\n      backgroundColor\n    }\n  }\n": types.CmsBlockConfigFragmentDoc,
-    "\n  fragment CmsPagesList on BlockPagesList {\n    ... on BlockPagesList {\n      __typename\n      pageType\n      title\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsPagesListFragmentDoc,
+    "\n  fragment CmsPagesList on BlockPagesList {\n    ... on BlockPagesList {\n      __typename\n      pageType\n      title\n      pageCategory {\n        id\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsPagesListFragmentDoc,
     "\n  fragment CmsSimilarPagesRow on BlockSimilarPagesRow {\n    ... on BlockSimilarPagesRow {\n      __typename\n      title\n      page {\n        ...CmsPageNode\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsSimilarPagesRowFragmentDoc,
     "\n  fragment CmsImagesGallery on BlockImageGallery {\n    ... on BlockImageGallery {\n      __typename\n      title\n      description {\n        html\n      }\n      images {\n        ...CmsImage\n        ...CmsImageLink\n      }\n      imagesDirection\n      columnsCount\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsImagesGalleryFragmentDoc,
     "\n  fragment CmsBlockFaq on BlockFaq {\n    ... on BlockFaq {\n      __typename\n      title\n      questions {\n        question\n        answer {\n          html\n        }\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsBlockFaqFragmentDoc,
@@ -248,7 +248,7 @@ export function graphql(source: "\n  fragment CmsBlockConfig on BlockConfig {\n 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  fragment CmsPagesList on BlockPagesList {\n    ... on BlockPagesList {\n      __typename\n      pageType\n      title\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"): (typeof documents)["\n  fragment CmsPagesList on BlockPagesList {\n    ... on BlockPagesList {\n      __typename\n      pageType\n      title\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  fragment CmsPagesList on BlockPagesList {\n    ... on BlockPagesList {\n      __typename\n      pageType\n      title\n      pageCategory {\n        id\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"): (typeof documents)["\n  fragment CmsPagesList on BlockPagesList {\n    ... on BlockPagesList {\n      __typename\n      pageType\n      title\n      pageCategory {\n        id\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

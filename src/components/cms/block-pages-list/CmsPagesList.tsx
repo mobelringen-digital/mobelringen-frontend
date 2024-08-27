@@ -18,7 +18,14 @@ export const CmsPagesList: React.FC<Props> = ({ data }) => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useCmsPagesQuery({ pageType: data.pageType });
+  } = useCmsPagesQuery({
+    pageType: data.pageType,
+    pageCategory_some: data.pageCategory?.id
+      ? {
+          id: data.pageCategory.id,
+        }
+      : undefined,
+  });
 
   const totalLoaded = queryData?.pages.reduce((acc, page) => {
     return acc + page.edges.length;
