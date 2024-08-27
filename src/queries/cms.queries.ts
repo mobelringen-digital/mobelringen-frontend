@@ -113,3 +113,21 @@ export const CmsImagesGalleryFragment = graphql(`
     }
   }
 `);
+
+export const BlockFaqFragment = graphql(`
+  fragment CmsBlockFaq on BlockFaq {
+    ... on BlockFaq {
+      __typename
+      title
+      questions {
+        question
+        answer {
+          html
+        }
+      }
+      blockConfig {
+        ...CmsBlockConfig
+      }
+    }
+  }
+`);

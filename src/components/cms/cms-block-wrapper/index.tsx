@@ -15,6 +15,7 @@ const BACKGROUND_COLOR: Record<BackgroundColor, string> & { None: "" } = {
   None: "",
   White: "bg-white",
   Yellow: "bg-cream",
+  Pink: "bg-powder",
 };
 
 export const CmsBlockWrapper: React.FC<Props> = ({

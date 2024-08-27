@@ -4,6 +4,7 @@ import { Banner } from "components/cms/block-banner";
 import { CmsImageGallery } from "components/cms/block-image-gallery";
 import { CmsProductSlider } from "components/cms/block-product-slider";
 
+import { BlockFaq } from "@/components/cms/block-faq/BlockFaq";
 import { CmsPagesList } from "@/components/cms/block-pages-list/CmsPagesList";
 import { BlockQuote } from "@/components/cms/block-quote/BlockQuote";
 import { BlockRow } from "@/components/cms/block-row";
@@ -43,6 +44,9 @@ export const CmsContentLoader: React.FC<CmsContentProps> = ({ data }) => {
 
     case "BlockImageGallery":
       return <CmsImageGallery data={data} />;
+
+    case "BlockFaq":
+      return <BlockFaq data={data} />;
 
     default:
       return null;
