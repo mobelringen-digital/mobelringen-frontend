@@ -19,39 +19,11 @@ interface Props {
 const sliderConfig: Settings = {
   ...productSliderConfig,
   dots: false,
-  responsive: [
-    {
-      breakpoint: 1280,
-      settings: {
-        slidesToShow: 4,
-        slidesToScroll: 1,
-      },
-    },
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 3,
-        slidesToScroll: 1,
-      },
-    },
-    {
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 2,
-        slidesToScroll: 1,
-        arrows: false,
-      },
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        arrows: false,
-        dots: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-      },
-    },
-  ],
+  variableWidth: true,
+  adaptiveHeight: true,
+  infinite: true,
+  slidesToScroll: 1,
+  responsive: [],
 };
 
 export const BlockImageLinksSlider: React.FC<Props> = ({ data }) => {
