@@ -38,7 +38,7 @@ const sliderConfig: Settings = {
 export const BlockImageLinksSlider: React.FC<Props> = ({ data }) => {
   return (
     <CmsBlockWrapper config={data.blockConfig}>
-      <h2 className="text-4xl font-medium font-feature mb-8 lg:mb-12">
+      <h2 className="text-xl lg:text-4xl font-medium font-feature mb-8 lg:mb-12">
         {data.title}
       </h2>
       <Slider className="product-slider" {...sliderConfig}>
