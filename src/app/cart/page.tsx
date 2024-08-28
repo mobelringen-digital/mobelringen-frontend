@@ -1,4 +1,5 @@
 import getCart from "@/components/cart/actions";
+import { StaticPageContent } from "@/components/cms/static-page-content/StaticPageContent";
 import { updateCartItemsInStore } from "@/components/store-selector/actions";
 import { getToken } from "@/modules/auth/actions";
 import { CartPage } from "@/modules/cart/CartPage";
@@ -14,5 +15,10 @@ export default async function Cart() {
     return navigate("/auth/login?callback=TOKEN_EXPIRED");
   }
 
-  return <CartPage data={cart} />;
+  return (
+    <>
+      <CartPage data={cart} />
+      <StaticPageContent url="/cart" />
+    </>
+  );
 }

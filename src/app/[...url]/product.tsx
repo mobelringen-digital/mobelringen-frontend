@@ -3,6 +3,7 @@ import React from "react";
 import { notFound, redirect } from "next/navigation";
 
 import getCart from "@/components/cart/actions";
+import { StaticPageContent } from "@/components/cms/static-page-content/StaticPageContent";
 import { ConfigurableProductPage } from "@/modules/product/ConfigurableProduct";
 import { SimpleProductPage } from "@/modules/product/SimpleProduct";
 import { ProductsQueryDocument } from "@/queries/product/product.queries";
@@ -12,6 +13,7 @@ import { baseMagentoClient } from "@/utils/lib/graphql";
 
 type Props = {
   sku: string;
+  url: string;
 };
 
 async function getProduct(sku: string) {
@@ -25,7 +27,7 @@ async function getProduct(sku: string) {
   });
 }
 
-export default async function Product({ sku }: Props) {
+export default async function Product({ sku, url }: Props) {
   const product = await getProduct(sku);
   const cart = await getCart();
 
@@ -69,6 +71,8 @@ export default async function Product({ sku }: Props) {
       {isTypename(productData, ["ConfigurableProduct"]) ? (
         <ConfigurableProductPage cart={cart} product={productData} />
       ) : null}
+
+      <StaticPageContent url={`/${url}`} />
     </>
   );
 }

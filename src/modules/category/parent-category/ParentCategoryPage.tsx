@@ -1,17 +1,15 @@
 import React from "react";
 
-import { CmsContentLoader } from "@/components/cms/cms-content-loader";
-import { getStaticPageConfiguration } from "@/modules/page/actions";
-import { StaticPageType } from "@/types";
+import { StaticPageContent } from "@/components/cms/static-page-content/StaticPageContent";
 
-export async function ParentCategoryPage() {
-  const data = await getStaticPageConfiguration(StaticPageType.CategoryPage);
+interface Props {
+  url: string;
+}
 
+export async function ParentCategoryPage({ url }: Props) {
   return (
     <>
-      {data?.content?.map((content) => {
-        return <CmsContentLoader key={content.__typename} data={content} />;
-      })}
+      <StaticPageContent url={`/${url}`} />
     </>
   );
 }

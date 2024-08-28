@@ -112,7 +112,7 @@ export default async function Category({ url }: Props) {
       {isLastCategoryWithChildren(currentCategory) ? (
         <CategoryPage category={currentCategory} />
       ) : (
-        <ParentCategoryPage />
+        <ParentCategoryPage url={url} />
       )}
 
       {currentCategory?.description ? (

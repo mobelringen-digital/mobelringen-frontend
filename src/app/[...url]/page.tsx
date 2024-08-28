@@ -56,7 +56,7 @@ export default async function Home({ params }: Props) {
         return notFound();
       }
 
-      return <Product sku={routeData.route.sku} />;
+      return <Product url={url} sku={routeData.route.sku} />;
     }
   }
 
