@@ -1,5 +1,17 @@
-import { ContainerLayout } from "@/components/layouts/ContainerLayout";
+import React from "react";
 
-export const ParentCategoryPage = () => {
-  return <ContainerLayout>Parent category</ContainerLayout>;
-};
+import { CmsContentLoader } from "@/components/cms/cms-content-loader";
+import { getStaticPageConfiguration } from "@/modules/page/actions";
+import { StaticPageType } from "@/types";
+
+export async function ParentCategoryPage() {
+  const data = await getStaticPageConfiguration(StaticPageType.CategoryPage);
+
+  return (
+    <>
+      {data?.content?.map((content) => {
+        return <CmsContentLoader key={content.__typename} data={content} />;
+      })}
+    </>
+  );
+}

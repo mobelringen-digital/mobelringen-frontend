@@ -81,9 +81,17 @@ export const CmsStaticPageConfigurationDocument = graphql(`
   ) {
     staticPageConfiguration(where: $where) {
       content {
-        ...CmsBlockRow
         ...CmsBanner
         ...CmsProductSlider
+        ...CmsBlockRow
+        ...CmsBlockQuote
+        ...CmsPagesList
+        ...CmsSimilarPagesRow
+        ...CmsImagesGallery
+        ...CmsBlockFaq
+        ...CmsBlockNavigationButtons
+        ...CmsBlockImageLinksSlider
+        ...CmsBlockBrands
       }
     }
   }

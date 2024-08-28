@@ -25,7 +25,7 @@ export const Banner: React.FC<Props> = ({ data, children }) => {
   return (
     <section
       className={cx(
-        "relative bg-no-repeat bg-cover bg-center",
+        "relative bg-no-repeat bg-cover bg-center w-full",
         VARIANTS[data.variant],
       )}
       style={{
