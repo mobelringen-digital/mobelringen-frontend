@@ -37,7 +37,7 @@ export const CategoryPage: React.FC<Props> = ({ category }) => {
   const totalCount = data?.pages[0]?.total_count;
 
   return (
-    <ContainerLayout>
+    <ContainerLayout className="mt-12">
       {isLoading ? <PageTopLoader /> : null}
       <CategoryFilters
         totalCount={data?.pages[0]?.total_count}
