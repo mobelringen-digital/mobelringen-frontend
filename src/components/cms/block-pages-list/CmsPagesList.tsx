@@ -51,7 +51,10 @@ export const CmsPagesList: React.FC<Props> = ({ data }) => {
 
     segments.forEach((segment) => {
       currentPath += `/${segment}`;
-      result.push({ value: currentPath, label: segment });
+      result.push({
+        value: currentPath,
+        label: segment.replace(/[^\w\s]/g, " "),
+      });
     });
 
     return result;
