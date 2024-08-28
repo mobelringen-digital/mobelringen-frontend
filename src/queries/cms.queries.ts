@@ -72,6 +72,7 @@ export const CmsPagesListFragment = graphql(`
       __typename
       pageType
       title
+      displayCategories
       pageCategory {
         id
       }

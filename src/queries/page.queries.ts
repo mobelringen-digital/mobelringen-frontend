@@ -236,3 +236,14 @@ export const CmsBlockQuoteFragment = graphql(`
     }
   }
 `);
+
+export const CmsPageCategoriesDocument = graphql(`
+  query CmsPageCategories($where: PageCategoryWhereInput) {
+    pageCategories(where: $where) {
+      id
+      name
+      categoryUrl
+      pageType
+    }
+  }
+`);

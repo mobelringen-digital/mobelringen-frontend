@@ -2,9 +2,17 @@
 
 import React from "react";
 
+import cx from "classnames";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 import { Button } from "@/components/_ui/button/Button";
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { useCategoriesQuery } from "@/components/cms/block-pages-list/useCategoriesQuery";
 import { useCmsPagesQuery } from "@/components/cms/block-pages-list/usePagesQuery";
 import { CmsBlockWrapper } from "@/components/cms/cms-block-wrapper";
+import { CmsBlockHeader } from "@/components/cms/cms-block-wrapper/CmsBlockHeader";
 import { PageThumbnail } from "@/components/page-thumbnail/PageThumbnail";
 import { CmsPagesListFragment } from "@/types";
 
@@ -13,6 +21,7 @@ interface Props {
 }
 
 export const CmsPagesList: React.FC<Props> = ({ data }) => {
+  const pathname = usePathname();
   const {
     data: queryData,
     fetchNextPage,
@@ -26,6 +35,9 @@ export const CmsPagesList: React.FC<Props> = ({ data }) => {
         }
       : undefined,
   });
+  const { data: categories } = useCategoriesQuery({
+    pageType: data.pageType,
+  });
 
   const totalLoaded = queryData?.pages.reduce((acc, page) => {
     return acc + page.edges.length;
@@ -34,9 +46,41 @@ export const CmsPagesList: React.FC<Props> = ({ data }) => {
 
   return (
     <CmsBlockWrapper config={data.blockConfig}>
-      <h2 className="text-5xl font-medium font-feature mb-8 lg:mb-16">
-        {data.title}
-      </h2>
+      {data.displayCategories ? (
+        <Breadcrumbs
+          className="mt-0 mb-6 lg:mb-12"
+          data={pathname
+            .split("/")
+            .filter(Boolean)
+            .map((item) => ({
+              url: `/${item}`,
+              label: item,
+            }))}
+        />
+      ) : null}
+      <CmsBlockHeader title={data.title} />
+
+      {data.displayCategories && categories && categories.length > 0 ? (
+        <div className="flex gap-2 lg:gap-3 border-b border-dark-grey border-opacity-30 pb-8 my-8 lg:pb-12 lg:mb-12 flex-wrap">
+          {categories?.map((category, idx) => (
+            <Link
+              href={category.categoryUrl ?? ""}
+              key={idx}
+              className={cx(
+                "rounded-full py-2 lg:py-3 px-4 lg:px-6 transition text-sm lg:text-base font-suisse font-medium text-nowrap",
+                {
+                  "bg-brown text-white": pathname === category.categoryUrl,
+                  "bg-powder text-brown hover:bg-brown hover:text-white":
+                    pathname !== category.categoryUrl,
+                },
+              )}
+            >
+              {category.name}
+            </Link>
+          ))}
+        </div>
+      ) : null}
+
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
         {queryData?.pages.map((pageData, idx) => (
           <React.Fragment key={idx}>
