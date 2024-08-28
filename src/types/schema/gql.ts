@@ -74,7 +74,7 @@ const documents = {
     "\n  fragment CmsColumn on Column {\n    ... on Column {\n      __typename\n      id\n      content {\n        ...CmsTextBlock\n        ...CmsImageLink\n        ...CmsImage\n      }\n      desktopPosition\n      mobilePosition\n    }\n  }\n": types.CmsColumnFragmentDoc,
     "\n  fragment CmsBlockRow on BlockRow {\n    ... on BlockRow {\n      __typename\n      id\n      useFullPageWidth\n      columns {\n        ...CmsColumn\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsBlockRowFragmentDoc,
     "\n  fragment CmsBlockQuote on BlockQuote {\n    ... on BlockQuote {\n      __typename\n      id\n      image {\n        url\n        width\n        height\n      }\n      quote {\n        html\n      }\n      author\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsBlockQuoteFragmentDoc,
-    "\n  query CmsPageCategories($where: PageCategoryWhereInput) {\n    pageCategories(where: $where) {\n      id\n      name\n      categoryUrl\n      pageType\n    }\n  }\n": types.CmsPageCategoriesDocument,
+    "\n  query CmsPageCategories($where: PageCategoryWhereInput) {\n    pageCategories(where: $where, orderBy: name_ASC) {\n      id\n      name\n      categoryUrl\n      pageType\n    }\n  }\n": types.CmsPageCategoriesDocument,
     "\n  fragment ConfigurableProductOptions on ConfigurableProductOptions {\n    __typename\n    values {\n      default_label\n      label\n      store_label\n      uid\n      use_default_value\n      value_index\n    }\n    attribute_code\n    attribute_uid\n    label\n    position\n    uid\n    use_default\n  }\n": types.ConfigurableProductOptionsFragmentDoc,
     "\n  fragment ConfigurableProductVariants on ConfigurableVariant {\n    __typename\n    attributes {\n      code\n      label\n      uid\n      value_index\n    }\n    product {\n      ...BaseProduct\n    }\n  }\n": types.ConfigurableProductVariantsFragmentDoc,
     "\n  fragment ConfigurableProduct on ConfigurableProduct {\n    __typename\n    ...BaseProduct\n    configurable_options {\n      ...ConfigurableProductOptions\n    }\n    variants {\n      ...ConfigurableProductVariants\n    }\n  }\n": types.ConfigurableProductFragmentDoc,
@@ -368,7 +368,7 @@ export function graphql(source: "\n  fragment CmsBlockQuote on BlockQuote {\n   
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query CmsPageCategories($where: PageCategoryWhereInput) {\n    pageCategories(where: $where) {\n      id\n      name\n      categoryUrl\n      pageType\n    }\n  }\n"): (typeof documents)["\n  query CmsPageCategories($where: PageCategoryWhereInput) {\n    pageCategories(where: $where) {\n      id\n      name\n      categoryUrl\n      pageType\n    }\n  }\n"];
+export function graphql(source: "\n  query CmsPageCategories($where: PageCategoryWhereInput) {\n    pageCategories(where: $where, orderBy: name_ASC) {\n      id\n      name\n      categoryUrl\n      pageType\n    }\n  }\n"): (typeof documents)["\n  query CmsPageCategories($where: PageCategoryWhereInput) {\n    pageCategories(where: $where, orderBy: name_ASC) {\n      id\n      name\n      categoryUrl\n      pageType\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
