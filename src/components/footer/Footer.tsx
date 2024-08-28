@@ -36,7 +36,7 @@ export async function Footer() {
   );
 
   return (
-    <footer className="bg-powder py-6 relative mt-[100px] lg:mt-[200px]">
+    <footer className="bg-powder py-6 relative">
       <div
         id="curved-corner"
         className={cx(
