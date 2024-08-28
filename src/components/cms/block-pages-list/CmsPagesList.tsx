@@ -44,18 +44,28 @@ export const CmsPagesList: React.FC<Props> = ({ data }) => {
   }, 0);
   const totalCount = queryData?.pages[0]?.aggregate.count;
 
+  const buildPathArray = (url: string) => {
+    const segments = url.split("/").filter((segment) => segment !== "");
+    const result: Array<{ value: string; label: string }> = [];
+    let currentPath = "";
+
+    segments.forEach((segment) => {
+      currentPath += `/${segment}`;
+      result.push({ value: currentPath, label: segment });
+    });
+
+    return result;
+  };
+
   return (
     <CmsBlockWrapper config={data.blockConfig}>
       {data.displayCategories ? (
         <Breadcrumbs
           className="mt-0 mb-6 lg:mb-12"
-          data={pathname
-            .split("/")
-            .filter(Boolean)
-            .map((item) => ({
-              url: `/${item}`,
-              label: item,
-            }))}
+          data={buildPathArray(pathname).map((item) => ({
+            url: item.value,
+            label: item.label,
+          }))}
         />
       ) : null}
       <CmsBlockHeader title={data.title} />
