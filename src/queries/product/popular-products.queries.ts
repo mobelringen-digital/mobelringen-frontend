@@ -7,3 +7,13 @@ export const BestSellingProductsByCategory = graphql(`
     }
   }
 `);
+
+export const SpecificProductsBySku = graphql(`
+  query SpecificProductsBySku($skus: [String!]!) {
+    products(filter: { sku: { in: $skus } }) {
+      items {
+        ...BaseProduct
+      }
+    }
+  }
+`);

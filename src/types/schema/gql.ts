@@ -43,7 +43,7 @@ const documents = {
     "\n  fragment CmsSalesBubble on SaleBubble {\n    url\n    middleLine\n    position\n    topLine\n    bottomLine\n  }\n": types.CmsSalesBubbleFragmentDoc,
     "\n  fragment CmsPromotionBubble on PromotionBubble {\n    middleLine\n    position\n    topLine\n    links {\n      ...CmsLink\n    }\n  }\n": types.CmsPromotionBubbleFragmentDoc,
     "\n  fragment CmsBanner on Banner {\n    ... on Banner {\n      __typename\n      alt\n      identify\n      variant\n      centerText\n      bannerImage {\n        mimeType\n        url\n        width\n      }\n      salesBubble {\n        ...CmsSalesBubble\n      }\n    }\n  }\n": types.CmsBannerFragmentDoc,
-    "\n  fragment CmsProductSlider on ProductSlider {\n    ... on ProductSlider {\n      __typename\n      categoryId\n      type\n      title\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsProductSliderFragmentDoc,
+    "\n  fragment CmsProductSlider on ProductSlider {\n    ... on ProductSlider {\n      __typename\n      categoryId\n      specificProductsSku\n      type\n      title\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsProductSliderFragmentDoc,
     "\n  fragment CmsBlockConfig on BlockConfig {\n    ... on BlockConfig {\n      __typename\n      id\n      backgroundColor\n    }\n  }\n": types.CmsBlockConfigFragmentDoc,
     "\n  fragment CmsPagesList on BlockPagesList {\n    ... on BlockPagesList {\n      __typename\n      pageType\n      title\n      pageCategory {\n        id\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsPagesListFragmentDoc,
     "\n  fragment CmsSimilarPagesRow on BlockSimilarPagesRow {\n    ... on BlockSimilarPagesRow {\n      __typename\n      title\n      page {\n        ...CmsPageNode\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsSimilarPagesRowFragmentDoc,
@@ -78,6 +78,7 @@ const documents = {
     "\n  fragment ConfigurableProductVariants on ConfigurableVariant {\n    __typename\n    attributes {\n      code\n      label\n      uid\n      value_index\n    }\n    product {\n      ...BaseProduct\n    }\n  }\n": types.ConfigurableProductVariantsFragmentDoc,
     "\n  fragment ConfigurableProduct on ConfigurableProduct {\n    __typename\n    ...BaseProduct\n    configurable_options {\n      ...ConfigurableProductOptions\n    }\n    variants {\n      ...ConfigurableProductVariants\n    }\n  }\n": types.ConfigurableProductFragmentDoc,
     "\n  query BestSellingProductsByCategory($categoryId: Int!) {\n    bestSellingProductsByCategory(categoryId: $categoryId) {\n      ...BaseProduct\n    }\n  }\n": types.BestSellingProductsByCategoryDocument,
+    "\n  query SpecificProductsBySku($skus: [String!]!) {\n    products(filter: { sku: { in: $skus } }) {\n      items {\n        ...BaseProduct\n      }\n    }\n  }\n": types.SpecificProductsBySkuDocument,
     "\n  fragment ProductImageFragment on ProductImage {\n    __typename\n    url\n    position\n    label\n    disabled\n  }\n": types.ProductImageFragmentFragmentDoc,
     "\n  fragment ProductVideoFragment on ProductVideo {\n    __typename\n    disabled\n    label\n    position\n    url\n    video_content {\n      media_type\n      video_description\n      video_metadata\n      video_provider\n      video_title\n      video_url\n    }\n  }\n": types.ProductVideoFragmentFragmentDoc,
     "\n  fragment ProductMediaGallery on MediaGalleryInterface {\n    __typename\n    disabled\n    label\n    position\n    url\n    ... on ProductImage {\n      ...ProductImageFragment\n    }\n    ... on ProductVideo {\n      ...ProductVideoFragment\n    }\n  }\n": types.ProductMediaGalleryFragmentDoc,
@@ -242,7 +243,7 @@ export function graphql(source: "\n  fragment CmsBanner on Banner {\n    ... on 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  fragment CmsProductSlider on ProductSlider {\n    ... on ProductSlider {\n      __typename\n      categoryId\n      type\n      title\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"): (typeof documents)["\n  fragment CmsProductSlider on ProductSlider {\n    ... on ProductSlider {\n      __typename\n      categoryId\n      type\n      title\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  fragment CmsProductSlider on ProductSlider {\n    ... on ProductSlider {\n      __typename\n      categoryId\n      specificProductsSku\n      type\n      title\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"): (typeof documents)["\n  fragment CmsProductSlider on ProductSlider {\n    ... on ProductSlider {\n      __typename\n      categoryId\n      specificProductsSku\n      type\n      title\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -379,6 +380,10 @@ export function graphql(source: "\n  fragment ConfigurableProduct on Configurabl
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query BestSellingProductsByCategory($categoryId: Int!) {\n    bestSellingProductsByCategory(categoryId: $categoryId) {\n      ...BaseProduct\n    }\n  }\n"): (typeof documents)["\n  query BestSellingProductsByCategory($categoryId: Int!) {\n    bestSellingProductsByCategory(categoryId: $categoryId) {\n      ...BaseProduct\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query SpecificProductsBySku($skus: [String!]!) {\n    products(filter: { sku: { in: $skus } }) {\n      items {\n        ...BaseProduct\n      }\n    }\n  }\n"): (typeof documents)["\n  query SpecificProductsBySku($skus: [String!]!) {\n    products(filter: { sku: { in: $skus } }) {\n      items {\n        ...BaseProduct\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

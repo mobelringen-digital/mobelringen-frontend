@@ -46,6 +46,7 @@ export const CmsProductSliderFragment = graphql(`
     ... on ProductSlider {
       __typename
       categoryId
+      specificProductsSku
       type
       title
       blockConfig {
