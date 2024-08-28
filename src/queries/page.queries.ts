@@ -24,8 +24,14 @@ export const CmsPagesConnectionDocument = graphql(`
     $first: Int = 12
     $skip: Int = 0
     $where: PageWhereInput
+    $orderBy: PageOrderByInput = createdAt_DESC
   ) {
-    pagesConnection(where: $where, first: $first, skip: $skip) {
+    pagesConnection(
+      where: $where
+      first: $first
+      skip: $skip
+      orderBy: $orderBy
+    ) {
       edges {
         node {
           ...CmsPageNode
