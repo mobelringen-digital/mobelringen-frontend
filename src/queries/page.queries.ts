@@ -75,28 +75,6 @@ export const CmsPagesQueryDocument = graphql(`
   }
 `);
 
-export const CmsStaticPageConfigurationDocument = graphql(`
-  query CmsStaticPageConfiguration(
-    $where: StaticPageConfigurationWhereUniqueInput!
-  ) {
-    staticPageConfiguration(where: $where) {
-      content {
-        ...CmsBanner
-        ...CmsProductSlider
-        ...CmsBlockRow
-        ...CmsBlockQuote
-        ...CmsPagesList
-        ...CmsSimilarPagesRow
-        ...CmsImagesGallery
-        ...CmsBlockFaq
-        ...CmsBlockNavigationButtons
-        ...CmsBlockImageLinksSlider
-        ...CmsBlockBrands
-      }
-    }
-  }
-`);
-
 export const CmsDynamicHeaderFragment = graphql(`
   fragment CmsDynamicHeader on DynamicHeader {
     id
