@@ -23,14 +23,17 @@ export const CmsImage: React.FC<Props> = ({ data, className, imageStyle }) => {
           "mb-6 lg:mb-12": !!data.promotionBubble,
         })}
       >
-        <Image
-          className="rounded-3xl"
-          src={data.image.url}
-          width={data.width ?? data.image.width ?? 700}
-          height={data.height ?? data.image.height ?? 700}
-          alt={data.label}
-          style={imageStyle}
-        />
+        {data.image?.url ? (
+          <Image
+            className="rounded-3xl"
+            src={data.image.url}
+            width={data.width ?? data.image.width ?? 700}
+            height={data.height ?? data.image.height ?? 700}
+            alt={data.label}
+            style={imageStyle}
+          />
+        ) : null}
+
         {data.salesBubble ? (
           <ImageLinkSalesBubbleWrapper data={data.salesBubble} />
         ) : null}

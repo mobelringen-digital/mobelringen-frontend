@@ -19,11 +19,9 @@ export const Page: React.FC<Props> = ({ data }) => {
         <MetaDescription description={metaDescription} />
       ) : null}
 
-      <main className="flex flex-col items-center justify-between">
-        {data.pages[0]?.content.map((content) => {
-          return <CmsContentLoader key={content.__typename} data={content} />;
-        })}
-      </main>
+      {data.pages[0]?.content.map((content) => {
+        return <CmsContentLoader key={content.__typename} data={content} />;
+      })}
     </>
   );
 };

@@ -23,7 +23,7 @@ export const Banner: React.FC<Props> = ({ data, children }) => {
   }
 
   return (
-    <div
+    <section
       className={cx(
         "relative bg-no-repeat bg-cover bg-center",
         VARIANTS[data.variant],
@@ -41,6 +41,6 @@ export const Banner: React.FC<Props> = ({ data, children }) => {
       ) : null}
       {children}
       {salesBubble ? <BannerSalesBubbleWrapper data={salesBubble} /> : null}
-    </div>
+    </section>
   );
 };

@@ -26,7 +26,7 @@ export default async function RootLayout({
         <Providers>
           <HeaderMenu />
           <CmsDynamicHeaders />
-          <main className="min-h-[30vh]">
+          <main className="min-h-[30vh] flex flex-col items-center justify-between w-full">
             <Suspense fallback={<Loading />}>{children}</Suspense>
           </main>
           <Footer />

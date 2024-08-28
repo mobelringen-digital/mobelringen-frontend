@@ -24,13 +24,13 @@ export const CmsBlockWrapper: React.FC<Props> = ({
   config,
 }) => {
   return (
-    <div
+    <section
       className={cx(
         "py-16 w-full",
         BACKGROUND_COLOR[config?.backgroundColor ?? "None"],
       )}
     >
       <ContainerLayout fullWidth={isFullWidth}>{children}</ContainerLayout>
-    </div>
+    </section>
   );
 };

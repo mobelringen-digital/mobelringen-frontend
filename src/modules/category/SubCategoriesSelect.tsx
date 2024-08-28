@@ -23,7 +23,7 @@ export const SubCategoriesSelect: React.FC<Props> = ({ category, url }) => {
   };
 
   return (
-    <div className="bg-cream py-[40px] border-b border-b-beige mb-12">
+    <div className="bg-cream py-[40px] border-b border-b-beige mb-12 w-full">
       <ContainerLayout>
         <CategoryBreadcrumbs />
         <Link
