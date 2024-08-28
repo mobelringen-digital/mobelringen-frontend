@@ -2,6 +2,7 @@ import React from "react";
 
 import { Accordion } from "@/components/_ui/accordion/Accordion";
 import { CmsBlockWrapper } from "@/components/cms/cms-block-wrapper";
+import { CmsBlockHeader } from "@/components/cms/cms-block-wrapper/CmsBlockHeader";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { CmsBlockFaqFragment } from "@/types";
 
@@ -25,9 +26,8 @@ export const BlockFaq: React.FC<Props> = ({ data }) => {
   return (
     <CmsBlockWrapper config={data.blockConfig}>
       <ContainerLayout className="max-w-[950px]">
-        <h2 className="text-4xl font-medium font-feature mb-8 lg:mb-12">
-          {data.title}
-        </h2>
+        <CmsBlockHeader title={data.title} />
+
         <Accordion data={accordionData} />
       </ContainerLayout>
     </CmsBlockWrapper>

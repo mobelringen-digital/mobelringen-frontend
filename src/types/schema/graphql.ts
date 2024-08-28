@@ -2172,6 +2172,579 @@ export type BillingCartAddress = CartAddressInterface & {
   vat_id?: Maybe<Scalars['String']['output']>;
 };
 
+export type BlockBrand = Entity & Node & {
+  __typename: 'BlockBrand';
+  blockConfig?: Maybe<BlockConfig>;
+  brands: Array<BlockBrandbrandsUnion>;
+  /** The time the document was created */
+  createdAt: Scalars['DateTime']['output'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** Get the document in other stages */
+  documentInStages: Array<BlockBrand>;
+  /** List of BlockBrand versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  pages: Array<Page>;
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  title: Scalars['String']['output'];
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime']['output'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+  viewMoreLink?: Maybe<Link>;
+};
+
+
+export type BlockBrandBlockConfigArgs = {
+  forceParentLocale: InputMaybe<Scalars['Boolean']['input']>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+
+export type BlockBrandBrandsArgs = {
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale: InputMaybe<Scalars['Boolean']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  locales: InputMaybe<Array<Locale>>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type BlockBrandCreatedByArgs = {
+  forceParentLocale: InputMaybe<Scalars['Boolean']['input']>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+
+export type BlockBrandDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean']['input'];
+  inheritLocale?: Scalars['Boolean']['input'];
+  stages?: Array<Stage>;
+};
+
+
+export type BlockBrandHistoryArgs = {
+  limit?: Scalars['Int']['input'];
+  skip?: Scalars['Int']['input'];
+  stageOverride: InputMaybe<Stage>;
+};
+
+
+export type BlockBrandPagesArgs = {
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale: InputMaybe<Scalars['Boolean']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  locales: InputMaybe<Array<Locale>>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  where: InputMaybe<PageWhereInput>;
+};
+
+
+export type BlockBrandPublishedByArgs = {
+  forceParentLocale: InputMaybe<Scalars['Boolean']['input']>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+
+export type BlockBrandScheduledInArgs = {
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale: InputMaybe<Scalars['Boolean']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  locales: InputMaybe<Array<Locale>>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  where: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type BlockBrandUpdatedByArgs = {
+  forceParentLocale: InputMaybe<Scalars['Boolean']['input']>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+
+export type BlockBrandViewMoreLinkArgs = {
+  forceParentLocale: InputMaybe<Scalars['Boolean']['input']>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type BlockBrandConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: BlockBrandWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type BlockBrandConnection = {
+  __typename: 'BlockBrandConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<BlockBrandEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type BlockBrandCreateInput = {
+  blockConfig?: InputMaybe<BlockConfigCreateOneInlineInput>;
+  brands?: InputMaybe<BlockBrandbrandsUnionCreateManyInlineInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  pages?: InputMaybe<PageCreateManyInlineInput>;
+  title: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  viewMoreLink?: InputMaybe<LinkCreateOneInlineInput>;
+};
+
+export type BlockBrandCreateManyInlineInput = {
+  /** Connect multiple existing BlockBrand documents */
+  connect?: InputMaybe<Array<BlockBrandWhereUniqueInput>>;
+  /** Create and connect multiple existing BlockBrand documents */
+  create?: InputMaybe<Array<BlockBrandCreateInput>>;
+};
+
+export type BlockBrandCreateOneInlineInput = {
+  /** Connect one existing BlockBrand document */
+  connect?: InputMaybe<BlockBrandWhereUniqueInput>;
+  /** Create and connect one BlockBrand document */
+  create?: InputMaybe<BlockBrandCreateInput>;
+};
+
+/** An edge in a connection. */
+export type BlockBrandEdge = {
+  __typename: 'BlockBrandEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: BlockBrand;
+};
+
+/** Identifies documents */
+export type BlockBrandManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BlockBrandWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BlockBrandWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BlockBrandWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  blockConfig?: InputMaybe<BlockConfigWhereInput>;
+  /** All values in which the union is empty. */
+  brands_empty?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Matches if the modular component contains at least one connection to the item provided to the filter */
+  brands_some?: InputMaybe<BlockBrandbrandsUnionWhereInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<BlockBrandWhereStageInput>;
+  documentInStages_none?: InputMaybe<BlockBrandWhereStageInput>;
+  documentInStages_some?: InputMaybe<BlockBrandWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  pages_every?: InputMaybe<PageWhereInput>;
+  pages_none?: InputMaybe<PageWhereInput>;
+  pages_some?: InputMaybe<PageWhereInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+  viewMoreLink?: InputMaybe<LinkWhereInput>;
+};
+
+export enum BlockBrandOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type BlockBrandUpdateInput = {
+  blockConfig?: InputMaybe<BlockConfigUpdateOneInlineInput>;
+  brands?: InputMaybe<BlockBrandbrandsUnionUpdateManyInlineInput>;
+  pages?: InputMaybe<PageUpdateManyInlineInput>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  viewMoreLink?: InputMaybe<LinkUpdateOneInlineInput>;
+};
+
+export type BlockBrandUpdateManyInlineInput = {
+  /** Connect multiple existing BlockBrand documents */
+  connect?: InputMaybe<Array<BlockBrandConnectInput>>;
+  /** Create and connect multiple BlockBrand documents */
+  create?: InputMaybe<Array<BlockBrandCreateInput>>;
+  /** Delete multiple BlockBrand documents */
+  delete?: InputMaybe<Array<BlockBrandWhereUniqueInput>>;
+  /** Disconnect multiple BlockBrand documents */
+  disconnect?: InputMaybe<Array<BlockBrandWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing BlockBrand documents */
+  set?: InputMaybe<Array<BlockBrandWhereUniqueInput>>;
+  /** Update multiple BlockBrand documents */
+  update?: InputMaybe<Array<BlockBrandUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple BlockBrand documents */
+  upsert?: InputMaybe<Array<BlockBrandUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type BlockBrandUpdateManyInput = {
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BlockBrandUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: BlockBrandUpdateManyInput;
+  /** Document search */
+  where: BlockBrandWhereInput;
+};
+
+export type BlockBrandUpdateOneInlineInput = {
+  /** Connect existing BlockBrand document */
+  connect?: InputMaybe<BlockBrandWhereUniqueInput>;
+  /** Create and connect one BlockBrand document */
+  create?: InputMaybe<BlockBrandCreateInput>;
+  /** Delete currently connected BlockBrand document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Disconnect currently connected BlockBrand document */
+  disconnect?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single BlockBrand document */
+  update?: InputMaybe<BlockBrandUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single BlockBrand document */
+  upsert?: InputMaybe<BlockBrandUpsertWithNestedWhereUniqueInput>;
+};
+
+export type BlockBrandUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: BlockBrandUpdateInput;
+  /** Unique document search */
+  where: BlockBrandWhereUniqueInput;
+};
+
+export type BlockBrandUpsertInput = {
+  /** Create document if it didn't exist */
+  create: BlockBrandCreateInput;
+  /** Update document if it exists */
+  update: BlockBrandUpdateInput;
+};
+
+export type BlockBrandUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: BlockBrandUpsertInput;
+  /** Unique document search */
+  where: BlockBrandWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type BlockBrandWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Identifies documents */
+export type BlockBrandWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BlockBrandWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BlockBrandWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BlockBrandWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  blockConfig?: InputMaybe<BlockConfigWhereInput>;
+  /** All values in which the union is empty. */
+  brands_empty?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Matches if the modular component contains at least one connection to the item provided to the filter */
+  brands_some?: InputMaybe<BlockBrandbrandsUnionWhereInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<BlockBrandWhereStageInput>;
+  documentInStages_none?: InputMaybe<BlockBrandWhereStageInput>;
+  documentInStages_some?: InputMaybe<BlockBrandWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  pages_every?: InputMaybe<PageWhereInput>;
+  pages_none?: InputMaybe<PageWhereInput>;
+  pages_some?: InputMaybe<PageWhereInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+  viewMoreLink?: InputMaybe<LinkWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type BlockBrandWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BlockBrandWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BlockBrandWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BlockBrandWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<BlockBrandWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References BlockBrand record uniquely */
+export type BlockBrandWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type BlockBrandbrandsUnion = ImageLink;
+
+export type BlockBrandbrandsUnionConnectInput = {
+  ImageLink?: InputMaybe<ImageLinkConnectInput>;
+};
+
+export type BlockBrandbrandsUnionCreateInput = {
+  ImageLink?: InputMaybe<ImageLinkCreateInput>;
+};
+
+export type BlockBrandbrandsUnionCreateManyInlineInput = {
+  /** Create and connect multiple existing BlockBrandbrandsUnion documents */
+  create?: InputMaybe<Array<BlockBrandbrandsUnionCreateInput>>;
+};
+
+export type BlockBrandbrandsUnionCreateOneInlineInput = {
+  /** Create and connect one BlockBrandbrandsUnion document */
+  create?: InputMaybe<BlockBrandbrandsUnionCreateInput>;
+};
+
+export type BlockBrandbrandsUnionCreateWithPositionInput = {
+  ImageLink?: InputMaybe<ImageLinkCreateWithPositionInput>;
+};
+
+export type BlockBrandbrandsUnionUpdateInput = {
+  ImageLink?: InputMaybe<ImageLinkUpdateInput>;
+};
+
+export type BlockBrandbrandsUnionUpdateManyInlineInput = {
+  /** Create and connect multiple BlockBrandbrandsUnion component instances */
+  create?: InputMaybe<Array<BlockBrandbrandsUnionCreateWithPositionInput>>;
+  /** Delete multiple BlockBrandbrandsUnion documents */
+  delete?: InputMaybe<Array<BlockBrandbrandsUnionWhereUniqueInput>>;
+  /** Update multiple BlockBrandbrandsUnion component instances */
+  update?: InputMaybe<Array<BlockBrandbrandsUnionUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple BlockBrandbrandsUnion component instances */
+  upsert?: InputMaybe<Array<BlockBrandbrandsUnionUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type BlockBrandbrandsUnionUpdateManyWithNestedWhereInput = {
+  ImageLink?: InputMaybe<ImageLinkUpdateManyWithNestedWhereInput>;
+};
+
+export type BlockBrandbrandsUnionUpdateOneInlineInput = {
+  /** Create and connect one BlockBrandbrandsUnion document */
+  create?: InputMaybe<BlockBrandbrandsUnionCreateInput>;
+  /** Delete currently connected BlockBrandbrandsUnion document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single BlockBrandbrandsUnion document */
+  update?: InputMaybe<BlockBrandbrandsUnionUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single BlockBrandbrandsUnion document */
+  upsert?: InputMaybe<BlockBrandbrandsUnionUpsertWithNestedWhereUniqueInput>;
+};
+
+export type BlockBrandbrandsUnionUpdateWithNestedWhereUniqueAndPositionInput = {
+  ImageLink?: InputMaybe<ImageLinkUpdateWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type BlockBrandbrandsUnionUpdateWithNestedWhereUniqueInput = {
+  ImageLink?: InputMaybe<ImageLinkUpdateWithNestedWhereUniqueInput>;
+};
+
+export type BlockBrandbrandsUnionUpsertWithNestedWhereUniqueAndPositionInput = {
+  ImageLink?: InputMaybe<ImageLinkUpsertWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type BlockBrandbrandsUnionUpsertWithNestedWhereUniqueInput = {
+  ImageLink?: InputMaybe<ImageLinkUpsertWithNestedWhereUniqueInput>;
+};
+
+export type BlockBrandbrandsUnionWhereInput = {
+  ImageLink?: InputMaybe<ImageLinkWhereInput>;
+};
+
+export type BlockBrandbrandsUnionWhereUniqueInput = {
+  ImageLink?: InputMaybe<ImageLinkWhereUniqueInput>;
+};
+
 /** Her velger du farge for seksjonen. */
 export type BlockConfig = Entity & Node & {
   __typename: 'BlockConfig';
@@ -2278,6 +2851,7 @@ export type BlockConfigCreateInput = {
   cm0c3am2u02wf07w2czu5duc3?: InputMaybe<BlockFaqCreateManyInlineInput>;
   cm0c4pmgk03dj06ulepk9ho4m?: InputMaybe<BlockNavigationButtonCreateManyInlineInput>;
   cm0ccxriy06zq06uldhrt9xu4?: InputMaybe<BlockImageLinksSliderCreateManyInlineInput>;
+  cm0dhx34u09c507ur2fljbqgy?: InputMaybe<BlockBrandCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
@@ -2421,6 +2995,7 @@ export type BlockConfigUpdateInput = {
   cm0c3am2u02wf07w2czu5duc3?: InputMaybe<BlockFaqUpdateManyInlineInput>;
   cm0c4pmgk03dj06ulepk9ho4m?: InputMaybe<BlockNavigationButtonUpdateManyInlineInput>;
   cm0ccxriy06zq06uldhrt9xu4?: InputMaybe<BlockImageLinksSliderUpdateManyInlineInput>;
+  cm0dhx34u09c507ur2fljbqgy?: InputMaybe<BlockBrandUpdateManyInlineInput>;
 };
 
 export type BlockConfigUpdateManyInlineInput = {
@@ -12345,6 +12920,7 @@ export enum EntityTypeName {
   /** Asset system model */
   Asset = 'Asset',
   Banner = 'Banner',
+  BlockBrand = 'BlockBrand',
   /** Her velger du farge for seksjonen. */
   BlockConfig = 'BlockConfig',
   BlockFaq = 'BlockFaq',
@@ -14425,9 +15001,10 @@ export enum ImageLinkOrderByInput {
   WidthDesc = 'width_DESC'
 }
 
-export type ImageLinkParent = BlockImageGallery | BlockImageLinksSlider | Column | MegaMenuDropdown;
+export type ImageLinkParent = BlockBrand | BlockImageGallery | BlockImageLinksSlider | Column | MegaMenuDropdown;
 
 export type ImageLinkParentConnectInput = {
+  BlockBrand?: InputMaybe<BlockBrandConnectInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryConnectInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderConnectInput>;
   Column?: InputMaybe<ColumnConnectInput>;
@@ -14435,6 +15012,7 @@ export type ImageLinkParentConnectInput = {
 };
 
 export type ImageLinkParentCreateInput = {
+  BlockBrand?: InputMaybe<BlockBrandCreateInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryCreateInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderCreateInput>;
   Column?: InputMaybe<ColumnCreateInput>;
@@ -14456,6 +15034,7 @@ export type ImageLinkParentCreateOneInlineInput = {
 };
 
 export type ImageLinkParentUpdateInput = {
+  BlockBrand?: InputMaybe<BlockBrandUpdateInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryUpdateInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderUpdateInput>;
   Column?: InputMaybe<ColumnUpdateInput>;
@@ -14480,6 +15059,7 @@ export type ImageLinkParentUpdateManyInlineInput = {
 };
 
 export type ImageLinkParentUpdateManyWithNestedWhereInput = {
+  BlockBrand?: InputMaybe<BlockBrandUpdateManyWithNestedWhereInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryUpdateManyWithNestedWhereInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderUpdateManyWithNestedWhereInput>;
   Column?: InputMaybe<ColumnUpdateManyWithNestedWhereInput>;
@@ -14502,6 +15082,7 @@ export type ImageLinkParentUpdateOneInlineInput = {
 };
 
 export type ImageLinkParentUpdateWithNestedWhereUniqueInput = {
+  BlockBrand?: InputMaybe<BlockBrandUpdateWithNestedWhereUniqueInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryUpdateWithNestedWhereUniqueInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderUpdateWithNestedWhereUniqueInput>;
   Column?: InputMaybe<ColumnUpdateWithNestedWhereUniqueInput>;
@@ -14509,6 +15090,7 @@ export type ImageLinkParentUpdateWithNestedWhereUniqueInput = {
 };
 
 export type ImageLinkParentUpsertWithNestedWhereUniqueInput = {
+  BlockBrand?: InputMaybe<BlockBrandUpsertWithNestedWhereUniqueInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryUpsertWithNestedWhereUniqueInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderUpsertWithNestedWhereUniqueInput>;
   Column?: InputMaybe<ColumnUpsertWithNestedWhereUniqueInput>;
@@ -14516,6 +15098,7 @@ export type ImageLinkParentUpsertWithNestedWhereUniqueInput = {
 };
 
 export type ImageLinkParentWhereInput = {
+  BlockBrand?: InputMaybe<BlockBrandWhereInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryWhereInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderWhereInput>;
   Column?: InputMaybe<ColumnWhereInput>;
@@ -14523,6 +15106,7 @@ export type ImageLinkParentWhereInput = {
 };
 
 export type ImageLinkParentWhereUniqueInput = {
+  BlockBrand?: InputMaybe<BlockBrandWhereUniqueInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryWhereUniqueInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderWhereUniqueInput>;
   Column?: InputMaybe<ColumnWhereUniqueInput>;
@@ -15982,9 +16566,10 @@ export enum LinkOrderByInput {
   UrlDesc = 'url_DESC'
 }
 
-export type LinkParent = BlockNavigationButton | LinkBlock | MegaMenuDropdown | Menu | PromotionBubble | TextBlock;
+export type LinkParent = BlockBrand | BlockNavigationButton | LinkBlock | MegaMenuDropdown | Menu | PromotionBubble | TextBlock;
 
 export type LinkParentConnectInput = {
+  BlockBrand?: InputMaybe<BlockBrandConnectInput>;
   BlockNavigationButton?: InputMaybe<BlockNavigationButtonConnectInput>;
   LinkBlock?: InputMaybe<LinkBlockConnectInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownConnectInput>;
@@ -15994,6 +16579,7 @@ export type LinkParentConnectInput = {
 };
 
 export type LinkParentCreateInput = {
+  BlockBrand?: InputMaybe<BlockBrandCreateInput>;
   BlockNavigationButton?: InputMaybe<BlockNavigationButtonCreateInput>;
   LinkBlock?: InputMaybe<LinkBlockCreateInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownCreateInput>;
@@ -16017,6 +16603,7 @@ export type LinkParentCreateOneInlineInput = {
 };
 
 export type LinkParentUpdateInput = {
+  BlockBrand?: InputMaybe<BlockBrandUpdateInput>;
   BlockNavigationButton?: InputMaybe<BlockNavigationButtonUpdateInput>;
   LinkBlock?: InputMaybe<LinkBlockUpdateInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateInput>;
@@ -16043,6 +16630,7 @@ export type LinkParentUpdateManyInlineInput = {
 };
 
 export type LinkParentUpdateManyWithNestedWhereInput = {
+  BlockBrand?: InputMaybe<BlockBrandUpdateManyWithNestedWhereInput>;
   BlockNavigationButton?: InputMaybe<BlockNavigationButtonUpdateManyWithNestedWhereInput>;
   LinkBlock?: InputMaybe<LinkBlockUpdateManyWithNestedWhereInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateManyWithNestedWhereInput>;
@@ -16067,6 +16655,7 @@ export type LinkParentUpdateOneInlineInput = {
 };
 
 export type LinkParentUpdateWithNestedWhereUniqueInput = {
+  BlockBrand?: InputMaybe<BlockBrandUpdateWithNestedWhereUniqueInput>;
   BlockNavigationButton?: InputMaybe<BlockNavigationButtonUpdateWithNestedWhereUniqueInput>;
   LinkBlock?: InputMaybe<LinkBlockUpdateWithNestedWhereUniqueInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpdateWithNestedWhereUniqueInput>;
@@ -16076,6 +16665,7 @@ export type LinkParentUpdateWithNestedWhereUniqueInput = {
 };
 
 export type LinkParentUpsertWithNestedWhereUniqueInput = {
+  BlockBrand?: InputMaybe<BlockBrandUpsertWithNestedWhereUniqueInput>;
   BlockNavigationButton?: InputMaybe<BlockNavigationButtonUpsertWithNestedWhereUniqueInput>;
   LinkBlock?: InputMaybe<LinkBlockUpsertWithNestedWhereUniqueInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownUpsertWithNestedWhereUniqueInput>;
@@ -16085,6 +16675,7 @@ export type LinkParentUpsertWithNestedWhereUniqueInput = {
 };
 
 export type LinkParentWhereInput = {
+  BlockBrand?: InputMaybe<BlockBrandWhereInput>;
   BlockNavigationButton?: InputMaybe<BlockNavigationButtonWhereInput>;
   LinkBlock?: InputMaybe<LinkBlockWhereInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownWhereInput>;
@@ -16094,6 +16685,7 @@ export type LinkParentWhereInput = {
 };
 
 export type LinkParentWhereUniqueInput = {
+  BlockBrand?: InputMaybe<BlockBrandWhereUniqueInput>;
   BlockNavigationButton?: InputMaybe<BlockNavigationButtonWhereUniqueInput>;
   LinkBlock?: InputMaybe<LinkBlockWhereUniqueInput>;
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownWhereUniqueInput>;
@@ -17732,6 +18324,8 @@ export type Mutation = {
   createAsset?: Maybe<Asset>;
   /** Create one banner */
   createBanner?: Maybe<Banner>;
+  /** Create one blockBrand */
+  createBlockBrand?: Maybe<BlockBrand>;
   /** Create one blockConfig */
   createBlockConfig?: Maybe<BlockConfig>;
   /** Create one blockFaq */
@@ -17803,6 +18397,8 @@ export type Mutation = {
   deleteAsset?: Maybe<Asset>;
   /** Delete one banner from _all_ existing stages. Returns deleted document. */
   deleteBanner?: Maybe<Banner>;
+  /** Delete one blockBrand from _all_ existing stages. Returns deleted document. */
+  deleteBlockBrand?: Maybe<BlockBrand>;
   /** Delete one blockConfig from _all_ existing stages. Returns deleted document. */
   deleteBlockConfig?: Maybe<BlockConfig>;
   /** Delete one blockFaq from _all_ existing stages. Returns deleted document. */
@@ -17843,6 +18439,13 @@ export type Mutation = {
   deleteManyBanners: BatchPayload;
   /** Delete many Banner documents, return deleted documents */
   deleteManyBannersConnection: BannerConnection;
+  /**
+   * Delete many BlockBrand documents
+   * @deprecated Please use the new paginated many mutation (deleteManyBlockBrandsConnection)
+   */
+  deleteManyBlockBrands: BatchPayload;
+  /** Delete many BlockBrand documents, return deleted documents */
+  deleteManyBlockBrandsConnection: BlockBrandConnection;
   /**
    * Delete many BlockConfig documents
    * @deprecated Please use the new paginated many mutation (deleteManyBlockConfigsConnection)
@@ -17988,6 +18591,8 @@ export type Mutation = {
   publishAsset?: Maybe<Asset>;
   /** Publish one banner */
   publishBanner?: Maybe<Banner>;
+  /** Publish one blockBrand */
+  publishBlockBrand?: Maybe<BlockBrand>;
   /** Publish one blockConfig */
   publishBlockConfig?: Maybe<BlockConfig>;
   /** Publish one blockFaq */
@@ -18022,6 +18627,13 @@ export type Mutation = {
   publishManyBanners: BatchPayload;
   /** Publish many Banner documents */
   publishManyBannersConnection: BannerConnection;
+  /**
+   * Publish many BlockBrand documents
+   * @deprecated Please use the new paginated many mutation (publishManyBlockBrandsConnection)
+   */
+  publishManyBlockBrands: BatchPayload;
+  /** Publish many BlockBrand documents */
+  publishManyBlockBrandsConnection: BlockBrandConnection;
   /**
    * Publish many BlockConfig documents
    * @deprecated Please use the new paginated many mutation (publishManyBlockConfigsConnection)
@@ -18178,6 +18790,8 @@ export type Mutation = {
   schedulePublishAsset?: Maybe<Asset>;
   /** Schedule to publish one banner */
   schedulePublishBanner?: Maybe<Banner>;
+  /** Schedule to publish one blockBrand */
+  schedulePublishBlockBrand?: Maybe<BlockBrand>;
   /** Schedule to publish one blockConfig */
   schedulePublishBlockConfig?: Maybe<BlockConfig>;
   /** Schedule to publish one blockFaq */
@@ -18212,6 +18826,8 @@ export type Mutation = {
   scheduleUnpublishAsset?: Maybe<Asset>;
   /** Unpublish one banner from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishBanner?: Maybe<Banner>;
+  /** Unpublish one blockBrand from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishBlockBrand?: Maybe<BlockBrand>;
   /** Unpublish one blockConfig from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishBlockConfig?: Maybe<BlockConfig>;
   /** Unpublish one blockFaq from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -18271,6 +18887,8 @@ export type Mutation = {
   unpublishAsset?: Maybe<Asset>;
   /** Unpublish one banner from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishBanner?: Maybe<Banner>;
+  /** Unpublish one blockBrand from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishBlockBrand?: Maybe<BlockBrand>;
   /** Unpublish one blockConfig from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishBlockConfig?: Maybe<BlockConfig>;
   /** Unpublish one blockFaq from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -18305,6 +18923,13 @@ export type Mutation = {
   unpublishManyBanners: BatchPayload;
   /** Find many Banner documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyBannersConnection: BannerConnection;
+  /**
+   * Unpublish many BlockBrand documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyBlockBrandsConnection)
+   */
+  unpublishManyBlockBrands: BatchPayload;
+  /** Find many BlockBrand documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyBlockBrandsConnection: BlockBrandConnection;
   /**
    * Unpublish many BlockConfig documents
    * @deprecated Please use the new paginated many mutation (unpublishManyBlockConfigsConnection)
@@ -18424,6 +19049,8 @@ export type Mutation = {
   updateAsset?: Maybe<Asset>;
   /** Update one banner */
   updateBanner?: Maybe<Banner>;
+  /** Update one blockBrand */
+  updateBlockBrand?: Maybe<BlockBrand>;
   /** Update one blockConfig */
   updateBlockConfig?: Maybe<BlockConfig>;
   /** Update one blockFaq */
@@ -18475,6 +19102,13 @@ export type Mutation = {
   updateManyBanners: BatchPayload;
   /** Update many Banner documents */
   updateManyBannersConnection: BannerConnection;
+  /**
+   * Update many blockBrands
+   * @deprecated Please use the new paginated many mutation (updateManyBlockBrandsConnection)
+   */
+  updateManyBlockBrands: BatchPayload;
+  /** Update many BlockBrand documents */
+  updateManyBlockBrandsConnection: BlockBrandConnection;
   /**
    * Update many blockConfigs
    * @deprecated Please use the new paginated many mutation (updateManyBlockConfigsConnection)
@@ -18600,6 +19234,8 @@ export type Mutation = {
   upsertAsset?: Maybe<Asset>;
   /** Upsert one banner */
   upsertBanner?: Maybe<Banner>;
+  /** Upsert one blockBrand */
+  upsertBlockBrand?: Maybe<BlockBrand>;
   /** Upsert one blockConfig */
   upsertBlockConfig?: Maybe<BlockConfig>;
   /** Upsert one blockFaq */
@@ -18779,6 +19415,11 @@ export type MutationCreateBannerArgs = {
 };
 
 
+export type MutationCreateBlockBrandArgs = {
+  data: BlockBrandCreateInput;
+};
+
+
 export type MutationCreateBlockConfigArgs = {
   data: BlockConfigCreateInput;
 };
@@ -18939,6 +19580,11 @@ export type MutationDeleteBannerArgs = {
 };
 
 
+export type MutationDeleteBlockBrandArgs = {
+  where: BlockBrandWhereUniqueInput;
+};
+
+
 export type MutationDeleteBlockConfigArgs = {
   where: BlockConfigWhereUniqueInput;
 };
@@ -19026,6 +19672,21 @@ export type MutationDeleteManyBannersConnectionArgs = {
   last: InputMaybe<Scalars['Int']['input']>;
   skip: InputMaybe<Scalars['Int']['input']>;
   where: InputMaybe<BannerManyWhereInput>;
+};
+
+
+export type MutationDeleteManyBlockBrandsArgs = {
+  where: InputMaybe<BlockBrandManyWhereInput>;
+};
+
+
+export type MutationDeleteManyBlockBrandsConnectionArgs = {
+  after: InputMaybe<Scalars['ID']['input']>;
+  before: InputMaybe<Scalars['ID']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  where: InputMaybe<BlockBrandManyWhereInput>;
 };
 
 
@@ -19364,6 +20025,12 @@ export type MutationPublishBannerArgs = {
 };
 
 
+export type MutationPublishBlockBrandArgs = {
+  to?: Array<Stage>;
+  where: BlockBrandWhereUniqueInput;
+};
+
+
 export type MutationPublishBlockConfigArgs = {
   to?: Array<Stage>;
   where: BlockConfigWhereUniqueInput;
@@ -19463,6 +20130,24 @@ export type MutationPublishManyBannersConnectionArgs = {
   skip: InputMaybe<Scalars['Int']['input']>;
   to?: Array<Stage>;
   where: InputMaybe<BannerManyWhereInput>;
+};
+
+
+export type MutationPublishManyBlockBrandsArgs = {
+  to?: Array<Stage>;
+  where: InputMaybe<BlockBrandManyWhereInput>;
+};
+
+
+export type MutationPublishManyBlockBrandsConnectionArgs = {
+  after: InputMaybe<Scalars['ID']['input']>;
+  before: InputMaybe<Scalars['ID']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  from?: InputMaybe<Stage>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  to?: Array<Stage>;
+  where: InputMaybe<BlockBrandManyWhereInput>;
 };
 
 
@@ -19884,6 +20569,14 @@ export type MutationSchedulePublishBannerArgs = {
 };
 
 
+export type MutationSchedulePublishBlockBrandArgs = {
+  releaseAt: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId: InputMaybe<Scalars['String']['input']>;
+  to?: Array<Stage>;
+  where: BlockBrandWhereUniqueInput;
+};
+
+
 export type MutationSchedulePublishBlockConfigArgs = {
   releaseAt: InputMaybe<Scalars['DateTime']['input']>;
   releaseId: InputMaybe<Scalars['String']['input']>;
@@ -20019,6 +20712,14 @@ export type MutationScheduleUnpublishBannerArgs = {
   releaseAt: InputMaybe<Scalars['DateTime']['input']>;
   releaseId: InputMaybe<Scalars['String']['input']>;
   where: BannerWhereUniqueInput;
+};
+
+
+export type MutationScheduleUnpublishBlockBrandArgs = {
+  from?: Array<Stage>;
+  releaseAt: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId: InputMaybe<Scalars['String']['input']>;
+  where: BlockBrandWhereUniqueInput;
 };
 
 
@@ -20213,6 +20914,12 @@ export type MutationUnpublishBannerArgs = {
 };
 
 
+export type MutationUnpublishBlockBrandArgs = {
+  from?: Array<Stage>;
+  where: BlockBrandWhereUniqueInput;
+};
+
+
 export type MutationUnpublishBlockConfigArgs = {
   from?: Array<Stage>;
   where: BlockConfigWhereUniqueInput;
@@ -20310,6 +21017,24 @@ export type MutationUnpublishManyBannersConnectionArgs = {
   skip: InputMaybe<Scalars['Int']['input']>;
   stage?: InputMaybe<Stage>;
   where: InputMaybe<BannerManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyBlockBrandsArgs = {
+  from?: Array<Stage>;
+  where: InputMaybe<BlockBrandManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyBlockBrandsConnectionArgs = {
+  after: InputMaybe<Scalars['ID']['input']>;
+  before: InputMaybe<Scalars['ID']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  from?: Array<Stage>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  stage?: InputMaybe<Stage>;
+  where: InputMaybe<BlockBrandManyWhereInput>;
 };
 
 
@@ -20625,6 +21350,12 @@ export type MutationUpdateBannerArgs = {
 };
 
 
+export type MutationUpdateBlockBrandArgs = {
+  data: BlockBrandUpdateInput;
+  where: BlockBrandWhereUniqueInput;
+};
+
+
 export type MutationUpdateBlockConfigArgs = {
   data: BlockConfigUpdateInput;
   where: BlockConfigWhereUniqueInput;
@@ -20767,6 +21498,23 @@ export type MutationUpdateManyBannersConnectionArgs = {
   last: InputMaybe<Scalars['Int']['input']>;
   skip: InputMaybe<Scalars['Int']['input']>;
   where: InputMaybe<BannerManyWhereInput>;
+};
+
+
+export type MutationUpdateManyBlockBrandsArgs = {
+  data: BlockBrandUpdateManyInput;
+  where: InputMaybe<BlockBrandManyWhereInput>;
+};
+
+
+export type MutationUpdateManyBlockBrandsConnectionArgs = {
+  after: InputMaybe<Scalars['ID']['input']>;
+  before: InputMaybe<Scalars['ID']['input']>;
+  data: BlockBrandUpdateManyInput;
+  first: InputMaybe<Scalars['Int']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  where: InputMaybe<BlockBrandManyWhereInput>;
 };
 
 
@@ -21083,6 +21831,12 @@ export type MutationUpsertAssetArgs = {
 export type MutationUpsertBannerArgs = {
   upsert: BannerUpsertInput;
   where: BannerWhereUniqueInput;
+};
+
+
+export type MutationUpsertBlockBrandArgs = {
+  upsert: BlockBrandUpsertInput;
+  where: BlockBrandWhereUniqueInput;
 };
 
 
@@ -22058,10 +22812,11 @@ export type PageConnection = {
   pageInfo: PageInfo;
 };
 
-export type PageContent = Banner | BlockFaq | BlockImageGallery | BlockImageLinksSlider | BlockNavigationButton | BlockPagesList | BlockQuote | BlockRow | BlockSimilarPagesRow | ProductSlider;
+export type PageContent = Banner | BlockBrand | BlockFaq | BlockImageGallery | BlockImageLinksSlider | BlockNavigationButton | BlockPagesList | BlockQuote | BlockRow | BlockSimilarPagesRow | ProductSlider;
 
 export type PageContentConnectInput = {
   Banner?: InputMaybe<BannerConnectInput>;
+  BlockBrand?: InputMaybe<BlockBrandConnectInput>;
   BlockFaq?: InputMaybe<BlockFaqConnectInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryConnectInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderConnectInput>;
@@ -22075,6 +22830,7 @@ export type PageContentConnectInput = {
 
 export type PageContentCreateInput = {
   Banner?: InputMaybe<BannerCreateInput>;
+  BlockBrand?: InputMaybe<BlockBrandCreateInput>;
   BlockFaq?: InputMaybe<BlockFaqCreateInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryCreateInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderCreateInput>;
@@ -22102,6 +22858,7 @@ export type PageContentCreateOneInlineInput = {
 
 export type PageContentUpdateInput = {
   Banner?: InputMaybe<BannerUpdateInput>;
+  BlockBrand?: InputMaybe<BlockBrandUpdateInput>;
   BlockFaq?: InputMaybe<BlockFaqUpdateInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryUpdateInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderUpdateInput>;
@@ -22132,6 +22889,7 @@ export type PageContentUpdateManyInlineInput = {
 
 export type PageContentUpdateManyWithNestedWhereInput = {
   Banner?: InputMaybe<BannerUpdateManyWithNestedWhereInput>;
+  BlockBrand?: InputMaybe<BlockBrandUpdateManyWithNestedWhereInput>;
   BlockFaq?: InputMaybe<BlockFaqUpdateManyWithNestedWhereInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryUpdateManyWithNestedWhereInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderUpdateManyWithNestedWhereInput>;
@@ -22160,6 +22918,7 @@ export type PageContentUpdateOneInlineInput = {
 
 export type PageContentUpdateWithNestedWhereUniqueInput = {
   Banner?: InputMaybe<BannerUpdateWithNestedWhereUniqueInput>;
+  BlockBrand?: InputMaybe<BlockBrandUpdateWithNestedWhereUniqueInput>;
   BlockFaq?: InputMaybe<BlockFaqUpdateWithNestedWhereUniqueInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryUpdateWithNestedWhereUniqueInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderUpdateWithNestedWhereUniqueInput>;
@@ -22173,6 +22932,7 @@ export type PageContentUpdateWithNestedWhereUniqueInput = {
 
 export type PageContentUpsertWithNestedWhereUniqueInput = {
   Banner?: InputMaybe<BannerUpsertWithNestedWhereUniqueInput>;
+  BlockBrand?: InputMaybe<BlockBrandUpsertWithNestedWhereUniqueInput>;
   BlockFaq?: InputMaybe<BlockFaqUpsertWithNestedWhereUniqueInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryUpsertWithNestedWhereUniqueInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderUpsertWithNestedWhereUniqueInput>;
@@ -22186,6 +22946,7 @@ export type PageContentUpsertWithNestedWhereUniqueInput = {
 
 export type PageContentWhereInput = {
   Banner?: InputMaybe<BannerWhereInput>;
+  BlockBrand?: InputMaybe<BlockBrandWhereInput>;
   BlockFaq?: InputMaybe<BlockFaqWhereInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryWhereInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderWhereInput>;
@@ -22199,6 +22960,7 @@ export type PageContentWhereInput = {
 
 export type PageContentWhereUniqueInput = {
   Banner?: InputMaybe<BannerWhereUniqueInput>;
+  BlockBrand?: InputMaybe<BlockBrandWhereUniqueInput>;
   BlockFaq?: InputMaybe<BlockFaqWhereUniqueInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryWhereUniqueInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderWhereUniqueInput>;
@@ -25073,6 +25835,14 @@ export type Query = {
   bannersConnection: BannerConnection;
   /** Get best selling products by category */
   bestSellingProductsByCategory?: Maybe<Array<Maybe<ProductInterface>>>;
+  /** Retrieve a single blockBrand */
+  blockBrand?: Maybe<BlockBrand>;
+  /** Retrieve document version */
+  blockBrandVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple blockBrands */
+  blockBrands: Array<BlockBrand>;
+  /** Retrieve multiple blockBrands using the Relay connection interface */
+  blockBrandsConnection: BlockBrandConnection;
   /** Retrieve a single blockConfig */
   blockConfig?: Maybe<BlockConfig>;
   /** Retrieve document version */
@@ -25425,6 +26195,44 @@ export type QueryBannersConnectionArgs = {
 
 export type QueryBestSellingProductsByCategoryArgs = {
   categoryId: Scalars['Int']['input'];
+};
+
+
+export type QueryBlockBrandArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: BlockBrandWhereUniqueInput;
+};
+
+
+export type QueryBlockBrandVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryBlockBrandsArgs = {
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy: InputMaybe<BlockBrandOrderByInput>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where: InputMaybe<BlockBrandWhereInput>;
+};
+
+
+export type QueryBlockBrandsConnectionArgs = {
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy: InputMaybe<BlockBrandOrderByInput>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where: InputMaybe<BlockBrandWhereInput>;
 };
 
 
@@ -27800,7 +28608,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Banner | BlockConfig | BlockFaq | BlockImageGallery | BlockImageLinksSlider | BlockNavigationButton | BlockPagesList | BlockQuote | BlockRow | BlockSimilarPagesRow | DynamicHeader | Menu | Page | PageCategory | ProductSlider | StaticPageConfiguration;
+export type ScheduledOperationAffectedDocument = Asset | Banner | BlockBrand | BlockConfig | BlockFaq | BlockImageGallery | BlockImageLinksSlider | BlockNavigationButton | BlockPagesList | BlockQuote | BlockRow | BlockSimilarPagesRow | DynamicHeader | Menu | Page | PageCategory | ProductSlider | StaticPageConfiguration;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -32783,6 +33591,8 @@ export type CmsBlockNavigationButtonsFragment = { __typename: 'BlockNavigationBu
 
 export type CmsBlockImageLinksSliderFragment = { __typename: 'BlockImageLinksSlider', title: string, images: Array<{ __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null } | null };
 
+export type CmsBlockBrandsFragment = { __typename: 'BlockBrand', title: string, viewMoreLink?: { __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null } | null, brands: Array<{ __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null } | null };
+
 export type CmsLinkFragment = { __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null };
 
 export type CmsMegamenuDropdownFragment = { __typename: 'MegaMenuDropdown', label: string, items: Array<{ __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null } | { __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> };
@@ -32840,7 +33650,7 @@ export type CmsPagesQueryVariables = Exact<{
 }>;
 
 
-export type CmsPagesQuery = { __typename: 'Query', pages: Array<{ __typename: 'Page', id: string, metaDescription?: string | null, metaTitle: string, url: string, content: Array<{ __typename: 'Banner', alt?: string | null, identify?: string | null, variant: BannerVariant, centerText?: string | null, bannerImage?: { __typename: 'Asset', mimeType?: string | null, url: string, width?: number | null } | null, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null } | { __typename: 'BlockFaq', title: string, questions: Array<{ __typename: 'FaqQuestion', question: string, answer?: { __typename: 'RichText', html: string } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null } | null } | { __typename: 'BlockImageGallery', title: string, imagesDirection?: LayoutDirection | null, columnsCount: number, description?: { __typename: 'RichText', html: string } | null, images: Array<{ __typename: 'Image', label: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null } | { __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null } | null } | { __typename: 'BlockImageLinksSlider', title: string, images: Array<{ __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null } | null } | { __typename: 'BlockNavigationButton', title: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null } | null } | { __typename: 'BlockPagesList', pageType: PageType, title: string, pageCategory?: { __typename: 'PageCategory', id: string } | null, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null } | null } | { __typename: 'BlockQuote', id: string, author?: string | null, image?: { __typename: 'Asset', url: string, width?: number | null, height?: number | null } | null, quote?: { __typename: 'RichText', html: string } | null, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null } | null } | { __typename: 'BlockRow', id: string, useFullPageWidth?: boolean | null, columns: Array<{ __typename: 'Column', id: string, desktopPosition?: number | null, mobilePosition?: number | null, content?: { __typename: 'Image', label: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null } | { __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null } | { __typename: 'TextBlock', id: string, textAlign?: Position | null, title?: { __typename: 'RichText', html: string } | null, content?: { __typename: 'RichText', html: string } | null, links: Array<{ __typename: 'Link', id: string, label: string, url: string }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null } | null } | { __typename: 'BlockSimilarPagesRow', title: string, page: Array<{ __typename: 'Page', id: string, metaDescription?: string | null, metaTitle: string, url: string, createdAt: any, pageThumbnail: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, pageCategory: Array<{ __typename: 'PageCategory', name: string, categoryUrl?: string | null }> }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null } | null } | { __typename: 'ProductSlider', categoryId?: string | null, type: ProductSliderType, title: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null } | null }> }> };
+export type CmsPagesQuery = { __typename: 'Query', pages: Array<{ __typename: 'Page', id: string, metaDescription?: string | null, metaTitle: string, url: string, content: Array<{ __typename: 'Banner', alt?: string | null, identify?: string | null, variant: BannerVariant, centerText?: string | null, bannerImage?: { __typename: 'Asset', mimeType?: string | null, url: string, width?: number | null } | null, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null } | { __typename: 'BlockBrand', title: string, viewMoreLink?: { __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null } | null, brands: Array<{ __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null } | null } | { __typename: 'BlockFaq', title: string, questions: Array<{ __typename: 'FaqQuestion', question: string, answer?: { __typename: 'RichText', html: string } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null } | null } | { __typename: 'BlockImageGallery', title: string, imagesDirection?: LayoutDirection | null, columnsCount: number, description?: { __typename: 'RichText', html: string } | null, images: Array<{ __typename: 'Image', label: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null } | { __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null } | null } | { __typename: 'BlockImageLinksSlider', title: string, images: Array<{ __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null } | null } | { __typename: 'BlockNavigationButton', title: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null } | null } | { __typename: 'BlockPagesList', pageType: PageType, title: string, pageCategory?: { __typename: 'PageCategory', id: string } | null, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null } | null } | { __typename: 'BlockQuote', id: string, author?: string | null, image?: { __typename: 'Asset', url: string, width?: number | null, height?: number | null } | null, quote?: { __typename: 'RichText', html: string } | null, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null } | null } | { __typename: 'BlockRow', id: string, useFullPageWidth?: boolean | null, columns: Array<{ __typename: 'Column', id: string, desktopPosition?: number | null, mobilePosition?: number | null, content?: { __typename: 'Image', label: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null } | { __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null } | { __typename: 'TextBlock', id: string, textAlign?: Position | null, title?: { __typename: 'RichText', html: string } | null, content?: { __typename: 'RichText', html: string } | null, links: Array<{ __typename: 'Link', id: string, label: string, url: string }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null } | null } | { __typename: 'BlockSimilarPagesRow', title: string, page: Array<{ __typename: 'Page', id: string, metaDescription?: string | null, metaTitle: string, url: string, createdAt: any, pageThumbnail: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, pageCategory: Array<{ __typename: 'PageCategory', name: string, categoryUrl?: string | null }> }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null } | null } | { __typename: 'ProductSlider', categoryId?: string | null, type: ProductSliderType, title: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null } | null }> }> };
 
 export type CmsStaticPageConfigurationQueryVariables = Exact<{
   where: StaticPageConfigurationWhereUniqueInput;
@@ -33101,6 +33911,7 @@ export const CmsImagesGalleryFragmentDoc = {"kind":"Document","definitions":[{"k
 export const CmsBlockFaqFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockFaq"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockFaq"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockFaq"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"questions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"question"}},{"kind":"Field","name":{"kind":"Name","value":"answer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockConfig"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockConfig"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockConfig"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"backgroundColor"}}]}}]}}]} as unknown as DocumentNode<CmsBlockFaqFragment, unknown>;
 export const CmsBlockNavigationButtonsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockNavigationButtons"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockNavigationButton"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockNavigationButton"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockConfig"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockConfig"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockConfig"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"backgroundColor"}}]}}]}}]} as unknown as DocumentNode<CmsBlockNavigationButtonsFragment, unknown>;
 export const CmsBlockImageLinksSliderFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockImageLinksSlider"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockImageLinksSlider"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockImageLinksSlider"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"images"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImageLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsSalesBubble"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SaleBubble"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"middleLine"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"topLine"}},{"kind":"Field","name":{"kind":"Name","value":"bottomLine"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsPromotionBubble"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PromotionBubble"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"middleLine"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"topLine"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsLink"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsImageLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImageLink"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImageLink"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"salesBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsSalesBubble"}}]}},{"kind":"Field","name":{"kind":"Name","value":"promotionBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsPromotionBubble"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockConfig"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockConfig"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockConfig"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"backgroundColor"}}]}}]}}]} as unknown as DocumentNode<CmsBlockImageLinksSliderFragment, unknown>;
+export const CmsBlockBrandsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockBrands"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockBrand"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockBrand"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"viewMoreLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"brands"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImageLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsSalesBubble"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SaleBubble"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"middleLine"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"topLine"}},{"kind":"Field","name":{"kind":"Name","value":"bottomLine"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsPromotionBubble"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PromotionBubble"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"middleLine"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"topLine"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsLink"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsImageLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImageLink"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImageLink"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"salesBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsSalesBubble"}}]}},{"kind":"Field","name":{"kind":"Name","value":"promotionBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsPromotionBubble"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockConfig"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockConfig"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockConfig"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"backgroundColor"}}]}}]}}]} as unknown as DocumentNode<CmsBlockBrandsFragment, unknown>;
 export const CmsMegamenuDropdownFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsMegamenuDropdown"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MegaMenuDropdown"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsLink"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImageLink"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsSalesBubble"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SaleBubble"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"middleLine"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"topLine"}},{"kind":"Field","name":{"kind":"Name","value":"bottomLine"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsPromotionBubble"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PromotionBubble"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"middleLine"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"topLine"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsLink"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsImageLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImageLink"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImageLink"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"salesBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsSalesBubble"}}]}},{"kind":"Field","name":{"kind":"Name","value":"promotionBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsPromotionBubble"}}]}}]}}]}}]} as unknown as DocumentNode<CmsMegamenuDropdownFragment, unknown>;
 export const CmsMegaMenuCategoriesDropdownFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsMegaMenuCategoriesDropdown"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MegaMenuCategoriesDropdown"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"label"}}]}}]} as unknown as DocumentNode<CmsMegaMenuCategoriesDropdownFragment, unknown>;
 export const CmsLinkBlockFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsLinkBlock"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"LinkBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsLink"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]} as unknown as DocumentNode<CmsLinkBlockFragment, unknown>;
@@ -33150,7 +33961,7 @@ export const GenerateCustomerTokenDocument = {"kind":"Document","definitions":[{
 export const CustomerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Customer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CustomerData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CustomerAddress"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CustomerAddress"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"company"}},{"kind":"Field","name":{"kind":"Name","value":"country_code"}},{"kind":"Field","name":{"kind":"Name","value":"vat_id"}},{"kind":"Field","name":{"kind":"Name","value":"telephone"}},{"kind":"Field","name":{"kind":"Name","value":"suffix"}},{"kind":"Field","name":{"kind":"Name","value":"street"}},{"kind":"Field","name":{"kind":"Name","value":"region_id"}},{"kind":"Field","name":{"kind":"Name","value":"prefix"}},{"kind":"Field","name":{"kind":"Name","value":"postcode"}},{"kind":"Field","name":{"kind":"Name","value":"middlename"}},{"kind":"Field","name":{"kind":"Name","value":"lastname"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstname"}},{"kind":"Field","name":{"kind":"Name","value":"fax"}},{"kind":"Field","name":{"kind":"Name","value":"default_shipping"}},{"kind":"Field","name":{"kind":"Name","value":"default_billing"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CustomerData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Customer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"orders"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"total_count"}}]}},{"kind":"Field","name":{"kind":"Name","value":"firstname"}},{"kind":"Field","name":{"kind":"Name","value":"lastname"}},{"kind":"Field","name":{"kind":"Name","value":"is_subscribed"}},{"kind":"Field","name":{"kind":"Name","value":"favorite_store"}},{"kind":"Field","name":{"kind":"Name","value":"addresses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CustomerAddress"}}]}}]}}]} as unknown as DocumentNode<CustomerQuery, CustomerQueryVariables>;
 export const UpdateCustomerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateCustomer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CustomerUpdateInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateCustomerV2"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CustomerData"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CustomerAddress"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CustomerAddress"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"company"}},{"kind":"Field","name":{"kind":"Name","value":"country_code"}},{"kind":"Field","name":{"kind":"Name","value":"vat_id"}},{"kind":"Field","name":{"kind":"Name","value":"telephone"}},{"kind":"Field","name":{"kind":"Name","value":"suffix"}},{"kind":"Field","name":{"kind":"Name","value":"street"}},{"kind":"Field","name":{"kind":"Name","value":"region_id"}},{"kind":"Field","name":{"kind":"Name","value":"prefix"}},{"kind":"Field","name":{"kind":"Name","value":"postcode"}},{"kind":"Field","name":{"kind":"Name","value":"middlename"}},{"kind":"Field","name":{"kind":"Name","value":"lastname"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstname"}},{"kind":"Field","name":{"kind":"Name","value":"fax"}},{"kind":"Field","name":{"kind":"Name","value":"default_shipping"}},{"kind":"Field","name":{"kind":"Name","value":"default_billing"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CustomerData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Customer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"orders"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"total_count"}}]}},{"kind":"Field","name":{"kind":"Name","value":"firstname"}},{"kind":"Field","name":{"kind":"Name","value":"lastname"}},{"kind":"Field","name":{"kind":"Name","value":"is_subscribed"}},{"kind":"Field","name":{"kind":"Name","value":"favorite_store"}},{"kind":"Field","name":{"kind":"Name","value":"addresses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CustomerAddress"}}]}}]}}]} as unknown as DocumentNode<UpdateCustomerMutation, UpdateCustomerMutationVariables>;
 export const CmsPagesConnectionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CmsPagesConnection"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"12"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"skip"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"0"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"PageWhereInput"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"orderBy"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"PageOrderByInput"}},"defaultValue":{"kind":"EnumValue","value":"createdAt_DESC"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pagesConnection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"skip"},"value":{"kind":"Variable","name":{"kind":"Name","value":"skip"}}},{"kind":"Argument","name":{"kind":"Name","value":"orderBy"},"value":{"kind":"Variable","name":{"kind":"Name","value":"orderBy"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsPageNode"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"aggregate"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"count"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}},{"kind":"Field","name":{"kind":"Name","value":"hasPreviousPage"}},{"kind":"Field","name":{"kind":"Name","value":"pageSize"}},{"kind":"Field","name":{"kind":"Name","value":"startCursor"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsPageNode"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Page"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"metaDescription"}},{"kind":"Field","name":{"kind":"Name","value":"metaTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"pageThumbnail"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageCategory"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"categoryUrl"}}]}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}}]}}]} as unknown as DocumentNode<CmsPagesConnectionQuery, CmsPagesConnectionQueryVariables>;
-export const CmsPagesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CmsPages"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"1"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"PageWhereInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pages"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"metaDescription"}},{"kind":"Field","name":{"kind":"Name","value":"metaTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"100"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBanner"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsProductSlider"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockRow"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockQuote"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsPagesList"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsSimilarPagesRow"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImagesGallery"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockFaq"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockNavigationButtons"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockImageLinksSlider"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsSalesBubble"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SaleBubble"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"middleLine"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"topLine"}},{"kind":"Field","name":{"kind":"Name","value":"bottomLine"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockConfig"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockConfig"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockConfig"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"backgroundColor"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsTextBlock"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TextBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TextBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textAlign"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsPromotionBubble"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PromotionBubble"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"middleLine"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"topLine"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsLink"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsImageLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImageLink"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImageLink"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"salesBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsSalesBubble"}}]}},{"kind":"Field","name":{"kind":"Name","value":"promotionBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsPromotionBubble"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsImage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Image"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Image"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"salesBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsSalesBubble"}}]}},{"kind":"Field","name":{"kind":"Name","value":"promotionBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsPromotionBubble"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsColumn"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Column"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Column"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsTextBlock"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImageLink"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImage"}}]}},{"kind":"Field","name":{"kind":"Name","value":"desktopPosition"}},{"kind":"Field","name":{"kind":"Name","value":"mobilePosition"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsPageNode"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Page"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"metaDescription"}},{"kind":"Field","name":{"kind":"Name","value":"metaTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"pageThumbnail"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageCategory"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"categoryUrl"}}]}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBanner"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Banner"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Banner"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"identify"}},{"kind":"Field","name":{"kind":"Name","value":"variant"}},{"kind":"Field","name":{"kind":"Name","value":"centerText"}},{"kind":"Field","name":{"kind":"Name","value":"bannerImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"mimeType"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}},{"kind":"Field","name":{"kind":"Name","value":"salesBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsSalesBubble"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsProductSlider"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ProductSlider"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ProductSlider"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"categoryId"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockRow"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockRow"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockRow"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"useFullPageWidth"}},{"kind":"Field","name":{"kind":"Name","value":"columns"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsColumn"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockQuote"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockQuote"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockQuote"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}},{"kind":"Field","name":{"kind":"Name","value":"quote"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsPagesList"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockPagesList"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockPagesList"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"pageType"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"pageCategory"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsSimilarPagesRow"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockSimilarPagesRow"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockSimilarPagesRow"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsPageNode"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsImagesGallery"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockImageGallery"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockImageGallery"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"images"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImage"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImageLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"imagesDirection"}},{"kind":"Field","name":{"kind":"Name","value":"columnsCount"}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockFaq"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockFaq"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockFaq"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"questions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"question"}},{"kind":"Field","name":{"kind":"Name","value":"answer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockNavigationButtons"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockNavigationButton"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockNavigationButton"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockImageLinksSlider"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockImageLinksSlider"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockImageLinksSlider"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"images"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImageLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}}]} as unknown as DocumentNode<CmsPagesQuery, CmsPagesQueryVariables>;
+export const CmsPagesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CmsPages"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"1"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"PageWhereInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pages"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"metaDescription"}},{"kind":"Field","name":{"kind":"Name","value":"metaTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"100"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBanner"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsProductSlider"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockRow"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockQuote"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsPagesList"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsSimilarPagesRow"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImagesGallery"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockFaq"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockNavigationButtons"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockImageLinksSlider"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockBrands"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsSalesBubble"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SaleBubble"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"middleLine"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"topLine"}},{"kind":"Field","name":{"kind":"Name","value":"bottomLine"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockConfig"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockConfig"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockConfig"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"backgroundColor"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsTextBlock"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TextBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TextBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textAlign"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsPromotionBubble"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PromotionBubble"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"middleLine"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"topLine"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsLink"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsImageLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImageLink"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImageLink"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"salesBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsSalesBubble"}}]}},{"kind":"Field","name":{"kind":"Name","value":"promotionBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsPromotionBubble"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsImage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Image"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Image"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"salesBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsSalesBubble"}}]}},{"kind":"Field","name":{"kind":"Name","value":"promotionBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsPromotionBubble"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsColumn"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Column"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Column"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsTextBlock"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImageLink"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImage"}}]}},{"kind":"Field","name":{"kind":"Name","value":"desktopPosition"}},{"kind":"Field","name":{"kind":"Name","value":"mobilePosition"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsPageNode"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Page"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"metaDescription"}},{"kind":"Field","name":{"kind":"Name","value":"metaTitle"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"pageThumbnail"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageCategory"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"categoryUrl"}}]}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBanner"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Banner"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Banner"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"identify"}},{"kind":"Field","name":{"kind":"Name","value":"variant"}},{"kind":"Field","name":{"kind":"Name","value":"centerText"}},{"kind":"Field","name":{"kind":"Name","value":"bannerImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"mimeType"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}},{"kind":"Field","name":{"kind":"Name","value":"salesBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsSalesBubble"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsProductSlider"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ProductSlider"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ProductSlider"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"categoryId"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockRow"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockRow"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockRow"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"useFullPageWidth"}},{"kind":"Field","name":{"kind":"Name","value":"columns"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsColumn"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockQuote"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockQuote"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockQuote"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}},{"kind":"Field","name":{"kind":"Name","value":"quote"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsPagesList"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockPagesList"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockPagesList"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"pageType"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"pageCategory"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsSimilarPagesRow"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockSimilarPagesRow"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockSimilarPagesRow"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsPageNode"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsImagesGallery"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockImageGallery"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockImageGallery"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"images"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImage"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImageLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"imagesDirection"}},{"kind":"Field","name":{"kind":"Name","value":"columnsCount"}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockFaq"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockFaq"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockFaq"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"questions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"question"}},{"kind":"Field","name":{"kind":"Name","value":"answer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockNavigationButtons"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockNavigationButton"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockNavigationButton"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockImageLinksSlider"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockImageLinksSlider"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockImageLinksSlider"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"images"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImageLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockBrands"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockBrand"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockBrand"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"viewMoreLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"brands"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImageLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}}]} as unknown as DocumentNode<CmsPagesQuery, CmsPagesQueryVariables>;
 export const CmsStaticPageConfigurationDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CmsStaticPageConfiguration"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"StaticPageConfigurationWhereUniqueInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"staticPageConfiguration"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockRow"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBanner"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsProductSlider"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsTextBlock"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TextBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TextBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"textAlign"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsSalesBubble"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SaleBubble"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"middleLine"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"topLine"}},{"kind":"Field","name":{"kind":"Name","value":"bottomLine"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsPromotionBubble"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PromotionBubble"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"middleLine"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"topLine"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsLink"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsImageLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImageLink"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImageLink"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"salesBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsSalesBubble"}}]}},{"kind":"Field","name":{"kind":"Name","value":"promotionBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsPromotionBubble"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsImage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Image"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Image"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"salesBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsSalesBubble"}}]}},{"kind":"Field","name":{"kind":"Name","value":"promotionBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsPromotionBubble"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsColumn"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Column"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Column"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsTextBlock"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImageLink"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImage"}}]}},{"kind":"Field","name":{"kind":"Name","value":"desktopPosition"}},{"kind":"Field","name":{"kind":"Name","value":"mobilePosition"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockConfig"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockConfig"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockConfig"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"backgroundColor"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockRow"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockRow"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockRow"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"useFullPageWidth"}},{"kind":"Field","name":{"kind":"Name","value":"columns"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsColumn"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBanner"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Banner"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Banner"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"identify"}},{"kind":"Field","name":{"kind":"Name","value":"variant"}},{"kind":"Field","name":{"kind":"Name","value":"centerText"}},{"kind":"Field","name":{"kind":"Name","value":"bannerImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"mimeType"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}},{"kind":"Field","name":{"kind":"Name","value":"salesBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsSalesBubble"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsProductSlider"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ProductSlider"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ProductSlider"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"categoryId"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}}]} as unknown as DocumentNode<CmsStaticPageConfigurationQuery, CmsStaticPageConfigurationQueryVariables>;
 export const CmsDynamicHeadersDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CmsDynamicHeaders"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"DynamicHeaderWhereInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"dynamicHeaders"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsDynamicHeader"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsSalesBubble"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SaleBubble"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"middleLine"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"topLine"}},{"kind":"Field","name":{"kind":"Name","value":"bottomLine"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBanner"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Banner"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Banner"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"identify"}},{"kind":"Field","name":{"kind":"Name","value":"variant"}},{"kind":"Field","name":{"kind":"Name","value":"centerText"}},{"kind":"Field","name":{"kind":"Name","value":"bannerImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"mimeType"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}},{"kind":"Field","name":{"kind":"Name","value":"salesBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsSalesBubble"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsDynamicHeader"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"DynamicHeader"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"rule"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RuleBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"value"}},{"kind":"Field","name":{"kind":"Name","value":"contentType"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"banner"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBanner"}}]}}]}}]} as unknown as DocumentNode<CmsDynamicHeadersQuery, CmsDynamicHeadersQueryVariables>;
 export const BestSellingProductsByCategoryDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"BestSellingProductsByCategory"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"categoryId"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"bestSellingProductsByCategory"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"categoryId"},"value":{"kind":"Variable","name":{"kind":"Name","value":"categoryId"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BaseProduct"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ProductImageFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ProductImage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"disabled"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ProductVideoFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ProductVideo"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"disabled"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"video_content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"media_type"}},{"kind":"Field","name":{"kind":"Name","value":"video_description"}},{"kind":"Field","name":{"kind":"Name","value":"video_metadata"}},{"kind":"Field","name":{"kind":"Name","value":"video_provider"}},{"kind":"Field","name":{"kind":"Name","value":"video_title"}},{"kind":"Field","name":{"kind":"Name","value":"video_url"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ProductMediaGallery"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MediaGalleryInterface"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"disabled"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ProductImage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ProductImageFragment"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ProductVideo"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ProductVideoFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ProductPriceRange"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PriceRange"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"maximum_price"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"discount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount_off"}},{"kind":"Field","name":{"kind":"Name","value":"percent_off"}}]}},{"kind":"Field","name":{"kind":"Name","value":"final_price"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}},{"kind":"Field","name":{"kind":"Name","value":"fixed_product_taxes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}},{"kind":"Field","name":{"kind":"Name","value":"label"}}]}},{"kind":"Field","name":{"kind":"Name","value":"regular_price"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"minimum_price"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"discount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount_off"}},{"kind":"Field","name":{"kind":"Name","value":"percent_off"}}]}},{"kind":"Field","name":{"kind":"Name","value":"final_price"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}},{"kind":"Field","name":{"kind":"Name","value":"fixed_product_taxes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}},{"kind":"Field","name":{"kind":"Name","value":"label"}}]}},{"kind":"Field","name":{"kind":"Name","value":"regular_price"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ProductLabel"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Label"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"custom"}},{"kind":"Field","name":{"kind":"Name","value":"discount"}},{"kind":"Field","name":{"kind":"Name","value":"new"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BaseProduct"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ProductInterface"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"url_key"}},{"kind":"Field","name":{"kind":"Name","value":"canonical_url"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"gift_message_available"}},{"kind":"Field","name":{"kind":"Name","value":"review_count"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ProductImageFragment"}}]}},{"kind":"Field","name":{"kind":"Name","value":"media_gallery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ProductMediaGallery"}}]}},{"kind":"Field","name":{"kind":"Name","value":"meta_description"}},{"kind":"Field","name":{"kind":"Name","value":"meta_keyword"}},{"kind":"Field","name":{"kind":"Name","value":"meta_title"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"new_from_date"}},{"kind":"Field","name":{"kind":"Name","value":"new_to_date"}},{"kind":"Field","name":{"kind":"Name","value":"price_range"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ProductPriceRange"}}]}},{"kind":"Field","name":{"kind":"Name","value":"productBrand"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brand_image_url"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"uid"}},{"kind":"Field","name":{"kind":"Name","value":"special_to_date"}},{"kind":"Field","name":{"kind":"Name","value":"special_price"}},{"kind":"Field","name":{"kind":"Name","value":"small_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"disabled"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"sku"}},{"kind":"Field","name":{"kind":"Name","value":"short_description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"addable_to_cart"}},{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url_path"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"productLabel"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ProductLabel"}}]}},{"kind":"Field","name":{"kind":"Name","value":"delivery_promise"}},{"kind":"Field","name":{"kind":"Name","value":"maintenance_description"}},{"kind":"Field","name":{"kind":"Name","value":"stock_status"}}]}}]} as unknown as DocumentNode<BestSellingProductsByCategoryQuery, BestSellingProductsByCategoryQueryVariables>;

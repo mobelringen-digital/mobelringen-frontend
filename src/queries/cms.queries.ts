@@ -164,3 +164,21 @@ export const BlockImageLinksSliderFragment = graphql(`
     }
   }
 `);
+
+export const BlockBrandsFragment = graphql(`
+  fragment CmsBlockBrands on BlockBrand {
+    ... on BlockBrand {
+      __typename
+      title
+      viewMoreLink {
+        ...CmsLink
+      }
+      brands {
+        ...CmsImageLink
+      }
+      blockConfig {
+        ...CmsBlockConfig
+      }
+    }
+  }
+`);

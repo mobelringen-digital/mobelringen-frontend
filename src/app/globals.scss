@@ -133,6 +133,13 @@ body {
   @apply -mx-2 lg:-mx-4;
 }
 
+.brands-slider .slick-slide > div {
+  @apply mx-3 lg:mx-6;
+}
+.brands-slider .slick-list {
+  @apply -mx-3 lg:-mx-6;
+}
+
 .progress {
   animation: progress 1s infinite linear;
 }
