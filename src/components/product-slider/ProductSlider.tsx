@@ -27,7 +27,7 @@ export const ProductSlider: React.FC<Props> = ({ title, data, isLoading }) => {
 
   if (data && data.length <= 4) {
     return (
-      <div className="my-28 relative">
+      <div className="my-16 relative">
         <h2 className="text-2xl font-medium font-feature mb-4 lg:mb-8">
           {title}
         </h2>

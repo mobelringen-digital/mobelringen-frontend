@@ -21,6 +21,14 @@ export const CmsProductSlider: React.FC<Props> = ({ data }) => {
     data.specificProductsSku?.split(","),
   );
 
+  const isDataAvailable =
+    (popularProducts && popularProducts.length > 0) ||
+    (productsBySku && productsBySku.length > 0);
+
+  if (!isDataAvailable) {
+    return null;
+  }
+
   if (isLoading) {
     return (
       <CmsBlockWrapper>
@@ -29,10 +37,18 @@ export const CmsProductSlider: React.FC<Props> = ({ data }) => {
     );
   }
 
-  if (popularProducts && popularProducts.length > 0) {
+  if (popularProducts) {
     return (
       <CmsBlockWrapper config={data.blockConfig}>
-        <ProductSlider title={title} data={productsBySku ?? popularProducts} />
+        <ProductSlider title={title} data={popularProducts} />
+      </CmsBlockWrapper>
+    );
+  }
+
+  if (productsBySku) {
+    return (
+      <CmsBlockWrapper config={data.blockConfig}>
+        <ProductSlider title={title} data={productsBySku} />
       </CmsBlockWrapper>
     );
   }
