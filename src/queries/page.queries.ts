@@ -155,6 +155,7 @@ export const CmsTextBlockFragment = graphql(`
       title {
         html
       }
+      paragraphTypography
       textAlign
       content {
         html
