@@ -6,7 +6,7 @@ interface Props {
   hide?: boolean;
 }
 
-export const CmsBlockHeader: React.FC<Props> = ({ title, rightContent }) => {
+export const CmsBlockHeader: React.FC<Props> = ({ title, rightContent, hide }) => {
   if (hide) return null;
 
   return (
