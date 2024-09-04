@@ -12,11 +12,17 @@ import { productSliderConfig } from "@/utils/lib/slick";
 
 interface Props {
   title: string;
+  hideTitle?: boolean;
   data: Array<BaseProductDataForCardFragment | null> | null;
   isLoading?: boolean;
 }
 
-export const ProductSlider: React.FC<Props> = ({ title, data, isLoading }) => {
+export const ProductSlider: React.FC<Props> = ({
+  title,
+  data,
+  isLoading,
+  hideTitle,
+}) => {
   if (isLoading) {
     return <ProductSliderSkeleton />;
   }
@@ -27,10 +33,12 @@ export const ProductSlider: React.FC<Props> = ({ title, data, isLoading }) => {
 
   if (data && data.length <= 4) {
     return (
-      <div className="my-16 relative">
-        <h2 className="text-2xl font-medium font-feature mb-4 lg:mb-8">
-          {title}
-        </h2>
+      <div className="mb-12 relative">
+        {!hideTitle ? (
+          <h2 className="text-2xl font-medium font-feature mb-4 lg:mb-8">
+            {title}
+          </h2>
+        ) : null}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8">
           {data?.map((product, idx) => (
             <React.Fragment key={idx}>
@@ -46,10 +54,12 @@ export const ProductSlider: React.FC<Props> = ({ title, data, isLoading }) => {
   }
 
   return (
-    <div className="my-28 product-slider relative">
-      <h2 className="text-2xl font-medium font-feature mb-4 lg:mb-8">
-        {title}
-      </h2>
+    <div className="mb-12 product-slider relative">
+      {!hideTitle ? (
+        <h2 className="text-2xl font-medium font-feature mb-4 lg:mb-8">
+          {title}
+        </h2>
+      ) : null}
       <Slider {...productSliderConfig}>
         {data?.map((product, idx: number) => (
           <div key={idx} className="w-[260px]">

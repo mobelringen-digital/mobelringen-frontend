@@ -40,7 +40,11 @@ export const CmsProductSlider: React.FC<Props> = ({ data }) => {
   if (popularProducts) {
     return (
       <CmsBlockWrapper config={data.blockConfig}>
-        <ProductSlider title={title} data={popularProducts} />
+        <ProductSlider
+          hideTitle={data.blockConfig?.hideBlockTitle ?? false}
+          title={title}
+          data={popularProducts}
+        />
       </CmsBlockWrapper>
     );
   }
@@ -48,7 +52,11 @@ export const CmsProductSlider: React.FC<Props> = ({ data }) => {
   if (productsBySku) {
     return (
       <CmsBlockWrapper config={data.blockConfig}>
-        <ProductSlider title={title} data={productsBySku} />
+        <ProductSlider
+          hideTitle={data.blockConfig?.hideBlockTitle ?? false}
+          title={title}
+          data={productsBySku}
+        />
       </CmsBlockWrapper>
     );
   }
