@@ -2,6 +2,7 @@ import React from "react";
 
 import { CmsImage } from "@/components/cms/__components/image/CmsImage";
 import { ImageLink } from "@/components/cms/__components/image-link/ImageLink";
+import { MultipleTextBlock } from "@/components/cms/__components/multiple-text-block/MultipleTextBlock";
 import { TextBlock } from "@/components/cms/__components/text-block/TextBlock";
 import { CmsColumnFragment } from "@/types";
 
@@ -18,6 +19,9 @@ export const Column: React.FC<Props> = ({ column }) => {
 
     case "Image":
       return <CmsImage data={column.content} />;
+
+    case "MultipleTextBlock":
+      return <MultipleTextBlock data={column.content} />;
 
     default:
       return null;

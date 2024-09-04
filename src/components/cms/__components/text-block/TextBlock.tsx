@@ -50,7 +50,7 @@ export const TextBlock: React.FC<Props> = ({ data }) => {
       {data.content?.html && !isEmptyHTML(data.content.html) ? (
         <div
           className={cx(
-            "prose text-lg lg:text-xl font-normal",
+            "prose font-normal",
             TEXT_ALIGN[data.textAlign ?? "LEFT"],
             PARAGRAPH_STYLE[data.paragraphTypography ?? "md"],
           )}

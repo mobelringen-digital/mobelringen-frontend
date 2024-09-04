@@ -122,6 +122,18 @@ export const CmsImageFragment = graphql(`
   }
 `);
 
+export const CmsMultipleTextBlockFragment = graphql(`
+  fragment CmsMultipleTextBlock on MultipleTextBlock {
+    ... on MultipleTextBlock {
+      __typename
+      id
+      paragraphs {
+        ...CmsTextBlock
+      }
+    }
+  }
+`);
+
 export const CmsImageLinkFragment = graphql(`
   fragment CmsImageLink on ImageLink {
     ... on ImageLink {
@@ -180,6 +192,7 @@ export const CmsColumnFragment = graphql(`
         ...CmsTextBlock
         ...CmsImageLink
         ...CmsImage
+        ...CmsMultipleTextBlock
       }
       desktopPosition
       mobilePosition
