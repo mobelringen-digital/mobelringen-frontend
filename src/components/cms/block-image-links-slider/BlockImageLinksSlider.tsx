@@ -39,7 +39,10 @@ const sliderConfig: Settings = {
 export const BlockImageLinksSlider: React.FC<Props> = ({ data }) => {
   return (
     <CmsBlockWrapper config={data.blockConfig}>
-      <CmsBlockHeader title={data.title} />
+      <CmsBlockHeader
+        title={data.title}
+        hide={data.blockConfig?.hideBlockTitle ?? false}
+      />
 
       <Slider className="product-slider" {...sliderConfig}>
         {data?.images.map((imageData, idx) => (

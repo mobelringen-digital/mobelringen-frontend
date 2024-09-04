@@ -26,7 +26,10 @@ export const BlockFaq: React.FC<Props> = ({ data }) => {
   return (
     <CmsBlockWrapper config={data.blockConfig}>
       <ContainerLayout className="max-w-[950px]">
-        <CmsBlockHeader title={data.title} />
+        <CmsBlockHeader
+          hide={data.blockConfig?.hideBlockTitle ?? false}
+          title={data.title}
+        />
 
         <Accordion data={accordionData} />
       </ContainerLayout>

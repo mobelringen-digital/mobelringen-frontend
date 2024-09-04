@@ -62,6 +62,7 @@ export const CmsBlockConfigFragment = graphql(`
       __typename
       id
       backgroundColor
+      hideBlockTitle
     }
   }
 `);

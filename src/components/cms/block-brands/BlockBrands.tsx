@@ -45,6 +45,7 @@ export const BlockBrands: React.FC<Props> = ({ data }) => {
     <CmsBlockWrapper config={data.blockConfig}>
       <CmsBlockHeader
         title={data.title}
+        hide={data.blockConfig?.hideBlockTitle ?? false}
         rightContent={
           <>
             {data.viewMoreLink?.url ? (

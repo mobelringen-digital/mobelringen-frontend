@@ -80,9 +80,11 @@ export const CmsImageGallery: React.FC<Props> = ({ data }) => {
 
   return (
     <CmsBlockWrapper config={data.blockConfig}>
-      <h2 className="text-2xl lg:text-4xl font-medium font-feature mb-6 lg:mb-12">
-        {data.title}
-      </h2>
+      {!data.blockConfig?.hideBlockTitle ? (
+        <h2 className="text-2xl lg:text-4xl font-medium font-feature mb-6 lg:mb-12">
+          {data.title}
+        </h2>
+      ) : null}
       {data.description ? (
         <div
           className="text-black font-normal mb-6 lg:mb-12 lg:w-3/4"
