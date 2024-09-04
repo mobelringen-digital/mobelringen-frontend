@@ -18,7 +18,7 @@ export const CmsImage: React.FC<Props> = ({ data, className, imageStyle }) => {
   return (
     <div className={cx("flex flex-col gap-2", className)}>
       <div
-        className={cx("rounded-3xl", {
+        className={cx("rounded-3xl relative", {
           "mb-4 lg:mb-0": !!data.salesBubble,
           "mb-6 lg:mb-12": !!data.promotionBubble,
         })}
