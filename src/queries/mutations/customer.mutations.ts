@@ -34,6 +34,9 @@ export const CustomerDataFragment = graphql(`
   fragment CustomerData on Customer {
     orders {
       total_count
+      items {
+        status
+      }
     }
     firstname
     lastname
