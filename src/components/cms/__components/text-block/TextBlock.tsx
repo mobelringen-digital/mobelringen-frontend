@@ -35,7 +35,7 @@ export const TextBlock: React.FC<Props> = ({ data }) => {
   return (
     <div
       id="cms-text-block"
-      className="flex flex-col justify-center max-w-[950px] mx-auto gap-4 lg:gap-8"
+      className="flex w-full flex-col justify-center max-w-[950px] mx-auto gap-4 lg:gap-8"
     >
       {data.title && !isEmptyHTML(data.title.html) ? (
         <div
