@@ -29,7 +29,7 @@ const SORT_OPTIONS = [
     value: "ASC",
   },
   {
-    label: "Nyestse",
+    label: "Nyeste",
     key: "position-desc",
     param: "position",
     value: "DESC",

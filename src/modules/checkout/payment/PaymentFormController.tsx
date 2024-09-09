@@ -3,6 +3,7 @@
 import React from "react";
 
 import {
+  initKlarnaHpp,
   setPaymentMethodOnCart,
   vippsInitPayment,
 } from "@/modules/checkout/payment/actions";
@@ -36,6 +37,14 @@ export const PaymentFormController: React.FC<Props> = ({ cart }) => {
 
         if (data?.vippsInitPayment?.url) {
           return (window.location.href = data.vippsInitPayment.url);
+        }
+      }
+
+      if (method.code === "klarna_kco") {
+        const data = await initKlarnaHpp(cart.id);
+
+        if (data.initKlarnaHpp?.redirect_url) {
+          return (window.location.href = data.initKlarnaHpp?.redirect_url);
         }
       }
 

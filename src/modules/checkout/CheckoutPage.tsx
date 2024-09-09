@@ -3,7 +3,7 @@ import React from "react";
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { PageTitle } from "@/components/typography/PageTitle";
-import { getCustomerDetails } from "@/modules/account/actions";
+import { getCustomerDetails } from "@/modules/account/account/actions";
 import { CheckoutBreadcrumbs } from "@/modules/checkout/CheckoutBreadcrumbs";
 import { CheckoutSteps } from "@/modules/checkout/CheckoutSteps";
 import { CheckoutSummary } from "@/modules/checkout/CheckoutSummary";

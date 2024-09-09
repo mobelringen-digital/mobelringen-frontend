@@ -4,10 +4,8 @@ import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 import getCart from "@/components/cart/actions";
-import {
-  getCustomerDetails,
-  updateCustomerDetails,
-} from "@/modules/account/actions";
+import { getCustomerDetails } from "@/modules/account/account/actions";
+import { updateCustomerDetails } from "@/modules/account/actions";
 import { getToken } from "@/modules/auth/actions";
 import { UpdateCartItemsIsInStore } from "@/queries/stores.queries";
 import {

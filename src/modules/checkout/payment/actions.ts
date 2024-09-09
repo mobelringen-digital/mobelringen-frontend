@@ -4,6 +4,7 @@ import { revalidatePath, revalidateTag } from "next/cache";
 
 import { getToken } from "@/modules/auth/actions";
 import {
+  InitKlarnaHppPayment,
   SetPaymentMethodOnCart,
   VippsInitPayment,
 } from "@/queries/cart.queries";
@@ -56,6 +57,19 @@ export async function vippsInitPayment(input: VippsInitPaymentInput) {
   const data = await authorizedMagentoClient(token, "POST").request(
     VippsInitPayment,
     { input },
+  );
+
+  revalidatePath("/cart");
+
+  return data;
+}
+
+export async function initKlarnaHpp(cartId: string) {
+  const token = await getToken();
+
+  const data = await authorizedMagentoClient(token, "POST").request(
+    InitKlarnaHppPayment,
+    { cart_id: cartId },
   );
 
   revalidatePath("/cart");

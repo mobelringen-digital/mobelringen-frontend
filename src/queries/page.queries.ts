@@ -6,6 +6,13 @@ export const CmsPageNodeFragment = graphql(`
     metaDescription
     metaTitle
     url
+    seo {
+      metaTitle
+      metaDescription
+      ogImage {
+        url
+      }
+    }
     pageThumbnail {
       url
       width
@@ -57,6 +64,13 @@ export const CmsPagesQueryDocument = graphql(`
       id
       metaDescription
       metaTitle
+      seo {
+        metaTitle
+        metaDescription
+        ogImage {
+          url
+        }
+      }
       url
       content(first: 100) {
         ...CmsBanner

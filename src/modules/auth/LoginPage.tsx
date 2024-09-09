@@ -5,6 +5,7 @@ import React from "react";
 import { useCookies } from "react-cookie";
 import { SubmitHandler, useForm } from "react-hook-form";
 
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/_ui/button/Button";
@@ -57,10 +58,10 @@ export const LoginPage: React.FC = () => {
   return (
     <>
       {isLoading ? <PageTopLoader /> : null}
-      <ContainerLayout className="my-16 flex justify-center">
+      <ContainerLayout className="my-16 flex flex-col items-center justify-center md:w-3/4 lg:w-1/3">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col gap-4 w-full md:w-3/4 lg:w-1/3"
+          className="flex flex-col gap-4 w-full"
         >
           {error ? (
             <div className="my-4">
@@ -100,6 +101,17 @@ export const LoginPage: React.FC = () => {
             Logg inn
           </Button>
         </form>
+        <div className="mt-8 pt-4 border-t border-dark-grey border-opacity-30 flex flex-col">
+          <p className="text-xl">Ny bruker</p>
+          <p className="my-2">
+            Har du ikke konto fra før kan du opprette en her. Med den kan du
+            bestille varer kjapt og enkelt, ha oversikt over alle ordre og melde
+            deg inn i kundeklubben.
+          </p>
+          <Button className="mt-2" as={Link} href="/auth/register" color="secondary">
+            Opprett bruker
+          </Button>
+        </div>
       </ContainerLayout>
     </>
   );

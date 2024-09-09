@@ -4,6 +4,7 @@ import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 import { AssignCustomerToGuestCart } from "@/queries/cart.queries";
+import { CustomerCreateInput } from "@/types";
 import { authorizedMagentoClient } from "@/utils/lib/graphql";
 
 interface LoginInput {
@@ -41,6 +42,18 @@ export async function login({ email, password }: LoginInput) {
   }
 
   return data;
+}
+
+export async function createCustomer(input: CustomerCreateInput) {
+  return await fetch(process.env.NEXT_PUBLIC_APP_URL + "/api/auth/register", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(input),
+    cache: "no-store",
+  }).then((res) => res.json());
 }
 
 export async function assignCustomerToGuestCart(token: string) {

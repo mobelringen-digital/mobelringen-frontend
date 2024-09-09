@@ -1,22 +1,8 @@
-import { getCustomerDetails } from "@/modules/account/actions";
-import { DetailsPage } from "@/modules/account/DetailsPage";
+import { AccountPage } from "@/modules/account/account/AccountPage";
+import { getCustomerDetails } from "@/modules/account/account/actions";
 
-import { navigate } from "../actions";
+export default async function Account() {
+  const customerData = await getCustomerDetails();
 
-async function getCustomer() {
-  const data = await getCustomerDetails();
-
-  if (!data?.customer) return navigate("/auth/login");
-
-  return data;
-}
-
-export default async function AccountPage() {
-  const data = await getCustomer();
-
-  if (!data?.customer) {
-    return null;
-  }
-
-  return <DetailsPage data={data.customer} />;
+  return <AccountPage data={customerData?.customer} />;
 }

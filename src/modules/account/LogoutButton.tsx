@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { Button } from "@/components/_ui/button/Button";
+import { Logout } from "@/modules/account/components/icons/Logout";
 import { logout } from "@/modules/auth/actions";
 
 import { navigate } from "../../app/actions";
@@ -17,8 +17,12 @@ export const LogoutButton = () => {
   };
 
   return (
-    <Button color="primary" onClick={handleSignOut}>
-      Logout
-    </Button>
+    <button
+      className="p-4 rounded-2xl hover:bg-warm-grey group text-left flex gap-2"
+      onClick={handleSignOut}
+    >
+      <Logout />
+      <span>Logg ut</span>
+    </button>
   );
 };

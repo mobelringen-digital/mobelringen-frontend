@@ -392,6 +392,15 @@ export const VippsInitPayment = graphql(`
   }
 `);
 
+export const InitKlarnaHppPayment = graphql(`
+  mutation initKlarnaHppPayment($cart_id: String!) {
+    initKlarnaHpp(input: { cart_id: $cart_id }) {
+      redirect_url
+      payment_session_id
+    }
+  }
+`);
+
 export const SetGuestEmailOnCart = graphql(`
   mutation SetGuestEmailOnCart($cartId: String!, $email: String!) {
     setGuestEmailOnCart(input: { cart_id: $cartId, email: $email }) {
