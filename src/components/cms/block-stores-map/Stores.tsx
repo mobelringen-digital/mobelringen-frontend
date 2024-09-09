@@ -6,7 +6,6 @@ import cx from "classnames";
 
 import dynamic from "next/dynamic";
 
-import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { SearchInput } from "@/components/search/SearchInput";
 import { PageTitle } from "@/components/typography/PageTitle";
@@ -64,7 +63,6 @@ export const Stores: React.FC<Props> = ({ stores, title }) => {
 
   return (
     <ContainerLayout className="mb-16">
-      <Breadcrumbs data={[{ label: "Butikkoversikt", url: "/stores" }]} />
       {title ? <PageTitle>{title}</PageTitle> : null}
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-12 lg:col-span-4">
