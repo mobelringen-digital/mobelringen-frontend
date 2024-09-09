@@ -4,6 +4,7 @@ export const CmsPageNodeFragment = graphql(`
   fragment CmsPageNode on Page {
     id
     url
+    title
     seo {
       metaTitle
       metaDescription
@@ -60,6 +61,7 @@ export const CmsPagesQueryDocument = graphql(`
   query CmsPages($first: Int = 1, $where: PageWhereInput) {
     pages(where: $where, first: $first) {
       id
+      title
       seo {
         metaTitle
         metaDescription

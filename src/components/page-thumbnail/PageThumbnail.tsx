@@ -34,7 +34,7 @@ export const PageThumbnail: React.FC<Props> = ({ page }) => {
           <Image
             className="rounded-3xl h-[250px] lg:h-[350px] object-cover"
             src={page.pageThumbnail?.url}
-            alt={page.metaTitle}
+            alt={page.title}
             width={page.pageThumbnail.width ?? 420}
             height={page.pageThumbnail.height ?? 350}
           />
@@ -54,7 +54,7 @@ export const PageThumbnail: React.FC<Props> = ({ page }) => {
         {formatStringToReadableDate(page.createdAt)}
       </div>
       <h3 className="font-feature text-xl lg:text-3xl font-light">
-        {page.metaTitle}
+        {page.title}
       </h3>
     </div>
   );
