@@ -3,6 +3,7 @@ import React from "react";
 import { CmsContentLoader } from "@/components/cms/cms-content-loader";
 import { getPage } from "@/components/cms/static-page-content/actions";
 import { MetaDescription, MetaTitle } from "@/components/meta";
+import { OgImage } from "@/components/meta/OgImage";
 
 interface Props {
   url: string;
@@ -10,8 +11,9 @@ interface Props {
 
 export async function StaticPageContent({ url }: Props) {
   const data = await getPage(url);
-  const metaDescription = data.pages[0]?.metaDescription;
-  const title = data.pages[0]?.metaTitle;
+  const metaDescription = data.pages[0]?.seo?.metaTitle;
+  const title = data.pages[0]?.seo?.metaDescription;
+  const ogImage = data.pages[0]?.seo?.ogImage?.url;
 
   if (!data.pages[0]) {
     return null;
@@ -23,6 +25,7 @@ export async function StaticPageContent({ url }: Props) {
       {metaDescription ? (
         <MetaDescription description={metaDescription} />
       ) : null}
+      {ogImage ? <OgImage image={ogImage} /> : null}
 
       {data.pages[0]?.content.map((content) => {
         return <CmsContentLoader key={content.__typename} data={content} />;
