@@ -82,6 +82,7 @@ export const CmsPagesQueryDocument = graphql(`
         ...CmsBlockNavigationButtons
         ...CmsBlockImageLinksSlider
         ...CmsBlockBrands
+        ...CmsBlockStoresMap
       }
     }
   }
@@ -242,6 +243,18 @@ export const CmsBlockQuoteFragment = graphql(`
         html
       }
       author
+      blockConfig {
+        ...CmsBlockConfig
+      }
+    }
+  }
+`);
+
+export const CmsBlockStoresMapFragment = graphql(`
+  fragment CmsBlockStoresMap on BlockStoresMap {
+    ... on BlockStoresMap {
+      __typename
+      title
       blockConfig {
         ...CmsBlockConfig
       }
