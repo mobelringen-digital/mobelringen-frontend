@@ -3,8 +3,6 @@ import { graphql } from "@/types/schema";
 export const CmsPageNodeFragment = graphql(`
   fragment CmsPageNode on Page {
     id
-    metaDescription
-    metaTitle
     url
     seo {
       metaTitle
@@ -62,8 +60,6 @@ export const CmsPagesQueryDocument = graphql(`
   query CmsPages($first: Int = 1, $where: PageWhereInput) {
     pages(where: $where, first: $first) {
       id
-      metaDescription
-      metaTitle
       seo {
         metaTitle
         metaDescription

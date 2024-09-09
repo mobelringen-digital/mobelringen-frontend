@@ -60,7 +60,8 @@ export const PaymentForm: React.FC<Props> = ({ cart, onSubmit }) => {
                   <span className="text-sm lg:text-base font-semibold">
                     {method?.title}
                   </span>
-                  {method?.code ? ICONS[method?.code] : null}
+                  {method?.code.includes("klarna") ? ICONS["klarna_kco"] : null}
+                  {method?.code.includes("vipps") ? ICONS["vipps"] : null}
                 </div>
               </RadioBlock>
             ))}
