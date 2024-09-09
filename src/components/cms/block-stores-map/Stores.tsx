@@ -16,6 +16,7 @@ const Map = dynamic(() => import("./Map"), { ssr: false });
 
 interface Props {
   stores?: Array<BaseStoreFragment | null> | null;
+  title?: string;
 }
 
 const searchFields: Array<keyof BaseStoreFragment> = [
@@ -24,7 +25,7 @@ const searchFields: Array<keyof BaseStoreFragment> = [
   "city",
 ];
 
-export const StoresPage: React.FC<Props> = ({ stores }) => {
+export const Stores: React.FC<Props> = ({ stores, title }) => {
   const [storesList, setStoresList] = React.useState(stores);
   const [searchValue, setSearchValue] = React.useState<string>("");
   const [selectedStore, setSelectedStore] =
@@ -64,7 +65,7 @@ export const StoresPage: React.FC<Props> = ({ stores }) => {
   return (
     <ContainerLayout className="mb-16">
       <Breadcrumbs data={[{ label: "Butikkoversikt", url: "/stores" }]} />
-      <PageTitle>Butikkoversikt</PageTitle>
+      {title ? <PageTitle>{title}</PageTitle> : null}
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-12 lg:col-span-4">
           <div className="mb-8">
