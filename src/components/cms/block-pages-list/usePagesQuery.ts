@@ -9,13 +9,15 @@ import { baseHygraphClient } from "@/utils/lib/graphql";
 
 export const CMS_PAGES_QUERY_KEY = ["cms-pages"];
 
+const ARTICLES_PER_PAGE = 12;
+
 export const fetchPages = async (where: PageWhereInput, pageNumber: number) => {
   const data = await baseHygraphClient("GET").request(
     CmsPagesConnectionDocument,
     {
       where,
-      first: 3,
-      skip: (pageNumber - 1) * 3,
+      first: ARTICLES_PER_PAGE,
+      skip: (pageNumber - 1) * ARTICLES_PER_PAGE,
     },
   );
 
