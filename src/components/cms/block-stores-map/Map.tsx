@@ -7,7 +7,7 @@ import ReactDOMServer from "react-dom/server";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 
-import { MapMarker } from "@/modules/stores/MapMarker";
+import { MapMarker } from "@/components/cms/block-stores-map/MapMarker";
 import { BaseStoreFragment } from "@/types";
 
 import "leaflet/dist/leaflet.css";
