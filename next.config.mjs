@@ -33,6 +33,7 @@ export default withSentryConfig(nextConfig, {
 
   org: "wiault",
   project: "mobelringen",
+  telemetry: false,
 
   // Only print logs for uploading source maps in CI
   silent: !process.env.CI,

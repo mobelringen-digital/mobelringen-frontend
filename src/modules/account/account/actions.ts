@@ -11,7 +11,7 @@ export async function getCustomerDetails() {
   if (!token) return;
 
   return await authorizedMagentoClient(token, "GET", {
-    tags: ["customer"],
+    tags: ["customer", token],
     revalidate: 3600,
   }).request<CustomerQuery>(CustomerDocument);
 }
@@ -22,7 +22,7 @@ export async function getCustomerOrders() {
   if (!token) return;
 
   return await authorizedMagentoClient(token, "GET", {
-    tags: ["customer-orders"],
+    tags: ["customer-orders", token],
     revalidate: 3600,
   }).request<CustomerQuery>(CustomerDocument);
 }
