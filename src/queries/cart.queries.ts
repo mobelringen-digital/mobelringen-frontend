@@ -393,8 +393,8 @@ export const VippsInitPayment = graphql(`
 `);
 
 export const InitKlarnaHppPayment = graphql(`
-  mutation initKlarnaHppPayment($cart_id: String!) {
-    initKlarnaHpp(input: { cart_id: $cart_id }) {
+  mutation initKlarnaHppPayment($cart_id: String!, $frontend_url: String!) {
+    initKlarnaHpp(input: { cart_id: $cart_id, frontend_url: $frontend_url }) {
       redirect_url
       payment_session_id
     }

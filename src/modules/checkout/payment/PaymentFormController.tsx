@@ -41,7 +41,7 @@ export const PaymentFormController: React.FC<Props> = ({ cart }) => {
       }
 
       if (method.code === "klarna_kco") {
-        const data = await initKlarnaHpp(cart.id);
+        const data = await initKlarnaHpp(cart.id, window.location.origin);
 
         if (data.initKlarnaHpp?.redirect_url) {
           return (window.location.href = data.initKlarnaHpp?.redirect_url);

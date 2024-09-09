@@ -64,12 +64,12 @@ export async function vippsInitPayment(input: VippsInitPaymentInput) {
   return data;
 }
 
-export async function initKlarnaHpp(cartId: string) {
+export async function initKlarnaHpp(cartId: string, frontendUrl: string) {
   const token = await getToken();
 
   const data = await authorizedMagentoClient(token, "POST").request(
     InitKlarnaHppPayment,
-    { cart_id: cartId },
+    { cart_id: cartId, frontend_url: frontendUrl },
   );
 
   revalidatePath("/cart");
