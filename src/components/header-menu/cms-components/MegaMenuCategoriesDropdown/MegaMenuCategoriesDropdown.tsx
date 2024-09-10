@@ -39,7 +39,7 @@ export async function MegaMenuCategoriesDropdown() {
         <div className="flex flex-col" key={idx}>
           <TempCategoryIcon />
           <Link
-            href={`/${category?.url_path}` ?? "#"}
+            href={category?.url_path ? `/${category?.url_path}` : "#"}
             className="text-xl font-medium my-2 hover:underline"
           >
             {category?.name}
