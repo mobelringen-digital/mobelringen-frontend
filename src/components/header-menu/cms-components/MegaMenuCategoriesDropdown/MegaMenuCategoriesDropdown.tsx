@@ -50,7 +50,9 @@ export async function MegaMenuCategoriesDropdown() {
                 <li key={index} className="text-sm">
                   <Link
                     className="hover:underline"
-                    href={`/${subCategory?.url_path}` ?? "#"}
+                    href={
+                      subCategory?.url_path ? `/${subCategory.url_path}` : "#"
+                    }
                   >
                     {subCategory?.name}
                   </Link>
