@@ -29,7 +29,7 @@ export const PaymentFormController: React.FC<Props> = ({ cart }) => {
     setPaymentMethodOnCart(cart.id, {
       code: method.code,
     }).then(async () => {
-      if (method.code === "vipps") {
+      if (method.code.includes("vipps")) {
         const data = await vippsInitPayment({
           cart_id: cart.id,
           fallback_url: `${window.location.origin}/cart/success`,
@@ -40,8 +40,12 @@ export const PaymentFormController: React.FC<Props> = ({ cart }) => {
         }
       }
 
-      if (method.code === "klarna_kco") {
-        const data = await initKlarnaHpp(cart.id, window.location.origin);
+      if (method.code.includes("klarna")) {
+        const data = await initKlarnaHpp({
+          cartId: cart.id,
+          frontendUrl: window.location.origin,
+          paymentMethod: method.code,
+        });
 
         if (data.initKlarnaHpp?.redirect_url) {
           return (window.location.href = data.initKlarnaHpp?.redirect_url);

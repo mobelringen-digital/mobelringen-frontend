@@ -78,7 +78,9 @@ export const Stores: React.FC<Props> = ({ stores, title }) => {
           <div className="max-h-[600px] overflow-auto">
             <div className="flex flex-col">
               {storesList
-                ?.filter((s) => s?.latitude && s?.longitude)
+                ?.filter(
+                  (s) => s?.latitude && s?.longitude && s.is_visible_on_map,
+                )
                 .map((store, idx) => (
                   <button
                     onClick={() => setSelectedStore(store)}
