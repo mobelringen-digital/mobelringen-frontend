@@ -65,7 +65,6 @@ export const CustomerOrderFragment = graphql(`
     count
     currency
     email
-    gift_receipt_included
     id
     total {
       grand_total {

@@ -83,6 +83,7 @@ export const CmsPagesQueryDocument = graphql(`
         ...CmsBlockImageLinksSlider
         ...CmsBlockBrands
         ...CmsBlockStoresMap
+        ...CmsBlockPressRoom
       }
     }
   }
@@ -269,6 +270,18 @@ export const CmsPageCategoriesDocument = graphql(`
       name
       categoryUrl
       pageType
+    }
+  }
+`);
+
+export const CmsBlockPressRoomFragment = graphql(`
+  fragment CmsBlockPressRoom on BlockPressRoom {
+    ... on BlockPressRoom {
+      __typename
+      title
+      blockConfig {
+        ...CmsBlockConfig
+      }
     }
   }
 `);

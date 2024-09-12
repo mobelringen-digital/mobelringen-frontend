@@ -176,7 +176,6 @@ export const ShippingCartAddressFragment = graphql(`
     customer_notes
     firstname
     lastname
-    pickup_location_code
     postcode
     region {
       code
