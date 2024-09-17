@@ -21,7 +21,7 @@ export const CartEvents: React.FC<Props> = ({ children, data }) => {
     return sendGTMEvent({
       event: "view_cart",
       currency: "NOK",
-      value: data?.prices?.grand_total,
+      value: data?.prices?.grand_total?.value,
       ...formatGTMCartItems(data),
     });
   }, [data]);

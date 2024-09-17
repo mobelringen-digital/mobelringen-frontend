@@ -27,7 +27,7 @@ export const formatGTMCartItems = (cart: BaseCartFragment) => {
     items: cart?.items?.map((item, idx) => ({
       item_id: item?.product.sku,
       item_name: item?.product.name,
-      item_brand: item?.product.brand,
+      item_brand: item?.product.productBrand?.name,
       index: idx,
       price: item?.prices?.price.value,
       discount: item?.prices?.total_item_discount?.value,
