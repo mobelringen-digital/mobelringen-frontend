@@ -53,7 +53,7 @@ export const FavoriteStore: React.FC<Props> = ({ customer, stores }) => {
 
   return (
     <div className="p-8 bg-white rounded-2xl">
-      <h2 className="text-xl font-bold mb-4">Kommunikasjon</h2>
+      <h2 className="text-xl font-bold mb-4">Handlepreferanser</h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-4 lg:w-1/2"
