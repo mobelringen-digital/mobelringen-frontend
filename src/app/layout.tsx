@@ -18,7 +18,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <GoogleTagManager gtmId="GTM-TVPH6NS" />
+      <GoogleTagManager gtmId="GTM-NK7F7KF6" />
       <meta name="robots" content="noindex,nofollow" />
       <meta
         name="viewport"
