@@ -2,7 +2,7 @@ import React from "react";
 
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { AccountLinks } from "@/modules/account/AccountLinks";
-import { getToken, logout } from "@/modules/auth/actions";
+import { getToken } from "@/modules/auth/actions";
 
 import { navigate } from "../actions";
 
@@ -14,7 +14,7 @@ export default async function AccountLayout({
   const token = await getToken();
 
   if (!token) {
-    return logout().then(() => navigate(`/auth/login?callback=TOKEN_EXPIRED`));
+    return navigate("/auth/logout");
   }
 
   return (

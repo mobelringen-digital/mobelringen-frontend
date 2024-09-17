@@ -56,6 +56,24 @@ export async function createCustomer(input: CustomerCreateInput) {
   }).then((res) => res.json());
 }
 
+export async function logout() {
+  return await fetch(process.env.NEXT_PUBLIC_APP_URL + "/api/auth/logout", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    cache: "no-store",
+  }).then((res) => res.json());
+}
+
+export async function deleteTokenCookie() {
+  const cookiesStore = cookies();
+  cookiesStore.set("token", "", {
+    expires: new Date(0),
+  });
+}
+
 export async function assignCustomerToGuestCart(token: string) {
   const cookiesStore = cookies();
   const guestCartId = cookiesStore.get("cart")?.value;
@@ -78,20 +96,6 @@ export async function assignCustomerToGuestCart(token: string) {
   revalidateTag("cart");
 
   return data;
-}
-
-export async function logout() {
-  const cookiesStore = cookies();
-
-  if (!cookiesStore.get("token")) {
-    return false;
-  }
-
-  cookiesStore.set("token", "", {
-    expires: new Date(0),
-  });
-
-  return true;
 }
 
 export async function getToken() {
