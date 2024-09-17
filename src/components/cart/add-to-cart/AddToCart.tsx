@@ -8,7 +8,7 @@ import {
 } from "@/components/cart/add-to-cart/actions";
 import { AddToCartController } from "@/components/cart/add-to-cart/AddToCartController";
 import { BaseCartFragment, BaseProductFragment } from "@/types";
-import { formatGTMCartItems, formatGTMCategories } from "@/utils/gtm";
+import { formatGTMCartItems } from "@/utils/gtm";
 
 interface Props {
   isDisabled?: boolean;

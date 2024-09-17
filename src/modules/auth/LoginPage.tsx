@@ -13,7 +13,6 @@ import { Input } from "@/components/_ui/input/Input";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { login } from "@/modules/auth/actions";
-import { formatGTMCartItems } from "@/utils/gtm";
 
 import { navigate } from "../../app/actions";
 

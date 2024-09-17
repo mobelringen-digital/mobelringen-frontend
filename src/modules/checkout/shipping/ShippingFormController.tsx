@@ -8,7 +8,7 @@ import { openToast } from "@/components/_ui/toast-provider";
 import { setShippingMethods } from "@/modules/checkout/shipping/actions";
 import { ShippingForm } from "@/modules/checkout/shipping/ShippingForm";
 import { AvailableShippingMethodFragment, BaseCartFragment } from "@/types";
-import { formatGTMCartItems, formatGTMCategories } from "@/utils/gtm";
+import { formatGTMCartItems } from "@/utils/gtm";
 
 import { navigate } from "../../../app/actions";
 

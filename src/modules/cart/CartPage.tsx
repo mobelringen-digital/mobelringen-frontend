@@ -13,7 +13,7 @@ import { CartPrice } from "@/modules/cart/cart-price/CartPrice";
 import { CartBreadcrumbs } from "@/modules/cart/CartBreadcrumbs";
 import { CartItems } from "@/modules/cart/CartItems";
 import { CartWarnings } from "@/modules/cart/CartWarnings";
-import { AvailablePaymentMethodFragment, BaseCartFragment } from "@/types";
+import { BaseCartFragment } from "@/types";
 import { formatGTMCartItems } from "@/utils/gtm";
 
 interface Props {

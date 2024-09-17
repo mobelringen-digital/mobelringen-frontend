@@ -1,4 +1,4 @@
-import { BaseCartFragment, CartItemFragment } from "@/types";
+import { BaseCartFragment } from "@/types";
 
 export const formatGTMCategories = (
   data: { name: string | null | undefined }[] | undefined,

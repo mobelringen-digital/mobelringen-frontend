@@ -7,7 +7,7 @@ import { sendGTMEvent } from "@next/third-parties/google";
 import { Button } from "@/components/_ui/button/Button";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { useCart } from "@/modules/cart/hooks/useCart";
-import { AvailablePaymentMethodFragment, BaseCartFragment } from "@/types";
+import { BaseCartFragment } from "@/types";
 import { formatGTMCartItems } from "@/utils/gtm";
 
 import { navigate } from "../../../app/actions";

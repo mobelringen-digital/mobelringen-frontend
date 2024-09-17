@@ -1,6 +1,5 @@
 import React from "react";
 
-import getCart from "@/components/cart/actions";
 import { CartPriceLine } from "@/modules/cart/cart-price/CartPriceLine";
 import { BaseCartFragment } from "@/types";
 

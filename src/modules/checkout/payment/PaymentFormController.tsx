@@ -10,11 +10,7 @@ import {
   vippsInitPayment,
 } from "@/modules/checkout/payment/actions";
 import { PaymentForm } from "@/modules/checkout/payment/PaymentForm";
-import {
-  AvailablePaymentMethodFragment,
-  AvailableShippingMethodFragment,
-  BaseCartFragment,
-} from "@/types";
+import { AvailablePaymentMethodFragment, BaseCartFragment } from "@/types";
 import { formatGTMCartItems } from "@/utils/gtm";
 
 import { navigate } from "../../../app/actions";
