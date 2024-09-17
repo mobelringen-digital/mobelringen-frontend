@@ -49,7 +49,7 @@ export const Communication: React.FC<Props> = ({ customer }) => {
       <h2 className="text-xl font-bold mb-4">Kommunikasjon</h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-4 w-1/2"
+        className="flex flex-col gap-4 lg:w-1/2"
       >
         <FieldWrapper control={control} name="accepts_sms">
           <Checkbox>

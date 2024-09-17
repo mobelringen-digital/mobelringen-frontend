@@ -54,7 +54,7 @@ export const FavoriteStore: React.FC<Props> = ({ customer, stores }) => {
       <h2 className="text-xl font-bold mb-4">Kommunikasjon</h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-4 w-1/2"
+        className="flex flex-col gap-4 lg:w-1/2"
       >
         <FieldWrapper control={control} name="favorite_store">
           <Select
@@ -62,9 +62,13 @@ export const FavoriteStore: React.FC<Props> = ({ customer, stores }) => {
             placeholder="Velg favorittbutikk"
             selectionMode="single"
             className="max-w-xs"
+            selectedKeys={[customer?.favorite_store ?? ""]}
           >
             {stores?.map((store, idx) => (
-              <SelectItem key={store?.external_id ?? idx}>
+              <SelectItem
+                value={store?.external_id ?? idx}
+                key={store?.external_id ?? idx}
+              >
                 {store?.name}
               </SelectItem>
             ))}

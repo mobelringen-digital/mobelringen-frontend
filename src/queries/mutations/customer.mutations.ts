@@ -195,7 +195,8 @@ export const CreateCustomerV2Document = graphql(`
   mutation CreateCustomerV2($input: CustomerCreateInput!) {
     createCustomerV2(input: $input) {
       customer {
-        ...CustomerData
+        firstname
+        lastname
       }
     }
   }

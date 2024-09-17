@@ -268,36 +268,6 @@ export type AggregationsFilterInput = {
   category?: InputMaybe<AggregationsCategoryFilterInput>;
 };
 
-export type ApplePayConfig = PaymentConfigItem & {
-  __typename: 'ApplePayConfig';
-  /** The styles for the ApplePay Smart Button configuration */
-  button_styles?: Maybe<ButtonStyles>;
-  /** The payment method code as defined in the payment gateway */
-  code?: Maybe<Scalars['String']['output']>;
-  /** Indicates whether the payment method is displayed */
-  is_visible?: Maybe<Scalars['Boolean']['output']>;
-  /** Defines the payment intent (Authorize or Capture */
-  payment_intent?: Maybe<Scalars['String']['output']>;
-  /** The payment source for the payment method */
-  payment_source?: Maybe<Scalars['String']['output']>;
-  /** The PayPal parameters required to load the JS SDK */
-  sdk_params?: Maybe<Array<Maybe<SdkParams>>>;
-  /** The relative order the payment method is displayed on the checkout page */
-  sort_order?: Maybe<Scalars['String']['output']>;
-  /** The name displayed for the payment method */
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-/** Apple Pay inputs */
-export type ApplePayMethodInput = {
-  /** The payment source for the payment method */
-  payment_source?: InputMaybe<Scalars['String']['input']>;
-  /** The payment services order ID */
-  payments_order_id?: InputMaybe<Scalars['String']['input']>;
-  /** PayPal order ID */
-  paypal_order_id?: InputMaybe<Scalars['String']['input']>;
-};
-
 /** Contains the applied coupon code. */
 export type AppliedCoupon = {
   __typename: 'AppliedCoupon';
@@ -344,24 +314,6 @@ export type ApplyCouponToCartOutput = {
   cart: Cart;
 };
 
-/** The strategy to apply coupons to the cart. */
-export enum ApplyCouponsStrategy {
-  /** Append new coupons keeping the coupons that have been applied before. */
-  Append = 'APPEND',
-  /** Remove all the coupons from the cart and apply only new provided coupons. */
-  Replace = 'REPLACE'
-}
-
-/** Apply coupons to the cart. */
-export type ApplyCouponsToCartInput = {
-  /** The unique ID of a `Cart` object. */
-  cart_id: Scalars['String']['input'];
-  /** An array of valid coupon codes. */
-  coupon_codes: Array<InputMaybe<Scalars['String']['input']>>;
-  /** `replace` to replace the existing coupon(s) or `append` to add the coupon to the coupon(s) list. */
-  type?: InputMaybe<ApplyCouponsStrategy>;
-};
-
 /** Defines the input required to run the `applyGiftCardToCart` mutation. */
 export type ApplyGiftCardToCartInput = {
   /** The unique ID that identifies the customer's cart. */
@@ -395,14 +347,6 @@ export type ApplyStoreCreditToCartOutput = {
   __typename: 'ApplyStoreCreditToCartOutput';
   /** The contents of the specified shopping cart. */
   cart: Cart;
-};
-
-/** AreaInput defines the parameters which will be used for filter by specified location. */
-export type AreaInput = {
-  /** The radius for the search in KM. */
-  radius: Scalars['Int']['input'];
-  /** The country code where search must be performed. Required parameter together with region, city or postcode. */
-  search_term: Scalars['String']['input'];
 };
 
 /** Asset system model */
@@ -1355,8 +1299,6 @@ export type AttributeFilterInput = {
   is_html_allowed_on_front?: InputMaybe<Scalars['Boolean']['input']>;
   /** Whether a product or category attribute can be searched or not. */
   is_searchable?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Whether a customer or customer address attribute is used for customer segment or not. */
-  is_used_for_customer_segment?: InputMaybe<Scalars['Boolean']['input']>;
   /** Whether a product or category attribute can be used for price rules or not. */
   is_used_for_price_rules?: InputMaybe<Scalars['Boolean']['input']>;
   /** Whether a product or category attribute is used for promo rules or not. */
@@ -2200,8 +2142,6 @@ export type BillingCartAddress = CartAddressInterface & {
   company?: Maybe<Scalars['String']['output']>;
   /** An object containing the country label and code. */
   country: CartAddressCountry;
-  /** The custom attribute values of the billing or shipping address. */
-  custom_attributes: Array<Maybe<AttributeValueInterface>>;
   /** @deprecated The field is used only in shipping address. */
   customer_notes?: Maybe<Scalars['String']['output']>;
   /** The customer's fax number. */
@@ -8854,7 +8794,7 @@ export type BundleProduct = CustomizableProductInterface & PhysicalProductInterf
   new_from_date?: Maybe<Scalars['String']['output']>;
   /** The end date for new product listings. */
   new_to_date?: Maybe<Scalars['String']['output']>;
-  /** Product stock only x left count */
+  /** The value assigned to the Only X Left Threshold option in the Admin. */
   only_x_left_in_stock?: Maybe<Scalars['Float']['output']>;
   /** An array of options for a customizable product. */
   options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>;
@@ -8917,7 +8857,7 @@ export type BundleProduct = CustomizableProductInterface & PhysicalProductInterf
   special_to_date?: Maybe<Scalars['String']['output']>;
   /** Indicates whether the product is staged for a future campaign. */
   staged: Scalars['Boolean']['output'];
-  /** Stock status of the product */
+  /** The stock status of the product. */
   stock_status?: Maybe<ProductStockStatus>;
   /** An array containing information about all the stores with product quantities. */
   stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
@@ -9033,66 +8973,6 @@ export type BundleWishlistItem = WishlistItemInterface & {
   quantity: Scalars['Float']['output'];
 };
 
-export type ButtonStyles = {
-  __typename: 'ButtonStyles';
-  /** The button color */
-  color?: Maybe<Scalars['String']['output']>;
-  /** The button height in pixels */
-  height?: Maybe<Scalars['Int']['output']>;
-  /** The button label */
-  label?: Maybe<Scalars['String']['output']>;
-  /** The button layout */
-  layout?: Maybe<Scalars['String']['output']>;
-  /** The button shape */
-  shape?: Maybe<Scalars['String']['output']>;
-  /** Indicates whether the tagline is displayed */
-  tagline?: Maybe<Scalars['Boolean']['output']>;
-  /** Defines if the button uses default height. If the value is false, the value of height is used */
-  use_default_height?: Maybe<Scalars['Boolean']['output']>;
-};
-
-/** Defines the order to cancel. */
-export type CancelOrderInput = {
-  /** Order ID. */
-  order_id: Scalars['ID']['input'];
-  /** Cancellation reason. */
-  reason: Scalars['String']['input'];
-};
-
-/** Contains the updated customer order and error message if any. */
-export type CancelOrderOutput = {
-  __typename: 'CancelOrderOutput';
-  /** Error encountered while cancelling the order. */
-  error?: Maybe<Scalars['String']['output']>;
-  /** Updated customer order. */
-  order?: Maybe<CustomerOrder>;
-};
-
-export type CancellationReason = {
-  __typename: 'CancellationReason';
-  description: Scalars['String']['output'];
-};
-
-export type Card = {
-  __typename: 'Card';
-  /** Card bin details */
-  bin_details?: Maybe<CardBin>;
-  /** Expiration month of the card */
-  card_expiry_month?: Maybe<Scalars['String']['output']>;
-  /** Expiration year of the card */
-  card_expiry_year?: Maybe<Scalars['String']['output']>;
-  /** Last four digits of the card */
-  last_digits?: Maybe<Scalars['String']['output']>;
-  /** Name on the card */
-  name?: Maybe<Scalars['String']['output']>;
-};
-
-export type CardBin = {
-  __typename: 'CardBin';
-  /** Card bin number */
-  bin?: Maybe<Scalars['String']['output']>;
-};
-
 /** Contains the contents and other details about a guest or customer cart. */
 export type Cart = {
   __typename: 'Cart';
@@ -9167,8 +9047,6 @@ export type CartAddressInput = {
   company?: InputMaybe<Scalars['String']['input']>;
   /** The country code and label for the billing or shipping address. */
   country_code: Scalars['String']['input'];
-  /** The custom attribute values of the billing or shipping address. */
-  custom_attributes?: InputMaybe<Array<InputMaybe<AttributeValueInput>>>;
   /** The customer's fax number. */
   fax?: InputMaybe<Scalars['String']['input']>;
   /** The first name of the customer or guest. */
@@ -9204,8 +9082,6 @@ export type CartAddressInterface = {
   company?: Maybe<Scalars['String']['output']>;
   /** An object containing the country label and code. */
   country: CartAddressCountry;
-  /** The custom attribute values of the billing or shipping address. */
-  custom_attributes: Array<Maybe<AttributeValueInterface>>;
   /** The customer's fax number. */
   fax?: Maybe<Scalars['String']['output']>;
   /** The first name of the customer or guest. */
@@ -9782,37 +9658,6 @@ export enum CheckoutUserInputErrorCodes {
   ReorderNotAvailable = 'REORDER_NOT_AVAILABLE',
   Undefined = 'UNDEFINED'
 }
-
-/** Contains details about errors encountered when a customer clear cart. */
-export type ClearCartError = {
-  __typename: 'ClearCartError';
-  /** A localized error message */
-  message: Scalars['String']['output'];
-  /** A cart-specific error type. */
-  type: ClearCartErrorType;
-};
-
-export enum ClearCartErrorType {
-  Inactive = 'INACTIVE',
-  NotFound = 'NOT_FOUND',
-  Unauthorised = 'UNAUTHORISED',
-  Undefined = 'UNDEFINED'
-}
-
-/** Assigns a specific `cart_id` to the empty cart. */
-export type ClearCartInput = {
-  /** The unique ID of a `Cart` object. */
-  uid: Scalars['ID']['input'];
-};
-
-/** Output of the request to clear the customer cart. */
-export type ClearCartOutput = {
-  __typename: 'ClearCartOutput';
-  /** The cart after clear cart items. */
-  cart?: Maybe<Cart>;
-  /** An array of errors encountered while clearing the cart item */
-  errors?: Maybe<Array<Maybe<ClearCartError>>>;
-};
 
 /** Contains details about a specific CMS block. */
 export type CmsBlock = {
@@ -10562,7 +10407,7 @@ export type ConfigurableProduct = CustomizableProductInterface & PhysicalProduct
   new_from_date?: Maybe<Scalars['String']['output']>;
   /** The end date for new product listings. */
   new_to_date?: Maybe<Scalars['String']['output']>;
-  /** Product stock only x left count */
+  /** The value assigned to the Only X Left Threshold option in the Admin. */
   only_x_left_in_stock?: Maybe<Scalars['Float']['output']>;
   /** An array of options for a customizable product. */
   options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>;
@@ -10619,7 +10464,7 @@ export type ConfigurableProduct = CustomizableProductInterface & PhysicalProduct
   special_to_date?: Maybe<Scalars['String']['output']>;
   /** Indicates whether the product is staged for a future campaign. */
   staged: Scalars['Boolean']['output'];
-  /** Stock status of the product */
+  /** The stock status of the product. */
   stock_status?: Maybe<ProductStockStatus>;
   /** An array containing information about all the stores with product quantities. */
   stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
@@ -10868,24 +10713,6 @@ export type ConnectPositionInput = {
   end?: InputMaybe<Scalars['Boolean']['input']>;
   /** Connect document at first position */
   start?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-export type ContactUsInput = {
-  /** The shopper's comment to the merchant. */
-  comment: Scalars['String']['input'];
-  /** The email address of the shopper. */
-  email: Scalars['String']['input'];
-  /** The full name of the shopper. */
-  name: Scalars['String']['input'];
-  /** The shopper's telephone number. */
-  telephone?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Contains the status of the request. */
-export type ContactUsOutput = {
-  __typename: 'ContactUsOutput';
-  /** Indicates whether the request was successful. */
-  status: Scalars['Boolean']['output'];
 };
 
 /** Contains the source and target wish lists after copying products. */
@@ -11474,35 +11301,6 @@ export type CreatePayflowProTokenOutput = {
   secure_token: Scalars['String']['output'];
   /** A secure token ID generated by PayPal. */
   secure_token_id: Scalars['String']['output'];
-};
-
-/** Contains payment order details that are used while processing the payment order */
-export type CreatePaymentOrderInput = {
-  /** The customer cart ID */
-  cartId: Scalars['String']['input'];
-  /** Defines the origin location for that payment request */
-  location: PaymentLocation;
-  /** The code for the payment method used in the order */
-  methodCode: Scalars['String']['input'];
-  /** The identifiable payment source for the payment method */
-  paymentSource: Scalars['String']['input'];
-  /** Indicates whether the payment information should be vaulted */
-  vaultIntent?: InputMaybe<Scalars['Boolean']['input']>;
-};
-
-/** Contains payment order details that are used while processing the payment order */
-export type CreatePaymentOrderOutput = {
-  __typename: 'CreatePaymentOrderOutput';
-  /** The amount of the payment order */
-  amount?: Maybe<Scalars['Float']['output']>;
-  /** The currency of the payment order */
-  currency_code?: Maybe<Scalars['String']['output']>;
-  /** PayPal order ID */
-  id?: Maybe<Scalars['String']['output']>;
-  /** The order ID generated by Payment Services */
-  mp_order_id?: Maybe<Scalars['String']['output']>;
-  /** The status of the payment order */
-  status?: Maybe<Scalars['String']['output']>;
 };
 
 /** Defines a new product review. */
@@ -12926,8 +12724,6 @@ export type Discount = {
   amount: Money;
   /** The type of the entity the discount is applied to. */
   applied_to: CartDiscountType;
-  /** The coupon related to the discount. */
-  coupon?: Maybe<AppliedCoupon>;
   /** A description of the discount. */
   label: Scalars['String']['output'];
 };
@@ -13221,7 +13017,7 @@ export type DownloadableProduct = CustomizableProductInterface & ProductInterfac
   new_from_date?: Maybe<Scalars['String']['output']>;
   /** The end date for new product listings. */
   new_to_date?: Maybe<Scalars['String']['output']>;
-  /** Product stock only x left count */
+  /** The value assigned to the Only X Left Threshold option in the Admin. */
   only_x_left_in_stock?: Maybe<Scalars['Float']['output']>;
   /** An array of options for a customizable product. */
   options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>;
@@ -13278,7 +13074,7 @@ export type DownloadableProduct = CustomizableProductInterface & ProductInterfac
   special_to_date?: Maybe<Scalars['String']['output']>;
   /** Indicates whether the product is staged for a future campaign. */
   staged: Scalars['Boolean']['output'];
-  /** Stock status of the product */
+  /** The stock status of the product. */
   stock_status?: Maybe<ProductStockStatus>;
   /** An array containing information about all the stores with product quantities. */
   stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
@@ -14475,13 +14271,6 @@ export type GenerateCustomerTokenAsAdminOutput = {
   customer_token: Scalars['String']['output'];
 };
 
-/** Gets the payment SDK URLs and values */
-export type GetPaymentSdkOutput = {
-  __typename: 'GetPaymentSDKOutput';
-  /** The payment SDK parameters */
-  sdkParams?: Maybe<Array<Maybe<PaymentSdkParamsItem>>>;
-};
-
 /** Contains details about the gift card account. */
 export type GiftCardAccount = {
   __typename: 'GiftCardAccount';
@@ -14785,7 +14574,7 @@ export type GiftCardProduct = CustomizableProductInterface & PhysicalProductInte
   new_from_date?: Maybe<Scalars['String']['output']>;
   /** The end date for new product listings. */
   new_to_date?: Maybe<Scalars['String']['output']>;
-  /** Product stock only x left count */
+  /** The value assigned to the Only X Left Threshold option in the Admin. */
   only_x_left_in_stock?: Maybe<Scalars['Float']['output']>;
   /** The maximum acceptable value of an open amount gift card. */
   open_amount_max?: Maybe<Scalars['Float']['output']>;
@@ -14846,7 +14635,7 @@ export type GiftCardProduct = CustomizableProductInterface & PhysicalProductInte
   special_to_date?: Maybe<Scalars['String']['output']>;
   /** Indicates whether the product is staged for a future campaign. */
   staged: Scalars['Boolean']['output'];
-  /** Stock status of the product */
+  /** The stock status of the product. */
   stock_status?: Maybe<ProductStockStatus>;
   /** An array containing information about all the stores with product quantities. */
   stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
@@ -15275,46 +15064,6 @@ export type GiftWrappingImage = {
   url: Scalars['String']['output'];
 };
 
-export type GooglePayButtonStyles = {
-  __typename: 'GooglePayButtonStyles';
-  /** The button color */
-  color?: Maybe<Scalars['String']['output']>;
-  /** The button height in pixels */
-  height?: Maybe<Scalars['Int']['output']>;
-  /** The button type */
-  type?: Maybe<Scalars['String']['output']>;
-};
-
-export type GooglePayConfig = PaymentConfigItem & {
-  __typename: 'GooglePayConfig';
-  /** The styles for the GooglePay Button configuration */
-  button_styles?: Maybe<GooglePayButtonStyles>;
-  /** The payment method code as defined in the payment gateway */
-  code?: Maybe<Scalars['String']['output']>;
-  /** Indicates whether the payment method is displayed */
-  is_visible?: Maybe<Scalars['Boolean']['output']>;
-  /** Defines the payment intent (Authorize or Capture */
-  payment_intent?: Maybe<Scalars['String']['output']>;
-  /** The payment source for the payment method */
-  payment_source?: Maybe<Scalars['String']['output']>;
-  /** The PayPal parameters required to load the JS SDK */
-  sdk_params?: Maybe<Array<Maybe<SdkParams>>>;
-  /** The relative order the payment method is displayed on the checkout page */
-  sort_order?: Maybe<Scalars['String']['output']>;
-  /** The name displayed for the payment method */
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-/** Google Pay inputs */
-export type GooglePayMethodInput = {
-  /** The payment source for the payment method */
-  payment_source?: InputMaybe<Scalars['String']['input']>;
-  /** The payment services order ID */
-  payments_order_id?: InputMaybe<Scalars['String']['input']>;
-  /** PayPal order ID */
-  paypal_order_id?: InputMaybe<Scalars['String']['input']>;
-};
-
 export type GrandTotal = {
   __typename: 'GrandTotal';
   currency: Scalars['String']['output'];
@@ -15418,7 +15167,7 @@ export type GroupedProduct = PhysicalProductInterface & ProductInterface & Routa
   new_from_date?: Maybe<Scalars['String']['output']>;
   /** The end date for new product listings. */
   new_to_date?: Maybe<Scalars['String']['output']>;
-  /** Product stock only x left count */
+  /** The value assigned to the Only X Left Threshold option in the Admin. */
   only_x_left_in_stock?: Maybe<Scalars['Float']['output']>;
   /** If the product has multiple options, determines where they appear on the product page. */
   options_container?: Maybe<Scalars['String']['output']>;
@@ -15473,7 +15222,7 @@ export type GroupedProduct = PhysicalProductInterface & ProductInterface & Routa
   special_to_date?: Maybe<Scalars['String']['output']>;
   /** Indicates whether the product is staged for a future campaign. */
   staged: Scalars['Boolean']['output'];
-  /** Stock status of the product */
+  /** The stock status of the product. */
   stock_status?: Maybe<ProductStockStatus>;
   /** An array containing information about all the stores with product quantities. */
   stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
@@ -15567,54 +15316,6 @@ export type GroupedProductWishlistItem = WishlistItemInterface & {
   product?: Maybe<ProductInterface>;
   /** The quantity of this wish list item. */
   quantity: Scalars['Float']['output'];
-};
-
-export type HostedFieldsConfig = PaymentConfigItem & {
-  __typename: 'HostedFieldsConfig';
-  /** Vault payment method code */
-  cc_vault_code?: Maybe<Scalars['String']['output']>;
-  /** The payment method code as defined in the payment gateway */
-  code?: Maybe<Scalars['String']['output']>;
-  /** Card vault enabled */
-  is_vault_enabled?: Maybe<Scalars['Boolean']['output']>;
-  /** Indicates whether the payment method is displayed */
-  is_visible?: Maybe<Scalars['Boolean']['output']>;
-  /** Defines the payment intent (Authorize or Capture */
-  payment_intent?: Maybe<Scalars['String']['output']>;
-  /** The payment source for the payment method */
-  payment_source?: Maybe<Scalars['String']['output']>;
-  /** Card and bin details required */
-  requires_card_details?: Maybe<Scalars['Boolean']['output']>;
-  /** The PayPal parameters required to load the JS SDK */
-  sdk_params?: Maybe<Array<Maybe<SdkParams>>>;
-  /** The relative order the payment method is displayed on the checkout page */
-  sort_order?: Maybe<Scalars['String']['output']>;
-  /** 3DS mode */
-  three_ds?: Maybe<Scalars['Boolean']['output']>;
-  /** The name displayed for the payment method */
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-/** Hosted Fields payment inputs */
-export type HostedFieldsInput = {
-  /** Card bin number */
-  cardBin?: InputMaybe<Scalars['String']['input']>;
-  /** Expiration month of the card */
-  cardExpiryMonth?: InputMaybe<Scalars['String']['input']>;
-  /** Expiration year of the card */
-  cardExpiryYear?: InputMaybe<Scalars['String']['input']>;
-  /** Last four digits of the card */
-  cardLast4?: InputMaybe<Scalars['String']['input']>;
-  /** Name on the card */
-  holderName?: InputMaybe<Scalars['String']['input']>;
-  /** Indicates whether details about the shopper's credit/debit card should be tokenized for later usage. Required only if Vault is enabled for the Payment Services payment integration. */
-  is_active_payment_token_enabler?: InputMaybe<Scalars['Boolean']['input']>;
-  /** The payment source for the payment method */
-  payment_source?: InputMaybe<Scalars['String']['input']>;
-  /** The payment services order ID */
-  payments_order_id?: InputMaybe<Scalars['String']['input']>;
-  /** PayPal order ID */
-  paypal_order_id?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Contains a set of relative URLs that PayPal uses in response to various actions during the authorization process. Magento prepends the base URL to this value to create a full URL. For example, if the full URL is https://www.example.com/path/to/page.html, the relative URL is path/to/page.html. Use this input for Payments Pro Hosted Solution payment method. */
@@ -19291,20 +18992,6 @@ export type MenulinksUnionWhereUniqueInput = {
   MegaMenuDropdown?: InputMaybe<MegaMenuDropdownWhereUniqueInput>;
 };
 
-export type MessageStyleLogo = {
-  __typename: 'MessageStyleLogo';
-  /** The type of logo for the PayPal Pay Later messaging */
-  type?: Maybe<Scalars['String']['output']>;
-};
-
-export type MessageStyles = {
-  __typename: 'MessageStyles';
-  /** The message layout */
-  layout?: Maybe<Scalars['String']['output']>;
-  /** The message logo */
-  logo?: Maybe<MessageStyleLogo>;
-};
-
 /** Defines a monetary value, including a numeric value and a currency code. */
 export type Money = {
   __typename: 'Money';
@@ -19666,8 +19353,6 @@ export type Mutation = {
   addWishlistItemsToCart?: Maybe<AddWishlistItemsToCartOutput>;
   /** Apply a pre-defined coupon code to the specified cart. */
   applyCouponToCart?: Maybe<ApplyCouponToCartOutput>;
-  /** Apply a pre-defined coupon code to the specified cart. */
-  applyCouponsToCart?: Maybe<ApplyCouponToCartOutput>;
   /** Apply a pre-defined gift card code to the specified cart. */
   applyGiftCardToCart?: Maybe<ApplyGiftCardToCartOutput>;
   /** Apply all available points, up to the cart total. Partial redemption is not available. */
@@ -19678,16 +19363,10 @@ export type Mutation = {
   assignCompareListToCustomer?: Maybe<AssignCompareListToCustomerOutput>;
   /** Assign a logged-in customer to the specified guest shopping cart. */
   assignCustomerToGuestCart: Cart;
-  /** Cancel the specified customer order. */
-  cancelOrder?: Maybe<CancelOrderOutput>;
   /** Change the password for the logged-in customer. */
   changeCustomerPassword?: Maybe<Customer>;
-  /** Remove all items from the specified cart. */
-  clearCart: ClearCartOutput;
   /** Confirms the email address for a customer. */
   confirmEmail?: Maybe<CustomerOutput>;
-  /** Send a 'Contact Us' email to the merchant. */
-  contactUs?: Maybe<ContactUsOutput>;
   /** Copy products from one wish list to another. The original wish list is unchanged. */
   copyProductsBetweenWishlists?: Maybe<CopyProductsBetweenWishlistsOutput>;
   /** Create an asset. Use the returned info to finish the creation process by uploading the asset. */
@@ -19753,8 +19432,6 @@ export type Mutation = {
   createPageCategory?: Maybe<PageCategory>;
   /** Initiate a transaction and receive a token. Use this mutation for Payflow Pro and Payments Pro payment methods */
   createPayflowProToken?: Maybe<CreatePayflowProTokenOutput>;
-  /** Creates a payment order for further payment processing */
-  createPaymentOrder?: Maybe<CreatePaymentOrderOutput>;
   /** Initiate an Express Checkout transaction and receive a token. Use this mutation for Express Checkout and Payments Standard payment methods. */
   createPaypalExpressToken?: Maybe<PaypalExpressTokenOutput>;
   /** Create a product review for the specified product. */
@@ -20165,8 +19842,6 @@ export type Mutation = {
   redeemGiftCardBalanceAsStoreCredit?: Maybe<GiftCardAccount>;
   /** Remove a previously-applied coupon from the cart. The cart must contain at least one item in order to remove the coupon. */
   removeCouponFromCart?: Maybe<RemoveCouponFromCartOutput>;
-  /** Remove a previously-applied coupon from the cart. The cart must contain at least one item in order to remove the coupon. */
-  removeCouponsFromCart?: Maybe<RemoveCouponFromCartOutput>;
   /** Removes a gift card from the cart. */
   removeGiftCardFromCart?: Maybe<RemoveGiftCardFromCartOutput>;
   /** Delete the specified gift registry. */
@@ -20301,8 +19976,6 @@ export type Mutation = {
   shareGiftRegistry?: Maybe<ShareGiftRegistryOutput>;
   /** Subscribe the specified email to the store's newsletter. */
   subscribeEmailToNewsletter?: Maybe<SubscribeEmailToNewsletterOutput>;
-  /** Synchronizes the payment order details for further payment processing */
-  syncPaymentOrder?: Maybe<Scalars['Boolean']['output']>;
   /** Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishAsset?: Maybe<Asset>;
   /** Unpublish one banner from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -20802,11 +20475,6 @@ export type MutationApplyCouponToCartArgs = {
 };
 
 
-export type MutationApplyCouponsToCartArgs = {
-  input: InputMaybe<ApplyCouponsToCartInput>;
-};
-
-
 export type MutationApplyGiftCardToCartArgs = {
   input: InputMaybe<ApplyGiftCardToCartInput>;
 };
@@ -20832,29 +20500,14 @@ export type MutationAssignCustomerToGuestCartArgs = {
 };
 
 
-export type MutationCancelOrderArgs = {
-  input: CancelOrderInput;
-};
-
-
 export type MutationChangeCustomerPasswordArgs = {
   currentPassword: Scalars['String']['input'];
   newPassword: Scalars['String']['input'];
 };
 
 
-export type MutationClearCartArgs = {
-  input: ClearCartInput;
-};
-
-
 export type MutationConfirmEmailArgs = {
   input: ConfirmEmailInput;
-};
-
-
-export type MutationContactUsArgs = {
-  input: ContactUsInput;
 };
 
 
@@ -21002,11 +20655,6 @@ export type MutationCreatePageCategoryArgs = {
 
 export type MutationCreatePayflowProTokenArgs = {
   input: PayflowProTokenInput;
-};
-
-
-export type MutationCreatePaymentOrderArgs = {
-  input: CreatePaymentOrderInput;
 };
 
 
@@ -22024,11 +21672,6 @@ export type MutationRemoveCouponFromCartArgs = {
 };
 
 
-export type MutationRemoveCouponsFromCartArgs = {
-  input: InputMaybe<RemoveCouponsFromCartInput>;
-};
-
-
 export type MutationRemoveGiftCardFromCartArgs = {
   input: InputMaybe<RemoveGiftCardFromCartInput>;
 };
@@ -22487,11 +22130,6 @@ export type MutationShareGiftRegistryArgs = {
 
 export type MutationSubscribeEmailToNewsletterArgs = {
   email: Scalars['String']['input'];
-};
-
-
-export type MutationSyncPaymentOrderArgs = {
-  input: InputMaybe<SyncPaymentOrderInput>;
 };
 
 
@@ -25398,60 +25036,6 @@ export type PayflowProUrlInput = {
   return_url: Scalars['String']['input'];
 };
 
-export type PaymentCommonConfig = PaymentConfigItem & {
-  __typename: 'PaymentCommonConfig';
-  /** The payment method code as defined in the payment gateway */
-  code?: Maybe<Scalars['String']['output']>;
-  /** Indicates whether the payment method is displayed */
-  is_visible?: Maybe<Scalars['Boolean']['output']>;
-  /** Defines the payment intent (Authorize or Capture */
-  payment_intent?: Maybe<Scalars['String']['output']>;
-  /** The PayPal parameters required to load the JS SDK */
-  sdk_params?: Maybe<Array<Maybe<SdkParams>>>;
-  /** The relative order the payment method is displayed on the checkout page */
-  sort_order?: Maybe<Scalars['String']['output']>;
-  /** The name displayed for the payment method */
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-/** Contains payment fields that are common to all types of payment methods. */
-export type PaymentConfigItem = {
-  /** The payment method code as defined in the payment gateway */
-  code?: Maybe<Scalars['String']['output']>;
-  /** Indicates whether the payment method is displayed */
-  is_visible?: Maybe<Scalars['Boolean']['output']>;
-  /** Defines the payment intent (Authorize or Capture */
-  payment_intent?: Maybe<Scalars['String']['output']>;
-  /** The PayPal parameters required to load the JS SDK */
-  sdk_params?: Maybe<Array<Maybe<SdkParams>>>;
-  /** The relative order the payment method is displayed on the checkout page */
-  sort_order?: Maybe<Scalars['String']['output']>;
-  /** The name displayed for the payment method */
-  title?: Maybe<Scalars['String']['output']>;
-};
-
-/** Retrieves the payment configuration for a given location */
-export type PaymentConfigOutput = {
-  __typename: 'PaymentConfigOutput';
-  /** ApplePay payment method configuration */
-  apple_pay?: Maybe<ApplePayConfig>;
-  /** GooglePay payment method configuration */
-  google_pay?: Maybe<GooglePayConfig>;
-  /** Hosted fields payment method configuration */
-  hosted_fields?: Maybe<HostedFieldsConfig>;
-  /** Smart Buttons payment method configuration */
-  smart_buttons?: Maybe<SmartButtonsConfig>;
-};
-
-/** Defines the origin location for that payment request */
-export enum PaymentLocation {
-  Admin = 'ADMIN',
-  Cart = 'CART',
-  Checkout = 'CHECKOUT',
-  Minicart = 'MINICART',
-  ProductDetail = 'PRODUCT_DETAIL'
-}
-
 /** Defines the payment method. */
 export type PaymentMethodInput = {
   braintree?: InputMaybe<BraintreeInput>;
@@ -25475,47 +25059,10 @@ export type PaymentMethodInput = {
   payflowpro?: InputMaybe<PayflowProInput>;
   /** Required input for PayPal Payflow Pro vault payments. */
   payflowpro_cc_vault?: InputMaybe<VaultTokenInput>;
-  /** Required input for Apple Pay button */
-  payment_services_paypal_apple_pay?: InputMaybe<ApplePayMethodInput>;
-  /** Required input for Google Pay button */
-  payment_services_paypal_google_pay?: InputMaybe<GooglePayMethodInput>;
-  /** Required input for Hosted Fields */
-  payment_services_paypal_hosted_fields?: InputMaybe<HostedFieldsInput>;
-  /** Required input for Smart buttons */
-  payment_services_paypal_smart_buttons?: InputMaybe<SmartButtonMethodInput>;
-  /** Required input for vault */
-  payment_services_paypal_vault?: InputMaybe<VaultMethodInput>;
   /** Required input for Express Checkout and Payments Standard payments. */
   paypal_express?: InputMaybe<PaypalExpressInput>;
   /** The purchase order number. Optional for most payment methods. */
   purchase_order_number?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** Contains the payment order details */
-export type PaymentOrderOutput = {
-  __typename: 'PaymentOrderOutput';
-  /** PayPal order ID */
-  id?: Maybe<Scalars['String']['output']>;
-  /** The order ID generated by Payment Services */
-  mp_order_id?: Maybe<Scalars['String']['output']>;
-  /** Details about the card used on the order */
-  payment_source_details?: Maybe<PaymentSourceDetails>;
-  /** The status of the payment order */
-  status?: Maybe<Scalars['String']['output']>;
-};
-
-export type PaymentSdkParamsItem = {
-  __typename: 'PaymentSDKParamsItem';
-  /** The payment method code used in the order */
-  code?: Maybe<Scalars['String']['output']>;
-  /** The payment SDK parameters */
-  params?: Maybe<Array<Maybe<SdkParams>>>;
-};
-
-export type PaymentSourceDetails = {
-  __typename: 'PaymentSourceDetails';
-  /** Details about the card used on the order */
-  card?: Maybe<Card>;
 };
 
 /** The stored payment method available to the customer. */
@@ -25610,93 +25157,6 @@ export type PaypalExpressUrlsInput = {
 export type PhysicalProductInterface = {
   /** The weight of the item, in units defined by the store. */
   weight?: Maybe<Scalars['Float']['output']>;
-};
-
-/** Defines Pickup Location information. */
-export type PickupLocation = {
-  __typename: 'PickupLocation';
-  city?: Maybe<Scalars['String']['output']>;
-  contact_name?: Maybe<Scalars['String']['output']>;
-  country_id?: Maybe<Scalars['String']['output']>;
-  description?: Maybe<Scalars['String']['output']>;
-  email?: Maybe<Scalars['String']['output']>;
-  fax?: Maybe<Scalars['String']['output']>;
-  latitude?: Maybe<Scalars['Float']['output']>;
-  longitude?: Maybe<Scalars['Float']['output']>;
-  name?: Maybe<Scalars['String']['output']>;
-  phone?: Maybe<Scalars['String']['output']>;
-  pickup_location_code?: Maybe<Scalars['String']['output']>;
-  postcode?: Maybe<Scalars['String']['output']>;
-  region?: Maybe<Scalars['String']['output']>;
-  region_id?: Maybe<Scalars['Int']['output']>;
-  street?: Maybe<Scalars['String']['output']>;
-};
-
-/** PickupLocationFilterInput defines the list of attributes and filters for the search. */
-export type PickupLocationFilterInput = {
-  /** Filter by city. */
-  city?: InputMaybe<FilterTypeInput>;
-  /** Filter by country. */
-  country_id?: InputMaybe<FilterTypeInput>;
-  /** Filter by pickup location name. */
-  name?: InputMaybe<FilterTypeInput>;
-  /** Filter by pickup location code. */
-  pickup_location_code?: InputMaybe<FilterTypeInput>;
-  /** Filter by postcode. */
-  postcode?: InputMaybe<FilterTypeInput>;
-  /** Filter by region. */
-  region?: InputMaybe<FilterTypeInput>;
-  /** Filter by region id. */
-  region_id?: InputMaybe<FilterTypeInput>;
-  /** Filter by street. */
-  street?: InputMaybe<FilterTypeInput>;
-};
-
-/** PickupLocationSortInput specifies attribute to use for sorting search results and indicates whether the results are sorted in ascending or descending order. */
-export type PickupLocationSortInput = {
-  /** City where pickup location is placed. */
-  city?: InputMaybe<SortEnum>;
-  /** Name of the contact person. */
-  contact_name?: InputMaybe<SortEnum>;
-  /** Id of the country in two letters. */
-  country_id?: InputMaybe<SortEnum>;
-  /** Description of the pickup location. */
-  description?: InputMaybe<SortEnum>;
-  /** Distance to the address, requested by distance filter. Applicable only with distance filter. If distance sort order is present, all other sort orders will be ignored. */
-  distance?: InputMaybe<SortEnum>;
-  /** Contact email of the pickup location. */
-  email?: InputMaybe<SortEnum>;
-  /** Contact fax of the pickup location. */
-  fax?: InputMaybe<SortEnum>;
-  /** Geographic latitude where pickup location is placed. */
-  latitude?: InputMaybe<SortEnum>;
-  /** Geographic longitude where pickup location is placed. */
-  longitude?: InputMaybe<SortEnum>;
-  /** The pickup location name. Customer use this to identify the pickup location. */
-  name?: InputMaybe<SortEnum>;
-  /** Contact phone number of the pickup location. */
-  phone?: InputMaybe<SortEnum>;
-  /** A code assigned to pickup location to identify the source. */
-  pickup_location_code?: InputMaybe<SortEnum>;
-  /** Postcode where pickup location is placed. */
-  postcode?: InputMaybe<SortEnum>;
-  /** Name of the region. */
-  region?: InputMaybe<SortEnum>;
-  /** Id of the region. */
-  region_id?: InputMaybe<SortEnum>;
-  /** Street where pickup location is placed. */
-  street?: InputMaybe<SortEnum>;
-};
-
-/** Top level object returned in a pickup locations search. */
-export type PickupLocations = {
-  __typename: 'PickupLocations';
-  /** An array of pickup locations that match the specific search request. */
-  items?: Maybe<Array<Maybe<PickupLocation>>>;
-  /** An object that includes the page_info and currentPage values specified in the query. */
-  page_info?: Maybe<SearchResultPageInfo>;
-  /** The number of products returned. */
-  total_count?: Maybe<Scalars['Int']['output']>;
 };
 
 /** An error encountered while placing an order. */
@@ -26002,12 +25462,6 @@ export type ProductImage = MediaGalleryInterface & {
   url?: Maybe<Scalars['String']['output']>;
 };
 
-/** Product Information used for Pickup Locations search. */
-export type ProductInfoInput = {
-  /** Product SKU. */
-  sku: Scalars['String']['input'];
-};
-
 /** Contains fields that are common to all types of products. */
 export type ProductInterface = {
   /** @deprecated Use the `custom_attributes` field instead. */
@@ -26102,7 +25556,7 @@ export type ProductInterface = {
   new_from_date?: Maybe<Scalars['String']['output']>;
   /** The end date for new product listings. */
   new_to_date?: Maybe<Scalars['String']['output']>;
-  /** Product stock only x left count */
+  /** The value assigned to the Only X Left Threshold option in the Admin. */
   only_x_left_in_stock?: Maybe<Scalars['Float']['output']>;
   /** If the product has multiple options, determines where they appear on the product page. */
   options_container?: Maybe<Scalars['String']['output']>;
@@ -26153,7 +25607,7 @@ export type ProductInterface = {
   special_to_date?: Maybe<Scalars['String']['output']>;
   /** Indicates whether the product is staged for a future campaign. */
   staged: Scalars['Boolean']['output'];
-  /** Stock status of the product */
+  /** The stock status of the product. */
   stock_status?: Maybe<ProductStockStatus>;
   /** An array containing information about all the stores with product quantities. */
   stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
@@ -27051,7 +26505,7 @@ export type ProductSortInput = {
   weight?: InputMaybe<SortEnum>;
 };
 
-/** This enumeration states whether a product stock status is in stock or out of stock */
+/** States whether a product stock status is in stock or out of stock. */
 export enum ProductStockStatus {
   InStock = 'IN_STOCK',
   OutOfStock = 'OUT_OF_STOCK'
@@ -27818,12 +27272,6 @@ export type Query = {
   getOrderByMask?: Maybe<CustomerOrder>;
   /** Retrieve payment credentials for a transaction. Use this query for Payflow Link and Payments Advanced payment methods. */
   getPayflowLinkToken?: Maybe<PayflowLinkToken>;
-  /** Retrieves the payment configuration for a given location */
-  getPaymentConfig?: Maybe<PaymentConfigOutput>;
-  /** Retrieves the payment details for the order */
-  getPaymentOrder?: Maybe<PaymentOrderOutput>;
-  /** Gets the payment SDK urls and values */
-  getPaymentSDK?: Maybe<GetPaymentSdkOutput>;
   /** Return store information by given id. */
   getStore?: Maybe<Array<Maybe<Store>>>;
   /** Return stores list with information. */
@@ -27872,8 +27320,6 @@ export type Query = {
   pages: Array<Page>;
   /** Retrieve multiple pages using the Relay connection interface */
   pagesConnection: PageConnection;
-  /** The pickup locations query searches for locations that match the search request requirements. */
-  pickupLocations?: Maybe<PickupLocations>;
   productBrand?: Maybe<Brand>;
   /** Return the active ratings attributes and the values each rating can have. */
   productReviewRatingsMetadata: ProductReviewRatingsMetadata;
@@ -28616,22 +28062,6 @@ export type QueryGetPayflowLinkTokenArgs = {
 };
 
 
-export type QueryGetPaymentConfigArgs = {
-  location: PaymentLocation;
-};
-
-
-export type QueryGetPaymentOrderArgs = {
-  cartId: Scalars['String']['input'];
-  id: Scalars['String']['input'];
-};
-
-
-export type QueryGetPaymentSdkArgs = {
-  location: PaymentLocation;
-};
-
-
 export type QueryGetStoreArgs = {
   storeId: InputMaybe<Scalars['String']['input']>;
 };
@@ -28797,16 +28227,6 @@ export type QueryPagesConnectionArgs = {
   skip: InputMaybe<Scalars['Int']['input']>;
   stage?: Stage;
   where: InputMaybe<PageWhereInput>;
-};
-
-
-export type QueryPickupLocationsArgs = {
-  area: InputMaybe<AreaInput>;
-  currentPage?: InputMaybe<Scalars['Int']['input']>;
-  filters: InputMaybe<PickupLocationFilterInput>;
-  pageSize?: InputMaybe<Scalars['Int']['input']>;
-  productsInfo: InputMaybe<Array<InputMaybe<ProductInfoInput>>>;
-  sort: InputMaybe<PickupLocationSortInput>;
 };
 
 
@@ -29113,14 +28533,6 @@ export type RemoveCouponFromCartOutput = {
   __typename: 'RemoveCouponFromCartOutput';
   /** The cart after removing a coupon. */
   cart?: Maybe<Cart>;
-};
-
-/** Remove coupons from the cart. */
-export type RemoveCouponsFromCartInput = {
-  /** The unique ID of a `Cart` object. */
-  cart_id: Scalars['String']['input'];
-  /** An array of coupon codes to be removed from the quote. If coupon_codes is empty all coupons will be removed from the quote. */
-  coupon_codes: Array<InputMaybe<Scalars['String']['input']>>;
 };
 
 /** Defines the input required to run the `removeGiftCardFromCart` mutation. */
@@ -29924,15 +29336,6 @@ export type RuleBlockWhereInput = {
 /** References RuleBlock record uniquely */
 export type RuleBlockWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
-};
-
-/** Defines the name and value of a SDK parameter */
-export type SdkParams = {
-  __typename: 'SDKParams';
-  /** The name of the SDK parameter */
-  name?: Maybe<Scalars['String']['output']>;
-  /** The value of the SDK parameter */
-  value?: Maybe<Scalars['String']['output']>;
 };
 
 export type SaleBubble = Entity & {
@@ -32347,8 +31750,6 @@ export type ShippingAddressInput = {
   customer_address_id?: InputMaybe<Scalars['Int']['input']>;
   /** Text provided by the shopper. */
   customer_notes?: InputMaybe<Scalars['String']['input']>;
-  /** The code of Pickup Location which will be used for In-Store Pickup. */
-  pickup_location_code?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Contains shipping addresses and methods. */
@@ -32366,8 +31767,6 @@ export type ShippingCartAddress = CartAddressInterface & {
   company?: Maybe<Scalars['String']['output']>;
   /** An object containing the country label and code. */
   country: CartAddressCountry;
-  /** The custom attribute values of the billing or shipping address. */
-  custom_attributes: Array<Maybe<AttributeValueInterface>>;
   /** Text provided by the shopper. */
   customer_notes?: Maybe<Scalars['String']['output']>;
   /** The customer's fax number. */
@@ -32380,7 +31779,6 @@ export type ShippingCartAddress = CartAddressInterface & {
   lastname: Scalars['String']['output'];
   /** The middle name of the person associated with the billing/shipping address. */
   middlename?: Maybe<Scalars['String']['output']>;
-  pickup_location_code?: Maybe<Scalars['String']['output']>;
   /** The ZIP or postal code of the billing or shipping address. */
   postcode?: Maybe<Scalars['String']['output']>;
   /** An honorific, such as Dr., Mr., or Mrs. */
@@ -32555,7 +31953,7 @@ export type SimpleProduct = CustomizableProductInterface & PhysicalProductInterf
   new_from_date?: Maybe<Scalars['String']['output']>;
   /** The end date for new product listings. */
   new_to_date?: Maybe<Scalars['String']['output']>;
-  /** Product stock only x left count */
+  /** The value assigned to the Only X Left Threshold option in the Admin. */
   only_x_left_in_stock?: Maybe<Scalars['Float']['output']>;
   /** An array of options for a customizable product. */
   options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>;
@@ -32612,7 +32010,7 @@ export type SimpleProduct = CustomizableProductInterface & PhysicalProductInterf
   special_to_date?: Maybe<Scalars['String']['output']>;
   /** Indicates whether the product is staged for a future campaign. */
   staged: Scalars['Boolean']['output'];
-  /** Stock status of the product */
+  /** The stock status of the product. */
   stock_status?: Maybe<ProductStockStatus>;
   /** An array containing information about all the stores with product quantities. */
   stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
@@ -32703,40 +32101,6 @@ export type SimpleWishlistItem = WishlistItemInterface & {
   product?: Maybe<ProductInterface>;
   /** The quantity of this wish list item. */
   quantity: Scalars['Float']['output'];
-};
-
-/** Smart button payment inputs */
-export type SmartButtonMethodInput = {
-  /** The payment source for the payment method */
-  payment_source?: InputMaybe<Scalars['String']['input']>;
-  /** The payment services order ID */
-  payments_order_id?: InputMaybe<Scalars['String']['input']>;
-  /** PayPal order ID */
-  paypal_order_id?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type SmartButtonsConfig = PaymentConfigItem & {
-  __typename: 'SmartButtonsConfig';
-  /** The styles for the PayPal Smart Button configuration */
-  button_styles?: Maybe<ButtonStyles>;
-  /** The payment method code as defined in the payment gateway */
-  code?: Maybe<Scalars['String']['output']>;
-  /** Indicates whether to display the PayPal Pay Later message */
-  display_message?: Maybe<Scalars['Boolean']['output']>;
-  /** Indicates whether to display Venmo */
-  display_venmo?: Maybe<Scalars['Boolean']['output']>;
-  /** Indicates whether the payment method is displayed */
-  is_visible?: Maybe<Scalars['Boolean']['output']>;
-  /** Contains details about the styles for the PayPal Pay Later message */
-  message_styles?: Maybe<MessageStyles>;
-  /** Defines the payment intent (Authorize or Capture */
-  payment_intent?: Maybe<Scalars['String']['output']>;
-  /** The PayPal parameters required to load the JS SDK */
-  sdk_params?: Maybe<Array<Maybe<SdkParams>>>;
-  /** The relative order the payment method is displayed on the checkout page */
-  sort_order?: Maybe<Scalars['String']['output']>;
-  /** The name displayed for the payment method */
-  title?: Maybe<Scalars['String']['output']>;
 };
 
 /** SnowdogMenu defines all menu information */
@@ -33306,16 +32670,12 @@ export type StoreConfig = {
   configurable_thumbnail_source?: Maybe<Scalars['String']['output']>;
   /** Config consent list. */
   consents?: Maybe<Array<Maybe<ConfigConsent>>>;
-  /** Indicates whether the Contact Us form in enabled. */
-  contact_enabled: Scalars['Boolean']['output'];
   /** The copyright statement that appears at the bottom of each page. */
   copyright?: Maybe<Scalars['String']['output']>;
   /** Extended Config Data - general/region/state_required */
   countries_with_required_region?: Maybe<Scalars['String']['output']>;
   /** Indicates if the new accounts need confirmation. */
   create_account_confirmation?: Maybe<Scalars['Boolean']['output']>;
-  /** Customer access token lifetime. */
-  customer_access_token_lifetime?: Maybe<Scalars['Float']['output']>;
   /** Extended Config Data - general/country/default */
   default_country?: Maybe<Scalars['String']['output']>;
   /** The description that provides a summary of your site for search engine listings. It should not be more than 160 characters in length. */
@@ -33417,10 +32777,6 @@ export type StoreConfig = {
   no_route?: Maybe<Scalars['String']['output']>;
   /** Extended Config Data - general/country/optional_zip_countries */
   optional_zip_countries?: Maybe<Scalars['String']['output']>;
-  /** Indicates whether orders can be cancelled by customers or not. */
-  order_cancellation_enabled: Scalars['Boolean']['output'];
-  /** An array containing available cancellation reasons. */
-  order_cancellation_reasons: Array<Maybe<CancellationReason>>;
   /** Payflow Pro vault status. */
   payment_payflowpro_cc_vault_active?: Maybe<Scalars['String']['output']>;
   /** The default price of a printed card that accompanies an order. */
@@ -33617,14 +32973,6 @@ export type SwatchLayerFilterItem = LayerFilterItemInterface & SwatchLayerFilter
 export type SwatchLayerFilterItemInterface = {
   /** Data required to render a swatch filter item. */
   swatch_data?: Maybe<SwatchData>;
-};
-
-/** Synchronizes the payment order details */
-export type SyncPaymentOrderInput = {
-  /** The customer cart ID */
-  cartId: Scalars['String']['input'];
-  /** PayPal order ID */
-  id: Scalars['String']['input'];
 };
 
 export enum SystemDateTimeFieldVariation {
@@ -34659,18 +34007,6 @@ export enum ValidationRuleEnum {
   MinTextLength = 'MIN_TEXT_LENGTH'
 }
 
-/** Vault payment inputs */
-export type VaultMethodInput = {
-  /** The payment source for the payment method */
-  payment_source?: InputMaybe<Scalars['String']['input']>;
-  /** The payment services order ID */
-  payments_order_id?: InputMaybe<Scalars['String']['input']>;
-  /** PayPal order ID */
-  paypal_order_id?: InputMaybe<Scalars['String']['input']>;
-  /** The public hash of the token. */
-  public_hash?: InputMaybe<Scalars['String']['input']>;
-};
-
 /** Contains required input for payment methods with Vault support. */
 export type VaultTokenInput = {
   /** The public hash of the payment token. */
@@ -34824,7 +34160,7 @@ export type VirtualProduct = CustomizableProductInterface & ProductInterface & R
   new_from_date?: Maybe<Scalars['String']['output']>;
   /** The end date for new product listings. */
   new_to_date?: Maybe<Scalars['String']['output']>;
-  /** Product stock only x left count */
+  /** The value assigned to the Only X Left Threshold option in the Admin. */
   only_x_left_in_stock?: Maybe<Scalars['Float']['output']>;
   /** An array of options for a customizable product. */
   options?: Maybe<Array<Maybe<CustomizableOptionInterface>>>;
@@ -34881,7 +34217,7 @@ export type VirtualProduct = CustomizableProductInterface & ProductInterface & R
   special_to_date?: Maybe<Scalars['String']['output']>;
   /** Indicates whether the product is staged for a future campaign. */
   staged: Scalars['Boolean']['output'];
-  /** Stock status of the product */
+  /** The stock status of the product. */
   stock_status?: Maybe<ProductStockStatus>;
   /** An array containing information about all the stores with product quantities. */
   stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
@@ -35600,7 +34936,7 @@ export type CreateCustomerV2MutationVariables = Exact<{
 }>;
 
 
-export type CreateCustomerV2Mutation = { __typename: 'Mutation', createCustomerV2?: { __typename: 'CustomerOutput', customer: { __typename: 'Customer', phone_number: string, accepts_analysis?: boolean | null, accepts_data_quality?: boolean | null, accepts_digital_campaigns?: boolean | null, accepts_emails?: boolean | null, accepts_sms?: boolean | null, accepts_social_media?: boolean | null, accepts_terms?: boolean | null, accepts_third_parties?: boolean | null, accepts_transactions?: boolean | null, firstname?: string | null, lastname?: string | null, is_subscribed?: boolean | null, favorite_store?: string | null, orders?: { __typename: 'CustomerOrders', total_count?: number | null, items: Array<{ __typename: 'CustomerOrder', carrier?: string | null, count: number, currency: string, email?: string | null, id: string, order_date: string, order_number?: string | null, status: string, number: string, total?: { __typename: 'OrderTotal', grand_total: { __typename: 'GrandTotal', currency: string, value: string } } | null, billing_address?: { __typename: 'OrderAddress', city: string, company?: string | null, country_code?: CountryCodeEnum | null, fax?: string | null, firstname: string, lastname: string, middlename?: string | null, postcode?: string | null, prefix?: string | null, region?: string | null, region_id?: string | null, street: Array<string | null>, suffix?: string | null, telephone?: string | null, vat_id?: string | null } | null, items: Array<{ __typename: 'CustomerOrderItem', image: string, link: string, name: string, price: number, quantity: number, sku: string } | null> } | null> } | null, wishlists: Array<{ __typename: 'Wishlist', id?: string | null, name?: string | null, sharing_code?: string | null, items_v2?: { __typename: 'WishlistItems', items: Array<{ __typename: 'BundleWishlistItem', id: string, product?: { __typename: 'BundleProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'ConfigurableProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'DownloadableProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'GiftCardProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'GroupedProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'SimpleProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'VirtualProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | null } | { __typename: 'ConfigurableWishlistItem', id: string, product?: { __typename: 'BundleProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'ConfigurableProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'DownloadableProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'GiftCardProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'GroupedProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'SimpleProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'VirtualProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | null } | { __typename: 'DownloadableWishlistItem', id: string, product?: { __typename: 'BundleProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'ConfigurableProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'DownloadableProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'GiftCardProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'GroupedProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'SimpleProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'VirtualProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | null } | { __typename: 'GiftCardWishlistItem', id: string, product?: { __typename: 'BundleProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'ConfigurableProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'DownloadableProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'GiftCardProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'GroupedProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'SimpleProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'VirtualProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | null } | { __typename: 'GroupedProductWishlistItem', id: string, product?: { __typename: 'BundleProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'ConfigurableProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'DownloadableProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'GiftCardProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'GroupedProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'SimpleProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'VirtualProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | null } | { __typename: 'SimpleWishlistItem', id: string, product?: { __typename: 'BundleProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'ConfigurableProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'DownloadableProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'GiftCardProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'GroupedProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'SimpleProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'VirtualProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | null } | { __typename: 'VirtualWishlistItem', id: string, product?: { __typename: 'BundleProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'ConfigurableProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'DownloadableProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'GiftCardProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'GroupedProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'SimpleProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | { __typename: 'VirtualProduct', name?: string | null, sku?: string | null, url_key?: string | null, small_image?: { __typename: 'ProductImage', url?: string | null } | null, price_range: { __typename: 'PriceRange', maximum_price?: { __typename: 'ProductPrice', final_price: { __typename: 'Money', currency?: CurrencyEnum | null, value?: number | null } } | null } } | null } | null> } | null } | null>, addresses?: Array<{ __typename: 'CustomerAddress', city?: string | null, company?: string | null, country_code?: CountryCodeEnum | null, vat_id?: string | null, telephone?: string | null, suffix?: string | null, street?: Array<string | null> | null, region_id?: number | null, prefix?: string | null, postcode?: string | null, middlename?: string | null, lastname?: string | null, id?: number | null, firstname?: string | null, fax?: string | null, default_shipping?: boolean | null, default_billing?: boolean | null } | null> | null } } | null };
+export type CreateCustomerV2Mutation = { __typename: 'Mutation', createCustomerV2?: { __typename: 'CustomerOutput', customer: { __typename: 'Customer', firstname?: string | null, lastname?: string | null } } | null };
 
 export type ChangeCustomerPasswordMutationVariables = Exact<{
   currentPassword: Scalars['String']['input'];
@@ -35968,7 +35304,7 @@ export const CustomerOrdersDocument = {"kind":"Document","definitions":[{"kind":
 export const CustomerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Customer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CustomerData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CustomerOrder"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CustomerOrder"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"carrier"}},{"kind":"Field","name":{"kind":"Name","value":"count"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"total"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"grand_total"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"billing_address"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"company"}},{"kind":"Field","name":{"kind":"Name","value":"country_code"}},{"kind":"Field","name":{"kind":"Name","value":"fax"}},{"kind":"Field","name":{"kind":"Name","value":"firstname"}},{"kind":"Field","name":{"kind":"Name","value":"lastname"}},{"kind":"Field","name":{"kind":"Name","value":"middlename"}},{"kind":"Field","name":{"kind":"Name","value":"postcode"}},{"kind":"Field","name":{"kind":"Name","value":"prefix"}},{"kind":"Field","name":{"kind":"Name","value":"region"}},{"kind":"Field","name":{"kind":"Name","value":"region_id"}},{"kind":"Field","name":{"kind":"Name","value":"street"}},{"kind":"Field","name":{"kind":"Name","value":"suffix"}},{"kind":"Field","name":{"kind":"Name","value":"telephone"}},{"kind":"Field","name":{"kind":"Name","value":"vat_id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"link"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"quantity"}},{"kind":"Field","name":{"kind":"Name","value":"sku"}}]}},{"kind":"Field","name":{"kind":"Name","value":"order_date"}},{"kind":"Field","name":{"kind":"Name","value":"order_number"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"number"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CustomerWishlist"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Wishlist"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"sharing_code"}},{"kind":"Field","name":{"kind":"Name","value":"items_v2"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"product"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"sku"}},{"kind":"Field","name":{"kind":"Name","value":"url_key"}},{"kind":"Field","name":{"kind":"Name","value":"small_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"price_range"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"maximum_price"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"final_price"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CustomerAddress"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CustomerAddress"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"company"}},{"kind":"Field","name":{"kind":"Name","value":"country_code"}},{"kind":"Field","name":{"kind":"Name","value":"vat_id"}},{"kind":"Field","name":{"kind":"Name","value":"telephone"}},{"kind":"Field","name":{"kind":"Name","value":"suffix"}},{"kind":"Field","name":{"kind":"Name","value":"street"}},{"kind":"Field","name":{"kind":"Name","value":"region_id"}},{"kind":"Field","name":{"kind":"Name","value":"prefix"}},{"kind":"Field","name":{"kind":"Name","value":"postcode"}},{"kind":"Field","name":{"kind":"Name","value":"middlename"}},{"kind":"Field","name":{"kind":"Name","value":"lastname"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstname"}},{"kind":"Field","name":{"kind":"Name","value":"fax"}},{"kind":"Field","name":{"kind":"Name","value":"default_shipping"}},{"kind":"Field","name":{"kind":"Name","value":"default_billing"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CustomerData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Customer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"orders"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"total_count"}},{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CustomerOrder"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"phone_number"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_analysis"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_data_quality"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_digital_campaigns"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_emails"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_sms"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_social_media"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_terms"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_third_parties"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_transactions"}},{"kind":"Field","name":{"kind":"Name","value":"firstname"}},{"kind":"Field","name":{"kind":"Name","value":"lastname"}},{"kind":"Field","name":{"kind":"Name","value":"is_subscribed"}},{"kind":"Field","name":{"kind":"Name","value":"favorite_store"}},{"kind":"Field","name":{"kind":"Name","value":"wishlists"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CustomerWishlist"}}]}},{"kind":"Field","name":{"kind":"Name","value":"addresses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CustomerAddress"}}]}}]}}]} as unknown as DocumentNode<CustomerQuery, CustomerQueryVariables>;
 export const WishlistDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Wishlist"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"wishlist"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"WishListFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ProductImageFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ProductImage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"disabled"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ProductVideoFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ProductVideo"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"disabled"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"video_content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"media_type"}},{"kind":"Field","name":{"kind":"Name","value":"video_description"}},{"kind":"Field","name":{"kind":"Name","value":"video_metadata"}},{"kind":"Field","name":{"kind":"Name","value":"video_provider"}},{"kind":"Field","name":{"kind":"Name","value":"video_title"}},{"kind":"Field","name":{"kind":"Name","value":"video_url"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ProductMediaGallery"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MediaGalleryInterface"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"disabled"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ProductImage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ProductImageFragment"}}]}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ProductVideo"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ProductVideoFragment"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ProductPriceRange"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PriceRange"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"maximum_price"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"discount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount_off"}},{"kind":"Field","name":{"kind":"Name","value":"percent_off"}}]}},{"kind":"Field","name":{"kind":"Name","value":"final_price"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}},{"kind":"Field","name":{"kind":"Name","value":"fixed_product_taxes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}},{"kind":"Field","name":{"kind":"Name","value":"label"}}]}},{"kind":"Field","name":{"kind":"Name","value":"regular_price"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"minimum_price"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"discount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount_off"}},{"kind":"Field","name":{"kind":"Name","value":"percent_off"}}]}},{"kind":"Field","name":{"kind":"Name","value":"final_price"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}},{"kind":"Field","name":{"kind":"Name","value":"fixed_product_taxes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}},{"kind":"Field","name":{"kind":"Name","value":"label"}}]}},{"kind":"Field","name":{"kind":"Name","value":"regular_price"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ProductLabel"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Label"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"custom"}},{"kind":"Field","name":{"kind":"Name","value":"discount"}},{"kind":"Field","name":{"kind":"Name","value":"new"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BaseProduct"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ProductInterface"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"url_key"}},{"kind":"Field","name":{"kind":"Name","value":"canonical_url"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"gift_message_available"}},{"kind":"Field","name":{"kind":"Name","value":"review_count"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ProductImageFragment"}}]}},{"kind":"Field","name":{"kind":"Name","value":"media_gallery"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ProductMediaGallery"}}]}},{"kind":"Field","name":{"kind":"Name","value":"meta_description"}},{"kind":"Field","name":{"kind":"Name","value":"meta_keyword"}},{"kind":"Field","name":{"kind":"Name","value":"meta_title"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"new_from_date"}},{"kind":"Field","name":{"kind":"Name","value":"new_to_date"}},{"kind":"Field","name":{"kind":"Name","value":"price_range"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ProductPriceRange"}}]}},{"kind":"Field","name":{"kind":"Name","value":"productBrand"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"brand_image_url"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"uid"}},{"kind":"Field","name":{"kind":"Name","value":"special_to_date"}},{"kind":"Field","name":{"kind":"Name","value":"special_price"}},{"kind":"Field","name":{"kind":"Name","value":"small_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"disabled"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"sku"}},{"kind":"Field","name":{"kind":"Name","value":"short_description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"addable_to_cart"}},{"kind":"Field","name":{"kind":"Name","value":"categories"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url_path"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","name":{"kind":"Name","value":"productLabel"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ProductLabel"}}]}},{"kind":"Field","name":{"kind":"Name","value":"delivery_promise"}},{"kind":"Field","name":{"kind":"Name","value":"maintenance_description"}},{"kind":"Field","name":{"kind":"Name","value":"stock_status"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"WishListFragment"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"WishlistOutput"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items_count"}},{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"added_at"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"qty"}},{"kind":"Field","name":{"kind":"Name","value":"product"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BaseProduct"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"sharing_code"}}]}}]} as unknown as DocumentNode<WishlistQuery, WishlistQueryVariables>;
 export const UpdateCustomerDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateCustomer"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CustomerUpdateInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updateCustomerV2"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CustomerData"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CustomerOrder"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CustomerOrder"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"carrier"}},{"kind":"Field","name":{"kind":"Name","value":"count"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"total"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"grand_total"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"billing_address"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"company"}},{"kind":"Field","name":{"kind":"Name","value":"country_code"}},{"kind":"Field","name":{"kind":"Name","value":"fax"}},{"kind":"Field","name":{"kind":"Name","value":"firstname"}},{"kind":"Field","name":{"kind":"Name","value":"lastname"}},{"kind":"Field","name":{"kind":"Name","value":"middlename"}},{"kind":"Field","name":{"kind":"Name","value":"postcode"}},{"kind":"Field","name":{"kind":"Name","value":"prefix"}},{"kind":"Field","name":{"kind":"Name","value":"region"}},{"kind":"Field","name":{"kind":"Name","value":"region_id"}},{"kind":"Field","name":{"kind":"Name","value":"street"}},{"kind":"Field","name":{"kind":"Name","value":"suffix"}},{"kind":"Field","name":{"kind":"Name","value":"telephone"}},{"kind":"Field","name":{"kind":"Name","value":"vat_id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"link"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"quantity"}},{"kind":"Field","name":{"kind":"Name","value":"sku"}}]}},{"kind":"Field","name":{"kind":"Name","value":"order_date"}},{"kind":"Field","name":{"kind":"Name","value":"order_number"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"number"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CustomerWishlist"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Wishlist"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"sharing_code"}},{"kind":"Field","name":{"kind":"Name","value":"items_v2"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"product"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"sku"}},{"kind":"Field","name":{"kind":"Name","value":"url_key"}},{"kind":"Field","name":{"kind":"Name","value":"small_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"price_range"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"maximum_price"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"final_price"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CustomerAddress"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CustomerAddress"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"company"}},{"kind":"Field","name":{"kind":"Name","value":"country_code"}},{"kind":"Field","name":{"kind":"Name","value":"vat_id"}},{"kind":"Field","name":{"kind":"Name","value":"telephone"}},{"kind":"Field","name":{"kind":"Name","value":"suffix"}},{"kind":"Field","name":{"kind":"Name","value":"street"}},{"kind":"Field","name":{"kind":"Name","value":"region_id"}},{"kind":"Field","name":{"kind":"Name","value":"prefix"}},{"kind":"Field","name":{"kind":"Name","value":"postcode"}},{"kind":"Field","name":{"kind":"Name","value":"middlename"}},{"kind":"Field","name":{"kind":"Name","value":"lastname"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstname"}},{"kind":"Field","name":{"kind":"Name","value":"fax"}},{"kind":"Field","name":{"kind":"Name","value":"default_shipping"}},{"kind":"Field","name":{"kind":"Name","value":"default_billing"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CustomerData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Customer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"orders"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"total_count"}},{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CustomerOrder"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"phone_number"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_analysis"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_data_quality"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_digital_campaigns"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_emails"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_sms"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_social_media"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_terms"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_third_parties"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_transactions"}},{"kind":"Field","name":{"kind":"Name","value":"firstname"}},{"kind":"Field","name":{"kind":"Name","value":"lastname"}},{"kind":"Field","name":{"kind":"Name","value":"is_subscribed"}},{"kind":"Field","name":{"kind":"Name","value":"favorite_store"}},{"kind":"Field","name":{"kind":"Name","value":"wishlists"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CustomerWishlist"}}]}},{"kind":"Field","name":{"kind":"Name","value":"addresses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CustomerAddress"}}]}}]}}]} as unknown as DocumentNode<UpdateCustomerMutation, UpdateCustomerMutationVariables>;
-export const CreateCustomerV2Document = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateCustomerV2"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CustomerCreateInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createCustomerV2"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CustomerData"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CustomerOrder"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CustomerOrder"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"carrier"}},{"kind":"Field","name":{"kind":"Name","value":"count"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"total"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"grand_total"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"billing_address"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"company"}},{"kind":"Field","name":{"kind":"Name","value":"country_code"}},{"kind":"Field","name":{"kind":"Name","value":"fax"}},{"kind":"Field","name":{"kind":"Name","value":"firstname"}},{"kind":"Field","name":{"kind":"Name","value":"lastname"}},{"kind":"Field","name":{"kind":"Name","value":"middlename"}},{"kind":"Field","name":{"kind":"Name","value":"postcode"}},{"kind":"Field","name":{"kind":"Name","value":"prefix"}},{"kind":"Field","name":{"kind":"Name","value":"region"}},{"kind":"Field","name":{"kind":"Name","value":"region_id"}},{"kind":"Field","name":{"kind":"Name","value":"street"}},{"kind":"Field","name":{"kind":"Name","value":"suffix"}},{"kind":"Field","name":{"kind":"Name","value":"telephone"}},{"kind":"Field","name":{"kind":"Name","value":"vat_id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"link"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"quantity"}},{"kind":"Field","name":{"kind":"Name","value":"sku"}}]}},{"kind":"Field","name":{"kind":"Name","value":"order_date"}},{"kind":"Field","name":{"kind":"Name","value":"order_number"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"number"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CustomerWishlist"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Wishlist"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"sharing_code"}},{"kind":"Field","name":{"kind":"Name","value":"items_v2"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"product"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"sku"}},{"kind":"Field","name":{"kind":"Name","value":"url_key"}},{"kind":"Field","name":{"kind":"Name","value":"small_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"price_range"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"maximum_price"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"final_price"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CustomerAddress"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CustomerAddress"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"company"}},{"kind":"Field","name":{"kind":"Name","value":"country_code"}},{"kind":"Field","name":{"kind":"Name","value":"vat_id"}},{"kind":"Field","name":{"kind":"Name","value":"telephone"}},{"kind":"Field","name":{"kind":"Name","value":"suffix"}},{"kind":"Field","name":{"kind":"Name","value":"street"}},{"kind":"Field","name":{"kind":"Name","value":"region_id"}},{"kind":"Field","name":{"kind":"Name","value":"prefix"}},{"kind":"Field","name":{"kind":"Name","value":"postcode"}},{"kind":"Field","name":{"kind":"Name","value":"middlename"}},{"kind":"Field","name":{"kind":"Name","value":"lastname"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstname"}},{"kind":"Field","name":{"kind":"Name","value":"fax"}},{"kind":"Field","name":{"kind":"Name","value":"default_shipping"}},{"kind":"Field","name":{"kind":"Name","value":"default_billing"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CustomerData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Customer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"orders"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"total_count"}},{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CustomerOrder"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"phone_number"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_analysis"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_data_quality"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_digital_campaigns"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_emails"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_sms"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_social_media"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_terms"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_third_parties"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_transactions"}},{"kind":"Field","name":{"kind":"Name","value":"firstname"}},{"kind":"Field","name":{"kind":"Name","value":"lastname"}},{"kind":"Field","name":{"kind":"Name","value":"is_subscribed"}},{"kind":"Field","name":{"kind":"Name","value":"favorite_store"}},{"kind":"Field","name":{"kind":"Name","value":"wishlists"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CustomerWishlist"}}]}},{"kind":"Field","name":{"kind":"Name","value":"addresses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CustomerAddress"}}]}}]}}]} as unknown as DocumentNode<CreateCustomerV2Mutation, CreateCustomerV2MutationVariables>;
+export const CreateCustomerV2Document = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateCustomerV2"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CustomerCreateInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createCustomerV2"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"firstname"}},{"kind":"Field","name":{"kind":"Name","value":"lastname"}}]}}]}}]}}]} as unknown as DocumentNode<CreateCustomerV2Mutation, CreateCustomerV2MutationVariables>;
 export const ChangeCustomerPasswordDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"ChangeCustomerPassword"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"currentPassword"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"newPassword"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"changeCustomerPassword"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"currentPassword"},"value":{"kind":"Variable","name":{"kind":"Name","value":"currentPassword"}}},{"kind":"Argument","name":{"kind":"Name","value":"newPassword"},"value":{"kind":"Variable","name":{"kind":"Name","value":"newPassword"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CustomerData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CustomerOrder"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CustomerOrder"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"carrier"}},{"kind":"Field","name":{"kind":"Name","value":"count"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"total"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"grand_total"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"billing_address"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"company"}},{"kind":"Field","name":{"kind":"Name","value":"country_code"}},{"kind":"Field","name":{"kind":"Name","value":"fax"}},{"kind":"Field","name":{"kind":"Name","value":"firstname"}},{"kind":"Field","name":{"kind":"Name","value":"lastname"}},{"kind":"Field","name":{"kind":"Name","value":"middlename"}},{"kind":"Field","name":{"kind":"Name","value":"postcode"}},{"kind":"Field","name":{"kind":"Name","value":"prefix"}},{"kind":"Field","name":{"kind":"Name","value":"region"}},{"kind":"Field","name":{"kind":"Name","value":"region_id"}},{"kind":"Field","name":{"kind":"Name","value":"street"}},{"kind":"Field","name":{"kind":"Name","value":"suffix"}},{"kind":"Field","name":{"kind":"Name","value":"telephone"}},{"kind":"Field","name":{"kind":"Name","value":"vat_id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"link"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"price"}},{"kind":"Field","name":{"kind":"Name","value":"quantity"}},{"kind":"Field","name":{"kind":"Name","value":"sku"}}]}},{"kind":"Field","name":{"kind":"Name","value":"order_date"}},{"kind":"Field","name":{"kind":"Name","value":"order_number"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"number"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CustomerWishlist"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Wishlist"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"sharing_code"}},{"kind":"Field","name":{"kind":"Name","value":"items_v2"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"product"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"sku"}},{"kind":"Field","name":{"kind":"Name","value":"url_key"}},{"kind":"Field","name":{"kind":"Name","value":"small_image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}},{"kind":"Field","name":{"kind":"Name","value":"price_range"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"maximum_price"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"final_price"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"currency"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CustomerAddress"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CustomerAddress"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"company"}},{"kind":"Field","name":{"kind":"Name","value":"country_code"}},{"kind":"Field","name":{"kind":"Name","value":"vat_id"}},{"kind":"Field","name":{"kind":"Name","value":"telephone"}},{"kind":"Field","name":{"kind":"Name","value":"suffix"}},{"kind":"Field","name":{"kind":"Name","value":"street"}},{"kind":"Field","name":{"kind":"Name","value":"region_id"}},{"kind":"Field","name":{"kind":"Name","value":"prefix"}},{"kind":"Field","name":{"kind":"Name","value":"postcode"}},{"kind":"Field","name":{"kind":"Name","value":"middlename"}},{"kind":"Field","name":{"kind":"Name","value":"lastname"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"firstname"}},{"kind":"Field","name":{"kind":"Name","value":"fax"}},{"kind":"Field","name":{"kind":"Name","value":"default_shipping"}},{"kind":"Field","name":{"kind":"Name","value":"default_billing"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CustomerData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Customer"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"orders"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"total_count"}},{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CustomerOrder"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"phone_number"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_analysis"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_data_quality"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_digital_campaigns"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_emails"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_sms"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_social_media"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_terms"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_third_parties"}},{"kind":"Field","name":{"kind":"Name","value":"accepts_transactions"}},{"kind":"Field","name":{"kind":"Name","value":"firstname"}},{"kind":"Field","name":{"kind":"Name","value":"lastname"}},{"kind":"Field","name":{"kind":"Name","value":"is_subscribed"}},{"kind":"Field","name":{"kind":"Name","value":"favorite_store"}},{"kind":"Field","name":{"kind":"Name","value":"wishlists"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CustomerWishlist"}}]}},{"kind":"Field","name":{"kind":"Name","value":"addresses"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CustomerAddress"}}]}}]}}]} as unknown as DocumentNode<ChangeCustomerPasswordMutation, ChangeCustomerPasswordMutationVariables>;
 export const CmsPagesConnectionDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CmsPagesConnection"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"12"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"skip"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"0"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"PageWhereInput"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"orderBy"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"PageOrderByInput"}},"defaultValue":{"kind":"EnumValue","value":"createdAt_DESC"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pagesConnection"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}},{"kind":"Argument","name":{"kind":"Name","value":"skip"},"value":{"kind":"Variable","name":{"kind":"Name","value":"skip"}}},{"kind":"Argument","name":{"kind":"Name","value":"orderBy"},"value":{"kind":"Variable","name":{"kind":"Name","value":"orderBy"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsPageNode"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"aggregate"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"count"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"endCursor"}},{"kind":"Field","name":{"kind":"Name","value":"hasNextPage"}},{"kind":"Field","name":{"kind":"Name","value":"hasPreviousPage"}},{"kind":"Field","name":{"kind":"Name","value":"pageSize"}},{"kind":"Field","name":{"kind":"Name","value":"startCursor"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsPageNode"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Page"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"seo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"metaTitle"}},{"kind":"Field","name":{"kind":"Name","value":"metaDescription"}},{"kind":"Field","name":{"kind":"Name","value":"ogImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageThumbnail"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageCategory"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"categoryUrl"}}]}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}}]}}]} as unknown as DocumentNode<CmsPagesConnectionQuery, CmsPagesConnectionQueryVariables>;
 export const CmsPagesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"CmsPages"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"first"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}},"defaultValue":{"kind":"IntValue","value":"1"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"where"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"PageWhereInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pages"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"Variable","name":{"kind":"Name","value":"where"}}},{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"Variable","name":{"kind":"Name","value":"first"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"seo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"metaTitle"}},{"kind":"Field","name":{"kind":"Name","value":"metaDescription"}},{"kind":"Field","name":{"kind":"Name","value":"ogImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"100"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBanner"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsProductSlider"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockRow"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockQuote"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsPagesList"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsSimilarPagesRow"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImagesGallery"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockFaq"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockNavigationButtons"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockImageLinksSlider"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockBrands"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockStoresMap"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockPressRoom"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsSalesBubble"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"SaleBubble"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"middleLine"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"topLine"}},{"kind":"Field","name":{"kind":"Name","value":"bottomLine"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockConfig"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockConfig"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockConfig"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"backgroundColor"}},{"kind":"Field","name":{"kind":"Name","value":"hideBlockTitle"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsTextBlock"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TextBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TextBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"paragraphTypography"}},{"kind":"Field","name":{"kind":"Name","value":"textAlign"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsPromotionBubble"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PromotionBubble"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"middleLine"}},{"kind":"Field","name":{"kind":"Name","value":"position"}},{"kind":"Field","name":{"kind":"Name","value":"topLine"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsLink"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsImageLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImageLink"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImageLink"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"salesBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsSalesBubble"}}]}},{"kind":"Field","name":{"kind":"Name","value":"promotionBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsPromotionBubble"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsImage"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Image"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Image"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"label"}},{"kind":"Field","name":{"kind":"Name","value":"caption"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"salesBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsSalesBubble"}}]}},{"kind":"Field","name":{"kind":"Name","value":"promotionBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsPromotionBubble"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsMultipleTextBlock"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MultipleTextBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MultipleTextBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"paragraphs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsTextBlock"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsColumn"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Column"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Column"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsTextBlock"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImageLink"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImage"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsMultipleTextBlock"}}]}},{"kind":"Field","name":{"kind":"Name","value":"desktopPosition"}},{"kind":"Field","name":{"kind":"Name","value":"mobilePosition"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsPageNode"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Page"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"seo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"metaTitle"}},{"kind":"Field","name":{"kind":"Name","value":"metaDescription"}},{"kind":"Field","name":{"kind":"Name","value":"ogImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageThumbnail"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}},{"kind":"Field","name":{"kind":"Name","value":"pageCategory"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"categoryUrl"}}]}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBanner"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Banner"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Banner"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"alt"}},{"kind":"Field","name":{"kind":"Name","value":"identify"}},{"kind":"Field","name":{"kind":"Name","value":"variant"}},{"kind":"Field","name":{"kind":"Name","value":"centerText"}},{"kind":"Field","name":{"kind":"Name","value":"bannerImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"mimeType"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}}]}},{"kind":"Field","name":{"kind":"Name","value":"salesBubble"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsSalesBubble"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsProductSlider"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ProductSlider"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ProductSlider"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"categoryId"}},{"kind":"Field","name":{"kind":"Name","value":"specificProductsSku"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockRow"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockRow"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockRow"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"useFullPageWidth"}},{"kind":"Field","name":{"kind":"Name","value":"columns"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsColumn"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockQuote"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockQuote"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockQuote"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}}]}},{"kind":"Field","name":{"kind":"Name","value":"quote"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"author"}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsPagesList"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockPagesList"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockPagesList"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"pageType"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"displayCategories"}},{"kind":"Field","name":{"kind":"Name","value":"pageCategory"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsSimilarPagesRow"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockSimilarPagesRow"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockSimilarPagesRow"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"page"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsPageNode"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsImagesGallery"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockImageGallery"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockImageGallery"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"images"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImage"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImageLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"imagesDirection"}},{"kind":"Field","name":{"kind":"Name","value":"columnsCount"}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockFaq"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockFaq"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockFaq"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"questions"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"question"}},{"kind":"Field","name":{"kind":"Name","value":"answer"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockNavigationButtons"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockNavigationButton"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockNavigationButton"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"links"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockImageLinksSlider"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockImageLinksSlider"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockImageLinksSlider"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"images"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImageLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockBrands"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockBrand"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockBrand"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"viewMoreLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"brands"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsImageLink"}}]}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockStoresMap"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockStoresMap"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockStoresMap"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CmsBlockPressRoom"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockPressRoom"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlockPressRoom"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"__typename"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"blockConfig"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CmsBlockConfig"}}]}}]}}]}}]} as unknown as DocumentNode<CmsPagesQuery, CmsPagesQueryVariables>;

@@ -68,7 +68,7 @@ const documents = {
     "\n  fragment WishListFragment on WishlistOutput {\n    items_count\n    items {\n      added_at\n      description\n      id\n      qty\n      product {\n        ...BaseProduct\n      }\n    }\n    name\n    sharing_code\n  }\n": types.WishListFragmentFragmentDoc,
     "\n  query Wishlist {\n    wishlist {\n      ...WishListFragment\n    }\n  }\n": types.WishlistDocument,
     "\n  mutation UpdateCustomer($input: CustomerUpdateInput!) {\n    updateCustomerV2(input: $input) {\n      customer {\n        ...CustomerData\n      }\n    }\n  }\n": types.UpdateCustomerDocument,
-    "\n  mutation CreateCustomerV2($input: CustomerCreateInput!) {\n    createCustomerV2(input: $input) {\n      customer {\n        ...CustomerData\n      }\n    }\n  }\n": types.CreateCustomerV2Document,
+    "\n  mutation CreateCustomerV2($input: CustomerCreateInput!) {\n    createCustomerV2(input: $input) {\n      customer {\n        firstname\n        lastname\n      }\n    }\n  }\n": types.CreateCustomerV2Document,
     "\n  mutation ChangeCustomerPassword(\n    $currentPassword: String!\n    $newPassword: String!\n  ) {\n    changeCustomerPassword(\n      currentPassword: $currentPassword\n      newPassword: $newPassword\n    ) {\n      ...CustomerData\n    }\n  }\n": types.ChangeCustomerPasswordDocument,
     "\n  fragment CmsPageNode on Page {\n    id\n    url\n    title\n    seo {\n      metaTitle\n      metaDescription\n      ogImage {\n        url\n      }\n    }\n    pageThumbnail {\n      url\n      width\n      height\n    }\n    pageCategory {\n      name\n      categoryUrl\n    }\n    createdAt\n  }\n": types.CmsPageNodeFragmentDoc,
     "\n  query CmsPagesConnection(\n    $first: Int = 12\n    $skip: Int = 0\n    $where: PageWhereInput\n    $orderBy: PageOrderByInput = createdAt_DESC\n  ) {\n    pagesConnection(\n      where: $where\n      first: $first\n      skip: $skip\n      orderBy: $orderBy\n    ) {\n      edges {\n        node {\n          ...CmsPageNode\n        }\n      }\n      aggregate {\n        count\n      }\n      pageInfo {\n        endCursor\n        hasNextPage\n        hasPreviousPage\n        pageSize\n        startCursor\n      }\n    }\n  }\n": types.CmsPagesConnectionDocument,
@@ -355,7 +355,7 @@ export function graphql(source: "\n  mutation UpdateCustomer($input: CustomerUpd
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  mutation CreateCustomerV2($input: CustomerCreateInput!) {\n    createCustomerV2(input: $input) {\n      customer {\n        ...CustomerData\n      }\n    }\n  }\n"): (typeof documents)["\n  mutation CreateCustomerV2($input: CustomerCreateInput!) {\n    createCustomerV2(input: $input) {\n      customer {\n        ...CustomerData\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  mutation CreateCustomerV2($input: CustomerCreateInput!) {\n    createCustomerV2(input: $input) {\n      customer {\n        firstname\n        lastname\n      }\n    }\n  }\n"): (typeof documents)["\n  mutation CreateCustomerV2($input: CustomerCreateInput!) {\n    createCustomerV2(input: $input) {\n      customer {\n        firstname\n        lastname\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

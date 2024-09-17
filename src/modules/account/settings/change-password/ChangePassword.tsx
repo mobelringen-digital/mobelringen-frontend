@@ -54,7 +54,7 @@ export const ChangePassword = () => {
           rules={{ required: "Dette er et påkrevd felt" }}
           error={errors.currentPassword}
           control={control}
-          label="Passord"
+          label="Nåværende passord"
           name="currentPassword"
         >
           <Input type="password" variant="bordered" />
@@ -64,7 +64,7 @@ export const ChangePassword = () => {
           rules={{ required: "Dette er et påkrevd felt" }}
           error={errors.newPassword}
           control={control}
-          label="Passord"
+          label="Nytt passord"
           name="newPassword"
         >
           <Input type="password" variant="bordered" />
