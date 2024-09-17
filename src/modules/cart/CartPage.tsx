@@ -1,5 +1,7 @@
 import React from "react";
 
+import { sendGTMEvent } from "@next/third-parties/google";
+
 import Link from "next/link";
 
 import { Debugger } from "@/components/Debugger";
@@ -11,7 +13,8 @@ import { CartPrice } from "@/modules/cart/cart-price/CartPrice";
 import { CartBreadcrumbs } from "@/modules/cart/CartBreadcrumbs";
 import { CartItems } from "@/modules/cart/CartItems";
 import { CartWarnings } from "@/modules/cart/CartWarnings";
-import { BaseCartFragment } from "@/types";
+import { AvailablePaymentMethodFragment, BaseCartFragment } from "@/types";
+import { formatGTMCartItems } from "@/utils/gtm";
 
 interface Props {
   data?: BaseCartFragment | null;
@@ -20,6 +23,21 @@ interface Props {
 export async function CartPage({ data }: Props) {
   const selectedStore = await getSelectedStore();
   const isEmptyCart = !data || (data?.items && data.items.length === 0);
+
+  const viewCartGTMEvent = () => {
+    if (!data?.id) {
+      return;
+    }
+
+    return sendGTMEvent({
+      event: "view_cart",
+      currency: "NOK",
+      value: data?.prices?.grand_total,
+      ...formatGTMCartItems(data),
+    });
+  };
+
+  viewCartGTMEvent();
 
   return (
     <ContainerLayout>

@@ -2,6 +2,7 @@
 
 import React from "react";
 
+import { sendGTMEvent } from "@next/third-parties/google";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import Link from "next/link";
@@ -12,6 +13,7 @@ import { Input } from "@/components/_ui/input/Input";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { login } from "@/modules/auth/actions";
+import { formatGTMCartItems } from "@/utils/gtm";
 
 import { navigate } from "../../app/actions";
 
@@ -28,6 +30,14 @@ export const LoginPage: React.FC = () => {
     handleSubmit,
     formState: { isSubmitting, errors },
   } = useForm<FormData>();
+
+  const loginGTMEvent = () => {
+    return sendGTMEvent({
+      event: "login",
+      method: "email",
+    });
+  };
+
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     setIsLoading(true);
     const res = await login(data).finally(() => setIsLoading(false));
@@ -37,6 +47,7 @@ export const LoginPage: React.FC = () => {
     }
 
     if (res.success) {
+      loginGTMEvent();
       return navigate("/account").then(() => setIsLoading(false));
     }
   };

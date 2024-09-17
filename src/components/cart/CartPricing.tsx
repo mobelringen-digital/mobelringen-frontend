@@ -2,9 +2,13 @@ import React from "react";
 
 import getCart from "@/components/cart/actions";
 import { CartPriceLine } from "@/modules/cart/cart-price/CartPriceLine";
+import { BaseCartFragment } from "@/types";
 
-export async function CartPricing() {
-  const cart = await getCart();
+interface Props {
+  cart?: BaseCartFragment | null;
+}
+
+export async function CartPricing({ cart }: Props) {
   const prices = cart?.prices;
 
   const pricingLines = () => {

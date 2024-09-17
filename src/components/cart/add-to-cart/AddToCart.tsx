@@ -8,6 +8,7 @@ import {
 } from "@/components/cart/add-to-cart/actions";
 import { AddToCartController } from "@/components/cart/add-to-cart/AddToCartController";
 import { BaseCartFragment, BaseProductFragment } from "@/types";
+import { formatGTMCartItems, formatGTMCategories } from "@/utils/gtm";
 
 interface Props {
   isDisabled?: boolean;
@@ -31,14 +32,7 @@ export const AddToCart: React.FC<Props> = ({
       event: "add_to_cart",
       currency: "NOK",
       value: cart?.prices?.grand_total,
-      items: cart?.items?.map((item, idx) => ({
-        id: item?.product.sku,
-        item_name: item?.product.name,
-        index: idx,
-        price: item?.prices?.price.value,
-        discount: item?.prices?.total_item_discount?.value,
-        quantity: item?.quantity,
-      })),
+      ...formatGTMCartItems(cart),
     });
   };
 

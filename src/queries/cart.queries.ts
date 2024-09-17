@@ -95,6 +95,13 @@ export const BaseProductDataForCartFragment = graphql(`
     sku
     canonical_url
     special_price
+    brand
+    productBrand {
+      name
+    }
+    categories {
+      name
+    }
     short_description {
       html
     }

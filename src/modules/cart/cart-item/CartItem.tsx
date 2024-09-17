@@ -2,6 +2,8 @@
 
 import React from "react";
 
+import { sendGTMEvent } from "@next/third-parties/google";
+
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,6 +14,7 @@ import { updateCartItems } from "@/modules/cart/cart-item/actions";
 import { CartItemDeliveryInfo } from "@/modules/cart/cart-item/CartItemDeliveryInfo";
 import { CartItemPrice } from "@/modules/cart/cart-item/CartItemPrice";
 import { CartItemFragment, RemoveProductFromCartMutation } from "@/types";
+import { formatGTMCategories } from "@/utils/gtm";
 
 interface Props {
   item: CartItemFragment | null;
@@ -25,6 +28,33 @@ export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
   const { showConfirmation } = useConfirm();
 
   if (!item) return null;
+
+  const removeFromCartGTMEvent = () => {
+    if (!item?.id) {
+      return;
+    }
+
+    return sendGTMEvent({
+      event: "remove_from_cart",
+      currency: "NOK",
+      value: item.prices?.price.value,
+      items: [
+        {
+          item_id: item?.product.sku,
+          item_name: item?.product.name,
+          item_brand: item?.product.brand,
+          price: item?.prices?.price.value,
+          discount: item?.prices?.total_item_discount?.value,
+          quantity: item?.quantity,
+          ...formatGTMCategories(
+            item?.product.categories?.map((category) => ({
+              name: category?.name,
+            })),
+          ),
+        },
+      ],
+    });
+  };
 
   const handleUpdateQuantity = async (quantity: number) => {
     if (quantity > 0) {
@@ -54,9 +84,10 @@ export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
     });
 
     if (confirmed) {
-      return restProps
-        .onRemoveProduct(parseInt(item.id, 10))
-        .finally(() => setIsLoading(false));
+      return restProps.onRemoveProduct(parseInt(item.id, 10)).finally(() => {
+        removeFromCartGTMEvent();
+        setIsLoading(false);
+      });
     }
 
     setIsLoading(false);
