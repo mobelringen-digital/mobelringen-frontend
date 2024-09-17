@@ -1,5 +1,7 @@
 import React, { Suspense } from "react";
 
+import { GoogleTagManager } from "@next/third-parties/google";
+
 import { CmsDynamicHeaders } from "@/components/cms/dynamic-header/CmsDynamicHeaders";
 import { Footer } from "@/components/footer/Footer";
 import { HeaderMenu } from "@/components/header-menu";
@@ -16,6 +18,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <GoogleTagManager gtmId="GTM-TVPH6NS" />
       <meta name="robots" content="noindex,nofollow" />
       <meta
         name="viewport"

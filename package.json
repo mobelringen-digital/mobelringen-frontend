@@ -13,6 +13,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@next/third-parties": "^14.2.11",
     "@nextui-org/react": "^2.4.2",
     "@sentry/nextjs": "8",
     "@tanstack/react-query": "^5.36.0",
@@ -20,7 +21,7 @@
     "classnames": "^2.5.1",
     "framer-motion": "^11.2.10",
     "leaflet": "^1.9.4",
-    "next": "^14.2.4",
+    "next": "^14.2.11",
     "qs": "^6.13.0",
     "react": "^18.3.1",
     "react-cookie": "^7.1.4",
