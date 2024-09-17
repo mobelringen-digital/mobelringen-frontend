@@ -29,7 +29,7 @@ export const ShippingFormController: React.FC<Props> = ({ cart }) => {
     return sendGTMEvent({
       event: "add_shipping_info",
       currency: "NOK",
-      value: cart?.prices?.grand_total,
+      value: cart?.prices?.grand_total?.value,
       shipping_tier: method.method_code,
       ...formatGTMCartItems(cart),
     });

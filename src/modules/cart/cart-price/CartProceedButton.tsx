@@ -29,7 +29,7 @@ export const CartProceedButton: React.FC<Props> = ({ disabled, cart }) => {
     return sendGTMEvent({
       event: "begin_checkout",
       currency: "NOK",
-      value: cart?.prices?.grand_total,
+      value: cart?.prices?.grand_total?.value,
       ...formatGTMCartItems(cart),
     });
   };
