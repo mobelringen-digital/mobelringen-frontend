@@ -26,9 +26,7 @@ export const CartEvents: React.FC<Props> = ({ children, data }) => {
     });
   }, [data]);
 
-  React.useEffect(() => {
-    viewCartGTMEvent();
-  }, [data, viewCartGTMEvent]);
+  viewCartGTMEvent();
 
   return <>{children}</>;
 };
