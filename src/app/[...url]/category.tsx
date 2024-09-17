@@ -9,10 +9,6 @@ import {
 import { notFound } from "next/navigation";
 
 import { CategoryPage } from "@/modules/category/category/CategoryPage";
-import {
-  fetchProducts,
-  PRODUCTS_QUERY_KEY,
-} from "@/modules/category/category/useProductsQuery";
 import { CategoryDescription } from "@/modules/category/CategoryDescription";
 import { ParentCategoryPage } from "@/modules/category/parent-category/ParentCategoryPage";
 import { SubCategoriesSelect } from "@/modules/category/SubCategoriesSelect";
@@ -72,14 +68,6 @@ export default async function Category({ url }: Props) {
   const category = await getCategory(url);
   const currentCategory = category.categories?.items?.[0];
   const queryClient = new QueryClient();
-
-  if (currentCategory && isLastCategoryWithChildren(currentCategory)) {
-    await queryClient.prefetchQuery({
-      queryKey: [...PRODUCTS_QUERY_KEY, currentCategory.id],
-      queryFn: () =>
-        fetchProducts({ category_id: { eq: String(currentCategory?.id) } }),
-    });
-  }
 
   /**
    * Parent category is only fetched when last category is reached
