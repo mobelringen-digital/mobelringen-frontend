@@ -23,6 +23,8 @@ interface Props {
 }
 
 export const FavoriteStore: React.FC<Props> = ({ customer, stores }) => {
+  const [value, setValue] = React.useState([customer?.favorite_store ?? ""]);
+
   const {
     control,
     handleSubmit,
@@ -62,7 +64,9 @@ export const FavoriteStore: React.FC<Props> = ({ customer, stores }) => {
             placeholder="Velg favorittbutikk"
             selectionMode="single"
             className="max-w-xs"
-            selectedKeys={[customer?.favorite_store ?? ""]}
+            // @ts-expect-error - Fix this
+            onSelectionChange={setValue}
+            selectedKeys={value}
           >
             {stores?.map((store, idx) => (
               <SelectItem

@@ -2,18 +2,16 @@
 
 import React from "react";
 
-import { useCookies } from "react-cookie";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/_ui/button/Button";
 import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
 import { Input } from "@/components/_ui/input/Input";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
-import { login, logout } from "@/modules/auth/actions";
+import { login } from "@/modules/auth/actions";
 
 import { navigate } from "../../app/actions";
 
@@ -30,18 +28,6 @@ export const LoginPage: React.FC = () => {
     handleSubmit,
     formState: { isSubmitting, errors },
   } = useForm<FormData>();
-  const searchParams = useSearchParams();
-  const isTokenExpired = searchParams.get("callback") === "TOKEN_EXPIRED";
-  const [cookies] = useCookies(["token"]);
-
-  React.useEffect(() => {
-    (async () => {
-      if (isTokenExpired) {
-        await logout();
-      }
-    })();
-  }, [cookies.token, isTokenExpired]);
-
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     setIsLoading(true);
     const res = await login(data).finally(() => setIsLoading(false));
@@ -108,7 +94,12 @@ export const LoginPage: React.FC = () => {
             bestille varer kjapt og enkelt, ha oversikt over alle ordre og melde
             deg inn i kundeklubben.
           </p>
-          <Button className="mt-2" as={Link} href="/auth/register" color="secondary">
+          <Button
+            className="mt-2"
+            as={Link}
+            href="/auth/register"
+            color="secondary"
+          >
             Opprett bruker
           </Button>
         </div>

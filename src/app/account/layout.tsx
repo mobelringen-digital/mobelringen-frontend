@@ -1,10 +1,10 @@
 import React from "react";
 
-import { redirect } from "next/navigation";
-
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { AccountLinks } from "@/modules/account/AccountLinks";
-import { getToken } from "@/modules/auth/actions";
+import { getToken, logout } from "@/modules/auth/actions";
+
+import { navigate } from "../actions";
 
 export default async function AccountLayout({
   children,
@@ -14,7 +14,7 @@ export default async function AccountLayout({
   const token = await getToken();
 
   if (!token) {
-    return redirect("/auth/login");
+    return logout().then(() => navigate(`/auth/login?callback=TOKEN_EXPIRED`));
   }
 
   return (
