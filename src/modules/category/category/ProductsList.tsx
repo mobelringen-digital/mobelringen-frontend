@@ -3,13 +3,14 @@
 import React from "react";
 
 import { ProductCard } from "@/components/product/ProductCard";
-import { ProductsQuery } from "@/types";
+import { BaseProductDataForCardFragment, ProductsQuery } from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
 
 interface Props {
   products?: ProductsQuery["products"];
+  onItemClick?: (product: BaseProductDataForCardFragment) => void;
 }
-export const ProductsList: React.FC<Props> = ({ products }) => {
+export const ProductsList: React.FC<Props> = ({ products, onItemClick }) => {
   return (
     <>
       {products?.items?.map((product, idx) => {
@@ -19,7 +20,7 @@ export const ProductsList: React.FC<Props> = ({ products }) => {
         return (
           <React.Fragment key={idx}>
             {isSupportedProductType ? (
-              <ProductCard key={idx} product={product} />
+              <ProductCard onClick={onItemClick} key={idx} product={product} />
             ) : null}
           </React.Fragment>
         );

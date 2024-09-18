@@ -2,6 +2,8 @@
 
 import React from "react";
 
+import { sendGTMEvent } from "@next/third-parties/google";
+
 import { Loader } from "@/components/_ui/loader/Loader";
 import { LoaderInnerWrapper } from "@/components/_ui/loader/LoaderInnerWrapper";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -21,6 +23,7 @@ import {
   BaseCartFragment,
   BaseProductFragment as BaseProductFragmentType,
 } from "@/types";
+import { formatGTMCategories } from "@/utils/gtm";
 
 interface Props {
   baseProductData: BaseProductFragmentType;
@@ -39,6 +42,36 @@ export const BaseProductLayout: React.FC<Props> = ({
   const product = activeProductVariant.variant?.product ?? baseProductData;
   const { data: productSliderData, isLoading: isSlidersDataLoading } =
     useProductSliderDataQuery(product.sku);
+
+  const viewProductGTMEvent = React.useCallback(() => {
+    if (!product) {
+      return;
+    }
+
+    return sendGTMEvent({
+      event: "view_item",
+      currency: "NOK",
+      value: product.price_range.maximum_price?.final_price?.value,
+      items: [
+        {
+          item_id: product.sku,
+          item_name: product.name,
+          item_brand: product.productBrand?.name,
+          price: product.price_range.maximum_price?.final_price.value,
+          discount: product.price_range.maximum_price?.discount?.amount_off,
+          ...formatGTMCategories(
+            product.categories?.map((cat) => ({
+              name: cat?.name,
+            })),
+          ),
+        },
+      ],
+    });
+  }, [product]);
+
+  React.useEffect(() => {
+    viewProductGTMEvent();
+  }, [product, viewProductGTMEvent]);
 
   return (
     <>

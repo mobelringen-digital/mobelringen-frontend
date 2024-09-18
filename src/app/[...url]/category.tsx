@@ -1,11 +1,5 @@
 import React from "react";
 
-import {
-  dehydrate,
-  HydrationBoundary,
-  QueryClient,
-} from "@tanstack/react-query";
-
 import { notFound } from "next/navigation";
 
 import { CategoryPage } from "@/modules/category/category/CategoryPage";
@@ -67,7 +61,6 @@ async function getLastCategoryWithChildren(
 export default async function Category({ url }: Props) {
   const category = await getCategory(url);
   const currentCategory = category.categories?.items?.[0];
-  const queryClient = new QueryClient();
 
   /**
    * Parent category is only fetched when last category is reached
@@ -86,7 +79,7 @@ export default async function Category({ url }: Props) {
   }
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
+    <>
       <title>{currentCategory.meta_title ?? currentCategory.name}</title>
       <meta
         name="description"
@@ -109,6 +102,6 @@ export default async function Category({ url }: Props) {
           description={currentCategory.description}
         />
       ) : null}
-    </HydrationBoundary>
+    </>
   );
 }

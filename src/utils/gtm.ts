@@ -29,7 +29,7 @@ export const formatGTMCartItems = (cart: BaseCartFragment) => {
       item_name: item?.product.name,
       item_brand: item?.product.productBrand?.name,
       index: idx,
-      price: item?.prices?.price.value,
+      price: item?.prices?.row_total_including_tax.value,
       discount: item?.prices?.total_item_discount?.value,
       quantity: item?.quantity,
       ...formatGTMCategories(
