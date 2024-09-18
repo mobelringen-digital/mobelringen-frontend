@@ -3,6 +3,7 @@
 import React from "react";
 
 import { sendGTMEvent } from "@next/third-parties/google";
+import { useCookies } from "react-cookie";
 
 import { BaseCartFragment } from "@/types";
 import { formatGTMCartItems } from "@/utils/gtm";
@@ -13,6 +14,11 @@ interface Props {
 }
 
 export const CartEvents: React.FC<Props> = ({ children, data }) => {
+  const [cookies, setCookie] = useCookies<
+    "eventSentForCart",
+    { eventSentForCart?: string }
+  >(["eventSentForCart"]);
+
   const viewCartGTMEvent = React.useCallback(() => {
     if (!data?.id) {
       return;
@@ -26,7 +32,12 @@ export const CartEvents: React.FC<Props> = ({ children, data }) => {
     });
   }, [data]);
 
-  viewCartGTMEvent();
+  React.useEffect(() => {
+    if (!cookies.eventSentForCart || cookies.eventSentForCart !== data?.id) {
+      setCookie("eventSentForCart", data?.id, { path: "/" });
+      viewCartGTMEvent();
+    }
+  }, [cookies.eventSentForCart, data, setCookie, viewCartGTMEvent]);
 
   return <>{children}</>;
 };

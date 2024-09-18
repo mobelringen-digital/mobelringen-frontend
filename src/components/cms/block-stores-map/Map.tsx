@@ -47,19 +47,21 @@ const Map: React.FC<Props> = ({ stores, selectedStore }) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <MarkerClusterGroup chunkedLoading={true}>
-        {stores?.map((store, idx) => {
-          if (store?.latitude && store?.longitude) {
-            return (
-              <Marker
-                icon={createMapIcon()}
-                key={store?.id ?? idx}
-                position={[store?.latitude, store?.longitude]}
-              >
-                <Popup>{store?.name}</Popup>
-              </Marker>
-            );
-          }
-        })}
+        {stores
+          ?.filter((s) => s?.latitude && s?.longitude && s.is_visible_on_map)
+          .map((store, idx) => {
+            if (store?.latitude && store?.longitude) {
+              return (
+                <Marker
+                  icon={createMapIcon()}
+                  key={store?.id ?? idx}
+                  position={[store?.latitude, store?.longitude]}
+                >
+                  <Popup>{store?.name}</Popup>
+                </Marker>
+              );
+            }
+          })}
       </MarkerClusterGroup>
     </MapContainer>
   );
