@@ -23,7 +23,7 @@ export const CartEvents: React.FC<Props> = ({ children, data }) => {
   const pathname = usePathname();
 
   const viewCartGTMEvent = React.useCallback(() => {
-    if (!data?.id) {
+    if (!data?.id || cookies.eventSentForCart === data?.id) {
       return;
     }
 
@@ -33,14 +33,21 @@ export const CartEvents: React.FC<Props> = ({ children, data }) => {
       value: data?.prices?.grand_total?.value,
       ...formatGTMCartItems(data),
     });
-  }, [data]);
+  }, [cookies.eventSentForCart, data]);
 
   React.useEffect(() => {
     if (
       pathname === "/cart" &&
       (!cookies.eventSentForCart || cookies.eventSentForCart !== data?.id)
     ) {
-      setCookie("eventSentForCart", data?.id, { path: pathname });
+      const today = new Date();
+      const oneWeekFromNow = new Date(
+        today.getTime() + 7 * 24 * 60 * 60 * 1000,
+      );
+      setCookie("eventSentForCart", data?.id, {
+        path: pathname,
+        expires: oneWeekFromNow,
+      });
       viewCartGTMEvent();
     }
   }, [cookies.eventSentForCart, data, pathname, setCookie, viewCartGTMEvent]);
