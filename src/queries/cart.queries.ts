@@ -446,3 +446,11 @@ export const ReserveOrder = graphql(`
     }
   }
 `);
+
+export const setDeliveryTypeDocument = graphql(`
+  mutation setDeliveryType($input: SetDeliveryTypeInput) {
+    setDeliveryType(input: $input) {
+      message
+    }
+  }
+`);

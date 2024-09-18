@@ -66,8 +66,42 @@ export const CustomerOrderFragment = graphql(`
     currency
     email
     id
+    delivery_type
+    shipping_method
     total {
+      base_grand_total {
+        value
+        currency
+      }
+      discounts {
+        amount {
+          currency
+          value
+        }
+        applied_to
+        label
+      }
       grand_total {
+        currency
+        value
+      }
+      subtotal {
+        currency
+        value
+      }
+      taxes {
+        amount {
+          currency
+          value
+        }
+        rate
+        title
+      }
+      total_shipping {
+        currency
+        value
+      }
+      total_tax {
         currency
         value
       }
