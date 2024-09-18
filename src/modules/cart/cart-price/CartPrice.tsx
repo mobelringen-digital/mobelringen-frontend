@@ -17,7 +17,7 @@ export const CartPrice: React.FC<Props> = ({ prices, cart }) => {
       <div className="bg-white p-4 lg:p-8 rounded-2xl flex flex-col gap-6">
         <h4 className="text-xl font-semibold">Oppsummering</h4>
         <div className="flex flex-col gap-4">
-          <CartPricing />
+          <CartPricing cart={cart} />
           <CartProceedButton cart={cart} />
         </div>
       </div>

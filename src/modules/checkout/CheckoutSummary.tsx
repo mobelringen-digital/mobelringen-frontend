@@ -18,7 +18,7 @@ export const CheckoutSummary: React.FC<Props> = ({ cart }) => {
             return <CartSummaryImage key={item?.id} item={item} />;
           })}
         </div>
-        <CartPricing />
+        <CartPricing cart={cart} />
       </div>
     </div>
   );
