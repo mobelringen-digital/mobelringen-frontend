@@ -5,6 +5,8 @@ import React from "react";
 import { sendGTMEvent } from "@next/third-parties/google";
 import { useCookies } from "react-cookie";
 
+import { usePathname } from "next/navigation";
+
 import { BaseCartFragment } from "@/types";
 import { formatGTMCartItems } from "@/utils/gtm";
 
@@ -18,6 +20,7 @@ export const CartEvents: React.FC<Props> = ({ children, data }) => {
     "eventSentForCart",
     { eventSentForCart?: string }
   >(["eventSentForCart"]);
+  const pathname = usePathname();
 
   const viewCartGTMEvent = React.useCallback(() => {
     if (!data?.id) {
@@ -33,11 +36,14 @@ export const CartEvents: React.FC<Props> = ({ children, data }) => {
   }, [data]);
 
   React.useEffect(() => {
-    if (!cookies.eventSentForCart || cookies.eventSentForCart !== data?.id) {
-      setCookie("eventSentForCart", data?.id, { path: "/" });
+    if (
+      pathname === "/cart" &&
+      (!cookies.eventSentForCart || cookies.eventSentForCart !== data?.id)
+    ) {
+      setCookie("eventSentForCart", data?.id, { path: pathname });
       viewCartGTMEvent();
     }
-  }, [cookies.eventSentForCart, data, setCookie, viewCartGTMEvent]);
+  }, [cookies.eventSentForCart, data, pathname, setCookie, viewCartGTMEvent]);
 
   return <>{children}</>;
 };
