@@ -1,4 +1,4 @@
-import { Maybe, ProductInterface } from "@/types";
+import {DeliveryType, Maybe, ProductInterface} from "@/types";
 
 export const generatePrettyUrl = (
   nextPropsUrl: Array<string>,
@@ -44,4 +44,9 @@ export const extractProductSkuFromUrl = (
   }
 
   return url.split("-").pop() ?? "";
+};
+
+export const DELIVERY_TYPE_MAP = {
+  online: DeliveryType.Online,
+  collect: DeliveryType.Cac,
 };

@@ -39,7 +39,7 @@ export async function CartPage({ data }: Props) {
             <div className="col-span-12 lg:col-span-7">
               <div className="bg-white flex flex-col gap-6 rounded-2xl p-4 lg:p-8">
                 <div className="flex flex-col gap-4">
-                  <CartMethodLinks selectedStore={selectedStore} />
+                  <CartMethodLinks cart={data} selectedStore={selectedStore} />
                   <CartWarnings cart={data} />
                 </div>
                 <div className="border-t border-t-cold-grey-dark border-opacity-80" />

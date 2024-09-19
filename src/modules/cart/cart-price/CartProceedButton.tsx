@@ -4,11 +4,15 @@ import React from "react";
 
 import { sendGTMEvent } from "@next/third-parties/google";
 
+import { useSearchParams } from "next/navigation";
+
 import { Button } from "@/components/_ui/button/Button";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
+import { setDeliveryType } from "@/modules/cart/cart-methods/actions";
 import { useCart } from "@/modules/cart/hooks/useCart";
 import { BaseCartFragment } from "@/types";
 import { formatGTMCartItems } from "@/utils/gtm";
+import { DELIVERY_TYPE_MAP } from "@/utils/helpers";
 
 import { navigate } from "../../../app/actions";
 
@@ -20,6 +24,8 @@ interface Props {
 export const CartProceedButton: React.FC<Props> = ({ disabled, cart }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const { isCheckoutEnabled } = useCart(cart);
+  const searchParams = useSearchParams();
+  const activeMethod = searchParams.get("method") ?? "online";
 
   const beginCheckoutGTMEvent = () => {
     if (!cart?.id) {
@@ -36,8 +42,13 @@ export const CartProceedButton: React.FC<Props> = ({ disabled, cart }) => {
 
   const navigateToCheckout = async () => {
     if (!isCheckoutEnabled) return;
+    if (!cart?.id) return;
 
     setIsLoading(true);
+    await setDeliveryType({
+      cartId: cart?.id,
+      type: DELIVERY_TYPE_MAP[activeMethod as keyof typeof DELIVERY_TYPE_MAP],
+    });
     return navigate("/cart/checkout").finally(() => {
       beginCheckoutGTMEvent();
       setIsLoading(false);

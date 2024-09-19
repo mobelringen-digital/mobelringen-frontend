@@ -1,6 +1,7 @@
 import React from "react";
 
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
+import { getCustomerDetails } from "@/modules/account/account/actions";
 import { AccountLinks } from "@/modules/account/AccountLinks";
 import { getToken } from "@/modules/auth/actions";
 
@@ -12,6 +13,11 @@ export default async function AccountLayout({
   children: React.ReactNode;
 }>) {
   const token = await getToken();
+  const customerData = await getCustomerDetails();
+
+  if (!customerData?.customer) {
+    return navigate(`/auth/logout?token=${token}`);
+  }
 
   if (!token) {
     return navigate("/auth/logout");

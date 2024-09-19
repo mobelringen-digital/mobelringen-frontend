@@ -2,10 +2,7 @@ import React from "react";
 
 import cx from "classnames";
 
-import Link from "next/link";
-
 interface Props {
-  method: string;
   icon: React.ReactNode;
   setPreferredMethod: () => void;
   label: string;
@@ -15,7 +12,6 @@ interface Props {
 }
 
 export const CartMethodLink: React.FC<Props> = ({
-  method,
   icon,
   setPreferredMethod,
   label,
@@ -23,11 +19,10 @@ export const CartMethodLink: React.FC<Props> = ({
   isActive,
 }) => {
   return (
-    <Link
+    <button
       onClick={setPreferredMethod}
-      href={`/cart?method=${method}`}
       className={cx(
-        "relative w-full px-4 py-1.5 lg:py-3 flex items-center gap-3 rounded-xl transition-all border hover:border-black",
+        "relative text-left w-full px-4 py-1.5 lg:py-3 flex items-center gap-3 rounded-xl transition-all border hover:border-black",
         {
           "border-2 border-black shadow": isActive,
         },
@@ -43,6 +38,6 @@ export const CartMethodLink: React.FC<Props> = ({
           {description}
         </span>
       </div>
-    </Link>
+    </button>
   );
 };

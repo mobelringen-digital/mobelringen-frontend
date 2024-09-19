@@ -8,11 +8,13 @@ import { navigate } from "../../actions";
 export default async function Logout() {
   const cookiesStore = cookies();
 
-  if (!cookiesStore.get("token")) {
+  if (!cookiesStore.get("token")?.value) {
     return navigate(`/auth/login?callback=NO_TOKEN`);
   }
 
-  await logout().then(() => navigate(`/auth/login?callback=TOKEN_EXPIRED`));
+  await logout().then(() =>
+    navigate(`/auth/login?session=${cookiesStore.get("token")?.value}`),
+  );
 
   return <PageTopLoader />;
 }
