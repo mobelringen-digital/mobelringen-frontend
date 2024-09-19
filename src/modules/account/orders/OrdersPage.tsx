@@ -15,11 +15,11 @@ interface Props {
 
 const CATEGORIES = [
   {
-    type: "Online",
+    type: "ONLINE",
     title: "På nett",
   },
   {
-    type: "Cac",
+    type: "CAC",
     title: "Klikk og hent",
   },
   {
@@ -29,7 +29,7 @@ const CATEGORIES = [
 ];
 
 export const OrdersPage: React.FC<Props> = ({ orders }) => {
-  const [activeCategory, setActiveCategory] = React.useState("Online");
+  const [activeCategory, setActiveCategory] = React.useState("ONLINE");
 
   const getCount = (type: string) => {
     return orders?.filter((order) => order?.delivery_type === type).length;
@@ -55,9 +55,7 @@ export const OrdersPage: React.FC<Props> = ({ orders }) => {
 
       <div className="flex flex-col gap-4">
         {orders
-          ?.filter((o) =>
-            o?.delivery_type ? o?.delivery_type === activeCategory : o,
-          )
+          ?.filter((o) => o?.delivery_type === activeCategory)
           .map((order) => {
             return <OrderItem data={order} key={order?.id} />;
           })}
