@@ -35,6 +35,8 @@ export const OrdersPage: React.FC<Props> = ({ orders }) => {
     return orders?.filter((order) => order?.delivery_type === type).length;
   };
 
+  const ORDERS = orders?.filter((o) => o?.delivery_type === activeCategory);
+
   return (
     <AccountPageLayout title="Mine bestillinger">
       <div className="flex gap-6">
@@ -53,12 +55,16 @@ export const OrdersPage: React.FC<Props> = ({ orders }) => {
         })}
       </div>
 
+      {ORDERS && ORDERS.length === 0 ? (
+        <div className="flex flex-col text-left text-xl gap-2">
+          <span>Du har ingen bestillinger.</span>
+        </div>
+      ) : null}
+
       <div className="flex flex-col gap-4">
-        {orders
-          ?.filter((o) => o?.delivery_type === activeCategory)
-          .map((order) => {
-            return <OrderItem data={order} key={order?.id} />;
-          })}
+        {ORDERS?.map((order) => {
+          return <OrderItem data={order} key={order?.id} />;
+        })}
       </div>
       <Debugger data={orders} />
     </AccountPageLayout>
