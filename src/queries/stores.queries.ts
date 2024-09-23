@@ -2,7 +2,6 @@ import { graphql } from "@/types/schema";
 
 export const BaseStoreFragment = graphql(`
   fragment BaseStore on Store {
-    __typename
     city
     country
     email
@@ -52,6 +51,33 @@ export const UpdateCartItemsIsInStore = graphql(`
     updateCartItemsIsInStore(cartId: $cartId, storeId: $storeId) {
       success
       message
+    }
+  }
+`);
+
+export const CmsStoreFragment = graphql(`
+  fragment CmsStore on Store {
+    storeName
+    topBanner {
+      url
+      width
+      height
+    }
+    bottomImage {
+      url
+      width
+      height
+    }
+    content {
+      ...CmsMultipleTextBlock
+    }
+  }
+`);
+
+export const CmsStoreDocument = graphql(`
+  query CmsStore($where: StoreWhereInput) {
+    stores(where: $where) {
+      ...CmsStore
     }
   }
 `);

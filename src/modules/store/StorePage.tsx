@@ -1,0 +1,70 @@
+import React from "react";
+
+import Image from "next/image";
+
+import { Breadcrumbs } from "@/components/breadcrumbs";
+import { MultipleTextBlock } from "@/components/cms/__components/multiple-text-block/MultipleTextBlock";
+import { Debugger } from "@/components/Debugger";
+import { ContainerLayout } from "@/components/layouts/ContainerLayout";
+import { BaseStoreFragment, CmsStoreFragment } from "@/types";
+
+interface Props {
+  storeCmsData: CmsStoreFragment;
+  store: BaseStoreFragment;
+}
+
+export const StorePage: React.FC<Props> = ({ storeCmsData, store }) => {
+  return (
+    <ContainerLayout>
+      <Breadcrumbs
+        data={[
+          {
+            label: storeCmsData.storeName ?? store.name ?? "",
+            url: `/store/${store.external_id}`,
+          },
+        ]}
+      />
+
+      {storeCmsData.topBanner?.url ? (
+        <Image
+          src={storeCmsData.topBanner.url}
+          width={storeCmsData.topBanner.width ?? 1448}
+          height={storeCmsData.topBanner.height ?? 480}
+          className="rounded-2xl my-8"
+          alt={storeCmsData.storeName ?? store.name ?? ""}
+        />
+      ) : null}
+
+      <div className="flex justify-center mb-16">
+        <h1 className="text-3xl lg:text-5xl font-feature">
+          {storeCmsData.storeName}
+        </h1>
+      </div>
+
+      <div className="grid grid-cols-2 gap-8">
+        <div className="col-span-2 lg:col-span-1">
+          {storeCmsData.content ? (
+            <MultipleTextBlock data={storeCmsData.content} />
+          ) : null}
+          <div className="flex mt-8">
+            {storeCmsData.bottomImage?.url ? (
+              <Image
+                src={storeCmsData.bottomImage.url}
+                width={storeCmsData.bottomImage.width ?? 704}
+                height={storeCmsData.bottomImage.height ?? 268}
+                className="rounded-2xl"
+                alt={storeCmsData.storeName ?? store.name ?? ""}
+              />
+            ) : null}
+          </div>
+        </div>
+        <div className="col-span-2 lg:col-span-1 bg-white rounded-2xl p-8">
+          a
+        </div>
+      </div>
+
+      <Debugger data={storeCmsData} />
+      <Debugger data={store} />
+    </ContainerLayout>
+  );
+};
