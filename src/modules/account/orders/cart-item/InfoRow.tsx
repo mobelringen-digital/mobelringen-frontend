@@ -22,7 +22,7 @@ export const InfoRow: React.FC<Props> = ({ data }) => {
           <span>{data?.order_date}</span>
         </div>
       ) : null}
-      {data?.total?.grand_total.value ? (
+      {data?.total?.grand_total?.value ? (
         <div className="flex flex-col">
           <span className="font-semibold">Totalpris</span>
           <span>
