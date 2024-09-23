@@ -178,12 +178,14 @@ export const ProductsQueryDocument = graphql(`
     $filter: ProductAttributeFilterInput
     $sort: ProductAttributeSortInput
     $currentPage: Int
+    $search: String = ""
   ) {
     products(
       pageSize: $pageSize
       filter: $filter
       sort: $sort
       currentPage: $currentPage
+      search: $search
     ) {
       total_count
       page_info {

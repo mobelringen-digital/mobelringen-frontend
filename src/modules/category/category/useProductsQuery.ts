@@ -16,12 +16,14 @@ export const fetchProducts = async (
   filter: InputMaybe<ProductAttributeFilterInput>,
   sort?: InputMaybe<ProductAttributeSortInput>,
   currentPage?: number,
+  search?: string,
 ) => {
   const data = await baseMagentoClient("GET").request<
     ProductsQuery,
     ProductsQueryVariables
   >(ProductsQueryDocument, {
     filter,
+    search,
     sort: sort ?? {},
     currentPage: currentPage ?? 1,
   });
@@ -32,12 +34,14 @@ export const fetchProducts = async (
 export const useProductsQuery = (
   filter: InputMaybe<ProductAttributeFilterInput>,
   sort?: InputMaybe<ProductAttributeSortInput>,
+  search?: string,
 ) => {
   return useInfiniteQuery<ProductsQuery["products"]>({
     queryKey: [
       ...PRODUCTS_QUERY_KEY,
       JSON.stringify(filter),
       JSON.stringify(sort),
+      search,
     ],
     initialPageParam: 1,
     getNextPageParam: (lastPage) =>

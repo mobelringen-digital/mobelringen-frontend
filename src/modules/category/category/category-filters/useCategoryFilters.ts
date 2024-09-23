@@ -67,7 +67,11 @@ export const useCategoryFilters = () => {
   };
 
   const resetQueryFilters = () => {
-    router.push(pathname);
+    const q = searchParams.get("q");
+    if (q) {
+      return router.push(`${pathname}?q=${q}`);
+    }
+    return router.push(pathname);
   };
 
   return {

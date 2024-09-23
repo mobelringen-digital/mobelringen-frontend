@@ -69,6 +69,16 @@ export const CmsPagesQueryDocument = graphql(`
           url
         }
       }
+      createdAt
+      pageThumbnail {
+        url
+        width
+        height
+      }
+      pageCategory {
+        name
+        categoryUrl
+      }
       url
       content(first: 100) {
         ...CmsBanner
