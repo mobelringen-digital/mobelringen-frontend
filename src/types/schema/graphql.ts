@@ -380,6 +380,7 @@ export type Asset = Entity & Node & {
   mimeType?: Maybe<Scalars['String']['output']>;
   ogImageSeo: Array<Seo>;
   pageThumbnailPage: Array<Page>;
+  papirflyId?: Maybe<Scalars['Int']['output']>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   /** User that last published this document */
@@ -583,6 +584,7 @@ export type AssetCreateInput = {
   localizations?: InputMaybe<AssetCreateLocalizationsInput>;
   ogImageSeo?: InputMaybe<SeoCreateManyInlineInput>;
   pageThumbnailPage?: InputMaybe<PageCreateManyInlineInput>;
+  papirflyId?: InputMaybe<Scalars['Int']['input']>;
   topBannerStore?: InputMaybe<StoreCreateManyInlineInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** Optionally the system can upload a file for you, for that you need to provide a publicly accessible url */
@@ -710,6 +712,21 @@ export type AssetManyWhereInput = {
   pageThumbnailPage_every?: InputMaybe<PageWhereInput>;
   pageThumbnailPage_none?: InputMaybe<PageWhereInput>;
   pageThumbnailPage_some?: InputMaybe<PageWhereInput>;
+  papirflyId?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than the given value. */
+  papirflyId_gt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than or equal the given value. */
+  papirflyId_gte?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are contained in given list. */
+  papirflyId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  /** All values less than the given value. */
+  papirflyId_lt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values less than or equal the given value. */
+  papirflyId_lte?: InputMaybe<Scalars['Int']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  papirflyId_not?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are not contained in given list. */
+  papirflyId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -766,6 +783,8 @@ export enum AssetOrderByInput {
   IdDesc = 'id_DESC',
   MimeTypeAsc = 'mimeType_ASC',
   MimeTypeDesc = 'mimeType_DESC',
+  PapirflyIdAsc = 'papirflyId_ASC',
+  PapirflyIdDesc = 'papirflyId_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
   SizeAsc = 'size_ASC',
@@ -807,6 +826,7 @@ export type AssetUpdateInput = {
   localizations?: InputMaybe<AssetUpdateLocalizationsInput>;
   ogImageSeo?: InputMaybe<SeoUpdateManyInlineInput>;
   pageThumbnailPage?: InputMaybe<PageUpdateManyInlineInput>;
+  papirflyId?: InputMaybe<Scalars['Int']['input']>;
   /** Use this to define if its a reupload for the asset */
   reUpload?: InputMaybe<Scalars['Boolean']['input']>;
   topBannerStore?: InputMaybe<StoreUpdateManyInlineInput>;
@@ -856,6 +876,7 @@ export type AssetUpdateManyInlineInput = {
 
 export type AssetUpdateManyInput = {
   altText?: InputMaybe<Scalars['String']['input']>;
+  papirflyId?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type AssetUpdateManyWithNestedWhereInput = {
@@ -1177,6 +1198,21 @@ export type AssetWhereInput = {
   pageThumbnailPage_every?: InputMaybe<PageWhereInput>;
   pageThumbnailPage_none?: InputMaybe<PageWhereInput>;
   pageThumbnailPage_some?: InputMaybe<PageWhereInput>;
+  papirflyId?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than the given value. */
+  papirflyId_gt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than or equal the given value. */
+  papirflyId_gte?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are contained in given list. */
+  papirflyId_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  /** All values less than the given value. */
+  papirflyId_lt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values less than or equal the given value. */
+  papirflyId_lte?: InputMaybe<Scalars['Int']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  papirflyId_not?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are not contained in given list. */
+  papirflyId_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
