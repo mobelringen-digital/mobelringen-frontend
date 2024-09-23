@@ -63,6 +63,10 @@ export const CmsStoreFragment = graphql(`
       width
       height
     }
+    seo {
+      metaTitle
+      metaDescription
+    }
     bottomImage {
       ...CmsImageLink
     }

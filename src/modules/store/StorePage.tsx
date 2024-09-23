@@ -7,6 +7,7 @@ import { ImageLink } from "@/components/cms/__components/image-link/ImageLink";
 import { MultipleTextBlock } from "@/components/cms/__components/multiple-text-block/MultipleTextBlock";
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
+import { MetaDescription, MetaTitle } from "@/components/meta";
 import { BaseStoreFragment, CmsStoreFragment } from "@/types";
 
 interface Props {
@@ -17,6 +18,13 @@ interface Props {
 export const StorePage: React.FC<Props> = ({ storeCmsData, store }) => {
   return (
     <ContainerLayout>
+      {storeCmsData.seo?.metaTitle ? (
+        <MetaTitle title={storeCmsData.seo.metaTitle} />
+      ) : null}
+      {storeCmsData.seo?.metaDescription ? (
+        <MetaDescription description={storeCmsData.seo.metaDescription} />
+      ) : null}
+
       <Breadcrumbs
         data={[
           {
