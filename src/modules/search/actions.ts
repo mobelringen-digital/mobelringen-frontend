@@ -5,6 +5,7 @@ import { ProductsQueryDocument } from "@/queries/product/product.queries";
 import {
   CmsPagesQuery,
   CmsPagesQueryVariables,
+  PageType,
   ProductsQuery,
   ProductsQueryVariables,
 } from "@/types";
@@ -29,6 +30,7 @@ export async function searchArticles(query: string) {
   >(CmsPagesQueryDocument, {
     where: {
       _search: query,
+      pageType_in: [PageType.Inspiration, PageType.Campaign],
     },
   });
 }

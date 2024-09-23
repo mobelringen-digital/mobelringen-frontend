@@ -12,6 +12,9 @@ export const Articles: React.FC<Props> = ({ articles }) => {
   return (
     <>
       <CmsBlockHeader title="Artikler" />
+      {articles.length === 0 && (
+        <div className="text-center text-lg mt-8">Ingen artikler funnet</div>
+      )}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
         {articles?.map((page, idx) => <PageThumbnail page={page} key={idx} />)}
       </div>
