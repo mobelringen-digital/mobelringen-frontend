@@ -19,7 +19,7 @@ export const OrderItemTotal: React.FC<Props> = ({ data }) => {
             <span className="text-dark-grey">Delsum</span>
             <span>
               <FormatNumber
-                value={data?.total?.base_grand_total.value ?? "-"}
+                value={data?.total?.base_grand_total?.value ?? "-"}
                 format="currency"
                 suffix=" kr"
               />
@@ -29,7 +29,7 @@ export const OrderItemTotal: React.FC<Props> = ({ data }) => {
             <span className="text-dark-grey">Frakt</span>
             <span>
               <FormatNumber
-                value={data?.total?.total_shipping.value ?? "-"}
+                value={data?.total?.total_shipping?.value ?? "-"}
                 format="currency"
                 suffix=" kr"
               />
@@ -39,7 +39,7 @@ export const OrderItemTotal: React.FC<Props> = ({ data }) => {
             <span className="font-semibold">Totalsum</span>
             <span>
               <FormatNumber
-                value={data?.total?.grand_total.value ?? "-"}
+                value={data?.total?.grand_total?.value ?? "-"}
                 format="currency"
                 suffix=" kr"
               />
@@ -49,7 +49,7 @@ export const OrderItemTotal: React.FC<Props> = ({ data }) => {
             <span className="text-dark-grey">Herav mva</span>
             <span>
               <FormatNumber
-                value={data?.total?.total_tax.value ?? "-"}
+                value={data?.total?.total_tax?.value ?? "-"}
                 format="currency"
                 suffix=" kr"
               />
