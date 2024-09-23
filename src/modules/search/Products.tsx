@@ -34,34 +34,39 @@ export const Products: React.FC<Props> = ({ query }) => {
   return (
     <>
       {isLoading ? <PageTopLoader /> : null}
-      <CmsBlockHeader title="Produkter" />
-      <CategoryFilters
-        totalCount={data?.pages[0]?.total_count}
-        filters={data?.pages[0]?.aggregations}
-      />
-      {isLoading ? <ProductsListSkeleton /> : null}
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8">
-        {data?.pages.map((page, idx) => {
-          return <ProductsList key={idx} products={page} />;
-        })}
-      </div>
+      {totalCount && totalCount > 0 ? (
+        <>
+          <CmsBlockHeader title="Produkter" />
+          <CategoryFilters
+            totalCount={data?.pages[0]?.total_count}
+            filters={data?.pages[0]?.aggregations}
+          />
+          {isLoading ? <ProductsListSkeleton /> : null}
 
-      <div className="flex w-full items-center justify-center mt-8 pt-8 border-t border-cold-grey-dark">
-        <div className="flex flex-col gap-3">
-          <span className="text-black text-base">
-            Viser {currentlyLoaded} av {totalCount} produkter
-          </span>
-          {hasNextPage ? (
-            <Button
-              disabled={isFetchingNextPage}
-              onClick={() => fetchNextPage()}
-            >
-              Last inn flere
-            </Button>
-          ) : null}
-        </div>
-      </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8">
+            {data?.pages.map((page, idx) => {
+              return <ProductsList key={idx} products={page} />;
+            })}
+          </div>
+
+          <div className="flex w-full items-center justify-center mt-8 pt-8 border-t border-cold-grey-dark">
+            <div className="flex flex-col gap-3">
+              <span className="text-black text-base">
+                Viser {currentlyLoaded} av {totalCount} produkter
+              </span>
+              {hasNextPage ? (
+                <Button
+                  disabled={isFetchingNextPage}
+                  onClick={() => fetchNextPage()}
+                >
+                  Last inn flere
+                </Button>
+              ) : null}
+            </div>
+          </div>
+        </>
+      ) : null}
     </>
   );
 };
