@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
-import {ImageLink} from "@/components/cms/__components/image-link/ImageLink";
+import { ImageLink } from "@/components/cms/__components/image-link/ImageLink";
 import { MultipleTextBlock } from "@/components/cms/__components/multiple-text-block/MultipleTextBlock";
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
@@ -53,8 +53,10 @@ export const StorePage: React.FC<Props> = ({ storeCmsData, store }) => {
             ) : null}
           </div>
         </div>
-        <div className="col-span-2 lg:col-span-1 bg-white rounded-2xl p-8">
-          a
+        <div className="col-span-2 lg:col-span-1">
+          <div className="bg-white rounded-2xl p-8">
+            TODO: Add store information here
+          </div>
         </div>
       </div>
 
