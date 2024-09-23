@@ -3,7 +3,6 @@ import React from "react";
 import { Button } from "@/components/_ui/button/Button";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { CmsBlockHeader } from "@/components/cms/cms-block-wrapper/CmsBlockHeader";
-import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { CategoryFilters } from "@/modules/category/category/category-filters/CategoryFilters";
 import { useCategoryFilters } from "@/modules/category/category/category-filters/useCategoryFilters";
 import { ProductsList } from "@/modules/category/category/ProductsList";
@@ -33,7 +32,7 @@ export const Products: React.FC<Props> = ({ query }) => {
   const totalCount = data?.pages[0]?.total_count;
 
   return (
-    <ContainerLayout className="mt-12">
+    <>
       {isLoading ? <PageTopLoader /> : null}
       <CmsBlockHeader title="Produkter" />
       <CategoryFilters
@@ -63,6 +62,6 @@ export const Products: React.FC<Props> = ({ query }) => {
           ) : null}
         </div>
       </div>
-    </ContainerLayout>
+    </>
   );
 };
