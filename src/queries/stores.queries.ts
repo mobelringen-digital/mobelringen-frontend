@@ -64,9 +64,7 @@ export const CmsStoreFragment = graphql(`
       height
     }
     bottomImage {
-      url
-      width
-      height
+      ...CmsImageLink
     }
     content {
       ...CmsMultipleTextBlock

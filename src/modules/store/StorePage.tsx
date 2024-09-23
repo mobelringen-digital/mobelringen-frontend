@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 
 import { Breadcrumbs } from "@/components/breadcrumbs";
+import {ImageLink} from "@/components/cms/__components/image-link/ImageLink";
 import { MultipleTextBlock } from "@/components/cms/__components/multiple-text-block/MultipleTextBlock";
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
@@ -35,7 +36,7 @@ export const StorePage: React.FC<Props> = ({ storeCmsData, store }) => {
         />
       ) : null}
 
-      <div className="flex justify-center mb-16">
+      <div className="flex justify-center mb-24">
         <h1 className="text-3xl lg:text-5xl font-feature">
           {storeCmsData.storeName}
         </h1>
@@ -48,13 +49,7 @@ export const StorePage: React.FC<Props> = ({ storeCmsData, store }) => {
           ) : null}
           <div className="flex mt-8">
             {storeCmsData.bottomImage?.url ? (
-              <Image
-                src={storeCmsData.bottomImage.url}
-                width={storeCmsData.bottomImage.width ?? 704}
-                height={storeCmsData.bottomImage.height ?? 268}
-                className="rounded-2xl"
-                alt={storeCmsData.storeName ?? store.name ?? ""}
-              />
+              <ImageLink data={storeCmsData.bottomImage} />
             ) : null}
           </div>
         </div>
