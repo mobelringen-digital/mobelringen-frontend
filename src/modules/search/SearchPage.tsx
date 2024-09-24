@@ -7,6 +7,7 @@ import cx from "classnames";
 import Link from "next/link";
 
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
+import { MetaTitle } from "@/components/meta";
 import { Articles } from "@/modules/search/Articles";
 import { Products } from "@/modules/search/Products";
 import { CmsPagesQuery, ProductsQuery } from "@/types";
@@ -36,6 +37,8 @@ export const SearchPage: React.FC<Props> = ({ query, products, articles }) => {
 
   return (
     <>
+      <MetaTitle title={`Søkeresultater for “${query ?? ""}”`} />
+
       <div className="bg-cream py-[40px] border-b border-b-beige w-full">
         <ContainerLayout>
           <h1 className="text-5xl font-medium font-feature">
