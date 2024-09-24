@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import Link from "next/link";
 
@@ -11,7 +11,9 @@ export const Actions = () => {
   return (
     <ul className="flex items-center z-50 gap-4">
       <li className="hidden lg:list-item">
-        <Search />
+        <Suspense fallback={null}>
+          <Search />
+        </Suspense>
       </li>
       <li>
         <Link href="/account">
