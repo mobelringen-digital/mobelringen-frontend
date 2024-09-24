@@ -1,4 +1,4 @@
-import { searchArticles } from "@/modules/search/actions";
+import { searchArticles, searchProducts } from "@/modules/search/actions";
 import { SearchPage } from "@/modules/search/SearchPage";
 
 type Props = {
@@ -9,14 +9,14 @@ type Props = {
 export default async function Search({ searchParams }: Props) {
   const searchQuery = searchParams.q as string;
 
-  // const productsData = await searchProducts(searchQuery);
+  const productsData = await searchProducts(searchQuery);
   const articlesData = await searchArticles(searchQuery);
 
   return (
     <SearchPage
       query={searchQuery}
       articles={articlesData.pages}
-      products={[] as any}
+      products={productsData.products}
     />
   );
 }
