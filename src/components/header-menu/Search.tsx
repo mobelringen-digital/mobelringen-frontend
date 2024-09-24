@@ -9,11 +9,13 @@ import { Input } from "@/components/_ui/input/Input";
 
 export const Search = () => {
   const searchParams = useSearchParams();
+  const [search, setSearch] = React.useState(searchParams.get("q") || "");
 
   return (
     <form method="GET" action="/search">
       <Input
-        value={searchParams.get("q") || ""}
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
         startContent={
           <button type="submit">
             <SearchIcon />
