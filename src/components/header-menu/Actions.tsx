@@ -5,13 +5,13 @@ import Link from "next/link";
 import { Favorite } from "@/components/_ui/icons/figma/Favorite";
 import { Profile } from "@/components/_ui/icons/figma/Profile";
 import { HeaderCartButton } from "@/components/cart/HeaderCartButton";
-import { SearchInput } from "@/components/search/SearchInput";
+import { Search } from "@/components/header-menu/Search";
 
 export const Actions = () => {
   return (
     <ul className="flex items-center z-50 gap-4">
       <li className="hidden lg:list-item">
-        <SearchInput />
+        <Search />
       </li>
       <li>
         <Link href="/account">
