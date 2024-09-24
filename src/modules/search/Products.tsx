@@ -16,15 +16,11 @@ interface Props {
 export const Products: React.FC<Props> = ({ query }) => {
   const { filterValues, sortValues } = useCategoryFilters();
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
-    useProductsQuery(
-      {
-        ...filterValues,
-      },
-      {
-        ...sortValues,
-      },
-      query,
-    );
+    useProductsQuery({
+      search: query,
+      filter: filterValues,
+      sort: sortValues,
+    });
 
   const currentlyLoaded = data?.pages.reduce((acc, page) => {
     return acc + (page?.items?.length ?? 0);

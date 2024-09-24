@@ -19,7 +19,7 @@ export const OrderItemTotal: React.FC<Props> = ({ data }) => {
             <span className="text-dark-grey">Delsum</span>
             <span>
               <FormatNumber
-                value={data?.total?.base_grand_total?.value ?? "-"}
+                value={data?.total?.subtotal?.value ?? "-"}
                 format="currency"
                 suffix=" kr"
               />

@@ -4,6 +4,8 @@ import qs from "qs";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+const keysToDelete = ["sort", "q"] as const;
+
 export const useCategoryFilters = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -20,9 +22,9 @@ export const useCategoryFilters = () => {
         }),
       );
 
-      if ("sort" in values) {
-        delete values.sort;
-      }
+      keysToDelete.forEach((key) => {
+        delete values[key];
+      });
 
       return values;
     }

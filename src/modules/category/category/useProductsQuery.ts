@@ -31,11 +31,15 @@ export const fetchProducts = async (
   return data.products;
 };
 
-export const useProductsQuery = (
-  filter: InputMaybe<ProductAttributeFilterInput>,
-  sort?: InputMaybe<ProductAttributeSortInput>,
-  search?: string,
-) => {
+export const useProductsQuery = ({
+  filter = {},
+  sort = {},
+  search = "",
+}: {
+  filter?: InputMaybe<ProductAttributeFilterInput>;
+  sort?: InputMaybe<ProductAttributeSortInput>;
+  search?: string;
+}) => {
   return useInfiniteQuery<ProductsQuery["products"]>({
     queryKey: [
       ...PRODUCTS_QUERY_KEY,

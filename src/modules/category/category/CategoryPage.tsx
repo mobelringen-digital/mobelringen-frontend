@@ -23,17 +23,15 @@ interface Props {
 export const CategoryPage: React.FC<Props> = ({ category }) => {
   const { filterValues, sortValues } = useCategoryFilters();
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
-    useProductsQuery(
-      {
+    useProductsQuery({
+      filter: {
         category_id: {
           eq: String(category?.id),
         },
         ...filterValues,
       },
-      {
-        ...sortValues,
-      },
-    );
+      sort: sortValues,
+    });
 
   const clickOnItemGTMEvent = (product: BaseProductDataForCardFragment) => {
     if (!product) {

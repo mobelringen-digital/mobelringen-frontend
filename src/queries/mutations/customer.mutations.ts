@@ -73,6 +73,10 @@ export const CustomerOrderFragment = graphql(`
         value
         currency
       }
+      subtotal {
+        value
+        currency
+      }
       grand_total {
         currency
         value
