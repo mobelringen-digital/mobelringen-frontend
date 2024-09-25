@@ -50,6 +50,10 @@ export const BlockProductsList: React.FC<Props> = ({ data }) => {
   }, 0);
   const totalCount = products?.pages[0]?.total_count;
 
+  if (!products || !products.pages) {
+    return null;
+  }
+
   return (
     <CmsBlockWrapper config={data.blockConfig}>
       <CmsBlockHeader
