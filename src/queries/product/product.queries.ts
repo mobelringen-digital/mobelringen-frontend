@@ -99,6 +99,15 @@ export const ProductPriceRangeFragment = graphql(`
   }
 `);
 
+export const ProductStoresFragment = graphql(`
+  fragment ProductStores on ProductInterfaceStoreItem {
+    address
+    external_id
+    name
+    qty
+  }
+`);
+
 export const BaseProductFragment = graphql(`
   fragment BaseProduct on ProductInterface {
     __typename
@@ -106,6 +115,9 @@ export const BaseProductFragment = graphql(`
     canonical_url
     description {
       html
+    }
+    stores {
+      ...ProductStores
     }
     gift_message_available
     review_count

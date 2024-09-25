@@ -3,12 +3,17 @@ import React from "react";
 import { LocalShippingIcon } from "@/components/_ui/icons/LocalShippingIcon";
 import { StorefrontIcon } from "@/components/_ui/icons/StorefrontIcon";
 import { StatusCircle } from "@/components/_ui/status-circle/StatusCircle";
+import { BaseProductFragment } from "@/types";
 
 interface Props {
-  deliveryPromise?: string | null;
+  product: BaseProductFragment;
 }
 
-export const DeliveryInfo: React.FC<Props> = ({ deliveryPromise }) => {
+export const DeliveryInfo: React.FC<Props> = ({ product }) => {
+  const storesWithStock = product.stores?.filter(
+    (store) => store?.qty && store.qty > 0,
+  );
+
   return (
     <div className="grid grid-cols-2 gap-4">
       <div>
@@ -19,14 +24,14 @@ export const DeliveryInfo: React.FC<Props> = ({ deliveryPromise }) => {
 
         <div className="flex gap-2 mt-2">
           <StatusCircle
-            variant={!!deliveryPromise ? "green" : "red"}
+            variant={!!product.delivery_promise ? "green" : "red"}
             className="mt-1 ml-1"
           />
           <div className="flex flex-col">
             <span className="text-sm lg:text-base">Tilgjengelig på nett</span>
-            {deliveryPromise ? (
+            {product.delivery_promise ? (
               <span className="text-xs lg:text-sm text-dark-grey">
-                {deliveryPromise}
+                {product.delivery_promise}
               </span>
             ) : null}
           </div>
@@ -45,7 +50,7 @@ export const DeliveryInfo: React.FC<Props> = ({ deliveryPromise }) => {
               Tilgjengelig på Lørenskog
             </span>
             <span className="text-xs lg:text-sm text-dark-grey">
-              Tilgjengelig i 13 butikker
+              Tilgjengelig i {storesWithStock?.length ?? 0} butikker
             </span>
           </div>
         </div>
