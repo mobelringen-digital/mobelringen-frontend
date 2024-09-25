@@ -26,6 +26,7 @@ export const BlockProductsList: React.FC<Props> = ({ data }) => {
   const {
     data: products,
     isLoading,
+    isFetching,
     hasNextPage,
     fetchNextPage,
     isFetchingNextPage,
@@ -60,7 +61,7 @@ export const BlockProductsList: React.FC<Props> = ({ data }) => {
         title={data.title}
         hide={data.blockConfig?.hideBlockTitle ?? false}
       />
-      {isLoading ? <PageTopLoader /> : null}
+      {isLoading || isFetching ? <PageTopLoader /> : null}
       <CategoryFilters
         totalCount={products?.pages[0]?.total_count}
         filters={products?.pages[0]?.aggregations}
