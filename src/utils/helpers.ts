@@ -1,4 +1,4 @@
-import {DeliveryType, Maybe, ProductInterface} from "@/types";
+import { DeliveryType, Maybe, ProductInterface } from "@/types";
 
 export const generatePrettyUrl = (
   nextPropsUrl: Array<string>,
@@ -36,14 +36,15 @@ export const generateUrl = (name: string) => {
     .replaceAll(" ", "-");
 };
 
-export const extractProductSkuFromUrl = (
-  url: string | Array<string>,
-): string => {
-  if (Array.isArray(url)) {
-    return url.pop() ?? "";
+export const stringToUrl = (str?: string | null) => {
+  if (!str) {
+    return "";
   }
 
-  return url.split("-").pop() ?? "";
+  return str
+    ?.toLowerCase()
+    .replace(/[^a-zA-Z ]/g, "")
+    .replaceAll(" ", "-");
 };
 
 export const DELIVERY_TYPE_MAP = {

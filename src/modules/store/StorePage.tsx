@@ -14,6 +14,7 @@ import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { MetaDescription, MetaTitle } from "@/components/meta";
 import { setFavoriteStoreId } from "@/components/store-selector/actions";
 import { StoreBlock } from "@/modules/store/StoreBlock";
+import { StoreWorkingDays } from "@/modules/store/StoreWorkingDays";
 import { BaseStoreFragment, CmsStoreFragment } from "@/types";
 
 interface Props {
@@ -120,38 +121,7 @@ export const StorePage: React.FC<Props> = ({
             <StoreBlock
               title="Åpningstider butikk"
               borderTop={true}
-              content={
-                <div className="flex flex-col">
-                  <div className="flex justify-between items-center gap-1">
-                    <span>Mandag</span>
-                    <span>{store.opening_hours?.monday ?? "Stengt"}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Tirsdag</span>
-                    <span>{store.opening_hours?.tuesday ?? "Stengt"}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Onsdag</span>
-                    <span>{store.opening_hours?.wednesday ?? "Stengt"}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Torsdag</span>
-                    <span>{store.opening_hours?.thursday ?? "Stengt"}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Fredag</span>
-                    <span>{store.opening_hours?.friday ?? "Stengt"}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Lørdag</span>
-                    <span>{store.opening_hours?.saturday ?? "Stengt"}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span>Søndag</span>
-                    <span>{store.opening_hours?.sunday ?? "Stengt"}</span>
-                  </div>
-                </div>
-              }
+              content={<StoreWorkingDays store={store} />}
             />
             <StoreBlock
               title="Kontaktinformasjon"

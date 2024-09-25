@@ -31,8 +31,6 @@ export const Stores: React.FC<Props> = ({ stores, title }) => {
     React.useState<BaseStoreFragment | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
 
-  console.log(storesList);
-
   const groupedByRegions = storesList?.reduce(
     (acc, store) => {
       if (!store?.region) {
@@ -50,6 +48,7 @@ export const Stores: React.FC<Props> = ({ stores, title }) => {
     {} as Record<string, Array<BaseStoreFragment | null>>,
   );
 
+  //eslint-disable-next-line no-console
   console.log(groupedByRegions);
 
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {

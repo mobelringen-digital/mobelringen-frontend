@@ -7,8 +7,12 @@ import ReactDOMServer from "react-dom/server";
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import MarkerClusterGroup from "react-leaflet-cluster";
 
+import Link from "next/link";
+
 import { MapMarker } from "@/components/cms/block-stores-map/MapMarker";
+import { StoreWorkingDays } from "@/modules/store/StoreWorkingDays";
 import { BaseStoreFragment } from "@/types";
+import { stringToUrl } from "@/utils/helpers";
 
 import "leaflet/dist/leaflet.css";
 
@@ -20,7 +24,7 @@ interface Props {
 export const createMapIcon = (): L.DivIcon => {
   return L.divIcon({
     html: ReactDOMServer.renderToString(<MapMarker />),
-    iconSize: [40, 40],
+    iconSize: [30, 30],
     className: "bg-transparent",
   });
 };
@@ -57,7 +61,20 @@ const Map: React.FC<Props> = ({ stores, selectedStore }) => {
                   key={store?.id ?? idx}
                   position={[store?.latitude, store?.longitude]}
                 >
-                  <Popup>{store?.name}</Popup>
+                  <Popup className="!m-0">
+                    <Link
+                      href={`/store/${store.external_id}/${stringToUrl(store.name)}`}
+                      className="flex flex-col gap-1 pr-4 !text-black"
+                    >
+                      <span className="font-semibold">{store?.name}</span>
+                      <span className="mb-2">
+                        {[store?.street, store?.postcode, store?.city].join(
+                          ", ",
+                        )}
+                      </span>
+                      <StoreWorkingDays store={store} />
+                    </Link>
+                  </Popup>
                 </Marker>
               );
             }
