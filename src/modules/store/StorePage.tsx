@@ -1,23 +1,56 @@
+"use client";
+
 import React from "react";
+
+import { Checkbox } from "@nextui-org/react";
 
 import Image from "next/image";
 
+import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ImageLink } from "@/components/cms/__components/image-link/ImageLink";
 import { MultipleTextBlock } from "@/components/cms/__components/multiple-text-block/MultipleTextBlock";
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { MetaDescription, MetaTitle } from "@/components/meta";
+import { setFavoriteStoreId } from "@/components/store-selector/actions";
+import { StoreBlock } from "@/modules/store/StoreBlock";
 import { BaseStoreFragment, CmsStoreFragment } from "@/types";
 
 interface Props {
   storeCmsData: CmsStoreFragment;
   store: BaseStoreFragment;
+  selectedStore?: BaseStoreFragment | null;
 }
 
-export const StorePage: React.FC<Props> = ({ storeCmsData, store }) => {
+export const StorePage: React.FC<Props> = ({
+  storeCmsData,
+  store,
+  selectedStore,
+}) => {
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const formattedAddress = [
+    store.postcode,
+    store.city,
+    store.street,
+    store.region,
+  ]
+    .filter(Boolean)
+    .join(", ");
+
+  const submitStore = async () => {
+    if (!store.external_id) return;
+
+    setIsLoading(true);
+    return setFavoriteStoreId(store.external_id).finally(() => {
+      setIsLoading(false);
+    });
+  };
+
   return (
     <ContainerLayout>
+      {isLoading ? <PageTopLoader /> : null}
       {storeCmsData.seo?.metaTitle ? (
         <MetaTitle title={storeCmsData.seo.metaTitle} />
       ) : null}
@@ -50,8 +83,8 @@ export const StorePage: React.FC<Props> = ({ storeCmsData, store }) => {
         </h1>
       </div>
 
-      <div className="grid grid-cols-2 gap-8">
-        <div className="col-span-2 lg:col-span-1">
+      <div className="grid grid-cols-5 gap-8 lg:gap-16">
+        <div className="col-span-5 lg:col-span-3">
           {storeCmsData.content ? (
             <MultipleTextBlock data={storeCmsData.content} />
           ) : null}
@@ -61,9 +94,97 @@ export const StorePage: React.FC<Props> = ({ storeCmsData, store }) => {
             ) : null}
           </div>
         </div>
-        <div className="col-span-2 lg:col-span-1">
-          <div className="bg-white rounded-2xl p-8">
-            TODO: Add store information here
+        <div className="col-span-5 lg:col-span-2 lg:sticky top-[150px]">
+          <div className="bg-white rounded-2xl p-8 flex flex-col">
+            <div className="flex flex-col items-center justify-center mb-8">
+              <div className="bg-powder flex rounded-2xl px-4 py-2 items-center gap-2">
+                <Checkbox
+                  className="font-medium text-xs lg:text-bas"
+                  title="Min butikk"
+                  onValueChange={submitStore}
+                  isSelected={selectedStore?.external_id === store.external_id}
+                >
+                  Min butikk
+                </Checkbox>
+              </div>
+              {selectedStore?.external_id === store.external_id ? (
+                <span className="bg-powder py-1 px-3 rounded-2xl mt-4 text-sm">
+                  Du vil nå se lagerstatus for produkter i denne butikken
+                </span>
+              ) : null}
+            </div>
+            <StoreBlock
+              title="Adresse"
+              content={formattedAddress}
+              borderTop={true}
+            />
+            <StoreBlock
+              title="Åpningstider butikk"
+              borderTop={true}
+              content={
+                <div className="flex flex-col">
+                  <div className="flex justify-between items-center gap-1">
+                    <span>Mandag</span>
+                    <span>{store.opening_hours?.monday ?? "Stengt"}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>Tirsdag</span>
+                    <span>{store.opening_hours?.tuesday ?? "Stengt"}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>Onsdag</span>
+                    <span>{store.opening_hours?.wednesday ?? "Stengt"}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>Torsdag</span>
+                    <span>{store.opening_hours?.thursday ?? "Stengt"}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>Fredag</span>
+                    <span>{store.opening_hours?.friday ?? "Stengt"}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>Lørdag</span>
+                    <span>{store.opening_hours?.saturday ?? "Stengt"}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span>Søndag</span>
+                    <span>{store.opening_hours?.sunday ?? "Stengt"}</span>
+                  </div>
+                </div>
+              }
+            />
+            <StoreBlock
+              title="Kontaktinformasjon"
+              borderTop={true}
+              content={
+                <div className="flex flex-col">
+                  <div className="flex justify-between items-center gap-1">
+                    {store.phone && (
+                      <>
+                        <span>Telefon</span>
+                        <a href={`tel:${store.phone}`} className="text-brown">
+                          {store.phone}
+                        </a>
+                      </>
+                    )}
+                  </div>
+                  <div className="flex justify-between items-center">
+                    {store.email && (
+                      <>
+                        <span>E-post</span>
+                        <a
+                          href={`mailto:${store.email}`}
+                          className="text-brown"
+                        >
+                          {store.email}
+                        </a>
+                      </>
+                    )}
+                  </div>
+                </div>
+              }
+            />
           </div>
         </div>
       </div>

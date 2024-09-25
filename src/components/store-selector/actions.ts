@@ -79,8 +79,9 @@ export async function updateCartItemsInStore() {
 export async function setFavoriteStoreId(storeId: string) {
   const token = await getToken();
   const cookiesStore = cookies();
+  const customer = await getCustomerDetails();
 
-  if (token) {
+  if (token && customer?.customer) {
     await updateCustomerDetails({
       favorite_store: storeId,
     });
