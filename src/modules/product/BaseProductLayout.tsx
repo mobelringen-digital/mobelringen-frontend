@@ -22,6 +22,7 @@ import { ProductTopInfo } from "@/modules/product/ProductTopInfo";
 import {
   BaseCartFragment,
   BaseProductFragment as BaseProductFragmentType,
+  GetProductStockQuery,
 } from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
 
@@ -30,12 +31,14 @@ interface Props {
   configurationBlock?: React.ReactNode;
   productGallery?: React.ReactNode;
   cart?: BaseCartFragment | null;
+  stock?: GetProductStockQuery;
 }
 
 export const BaseProductLayout: React.FC<Props> = ({
   baseProductData,
   configurationBlock,
   cart,
+  stock,
 }) => {
   const { activeProductVariant } = useActiveProductData();
 
@@ -105,7 +108,7 @@ export const BaseProductLayout: React.FC<Props> = ({
 
             <ProductPricing pricingRange={product?.price_range} />
             <MoreInTheStore />
-            <PurchaseBlock cart={cart} product={product} />
+            <PurchaseBlock stock={stock} cart={cart} product={product} />
             <div className="block lg:hidden">
               <InformationAccordion product={product} />
             </div>

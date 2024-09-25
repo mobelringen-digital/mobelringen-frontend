@@ -111,6 +111,7 @@ export const ProductStoresFragment = graphql(`
 export const BaseProductFragment = graphql(`
   fragment BaseProduct on ProductInterface {
     __typename
+    id
     url_key
     canonical_url
     description {
@@ -269,6 +270,29 @@ export const ProductMeasurementsDocument = graphql(`
         measurement_thickness
         measurement_volume
         measurement_width
+      }
+    }
+  }
+`);
+
+export const ProductAvailabilityFragment = graphql(`
+  fragment ProductAvailability on ProductAvailability {
+    availability
+    max
+    message
+    min
+    step
+  }
+`);
+
+export const GetProductStockDocument = graphql(`
+  query GetProductStock($productId: String!, $storeId: String) {
+    getProductStock(input: { productId: $productId, storeId: $storeId }) {
+      cac {
+        ...ProductAvailability
+      }
+      online {
+        ...ProductAvailability
       }
     }
   }

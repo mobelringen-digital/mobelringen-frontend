@@ -4,9 +4,13 @@ import { notFound, redirect } from "next/navigation";
 
 import getCart from "@/components/cart/actions";
 import { StaticPageContent } from "@/components/cms/static-page-content/StaticPageContent";
+import { getSelectedStore } from "@/components/store-selector/actions";
 import { ConfigurableProductPage } from "@/modules/product/ConfigurableProduct";
 import { SimpleProductPage } from "@/modules/product/SimpleProduct";
-import { ProductsQueryDocument } from "@/queries/product/product.queries";
+import {
+  GetProductStockDocument,
+  ProductsQueryDocument,
+} from "@/queries/product/product.queries";
 import { ProductsQuery, ProductsQueryVariables } from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
 import { baseMagentoClient } from "@/utils/lib/graphql";
@@ -24,6 +28,13 @@ async function getProduct(sku: string) {
     filter: { sku: { eq: sku } },
     sort: {},
     currentPage: 1,
+  });
+}
+
+async function getProductStock(productId: string, storeId: string) {
+  return await baseMagentoClient("GET").request(GetProductStockDocument, {
+    productId,
+    storeId,
   });
 }
 
@@ -62,14 +73,25 @@ export default async function Product({ sku, url }: Props) {
     return notFound();
   }
 
+  const selectedStore = await getSelectedStore();
+  const stock = await getProductStock(
+    // @ts-expect-error - productData is not null
+    productData.id,
+    selectedStore?.external_id ?? "",
+  );
+
   return (
     <>
       {isTypename(productData, ["SimpleProduct"]) ? (
-        <SimpleProductPage cart={cart} product={productData} />
+        <SimpleProductPage stock={stock} cart={cart} product={productData} />
       ) : null}
 
       {isTypename(productData, ["ConfigurableProduct"]) ? (
-        <ConfigurableProductPage cart={cart} product={productData} />
+        <ConfigurableProductPage
+          stock={stock}
+          cart={cart}
+          product={productData}
+        />
       ) : null}
 
       <StaticPageContent url={`/${url}`} />

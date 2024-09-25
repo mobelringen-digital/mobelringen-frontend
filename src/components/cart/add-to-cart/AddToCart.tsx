@@ -7,21 +7,26 @@ import {
   createCartAndAddProduct,
 } from "@/components/cart/add-to-cart/actions";
 import { AddToCartController } from "@/components/cart/add-to-cart/AddToCartController";
-import { BaseCartFragment, BaseProductFragment } from "@/types";
+import {
+  Availability,
+  BaseCartFragment,
+  BaseProductFragment,
+  GetProductStockQuery,
+} from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
 
 interface Props {
-  isDisabled?: boolean;
   product: BaseProductFragment;
   quantity: number;
   cart?: BaseCartFragment | null;
+  stock?: GetProductStockQuery;
 }
 
 export const AddToCart: React.FC<Props> = ({
-  isDisabled,
   product,
   quantity,
   cart,
+  stock,
 }) => {
   const addToCartGTMEvent = () => {
     if (!cart?.id) {
@@ -51,7 +56,10 @@ export const AddToCart: React.FC<Props> = ({
   };
 
   const handleAddItemToCart = async (preferredMethod: "online" | "collect") => {
-    if (preferredMethod === "online" && isDisabled) {
+    if (
+      preferredMethod === "online" &&
+      stock?.getProductStock.online?.availability !== Availability.OutOfStock
+    ) {
       return;
     }
 
@@ -85,10 +93,10 @@ export const AddToCart: React.FC<Props> = ({
 
   return (
     <AddToCartController
-      isDisabled={isDisabled}
       product={product}
       quantity={quantity}
       onAddToCart={handleAddItemToCart}
+      stock={stock}
     />
   );
 };

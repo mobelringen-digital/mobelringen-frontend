@@ -11,7 +11,7 @@ import { KlarnaInformation } from "@/modules/product/add-to-cart/KlarnaInformati
 import {
   BaseCartFragment,
   BaseProductFragment,
-  ProductStockStatus,
+  GetProductStockQuery,
 } from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
 import { usePriceRange } from "@/utils/hooks/usePriceRange";
@@ -19,9 +19,10 @@ import { usePriceRange } from "@/utils/hooks/usePriceRange";
 interface Props {
   product: BaseProductFragment;
   cart?: BaseCartFragment | null;
+  stock?: GetProductStockQuery;
 }
 
-export const PurchaseBlock: React.FC<Props> = ({ product, cart }) => {
+export const PurchaseBlock: React.FC<Props> = ({ product, cart, stock }) => {
   const priceRange = product.price_range;
   const { finalPrice, currency } = usePriceRange(priceRange);
   const [quantity, setQuantity] = React.useState(1);
@@ -30,13 +31,10 @@ export const PurchaseBlock: React.FC<Props> = ({ product, cart }) => {
   const isVariantNotSelected =
     isTypename(product, ["ConfigurableProduct"]) &&
     !activeProductVariant.variant;
-  const isInStock = product.stock_status === ProductStockStatus.InStock;
-  const isDisabled =
-    isVariantNotSelected || !isInStock || product.addable_to_cart !== 1;
 
   return (
     <div className="bg-white p-4 lg:p-8 rounded-2xl flex flex-col gap-4">
-      <DeliveryInfo product={product} />
+      <DeliveryInfo stock={stock} product={product} />
 
       <div className="flex gap-4 items-center mt-4">
         <QuantityInput
@@ -65,7 +63,7 @@ export const PurchaseBlock: React.FC<Props> = ({ product, cart }) => {
         cart={cart}
         product={product}
         quantity={quantity}
-        isDisabled={isDisabled}
+        stock={stock}
       />
 
       <KlarnaInformation />
