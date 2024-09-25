@@ -10,6 +10,7 @@ import { BlockImageLinksSlider } from "@/components/cms/block-image-links-slider
 import { BlockNavigationButtons } from "@/components/cms/block-navigation-buttons/BlockNavigationButtons";
 import { CmsPagesList } from "@/components/cms/block-pages-list/CmsPagesList";
 import { BlockPressRoom } from "@/components/cms/block-press-room/BlockPressRoom";
+import { BlockProductsList } from "@/components/cms/block-products-list/BlockProductsList";
 import { BlockQuote } from "@/components/cms/block-quote/BlockQuote";
 import { BlockRow } from "@/components/cms/block-row";
 import { CmsSimilarPagesRow } from "@/components/cms/block-similar-pages-row/CmsSimilarPagesRow";
@@ -67,6 +68,9 @@ export const CmsContentLoader: React.FC<CmsContentProps> = ({ data }) => {
 
     case "BlockPressRoom":
       return <BlockPressRoom data={data} />;
+
+    case "BlockProductsList":
+      return <BlockProductsList data={data} />;
 
     default:
       return null;

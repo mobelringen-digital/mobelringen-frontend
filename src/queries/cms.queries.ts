@@ -185,3 +185,18 @@ export const BlockBrandsFragment = graphql(`
     }
   }
 `);
+
+export const BlockProductsListFragment = graphql(`
+  fragment CmsBlockProductsList on BlockProductsList {
+    ... on BlockProductsList {
+      __typename
+      title
+      brand
+      categoryId
+      sku
+      blockConfig {
+        ...CmsBlockConfig
+      }
+    }
+  }
+`);
