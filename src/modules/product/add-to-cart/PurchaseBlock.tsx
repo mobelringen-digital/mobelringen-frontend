@@ -32,6 +32,22 @@ export const PurchaseBlock: React.FC<Props> = ({ product, cart, stock }) => {
     isTypename(product, ["ConfigurableProduct"]) &&
     !activeProductVariant.variant;
 
+  const setQuantityData = (type: "inc" | "dec") => {
+    const min = stock?.getProductStock.online?.min ?? 1;
+    const max = stock?.getProductStock.online?.max ?? 1;
+    const minimumStep = stock?.getProductStock.online?.step ?? 1;
+
+    if (type === "inc") {
+      if (quantity + minimumStep <= max) {
+        setQuantity(quantity + minimumStep);
+      }
+    } else if (type === "dec") {
+      if (quantity - minimumStep >= min) {
+        setQuantity(quantity - minimumStep);
+      }
+    }
+  };
+
   return (
     <div className="bg-white p-4 lg:p-8 rounded-2xl flex flex-col gap-4">
       <DeliveryInfo stock={stock} product={product} />
@@ -41,10 +57,8 @@ export const PurchaseBlock: React.FC<Props> = ({ product, cart, stock }) => {
           disabled={isVariantNotSelected}
           value={quantity.toString()}
           onChange={(e) => setQuantity(parseInt(e.target.value, 10))}
-          onQuantityIncrement={() => setQuantity(quantity + 1)}
-          onQuantityDecrement={() =>
-            setQuantity(quantity > 1 ? quantity - 1 : 1)
-          }
+          onQuantityIncrement={() => setQuantityData("inc")}
+          onQuantityDecrement={() => setQuantityData("dec")}
         />
         {finalPrice ? (
           <div className="flex flex-col text-sm">
