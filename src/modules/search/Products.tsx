@@ -15,12 +15,18 @@ interface Props {
 
 export const Products: React.FC<Props> = ({ query }) => {
   const { filterValues, sortValues } = useCategoryFilters();
-  const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
-    useProductsQuery({
-      search: query,
-      filter: filterValues,
-      sort: sortValues,
-    });
+  const {
+    data,
+    isLoading,
+    isFetching,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+  } = useProductsQuery({
+    search: query,
+    filter: filterValues,
+    sort: sortValues,
+  });
 
   const currentlyLoaded = data?.pages.reduce((acc, page) => {
     return acc + (page?.items?.length ?? 0);
@@ -31,6 +37,7 @@ export const Products: React.FC<Props> = ({ query }) => {
     <>
       {isLoading ? <PageTopLoader /> : null}
 
+      {isLoading || isFetching ? <ProductsListSkeleton /> : null}
       {totalCount && totalCount > 0 ? (
         <>
           <CmsBlockHeader title="Produkter" />
@@ -38,7 +45,6 @@ export const Products: React.FC<Props> = ({ query }) => {
             totalCount={data?.pages[0]?.total_count}
             filters={data?.pages[0]?.aggregations}
           />
-          {isLoading ? <ProductsListSkeleton /> : null}
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-8">
             {data?.pages.map((page, idx) => {

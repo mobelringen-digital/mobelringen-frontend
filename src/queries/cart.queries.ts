@@ -114,6 +114,14 @@ export const BaseProductDataForCartFragment = graphql(`
 export const CartItemFragment = graphql(`
   fragment CartItem on CartItemInterface {
     id
+    availability {
+      cac {
+        ...ProductAvailability
+      }
+      online {
+        ...ProductAvailability
+      }
+    }
     prices {
       ...CartItemPrice
     }

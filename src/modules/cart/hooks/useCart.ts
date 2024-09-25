@@ -7,7 +7,7 @@ import { useCookies } from "react-cookie";
 import { useSearchParams } from "next/navigation";
 
 import { CartCookie } from "@/components/cart/fetchCartService";
-import { BaseCartFragment, ProductStockStatus } from "@/types";
+import { Availability, BaseCartFragment } from "@/types";
 import { useSession } from "@/utils/hooks/useSession";
 
 export const useCart = (cart?: BaseCartFragment | null) => {
@@ -50,11 +50,15 @@ export const useCart = (cart?: BaseCartFragment | null) => {
 
   const isCheckoutEnabled = React.useMemo(() => {
     if (isClickAndCollect) {
-      return cart?.items?.every((item) => item?.is_in_store);
+      return cart?.items?.every(
+        (item) =>
+          item?.availability?.cac?.availability !== Availability.OutOfStock,
+      );
     }
 
     return cart?.items?.every(
-      (item) => item?.product.stock_status === ProductStockStatus.InStock,
+      (item) =>
+        item?.availability?.online?.availability !== Availability.OutOfStock,
     );
   }, [cart, isClickAndCollect]);
 

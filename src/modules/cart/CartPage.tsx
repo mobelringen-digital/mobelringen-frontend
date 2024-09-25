@@ -2,7 +2,6 @@ import React from "react";
 
 import Link from "next/link";
 
-import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { getSelectedStore } from "@/components/store-selector/actions";
 import { PageTitle } from "@/components/typography/PageTitle";
@@ -49,8 +48,6 @@ export async function CartPage({ data }: Props) {
             <CartPrice cart={data} prices={data?.prices} />
           </div>
         )}
-
-        <Debugger data={data} />
       </ContainerLayout>
     </CartEvents>
   );

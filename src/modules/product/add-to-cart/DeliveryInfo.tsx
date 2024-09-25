@@ -14,7 +14,10 @@ interface Props {
   stock?: GetProductStockQuery;
 }
 
-const STATUS_COLOR: Record<Availability, "green" | "yellow" | "red"> = {
+export const PRODUCT_STOCK_STATUS_COLOR: Record<
+  Availability,
+  "green" | "yellow" | "red"
+> = {
   IN_STOCK: "green",
   BACKORDER: "yellow",
   OUT_OF_STOCK: "red",
@@ -39,7 +42,9 @@ export const DeliveryInfo: React.FC<Props> = ({ product, stock }) => {
         <div className="flex gap-2 mt-2">
           {stockData?.online?.availability ? (
             <StatusCircle
-              variant={STATUS_COLOR[stockData?.online?.availability]}
+              variant={
+                PRODUCT_STOCK_STATUS_COLOR[stockData?.online?.availability]
+              }
               className="mt-1 ml-1"
             />
           ) : null}
@@ -65,7 +70,7 @@ export const DeliveryInfo: React.FC<Props> = ({ product, stock }) => {
         <div className="flex gap-2 mt-2">
           {stockData?.cac?.availability ? (
             <StatusCircle
-              variant={STATUS_COLOR[stockData.cac.availability]}
+              variant={PRODUCT_STOCK_STATUS_COLOR[stockData.cac.availability]}
               className="mt-1 ml-1"
             />
           ) : null}
