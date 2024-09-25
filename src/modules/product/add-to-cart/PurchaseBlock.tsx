@@ -25,7 +25,7 @@ interface Props {
 export const PurchaseBlock: React.FC<Props> = ({ product, cart, stock }) => {
   const priceRange = product.price_range;
   const { finalPrice, currency } = usePriceRange(priceRange);
-  const [quantity, setQuantity] = React.useState(1);
+  const [quantity, setQuantity] = React.useState(stock?.getProductStock.online?.step ?? 1);
   const { activeProductVariant } = useActiveProductData();
 
   const isVariantNotSelected =
@@ -33,7 +33,7 @@ export const PurchaseBlock: React.FC<Props> = ({ product, cart, stock }) => {
     !activeProductVariant.variant;
 
   const setQuantityData = (type: "inc" | "dec") => {
-    const min = stock?.getProductStock.online?.min ?? 1;
+    const min = stock?.getProductStock.online?.step ?? stock?.getProductStock.online?.min ?? 1;
     const max = stock?.getProductStock.online?.max ?? 1;
     const minimumStep = stock?.getProductStock.online?.step ?? 1;
 
