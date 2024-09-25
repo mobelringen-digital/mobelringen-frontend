@@ -18,6 +18,14 @@ body {
   min-width: 0;
 }
 
+.marker-cluster-small div,
+.marker-cluster-medium div {
+  @apply bg-brown text-white #{!important};
+}
+.marker-cluster {
+  @apply bg-brown text-white #{!important};
+}
+
 #cms-text-block {
   p {
     &:not(:first-of-type),

@@ -31,6 +31,27 @@ export const Stores: React.FC<Props> = ({ stores, title }) => {
     React.useState<BaseStoreFragment | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
 
+  console.log(storesList);
+
+  const groupedByRegions = storesList?.reduce(
+    (acc, store) => {
+      if (!store?.region) {
+        return acc;
+      }
+
+      if (!acc[store.region]) {
+        acc[store.region] = [];
+      }
+
+      acc[store.region].push(store);
+
+      return acc;
+    },
+    {} as Record<string, Array<BaseStoreFragment | null>>,
+  );
+
+  console.log(groupedByRegions);
+
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };

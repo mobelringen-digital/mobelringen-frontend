@@ -42,7 +42,10 @@ export const StoresSelectController: React.FC<Props> = ({
           <Location /> {selectedStore?.name ?? "Velg butikk"}
         </button>
         {selectedStore ? (
-          <Link href="#" className="flex gap-1 items-center">
+          <Link
+            href={`/store/${selectedStore.external_id}`}
+            className="flex gap-1 items-center"
+          >
             <Storefront /> Butikkoversikt
           </Link>
         ) : null}
@@ -62,7 +65,10 @@ export const StoresSelectController: React.FC<Props> = ({
         </li>
         {selectedStore ? (
           <li className="flex justify-between items-center">
-            <Link href="#" className="flex gap-2 items-center">
+            <Link
+              href={`/store/${selectedStore.external_id}`}
+              className="flex gap-2 items-center"
+            >
               <Storefront width={20} height={20} /> Butikkoversikt
             </Link>
             <ChevronRight />
