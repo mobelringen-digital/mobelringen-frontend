@@ -48,7 +48,7 @@ export const StorePage: React.FC<Props> = ({
   };
 
   return (
-    <ContainerLayout>
+    <ContainerLayout className="pb-12">
       {isLoading ? <PageTopLoader /> : null}
       {storeCmsData.seo?.metaTitle ? (
         <MetaTitle title={storeCmsData.seo.metaTitle} />
