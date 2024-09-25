@@ -10,7 +10,6 @@ import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 import { ImageLink } from "@/components/cms/__components/image-link/ImageLink";
 import { MultipleTextBlock } from "@/components/cms/__components/multiple-text-block/MultipleTextBlock";
-import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { MetaDescription, MetaTitle } from "@/components/meta";
 import { setFavoriteStoreId } from "@/components/store-selector/actions";
@@ -188,9 +187,6 @@ export const StorePage: React.FC<Props> = ({
           </div>
         </div>
       </div>
-
-      <Debugger data={storeCmsData} />
-      <Debugger data={store} />
     </ContainerLayout>
   );
 };
