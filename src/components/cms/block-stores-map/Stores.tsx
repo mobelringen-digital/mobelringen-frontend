@@ -2,6 +2,7 @@
 
 import React from "react";
 
+import { ScrollShadow } from "@nextui-org/react";
 import cx from "classnames";
 
 import dynamic from "next/dynamic";
@@ -105,7 +106,7 @@ export const Stores: React.FC<Props> = ({ stores, title }) => {
             />
           </div>
 
-          <div className="max-h-[600px] overflow-auto">
+          <ScrollShadow size={100} className="h-[520px]">
             <div className="flex flex-col">
               {activeRegion ? (
                 <>
@@ -171,7 +172,7 @@ export const Stores: React.FC<Props> = ({ stores, title }) => {
                 </>
               )}
             </div>
-          </div>
+          </ScrollShadow>
         </div>
         <div className="col-span-12 lg:col-span-8">
           <Map selectedStore={selectedStore} stores={stores} />
