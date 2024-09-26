@@ -45,7 +45,11 @@ export async function CartPage({ data }: Props) {
                 {data.items ? <CartItems data={data?.items} /> : null}
               </div>
             </div>
-            <CartPrice cart={data} prices={data?.prices} />
+            <CartPrice
+              selectedStore={selectedStore}
+              cart={data}
+              prices={data?.prices}
+            />
           </div>
         )}
       </ContainerLayout>

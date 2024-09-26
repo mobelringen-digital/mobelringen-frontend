@@ -2,14 +2,19 @@ import React from "react";
 
 import { CartPricing } from "@/components/cart/CartPricing";
 import { CartProceedButton } from "@/modules/cart/cart-price/CartProceedButton";
-import { BaseCartFragment, CartPriceFragment } from "@/types";
+import {
+  BaseCartFragment,
+  BaseStoreFragment,
+  CartPriceFragment,
+} from "@/types";
 
 interface Props {
   prices?: CartPriceFragment | null;
   cart?: BaseCartFragment | null;
+  selectedStore?: BaseStoreFragment | null;
 }
 
-export const CartPrice: React.FC<Props> = ({ prices, cart }) => {
+export const CartPrice: React.FC<Props> = ({ prices, cart, selectedStore }) => {
   if (!prices) return null;
 
   return (
@@ -18,7 +23,10 @@ export const CartPrice: React.FC<Props> = ({ prices, cart }) => {
         <h4 className="text-xl font-semibold">Oppsummering</h4>
         <div className="flex flex-col gap-4">
           <CartPricing cart={cart} />
-          <CartProceedButton cart={cart} />
+          <CartProceedButton
+            cart={cart}
+            disabled={!selectedStore?.external_id}
+          />
         </div>
       </div>
     </div>
