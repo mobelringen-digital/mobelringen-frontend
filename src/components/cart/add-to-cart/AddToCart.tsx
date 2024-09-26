@@ -58,7 +58,7 @@ export const AddToCart: React.FC<Props> = ({
   const handleAddItemToCart = async (preferredMethod: "online" | "collect") => {
     if (
       preferredMethod === "online" &&
-      stock?.getProductStock.online?.availability !== Availability.OutOfStock
+      stock?.getProductStock.online?.availability === Availability.OutOfStock
     ) {
       return;
     }
