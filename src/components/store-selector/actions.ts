@@ -98,6 +98,7 @@ export async function setFavoriteStoreId(storeId: string) {
   revalidateTag("store");
   revalidateTag("customer");
   revalidateTag("cart");
+  revalidateTag("stock");
 
   return storeId;
 }

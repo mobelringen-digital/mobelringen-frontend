@@ -1,12 +1,18 @@
+"use client";
+
 import React from "react";
 
 import { LocalShippingIcon } from "@/components/_ui/icons/LocalShippingIcon";
 import { StorefrontIcon } from "@/components/_ui/icons/StorefrontIcon";
+import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { StatusCircle } from "@/components/_ui/status-circle/StatusCircle";
+import { setFavoriteStoreId } from "@/components/store-selector/actions";
+import { ChangeStoreModal } from "@/modules/product/add-to-cart/ChangeStoreModal";
 import {
   Availability,
   BaseProductFragment,
   GetProductStockQuery,
+  ProductStoresFragment,
 } from "@/types";
 
 interface Props {
@@ -24,6 +30,9 @@ export const PRODUCT_STOCK_STATUS_COLOR: Record<
 };
 
 export const DeliveryInfo: React.FC<Props> = ({ product, stock }) => {
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [isStoreModalOpen, setIsStoreModalOpen] = React.useState(false);
+
   const storesWithStock = product.stores?.filter(
     (store) => store?.qty && store.qty > 0,
   );
@@ -31,8 +40,28 @@ export const DeliveryInfo: React.FC<Props> = ({ product, stock }) => {
   const canBuyOnline =
     stockData?.online?.availability !== Availability.OutOfStock;
 
+  const selectDifferentStore = async (store: ProductStoresFragment | null) => {
+    if (!store) return;
+    if (!store.external_id) return;
+
+    setIsLoading(true);
+    return setFavoriteStoreId(String(store.external_id)).finally(() => {
+      setIsLoading(false);
+    });
+  };
+
   return (
     <div className="grid grid-cols-2 gap-4">
+      {isLoading ? <PageTopLoader /> : null}
+      {storesWithStock ? (
+        <ChangeStoreModal
+          isOpen={isStoreModalOpen}
+          stores={storesWithStock}
+          onClose={() => setIsStoreModalOpen((prev) => !prev)}
+          onStoreChange={selectDifferentStore}
+        />
+      ) : null}
+
       <div>
         <span className="font-semibold flex items-center gap-2 text-sm lg:text-base">
           <LocalShippingIcon width={24} height={24} />
@@ -79,9 +108,12 @@ export const DeliveryInfo: React.FC<Props> = ({ product, stock }) => {
             <span className="text-sm lg:text-base">
               {stockData?.cac?.message}
             </span>
-            <span className="text-xs lg:text-sm text-dark-grey">
+            <button
+              onClick={() => setIsStoreModalOpen((prev) => !prev)}
+              className="text-xs lg:text-sm text-dark-grey text-left"
+            >
               Tilgjengelig i {storesWithStock?.length ?? 0} butikker
-            </span>
+            </button>
           </div>
         </div>
       </div>

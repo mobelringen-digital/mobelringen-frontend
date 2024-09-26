@@ -32,7 +32,9 @@ async function getProduct(sku: string) {
 }
 
 async function getProductStock(productId: string, storeId: string) {
-  return await baseMagentoClient("GET").request(GetProductStockDocument, {
+  return await baseMagentoClient("GET", {
+    tags: ["stock", String(productId), String(storeId)],
+  }).request(GetProductStockDocument, {
     productId,
     storeId,
   });

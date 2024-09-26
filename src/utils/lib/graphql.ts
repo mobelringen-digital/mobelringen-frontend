@@ -33,6 +33,7 @@ export const baseMagentoClient = (
             revalidate: method === "POST" ? 0 : 3600,
             ...nextOptions,
           },
+          credentials: "include",
           ...init,
         }),
     ),
@@ -71,6 +72,7 @@ export const authorizedMagentoClient = (
           },
           cache: nextOptions?.cache,
           ...init,
+          credentials: "include",
           headers: {
             ...(token ? { Authorization: `Bearer ${token ?? ""}` } : {}),
             Accept:
