@@ -10,7 +10,7 @@ interface Props {
 }
 
 export const CartItemDeliveryInfo: React.FC<Props> = ({ item }) => {
-  const { isOnline, isCacAvailable, isClickAndCollect } = useCartItem(item);
+  const { isOnline, isClickAndCollect } = useCartItem(item);
 
   const hasOnlineStock =
     item.availability?.online?.availability !== Availability.OutOfStock;
@@ -39,7 +39,7 @@ export const CartItemDeliveryInfo: React.FC<Props> = ({ item }) => {
           )}
         </div>
       ) : null}
-      {isClickAndCollect && !isCacAvailable ? (
+      {isClickAndCollect ? (
         <div className="flex items-center gap-2">
           {item.availability?.cac?.availability ? (
             <StatusCircle
@@ -49,7 +49,7 @@ export const CartItemDeliveryInfo: React.FC<Props> = ({ item }) => {
               size="small"
             />
           ) : null}
-          <span className="text-xs">Ikke tilgjengelig i butikk</span>
+          <span className="text-xs">{item.availability?.cac?.message}</span>
         </div>
       ) : null}
     </div>
