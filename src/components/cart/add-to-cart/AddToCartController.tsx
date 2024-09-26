@@ -25,7 +25,6 @@ interface Props {
 }
 
 export const AddToCartController: React.FC<Props> = ({
-  isDisabled,
   product,
   onAddToCart,
   stock,
@@ -42,16 +41,14 @@ export const AddToCartController: React.FC<Props> = ({
     stock?.getProductStock.cac?.availability !== Availability.OutOfStock;
 
   const setClose = () => {
+    setIsLoading(false);
     return router.push(pathname);
   };
 
   const handleAddItemToCart = async (preferredMethod: "online" | "collect") => {
-    if (preferredMethod === "online" && isDisabled) {
-      return;
-    }
-
     setIsLoading(true);
     await onAddToCart(preferredMethod).finally(() => {
+      setIsLoading(false);
       router.push(`${pathname}?cart=true`);
     });
   };
@@ -63,6 +60,7 @@ export const AddToCartController: React.FC<Props> = ({
         product={product}
         isOpen={isOpen}
         onOpenChange={() => setClose()}
+        onClose={() => setClose()}
       />
       <div className="flex flex-col gap-4">
         <Button

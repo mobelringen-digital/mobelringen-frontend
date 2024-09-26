@@ -14,12 +14,14 @@ interface Props {
   product: BaseProductFragment;
   isOpen: boolean;
   onOpenChange: () => void;
+  onClose?: () => void;
 }
 
 export const ProductAddedModal: React.FC<Props> = ({
   product,
   isOpen,
   onOpenChange,
+  onClose,
 }) => {
   const [cookies] = useCookies();
   const navigateToCart = async () => {
@@ -32,6 +34,7 @@ export const ProductAddedModal: React.FC<Props> = ({
   return (
     <Modal
       isOpen={isOpen}
+      onClose={onClose}
       onOpenChange={onOpenChange}
       title="Lagt til i handlekurv!"
     >

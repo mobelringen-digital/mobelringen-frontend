@@ -63,6 +63,13 @@ export const AddToCart: React.FC<Props> = ({
       return;
     }
 
+    if (
+      preferredMethod === "collect" &&
+      stock?.getProductStock.cac?.availability === Availability.OutOfStock
+    ) {
+      return;
+    }
+
     if (cart?.id && product.sku && quantity) {
       addToCartGTMEvent();
       return addToCart(
