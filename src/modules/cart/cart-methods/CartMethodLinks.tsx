@@ -62,7 +62,9 @@ export const CartMethodLinks: React.FC<Props> = ({ selectedStore, cart }) => {
         setPreferredMethod={() => setPreferredMethod("collect")}
         label="Klikk og hent"
         description={
-          selectedStore ? `Hentes hos: ${selectedStore?.name}` : null
+          selectedStore
+            ? `Hentes hos: ${selectedStore?.name}`
+            : "Ingen butikk er valgt"
         }
         isActive={activeMethod === "collect"}
       />
