@@ -23,7 +23,7 @@ export async function CartPage({ data }: Props) {
 
   return (
     <CartEvents data={data}>
-      <ContainerLayout>
+      <ContainerLayout className="pb-12">
         <CartBreadcrumbs />
         <PageTitle>Handlekurv</PageTitle>
         {isEmptyCart ? (
