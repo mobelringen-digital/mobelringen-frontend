@@ -45,9 +45,16 @@ export const DeliveryInfo: React.FC<Props> = ({ product, stock }) => {
     if (!store.external_id) return;
 
     setIsLoading(true);
-    return setFavoriteStoreId(String(store.external_id)).finally(() => {
-      setIsLoading(false);
-    });
+    return setFavoriteStoreId(String(store.external_id))
+      .then(() => {
+        setTimeout(() => {
+          // Wait for tag revalidate
+          setIsStoreModalOpen(false);
+        }, 1000);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (
