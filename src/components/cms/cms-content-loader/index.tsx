@@ -5,6 +5,7 @@ import { CmsImageGallery } from "components/cms/block-image-gallery";
 import { CmsProductSlider } from "components/cms/block-product-slider";
 
 import { BlockBrands } from "@/components/cms/block-brands/BlockBrands";
+import { BlockBrandsList } from "@/components/cms/block-brands-list/BlockBrandsList";
 import { BlockFaq } from "@/components/cms/block-faq/BlockFaq";
 import { BlockImageLinksSlider } from "@/components/cms/block-image-links-slider/BlockImageLinksSlider";
 import { BlockNavigationButtons } from "@/components/cms/block-navigation-buttons/BlockNavigationButtons";
@@ -71,6 +72,9 @@ export const CmsContentLoader: React.FC<CmsContentProps> = ({ data }) => {
 
     case "BlockProductsList":
       return <BlockProductsList data={data} />;
+
+    case "BlockBrandsList":
+      return <BlockBrandsList data={data} />;
 
     default:
       return null;

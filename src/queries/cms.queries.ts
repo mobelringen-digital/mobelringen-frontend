@@ -200,3 +200,33 @@ export const BlockProductsListFragment = graphql(`
     }
   }
 `);
+
+export const BrandFragment = graphql(`
+  fragment CmsBrand on Brand {
+    ... on Brand {
+      __typename
+      brandName
+      url
+      image {
+        url
+        width
+        height
+      }
+    }
+  }
+`);
+
+export const BlockBrandsListFragment = graphql(`
+  fragment CmsBlockBrandsList on BlockBrandsList {
+    ... on BlockBrandsList {
+      __typename
+      title
+      brands {
+        ...CmsBrand
+      }
+      blockConfig {
+        ...CmsBlockConfig
+      }
+    }
+  }
+`);
