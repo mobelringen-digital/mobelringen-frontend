@@ -27,7 +27,6 @@ export const MaskedOrderFragment = graphql(`
       message
       timestamp
     }
-    count
     currency
     delivery_type
     delivery_type_title
