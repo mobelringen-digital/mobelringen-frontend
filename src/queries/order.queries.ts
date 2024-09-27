@@ -5,6 +5,38 @@ export const MaskedOrderFragment = graphql(`
     applied_coupons {
       code
     }
+    items {
+      image
+      name
+      link
+      price
+      quantity
+      sku
+    }
+    payment_methods {
+      name
+      type
+      additional_data {
+        name
+        value
+      }
+    }
+    shipping_address {
+      city
+      company
+      country_code
+      fax
+      firstname
+      lastname
+      middlename
+      postcode
+      prefix
+      region
+      region_id
+      street
+      suffix
+      vat_id
+    }
     billing_address {
       city
       company
