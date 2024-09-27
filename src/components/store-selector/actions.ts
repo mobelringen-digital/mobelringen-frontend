@@ -84,7 +84,7 @@ export async function setFavoriteStoreId(storeId: string) {
   if (token && customer?.customer) {
     await updateCustomerDetails({
       favorite_store: storeId,
-    });
+    }).then(() => updateCartItemsInStore());
     // Expire the cookie if the user is logged in
     cookiesStore.set("storeId", storeId, {
       maxAge: 0,

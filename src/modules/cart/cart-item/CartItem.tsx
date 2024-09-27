@@ -13,6 +13,7 @@ import { useConfirm } from "@/components/confirm/hooks/useConfirm";
 import { updateCartItems } from "@/modules/cart/cart-item/actions";
 import { CartItemDeliveryInfo } from "@/modules/cart/cart-item/CartItemDeliveryInfo";
 import { CartItemPrice } from "@/modules/cart/cart-item/CartItemPrice";
+import { useCartItem } from "@/modules/cart/hooks/useCartItem";
 import { CartItemFragment, RemoveProductFromCartMutation } from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
 
@@ -26,6 +27,7 @@ interface Props {
 export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const { showConfirmation } = useConfirm();
+  const { isClickAndCollect } = useCartItem(item);
 
   if (!item) return null;
 
@@ -154,6 +156,13 @@ export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
                 Fjern produkt
               </button>
             </div>
+            {isClickAndCollect && !item.is_in_store ? (
+              <div className="block">
+                <span className="bg-error-light text-error py-1 px-2 rounded-2xl mt-2 text-xs">
+                  Ikke tilgjengelig i valgt butikk
+                </span>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>

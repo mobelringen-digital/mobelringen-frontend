@@ -11,14 +11,21 @@ interface Props {
 }
 
 export const CartWarnings: React.FC<Props> = ({ cart }) => {
-  const { isCheckoutEnabled } = useCart(cart);
+  const { oneProductNotAvailableOnline, oneProductNotAvailableInStore } =
+    useCart(cart);
 
   return (
     <>
-      {!isCheckoutEnabled ? (
+      {oneProductNotAvailableOnline ? (
         <CartWarning
-          message="Noen av produktene under er dessverre ikke lengre tilgjengelig
-                på nett."
+          type="red"
+          message="Noen av produktene under er dessverre ikke lengre tilgjengelig på nett."
+        />
+      ) : null}
+      {oneProductNotAvailableInStore ? (
+        <CartWarning
+          type="yellow"
+          message="Noen av produktene er ikke tilgengelig i denne butikken. Velg en annen butikk eller bestill på nett med hjemlevering."
         />
       ) : null}
     </>

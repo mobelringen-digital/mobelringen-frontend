@@ -1,12 +1,25 @@
 import React from "react";
 
+import cx from "classnames";
+
 interface Props {
   message: string;
+  type?: keyof typeof COLORS;
 }
 
-export const CartWarning: React.FC<Props> = ({ message }) => {
+const COLORS = {
+  red: "bg-error-light text-error",
+  yellow: "bg-warning-light text-warning-dark",
+};
+
+export const CartWarning: React.FC<Props> = ({ message, type = "red" }) => {
   return (
-    <span className="bg-error-light text-error rounded-xl text-center w-full py-1 text-xs lg:text-sm">
+    <span
+      className={cx(
+        "rounded-xl text-center w-full py-1 px-4 text-xs lg:text-sm",
+        COLORS[type],
+      )}
+    >
       {message}
     </span>
   );

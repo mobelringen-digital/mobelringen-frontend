@@ -52,7 +52,8 @@ export const useCart = (cart?: BaseCartFragment | null) => {
     if (isClickAndCollect) {
       return cart?.items?.every(
         (item) =>
-          item?.availability?.cac?.availability !== Availability.OutOfStock,
+          item?.availability?.cac?.availability !== Availability.OutOfStock &&
+          item?.is_in_store,
       );
     }
 
@@ -82,6 +83,29 @@ export const useCart = (cart?: BaseCartFragment | null) => {
     return !!cart?.selected_payment_method;
   }, [cart?.selected_payment_method]);
 
+  const oneProductNotAvailableOnline = React.useMemo(() => {
+    if (isClickAndCollect) {
+      return false;
+    }
+
+    return cart?.items?.some(
+      (item) =>
+        item?.availability?.online?.availability === Availability.OutOfStock,
+    );
+  }, [cart?.items, isClickAndCollect]);
+
+  const oneProductNotAvailableInStore = React.useMemo(() => {
+    if (!isClickAndCollect) {
+      return;
+    }
+
+    return cart?.items?.some(
+      (item) =>
+        item?.availability?.cac?.availability === Availability.OutOfStock ||
+        !item?.is_in_store,
+    );
+  }, [cart?.items, isClickAndCollect]);
+
   return {
     isCheckoutEnabled,
     cartId,
@@ -90,5 +114,7 @@ export const useCart = (cart?: BaseCartFragment | null) => {
     isShippingMethodSet,
     isPaymentMethodSet,
     isClickAndCollect,
+    oneProductNotAvailableOnline,
+    oneProductNotAvailableInStore,
   };
 };

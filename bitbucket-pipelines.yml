@@ -1,7 +1,7 @@
 image: node:20.12.0
 pipelines:
   branches:
-    qa:
+    main:
       - step:
           name: Install Vercel CLI, Pull Vercel Environment Information, Build Project Artifacts and Deploy Project Artifacts to Vercel
           size: 2x
@@ -10,13 +10,3 @@ pipelines:
             - vercel pull --yes --environment=production --token=$VERCEL_TOKEN
             - vercel build --prod --token=$VERCEL_TOKEN
             - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN
-            
-    main:
-      - step:
-          name: Install Vercel CLI, Pull Vercel Environment Information, Build Project Artifacts and Deploy Project Artifacts to Vercel
-          size: 2x
-          script:
-            - npm install --global vercel
-            - vercel pull --yes --environment=production --token=$PROD_VERCEL_TOKEN
-            - vercel build --prod --token=$PROD_VERCEL_TOKEN
-            - vercel deploy --prebuilt --prod --token=$PROD_VERCEL_TOKEN
