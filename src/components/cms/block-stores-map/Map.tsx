@@ -21,9 +21,9 @@ interface Props {
   selectedStore?: BaseStoreFragment | null;
 }
 
-export const createMapIcon = (): L.DivIcon => {
+export const createMapIcon = (icon: JSX.Element = <MapMarker />): L.DivIcon => {
   return L.divIcon({
-    html: ReactDOMServer.renderToString(<MapMarker />),
+    html: ReactDOMServer.renderToString(icon),
     iconSize: [30, 30],
     className: "bg-transparent",
   });
