@@ -9,7 +9,7 @@ interface Props {
   order?: MaskedOrderFragment | null;
 }
 
-export const CartSuccessPage: React.FC<Props> = ({ order }) => {
+export const CartSuccessPage: React.FC<Props> = () => {
   return (
     <ContainerLayout>
       <CartBreadcrumbs />
