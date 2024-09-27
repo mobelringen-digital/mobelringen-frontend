@@ -13,6 +13,10 @@ export const MaskedOrderFragment = graphql(`
       quantity
       sku
     }
+    coordinates {
+      lat
+      lng
+    }
     payment_methods {
       name
       type
@@ -75,6 +79,10 @@ export const MaskedOrderFragment = graphql(`
     token
     total {
       grand_total {
+        currency
+        value
+      }
+      total_shipping {
         currency
         value
       }

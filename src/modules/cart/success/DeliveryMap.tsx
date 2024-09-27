@@ -2,30 +2,44 @@
 
 import React from "react";
 
+import { MapContainer, Marker, TileLayer } from "react-leaflet";
+
 import { MaskedOrderFragment } from "@/types";
 
 interface Props {
   order?: MaskedOrderFragment | null;
 }
 
-export const DeliveryMap: React.FC<Props> = ({ order }) => {
-  const fullShippingAddress = [
-    order?.shipping_address?.city,
-    order?.shipping_address?.street,
-    order?.shipping_address?.postcode,
-  ]
-    .filter(Boolean)
-    .join(", ");
+const DeliveryMap: React.FC<Props> = ({ order }) => {
+  const [isMounted, setIsMounted] = React.useState(false);
+  const cords = [
+    Number(order?.coordinates?.lat),
+    Number(order?.coordinates?.lng),
+  ] as [number, number];
+
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
-    <div>
-      <iframe
-        width="100%"
-        height="600"
-        src={`https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=${fullShippingAddress}&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed`}
-      >
-        <a href="https://www.gps.ie/">gps devices</a>
-      </iframe>
-    </div>
+    <MapContainer
+      className="rounded-3xl z-20 mt-8"
+      center={cords}
+      style={{ height: 400 }}
+      zoom={13}
+      scrollWheelZoom={true}
+    >
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+      />
+      <Marker position={cords} />
+    </MapContainer>
   );
 };
+
+export default DeliveryMap;

@@ -1,5 +1,6 @@
 import React from "react";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 
 import { Debugger } from "@/components/Debugger";
@@ -10,6 +11,8 @@ import { InvoiceTable } from "@/modules/cart/success/InvoiceTable";
 import { ItemsTable } from "@/modules/cart/success/ItemsTable";
 import { OrderInformation } from "@/modules/cart/success/OrderInformation";
 import { MaskedOrderFragment } from "@/types";
+
+const DeliveryMap = dynamic(() => import("./DeliveryMap"), { ssr: false });
 
 interface Props {
   order?: MaskedOrderFragment | null;
@@ -34,6 +37,7 @@ export const CartSuccessPage: React.FC<Props> = ({ order }) => {
             <div className="text-xl font-semibold mb-2">Leveringadresse</div>
             <span className="text-base">{fullShippingAddress}</span>
             <span className="text-base">{order?.carrier}</span>
+            <DeliveryMap order={order} />
           </div>
           <div className="bg-white p-4 lg:p-8 rounded-2xl flex flex-col gap-2">
             <div className="text-xl font-semibold mb-2">Spørsmål?</div>
