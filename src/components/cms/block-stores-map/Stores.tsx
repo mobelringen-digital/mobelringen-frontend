@@ -34,9 +34,6 @@ export const Stores: React.FC<Props> = ({ stores, title }) => {
     React.useState<BaseStoreFragment | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
 
-  // eslint-disable-next-line no-console
-  console.log(storesList);
-
   const groupedByRegions = storesList?.reduce(
     (acc, rec) => {
       const { region, ...store } = rec as BaseStoreFragment;

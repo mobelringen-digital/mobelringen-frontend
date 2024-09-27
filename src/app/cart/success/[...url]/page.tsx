@@ -20,8 +20,6 @@ export default async function CartSuccess({
   const order = await getMaskedOrder(searchParams.masked_id as string);
   revalidateTag("cart");
 
-  console.log(order);
-
   return (
     <>
       <CartSuccessPage order={order} />
