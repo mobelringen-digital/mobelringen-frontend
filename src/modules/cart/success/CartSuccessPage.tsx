@@ -26,7 +26,6 @@ export const CartSuccessPage: React.FC<Props> = ({ order }) => {
 
   return (
     <ContainerLayout className="pb-12">
-      <Debugger data={order} />
       <CartBreadcrumbs />
       <PageTitle>Takk for kjøpet!</PageTitle>
       <div className="grid grid-cols-12 gap-8">
@@ -54,6 +53,7 @@ export const CartSuccessPage: React.FC<Props> = ({ order }) => {
           </div>
         </div>
       </div>
+      <Debugger data={order} />
     </ContainerLayout>
   );
 };
