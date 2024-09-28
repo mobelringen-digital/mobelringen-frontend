@@ -1,5 +1,6 @@
 import React from "react";
 
+import { FormatNumber } from "@/components/_ui/format-number/FormatNumber";
 import { MaskedOrderFragment } from "@/types";
 
 interface Props {
@@ -19,7 +20,13 @@ export const ItemsTable: React.FC<Props> = ({ order }) => {
         {order?.items?.map((item) => (
           <tr key={item?.sku}>
             <td className="px-4 py-2">{item?.name}</td>
-            <td className="px-4 py-2 text-right">{item?.price}</td>
+            <td className="px-4 py-2 text-right">
+              <FormatNumber
+                value={item?.price}
+                format="currency"
+                suffix=" NOK"
+              />
+            </td>
           </tr>
         ))}
         <tr>
@@ -27,7 +34,11 @@ export const ItemsTable: React.FC<Props> = ({ order }) => {
             Levering til fortauskant
           </td>
           <td className="px-4 py-2 border-t border-warm-grey text-right">
-            {order?.total?.total_shipping?.value}
+            <FormatNumber
+              value={order?.total?.total_shipping?.value}
+              format="currency"
+              suffix=" NOK"
+            />
           </td>
         </tr>
         <tr>
@@ -35,7 +46,11 @@ export const ItemsTable: React.FC<Props> = ({ order }) => {
             Totalt
           </td>
           <td className="px-4 py-2 border-t border-warm-grey text-right">
-            {order?.total?.grand_total?.value}
+            <FormatNumber
+              value={order?.total?.grand_total?.value}
+              format="currency"
+              suffix=" NOK"
+            />
           </td>
         </tr>
       </tbody>
