@@ -39,7 +39,7 @@ export const ContactFormController: React.FC<Props> = ({
       }
       await setAddressesOnCart(cart.id, values);
       openToast({
-        content: "Forsendelses- og faktureringsadresser er oppdatert",
+        content: "Forsendelses- og faktureringsadresser er oppdatert.",
       });
     }
 
