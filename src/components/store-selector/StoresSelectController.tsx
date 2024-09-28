@@ -41,7 +41,7 @@ export const StoresSelectController: React.FC<Props> = ({
         >
           <Location /> {selectedStore?.name ?? "Velg butikk"}
         </button>
-        <Link href="finn-butikk" className="flex gap-1 items-center">
+        <Link href="/finn-butikk" className="flex gap-1 items-center">
           <Storefront /> Butikkoversikt
         </Link>
       </div>
