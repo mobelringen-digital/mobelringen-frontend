@@ -85,7 +85,7 @@ export async function reserveOrder(cartId: string, values: CheckoutFormData) {
   revalidateTag("cart");
 
   if (data.reserveOrder?.order_id) {
-    return navigate(`/cart/success?order_id=${data?.reserveOrder?.order_id}`);
+    return navigate(`/cart/success/cac?order_id=${data?.reserveOrder?.order_id}`);
   }
 
   return data;
