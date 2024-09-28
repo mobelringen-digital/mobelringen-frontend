@@ -35,6 +35,9 @@ export const CartProceedButton: React.FC<Props> = ({
   const isStoreSet =
     activeMethod === "collect" ? !!selectedStore?.external_id : true;
 
+  const isButtonDisabled =
+    disabled || !isCheckoutEnabled || isLoading || !isStoreSet;
+
   const beginCheckoutGTMEvent = () => {
     if (!cart?.id) {
       return;
@@ -49,7 +52,7 @@ export const CartProceedButton: React.FC<Props> = ({
   };
 
   const navigateToCheckout = async () => {
-    if (!isCheckoutEnabled) return;
+    if (!isButtonDisabled) return;
     if (!cart?.id) return;
 
     setIsLoading(true);
@@ -67,7 +70,7 @@ export const CartProceedButton: React.FC<Props> = ({
     <>
       {isLoading ? <PageTopLoader /> : null}
       <Button
-        disabled={disabled || !isCheckoutEnabled || isLoading || !isStoreSet}
+        disabled={isButtonDisabled}
         onClick={navigateToCheckout}
         color="tertiary"
         className="w-full mt-4"
