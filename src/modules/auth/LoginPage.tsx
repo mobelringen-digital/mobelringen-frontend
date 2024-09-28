@@ -96,6 +96,11 @@ export const LoginPage: React.FC = () => {
           >
             Logg inn
           </Button>
+          <div className="flex w-full justify-end mt-2">
+            <Link href="/auth/forgot">
+              Glemt passord?
+            </Link>
+          </div>
         </form>
         <div className="mt-8 pt-4 border-t border-dark-grey border-opacity-30 flex flex-col">
           <p className="text-xl">Ny bruker</p>

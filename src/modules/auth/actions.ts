@@ -4,8 +4,15 @@ import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 import { AssignCustomerToGuestCart } from "@/queries/cart.queries";
+import {
+  RequestPasswordResetEmailDocument,
+  ResetPasswordDocument,
+} from "@/queries/mutations/customer.mutations";
 import { CustomerCreateInput } from "@/types";
-import { authorizedMagentoClient } from "@/utils/lib/graphql";
+import {
+  authorizedMagentoClient,
+  baseMagentoClient,
+} from "@/utils/lib/graphql";
 
 interface LoginInput {
   email: string;
@@ -101,4 +108,29 @@ export async function assignCustomerToGuestCart(token: string) {
 export async function getToken() {
   const cookieStore = cookies();
   return cookieStore.get("token")?.value;
+}
+
+export async function requestPasswordResetEmail(email: string) {
+  const data = await baseMagentoClient("POST").request(
+    RequestPasswordResetEmailDocument,
+    {
+      email,
+    },
+  );
+
+  return data.requestPasswordResetEmail;
+}
+
+export async function resetPassword(
+  email: string,
+  resetPasswordToken: string,
+  newPassword: string,
+) {
+  const data = await baseMagentoClient("POST").request(ResetPasswordDocument, {
+    resetPasswordToken,
+    newPassword,
+    email,
+  });
+
+  return data.resetPassword;
 }

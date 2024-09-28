@@ -233,3 +233,23 @@ export const ChangeCustomerPasswordDocument = graphql(`
     }
   }
 `);
+
+export const RequestPasswordResetEmailDocument = graphql(`
+  mutation RequestPasswordResetEmail($email: String!) {
+    requestPasswordResetEmail(email: $email)
+  }
+`);
+
+export const ResetPasswordDocument = graphql(`
+  mutation ResetPassword(
+    $email: String!
+    $resetPasswordToken: String!
+    $newPassword: String!
+  ) {
+    resetPassword(
+      email: $email
+      resetPasswordToken: $resetPasswordToken
+      newPassword: $newPassword
+    )
+  }
+`);
