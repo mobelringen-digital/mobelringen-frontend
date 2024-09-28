@@ -24,7 +24,7 @@ export const ItemsTable: React.FC<Props> = ({ order }) => {
               <FormatNumber
                 value={item?.price}
                 format="currency"
-                suffix=" NOK"
+                suffix=" kr"
               />
             </td>
           </tr>
@@ -37,7 +37,7 @@ export const ItemsTable: React.FC<Props> = ({ order }) => {
             <FormatNumber
               value={order?.total?.total_shipping?.value}
               format="currency"
-              suffix=" NOK"
+              suffix=" kr"
             />
           </td>
         </tr>
@@ -49,7 +49,7 @@ export const ItemsTable: React.FC<Props> = ({ order }) => {
             <FormatNumber
               value={order?.total?.grand_total?.value}
               format="currency"
-              suffix=" NOK"
+              suffix=" kr"
             />
           </td>
         </tr>
