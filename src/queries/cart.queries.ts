@@ -451,6 +451,7 @@ export const ReserveOrder = graphql(`
       telephone: $telephone
     ) {
       order_id
+      masked_id
     }
   }
 `);

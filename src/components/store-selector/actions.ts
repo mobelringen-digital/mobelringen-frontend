@@ -63,6 +63,7 @@ export async function updateCartItemsInStore() {
   try {
     const data = await baseMagentoClient("POST", {
       cache: "no-store",
+      tags: ["cart-items"],
     }).request(UpdateCartItemsIsInStore, {
       cartId: cart.id,
       storeId: store?.external_id,
@@ -90,6 +91,7 @@ export async function setFavoriteStoreId(storeId: string) {
       maxAge: 0,
     });
   } else {
+    await updateCartItemsInStore();
     cookiesStore.set("storeId", storeId, {
       maxAge: 60 * 60 * 24 * 365,
     });
@@ -98,6 +100,7 @@ export async function setFavoriteStoreId(storeId: string) {
   revalidateTag("store");
   revalidateTag("customer");
   revalidateTag("cart");
+  revalidateTag("cart-items");
   revalidateTag("stock");
 
   return storeId;

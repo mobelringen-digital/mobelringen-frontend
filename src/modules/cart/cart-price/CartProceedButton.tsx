@@ -52,7 +52,7 @@ export const CartProceedButton: React.FC<Props> = ({
   };
 
   const navigateToCheckout = async () => {
-    if (!isButtonDisabled) return;
+    if (isButtonDisabled) return;
     if (!cart?.id) return;
 
     setIsLoading(true);

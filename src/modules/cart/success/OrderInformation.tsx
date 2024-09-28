@@ -24,7 +24,7 @@ export const OrderInformation: React.FC<Props> = ({ order }) => {
       </div>
       {order?.payment_methods?.map((paymentMethod) => (
         <div key={paymentMethod?.type} className="text-base flex gap-1">
-          <span>Betalingsmetode::</span>
+          <span>Betalingsmetode:</span>
           <span className="font-semibold">{paymentMethod?.name}</span>
         </div>
       ))}

@@ -83,9 +83,12 @@ export async function reserveOrder(cartId: string, values: CheckoutFormData) {
   );
 
   revalidateTag("cart");
+  revalidateTag("cart-items");
 
   if (data.reserveOrder?.order_id) {
-    return navigate(`/cart/success/cac?order_id=${data?.reserveOrder?.order_id}`);
+    return navigate(
+      `/cart/success/cac?order_id=${data?.reserveOrder?.order_id}&masked_id=${data?.reserveOrder?.masked_id}`,
+    );
   }
 
   return data;

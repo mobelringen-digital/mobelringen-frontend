@@ -12,15 +12,13 @@ import {
   CheckoutFormData,
   setDefaultFormValues,
 } from "@/modules/checkout/factories";
-import { BaseCartFragment, CustomerQuery, ReserveOrderMutation } from "@/types";
+import { BaseCartFragment, CustomerQuery } from "@/types";
 
 import { navigate } from "../../../app/actions";
 
 interface Props {
   cart: BaseCartFragment;
-  onCheckoutFormSubmit: (
-    values: CheckoutFormData,
-  ) => Promise<void | ReserveOrderMutation>;
+  onCheckoutFormSubmit: (values: CheckoutFormData) => Promise<unknown>;
   isAuthorized?: boolean;
   customer?: CustomerQuery;
   isClickAndCollect?: boolean;
