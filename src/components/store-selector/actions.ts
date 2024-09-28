@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 import getCart from "@/components/cart/actions";
@@ -64,12 +64,14 @@ export async function updateCartItemsInStore() {
     const data = await baseMagentoClient("POST", {
       cache: "no-store",
       tags: ["cart-items"],
+      revalidate: undefined,
     }).request(UpdateCartItemsIsInStore, {
       cartId: cart.id,
       storeId: store?.external_id,
     });
 
     revalidateTag("cart");
+    revalidatePath("/cart");
 
     return data.updateCartItemsIsInStore;
   } catch (e) {
@@ -85,22 +87,21 @@ export async function setFavoriteStoreId(storeId: string) {
   if (token && customer?.customer) {
     await updateCustomerDetails({
       favorite_store: storeId,
-    }).then(() => updateCartItemsInStore());
+    });
     // Expire the cookie if the user is logged in
     cookiesStore.set("storeId", storeId, {
       maxAge: 0,
     });
   } else {
-    await updateCartItemsInStore();
     cookiesStore.set("storeId", storeId, {
       maxAge: 60 * 60 * 24 * 365,
     });
   }
 
+  await updateCartItemsInStore();
+
   revalidateTag("store");
   revalidateTag("customer");
-  revalidateTag("cart");
-  revalidateTag("cart-items");
   revalidateTag("stock");
 
   return storeId;
