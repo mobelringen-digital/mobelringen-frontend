@@ -41,14 +41,9 @@ export const StoresSelectController: React.FC<Props> = ({
         >
           <Location /> {selectedStore?.name ?? "Velg butikk"}
         </button>
-        {selectedStore ? (
-          <Link
-            href={`/store/${selectedStore.external_id}`}
-            className="flex gap-1 items-center"
-          >
-            <Storefront /> Butikkoversikt
-          </Link>
-        ) : null}
+        <Link href="finn-butikk" className="flex gap-1 items-center">
+          <Storefront /> Butikkoversikt
+        </Link>
       </div>
 
       {/*Render mobile menu*/}
@@ -63,17 +58,12 @@ export const StoresSelectController: React.FC<Props> = ({
           </button>
           <ChevronRight />
         </li>
-        {selectedStore ? (
-          <li className="flex justify-between items-center">
-            <Link
-              href={`/store/${selectedStore.external_id}`}
-              className="flex gap-2 items-center"
-            >
-              <Storefront width={20} height={20} /> Butikkoversikt
-            </Link>
-            <ChevronRight />
-          </li>
-        ) : null}
+        <li className="flex justify-between items-center">
+          <Link href="/finn-butikk" className="flex gap-2 items-center">
+            <Storefront width={20} height={20} /> Butikkoversikt
+          </Link>
+          <ChevronRight />
+        </li>
       </ul>
     </React.Fragment>
   );
