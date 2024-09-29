@@ -3,7 +3,7 @@ import React from "react";
 import cx from "classnames";
 
 interface Props {
-  message: string;
+  message: React.ReactNode;
   type?: keyof typeof COLORS;
 }
 

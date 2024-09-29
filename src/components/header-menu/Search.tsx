@@ -12,7 +12,7 @@ export const Search = () => {
   const [search, setSearch] = React.useState(searchParams.get("q") || "");
 
   return (
-    <form method="GET" action="/search">
+    <form className="w-full" method="GET" action="/search">
       <Input
         value={search}
         onChange={(e) => setSearch(e.target.value)}

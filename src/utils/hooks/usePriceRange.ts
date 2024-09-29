@@ -19,7 +19,7 @@ export const usePriceRange = (
     const percentOff = priceRange?.minimum_price?.discount?.percent_off;
 
     if (percentOff) {
-      return `-${percentOff} %`;
+      return `-${Math.round(percentOff)} %`;
     }
 
     return null;
