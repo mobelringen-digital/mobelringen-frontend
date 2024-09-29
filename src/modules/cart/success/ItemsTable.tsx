@@ -31,7 +31,7 @@ export const ItemsTable: React.FC<Props> = ({ order }) => {
         ))}
         <tr>
           <td className="px-4 py-2 border-t border-warm-grey">
-            Levering til fortauskant
+            Frakt
           </td>
           <td className="px-4 py-2 border-t border-warm-grey text-right">
             <FormatNumber
