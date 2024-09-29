@@ -106,7 +106,17 @@ export const BaseProductLayout: React.FC<Props> = ({
 
             {configurationBlock}
 
-            <ProductPricing pricingRange={product?.price_range} />
+            <div className="flex flex-col gap-2">
+              <ProductPricing product={product} />
+              {product.special_price && product.special_to_date ? (
+                <div className="block">
+                  <span className="text-sm bg-powder rounded-2xl py-1 px-2">
+                    Tilbudet gjelder t.o.m. {product.special_to_date}
+                  </span>
+                </div>
+              ) : null}
+            </div>
+
             <MoreInTheStore />
             <PurchaseBlock stock={stock} cart={cart} product={product} />
             <div className="block lg:hidden">

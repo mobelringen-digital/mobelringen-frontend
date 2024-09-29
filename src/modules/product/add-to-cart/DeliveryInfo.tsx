@@ -119,7 +119,10 @@ export const DeliveryInfo: React.FC<Props> = ({ product, stock }) => {
               onClick={() => setIsStoreModalOpen((prev) => !prev)}
               className="text-xs lg:text-sm text-dark-grey text-left"
             >
-              Tilgjengelig i {storesWithStock?.length ?? 0} butikker
+              Tilgjengelig i{" "}
+              <span className="underline">
+                {storesWithStock?.length ?? 0} butikker
+              </span>
             </button>
           </div>
         </div>

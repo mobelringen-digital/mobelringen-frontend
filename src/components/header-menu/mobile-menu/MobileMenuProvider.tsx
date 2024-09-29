@@ -1,16 +1,16 @@
 "use client";
 
-import React from "react";
+import React, { Suspense } from "react";
 
 import cx from "classnames";
 
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { CloseIcon } from "@/components/_ui/icons/CloseIcon";
 import { LocationIcon } from "@/components/_ui/icons/LocationIcon";
 import { MenuIcon } from "@/components/_ui/icons/MenuIcon";
+import { Search } from "@/components/header-menu/Search";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
-import { SearchInput } from "@/components/search/SearchInput";
 
 interface Props {
   children: React.ReactNode;
@@ -20,6 +20,7 @@ export const MobileMenuProvider: React.FC<Props> = ({ children }) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const handleMenuButtonClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -45,7 +46,7 @@ export const MobileMenuProvider: React.FC<Props> = ({ children }) => {
       <button onClick={handleMenuButtonClick}>
         <MenuIcon />
       </button>
-      <button>
+      <button onClick={() => router.push("?store=select")}>
         <LocationIcon />
       </button>
 
@@ -63,7 +64,9 @@ export const MobileMenuProvider: React.FC<Props> = ({ children }) => {
             <button onClick={handleMenuButtonClick}>
               <CloseIcon />
             </button>
-            <SearchInput />
+            <Suspense fallback={null}>
+              <Search />
+            </Suspense>
           </div>
         </ContainerLayout>
         <div
