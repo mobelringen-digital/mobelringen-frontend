@@ -75,7 +75,7 @@ export const CartProceedButton: React.FC<Props> = ({
         color="tertiary"
         className="w-full mt-4"
       >
-        Fortsett til betaling
+        Fortsett
       </Button>
     </>
   );
