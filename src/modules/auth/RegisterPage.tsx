@@ -148,7 +148,7 @@ export const RegisterPage: React.FC<Props> = ({ stores }) => {
                 placeholder="Velg favorittbutikk"
                 classNames={{
                   innerWrapper: "bg-white",
-                  trigger: "bg-white",
+                  trigger: "bg-white rounded-lg border-dark-gray h-10",
                 }}
                 selectionMode="single"
                 // @ts-expect-error - Fix this
