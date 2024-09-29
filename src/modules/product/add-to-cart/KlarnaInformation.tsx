@@ -13,11 +13,11 @@ export const KlarnaInformation = () => {
       <div className="grid grid-cols-12 mt-2 text-xs lg:text-sm">
         <div className="col-span-4 flex flex-col items-center justify-center text-center gap-2">
           <Clock width={48} height={48} />
-          <span>Finansiering</span>
+          <span>Hent innen 48 timer etter bestilling</span>
         </div>
         <div className="col-span-4 flex flex-col items-center justify-center text-center gap-2">
           <Trailer width={48} height={48} />
-          <span>Levering og montering</span>
+          <span>Lån tilhenger for hjemkjøring gratis</span>
         </div>
         <div className="col-span-4 flex flex-col items-center justify-center text-center gap-2">
           <PriceTag width={48} height={48} />
