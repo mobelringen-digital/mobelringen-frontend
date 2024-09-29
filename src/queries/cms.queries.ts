@@ -230,3 +230,15 @@ export const BlockBrandsListFragment = graphql(`
     }
   }
 `);
+
+export const BlockCustomerClubFormFragment = graphql(`
+  fragment CmsBlockCustomerClubForm on BlockCustomerClubform {
+    ... on BlockCustomerClubform {
+      __typename
+      title
+      blockConfig {
+        ...CmsBlockConfig
+      }
+    }
+  }
+`);

@@ -115,15 +115,17 @@ export const DeliveryInfo: React.FC<Props> = ({ product, stock }) => {
             <span className="text-sm lg:text-base">
               {stockData?.cac?.message}
             </span>
-            <button
-              onClick={() => setIsStoreModalOpen((prev) => !prev)}
-              className="text-xs lg:text-sm text-dark-grey text-left"
-            >
-              Tilgjengelig i{" "}
-              <span className="underline">
-                {storesWithStock?.length ?? 0} butikker
-              </span>
-            </button>
+            {storesWithStock?.length && storesWithStock.length > 0 ? (
+              <button
+                onClick={() => setIsStoreModalOpen((prev) => !prev)}
+                className="text-xs lg:text-sm text-dark-grey text-left"
+              >
+                Tilgjengelig i{" "}
+                <span className="underline">
+                  {storesWithStock?.length ?? 0} butikker
+                </span>
+              </button>
+            ) : null}
           </div>
         </div>
       </div>

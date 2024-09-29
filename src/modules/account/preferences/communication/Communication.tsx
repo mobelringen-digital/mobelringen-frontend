@@ -18,6 +18,15 @@ interface Props {
 }
 
 export const Communication: React.FC<Props> = ({ customer }) => {
+  const [accepts_sms, setAcceptsSms] = React.useState<boolean>(
+    customer?.accepts_sms ?? false,
+  );
+  const [accepts_emails, setAcceptsEmails] = React.useState<boolean>(
+    customer?.accepts_emails ?? false,
+  );
+  const [accepts_digital_campaigns, setAcceptsDigitalCampaigns] =
+    React.useState<boolean>(customer?.accepts_digital_campaigns ?? false);
+
   const {
     control,
     handleSubmit,
@@ -52,19 +61,25 @@ export const Communication: React.FC<Props> = ({ customer }) => {
         className="flex flex-col gap-4 lg:w-1/2"
       >
         <FieldWrapper control={control} name="accepts_sms">
-          <Checkbox>
+          <Checkbox isSelected={accepts_sms} onValueChange={setAcceptsSms}>
             Jeg samtykker til å motta kommunikasjon på SMS Link
           </Checkbox>
         </FieldWrapper>
 
         <FieldWrapper control={control} name="accepts_emails">
-          <Checkbox>
+          <Checkbox
+            isSelected={accepts_emails}
+            onValueChange={setAcceptsEmails}
+          >
             Jeg samtykker til å motta kommunikasjon på e-post Link
           </Checkbox>
         </FieldWrapper>
 
         <FieldWrapper control={control} name="accepts_digital_campaigns">
-          <Checkbox>
+          <Checkbox
+            isSelected={accepts_digital_campaigns}
+            onValueChange={setAcceptsDigitalCampaigns}
+          >
             Jeg samtykker til digital annonsering
           </Checkbox>
         </FieldWrapper>
