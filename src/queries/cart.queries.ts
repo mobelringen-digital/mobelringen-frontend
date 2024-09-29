@@ -130,6 +130,7 @@ export const CartItemFragment = graphql(`
       ...BaseProductDataForCart
       delivery_promise
       stock_status
+      addable_to_cart
     }
     quantity
   }

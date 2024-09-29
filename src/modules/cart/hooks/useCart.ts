@@ -59,7 +59,8 @@ export const useCart = (cart?: BaseCartFragment | null) => {
 
     return cart?.items?.every(
       (item) =>
-        item?.availability?.online?.availability !== Availability.OutOfStock,
+        item?.availability?.online?.availability !== Availability.OutOfStock ||
+        item.product.addable_to_cart,
     );
   }, [cart, isClickAndCollect]);
 
