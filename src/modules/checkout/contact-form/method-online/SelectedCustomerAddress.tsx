@@ -18,7 +18,7 @@ export const SelectedCustomerAddress: React.FC<Props> = ({
     <div className="col-span-12">
       <div className="flex gap-4 lg:gap-8">
         <div className="flex flex-col text-sm">
-          <span className="font-semibold text-base">Sendingsadresse</span>
+          <span className="font-semibold text-base">Leveringsadresse</span>
           <span>
             {shippingAddress.firstname} {shippingAddress.lastname}
           </span>

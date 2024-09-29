@@ -198,15 +198,15 @@ export const RegisterPage: React.FC<Props> = ({ stores }) => {
                 rabatter på produkter, og samtykker til medlemsvilkårene.
               </Checkbox>
             </FieldWrapper>
-            <FieldWrapper control={control} name="accepts_sms">
-              <Checkbox>
-                Jeg samtykker til å motta kommunikasjon på SMS
-              </Checkbox>
-            </FieldWrapper>
-
+            
             <FieldWrapper control={control} name="accepts_emails">
               <Checkbox>
                 Jeg samtykker til å motta kommunikasjon på e-post*
+              </Checkbox>
+            </FieldWrapper> 
+            <FieldWrapper control={control} name="accepts_sms">
+              <Checkbox>
+                Jeg samtykker til å motta kommunikasjon på SMS
               </Checkbox>
             </FieldWrapper>
 
