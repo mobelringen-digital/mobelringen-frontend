@@ -65,7 +65,7 @@ export const RegisterPage: React.FC<Props> = ({ stores }) => {
             rules={{ required: "Dette er et påkrevd felt" }}
             error={errors.firstname}
             control={control}
-            label="Fornavn"
+            label="Fornavn *"
             name="firstname"
           >
             <Input type="text" variant="bordered" />
@@ -75,7 +75,7 @@ export const RegisterPage: React.FC<Props> = ({ stores }) => {
             rules={{ required: "Dette er et påkrevd felt" }}
             error={errors.lastname}
             control={control}
-            label="Etternavn"
+            label="Etternavn *"
             name="lastname"
           >
             <Input type="text" variant="bordered" />
@@ -95,7 +95,7 @@ export const RegisterPage: React.FC<Props> = ({ stores }) => {
             rules={{ required: "Dette er et påkrevd felt" }}
             error={errors.lastname}
             control={control}
-            label="Telefonnummer"
+            label="Telefonnummer *"
             name="phone_number"
           >
             <Input type="text" variant="bordered" />
@@ -105,7 +105,7 @@ export const RegisterPage: React.FC<Props> = ({ stores }) => {
             rules={{ required: "Dette er et påkrevd felt" }}
             error={errors.lastname}
             control={control}
-            label="Adresse"
+            label="Adresse *"
             name="street"
           >
             <Input type="text" variant="bordered" />
@@ -117,7 +117,7 @@ export const RegisterPage: React.FC<Props> = ({ stores }) => {
                 rules={{ required: "Dette er et påkrevd felt" }}
                 error={errors.postcode}
                 control={control}
-                label="Postnummer"
+                label="Postnummer *"
                 name="postcode"
               >
                 <Input type="text" variant="bordered" />
@@ -127,7 +127,7 @@ export const RegisterPage: React.FC<Props> = ({ stores }) => {
               <FieldWrapper
                 rules={{ required: "Dette er et påkrevd felt" }}
                 control={control}
-                label="Poststed"
+                label="Poststed *"
                 name="city"
               >
                 <Input type="text" variant="bordered" />
@@ -171,7 +171,7 @@ export const RegisterPage: React.FC<Props> = ({ stores }) => {
             rules={{ required: "Dette er et påkrevd felt" }}
             error={errors.password}
             control={control}
-            label="Passord"
+            label="Passord *"
             name="password"
           >
             <Input type="password" variant="bordered" />
@@ -185,7 +185,7 @@ export const RegisterPage: React.FC<Props> = ({ stores }) => {
             }}
             error={errors.confirm_password}
             control={control}
-            label="Gjenta passord"
+            label="Gjenta passord *"
             name="confirm_password"
           >
             <Input type="password" variant="bordered" />
