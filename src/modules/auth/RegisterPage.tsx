@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { Checkbox } from "@nextui-org/react";
+import { Checkbox, Select, SelectItem } from "@nextui-org/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import { Button } from "@/components/_ui/button/Button";
@@ -11,15 +11,21 @@ import { Input } from "@/components/_ui/input/Input";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { createCustomer } from "@/modules/auth/actions";
-import { CustomerCreateInput } from "@/types";
+import { BaseStoreFragment, CustomerCreateInput } from "@/types";
 
 import { navigate } from "../../app/actions";
 
 type FormData = CustomerCreateInput & {
   confirm_password: string;
+  favorite_store: string;
 };
 
-export const RegisterPage: React.FC = () => {
+interface Props {
+  stores?: Array<BaseStoreFragment | null> | null;
+}
+
+export const RegisterPage: React.FC<Props> = ({ stores }) => {
+  const [favoriteStore, setFavoriteStore] = React.useState([""]);
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState<Array<Error> | null>(null);
 
@@ -78,7 +84,7 @@ export const RegisterPage: React.FC = () => {
           <FieldWrapper
             rules={{ required: "Dette er et påkrevd felt" }}
             control={control}
-            label="E-post"
+            label="E-post *"
             name="email"
             error={errors.email}
           >
@@ -128,6 +134,38 @@ export const RegisterPage: React.FC = () => {
               </FieldWrapper>
             </div>
           </div>
+
+          {stores ? (
+            <FieldWrapper
+              label="Favorittbutikk *"
+              rules={{ required: "Dette er et påkrevd felt" }}
+              error={errors.favorite_store}
+              control={control}
+              name="favorite_store"
+            >
+              <Select
+                variant="bordered"
+                placeholder="Velg favorittbutikk"
+                classNames={{
+                  innerWrapper: "bg-white",
+                  trigger: "bg-white",
+                }}
+                selectionMode="single"
+                // @ts-expect-error - Fix this
+                onSelectionChange={setFavoriteStore}
+                selectedKeys={favoriteStore}
+              >
+                {stores?.map((store, idx) => (
+                  <SelectItem
+                    value={store?.external_id ?? idx}
+                    key={store?.external_id ?? idx}
+                  >
+                    {store?.name}
+                  </SelectItem>
+                ))}
+              </Select>
+            </FieldWrapper>
+          ) : null}
 
           <FieldWrapper
             rules={{ required: "Dette er et påkrevd felt" }}
