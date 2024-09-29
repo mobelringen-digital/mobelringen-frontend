@@ -23,13 +23,14 @@ export const KlarnaInformation = () => {
           <PriceTag width={48} height={48} />
           <div className="flex flex-col text-center justify-center items-center">
             Vi matcher prisen
-            <Link className="underline" href="#">
+            <Link className="underline" href="/prismatch">
               Les mer
             </Link>
           </div>
         </div>
       </div>
-      <div className="flex text-xs lg:text-sm mt-2 justify-between bg-sand rounded-2xl px-4 py-3">
+      {
+  /*      <div className="flex text-xs lg:text-sm mt-2 justify-between bg-sand rounded-2xl px-4 py-3">
         <div className="flex items-center gap-1">
           <span>Betal xxxx kr/mnd i 6 måneder med</span>
           <Klarna />
@@ -38,6 +39,8 @@ export const KlarnaInformation = () => {
           Les mer
         </Link>
       </div>
+      */
+}
     </>
   );
 };
