@@ -78,7 +78,7 @@ export const RegisterPage: React.FC = () => {
           <FieldWrapper
             rules={{ required: "Dette er et påkrevd felt" }}
             control={control}
-            label="E-post eller mobilnummer"
+            label="E-post"
             name="email"
             error={errors.email}
           >
@@ -162,13 +162,13 @@ export const RegisterPage: React.FC = () => {
             </FieldWrapper>
             <FieldWrapper control={control} name="accepts_sms">
               <Checkbox>
-                Jeg samtykker til å motta kommunikasjon på SMS Link
+                Jeg samtykker til å motta kommunikasjon på SMS
               </Checkbox>
             </FieldWrapper>
 
             <FieldWrapper control={control} name="accepts_emails">
               <Checkbox>
-                Jeg samtykker til å motta kommunikasjon på e-post Link
+                Jeg samtykker til å motta kommunikasjon på e-post*
               </Checkbox>
             </FieldWrapper>
 

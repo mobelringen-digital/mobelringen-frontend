@@ -26,7 +26,7 @@ export async function FooterBlockLinks({ data }: Props) {
           hytta. Meld deg inn i Kundeklubben og få 20%* på et helt kjøp!
         </p>
         <p className="mt-4">
-          <Link href="#" className="bg-black px-6 py-4 rounded-full text-white">
+          <Link href="/kundeklubb" className="bg-black px-6 py-4 rounded-full text-white">
             Bli medlem
           </Link>
         </p>

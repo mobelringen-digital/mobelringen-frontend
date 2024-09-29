@@ -30,11 +30,11 @@ export const CartSuccessPage: React.FC<Props> = ({ order }) => {
   return (
     <ContainerLayout className="pb-12">
       <CartBreadcrumbs />
-      <PageTitle>Takk for kjøpet!</PageTitle>
+      <PageTitle>Takk!</PageTitle>
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-12 lg:col-span-7 flex flex-col gap-8">
           <div className="bg-white p-4 lg:p-8 rounded-2xl flex flex-col gap-2">
-            <div className="text-xl font-semibold mb-2">Leveringadresse</div>
+            <div className="text-xl font-semibold mb-2">Adresse</div>
             <span className="text-base">{fullShippingAddress}</span>
             <span className="text-base">{order?.carrier}</span>
             <DeliveryMap order={order} />
