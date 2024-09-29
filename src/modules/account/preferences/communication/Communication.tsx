@@ -62,7 +62,7 @@ export const Communication: React.FC<Props> = ({ customer }) => {
       >
         <FieldWrapper control={control} name="accepts_sms">
           <Checkbox isSelected={accepts_sms} onValueChange={setAcceptsSms}>
-            Jeg samtykker til å motta kommunikasjon på SMS
+            Jeg samtykker til å motta kommunikasjon på SMS Link
           </Checkbox>
         </FieldWrapper>
 
@@ -71,7 +71,7 @@ export const Communication: React.FC<Props> = ({ customer }) => {
             isSelected={accepts_emails}
             onValueChange={setAcceptsEmails}
           >
-            Jeg samtykker til å motta kommunikasjon på e-post*
+            Jeg samtykker til å motta kommunikasjon på e-post Link
           </Checkbox>
         </FieldWrapper>
 
