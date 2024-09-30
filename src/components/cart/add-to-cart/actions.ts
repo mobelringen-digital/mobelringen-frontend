@@ -51,7 +51,6 @@ export async function createEmptyCart() {
     const oneWeekFromNow = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
     cookieStore.set("cart", data.createEmptyCart, {
       expires: oneWeekFromNow,
-      domain: ".mobelringen.no",
     });
 
     revalidateTag("cart");
