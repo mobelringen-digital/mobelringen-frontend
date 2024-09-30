@@ -33,7 +33,7 @@ export const CartWarnings: React.FC<Props> = ({ cart }) => {
               Noen av produktene er ikke tilgengelig i denne butikken.{" "}
               <button
                 className="underline"
-                onClick={() => router.push(`${window.location}&store=select`)}
+                onClick={() => router.push(`${window.location}/?store=select`)}
               >
                 Velg en annen butikk
               </button>{" "}
