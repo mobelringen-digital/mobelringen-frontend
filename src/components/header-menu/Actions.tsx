@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 
 import Link from "next/link";
 
-import { Favorite } from "@/components/_ui/icons/figma/Favorite";
+// import { Favorite } from "@/components/_ui/icons/figma/Favorite";
 import { Profile } from "@/components/_ui/icons/figma/Profile";
 import { HeaderCartButton } from "@/components/cart/HeaderCartButton";
 import { Search } from "@/components/header-menu/Search";
@@ -20,9 +20,9 @@ export const Actions = () => {
           <Profile width={24} height={24} />
         </Link>
       </li>
-      <li>
-        <Favorite width={24} height={24} />
-      </li>
+      {/*<li>*/}
+      {/*  <Favorite width={24} height={24} />*/}
+      {/*</li>*/}
       <li>
         <HeaderCartButton />
       </li>
