@@ -8,9 +8,9 @@ export default async function Account() {
   const token = await getToken();
   const customerData = await getCustomerDetails();
 
-  if (!customerData?.customer) {
+  if (!customerData) {
     return navigate(`/auth/logout?token=${token}`);
   }
 
-  return <AccountPage data={customerData?.customer} />;
+  return <AccountPage data={customerData} />;
 }

@@ -6,5 +6,5 @@ export default async function AccountPreferences() {
   const customer = await getCustomerDetails();
   const stores = await getStores();
 
-  return <PreferencesPage stores={stores} customer={customer?.customer} />;
+  return <PreferencesPage stores={stores} customer={customer} />;
 }
