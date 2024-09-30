@@ -27,7 +27,7 @@ export const SearchPage: React.FC<Props> = ({ query, products, articles }) => {
         count: products?.total_count,
       },
       {
-        label: "Artiker",
+        label: "Artikler",
         type: "articles",
         count: articles?.length,
       },
