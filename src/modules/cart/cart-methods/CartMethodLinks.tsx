@@ -22,8 +22,9 @@ interface Props {
 export const CartMethodLinks: React.FC<Props> = ({ selectedStore, cart }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const searchParams = useSearchParams();
-  const activeMethod = searchParams.get("method") ?? "online";
-  const [_cookies, setCookie] = useCookies();
+  const [cookies, setCookie] = useCookies();
+  const activeMethod =
+    searchParams.get("method") ?? cookies.preferredMethod ?? "online";
   const router = useRouter();
 
   const setPreferredMethod = async (method: "online" | "collect") => {
