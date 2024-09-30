@@ -2,7 +2,6 @@ import React, { Suspense } from "react";
 
 import { GoogleTagManager } from "@next/third-parties/google";
 
-import { AuthServerComponent } from "@/components/auth-handler/AuthServerComponent";
 import { CmsDynamicHeaders } from "@/components/cms/dynamic-header/CmsDynamicHeaders";
 import { Footer } from "@/components/footer/Footer";
 import { HeaderMenu } from "@/components/header-menu";
@@ -27,7 +26,6 @@ export default async function RootLayout({
       />
 
       <body className="bg-sand font-suisse">
-        <AuthServerComponent />
         <Providers>
           <HeaderMenu />
           <CmsDynamicHeaders />
