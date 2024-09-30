@@ -63,7 +63,7 @@ export async function updateCartItemsInStore() {
   try {
     const data = await baseMagentoClient("POST", {
       cache: "no-store",
-      tags: ["cart-items"],
+      tags: ["cart-items", store.external_id],
       revalidate: undefined,
     }).request(UpdateCartItemsIsInStore, {
       cartId: cart.id,
