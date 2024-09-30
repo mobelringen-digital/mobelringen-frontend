@@ -30,8 +30,8 @@ export async function getSelectedStoreId() {
 
   const data = await getCustomerDetails();
 
-  if (data?.customer?.favorite_store) {
-    return data.customer.favorite_store;
+  if (data?.favorite_store) {
+    return data.favorite_store;
   }
 
   return guestStoreId?.value ? String(guestStoreId.value) : null;
@@ -84,7 +84,7 @@ export async function setFavoriteStoreId(storeId: string) {
   const cookiesStore = cookies();
   const customer = await getCustomerDetails();
 
-  if (token && customer?.customer) {
+  if (token && customer) {
     await updateCustomerDetails({
       favorite_store: storeId,
     });

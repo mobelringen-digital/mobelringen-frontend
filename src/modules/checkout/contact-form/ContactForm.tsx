@@ -12,7 +12,7 @@ import {
   CheckoutFormData,
   setDefaultFormValues,
 } from "@/modules/checkout/factories";
-import { BaseCartFragment, CustomerQuery } from "@/types";
+import { BaseCartFragment, CustomerDataFragment } from "@/types";
 
 import { navigate } from "../../../app/actions";
 
@@ -20,7 +20,7 @@ interface Props {
   cart: BaseCartFragment;
   onCheckoutFormSubmit: (values: CheckoutFormData) => Promise<unknown>;
   isAuthorized?: boolean;
-  customer?: CustomerQuery;
+  customer?: CustomerDataFragment | null;
   isClickAndCollect?: boolean;
 }
 
@@ -66,7 +66,7 @@ export const ContactForm: React.FC<Props> = ({
   };
 
   const onAddressSelect = (customerAddressId: number) => {
-    const addressValues = customer?.customer?.addresses?.find(
+    const addressValues = customer?.addresses?.find(
       (a) => a?.id === customerAddressId,
     );
 

@@ -7,11 +7,11 @@ import { OnlineBillingFormFields } from "@/modules/checkout/contact-form/method-
 import { OnlineShippingFormFields } from "@/modules/checkout/contact-form/method-online/OnlineShippingFormFields";
 import { SelectedCustomerAddress } from "@/modules/checkout/contact-form/method-online/SelectedCustomerAddress";
 import { CheckoutFormData } from "@/modules/checkout/factories";
-import { CustomerQuery, InputMaybe } from "@/types";
+import { CustomerDataFragment, InputMaybe } from "@/types";
 
 interface Props {
   isAuthorized?: boolean;
-  customer?: CustomerQuery;
+  customer?: CustomerDataFragment | null;
   onAddressSelect: (customerAddressId: number) => void;
   watchShippingAddressId: InputMaybe<number> | undefined;
   watchBillingAddressId: InputMaybe<number> | undefined;
@@ -33,13 +33,13 @@ export const MethodOnline: React.FC<Props> = ({
   const [showAddressModal, setShowAddressModal] = React.useState(false);
 
   const selectedShippingCustomerAddress = React.useMemo(() => {
-    return customer?.customer?.addresses?.find(
+    return customer?.addresses?.find(
       (a) => a?.id === watchShippingAddressId,
     );
   }, [customer, watchShippingAddressId]);
 
   const selectedBillingCustomerAddress = React.useMemo(() => {
-    return customer?.customer?.addresses?.find(
+    return customer?.addresses?.find(
       (a) => a?.id === watchBillingAddressId,
     );
   }, [customer, watchBillingAddressId]);

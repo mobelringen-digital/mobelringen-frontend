@@ -10,13 +10,13 @@ import {
 } from "@/modules/checkout/contact-form/actions";
 import { ContactForm } from "@/modules/checkout/contact-form/ContactForm";
 import { CheckoutFormData } from "@/modules/checkout/factories";
-import { BaseCartFragment, CustomerQuery } from "@/types";
+import { BaseCartFragment, CustomerDataFragment } from "@/types";
 import { useSession } from "@/utils/hooks/useSession";
 
 import { navigate } from "../../../app/actions";
 
 interface Props {
-  customer?: CustomerQuery;
+  customer?: CustomerDataFragment | null;
   cart?: BaseCartFragment | null;
   isClickAndCollect?: boolean;
 }

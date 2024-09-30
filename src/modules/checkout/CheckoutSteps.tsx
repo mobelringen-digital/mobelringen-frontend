@@ -6,7 +6,7 @@ import { CheckoutBlock } from "@/modules/checkout/CheckoutBlock";
 import { ContactFormController } from "@/modules/checkout/contact-form/ContactFormController";
 import { PaymentFormController } from "@/modules/checkout/payment/PaymentFormController";
 import { ShippingFormController } from "@/modules/checkout/shipping/ShippingFormController";
-import { BaseCartFragment, CustomerQuery } from "@/types";
+import { BaseCartFragment, CustomerDataFragment } from "@/types";
 import { NextSearchParams } from "@/utils/ts-utils";
 
 export type Blocks = "contact" | "shipping" | "payment";
@@ -14,7 +14,7 @@ export type Blocks = "contact" | "shipping" | "payment";
 interface Props {
   isShippingAddressSet: boolean;
   isShippingMethodSet: boolean;
-  customer?: CustomerQuery;
+  customer?: CustomerDataFragment | null;
   cart?: BaseCartFragment | null;
   searchParams?: NextSearchParams;
 }

@@ -1,7 +1,7 @@
 import {
   BaseCartFragment,
   BillingAddressInput,
-  CustomerQuery,
+  CustomerDataFragment,
   ShippingAddressInput,
 } from "@/types";
 
@@ -19,13 +19,13 @@ export type CheckoutFormData = {
 };
 
 export const setDefaultFormValues = (
-  customer?: CustomerQuery,
+  customer?: CustomerDataFragment | null,
   cart?: BaseCartFragment,
 ) => {
-  const defaultShippingAddress = customer?.customer?.addresses?.find(
+  const defaultShippingAddress = customer?.addresses?.find(
     (a) => a?.default_shipping,
   );
-  const defaultBillingAddress = customer?.customer?.addresses?.find(
+  const defaultBillingAddress = customer?.addresses?.find(
     (a) => a?.default_billing,
   );
   const cartShippingAddress = cart?.shipping_addresses[0];

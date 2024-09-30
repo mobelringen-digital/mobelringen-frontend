@@ -5,10 +5,10 @@ import { RadioGroup } from "@nextui-org/radio";
 import { RadioBlock } from "@/components/_ui/radio/RadioBlock";
 import { Modal, ModalContent } from "@/components/modal";
 import { useCustomerQuery } from "@/modules/account/hooks/useCustomerQuery";
-import { CustomerQuery } from "@/types";
+import { CustomerDataFragment } from "@/types";
 
 interface Props {
-  customer?: CustomerQuery;
+  customer?: CustomerDataFragment | null;
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
   onSelect: (customerAddressId: number) => void;
