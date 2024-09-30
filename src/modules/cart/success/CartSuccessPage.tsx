@@ -37,7 +37,7 @@ export const CartSuccessPage: React.FC<Props> = ({ order }) => {
             <div className="text-xl font-semibold mb-2">Adresse</div>
             <span className="text-base">{fullShippingAddress}</span>
             <span className="text-base">{order?.carrier}</span>
-            <DeliveryMap order={order} />
+            {/* <DeliveryMap order={order} /> */}
           </div>
           <div className="bg-white p-4 lg:p-8 rounded-2xl flex flex-col gap-2">
             <div className="text-xl font-semibold mb-2">Spørsmål?</div>
