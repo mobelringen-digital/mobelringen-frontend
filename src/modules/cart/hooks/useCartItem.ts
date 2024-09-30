@@ -2,23 +2,16 @@
 
 import { useCookies } from "react-cookie";
 
-import { useSearchParams } from "next/navigation";
-
 import { CartCookie } from "@/components/cart/fetchCartService";
 import { Availability, CartItemFragment } from "@/types";
 
 export const useCartItem = (item: CartItemFragment | null) => {
-  const searchParams = useSearchParams();
   const [cookies] = useCookies<"cart" | "preferredMethod", CartCookie>([
     "cart",
     "preferredMethod",
   ]);
-  const isClickAndCollect =
-    searchParams.get("method") === "collect" ||
-    cookies.preferredMethod === "collect";
-  const isOnline =
-    searchParams.get("method") === "online" ||
-    cookies.preferredMethod === "online";
+  const isClickAndCollect = cookies.preferredMethod === "collect";
+  const isOnline = cookies.preferredMethod === "online";
 
   const isDeliveryMessageVisible =
     !isClickAndCollect &&

@@ -23,8 +23,7 @@ export const CartMethodLinks: React.FC<Props> = ({ selectedStore, cart }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const searchParams = useSearchParams();
   const [cookies, setCookie] = useCookies();
-  const activeMethod =
-    searchParams.get("method") ?? cookies.preferredMethod ?? "online";
+  const activeMethod = cookies.preferredMethod ?? searchParams.get("method");
   const router = useRouter();
 
   const setPreferredMethod = async (method: "online" | "collect") => {
@@ -38,10 +37,10 @@ export const CartMethodLinks: React.FC<Props> = ({ selectedStore, cart }) => {
       type: DELIVERY_TYPE_MAP[method],
     })
       .then(() => {
-        router.push(`/cart?method=${method}`);
         setCookie("preferredMethod", method, {
           path: "/",
         });
+        router.push(`/cart?method=${method}`);
       })
       .finally(() => {
         setIsLoading(false);
@@ -57,6 +56,7 @@ export const CartMethodLinks: React.FC<Props> = ({ selectedStore, cart }) => {
         label="Hjemlevering"
         description="Til fortauskant eller utleveringssted"
         isActive={activeMethod === "online"}
+        disabled={isLoading}
       />
       <CartMethodLink
         icon={<StorefrontIcon width={24} height={24} />}
@@ -68,6 +68,7 @@ export const CartMethodLinks: React.FC<Props> = ({ selectedStore, cart }) => {
             : "Ingen butikk er valgt"
         }
         isActive={activeMethod === "collect"}
+        disabled={isLoading}
       />
     </div>
   );
