@@ -6,20 +6,9 @@ import { getToken } from "@/modules/auth/actions";
 import { CustomerCartDocument, CartDocument } from "@/queries/cart.queries";
 import { authorizedMagentoClient } from "@/utils/lib/graphql";
 
-export default async function getCart() {
+export const getGuestCart = async () => {
   const cookiesStore = cookies();
-  const token = await getToken();
   const cartCookie = cookiesStore.get("cart");
-
-  if (!!token) {
-    const customerQuery = await authorizedMagentoClient(token, "GET", {
-      tags: ["cart"],
-      cache: "no-store",
-      revalidate: undefined,
-    }).request(CustomerCartDocument);
-
-    return customerQuery?.customerCart;
-  }
 
   if (cartCookie?.value) {
     const guestCart = await authorizedMagentoClient(undefined, "GET", {
@@ -32,4 +21,24 @@ export default async function getCart() {
 
     return guestCart?.cart;
   }
+};
+
+export default async function getCart() {
+  const token = await getToken();
+
+  if (!!token) {
+    const customerQuery = await authorizedMagentoClient(token, "GET", {
+      tags: ["cart"],
+      cache: "no-store",
+      revalidate: undefined,
+    }).request(CustomerCartDocument);
+
+    if (customerQuery?.customerCart) {
+      return customerQuery.customerCart;
+    }
+
+    return await getGuestCart();
+  }
+
+  return await getGuestCart();
 }
