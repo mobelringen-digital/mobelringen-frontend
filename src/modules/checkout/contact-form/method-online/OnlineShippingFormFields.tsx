@@ -112,7 +112,7 @@ export const OnlineShippingFormFields: React.FC<Props> = ({
             required: "Dette er et påkrevd felt",
           }}
           control={control}
-          label="Postnumer *"
+          label="Postnummer *"
           name="shipping.address.postcode"
         >
           <Input variant="bordered" />
