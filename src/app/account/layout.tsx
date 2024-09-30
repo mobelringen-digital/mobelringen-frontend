@@ -15,7 +15,7 @@ export default async function AccountLayout({
   const token = await getToken();
   const customerData = await getCustomerDetails();
 
-  if (!customerData?.customer) {
+  if (!customerData) {
     return navigate(`/auth/logout?token=${token}`);
   }
 
