@@ -10,10 +10,11 @@ import { authorizedMagentoClient } from "@/utils/lib/graphql";
 export const getGuestCart = async () => {
   const cookiesStore = cookies();
   const cartCookie = cookiesStore.get("cart");
+  const store = await getSelectedStore();
 
   if (cartCookie?.value) {
     const guestCart = await authorizedMagentoClient(undefined, "GET", {
-      tags: ["cart"],
+      tags: ["cart", store?.external_id ?? ""],
       cache: "no-store",
       revalidate: undefined,
     }).request(CartDocument, {
