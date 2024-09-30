@@ -3451,6 +3451,7 @@ export type BlockConfigCreateInput = {
   cm1hm39bs00zo07w8e5ckfp00?: InputMaybe<BlockProductsListCreateManyInlineInput>;
   cm1j02xjy0dvv07w847sf4mqq?: InputMaybe<BlockBrandsListCreateManyInlineInput>;
   copyOfcm0z8z08p02to06upa5pm0jc5hDy2?: InputMaybe<BlockCustomerClubformCreateManyInlineInput>;
+  copyOfcopyOfcm0z8z08p02to06upa5pm0jc5hDy2JWXa?: InputMaybe<BlockCustomerpaperCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   hideBlockTitle?: InputMaybe<Scalars['Boolean']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -3606,6 +3607,7 @@ export type BlockConfigUpdateInput = {
   cm1hm39bs00zo07w8e5ckfp00?: InputMaybe<BlockProductsListUpdateManyInlineInput>;
   cm1j02xjy0dvv07w847sf4mqq?: InputMaybe<BlockBrandsListUpdateManyInlineInput>;
   copyOfcm0z8z08p02to06upa5pm0jc5hDy2?: InputMaybe<BlockCustomerClubformUpdateManyInlineInput>;
+  copyOfcopyOfcm0z8z08p02to06upa5pm0jc5hDy2JWXa?: InputMaybe<BlockCustomerpaperUpdateManyInlineInput>;
   hideBlockTitle?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -4253,6 +4255,468 @@ export type BlockCustomerClubformWhereStageInput = {
 
 /** References BlockCustomerClubform record uniquely */
 export type BlockCustomerClubformWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type BlockCustomerpaper = Entity & Node & {
+  __typename: 'BlockCustomerpaper';
+  blockConfig?: Maybe<BlockConfig>;
+  /** The time the document was created */
+  createdAt: Scalars['DateTime']['output'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** Get the document in other stages */
+  documentInStages: Array<BlockCustomerpaper>;
+  /** List of BlockCustomerpaper versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  pages: Array<Page>;
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  title: Scalars['String']['output'];
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime']['output'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type BlockCustomerpaperBlockConfigArgs = {
+  forceParentLocale: InputMaybe<Scalars['Boolean']['input']>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+
+export type BlockCustomerpaperCreatedByArgs = {
+  forceParentLocale: InputMaybe<Scalars['Boolean']['input']>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+
+export type BlockCustomerpaperDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean']['input'];
+  inheritLocale?: Scalars['Boolean']['input'];
+  stages?: Array<Stage>;
+};
+
+
+export type BlockCustomerpaperHistoryArgs = {
+  limit?: Scalars['Int']['input'];
+  skip?: Scalars['Int']['input'];
+  stageOverride: InputMaybe<Stage>;
+};
+
+
+export type BlockCustomerpaperPagesArgs = {
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale: InputMaybe<Scalars['Boolean']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  locales: InputMaybe<Array<Locale>>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  where: InputMaybe<PageWhereInput>;
+};
+
+
+export type BlockCustomerpaperPublishedByArgs = {
+  forceParentLocale: InputMaybe<Scalars['Boolean']['input']>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+
+export type BlockCustomerpaperScheduledInArgs = {
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale: InputMaybe<Scalars['Boolean']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  locales: InputMaybe<Array<Locale>>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  where: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type BlockCustomerpaperUpdatedByArgs = {
+  forceParentLocale: InputMaybe<Scalars['Boolean']['input']>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type BlockCustomerpaperConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: BlockCustomerpaperWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type BlockCustomerpaperConnection = {
+  __typename: 'BlockCustomerpaperConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<BlockCustomerpaperEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type BlockCustomerpaperCreateInput = {
+  blockConfig?: InputMaybe<BlockConfigCreateOneInlineInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  pages?: InputMaybe<PageCreateManyInlineInput>;
+  title: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type BlockCustomerpaperCreateManyInlineInput = {
+  /** Connect multiple existing BlockCustomerpaper documents */
+  connect?: InputMaybe<Array<BlockCustomerpaperWhereUniqueInput>>;
+  /** Create and connect multiple existing BlockCustomerpaper documents */
+  create?: InputMaybe<Array<BlockCustomerpaperCreateInput>>;
+};
+
+export type BlockCustomerpaperCreateOneInlineInput = {
+  /** Connect one existing BlockCustomerpaper document */
+  connect?: InputMaybe<BlockCustomerpaperWhereUniqueInput>;
+  /** Create and connect one BlockCustomerpaper document */
+  create?: InputMaybe<BlockCustomerpaperCreateInput>;
+};
+
+/** An edge in a connection. */
+export type BlockCustomerpaperEdge = {
+  __typename: 'BlockCustomerpaperEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: BlockCustomerpaper;
+};
+
+/** Identifies documents */
+export type BlockCustomerpaperManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BlockCustomerpaperWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BlockCustomerpaperWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BlockCustomerpaperWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  blockConfig?: InputMaybe<BlockConfigWhereInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<BlockCustomerpaperWhereStageInput>;
+  documentInStages_none?: InputMaybe<BlockCustomerpaperWhereStageInput>;
+  documentInStages_some?: InputMaybe<BlockCustomerpaperWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  pages_every?: InputMaybe<PageWhereInput>;
+  pages_none?: InputMaybe<PageWhereInput>;
+  pages_some?: InputMaybe<PageWhereInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum BlockCustomerpaperOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type BlockCustomerpaperUpdateInput = {
+  blockConfig?: InputMaybe<BlockConfigUpdateOneInlineInput>;
+  pages?: InputMaybe<PageUpdateManyInlineInput>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BlockCustomerpaperUpdateManyInlineInput = {
+  /** Connect multiple existing BlockCustomerpaper documents */
+  connect?: InputMaybe<Array<BlockCustomerpaperConnectInput>>;
+  /** Create and connect multiple BlockCustomerpaper documents */
+  create?: InputMaybe<Array<BlockCustomerpaperCreateInput>>;
+  /** Delete multiple BlockCustomerpaper documents */
+  delete?: InputMaybe<Array<BlockCustomerpaperWhereUniqueInput>>;
+  /** Disconnect multiple BlockCustomerpaper documents */
+  disconnect?: InputMaybe<Array<BlockCustomerpaperWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing BlockCustomerpaper documents */
+  set?: InputMaybe<Array<BlockCustomerpaperWhereUniqueInput>>;
+  /** Update multiple BlockCustomerpaper documents */
+  update?: InputMaybe<Array<BlockCustomerpaperUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple BlockCustomerpaper documents */
+  upsert?: InputMaybe<Array<BlockCustomerpaperUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type BlockCustomerpaperUpdateManyInput = {
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BlockCustomerpaperUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: BlockCustomerpaperUpdateManyInput;
+  /** Document search */
+  where: BlockCustomerpaperWhereInput;
+};
+
+export type BlockCustomerpaperUpdateOneInlineInput = {
+  /** Connect existing BlockCustomerpaper document */
+  connect?: InputMaybe<BlockCustomerpaperWhereUniqueInput>;
+  /** Create and connect one BlockCustomerpaper document */
+  create?: InputMaybe<BlockCustomerpaperCreateInput>;
+  /** Delete currently connected BlockCustomerpaper document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Disconnect currently connected BlockCustomerpaper document */
+  disconnect?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single BlockCustomerpaper document */
+  update?: InputMaybe<BlockCustomerpaperUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single BlockCustomerpaper document */
+  upsert?: InputMaybe<BlockCustomerpaperUpsertWithNestedWhereUniqueInput>;
+};
+
+export type BlockCustomerpaperUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: BlockCustomerpaperUpdateInput;
+  /** Unique document search */
+  where: BlockCustomerpaperWhereUniqueInput;
+};
+
+export type BlockCustomerpaperUpsertInput = {
+  /** Create document if it didn't exist */
+  create: BlockCustomerpaperCreateInput;
+  /** Update document if it exists */
+  update: BlockCustomerpaperUpdateInput;
+};
+
+export type BlockCustomerpaperUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: BlockCustomerpaperUpsertInput;
+  /** Unique document search */
+  where: BlockCustomerpaperWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type BlockCustomerpaperWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Identifies documents */
+export type BlockCustomerpaperWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BlockCustomerpaperWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BlockCustomerpaperWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BlockCustomerpaperWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  blockConfig?: InputMaybe<BlockConfigWhereInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<BlockCustomerpaperWhereStageInput>;
+  documentInStages_none?: InputMaybe<BlockCustomerpaperWhereStageInput>;
+  documentInStages_some?: InputMaybe<BlockCustomerpaperWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  pages_every?: InputMaybe<PageWhereInput>;
+  pages_none?: InputMaybe<PageWhereInput>;
+  pages_some?: InputMaybe<PageWhereInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type BlockCustomerpaperWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BlockCustomerpaperWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BlockCustomerpaperWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BlockCustomerpaperWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<BlockCustomerpaperWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References BlockCustomerpaper record uniquely */
+export type BlockCustomerpaperWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
 
@@ -15771,6 +16235,7 @@ export enum EntityTypeName {
   /** Her velger du farge for seksjonen. */
   BlockConfig = 'BlockConfig',
   BlockCustomerClubform = 'BlockCustomerClubform',
+  BlockCustomerpaper = 'BlockCustomerpaper',
   BlockFaq = 'BlockFaq',
   BlockImageGallery = 'BlockImageGallery',
   BlockImageLinksSlider = 'BlockImageLinksSlider',
@@ -21463,6 +21928,8 @@ export type Mutation = {
   createBlockConfig?: Maybe<BlockConfig>;
   /** Create one blockCustomerClubform */
   createBlockCustomerClubform?: Maybe<BlockCustomerClubform>;
+  /** Create one blockCustomerpaper */
+  createBlockCustomerpaper?: Maybe<BlockCustomerpaper>;
   /** Create one blockFaq */
   createBlockFaq?: Maybe<BlockFaq>;
   /** Create one blockImageGallery */
@@ -21546,6 +22013,8 @@ export type Mutation = {
   deleteBlockConfig?: Maybe<BlockConfig>;
   /** Delete one blockCustomerClubform from _all_ existing stages. Returns deleted document. */
   deleteBlockCustomerClubform?: Maybe<BlockCustomerClubform>;
+  /** Delete one blockCustomerpaper from _all_ existing stages. Returns deleted document. */
+  deleteBlockCustomerpaper?: Maybe<BlockCustomerpaper>;
   /** Delete one blockFaq from _all_ existing stages. Returns deleted document. */
   deleteBlockFaq?: Maybe<BlockFaq>;
   /** Delete one blockImageGallery from _all_ existing stages. Returns deleted document. */
@@ -21618,6 +22087,13 @@ export type Mutation = {
   deleteManyBlockCustomerClubforms: BatchPayload;
   /** Delete many BlockCustomerClubform documents, return deleted documents */
   deleteManyBlockCustomerClubformsConnection: BlockCustomerClubformConnection;
+  /**
+   * Delete many BlockCustomerpaper documents
+   * @deprecated Please use the new paginated many mutation (deleteManyBlockCustomerpapersConnection)
+   */
+  deleteManyBlockCustomerpapers: BatchPayload;
+  /** Delete many BlockCustomerpaper documents, return deleted documents */
+  deleteManyBlockCustomerpapersConnection: BlockCustomerpaperConnection;
   /**
    * Delete many BlockFaq documents
    * @deprecated Please use the new paginated many mutation (deleteManyBlockFaqsConnection)
@@ -21799,6 +22275,8 @@ export type Mutation = {
   publishBlockConfig?: Maybe<BlockConfig>;
   /** Publish one blockCustomerClubform */
   publishBlockCustomerClubform?: Maybe<BlockCustomerClubform>;
+  /** Publish one blockCustomerpaper */
+  publishBlockCustomerpaper?: Maybe<BlockCustomerpaper>;
   /** Publish one blockFaq */
   publishBlockFaq?: Maybe<BlockFaq>;
   /** Publish one blockImageGallery */
@@ -21865,6 +22343,13 @@ export type Mutation = {
   publishManyBlockCustomerClubforms: BatchPayload;
   /** Publish many BlockCustomerClubform documents */
   publishManyBlockCustomerClubformsConnection: BlockCustomerClubformConnection;
+  /**
+   * Publish many BlockCustomerpaper documents
+   * @deprecated Please use the new paginated many mutation (publishManyBlockCustomerpapersConnection)
+   */
+  publishManyBlockCustomerpapers: BatchPayload;
+  /** Publish many BlockCustomerpaper documents */
+  publishManyBlockCustomerpapersConnection: BlockCustomerpaperConnection;
   /**
    * Publish many BlockFaq documents
    * @deprecated Please use the new paginated many mutation (publishManyBlockFaqsConnection)
@@ -22050,6 +22535,8 @@ export type Mutation = {
   schedulePublishBlockConfig?: Maybe<BlockConfig>;
   /** Schedule to publish one blockCustomerClubform */
   schedulePublishBlockCustomerClubform?: Maybe<BlockCustomerClubform>;
+  /** Schedule to publish one blockCustomerpaper */
+  schedulePublishBlockCustomerpaper?: Maybe<BlockCustomerpaper>;
   /** Schedule to publish one blockFaq */
   schedulePublishBlockFaq?: Maybe<BlockFaq>;
   /** Schedule to publish one blockImageGallery */
@@ -22098,6 +22585,8 @@ export type Mutation = {
   scheduleUnpublishBlockConfig?: Maybe<BlockConfig>;
   /** Unpublish one blockCustomerClubform from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishBlockCustomerClubform?: Maybe<BlockCustomerClubform>;
+  /** Unpublish one blockCustomerpaper from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishBlockCustomerpaper?: Maybe<BlockCustomerpaper>;
   /** Unpublish one blockFaq from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishBlockFaq?: Maybe<BlockFaq>;
   /** Unpublish one blockImageGallery from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -22170,6 +22659,8 @@ export type Mutation = {
   unpublishBlockConfig?: Maybe<BlockConfig>;
   /** Unpublish one blockCustomerClubform from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishBlockCustomerClubform?: Maybe<BlockCustomerClubform>;
+  /** Unpublish one blockCustomerpaper from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishBlockCustomerpaper?: Maybe<BlockCustomerpaper>;
   /** Unpublish one blockFaq from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishBlockFaq?: Maybe<BlockFaq>;
   /** Unpublish one blockImageGallery from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -22236,6 +22727,13 @@ export type Mutation = {
   unpublishManyBlockCustomerClubforms: BatchPayload;
   /** Find many BlockCustomerClubform documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyBlockCustomerClubformsConnection: BlockCustomerClubformConnection;
+  /**
+   * Unpublish many BlockCustomerpaper documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyBlockCustomerpapersConnection)
+   */
+  unpublishManyBlockCustomerpapers: BatchPayload;
+  /** Find many BlockCustomerpaper documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyBlockCustomerpapersConnection: BlockCustomerpaperConnection;
   /**
    * Unpublish many BlockFaq documents
    * @deprecated Please use the new paginated many mutation (unpublishManyBlockFaqsConnection)
@@ -22386,6 +22884,8 @@ export type Mutation = {
   updateBlockConfig?: Maybe<BlockConfig>;
   /** Update one blockCustomerClubform */
   updateBlockCustomerClubform?: Maybe<BlockCustomerClubform>;
+  /** Update one blockCustomerpaper */
+  updateBlockCustomerpaper?: Maybe<BlockCustomerpaper>;
   /** Update one blockFaq */
   updateBlockFaq?: Maybe<BlockFaq>;
   /** Update one blockImageGallery */
@@ -22469,6 +22969,13 @@ export type Mutation = {
   updateManyBlockCustomerClubforms: BatchPayload;
   /** Update many BlockCustomerClubform documents */
   updateManyBlockCustomerClubformsConnection: BlockCustomerClubformConnection;
+  /**
+   * Update many blockCustomerpapers
+   * @deprecated Please use the new paginated many mutation (updateManyBlockCustomerpapersConnection)
+   */
+  updateManyBlockCustomerpapers: BatchPayload;
+  /** Update many BlockCustomerpaper documents */
+  updateManyBlockCustomerpapersConnection: BlockCustomerpaperConnection;
   /**
    * Update many blockFaqs
    * @deprecated Please use the new paginated many mutation (updateManyBlockFaqsConnection)
@@ -22625,6 +23132,8 @@ export type Mutation = {
   upsertBlockConfig?: Maybe<BlockConfig>;
   /** Upsert one blockCustomerClubform */
   upsertBlockCustomerClubform?: Maybe<BlockCustomerClubform>;
+  /** Upsert one blockCustomerpaper */
+  upsertBlockCustomerpaper?: Maybe<BlockCustomerpaper>;
   /** Upsert one blockFaq */
   upsertBlockFaq?: Maybe<BlockFaq>;
   /** Upsert one blockImageGallery */
@@ -22807,6 +23316,11 @@ export type MutationCreateBlockConfigArgs = {
 
 export type MutationCreateBlockCustomerClubformArgs = {
   data: BlockCustomerClubformCreateInput;
+};
+
+
+export type MutationCreateBlockCustomerpaperArgs = {
+  data: BlockCustomerpaperCreateInput;
 };
 
 
@@ -23000,6 +23514,11 @@ export type MutationDeleteBlockCustomerClubformArgs = {
 };
 
 
+export type MutationDeleteBlockCustomerpaperArgs = {
+  where: BlockCustomerpaperWhereUniqueInput;
+};
+
+
 export type MutationDeleteBlockFaqArgs = {
   where: BlockFaqWhereUniqueInput;
 };
@@ -23157,6 +23676,21 @@ export type MutationDeleteManyBlockCustomerClubformsConnectionArgs = {
   last: InputMaybe<Scalars['Int']['input']>;
   skip: InputMaybe<Scalars['Int']['input']>;
   where: InputMaybe<BlockCustomerClubformManyWhereInput>;
+};
+
+
+export type MutationDeleteManyBlockCustomerpapersArgs = {
+  where: InputMaybe<BlockCustomerpaperManyWhereInput>;
+};
+
+
+export type MutationDeleteManyBlockCustomerpapersConnectionArgs = {
+  after: InputMaybe<Scalars['ID']['input']>;
+  before: InputMaybe<Scalars['ID']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  where: InputMaybe<BlockCustomerpaperManyWhereInput>;
 };
 
 
@@ -23580,6 +24114,12 @@ export type MutationPublishBlockCustomerClubformArgs = {
 };
 
 
+export type MutationPublishBlockCustomerpaperArgs = {
+  to?: Array<Stage>;
+  where: BlockCustomerpaperWhereUniqueInput;
+};
+
+
 export type MutationPublishBlockFaqArgs = {
   to?: Array<Stage>;
   where: BlockFaqWhereUniqueInput;
@@ -23763,6 +24303,24 @@ export type MutationPublishManyBlockCustomerClubformsConnectionArgs = {
   skip: InputMaybe<Scalars['Int']['input']>;
   to?: Array<Stage>;
   where: InputMaybe<BlockCustomerClubformManyWhereInput>;
+};
+
+
+export type MutationPublishManyBlockCustomerpapersArgs = {
+  to?: Array<Stage>;
+  where: InputMaybe<BlockCustomerpaperManyWhereInput>;
+};
+
+
+export type MutationPublishManyBlockCustomerpapersConnectionArgs = {
+  after: InputMaybe<Scalars['ID']['input']>;
+  before: InputMaybe<Scalars['ID']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  from?: InputMaybe<Stage>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  to?: Array<Stage>;
+  where: InputMaybe<BlockCustomerpaperManyWhereInput>;
 };
 
 
@@ -24271,6 +24829,14 @@ export type MutationSchedulePublishBlockCustomerClubformArgs = {
 };
 
 
+export type MutationSchedulePublishBlockCustomerpaperArgs = {
+  releaseAt: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId: InputMaybe<Scalars['String']['input']>;
+  to?: Array<Stage>;
+  where: BlockCustomerpaperWhereUniqueInput;
+};
+
+
 export type MutationSchedulePublishBlockFaqArgs = {
   releaseAt: InputMaybe<Scalars['DateTime']['input']>;
   releaseId: InputMaybe<Scalars['String']['input']>;
@@ -24462,6 +25028,14 @@ export type MutationScheduleUnpublishBlockCustomerClubformArgs = {
   releaseAt: InputMaybe<Scalars['DateTime']['input']>;
   releaseId: InputMaybe<Scalars['String']['input']>;
   where: BlockCustomerClubformWhereUniqueInput;
+};
+
+
+export type MutationScheduleUnpublishBlockCustomerpaperArgs = {
+  from?: Array<Stage>;
+  releaseAt: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId: InputMaybe<Scalars['String']['input']>;
+  where: BlockCustomerpaperWhereUniqueInput;
 };
 
 
@@ -24704,6 +25278,12 @@ export type MutationUnpublishBlockCustomerClubformArgs = {
 };
 
 
+export type MutationUnpublishBlockCustomerpaperArgs = {
+  from?: Array<Stage>;
+  where: BlockCustomerpaperWhereUniqueInput;
+};
+
+
 export type MutationUnpublishBlockFaqArgs = {
   from?: Array<Stage>;
   where: BlockFaqWhereUniqueInput;
@@ -24885,6 +25465,24 @@ export type MutationUnpublishManyBlockCustomerClubformsConnectionArgs = {
   skip: InputMaybe<Scalars['Int']['input']>;
   stage?: InputMaybe<Stage>;
   where: InputMaybe<BlockCustomerClubformManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyBlockCustomerpapersArgs = {
+  from?: Array<Stage>;
+  where: InputMaybe<BlockCustomerpaperManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyBlockCustomerpapersConnectionArgs = {
+  after: InputMaybe<Scalars['ID']['input']>;
+  before: InputMaybe<Scalars['ID']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  from?: Array<Stage>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  stage?: InputMaybe<Stage>;
+  where: InputMaybe<BlockCustomerpaperManyWhereInput>;
 };
 
 
@@ -25284,6 +25882,12 @@ export type MutationUpdateBlockCustomerClubformArgs = {
 };
 
 
+export type MutationUpdateBlockCustomerpaperArgs = {
+  data: BlockCustomerpaperUpdateInput;
+  where: BlockCustomerpaperWhereUniqueInput;
+};
+
+
 export type MutationUpdateBlockFaqArgs = {
   data: BlockFaqUpdateInput;
   where: BlockFaqWhereUniqueInput;
@@ -25506,6 +26110,23 @@ export type MutationUpdateManyBlockCustomerClubformsConnectionArgs = {
   last: InputMaybe<Scalars['Int']['input']>;
   skip: InputMaybe<Scalars['Int']['input']>;
   where: InputMaybe<BlockCustomerClubformManyWhereInput>;
+};
+
+
+export type MutationUpdateManyBlockCustomerpapersArgs = {
+  data: BlockCustomerpaperUpdateManyInput;
+  where: InputMaybe<BlockCustomerpaperManyWhereInput>;
+};
+
+
+export type MutationUpdateManyBlockCustomerpapersConnectionArgs = {
+  after: InputMaybe<Scalars['ID']['input']>;
+  before: InputMaybe<Scalars['ID']['input']>;
+  data: BlockCustomerpaperUpdateManyInput;
+  first: InputMaybe<Scalars['Int']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  where: InputMaybe<BlockCustomerpaperManyWhereInput>;
 };
 
 
@@ -25903,6 +26524,12 @@ export type MutationUpsertBlockConfigArgs = {
 export type MutationUpsertBlockCustomerClubformArgs = {
   upsert: BlockCustomerClubformUpsertInput;
   where: BlockCustomerClubformWhereUniqueInput;
+};
+
+
+export type MutationUpsertBlockCustomerpaperArgs = {
+  upsert: BlockCustomerpaperUpsertInput;
+  where: BlockCustomerpaperWhereUniqueInput;
 };
 
 
@@ -27020,13 +27647,14 @@ export type PageConnection = {
   pageInfo: PageInfo;
 };
 
-export type PageContent = Banner | BlockBrand | BlockBrandsList | BlockCustomerClubform | BlockFaq | BlockImageGallery | BlockImageLinksSlider | BlockNavigationButton | BlockPagesList | BlockPressRoom | BlockProductsList | BlockQuote | BlockRow | BlockSimilarPagesRow | BlockStoresMap | ProductSlider;
+export type PageContent = Banner | BlockBrand | BlockBrandsList | BlockCustomerClubform | BlockCustomerpaper | BlockFaq | BlockImageGallery | BlockImageLinksSlider | BlockNavigationButton | BlockPagesList | BlockPressRoom | BlockProductsList | BlockQuote | BlockRow | BlockSimilarPagesRow | BlockStoresMap | ProductSlider;
 
 export type PageContentConnectInput = {
   Banner?: InputMaybe<BannerConnectInput>;
   BlockBrand?: InputMaybe<BlockBrandConnectInput>;
   BlockBrandsList?: InputMaybe<BlockBrandsListConnectInput>;
   BlockCustomerClubform?: InputMaybe<BlockCustomerClubformConnectInput>;
+  BlockCustomerpaper?: InputMaybe<BlockCustomerpaperConnectInput>;
   BlockFaq?: InputMaybe<BlockFaqConnectInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryConnectInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderConnectInput>;
@@ -27046,6 +27674,7 @@ export type PageContentCreateInput = {
   BlockBrand?: InputMaybe<BlockBrandCreateInput>;
   BlockBrandsList?: InputMaybe<BlockBrandsListCreateInput>;
   BlockCustomerClubform?: InputMaybe<BlockCustomerClubformCreateInput>;
+  BlockCustomerpaper?: InputMaybe<BlockCustomerpaperCreateInput>;
   BlockFaq?: InputMaybe<BlockFaqCreateInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryCreateInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderCreateInput>;
@@ -27079,6 +27708,7 @@ export type PageContentUpdateInput = {
   BlockBrand?: InputMaybe<BlockBrandUpdateInput>;
   BlockBrandsList?: InputMaybe<BlockBrandsListUpdateInput>;
   BlockCustomerClubform?: InputMaybe<BlockCustomerClubformUpdateInput>;
+  BlockCustomerpaper?: InputMaybe<BlockCustomerpaperUpdateInput>;
   BlockFaq?: InputMaybe<BlockFaqUpdateInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryUpdateInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderUpdateInput>;
@@ -27115,6 +27745,7 @@ export type PageContentUpdateManyWithNestedWhereInput = {
   BlockBrand?: InputMaybe<BlockBrandUpdateManyWithNestedWhereInput>;
   BlockBrandsList?: InputMaybe<BlockBrandsListUpdateManyWithNestedWhereInput>;
   BlockCustomerClubform?: InputMaybe<BlockCustomerClubformUpdateManyWithNestedWhereInput>;
+  BlockCustomerpaper?: InputMaybe<BlockCustomerpaperUpdateManyWithNestedWhereInput>;
   BlockFaq?: InputMaybe<BlockFaqUpdateManyWithNestedWhereInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryUpdateManyWithNestedWhereInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderUpdateManyWithNestedWhereInput>;
@@ -27149,6 +27780,7 @@ export type PageContentUpdateWithNestedWhereUniqueInput = {
   BlockBrand?: InputMaybe<BlockBrandUpdateWithNestedWhereUniqueInput>;
   BlockBrandsList?: InputMaybe<BlockBrandsListUpdateWithNestedWhereUniqueInput>;
   BlockCustomerClubform?: InputMaybe<BlockCustomerClubformUpdateWithNestedWhereUniqueInput>;
+  BlockCustomerpaper?: InputMaybe<BlockCustomerpaperUpdateWithNestedWhereUniqueInput>;
   BlockFaq?: InputMaybe<BlockFaqUpdateWithNestedWhereUniqueInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryUpdateWithNestedWhereUniqueInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderUpdateWithNestedWhereUniqueInput>;
@@ -27168,6 +27800,7 @@ export type PageContentUpsertWithNestedWhereUniqueInput = {
   BlockBrand?: InputMaybe<BlockBrandUpsertWithNestedWhereUniqueInput>;
   BlockBrandsList?: InputMaybe<BlockBrandsListUpsertWithNestedWhereUniqueInput>;
   BlockCustomerClubform?: InputMaybe<BlockCustomerClubformUpsertWithNestedWhereUniqueInput>;
+  BlockCustomerpaper?: InputMaybe<BlockCustomerpaperUpsertWithNestedWhereUniqueInput>;
   BlockFaq?: InputMaybe<BlockFaqUpsertWithNestedWhereUniqueInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryUpsertWithNestedWhereUniqueInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderUpsertWithNestedWhereUniqueInput>;
@@ -27187,6 +27820,7 @@ export type PageContentWhereInput = {
   BlockBrand?: InputMaybe<BlockBrandWhereInput>;
   BlockBrandsList?: InputMaybe<BlockBrandsListWhereInput>;
   BlockCustomerClubform?: InputMaybe<BlockCustomerClubformWhereInput>;
+  BlockCustomerpaper?: InputMaybe<BlockCustomerpaperWhereInput>;
   BlockFaq?: InputMaybe<BlockFaqWhereInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryWhereInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderWhereInput>;
@@ -27206,6 +27840,7 @@ export type PageContentWhereUniqueInput = {
   BlockBrand?: InputMaybe<BlockBrandWhereUniqueInput>;
   BlockBrandsList?: InputMaybe<BlockBrandsListWhereUniqueInput>;
   BlockCustomerClubform?: InputMaybe<BlockCustomerClubformWhereUniqueInput>;
+  BlockCustomerpaper?: InputMaybe<BlockCustomerpaperWhereUniqueInput>;
   BlockFaq?: InputMaybe<BlockFaqWhereUniqueInput>;
   BlockImageGallery?: InputMaybe<BlockImageGalleryWhereUniqueInput>;
   BlockImageLinksSlider?: InputMaybe<BlockImageLinksSliderWhereUniqueInput>;
@@ -29967,6 +30602,14 @@ export type Query = {
   blockCustomerClubforms: Array<BlockCustomerClubform>;
   /** Retrieve multiple blockCustomerClubforms using the Relay connection interface */
   blockCustomerClubformsConnection: BlockCustomerClubformConnection;
+  /** Retrieve a single blockCustomerpaper */
+  blockCustomerpaper?: Maybe<BlockCustomerpaper>;
+  /** Retrieve document version */
+  blockCustomerpaperVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple blockCustomerpapers */
+  blockCustomerpapers: Array<BlockCustomerpaper>;
+  /** Retrieve multiple blockCustomerpapers using the Relay connection interface */
+  blockCustomerpapersConnection: BlockCustomerpaperConnection;
   /** Retrieve a single blockFaq */
   blockFaq?: Maybe<BlockFaq>;
   /** Retrieve document version */
@@ -30489,6 +31132,44 @@ export type QueryBlockCustomerClubformsConnectionArgs = {
   skip: InputMaybe<Scalars['Int']['input']>;
   stage?: Stage;
   where: InputMaybe<BlockCustomerClubformWhereInput>;
+};
+
+
+export type QueryBlockCustomerpaperArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: BlockCustomerpaperWhereUniqueInput;
+};
+
+
+export type QueryBlockCustomerpaperVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryBlockCustomerpapersArgs = {
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy: InputMaybe<BlockCustomerpaperOrderByInput>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where: InputMaybe<BlockCustomerpaperWhereInput>;
+};
+
+
+export type QueryBlockCustomerpapersConnectionArgs = {
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy: InputMaybe<BlockCustomerpaperOrderByInput>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where: InputMaybe<BlockCustomerpaperWhereInput>;
 };
 
 
@@ -32940,7 +33621,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Banner | BlockBrand | BlockBrandsList | BlockConfig | BlockCustomerClubform | BlockFaq | BlockImageGallery | BlockImageLinksSlider | BlockNavigationButton | BlockPagesList | BlockPressRoom | BlockProductsList | BlockQuote | BlockRow | BlockSimilarPagesRow | BlockStoresMap | DynamicHeader | Menu | Page | PageCategory | ProductSlider | Seo | Store;
+export type ScheduledOperationAffectedDocument = Asset | Banner | BlockBrand | BlockBrandsList | BlockConfig | BlockCustomerClubform | BlockCustomerpaper | BlockFaq | BlockImageGallery | BlockImageLinksSlider | BlockNavigationButton | BlockPagesList | BlockPressRoom | BlockProductsList | BlockQuote | BlockRow | BlockSimilarPagesRow | BlockStoresMap | DynamicHeader | Menu | Page | PageCategory | ProductSlider | Seo | Store;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -38567,7 +39248,7 @@ export type CmsPagesQueryVariables = Exact<{
 }>;
 
 
-export type CmsPagesQuery = { __typename: 'Query', pages: Array<{ __typename: 'Page', id: string, title: string, createdAt: any, url: string, seo?: { __typename: 'Seo', metaTitle: string, metaDescription?: string | null, ogImage?: { __typename: 'Asset', url: string } | null } | null, pageThumbnail: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, pageCategory: Array<{ __typename: 'PageCategory', name: string, categoryUrl?: string | null }>, content: Array<{ __typename: 'Banner', alt?: string | null, identify?: string | null, variant: BannerVariant, centerText?: string | null, bannerImage?: { __typename: 'Asset', mimeType?: string | null, url: string, width?: number | null } | null, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null } | { __typename: 'BlockBrand', title: string, viewMoreLink?: { __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null } | null, brands: Array<{ __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockBrandsList', title: string, brands: Array<{ __typename: 'Brand', brandName: string, url: string, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null } }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockCustomerClubform', title: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockFaq', title: string, questions: Array<{ __typename: 'FaqQuestion', question: string, answer?: { __typename: 'RichText', html: string } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockImageGallery', title: string, imagesDirection?: LayoutDirection | null, columnsCount: number, description?: { __typename: 'RichText', html: string } | null, images: Array<{ __typename: 'Image', label: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null } | { __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockImageLinksSlider', title: string, images: Array<{ __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockNavigationButton', title: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockPagesList', pageType: PageType, title: string, displayCategories: boolean, pageCategory?: { __typename: 'PageCategory', id: string } | null, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockPressRoom', title: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockProductsList', title: string, brand?: string | null, categoryId?: string | null, sku?: string | null, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockQuote', id: string, author?: string | null, image?: { __typename: 'Asset', url: string, width?: number | null, height?: number | null } | null, quote?: { __typename: 'RichText', html: string } | null, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockRow', id: string, useFullPageWidth?: boolean | null, columns: Array<{ __typename: 'Column', id: string, desktopPosition?: number | null, mobilePosition?: number | null, content?: { __typename: 'Image', label: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null } | { __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null } | { __typename: 'MultipleTextBlock', id: string, paragraphs: Array<{ __typename: 'TextBlock', id: string, paragraphTypography: TypographyStyle, textAlign?: Position | null, title?: { __typename: 'RichText', html: string } | null, content?: { __typename: 'RichText', html: string } | null, links: Array<{ __typename: 'Link', id: string, label: string, url: string }> }> } | { __typename: 'TextBlock', id: string, paragraphTypography: TypographyStyle, textAlign?: Position | null, title?: { __typename: 'RichText', html: string } | null, content?: { __typename: 'RichText', html: string } | null, links: Array<{ __typename: 'Link', id: string, label: string, url: string }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockSimilarPagesRow', title: string, page: Array<{ __typename: 'Page', id: string, url: string, title: string, createdAt: any, seo?: { __typename: 'Seo', metaTitle: string, metaDescription?: string | null, ogImage?: { __typename: 'Asset', url: string } | null } | null, pageThumbnail: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, pageCategory: Array<{ __typename: 'PageCategory', name: string, categoryUrl?: string | null }> }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockStoresMap', title: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'ProductSlider', categoryId?: string | null, specificProductsSku?: string | null, type: ProductSliderType, title: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null }> }> };
+export type CmsPagesQuery = { __typename: 'Query', pages: Array<{ __typename: 'Page', id: string, title: string, createdAt: any, url: string, seo?: { __typename: 'Seo', metaTitle: string, metaDescription?: string | null, ogImage?: { __typename: 'Asset', url: string } | null } | null, pageThumbnail: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, pageCategory: Array<{ __typename: 'PageCategory', name: string, categoryUrl?: string | null }>, content: Array<{ __typename: 'Banner', alt?: string | null, identify?: string | null, variant: BannerVariant, centerText?: string | null, bannerImage?: { __typename: 'Asset', mimeType?: string | null, url: string, width?: number | null } | null, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null } | { __typename: 'BlockBrand', title: string, viewMoreLink?: { __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null } | null, brands: Array<{ __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockBrandsList', title: string, brands: Array<{ __typename: 'Brand', brandName: string, url: string, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null } }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockCustomerClubform', title: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockCustomerpaper' } | { __typename: 'BlockFaq', title: string, questions: Array<{ __typename: 'FaqQuestion', question: string, answer?: { __typename: 'RichText', html: string } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockImageGallery', title: string, imagesDirection?: LayoutDirection | null, columnsCount: number, description?: { __typename: 'RichText', html: string } | null, images: Array<{ __typename: 'Image', label: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null } | { __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockImageLinksSlider', title: string, images: Array<{ __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockNavigationButton', title: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockPagesList', pageType: PageType, title: string, displayCategories: boolean, pageCategory?: { __typename: 'PageCategory', id: string } | null, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockPressRoom', title: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockProductsList', title: string, brand?: string | null, categoryId?: string | null, sku?: string | null, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockQuote', id: string, author?: string | null, image?: { __typename: 'Asset', url: string, width?: number | null, height?: number | null } | null, quote?: { __typename: 'RichText', html: string } | null, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockRow', id: string, useFullPageWidth?: boolean | null, columns: Array<{ __typename: 'Column', id: string, desktopPosition?: number | null, mobilePosition?: number | null, content?: { __typename: 'Image', label: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null } | { __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null } | { __typename: 'MultipleTextBlock', id: string, paragraphs: Array<{ __typename: 'TextBlock', id: string, paragraphTypography: TypographyStyle, textAlign?: Position | null, title?: { __typename: 'RichText', html: string } | null, content?: { __typename: 'RichText', html: string } | null, links: Array<{ __typename: 'Link', id: string, label: string, url: string }> }> } | { __typename: 'TextBlock', id: string, paragraphTypography: TypographyStyle, textAlign?: Position | null, title?: { __typename: 'RichText', html: string } | null, content?: { __typename: 'RichText', html: string } | null, links: Array<{ __typename: 'Link', id: string, label: string, url: string }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockSimilarPagesRow', title: string, page: Array<{ __typename: 'Page', id: string, url: string, title: string, createdAt: any, seo?: { __typename: 'Seo', metaTitle: string, metaDescription?: string | null, ogImage?: { __typename: 'Asset', url: string } | null } | null, pageThumbnail: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, pageCategory: Array<{ __typename: 'PageCategory', name: string, categoryUrl?: string | null }> }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'BlockStoresMap', title: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null } | { __typename: 'ProductSlider', categoryId?: string | null, specificProductsSku?: string | null, type: ProductSliderType, title: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null } | null }> }> };
 
 export type CmsDynamicHeaderFragment = { __typename: 'DynamicHeader', id: string, rule: { __typename: 'RuleBlock', id: string, value: Array<string>, contentType: DynamicContentType }, banner?: { __typename: 'Banner', alt?: string | null, identify?: string | null, variant: BannerVariant, centerText?: string | null, bannerImage?: { __typename: 'Asset', mimeType?: string | null, url: string, width?: number | null } | null, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null } | null } | null };
 
