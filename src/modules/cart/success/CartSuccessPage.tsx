@@ -1,6 +1,5 @@
 import React from "react";
 
-import dynamic from "next/dynamic";
 import Link from "next/link";
 
 import { Debugger } from "@/components/Debugger";
@@ -12,7 +11,7 @@ import { ItemsTable } from "@/modules/cart/success/ItemsTable";
 import { OrderInformation } from "@/modules/cart/success/OrderInformation";
 import { MaskedOrderFragment } from "@/types";
 
-const DeliveryMap = dynamic(() => import("./DeliveryMap"), { ssr: false });
+// const DeliveryMap = dynamic(() => import("./DeliveryMap"), { ssr: false });
 
 interface Props {
   order?: MaskedOrderFragment | null;
