@@ -84,7 +84,7 @@ export const StorePage: React.FC<Props> = ({
       </div>
 
       <div className="grid grid-cols-5 gap-8 lg:gap-16">
-        <div className="col-span-5 lg:col-span-3">
+        <div className="order-2 lg:order-1 col-span-5 lg:col-span-3">
           {storeCmsData.content ? (
             <MultipleTextBlock data={storeCmsData.content} />
           ) : null}
@@ -94,7 +94,7 @@ export const StorePage: React.FC<Props> = ({
             ) : null}
           </div>
         </div>
-        <div className="col-span-5 lg:col-span-2 lg:sticky top-[150px]">
+        <div className="order-1 lg:order-2 col-span-5 lg:col-span-2 lg:sticky top-[150px]">
           <div className="bg-white rounded-2xl p-8 flex flex-col">
             <div className="flex flex-col items-center justify-center mb-8">
               <div className="bg-powder flex rounded-2xl px-4 py-2 items-center gap-2">
