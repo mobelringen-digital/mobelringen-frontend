@@ -81,7 +81,7 @@ export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
   const handleRemoveProduct = async () => {
     setIsLoading(true);
     const confirmed = await showConfirmation({
-      title: "Er du sikker på at du vil slette dette elementet?",
+      title: "Er du sikker på at du vil fjerne dette produktet?",
       message: "Denne handlingen kan ikke angres.",
     });
 

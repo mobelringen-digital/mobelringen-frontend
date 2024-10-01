@@ -60,18 +60,18 @@ export const Communication: React.FC<Props> = ({ customer }) => {
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-4 lg:w-1/2"
       >
-        <FieldWrapper control={control} name="accepts_sms">
-          <Checkbox isSelected={accepts_sms} onValueChange={setAcceptsSms}>
-            Jeg samtykker til å motta kommunikasjon på SMS Link
+        <FieldWrapper control={control} name="accepts_emails">
+          <Checkbox isSelected={accepts_emails} onValueChange={setAcceptsEmails}>
+            Jeg samtykker til å motta kommunikasjon på e-post
           </Checkbox>
         </FieldWrapper>
 
-        <FieldWrapper control={control} name="accepts_emails">
+        <FieldWrapper control={control} name="accepts_sms">
           <Checkbox
-            isSelected={accepts_emails}
-            onValueChange={setAcceptsEmails}
+            isSelected={accepts_sms}
+            onValueChange={setAcceptsSms}
           >
-            Jeg samtykker til å motta kommunikasjon på e-post Link
+            Jeg samtykker til å motta kommunikasjon på SMS
           </Checkbox>
         </FieldWrapper>
 
