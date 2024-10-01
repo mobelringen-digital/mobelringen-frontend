@@ -1,5 +1,7 @@
 import React from "react";
 
+import Link from "next/link";
+
 import { Button } from "@/components/_ui/button/Button";
 import { SupportIcon } from "@/components/_ui/icons/SupportIcon";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
@@ -28,7 +30,13 @@ export const MoreInformation = () => {
             </div>
           </div>
           <div className="col-span-6 lg:col-span-2 flex justify-center lg:justify-end">
-            <Button color="secondary" variant="bordered" className="text-sm">
+            <Button
+              as={Link}
+              href="/finn-butikk"
+              color="secondary"
+              variant="bordered"
+              className="text-sm"
+            >
               Kontakt din nærmeste butikk
             </Button>
           </div>
