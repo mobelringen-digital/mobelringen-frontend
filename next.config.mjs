@@ -1,10 +1,10 @@
 import { withSentryConfig } from "@sentry/nextjs";
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    scrollRestoration: false,
+  },
   images: {
-    experimental: {
-      scrollRestoration: false,
-    },
     unoptimized: true,
     dangerouslyAllowSVG: true,
     remotePatterns: [
