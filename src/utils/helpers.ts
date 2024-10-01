@@ -51,3 +51,11 @@ export const DELIVERY_TYPE_MAP = {
   online: DeliveryType.Online,
   collect: DeliveryType.Cac,
 };
+
+export const dateToNOFormat = (date: string) => {
+  return new Date(date).toLocaleDateString("nb-NO", {
+    day: "numeric",
+    month: "numeric",
+    year: "numeric",
+  });
+};

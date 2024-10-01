@@ -41,23 +41,25 @@ export const ProductPricing: React.FC<Props> = ({ product }) => {
                   suffix={currency}
                 />
               </span>
-              <Popover isOpen={open} triggerType="dialog" placement="top">
-                <PopoverTrigger>
-                  <button
-                    onMouseEnter={() => setOpen(true)}
-                    onMouseLeave={() => setOpen(false)}
-                  >
-                    <Info />
-                  </button>
-                </PopoverTrigger>
-                <PopoverContent className="max-w-lg">
-                  <div className="px-1 py-2">
-                    Førprisen er den laveste prisen denne varen har vært
-                    markedsført til i løpet av de siste 30 dagene før
-                    kampanjestart. Lokale prisvariasjoner kan forekomme.
-                  </div>
-                </PopoverContent>
-              </Popover>
+              {product?.campaign_period ? (
+                <Popover isOpen={open} triggerType="dialog" placement="top">
+                  <PopoverTrigger>
+                    <button
+                      onMouseEnter={() => setOpen(true)}
+                      onMouseLeave={() => setOpen(false)}
+                    >
+                      <Info />
+                    </button>
+                  </PopoverTrigger>
+                  <PopoverContent className="max-w-lg">
+                    <div className="px-1 py-2">
+                      Førprisen er den laveste prisen denne varen har vært
+                      markedsført til i løpet av de siste 30 dagene før
+                      kampanjestart. Lokale prisvariasjoner kan forekomme.
+                    </div>
+                  </PopoverContent>
+                </Popover>
+              ) : null}
             </div>
           </div>
         </div>

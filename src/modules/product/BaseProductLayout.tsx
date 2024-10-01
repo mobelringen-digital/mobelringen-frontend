@@ -26,6 +26,7 @@ import {
   GetProductStockQuery,
 } from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
+import { dateToNOFormat } from "@/utils/helpers";
 
 interface Props {
   baseProductData: BaseProductFragmentType;
@@ -111,10 +112,11 @@ export const BaseProductLayout: React.FC<Props> = ({
 
             <div className="flex flex-col gap-2">
               <ProductPricing product={product} />
-              {product.special_price && product.special_to_date ? (
+              {product.special_price && product.campaign_period ? (
                 <div className="block">
                   <span className="text-sm bg-powder rounded-2xl py-1 px-2">
-                    Tilbudet gjelder t.o.m. {product.special_to_date}
+                    Tilbudet gjelder t.o.m.{" "}
+                    {dateToNOFormat(product.campaign_period)}
                   </span>
                 </div>
               ) : null}

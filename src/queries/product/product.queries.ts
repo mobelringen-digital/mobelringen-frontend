@@ -143,6 +143,7 @@ export const BaseProductFragment = graphql(`
     }
     uid
     special_to_date
+    campaign_period
     special_price
     small_image {
       disabled
