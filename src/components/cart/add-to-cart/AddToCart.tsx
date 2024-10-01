@@ -75,7 +75,7 @@ export const AddToCart: React.FC<Props> = ({
 
     if (cart?.id && product.sku && quantity) {
       addToCartGTMEvent();
-      return addToCart(
+      return await addToCart(
         cart?.id,
         [
           {
@@ -89,7 +89,7 @@ export const AddToCart: React.FC<Props> = ({
 
     if (!cart?.id && product.sku && quantity) {
       addToCartGTMEvent();
-      return createCartAndAddProduct(
+      return await createCartAndAddProduct(
         [
           {
             sku: product.sku,

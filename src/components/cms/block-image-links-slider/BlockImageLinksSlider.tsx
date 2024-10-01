@@ -28,7 +28,7 @@ const sliderConfig: Settings = {
     {
       breakpoint: 640,
       settings: {
-        variableWidth: false,
+        variableWidth: true,
         slidesToShow: 1,
         slidesToScroll: 1,
       },

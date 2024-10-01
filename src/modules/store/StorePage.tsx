@@ -77,7 +77,7 @@ export const StorePage: React.FC<Props> = ({
         />
       ) : null}
 
-      <div className="flex justify-center mb-24">
+      <div className="flex justify-center mb-12 lg:mb-24">
         <h1 className="text-3xl lg:text-5xl font-feature">
           {storeCmsData.storeName}
         </h1>
