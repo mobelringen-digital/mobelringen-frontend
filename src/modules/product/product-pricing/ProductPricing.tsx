@@ -41,7 +41,7 @@ export const ProductPricing: React.FC<Props> = ({ product }) => {
                   suffix={currency}
                 />
               </span>
-              {product?.campaign_period ? (
+              {product?.special_price ? (
                 <Popover isOpen={open} triggerType="dialog" placement="top">
                   <PopoverTrigger>
                     <button
