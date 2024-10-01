@@ -6,6 +6,7 @@ import { ConfigurationInfo } from "@/modules/product/configurable-product/Config
 import { Variants } from "@/modules/product/configurable-product/Variants";
 import {
   BaseCartFragment,
+  BaseStoreFragment,
   ConfigurableProductFragment,
   GetProductStockQuery,
 } from "@/types";
@@ -14,12 +15,18 @@ interface Props {
   product: ConfigurableProductFragment;
   cart?: BaseCartFragment | null;
   stock?: GetProductStockQuery;
+  selectedStore?: BaseStoreFragment | null;
 }
 
-export async function ConfigurableProductPage({ product, cart }: Props) {
+export async function ConfigurableProductPage({
+  product,
+  cart,
+  selectedStore,
+}: Props) {
   return (
     <ActiveProductDataContextProvider>
       <BaseProductLayout
+        selectedStore={selectedStore}
         cart={cart}
         baseProductData={product}
         configurationBlock={

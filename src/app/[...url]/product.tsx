@@ -85,7 +85,12 @@ export default async function Product({ sku, url }: Props) {
   return (
     <>
       {isTypename(productData, ["SimpleProduct"]) ? (
-        <SimpleProductPage stock={stock} cart={cart} product={productData} />
+        <SimpleProductPage
+          selectedStore={selectedStore}
+          stock={stock}
+          cart={cart}
+          product={productData}
+        />
       ) : null}
 
       {isTypename(productData, ["ConfigurableProduct"]) ? (
@@ -93,6 +98,7 @@ export default async function Product({ sku, url }: Props) {
           stock={stock}
           cart={cart}
           product={productData}
+          selectedStore={selectedStore}
         />
       ) : null}
 

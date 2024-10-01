@@ -4,6 +4,7 @@ import { ActiveProductDataContextProvider } from "@/modules/product/active-produ
 import { BaseProductLayout } from "@/modules/product/BaseProductLayout";
 import {
   BaseCartFragment,
+  BaseStoreFragment,
   GetProductStockQuery,
   SimpleProductFragment,
 } from "@/types";
@@ -12,12 +13,23 @@ interface Props {
   product: SimpleProductFragment;
   cart?: BaseCartFragment | null;
   stock?: GetProductStockQuery;
+  selectedStore?: BaseStoreFragment | null;
 }
 
-export async function SimpleProductPage({ product, cart, stock }: Props) {
+export async function SimpleProductPage({
+  product,
+  cart,
+  stock,
+  selectedStore,
+}: Props) {
   return (
     <ActiveProductDataContextProvider>
-      <BaseProductLayout stock={stock} cart={cart} baseProductData={product} />
+      <BaseProductLayout
+        selectedStore={selectedStore}
+        stock={stock}
+        cart={cart}
+        baseProductData={product}
+      />
     </ActiveProductDataContextProvider>
   );
 }

@@ -11,6 +11,7 @@ import {
   AddProductToCartMutation,
   Availability,
   BaseProductFragment,
+  BaseStoreFragment,
   GetProductStockQuery,
 } from "@/types";
 
@@ -22,12 +23,14 @@ interface Props {
     preferredMethod: "online" | "collect",
   ) => Promise<string | AddProductToCartMutation | undefined>;
   stock?: GetProductStockQuery;
+  selectedStore?: BaseStoreFragment | null;
 }
 
 export const AddToCartController: React.FC<Props> = ({
   product,
   onAddToCart,
   stock,
+  selectedStore,
 }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const searchParams = useSearchParams();
@@ -77,13 +80,23 @@ export const AddToCartController: React.FC<Props> = ({
         >
           Legg i handlekurv
         </Button>
-        <Button
-          onClick={() => handleAddItemToCart("collect")}
-          disabled={!canBuyCAC || isLoading}
-          color="secondary"
-        >
-          Klikk og hent
-        </Button>
+        {!selectedStore?.external_id ? (
+          <Button
+            onClick={() => router.push(`${pathname}?store=select`)}
+            disabled={!canBuyCAC || isLoading}
+            color="secondary"
+          >
+            Velg butikk
+          </Button>
+        ) : (
+          <Button
+            onClick={() => handleAddItemToCart("collect")}
+            disabled={!canBuyCAC || isLoading}
+            color="secondary"
+          >
+            Klikk og hent
+          </Button>
+        )}
       </div>
     </>
   );

@@ -11,6 +11,7 @@ import {
   Availability,
   BaseCartFragment,
   BaseProductFragment,
+  BaseStoreFragment,
   GetProductStockQuery,
 } from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
@@ -20,6 +21,7 @@ interface Props {
   quantity: number;
   cart?: BaseCartFragment | null;
   stock?: GetProductStockQuery;
+  selectedStore?: BaseStoreFragment | null;
 }
 
 export const AddToCart: React.FC<Props> = ({
@@ -27,6 +29,7 @@ export const AddToCart: React.FC<Props> = ({
   quantity,
   cart,
   stock,
+  selectedStore,
 }) => {
   const addToCartGTMEvent = () => {
     if (!cart?.id) {
@@ -100,6 +103,7 @@ export const AddToCart: React.FC<Props> = ({
 
   return (
     <AddToCartController
+      selectedStore={selectedStore}
       product={product}
       quantity={quantity}
       onAddToCart={handleAddItemToCart}
