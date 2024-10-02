@@ -7,6 +7,7 @@ import { CmsProductSlider } from "components/cms/block-product-slider";
 import { BlockBrands } from "@/components/cms/block-brands/BlockBrands";
 import { BlockBrandsList } from "@/components/cms/block-brands-list/BlockBrandsList";
 import { BlockCustomerClubForm } from "@/components/cms/block-customer-club-form/BlockCustomerClubForm";
+import { BlockCustomerPaper } from "@/components/cms/block-customer-paper/BlockCustomerPaper";
 import { BlockFaq } from "@/components/cms/block-faq/BlockFaq";
 import { BlockImageLinksSlider } from "@/components/cms/block-image-links-slider/BlockImageLinksSlider";
 import { BlockNavigationButtons } from "@/components/cms/block-navigation-buttons/BlockNavigationButtons";
@@ -79,6 +80,9 @@ export const CmsContentLoader: React.FC<CmsContentProps> = ({ data }) => {
 
     case "BlockCustomerClubform":
       return <BlockCustomerClubForm data={data} />;
+
+    case "BlockCustomerPaper":
+      return <BlockCustomerPaper data={data} />;
 
     default:
       return null;

@@ -97,6 +97,7 @@ export const CmsPagesQueryDocument = graphql(`
         ...CmsBlockProductsList
         ...CmsBlockBrandsList
         ...CmsBlockCustomerClubForm
+        ...CmsBlockCustomerPaper
       }
     }
   }

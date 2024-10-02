@@ -242,3 +242,15 @@ export const BlockCustomerClubFormFragment = graphql(`
     }
   }
 `);
+
+export const BlockCustomerPaperFragment = graphql(`
+  fragment CmsBlockCustomerPaper on BlockCustomerPaper {
+    ... on BlockCustomerPaper {
+      __typename
+      title
+      blockConfig {
+        ...CmsBlockConfig
+      }
+    }
+  }
+`);
