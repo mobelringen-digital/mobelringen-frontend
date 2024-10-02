@@ -2,18 +2,19 @@
 
 import React from "react";
 
+import { useCookies } from "react-cookie";
+
 import { Logout } from "@/modules/account/components/icons/Logout";
-import { logout } from "@/modules/auth/actions";
 
 import { navigate } from "../../app/actions";
 
 export const LogoutButton = () => {
-  const handleSignOut = async () => {
-    const res = await logout();
+  const [_cookie, setCookie] = useCookies();
 
-    if (res) {
-      return navigate("/auth/login");
-    }
+  const handleSignOut = async () => {
+    setCookie("token", "", { path: "/", expires: new Date() });
+
+    return navigate("/auth/login");
   };
 
   return (

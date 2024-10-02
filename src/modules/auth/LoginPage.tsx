@@ -3,9 +3,11 @@
 import React from "react";
 
 import { sendGTMEvent } from "@next/third-parties/google";
+import { useCookies } from "react-cookie";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/_ui/button/Button";
 import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
@@ -22,6 +24,10 @@ type FormData = {
 };
 
 export const LoginPage: React.FC = () => {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+  const [_cookie, setCookie] = useCookies();
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState<Array<Error> | null>(null);
   const {
@@ -29,6 +35,13 @@ export const LoginPage: React.FC = () => {
     handleSubmit,
     formState: { isSubmitting, errors },
   } = useForm<FormData>();
+
+  React.useEffect(() => {
+    if (searchParams.get("token") === "EXPIRED") {
+      setCookie("token", "", { path: "/", expires: new Date() });
+      router.replace(pathname);
+    }
+  }, [pathname, router, searchParams, setCookie]);
 
   const loginGTMEvent = () => {
     return sendGTMEvent({
@@ -97,9 +110,7 @@ export const LoginPage: React.FC = () => {
             Logg inn
           </Button>
           <div className="flex w-full justify-end mt-2">
-            <Link href="/auth/forgot">
-              Glemt passord?
-            </Link>
+            <Link href="/auth/forgot">Glemt passord?</Link>
           </div>
         </form>
         <div className="mt-8 pt-4 border-t border-dark-grey border-opacity-30 flex flex-col">
