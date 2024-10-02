@@ -13,9 +13,10 @@ import { AvailableShippingMethodFragment, BaseCartFragment } from "@/types";
 interface Props {
   cart: BaseCartFragment;
   onSubmit: (method: AvailableShippingMethodFragment) => Promise<void>;
+  onBack: () => void;
 }
 
-export const ShippingForm: React.FC<Props> = ({ cart, onSubmit }) => {
+export const ShippingForm: React.FC<Props> = ({ cart, onSubmit, onBack }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [selectedMethod, setSelectedMethod] = React.useState<
     AvailableShippingMethodFragment["method_code"] | null
@@ -71,7 +72,10 @@ export const ShippingForm: React.FC<Props> = ({ cart, onSubmit }) => {
         </div>
       </div>
 
-      <div className="col-span-12 flex justify-end mt-6">
+      <div className="col-span-12 flex justify-end mt-6 gap-2">
+        <Button color="secondary" type="button" onClick={onBack}>
+          Tilbake
+        </Button>
         <Button
           onClick={handleSelect}
           color="tertiary"

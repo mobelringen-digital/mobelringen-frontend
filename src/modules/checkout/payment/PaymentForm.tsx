@@ -15,6 +15,7 @@ interface Props {
   cart: BaseCartFragment;
   onSubmit: (method: AvailablePaymentMethodFragment) => Promise<string | void>;
   isLoading?: boolean;
+  onBack: () => void;
 }
 
 const ICONS: Record<string, React.ReactNode> = {
@@ -23,7 +24,12 @@ const ICONS: Record<string, React.ReactNode> = {
   vipps: <VippsIcon />,
 } as const;
 
-export const PaymentForm: React.FC<Props> = ({ cart, onSubmit, isLoading }) => {
+export const PaymentForm: React.FC<Props> = ({
+  cart,
+  onSubmit,
+  isLoading,
+  onBack,
+}) => {
   const [selectedMethod, setSelectedMethod] = React.useState<
     AvailablePaymentMethodFragment["code"] | null
   >(cart.selected_payment_method?.code ?? null);
@@ -66,7 +72,10 @@ export const PaymentForm: React.FC<Props> = ({ cart, onSubmit, isLoading }) => {
         </div>
       </div>
 
-      <div className="col-span-12 flex justify-end mt-6">
+      <div className="col-span-12 flex justify-end mt-6 gap-2">
+        <Button color="secondary" type="button" onClick={onBack}>
+          Tilbake
+        </Button>
         <Button
           onClick={handleSelect}
           color="tertiary"

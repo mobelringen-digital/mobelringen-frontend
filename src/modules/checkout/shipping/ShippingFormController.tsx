@@ -52,5 +52,9 @@ export const ShippingFormController: React.FC<Props> = ({ cart }) => {
     });
   };
 
-  return <ShippingForm cart={cart} onSubmit={onSubmit} />;
+  const goBack = async () => {
+    return navigate("/cart/checkout?step=contact");
+  };
+
+  return <ShippingForm cart={cart} onBack={goBack} onSubmit={onSubmit} />;
 };

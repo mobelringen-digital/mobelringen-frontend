@@ -81,10 +81,19 @@ export const PaymentFormController: React.FC<Props> = ({ cart }) => {
     });
   };
 
+  const goBack = async () => {
+    return navigate("/cart/checkout?step=shipping");
+  };
+
   return (
     <>
       {isLoading ? <PageTopLoader /> : null}
-      <PaymentForm cart={cart} onSubmit={onSubmit} isLoading={isLoading} />
+      <PaymentForm
+        onBack={goBack}
+        cart={cart}
+        onSubmit={onSubmit}
+        isLoading={isLoading}
+      />
     </>
   );
 };
