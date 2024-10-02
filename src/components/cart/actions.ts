@@ -36,8 +36,7 @@ export default async function getCart() {
   if (!!token && !!customer) {
     const customerQuery = await authorizedMagentoClient(token, "GET", {
       tags: ["cart", token, store?.external_id ?? ""],
-      cache: "no-store",
-      revalidate: undefined,
+      revalidate: 6000,
     }).request(CustomerCartDocument);
 
     if (customerQuery?.customerCart) {
