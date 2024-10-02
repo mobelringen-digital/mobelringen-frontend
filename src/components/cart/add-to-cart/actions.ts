@@ -3,6 +3,7 @@
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
+import { updateCartItemsInStore } from "@/components/store-selector/actions";
 import { getToken } from "@/modules/auth/actions";
 import { CreateEmptyCartDocument } from "@/queries/cart.queries";
 import { AddProductToCartDocument, CartItemInput } from "@/types";
@@ -26,6 +27,8 @@ export async function addToCart(
       cartItems,
     },
   );
+
+  await updateCartItemsInStore();
 
   if (preferredMethod) {
     cookieStore.set("preferredMethod", preferredMethod, {
