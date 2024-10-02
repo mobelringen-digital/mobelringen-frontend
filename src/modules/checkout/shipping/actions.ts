@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidateTag } from "next/cache";
 
 import { getToken } from "@/modules/auth/actions";
 import { SetShippingMethodsOnCart } from "@/queries/cart.queries";
@@ -21,7 +21,7 @@ export async function setShippingMethods(
     },
   );
 
-  revalidatePath("/cart");
+  revalidateTag("cart");
 
   return data;
 }

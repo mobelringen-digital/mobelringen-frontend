@@ -13,6 +13,8 @@ async function getMaskedOrder(maskId: string) {
     mask: maskId,
   });
 
+  revalidateTag("cart");
+
   return data.getOrderByMask;
 }
 

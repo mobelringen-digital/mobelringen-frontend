@@ -4,6 +4,7 @@ import React from "react";
 
 import { sendGTMEvent } from "@next/third-parties/google";
 
+import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import {
   initKlarnaHpp,
   setPaymentMethodOnCart,
@@ -20,6 +21,7 @@ interface Props {
 }
 
 export const PaymentFormController: React.FC<Props> = ({ cart }) => {
+  const [isLoading, setIsLoading] = React.useState(false);
   if (!cart) {
     return null;
   }
@@ -42,8 +44,9 @@ export const PaymentFormController: React.FC<Props> = ({ cart }) => {
     if (!method.code) {
       return;
     }
+    setIsLoading(true);
 
-    setPaymentMethodOnCart(cart.id, {
+    return setPaymentMethodOnCart(cart.id, {
       code: method.code,
     }).then(async () => {
       if (method.code.includes("vipps")) {
@@ -54,6 +57,7 @@ export const PaymentFormController: React.FC<Props> = ({ cart }) => {
 
         if (data?.vippsInitPayment?.url) {
           addPaymentInfoGTMEvent(method);
+          setIsLoading(false);
           return (window.location.href = data.vippsInitPayment.url);
         }
       }
@@ -67,13 +71,20 @@ export const PaymentFormController: React.FC<Props> = ({ cart }) => {
 
         if (data.initKlarnaHpp?.redirect_url) {
           addPaymentInfoGTMEvent(method);
+          setIsLoading(false);
           return (window.location.href = data.initKlarnaHpp?.redirect_url);
         }
       }
 
+      setIsLoading(false);
       return navigate("/cart/error/unknown-error");
     });
   };
 
-  return <PaymentForm cart={cart} onSubmit={onSubmit} />;
+  return (
+    <>
+      {isLoading ? <PageTopLoader /> : null}
+      <PaymentForm cart={cart} onSubmit={onSubmit} isLoading={isLoading} />
+    </>
+  );
 };

@@ -21,7 +21,9 @@ export const ShippingFormController: React.FC<Props> = ({ cart }) => {
     return null;
   }
 
-  const addShippingInfoGTMEvent = (method: AvailableShippingMethodFragment) => {
+  const addShippingInfoGTMEvent = async (
+    method: AvailableShippingMethodFragment,
+  ) => {
     if (!cart?.id) {
       return;
     }
@@ -46,7 +48,7 @@ export const ShippingFormController: React.FC<Props> = ({ cart }) => {
     }).then(() => {
       addShippingInfoGTMEvent(method);
       openToast({ content: "Innleveringsmetode er valgt" });
-      navigate("/cart/checkout?step=payment");
+      return navigate("/cart/checkout?step=payment");
     });
   };
 

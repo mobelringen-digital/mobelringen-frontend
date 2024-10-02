@@ -29,6 +29,6 @@ export async function getCustomerOrders() {
 
   return await authorizedMagentoClient(token, "GET", {
     tags: ["customer-orders"],
-    revalidate: 3600,
+    revalidate: 600,
   }).request<CustomerQuery>(CustomerDocument);
 }
