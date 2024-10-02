@@ -21,6 +21,8 @@ export default async function CartSuccess({
 }: NextServerComponentProps) {
   const order = await getMaskedOrder(String(searchParams.masked_id));
   revalidateTag("cart");
+  revalidateTag("customer");
+  revalidateTag("customer-orders");
 
   if (!order?.id) {
     return navigate("/auth/error/unknown");

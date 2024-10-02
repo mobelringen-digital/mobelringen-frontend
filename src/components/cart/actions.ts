@@ -2,6 +2,7 @@
 
 import { cookies } from "next/headers";
 
+import { getSelectedStore } from "@/components/store-selector/actions";
 import { getCustomerDetails } from "@/modules/account/account/actions";
 import { getToken } from "@/modules/auth/actions";
 import { CustomerCartDocument, CartDocument } from "@/queries/cart.queries";
@@ -10,11 +11,13 @@ import { authorizedMagentoClient } from "@/utils/lib/graphql";
 export const getGuestCart = async () => {
   const cookiesStore = cookies();
   const cartCookie = cookiesStore.get("cart");
+  const store = await getSelectedStore();
 
   if (cartCookie?.value) {
     const guestCart = await authorizedMagentoClient(undefined, "GET", {
-      tags: ["cart"],
-      revalidate: 60,
+      tags: ["cart", store?.external_id ?? ""],
+      cache: "no-store",
+      revalidate: undefined,
     }).request(CartDocument, {
       cart_id: String(cartCookie.value),
     });
@@ -26,12 +29,13 @@ export const getGuestCart = async () => {
 };
 
 export default async function getCart() {
+  const store = await getSelectedStore();
   const token = await getToken();
   const customer = await getCustomerDetails();
 
   if (!!customer) {
     const customerQuery = await authorizedMagentoClient(token, "GET", {
-      tags: ["cart"],
+      tags: ["cart", store?.external_id ?? ""],
       revalidate: 60,
     }).request(CustomerCartDocument);
 
