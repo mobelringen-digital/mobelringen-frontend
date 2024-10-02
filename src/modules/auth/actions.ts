@@ -3,7 +3,6 @@
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
-import { getCustomerDetails } from "@/modules/account/account/actions";
 import { AssignCustomerToGuestCart } from "@/queries/cart.queries";
 import {
   RequestPasswordResetEmailDocument,
@@ -14,8 +13,6 @@ import {
   authorizedMagentoClient,
   baseMagentoClient,
 } from "@/utils/lib/graphql";
-
-import { navigate } from "../../app/actions";
 
 interface LoginInput {
   email: string;
@@ -66,13 +63,6 @@ export async function createCustomer(input: CustomerCreateInput) {
   }).then((res) => res.json());
 }
 
-export async function deleteTokenCookie() {
-  const cookiesStore = cookies();
-  cookiesStore.set("token", "", {
-    expires: new Date(0),
-  });
-}
-
 export async function assignCustomerToGuestCart(token: string) {
   const cookiesStore = cookies();
   const guestCartId = cookiesStore.get("cart")?.value;
@@ -99,11 +89,6 @@ export async function assignCustomerToGuestCart(token: string) {
 
 export async function getToken() {
   const cookieStore = cookies();
-  const customer = getCustomerDetails();
-
-  if (!customer) {
-    return navigate("/auth/login?token=EXPIRED");
-  }
 
   return cookieStore.get("token")?.value;
 }

@@ -11,12 +11,14 @@ export async function getCustomerDetails() {
   if (!token) return;
 
   const data = await authorizedMagentoClient(token, "POST", {
-    tags: ["customer"],
+    tags: ["customer", token],
   }).request<CustomerQuery>(CustomerDocument);
 
   if (token && data.customer) {
     return data.customer;
   }
+
+  return;
 }
 
 export async function getCustomerOrders() {

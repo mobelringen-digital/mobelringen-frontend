@@ -3,7 +3,6 @@ import React from "react";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { getCustomerDetails } from "@/modules/account/account/actions";
 import { AccountLinks } from "@/modules/account/AccountLinks";
-import { getToken } from "@/modules/auth/actions";
 
 import { navigate } from "../actions";
 
@@ -12,15 +11,10 @@ export default async function AccountLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const token = await getToken();
   const customerData = await getCustomerDetails();
 
   if (!customerData) {
     return navigate(`/auth/login?token=EXPIRED`);
-  }
-
-  if (!token) {
-    return navigate("/auth/login?token=EXPIRED");
   }
 
   return (

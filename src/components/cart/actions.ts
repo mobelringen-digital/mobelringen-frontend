@@ -3,6 +3,7 @@
 import { cookies } from "next/headers";
 
 import { getSelectedStore } from "@/components/store-selector/actions";
+import { getCustomerDetails } from "@/modules/account/account/actions";
 import { getToken } from "@/modules/auth/actions";
 import { CustomerCartDocument, CartDocument } from "@/queries/cart.queries";
 import { authorizedMagentoClient } from "@/utils/lib/graphql";
@@ -23,13 +24,16 @@ export const getGuestCart = async () => {
 
     return guestCart?.cart;
   }
+
+  return null;
 };
 
 export default async function getCart() {
   const store = await getSelectedStore();
   const token = await getToken();
+  const customer = await getCustomerDetails();
 
-  if (!!token) {
+  if (!!token && !!customer) {
     const customerQuery = await authorizedMagentoClient(token, "GET", {
       tags: ["cart", token, store?.external_id ?? ""],
       cache: "no-store",
