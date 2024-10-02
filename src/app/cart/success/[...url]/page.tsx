@@ -6,6 +6,8 @@ import { MaskedOrderDocument } from "@/queries/order.queries";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 import { NextServerComponentProps } from "@/utils/ts-utils";
 
+import { navigate } from "../../../actions";
+
 async function getMaskedOrder(maskId: string) {
   const data = await baseMagentoClient().request(MaskedOrderDocument, {
     mask: maskId,
@@ -19,6 +21,10 @@ export default async function CartSuccess({
 }: NextServerComponentProps) {
   const order = await getMaskedOrder(String(searchParams.masked_id));
   revalidateTag("cart");
+
+  if (!order?.id) {
+    return navigate("/auth/error/unknown");
+  }
 
   return (
     <>

@@ -14,7 +14,7 @@ export async function getCustomerDetails() {
     tags: ["customer", token],
   }).request<CustomerQuery>(CustomerDocument);
 
-  if (token && data.customer) {
+  if (token && data?.customer) {
     return data.customer;
   }
 
