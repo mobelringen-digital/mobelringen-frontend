@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 import getCart from "@/components/cart/actions";
@@ -71,7 +71,6 @@ export async function updateCartItemsInStore() {
     });
 
     revalidateTag("cart");
-    revalidatePath("/cart");
 
     return data.updateCartItemsIsInStore;
   } catch (e) {
