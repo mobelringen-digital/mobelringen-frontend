@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { CartWarning } from "@/modules/cart/CartWarning";
 import { useCart } from "@/modules/cart/hooks/useCart";
@@ -14,6 +14,7 @@ interface Props {
 
 export const CartWarnings: React.FC<Props> = ({ cart }) => {
   const router = useRouter();
+  const pathname = usePathname();
   const { oneProductNotAvailableOnline, oneProductNotAvailableInStore } =
     useCart(cart);
 
@@ -33,7 +34,7 @@ export const CartWarnings: React.FC<Props> = ({ cart }) => {
               Noen av produktene er ikke tilgengelig i denne butikken.{" "}
               <button
                 className="underline"
-                onClick={() => router.push(`${window.location}?store=select`)}
+                onClick={() => router.push(`${pathname}?store=select`)}
               >
                 Velg en annen butikk
               </button>{" "}
