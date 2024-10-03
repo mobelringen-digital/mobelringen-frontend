@@ -28,7 +28,7 @@ export const StatusCircle: React.FC<Props> = ({
   return (
     <div
       className={cx(
-        "rounded-full",
+        "rounded-full flex-shrink-0",
         VARIANTS[variant],
         SIZINGS[size],
         className,
