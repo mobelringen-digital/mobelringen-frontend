@@ -55,7 +55,7 @@ export const BlockImageLinksSlider: React.FC<Props> = ({ data }) => {
                   </span>
                 </div>
                 <Image
-                  className="rounded-2xl"
+                  className="rounded-2xl max-w-[80vw] lg:max-w-auto"
                   width={imageData.width ?? imageData.image.width ?? 480}
                   height={imageData.height ?? imageData.image.height ?? 320}
                   src={imageData.image.url}
