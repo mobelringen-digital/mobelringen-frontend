@@ -12,7 +12,7 @@ export async function getCustomerDetails() {
 
   const data = await authorizedMagentoClient(token, "POST", {
     tags: ["customer", token],
-    revalidate: 3600,
+    revalidate: 600,
   }).request<CustomerQuery>(CustomerDocument);
 
   if (token && data?.customer) {
