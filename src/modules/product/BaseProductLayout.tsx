@@ -80,6 +80,15 @@ export const BaseProductLayout: React.FC<Props> = ({
     viewProductGTMEvent();
   }, [product, viewProductGTMEvent]);
 
+  const isPastDate = (date: string) => {
+    return new Date(date) < new Date();
+  };
+
+  const displayBadge =
+    product.special_price &&
+    product.campaign_period &&
+    !isPastDate(product.campaign_period);
+
   return (
     <>
       <ContainerLayout>
@@ -112,7 +121,7 @@ export const BaseProductLayout: React.FC<Props> = ({
 
             <div className="flex flex-col gap-2">
               <ProductPricing product={product} />
-              {product.special_price && product.campaign_period ? (
+              {displayBadge && product.campaign_period ? (
                 <div className="block">
                   <span className="text-sm bg-powder rounded-2xl py-1 px-2">
                     Tilbudet gjelder t.o.m.{" "}
