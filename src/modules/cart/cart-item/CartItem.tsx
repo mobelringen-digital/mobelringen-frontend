@@ -95,6 +95,10 @@ export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
     setIsLoading(false);
   };
 
+  const maxQuantity = isClickAndCollect
+    ? item?.availability?.cac?.max ?? 0
+    : item.availability?.online?.max;
+
   return (
     <>
       {isLoading ? <PageTopLoader /> : null}
@@ -145,6 +149,10 @@ export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
             <CartItemDeliveryInfo item={item} />
             <div className="w-full lg:text-base flex items-center gap-4">
               <QuantityInput
+                incrementDisabled={
+                  (!!maxQuantity || maxQuantity === 0) &&
+                  item.quantity >= maxQuantity
+                }
                 onQuantityIncrement={onQuantityIncrement}
                 onQuantityDecrement={onQuantityDecrement}
                 value={String(item?.quantity ?? 1)}

@@ -12,6 +12,7 @@ interface Props extends InputProps {
   onQuantityIncrement?: () => void;
   onQuantityDecrement?: () => void;
   disabled?: boolean;
+  incrementDisabled?: boolean;
 }
 
 export const QuantityInput: React.FC<Props> = ({
@@ -19,8 +20,15 @@ export const QuantityInput: React.FC<Props> = ({
   onQuantityDecrement,
   disabled,
   onChange,
+  incrementDisabled,
   ...rest
 }) => {
+  const handleQuantityIncrease = () => {
+    if (incrementDisabled) {
+      return;
+    }
+    onQuantityIncrement?.();
+  };
   return (
     <div className="rounded-2xl w-[120px] bg-sand flex items-center px-2 py-1">
       <Input
@@ -44,7 +52,10 @@ export const QuantityInput: React.FC<Props> = ({
           mainWrapper: "bg-sand p-0",
         }}
         endContent={
-          <QuantityButton onClick={onQuantityIncrement} disabled={disabled}>
+          <QuantityButton
+            onClick={handleQuantityIncrease}
+            disabled={disabled || incrementDisabled}
+          >
             <PlusIcon width={24} height={24} />
           </QuantityButton>
         }

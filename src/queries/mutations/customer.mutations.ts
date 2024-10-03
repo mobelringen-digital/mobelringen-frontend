@@ -118,6 +118,7 @@ export const CustomerOrderFragment = graphql(`
     order_date
     order_number
     status
+    status_label
     number
   }
 `);
