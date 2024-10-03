@@ -2,6 +2,8 @@
 
 import React from "react";
 
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
 import { LocalShippingIcon } from "@/components/_ui/icons/LocalShippingIcon";
 import { StorefrontIcon } from "@/components/_ui/icons/StorefrontIcon";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
@@ -31,7 +33,14 @@ export const PRODUCT_STOCK_STATUS_COLOR: Record<
 
 export const DeliveryInfo: React.FC<Props> = ({ product, stock }) => {
   const [isLoading, setIsLoading] = React.useState(false);
-  const [isStoreModalOpen, setIsStoreModalOpen] = React.useState(false);
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const router = useRouter();
+  const isModalOpen = searchParams.get("store") === "change";
+
+  const closeModal = () => {
+    router.push(pathname);
+  };
 
   const storesWithStock = product.stores?.filter(
     (store) => store?.qty && store.qty > 0,
@@ -49,7 +58,7 @@ export const DeliveryInfo: React.FC<Props> = ({ product, stock }) => {
       .then(() => {
         setTimeout(() => {
           // Wait for tag revalidate
-          setIsStoreModalOpen(false);
+          closeModal();
         }, 1000);
       })
       .finally(() => {
@@ -62,9 +71,9 @@ export const DeliveryInfo: React.FC<Props> = ({ product, stock }) => {
       {isLoading ? <PageTopLoader /> : null}
       {storesWithStock ? (
         <ChangeStoreModal
-          isOpen={isStoreModalOpen}
+          isOpen={isModalOpen}
           stores={storesWithStock}
-          onClose={() => setIsStoreModalOpen((prev) => !prev)}
+          onClose={closeModal}
           onStoreChange={selectDifferentStore}
         />
       ) : null}
@@ -117,7 +126,7 @@ export const DeliveryInfo: React.FC<Props> = ({ product, stock }) => {
             </span>
             {storesWithStock?.length && storesWithStock.length > 0 ? (
               <button
-                onClick={() => setIsStoreModalOpen((prev) => !prev)}
+                onClick={() => router.push(`${pathname}?store=change`)}
                 className="text-xs lg:text-sm text-dark-grey text-left"
               >
                 Tilgjengelig i{" "}

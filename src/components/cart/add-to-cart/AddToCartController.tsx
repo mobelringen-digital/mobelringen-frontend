@@ -82,7 +82,7 @@ export const AddToCartController: React.FC<Props> = ({
         </Button>
         {!selectedStore?.external_id ? (
           <Button
-            onClick={() => router.push(`${pathname}?store=select`)}
+            onClick={() => router.push(`${pathname}?store=change`)}
             disabled={!canBuyCAC || isLoading}
             color="secondary"
           >
