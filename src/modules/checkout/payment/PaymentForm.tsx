@@ -61,7 +61,7 @@ export const PaymentForm: React.FC<Props> = ({
               <RadioBlock key={method?.code} value={method?.code ?? ""}>
                 <div className="flex w-full justify-between items-center gap-2 items.center">
                   <span className="text-sm lg:text-base font-semibold">
-                    {method?.title} {method?.code}
+                    {method?.title}
                   </span>
                   {method?.code.includes("klarna") ? ICONS["klarna_kco"] : null}
                   {method?.code.includes("vipps") ? ICONS["vipps"] : null}
