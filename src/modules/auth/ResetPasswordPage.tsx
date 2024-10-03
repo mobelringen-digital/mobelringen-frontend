@@ -78,7 +78,7 @@ export const ResetPasswordPage: React.FC = () => {
             label="Nytt passord"
             name="newPassword"
           >
-            <Input type="text" variant="bordered" />
+            <Input type="password" variant="bordered" />
           </FieldWrapper>
           <FieldWrapper
             rules={{
@@ -91,7 +91,7 @@ export const ResetPasswordPage: React.FC = () => {
             label="Gjenta nytt passord"
             name="repeatNewPassword"
           >
-            <Input type="text" variant="bordered" />
+            <Input type="password" variant="bordered" />
           </FieldWrapper>
 
           <Button
