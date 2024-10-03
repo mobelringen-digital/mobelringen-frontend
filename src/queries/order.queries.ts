@@ -5,6 +5,7 @@ export const MaskedOrderFragment = graphql(`
     applied_coupons {
       code
     }
+    selected_store
     items {
       image
       name

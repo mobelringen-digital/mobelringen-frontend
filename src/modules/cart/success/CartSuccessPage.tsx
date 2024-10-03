@@ -26,6 +26,8 @@ export const CartSuccessPage: React.FC<Props> = ({ order }) => {
     .filter(Boolean)
     .join(", ");
 
+  const isClickAndCollect = order?.delivery_type === "CAC";
+
   return (
     <ContainerLayout className="pb-12">
       <CartBreadcrumbs />
@@ -34,6 +36,9 @@ export const CartSuccessPage: React.FC<Props> = ({ order }) => {
         <div className="col-span-12 lg:col-span-7 flex flex-col gap-8">
           <div className="bg-white p-4 lg:p-8 rounded-2xl flex flex-col gap-2">
             <div className="text-xl font-semibold mb-2">Adresse</div>
+            {isClickAndCollect ? (
+              <span className="text-base">{order.selected_store}</span>
+            ) : null}
             <span className="text-base">{fullShippingAddress}</span>
             <span className="text-base">{order?.carrier}</span>
             {/* <DeliveryMap order={order} /> */}
@@ -51,8 +56,9 @@ export const CartSuccessPage: React.FC<Props> = ({ order }) => {
         <div className="col-span-12 lg:col-span-5">
           <div className="bg-white p-4 lg:p-8 rounded-2xl flex flex-col gap-2">
             <OrderInformation order={order} />
-            <ItemsTable order={order} />
-            <InvoiceTable order={order} />
+            <ItemsTable showDelivery={!isClickAndCollect} order={order} />
+
+            {!isClickAndCollect ? <InvoiceTable order={order} /> : null}
           </div>
         </div>
       </div>

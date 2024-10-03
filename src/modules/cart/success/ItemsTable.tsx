@@ -5,9 +5,10 @@ import { MaskedOrderFragment } from "@/types";
 
 interface Props {
   order?: MaskedOrderFragment | null;
+  showDelivery?: boolean;
 }
 
-export const ItemsTable: React.FC<Props> = ({ order }) => {
+export const ItemsTable: React.FC<Props> = ({ order, showDelivery }) => {
   return (
     <table className="mt-8 border-dark-grey">
       <thead>
@@ -29,18 +30,18 @@ export const ItemsTable: React.FC<Props> = ({ order }) => {
             </td>
           </tr>
         ))}
-        <tr>
-          <td className="px-4 py-2 border-t border-warm-grey">
-            Frakt
-          </td>
-          <td className="px-4 py-2 border-t border-warm-grey text-right">
-            <FormatNumber
-              value={order?.total?.total_shipping?.value}
-              format="currency"
-              suffix=" kr"
-            />
-          </td>
-        </tr>
+        {showDelivery ? (
+          <tr>
+            <td className="px-4 py-2 border-t border-warm-grey">Frakt</td>
+            <td className="px-4 py-2 border-t border-warm-grey text-right">
+              <FormatNumber
+                value={order?.total?.total_shipping?.value}
+                format="currency"
+                suffix=" kr"
+              />
+            </td>
+          </tr>
+        ) : null}
         <tr>
           <td className="px-4 py-2 border-t border-warm-grey font-semibold">
             Totalt
