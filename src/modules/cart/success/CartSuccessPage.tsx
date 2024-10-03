@@ -19,9 +19,9 @@ interface Props {
 
 export const CartSuccessPage: React.FC<Props> = ({ order }) => {
   const fullShippingAddress = [
-    order?.shipping_address?.city,
     order?.shipping_address?.street,
     order?.shipping_address?.postcode,
+    order?.shipping_address?.city,
   ]
     .filter(Boolean)
     .join(", ");
