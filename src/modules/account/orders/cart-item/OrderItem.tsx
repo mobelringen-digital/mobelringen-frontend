@@ -16,7 +16,7 @@ export const OrderItem: React.FC<Props> = ({ data }) => {
     >
       <div className="flex items-center gap-4">
         <span className="text-xl font-semibold">Order: #{data?.id}</span>
-        <span className="text-sm text-dark-grey">({data?.status})</span>
+        <span className="text-sm text-dark-grey">({data?.status_label})</span>
       </div>
       <InfoRow data={data} />
       <OrderItems data={data} />
