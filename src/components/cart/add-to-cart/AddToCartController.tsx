@@ -63,6 +63,14 @@ export const AddToCartController: React.FC<Props> = ({
     });
   };
 
+  const handleOpenStoreSelect = () => {
+    if (!canBuyCAC || isLoading) {
+      return;
+    }
+
+    return router.push(`${pathname}?store=change`);
+  };
+
   return (
     <>
       {isLoading ? <PageTopLoader /> : null}
@@ -82,7 +90,7 @@ export const AddToCartController: React.FC<Props> = ({
         </Button>
         {!selectedStore?.external_id ? (
           <Button
-            onClick={() => router.push(`${pathname}?store=change`)}
+            onClick={handleOpenStoreSelect}
             disabled={!canBuyCAC || isLoading}
             color="secondary"
           >
