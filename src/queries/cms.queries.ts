@@ -254,3 +254,14 @@ export const BlockCustomerPaperFragment = graphql(`
     }
   }
 `);
+
+export const BlockFlowboxFragment = graphql(`
+  fragment CmsBlockFlowbox on BlockFlowbox {
+    ... on BlockFlowbox {
+      __typename
+      blockConfig {
+        ...CmsBlockConfig
+      }
+    }
+  }
+`);
