@@ -15,7 +15,7 @@ export async function updateCartItems(cartItems: Array<CartItemUpdateInput>) {
   const token = await getToken();
 
   if (!cart) {
-    return;
+    return null;
   }
 
   const data = await authorizedMagentoClient(token, "POST")

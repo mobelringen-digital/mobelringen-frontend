@@ -9,7 +9,6 @@ import Link from "next/link";
 
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { QuantityInput } from "@/components/_ui/quantity-input/QuantityInput";
-import { openToast } from "@/components/_ui/toast-provider";
 import { useConfirm } from "@/components/confirm/hooks/useConfirm";
 import { updateCartItems } from "@/modules/cart/cart-item/actions";
 import { CartItemDeliveryInfo } from "@/modules/cart/cart-item/CartItemDeliveryInfo";
@@ -17,6 +16,7 @@ import { CartItemPrice } from "@/modules/cart/cart-item/CartItemPrice";
 import { useCartItem } from "@/modules/cart/hooks/useCartItem";
 import { CartItemFragment, RemoveProductFromCartMutation } from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
+import { useRequestCallback } from "@/utils/hooks/useRequestCallback";
 
 interface Props {
   item: CartItemFragment | null;
@@ -29,6 +29,7 @@ export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const { showConfirmation } = useConfirm();
   const { isClickAndCollect } = useCartItem(item);
+  const { handlePossibleErrors } = useRequestCallback();
 
   if (!item) return null;
 
@@ -71,10 +72,7 @@ export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
       ]);
       setIsLoading(false);
 
-      // @ts-expect-error - Handle error
-      if ("errors" in data && data.errors) {
-        data.errors.map((err: any) => openToast({ content: err.message }));
-      }
+      handlePossibleErrors(data);
 
       return data;
     }
