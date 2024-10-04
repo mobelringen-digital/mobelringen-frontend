@@ -19,13 +19,12 @@ export async function updateCartItems(cartItems: Array<CartItemUpdateInput>) {
   }
 
   try {
-    const data = await authorizedMagentoClient(token, "POST").request(
-      UpdateCartItems,
-      {
-        cartId: cart.id,
-        cartItems,
-      },
-    );
+    const data = await authorizedMagentoClient(token, "POST", {
+      manualErrorHandler: true,
+    }).request(UpdateCartItems, {
+      cartId: cart.id,
+      cartItems,
+    });
 
     revalidatePath("/cart");
     revalidateTag("cart");

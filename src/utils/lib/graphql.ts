@@ -42,7 +42,12 @@ export const baseMagentoClient = (
 export const authorizedMagentoClient = (
   token?: string,
   method?: "GET" | "POST",
-  nextOptions?: { revalidate?: number; tags?: string[]; cache?: RequestCache },
+  nextOptions?: {
+    revalidate?: number;
+    tags?: string[];
+    cache?: RequestCache;
+    manualErrorHandler?: boolean;
+  },
 ) =>
   new GraphQLClient(process.env.NEXT_PUBLIC_MAGENTO_URL as string, {
     method,
@@ -67,7 +72,10 @@ export const authorizedMagentoClient = (
         })
           .then((res) => res)
           .catch((error) => {
-            throw new Error(error);
+            if (nextOptions?.manualErrorHandler) {
+              throw new Error(error);
+            }
+            return error;
           }),
     ),
   });
