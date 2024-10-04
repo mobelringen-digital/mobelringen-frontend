@@ -9,7 +9,7 @@ interface Props {
 
 export const DesktopMenu: React.FC<Props> = ({ data }) => {
   return (
-    <ul className="gap-4 items-center font-base font-normal hidden md:flex">
+    <ul className="gap-4 items-center font-base font-normal hidden lg:flex">
       {data.menus[0].links?.map((link, index) => {
         return <MenuItem link={link} key={index} />;
       })}
