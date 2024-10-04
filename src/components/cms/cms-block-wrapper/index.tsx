@@ -18,16 +18,28 @@ const BACKGROUND_COLOR: Record<BackgroundColor, string> & { None: "" } = {
   Pink: "bg-powder",
 };
 
-const BLOCK_SPACINGS_DESKTOP: Record<Spacing, string> = {
-  small: "lg:py-8",
-  medium: "lg:py-16",
-  big: "lg:py-24",
+const BLOCK_SPACINGS_TOP_DESKTOP: Record<Spacing, string> = {
+  small: "lg:pt-8",
+  medium: "lg:pt-16",
+  big: "lg:pt-24",
 };
 
-const BLOCK_SPACINGS_MOBILE: Record<Spacing, string> = {
-  small: "py-8",
-  medium: "py-16",
-  big: "py-24",
+const BLOCK_SPACINGS_BOTTOM_DESKTOP: Record<Spacing, string> = {
+  small: "lg:pb-8",
+  medium: "lg:pb-16",
+  big: "lg:pb-24",
+};
+
+const BLOCK_SPACINGS_TOP_MOBILE: Record<Spacing, string> = {
+  small: "pt-8",
+  medium: "pt-16",
+  big: "pt-24",
+};
+
+const BLOCK_SPACINGS_BOTTOM_MOBILE: Record<Spacing, string> = {
+  small: "pb-8",
+  medium: "pb-16",
+  big: "pb-24",
 };
 
 export const CmsBlockWrapper: React.FC<Props> = ({
@@ -40,8 +52,12 @@ export const CmsBlockWrapper: React.FC<Props> = ({
       className={cx(
         "w-full",
         BACKGROUND_COLOR[config?.backgroundColor ?? "None"],
-        BLOCK_SPACINGS_DESKTOP[config?.spacing?.desktop ?? "medium"],
-        BLOCK_SPACINGS_MOBILE[config?.spacing?.mobile ?? "medium"],
+        BLOCK_SPACINGS_TOP_DESKTOP[config?.spacingTop?.desktop ?? "medium"],
+        BLOCK_SPACINGS_BOTTOM_DESKTOP[
+          config?.spacingBottom?.desktop ?? "medium"
+        ],
+        BLOCK_SPACINGS_TOP_MOBILE[config?.spacingTop?.mobile ?? "medium"],
+        BLOCK_SPACINGS_BOTTOM_MOBILE[config?.spacingBottom?.mobile ?? "medium"],
       )}
     >
       <ContainerLayout fullWidth={isFullWidth}>{children}</ContainerLayout>
