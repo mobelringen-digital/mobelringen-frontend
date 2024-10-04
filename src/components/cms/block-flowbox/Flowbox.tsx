@@ -4,12 +4,12 @@ import React, { useEffect } from "react";
 
 import Script from "next/script";
 
-interface Props {
+interface FlowboxProps {
   flowKey: string;
   locale?: string;
 }
 
-const Flowbox: React.FC<Props> = ({ flowKey, locale = "nb-NO" }) => {
+const Flowbox: React.FC<FlowboxProps> = ({ flowKey, locale = "nb-NO" }) => {
   // Generate a unique container ID based on the flowKey
   const containerId = `js-flowbox-flow-${flowKey}`;
 
@@ -23,7 +23,7 @@ const Flowbox: React.FC<Props> = ({ flowKey, locale = "nb-NO" }) => {
             locale: locale,
           });
         } else {
-          // Do nothing
+          // Do nothing if Flowbox is not available
         }
       };
 
@@ -51,7 +51,7 @@ const Flowbox: React.FC<Props> = ({ flowKey, locale = "nb-NO" }) => {
       <Script
         id="flowbox-js-embed"
         src="https://connect.getflowbox.com/flowbox.js"
-        strategy="afterInteractive"
+        strategy="beforeInteractive"
         onLoad={() => {
           // Dispatch a custom event to initialize Flowbox
           const event = new Event("flowboxScriptLoaded");
