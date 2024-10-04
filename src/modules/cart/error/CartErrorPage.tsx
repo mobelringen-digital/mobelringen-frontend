@@ -10,7 +10,6 @@ import { Button } from "@/components/_ui/button/Button";
 import { CartCookie } from "@/components/cart/fetchCartService";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { PageTitle } from "@/components/typography/PageTitle";
-import { CartBreadcrumbs } from "@/modules/cart/CartBreadcrumbs";
 
 export const CartErrorPage = () => {
   const [cookies, setCookie] = useCookies<"cart" | "cart_old", CartCookie>([
@@ -33,7 +32,6 @@ export const CartErrorPage = () => {
 
   return (
     <ContainerLayout>
-      <CartBreadcrumbs />
       <PageTitle>Noe gikk galt</PageTitle>
       <p className="text-lg flex justify-center">
         Det ser ut til at noe gikk galt. Vennligst prøv igjen senere.
