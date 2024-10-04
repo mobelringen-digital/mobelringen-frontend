@@ -16,9 +16,7 @@ export async function updateCartItems(cartItems: Array<CartItemUpdateInput>) {
     return;
   }
 
-  const data = await authorizedMagentoClient(token, "POST", {
-    manualErrorHandler: true,
-  })
+  const data = await authorizedMagentoClient(token, "POST")
     .request(UpdateCartItems, {
       cartId: cart.id,
       cartItems,

@@ -46,7 +46,6 @@ export const authorizedMagentoClient = (
     revalidate?: number;
     tags?: string[];
     cache?: RequestCache;
-    manualErrorHandler?: boolean;
   },
 ) =>
   new GraphQLClient(process.env.NEXT_PUBLIC_MAGENTO_URL as string, {
