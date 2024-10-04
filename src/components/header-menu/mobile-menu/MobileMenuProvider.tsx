@@ -42,7 +42,7 @@ export const MobileMenuProvider: React.FC<Props> = ({ children }) => {
   }, [isOpen]);
 
   return (
-    <div className="flex gap-2 items-center md:hidden">
+    <div className="flex gap-2 items-center lg:hidden">
       <button onClick={handleMenuButtonClick}>
         <MenuIcon />
       </button>

@@ -9,13 +9,13 @@ export type ErrorResponse = {
 };
 
 export const useRequestCallback = () => {
-  const handleError = (error: Error) => {
-    (error as unknown as ErrorResponse).response.errors.map((err) => {
-      openToast({
-        content: err.message,
-      });
-    });
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handlePossibleErrors = <_, T>(data: T | { errors: any }) => {
+    // @ts-expect-error - Handle error
+    if ("errors" in data && data.errors) {
+      data.errors.map((err: any) => openToast({ content: err.message }));
+    }
   };
 
-  return { handleError };
+  return { handlePossibleErrors };
 };

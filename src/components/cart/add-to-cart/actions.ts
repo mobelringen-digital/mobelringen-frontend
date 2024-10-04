@@ -72,7 +72,5 @@ export async function createCartAndAddProduct(
 
   if (!cartId) return;
 
-  await addToCart(cartId, cartItems, preferredMethod);
-
-  return cartId;
+  return await addToCart(cartId, cartItems, preferredMethod);
 }

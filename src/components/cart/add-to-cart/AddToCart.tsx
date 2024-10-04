@@ -2,6 +2,7 @@ import React from "react";
 
 import { sendGTMEvent } from "@next/third-parties/google";
 
+import { openToast } from "@/components/_ui/toast-provider";
 import {
   addToCart,
   createCartAndAddProduct,
@@ -75,7 +76,7 @@ export const AddToCart: React.FC<Props> = ({
 
     if (cart?.id && product.sku && quantity) {
       addToCartGTMEvent();
-      return await addToCart(
+      const data = await addToCart(
         cart?.id,
         [
           {
@@ -85,11 +86,19 @@ export const AddToCart: React.FC<Props> = ({
         ],
         preferredMethod,
       );
+
+      if (data.addProductsToCart?.user_errors) {
+        data.addProductsToCart.user_errors.forEach((error) => {
+          return openToast({ content: error?.message });
+        });
+      }
+
+      return data;
     }
 
     if (!cart?.id && product.sku && quantity) {
       addToCartGTMEvent();
-      return await createCartAndAddProduct(
+      const data = await createCartAndAddProduct(
         [
           {
             sku: product.sku,
@@ -98,6 +107,14 @@ export const AddToCart: React.FC<Props> = ({
         ],
         preferredMethod,
       );
+
+      if (data?.addProductsToCart?.user_errors) {
+        data.addProductsToCart.user_errors.forEach((error) => {
+          return openToast({ content: error?.message });
+        });
+      }
+
+      return data;
     }
   };
 

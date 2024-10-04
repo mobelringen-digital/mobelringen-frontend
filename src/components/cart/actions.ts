@@ -18,9 +18,11 @@ export const getGuestCart = async () => {
       tags: ["cart", store?.external_id ?? ""],
       cache: "no-store",
       revalidate: undefined,
-    }).request(CartDocument, {
-      cart_id: String(cartCookie.value),
-    });
+    })
+      .request(CartDocument, {
+        cart_id: String(cartCookie.value),
+      })
+      .catch(() => null);
 
     return guestCart?.cart;
   }
@@ -37,7 +39,9 @@ export default async function getCart() {
     const customerQuery = await authorizedMagentoClient(token, "GET", {
       tags: ["cart", store?.external_id ?? ""],
       revalidate: 60,
-    }).request(CustomerCartDocument);
+    })
+      .request(CustomerCartDocument)
+      .catch(() => null);
 
     if (customerQuery?.customerCart) {
       return customerQuery.customerCart;

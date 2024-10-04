@@ -1,6 +1,6 @@
 import { cache } from "react";
 
-import { GraphQLClient, ResponseMiddleware } from "graphql-request";
+import { GraphQLClient } from "graphql-request";
 
 export const baseHygraphClient = (method?: "POST" | "GET") =>
   new GraphQLClient(process.env.NEXT_PUBLIC_HYGRAPH_URL as string, {
@@ -39,29 +39,17 @@ export const baseMagentoClient = (
     ),
   });
 
-const responseMiddleware: ResponseMiddleware = async (response) => {
-  if (!(response instanceof Error) && response.errors) {
-    const isGraphQlAuthorizationError = response.errors.find(
-      (err) =>
-        !!err?.extensions?.category &&
-        err.extensions.category === "graphql-authorization",
-    );
-
-    if (isGraphQlAuthorizationError) {
-      // navigate("/login");
-    }
-  }
-};
-
 export const authorizedMagentoClient = (
   token?: string,
   method?: "GET" | "POST",
-  nextOptions?: { revalidate?: number; tags?: string[]; cache?: RequestCache },
+  nextOptions?: {
+    revalidate?: number;
+    tags?: string[];
+    cache?: RequestCache;
+  },
 ) =>
   new GraphQLClient(process.env.NEXT_PUBLIC_MAGENTO_URL as string, {
     method,
-    errorPolicy: "all",
-    responseMiddleware,
     fetch: cache(
       async (input: RequestInfo | URL, init?: RequestInit | undefined) =>
         fetch(input, {

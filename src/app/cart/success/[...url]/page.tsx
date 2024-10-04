@@ -21,23 +21,21 @@ async function getMaskedOrder(maskId: string) {
 export default async function CartSuccess({
   searchParams,
 }: NextServerComponentProps) {
-  try {
-    const order = await getMaskedOrder(String(searchParams.masked_id));
-    revalidateTag("cart");
-    revalidateTag("customer");
-    revalidateTag("customer-orders");
+  const order = await getMaskedOrder(String(searchParams.masked_id)).catch(() =>
+    navigate(`/cart/error/unknown?mask=${searchParams.masked_id}`),
+  );
+  revalidateTag("cart");
+  revalidateTag("customer");
+  revalidateTag("customer-orders");
 
-    if (!order?.id) {
-      return navigate("/cart/error/unknown");
-    }
-
-    return (
-      <>
-        <CartSuccessPage order={order} />
-        <StaticPageContent url="/cart/success" />
-      </>
-    );
-  } catch (e) {
-    return navigate(`/cart/error/unknown?mask=${searchParams.masked_id}`);
+  if (!order?.id) {
+    return navigate("/cart/error/unknown");
   }
+
+  return (
+    <>
+      <CartSuccessPage order={order} />
+      <StaticPageContent url="/cart/success" />
+    </>
+  );
 }
