@@ -68,8 +68,6 @@ export const authorizedMagentoClient = (
             ContentType: "application/json",
             "Content-Type": "application/json",
           },
-        })
-          .then((res) => res)
-          .catch((error) => error),
+        }),
     ),
   });
