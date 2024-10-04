@@ -63,6 +63,10 @@ export const CmsBlockConfigFragment = graphql(`
       id
       backgroundColor
       hideBlockTitle
+      spacing {
+        desktop
+        mobile
+      }
     }
   }
 `);
