@@ -1,4 +1,5 @@
 import { revalidateTag } from "next/cache";
+import { cookies } from "next/headers";
 
 import { StaticPageContent } from "@/components/cms/static-page-content/StaticPageContent";
 import { CartSuccessPage } from "@/modules/cart/success/CartSuccessPage";
@@ -27,6 +28,8 @@ export default async function CartSuccess({
   revalidateTag("cart");
   revalidateTag("customer");
   revalidateTag("customer-orders");
+
+  cookies().set("cart", "", { expires: new Date(0) });
 
   if (!order?.id) {
     return navigate("/cart/error/unknown");
