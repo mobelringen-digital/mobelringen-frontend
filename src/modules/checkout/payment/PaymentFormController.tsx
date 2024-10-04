@@ -3,8 +3,10 @@
 import React from "react";
 
 import { sendGTMEvent } from "@next/third-parties/google";
+import { useCookies } from "react-cookie";
 
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
+import { CartCookie } from "@/components/cart/fetchCartService";
 import {
   initKlarnaHpp,
   setPaymentMethodOnCart,
@@ -21,6 +23,10 @@ interface Props {
 }
 
 export const PaymentFormController: React.FC<Props> = ({ cart }) => {
+  const [_cookies, setCookie] = useCookies<"cart" | "cart_old", CartCookie>([
+    "cart",
+    "cart_old",
+  ]);
   const [isLoading, setIsLoading] = React.useState(false);
   if (!cart) {
     return null;
@@ -38,6 +44,11 @@ export const PaymentFormController: React.FC<Props> = ({ cart }) => {
       payment_type: method.code,
       ...formatGTMCartItems(cart),
     });
+  };
+
+  const removeCartCookie = () => {
+    setCookie("cart", "", { expires: new Date(0) });
+    setCookie("cart_old", cart.id, { expires: new Date(0) });
   };
 
   const onSubmit = async (method: AvailablePaymentMethodFragment) => {
@@ -58,6 +69,7 @@ export const PaymentFormController: React.FC<Props> = ({ cart }) => {
         if (data?.vippsInitPayment?.url) {
           addPaymentInfoGTMEvent(method);
           setIsLoading(false);
+          removeCartCookie();
           return (window.location.href = data.vippsInitPayment.url);
         }
       }
@@ -72,6 +84,7 @@ export const PaymentFormController: React.FC<Props> = ({ cart }) => {
         if (data.initKlarnaHpp?.redirect_url) {
           addPaymentInfoGTMEvent(method);
           setIsLoading(false);
+          removeCartCookie();
           return (window.location.href = data.initKlarnaHpp?.redirect_url);
         }
       }
