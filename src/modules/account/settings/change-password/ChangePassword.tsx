@@ -81,7 +81,7 @@ export const ChangePassword = () => {
           label="Gjenta passord"
           name="confirmNewPassword"
         >
-          <Input type="confirmNewPassword" variant="bordered" />
+          <Input type="password" variant="bordered" />
         </FieldWrapper>
 
         <Button
