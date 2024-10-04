@@ -2,43 +2,64 @@
 
 import React, { useEffect } from "react";
 
-const loadFlowbox = () =>
-  new Promise((resolve) => {
-    (function (d, id) {
-      if (!window.flowbox) {
-        const f = function () {
-          // eslint-disable-next-line prefer-rest-params
-          f.q.push(arguments);
-        };
-        // @ts-expect-error - flowbox is a global variable
-        f.q = [];
-        window.flowbox = f;
-      }
-      if (d.getElementById(id)) {
-        return resolve(id);
-      }
-      const s = d.createElement("script"),
-        fjs = d.scripts[d.scripts.length - 1];
-      s.id = id;
-      s.async = true;
-      s.src = "https://connect.getflowbox.com/flowbox.js";
-      fjs?.parentNode?.insertBefore(s, fjs);
-      resolve(id);
-    })(document, "flowbox-js-embed");
-  });
+import Script from "next/script";
 
-const containerName = "js-flowbox-flow";
-const locale = "nb-NO";
+interface Props {
+  flowKey: string;
+  locale?: string;
+}
 
-const Flowbox = ({ flowKey: key }: { flowKey: string }) => {
-  const container = `${containerName}-${key}`;
+const Flowbox: React.FC<Props> = ({ flowKey, locale = "nb-NO" }) => {
+  // Generate a unique container ID based on the flowKey
+  const containerId = `js-flowbox-flow-${flowKey}`;
+
   useEffect(() => {
-    loadFlowbox().then(() => {
-      window.flowbox("init", { container: container, key, locale });
-    });
-  }, [container, key]);
+    if (typeof window !== "undefined") {
+      const initializeFlowbox = () => {
+        if (window.flowbox && typeof window.flowbox === "function") {
+          window.flowbox("init", {
+            container: `#${containerId}`,
+            key: flowKey,
+            locale: locale,
+          });
+        } else {
+          // Do nothing
+        }
+      };
 
-  return <div id={container} />;
+      if (window.flowbox && typeof window.flowbox === "function") {
+        // If the Flowbox script is already loaded
+        initializeFlowbox();
+      } else {
+        // Wait for the script to load and then initialize
+        window.addEventListener("flowboxScriptLoaded", initializeFlowbox);
+      }
+
+      // Cleanup the event listener on unmount
+      return () => {
+        window.removeEventListener("flowboxScriptLoaded", initializeFlowbox);
+      };
+    }
+  }, [flowKey, locale, containerId]);
+
+  return (
+    <>
+      {/* The container where Flowbox will render the content */}
+      <div id={containerId} />
+
+      {/* Load the Flowbox script using Next.js's Script component */}
+      <Script
+        id="flowbox-js-embed"
+        src="https://connect.getflowbox.com/flowbox.js"
+        strategy="afterInteractive"
+        onLoad={() => {
+          // Dispatch a custom event to initialize Flowbox
+          const event = new Event("flowboxScriptLoaded");
+          window.dispatchEvent(event);
+        }}
+      />
+    </>
+  );
 };
 
 export default Flowbox;

@@ -259,6 +259,7 @@ export const BlockFlowboxFragment = graphql(`
   fragment CmsBlockFlowbox on BlockFlowbox {
     ... on BlockFlowbox {
       __typename
+      flowKey
       blockConfig {
         ...CmsBlockConfig
       }
