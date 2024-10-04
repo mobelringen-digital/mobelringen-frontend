@@ -221,7 +221,7 @@ export const BlockBrandsListFragment = graphql(`
     ... on BlockBrandsList {
       __typename
       title
-      brands {
+      brands(first: 100) {
         ...CmsBrand
       }
       blockConfig {
