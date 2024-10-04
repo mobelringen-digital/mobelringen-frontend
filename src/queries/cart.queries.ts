@@ -292,6 +292,9 @@ export const AddProductToCart = graphql(`
       cart {
         ...BaseCart
       }
+      user_errors {
+        message
+      }
     }
   }
 `);

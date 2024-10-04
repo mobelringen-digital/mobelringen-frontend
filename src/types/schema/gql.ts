@@ -26,7 +26,7 @@ const documents = {
     "\n  query Cart($cart_id: String!) {\n    cart(cart_id: $cart_id) {\n      ...BaseCart\n    }\n  }\n": types.CartDocument,
     "\n  query CustomerCart {\n    customerCart {\n      ...BaseCart\n    }\n  }\n": types.CustomerCartDocument,
     "\n  mutation CreateEmptyCart {\n    createEmptyCart\n  }\n": types.CreateEmptyCartDocument,
-    "\n  mutation AddProductToCart($cartId: String!, $cartItems: [CartItemInput!]!) {\n    addProductsToCart(cartId: $cartId, cartItems: $cartItems) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n": types.AddProductToCartDocument,
+    "\n  mutation AddProductToCart($cartId: String!, $cartItems: [CartItemInput!]!) {\n    addProductsToCart(cartId: $cartId, cartItems: $cartItems) {\n      cart {\n        ...BaseCart\n      }\n      user_errors {\n        message\n      }\n    }\n  }\n": types.AddProductToCartDocument,
     "\n  mutation RemoveProductFromCart($cartId: String!, $cartItemId: Int!) {\n    removeItemFromCart(input: { cart_id: $cartId, cart_item_id: $cartItemId }) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n": types.RemoveProductFromCartDocument,
     "\n  mutation UpdateCartItems(\n    $cartId: String!\n    $cartItems: [CartItemUpdateInput]!\n  ) {\n    updateCartItems(input: { cart_id: $cartId, cart_items: $cartItems }) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n": types.UpdateCartItemsDocument,
     "\n  mutation PlaceOrder($cartId: String!) {\n    placeOrder(input: { cart_id: $cartId }) {\n      order {\n        order_id\n        order_number\n      }\n    }\n  }\n": types.PlaceOrderDocument,
@@ -203,7 +203,7 @@ export function graphql(source: "\n  mutation CreateEmptyCart {\n    createEmpty
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  mutation AddProductToCart($cartId: String!, $cartItems: [CartItemInput!]!) {\n    addProductsToCart(cartId: $cartId, cartItems: $cartItems) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n"): (typeof documents)["\n  mutation AddProductToCart($cartId: String!, $cartItems: [CartItemInput!]!) {\n    addProductsToCart(cartId: $cartId, cartItems: $cartItems) {\n      cart {\n        ...BaseCart\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  mutation AddProductToCart($cartId: String!, $cartItems: [CartItemInput!]!) {\n    addProductsToCart(cartId: $cartId, cartItems: $cartItems) {\n      cart {\n        ...BaseCart\n      }\n      user_errors {\n        message\n      }\n    }\n  }\n"): (typeof documents)["\n  mutation AddProductToCart($cartId: String!, $cartItems: [CartItemInput!]!) {\n    addProductsToCart(cartId: $cartId, cartItems: $cartItems) {\n      cart {\n        ...BaseCart\n      }\n      user_errors {\n        message\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

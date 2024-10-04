@@ -16,6 +16,7 @@ import { CartItemPrice } from "@/modules/cart/cart-item/CartItemPrice";
 import { useCartItem } from "@/modules/cart/hooks/useCartItem";
 import { CartItemFragment, RemoveProductFromCartMutation } from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
+import { useRequestCallback } from "@/utils/hooks/useRequestCallback";
 
 interface Props {
   item: CartItemFragment | null;
@@ -28,6 +29,7 @@ export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const { showConfirmation } = useConfirm();
   const { isClickAndCollect } = useCartItem(item);
+  const { handleError } = useRequestCallback();
 
   if (!item) return null;
 
@@ -61,12 +63,21 @@ export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
   const handleUpdateQuantity = async (quantity: number) => {
     if (quantity > 0) {
       setIsLoading(true);
-      return updateCartItems([
-        {
-          cart_item_id: parseInt(item.id, 10),
-          quantity,
-        },
-      ]).finally(() => setIsLoading(false));
+
+      try {
+        const data = await updateCartItems([
+          {
+            cart_item_id: parseInt(item.id, 10),
+            quantity,
+          },
+        ]);
+        setIsLoading(false);
+
+        return data;
+      } catch (e) {
+        setIsLoading(false);
+        handleError(e);
+      }
     }
   };
 
@@ -94,10 +105,6 @@ export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
 
     setIsLoading(false);
   };
-
-  const maxQuantity = isClickAndCollect
-    ? item?.availability?.cac?.max ?? 0
-    : item.availability?.online?.max;
 
   return (
     <>
@@ -149,10 +156,6 @@ export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
             <CartItemDeliveryInfo item={item} />
             <div className="w-full lg:text-base flex items-center gap-4">
               <QuantityInput
-                incrementDisabled={
-                  (!!maxQuantity || maxQuantity === 0) &&
-                  item.quantity >= maxQuantity
-                }
                 onQuantityIncrement={onQuantityIncrement}
                 onQuantityDecrement={onQuantityDecrement}
                 value={String(item?.quantity ?? 1)}

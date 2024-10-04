@@ -9,12 +9,12 @@ export type ErrorResponse = {
 };
 
 export const useRequestCallback = () => {
-  const handleError = (error: Error) => {
-    (error as unknown as ErrorResponse).response.errors.map((err) => {
+  const handleError = (error: unknown) => {
+    if (error instanceof Error) {
       openToast({
-        content: err.message,
+        content: error.message,
       });
-    });
+    }
   };
 
   return { handleError };
