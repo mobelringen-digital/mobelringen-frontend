@@ -8,6 +8,8 @@ import { RemoveProductFromCart, UpdateCartItems } from "@/queries/cart.queries";
 import { CartItemUpdateInput } from "@/types";
 import { authorizedMagentoClient } from "@/utils/lib/graphql";
 
+import { handleError } from "../../../app/actions";
+
 export async function updateCartItems(cartItems: Array<CartItemUpdateInput>) {
   const cart = await getCart();
   const token = await getToken();
@@ -22,7 +24,7 @@ export async function updateCartItems(cartItems: Array<CartItemUpdateInput>) {
       cartItems,
     })
     .catch((error) => {
-      throw new Error(error.response.errors[0].message);
+      return handleError(error);
     });
 
   revalidatePath("/cart");

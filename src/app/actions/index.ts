@@ -22,8 +22,8 @@ export interface GraphQLError {
 }
 
 export async function handleError(error: any) {
-  if (!(error instanceof Error) && error.errors) {
-    const isGraphQlAuthorizationError = error.errors.find(
+  if (error.response.errors) {
+    const isGraphQlAuthorizationError = error.errors?.find(
       (err: any) =>
         !!err?.extensions?.category &&
         err.extensions.category === "graphql-authorization",
@@ -32,7 +32,9 @@ export async function handleError(error: any) {
     if (isGraphQlAuthorizationError) {
       return navigate("/auth/login?token=EXPIRED");
     }
-  } else {
-    throw new Error((error as GraphQLError).response.errors[0].message);
+
+    return {
+      errors: error.response.errors,
+    };
   }
 }
