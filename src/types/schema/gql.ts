@@ -56,7 +56,7 @@ const documents = {
     "\n  fragment CmsBlockBrands on BlockBrand {\n    ... on BlockBrand {\n      __typename\n      title\n      viewMoreLink {\n        ...CmsLink\n      }\n      brands {\n        ...CmsImageLink\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsBlockBrandsFragmentDoc,
     "\n  fragment CmsBlockProductsList on BlockProductsList {\n    ... on BlockProductsList {\n      __typename\n      title\n      brand\n      categoryId\n      sku\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsBlockProductsListFragmentDoc,
     "\n  fragment CmsBrand on Brand {\n    ... on Brand {\n      __typename\n      brandName\n      url\n      image {\n        url\n        width\n        height\n      }\n    }\n  }\n": types.CmsBrandFragmentDoc,
-    "\n  fragment CmsBlockBrandsList on BlockBrandsList {\n    ... on BlockBrandsList {\n      __typename\n      title\n      brands {\n        ...CmsBrand\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsBlockBrandsListFragmentDoc,
+    "\n  fragment CmsBlockBrandsList on BlockBrandsList {\n    ... on BlockBrandsList {\n      __typename\n      title\n      brands(first: 100) {\n        ...CmsBrand\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsBlockBrandsListFragmentDoc,
     "\n  fragment CmsBlockCustomerClubForm on BlockCustomerClubform {\n    ... on BlockCustomerClubform {\n      __typename\n      title\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsBlockCustomerClubFormFragmentDoc,
     "\n  fragment CmsBlockCustomerPaper on BlockCustomerPaper {\n    ... on BlockCustomerPaper {\n      __typename\n      title\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsBlockCustomerPaperFragmentDoc,
     "\n  fragment CmsBlockFlowbox on BlockFlowbox {\n    ... on BlockFlowbox {\n      __typename\n      flowKey\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsBlockFlowboxFragmentDoc,
@@ -323,7 +323,7 @@ export function graphql(source: "\n  fragment CmsBrand on Brand {\n    ... on Br
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  fragment CmsBlockBrandsList on BlockBrandsList {\n    ... on BlockBrandsList {\n      __typename\n      title\n      brands {\n        ...CmsBrand\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"): (typeof documents)["\n  fragment CmsBlockBrandsList on BlockBrandsList {\n    ... on BlockBrandsList {\n      __typename\n      title\n      brands {\n        ...CmsBrand\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  fragment CmsBlockBrandsList on BlockBrandsList {\n    ... on BlockBrandsList {\n      __typename\n      title\n      brands(first: 100) {\n        ...CmsBrand\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"): (typeof documents)["\n  fragment CmsBlockBrandsList on BlockBrandsList {\n    ... on BlockBrandsList {\n      __typename\n      title\n      brands(first: 100) {\n        ...CmsBrand\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
