@@ -78,7 +78,7 @@ export const OnlineBillingFormFields: React.FC<Props> = ({
                   : false,
               }}
               control={control}
-              label="By *"
+              label="Poststed *"
               name="billing.address.city"
             >
               <Input variant="bordered" />
@@ -106,7 +106,7 @@ export const OnlineBillingFormFields: React.FC<Props> = ({
                   : false,
               }}
               control={control}
-              label="Postnumer *"
+              label="Postnummer *"
               name="billing.address.postcode"
             >
               <Input variant="bordered" />
