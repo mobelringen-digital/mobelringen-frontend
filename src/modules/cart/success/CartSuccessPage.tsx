@@ -1,7 +1,12 @@
-import React from "react";
+"use client";
+
+import React, { useEffect } from "react";
+
+import { useCookies } from "react-cookie";
 
 import Link from "next/link";
 
+import { CartCookie } from "@/components/cart/fetchCartService";
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { PageTitle } from "@/components/typography/PageTitle";
@@ -18,6 +23,17 @@ interface Props {
 }
 
 export const CartSuccessPage: React.FC<Props> = ({ order }) => {
+  const [cookies, setCookie] = useCookies<
+    "cart" | "preferredMethod",
+    CartCookie
+  >(["cart", "preferredMethod"]);
+
+  useEffect(() => {
+    if (cookies.cart) {
+      setCookie("cart", "", { path: "/", expires: new Date() });
+    }
+  }, [cookies.cart, setCookie]);
+
   const fullShippingAddress = [
     order?.shipping_address?.street,
     order?.shipping_address?.postcode,
