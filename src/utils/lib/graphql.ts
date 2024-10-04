@@ -71,11 +71,6 @@ export const authorizedMagentoClient = (
           },
         })
           .then((res) => res)
-          .catch((error) => {
-            if (nextOptions?.manualErrorHandler) {
-              throw new Error(error);
-            }
-            return error;
-          }),
+          .catch((error) => error),
     ),
   });

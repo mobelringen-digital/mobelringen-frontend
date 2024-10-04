@@ -75,7 +75,6 @@ export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
 
         return data;
       } catch (e) {
-        setIsLoading(false);
         handleError(e);
       }
     }
