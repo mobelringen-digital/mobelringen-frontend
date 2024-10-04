@@ -22,12 +22,14 @@ export async function ConfigurableProductPage({
   product,
   cart,
   selectedStore,
+  stock,
 }: Props) {
   return (
     <ActiveProductDataContextProvider>
       <BaseProductLayout
         selectedStore={selectedStore}
         cart={cart}
+        stock={stock}
         baseProductData={product}
         configurationBlock={
           <div className="flex flex-col gap-2">
