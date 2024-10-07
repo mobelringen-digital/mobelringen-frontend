@@ -20,6 +20,8 @@ export const PromotionBubbleFragment = graphql(`
     links {
       ...CmsLink
     }
+    backgroundColor
+    textColor
   }
 `);
 
