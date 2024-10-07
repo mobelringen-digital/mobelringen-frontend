@@ -8,7 +8,9 @@ import { useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/_ui/button/Button";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
+import { openToast } from "@/components/_ui/toast-provider";
 import { setDeliveryType } from "@/modules/cart/cart-methods/actions";
+import { validateCart } from "@/modules/cart/cart-price/actions";
 import { useCart } from "@/modules/cart/hooks/useCart";
 import { BaseCartFragment, BaseStoreFragment } from "@/types";
 import { formatGTMCartItems } from "@/utils/gtm";
@@ -54,6 +56,12 @@ export const CartProceedButton: React.FC<Props> = ({
   const navigateToCheckout = async () => {
     if (isButtonDisabled) return;
     if (!cart?.id) return;
+
+    const validateOutdatedCart = await validateCart(cart.id);
+
+    if (!validateOutdatedCart?.success) {
+      return openToast({ content: validateOutdatedCart?.message });
+    }
 
     setIsLoading(true);
     await setDeliveryType({

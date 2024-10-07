@@ -467,3 +467,12 @@ export const setDeliveryTypeDocument = graphql(`
     }
   }
 `);
+
+export const validateCartDocument = graphql(`
+  query ValidateCart($cart_id: String!) {
+    validateCart(cartId: $cart_id) {
+      message
+      success
+    }
+  }
+`);
