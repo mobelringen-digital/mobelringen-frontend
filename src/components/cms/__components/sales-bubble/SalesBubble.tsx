@@ -3,6 +3,7 @@ import React from "react";
 import cx from "classnames";
 
 import { CmsSalesBubbleFragment } from "@/types";
+import { CAMPAIGN_COLORS } from "@/utils/helpers";
 
 interface Props {
   salesBubble: CmsSalesBubbleFragment;
@@ -21,9 +22,14 @@ export const SalesBubble: React.FC<Props> = ({
   return (
     <div
       className={cx(
-        "bg-purple-light text-center text-black rounded-full rounded-bl-none",
+        "text-center rounded-full rounded-bl-none",
         SIZE_VARIANTS[size],
       )}
+      style={{
+        backgroundColor:
+          CAMPAIGN_COLORS[salesBubble.backgroundColor ?? "MR_powder"],
+        color: CAMPAIGN_COLORS[salesBubble.textColor ?? "MR_black"],
+      }}
     >
       <ul className="flex justify-center items-center flex-col list-none">
         <li className="text-sm lg:text-base font-semibold">

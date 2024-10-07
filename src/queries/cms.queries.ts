@@ -7,6 +7,8 @@ export const SalesBubbleFragment = graphql(`
     position
     topLine
     bottomLine
+    backgroundColor
+    textColor
   }
 `);
 
