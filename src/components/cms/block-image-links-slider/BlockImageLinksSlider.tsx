@@ -46,10 +46,10 @@ export const BlockImageLinksSlider: React.FC<Props> = ({ data }) => {
 
       <Slider className="product-slider" {...sliderConfig}>
         {data?.images.map((imageData, idx) => (
-          <div key={idx} className="w-[260px]">
+          <div key={idx} className="w-[260px] relative">
             {data && isTypename(imageData, ["ImageLink"]) ? (
-              <Link href={imageData.url} className="relative group">
-                <div className="rounded-2xl transition-all absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 pointer-events-none flex justify-start items-end">
+              <Link href={imageData.url} className="group">
+                <div className="rounded-2xl w-full transition-all absolute left-0 right-0 top-0 bottom-0 bg-black bg-opacity-20 group-hover:bg-opacity-30 pointer-events-none flex justify-start items-end">
                   <span className="font-medium text-2xl lg:text-4xl text-white font-feature p-4">
                     {imageData.label}
                   </span>

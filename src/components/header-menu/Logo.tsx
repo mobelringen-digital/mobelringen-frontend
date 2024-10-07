@@ -7,7 +7,7 @@ export const Logo = () => {
   return (
     <Link
       href="/"
-      className="absolute top-2/4 left-2/4 -translate-x-1/2 -translate-y-1/2 z-50"
+      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50"
     >
       <div className="block lg:hidden">
         <Image src="/mobile_logo.svg" alt="logo" width={48} height={48} />
