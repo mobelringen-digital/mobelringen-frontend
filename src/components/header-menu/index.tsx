@@ -28,7 +28,7 @@ export async function HeaderMenu() {
     <nav className="sticky top-0 z-30 bg-sand">
       <DesktopMenuAdditionalLinks />
       <header className="shadow-header-menu backdrop-blur-lg py-4 bg-white min-h-[80px] tracking-wide flex items-center">
-        <ContainerLayout className="flex items-center justify-between relative">
+        <ContainerLayout className="flex items-center justify-between">
           <DesktopMenu data={data} />
           <MobileMenu data={data} />
           <Logo />
