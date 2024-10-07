@@ -16,8 +16,6 @@ import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { login } from "@/modules/auth/actions";
 
-import { navigate } from "../../app/actions";
-
 type FormData = {
   email: string;
   password: string;
@@ -27,7 +25,7 @@ export const LoginPage: React.FC = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
-  const [_cookie, setCookie] = useCookies();
+  const [cookie, setCookie] = useCookies();
   const [isLoading, setIsLoading] = React.useState(false);
   const [error, setError] = React.useState<Array<Error> | null>(null);
   const {
@@ -37,11 +35,11 @@ export const LoginPage: React.FC = () => {
   } = useForm<FormData>();
 
   React.useEffect(() => {
-    if (searchParams.get("token") === "EXPIRED") {
+    if (searchParams.get("token") === "EXPIRED" && !!cookie.token) {
       setCookie("token", "", { path: "/", expires: new Date() });
-      router.replace(pathname);
+      router.push(pathname);
     }
-  }, [pathname, router, searchParams, setCookie]);
+  }, [cookie.token, pathname, router, searchParams, setCookie]);
 
   const loginGTMEvent = () => {
     return sendGTMEvent({
@@ -54,13 +52,14 @@ export const LoginPage: React.FC = () => {
     setIsLoading(true);
     const res = await login(data).finally(() => setIsLoading(false));
 
-    if (!res.success) {
+    if (!res?.success) {
       setError(res.errors);
     }
 
-    if (res.success) {
+    if (res?.success) {
       loginGTMEvent();
-      return navigate("/account").then(() => setIsLoading(false));
+      router.push("/account");
+      setIsLoading(false);
     }
   };
 

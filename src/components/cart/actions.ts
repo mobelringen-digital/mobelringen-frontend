@@ -8,8 +8,6 @@ import { getToken } from "@/modules/auth/actions";
 import { CustomerCartDocument, CartDocument } from "@/queries/cart.queries";
 import { authorizedMagentoClient } from "@/utils/lib/graphql";
 
-import { navigate } from "../../app/actions";
-
 export const getGuestCart = async () => {
   const cookiesStore = cookies();
   const cartCookie = cookiesStore.get("cart");
@@ -41,15 +39,11 @@ export default async function getCart() {
     const customerQuery = await authorizedMagentoClient(token, "GET", {
       tags: ["cart", store?.external_id ?? ""],
       revalidate: 60,
-    })
-      .request(CustomerCartDocument)
-      .catch(() => null);
+    }).request(CustomerCartDocument);
 
     if (customerQuery?.customerCart) {
       return customerQuery.customerCart;
     }
-
-    return navigate("/auth/login?token=EXPIRED");
   }
 
   return await getGuestCart();

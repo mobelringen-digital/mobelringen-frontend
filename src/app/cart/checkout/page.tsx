@@ -16,7 +16,7 @@ export default async function Checkout({
   const token = await getToken();
 
   if (token && !cart) {
-    return navigate("/auth/login?callback=TOKEN_EXPIRED");
+    return navigate("/auth/login?token=EXPIRED");
   }
 
   const isShippingAddressSet = !!cart?.shipping_addresses?.length;

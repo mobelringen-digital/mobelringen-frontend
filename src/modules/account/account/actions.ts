@@ -10,16 +10,20 @@ export async function getCustomerDetails() {
 
   if (!token) return;
 
-  const data = await authorizedMagentoClient(token, "POST", {
-    tags: ["customer", token],
-    revalidate: 600,
-  }).request<CustomerQuery>(CustomerDocument);
+  try {
+    const data = await authorizedMagentoClient(token, "POST", {
+      tags: ["customer", token],
+      revalidate: 600,
+    }).request<CustomerQuery>(CustomerDocument);
 
-  if (token && data?.customer) {
-    return data.customer;
+    if (token && data?.customer) {
+      return data.customer;
+    }
+  } catch (e) {
+    return null;
   }
 
-  return;
+  return null;
 }
 
 export async function getCustomerOrders() {
