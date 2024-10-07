@@ -5,8 +5,9 @@ import { cookies } from "next/headers";
 
 import { updateCartItemsInStore } from "@/components/store-selector/actions";
 import { getToken } from "@/modules/auth/actions";
+import { setDeliveryType } from "@/modules/cart/cart-methods/actions";
 import { CreateEmptyCartDocument } from "@/queries/cart.queries";
-import { AddProductToCartDocument, CartItemInput } from "@/types";
+import { AddProductToCartDocument, CartItemInput, DeliveryType } from "@/types";
 import {
   authorizedMagentoClient,
   baseMagentoClient,
@@ -29,6 +30,11 @@ export async function addToCart(
   );
 
   await updateCartItemsInStore();
+  await setDeliveryType({
+    cartId,
+    type:
+      preferredMethod === "collect" ? DeliveryType.Cac : DeliveryType.Online,
+  });
 
   if (preferredMethod) {
     cookieStore.set("preferredMethod", preferredMethod, {
