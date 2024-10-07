@@ -3,6 +3,7 @@ import { StaticPageContent } from "@/components/cms/static-page-content/StaticPa
 import { Debugger } from "@/components/Debugger";
 import { updateCartItemsInStore } from "@/components/store-selector/actions";
 import { CartPage } from "@/modules/cart/CartPage";
+import { BaseCartFragment } from "@/types";
 
 export default async function Cart() {
   const cart = await getCart();
@@ -10,7 +11,7 @@ export default async function Cart() {
 
   return (
     <>
-      <CartPage data={cart} />
+      <CartPage data={cart as BaseCartFragment} />
       <StaticPageContent url="/cart" />
       <Debugger data={cart} />
     </>
