@@ -2,6 +2,7 @@ import getCart from "@/components/cart/actions";
 import { StaticPageContent } from "@/components/cms/static-page-content/StaticPageContent";
 import { getToken } from "@/modules/auth/actions";
 import { CheckoutPage } from "@/modules/checkout/CheckoutPage";
+import {BaseCartFragment} from "@/types";
 import { NextSearchParams } from "@/utils/ts-utils";
 
 import { navigate } from "../../actions";
@@ -36,7 +37,7 @@ export default async function Checkout({
         isShippingMethodSet={isShippingMethodSet}
         isShippingAddressSet={isShippingAddressSet}
         searchParams={searchParams}
-        cart={cart}
+        cart={cart as BaseCartFragment}
       />
       <StaticPageContent url="/cart/checkout" />
     </>

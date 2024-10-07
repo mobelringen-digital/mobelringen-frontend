@@ -11,7 +11,7 @@ import {
   GetProductStockDocument,
   ProductsQueryDocument,
 } from "@/queries/product/product.queries";
-import { ProductsQuery, ProductsQueryVariables } from "@/types";
+import {BaseCartFragment, ProductsQuery, ProductsQueryVariables} from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
@@ -88,7 +88,7 @@ export default async function Product({ sku, url }: Props) {
         <SimpleProductPage
           selectedStore={selectedStore}
           stock={stock}
-          cart={cart}
+          cart={cart as BaseCartFragment}
           product={productData}
         />
       ) : null}
@@ -96,7 +96,7 @@ export default async function Product({ sku, url }: Props) {
       {isTypename(productData, ["ConfigurableProduct"]) ? (
         <ConfigurableProductPage
           stock={stock}
-          cart={cart}
+          cart={cart as BaseCartFragment}
           product={productData}
           selectedStore={selectedStore}
         />
