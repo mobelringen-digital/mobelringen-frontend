@@ -38,17 +38,18 @@ export default async function getCart() {
   const customer = await getCustomerDetails();
 
   if (!!customer) {
-    const customerQuery = await authorizedMagentoClient(token, "GET", {
-      tags: ["cart", store?.external_id ?? ""],
-      revalidate: 60,
-    }).request(CustomerCartDocument);
+    try {
+      const customerQuery = await authorizedMagentoClient(token, "GET", {
+        tags: ["cart", store?.external_id ?? ""],
+        revalidate: 60,
+      }).request(CustomerCartDocument);
 
-    if (!customerQuery.customerCart) {
+      if (customerQuery?.customerCart) {
+        return customerQuery.customerCart;
+      }
+    } catch (e) {
       revalidateTag("cart");
-    }
-
-    if (customerQuery?.customerCart) {
-      return customerQuery.customerCart;
+      return await getGuestCart();
     }
   }
 
