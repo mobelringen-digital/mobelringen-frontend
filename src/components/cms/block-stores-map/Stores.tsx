@@ -95,13 +95,26 @@ export const Stores: React.FC<Props> = ({ title }) => {
       {title ? <PageTitle>{title}</PageTitle> : null}
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-12 lg:col-span-4">
-          <div className="mb-8">
+          <div className="mb-8 flex flex-col gap-2">
             <SearchInput
               onChange={onSearchChange}
               value={search}
               variant="bordered"
               placeholder="Skriv postnummer eller sted"
             />
+            <div className="flex w-full justify-end">
+              {searchParams.get("postcode") ? (
+                <button
+                  onClick={() => {
+                    setSearch("");
+                    router.push(pathname);
+                  }}
+                  className="text-sm underline text-dark-grey"
+                >
+                  Nullstill søk
+                </button>
+              ) : null}
+            </div>
           </div>
 
           <ScrollShadow
