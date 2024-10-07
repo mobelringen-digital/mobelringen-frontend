@@ -57,13 +57,14 @@ export const CartProceedButton: React.FC<Props> = ({
     if (isButtonDisabled) return;
     if (!cart?.id) return;
 
+    setIsLoading(true);
     const validateOutdatedCart = await validateCart(cart.id);
 
     if (!validateOutdatedCart?.success) {
+      setIsLoading(false);
       return openToast({ content: validateOutdatedCart?.message });
     }
 
-    setIsLoading(true);
     await setDeliveryType({
       cartId: cart?.id,
       type: DELIVERY_TYPE_MAP[activeMethod as keyof typeof DELIVERY_TYPE_MAP],
