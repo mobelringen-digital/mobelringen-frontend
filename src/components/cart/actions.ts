@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 import { getSelectedStore } from "@/components/store-selector/actions";
@@ -27,6 +28,7 @@ export const getGuestCart = async () => {
     return guestCart?.cart;
   }
 
+  revalidateTag("cart");
   return null;
 };
 
@@ -40,6 +42,10 @@ export default async function getCart() {
       tags: ["cart", store?.external_id ?? ""],
       revalidate: 60,
     }).request(CustomerCartDocument);
+
+    if (!customerQuery.customerCart) {
+      revalidateTag("cart");
+    }
 
     if (customerQuery?.customerCart) {
       return customerQuery.customerCart;
