@@ -39,8 +39,7 @@ export const AddToCartController: React.FC<Props> = ({
   const isOpen = searchParams.get("cart") === "true";
 
   const canBuyOnline =
-    stock?.getProductStock.online?.availability !== Availability.OutOfStock ||
-    product.addable_to_cart;
+    stock?.getProductStock.online?.availability !== Availability.OutOfStock;
   const canBuyCAC =
     stock?.getProductStock.cac?.availability !== Availability.OutOfStock;
 
