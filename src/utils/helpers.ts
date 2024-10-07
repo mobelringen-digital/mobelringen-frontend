@@ -59,3 +59,4 @@ export const dateToNOFormat = (date: string) => {
     year: "numeric",
   });
 };
+

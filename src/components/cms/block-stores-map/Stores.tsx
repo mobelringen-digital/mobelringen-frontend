@@ -4,10 +4,14 @@ import React from "react";
 
 import { ScrollShadow } from "@nextui-org/react";
 import cx from "classnames";
+import { useDebounce } from "use-debounce";
 
 import dynamic from "next/dynamic";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { ChevronRight } from "@/components/_ui/icons/ChevronRight";
+import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
+import { useStoresList } from "@/components/cms/block-stores-map/useStoresList";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { SearchInput } from "@/components/search/SearchInput";
 import { PageTitle } from "@/components/typography/PageTitle";
@@ -16,25 +20,30 @@ import { BaseStoreFragment } from "@/types";
 const Map = dynamic(() => import("./Map"), { ssr: false });
 
 interface Props {
-  stores?: Array<BaseStoreFragment | null> | null;
   title?: string;
 }
 
-const searchFields: Array<keyof BaseStoreFragment> = [
-  "name",
-  "postcode",
-  "city",
-];
-
-export const Stores: React.FC<Props> = ({ stores, title }) => {
-  const [storesList, setStoresList] = React.useState(stores);
-  const [searchValue, setSearchValue] = React.useState<string>("");
+export const Stores: React.FC<Props> = ({ title }) => {
+  const searchParams = useSearchParams();
+  const {
+    data: stores,
+    isLoading,
+    isFetching,
+  } = useStoresList({
+    postcode: searchParams.get("postcode") || undefined,
+  });
+  const router = useRouter();
+  const pathname = usePathname();
   const [activeRegion, setActiveRegion] = React.useState<string | null>(null);
   const [selectedStore, setSelectedStore] =
     React.useState<BaseStoreFragment | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
+  const [search, setSearch] = React.useState(
+    searchParams.get("postcode") || "",
+  );
+  const [value] = useDebounce(search, 1000);
 
-  const groupedByRegions = storesList?.reduce(
+  const groupedByRegions = stores?.reduce(
     (acc, rec) => {
       const { region, ...store } = rec as BaseStoreFragment;
       const regionIndex = acc.findIndex((item) => item.region === region);
@@ -63,27 +72,14 @@ export const Stores: React.FC<Props> = ({ stores, title }) => {
       ?.stores;
   }, [activeRegion, groupedByRegions]);
 
-  const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchValue(e.target.value);
-  };
+  const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setSearch(e.target.value);
 
   React.useEffect(() => {
-    if (!searchValue) {
-      setStoresList(stores);
-      return;
+    if (value) {
+      router.push(`${pathname}?postcode=${value}`);
     }
-
-    const filteredStores = stores?.filter((str) =>
-      searchFields.some((field) =>
-        str?.[field]
-          ?.toString()
-          .toLowerCase()
-          .includes(searchValue.toLowerCase()),
-      ),
-    );
-
-    setStoresList(filteredStores);
-  }, [searchValue, stores]);
+  }, [pathname, router, value]);
 
   React.useEffect(() => {
     setIsMounted(true);
@@ -95,18 +91,25 @@ export const Stores: React.FC<Props> = ({ stores, title }) => {
 
   return (
     <ContainerLayout className="mb-16">
+      {isLoading || isFetching ? <PageTopLoader /> : null}
       {title ? <PageTitle>{title}</PageTitle> : null}
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-12 lg:col-span-4">
           <div className="mb-8">
             <SearchInput
               onChange={onSearchChange}
+              value={search}
               variant="bordered"
               placeholder="Skriv postnummer eller sted"
             />
           </div>
 
-          <ScrollShadow size={100} className="h-[520px]">
+          <ScrollShadow
+            size={100}
+            className={cx({
+              "h-[520px]": stores && stores?.length > 0,
+            })}
+          >
             <div className="flex flex-col">
               {activeRegion ? (
                 <>
@@ -145,6 +148,9 @@ export const Stores: React.FC<Props> = ({ stores, title }) => {
               ) : (
                 <>
                   <span className="text-xl py-2">Alle fylker</span>
+                  {!isLoading && stores?.length === 0 ? (
+                    <div className="text-center text-lg">Ingen resultater</div>
+                  ) : null}
                   {groupedByRegions?.map((data, idx) => (
                     <button
                       onClick={() =>
