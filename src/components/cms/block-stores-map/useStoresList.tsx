@@ -6,12 +6,12 @@ import { baseMagentoClient } from "@/utils/lib/graphql";
 
 const STORES_LIST_QUERY_KEY = ["stores"];
 
-export const useStoresList = ({ postcode }: { postcode?: string }) => {
+export const useStoresList = ({ searchInput }: { searchInput?: string }) => {
   const fetchStores = async () => {
     const data = await baseMagentoClient("GET").request<StoresListQuery>(
       StoresListDocument,
       {
-        postcode,
+        searchInput,
       },
     );
 
@@ -19,7 +19,7 @@ export const useStoresList = ({ postcode }: { postcode?: string }) => {
   };
 
   return useQuery({
-    queryKey: [...STORES_LIST_QUERY_KEY, postcode],
+    queryKey: [...STORES_LIST_QUERY_KEY, searchInput],
     queryFn: fetchStores,
     staleTime: 3600,
   });

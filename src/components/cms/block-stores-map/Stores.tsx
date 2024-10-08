@@ -30,7 +30,7 @@ export const Stores: React.FC<Props> = ({ title }) => {
     isLoading,
     isFetching,
   } = useStoresList({
-    postcode: searchParams.get("postcode") || undefined,
+    searchInput: searchParams.get("searchInput") || undefined,
   });
   const router = useRouter();
   const pathname = usePathname();
@@ -39,7 +39,7 @@ export const Stores: React.FC<Props> = ({ title }) => {
     React.useState<BaseStoreFragment | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
   const [search, setSearch] = React.useState(
-    searchParams.get("postcode") || "",
+    searchParams.get("searchInput") || "",
   );
   const [value] = useDebounce(search, 1000);
 
@@ -77,7 +77,7 @@ export const Stores: React.FC<Props> = ({ title }) => {
 
   React.useEffect(() => {
     if (value) {
-      router.push(`${pathname}?postcode=${value}`);
+      router.push(`${pathname}?searchInput=${value}`);
     }
   }, [pathname, router, value]);
 
@@ -103,7 +103,7 @@ export const Stores: React.FC<Props> = ({ title }) => {
               placeholder="Skriv postnummer eller sted"
             />
             <div className="flex w-full justify-end">
-              {searchParams.get("postcode") ? (
+              {searchParams.get("searchInput") ? (
                 <button
                   onClick={() => {
                     setSearch("");

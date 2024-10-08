@@ -31,8 +31,8 @@ export const BaseStoreFragment = graphql(`
 `);
 
 export const StoresListDocument = graphql(`
-  query StoresList($postcode: String) {
-    getStores(postcode: $postcode) {
+  query StoresList($searchInput: String) {
+    getStores(searchInput: $searchInput) {
       ...BaseStore
     }
   }
