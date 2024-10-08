@@ -41,6 +41,7 @@ export async function addToCart(
     });
   }
 
+  revalidateTag("cart");
   revalidateTag("cart-items");
 
   return data;
