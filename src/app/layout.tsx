@@ -22,7 +22,7 @@ export default async function RootLayout({
       <meta name="robots" content="noindex,nofollow" />
       <meta
         name="viewport"
-        content="width=device-width, initial-scale=1, minimum-scale=1"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
       />
 
       <body className="bg-sand font-suisse">
