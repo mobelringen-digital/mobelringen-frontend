@@ -39,6 +39,9 @@ export const LoginPage: React.FC = () => {
       setCookie("token", "", { path: "/", expires: new Date() });
       router.push(pathname);
     }
+    if (searchParams.get("token") === "EXPIRED" && !cookie.token) {
+      router.push(pathname);
+    }
   }, [cookie.token, pathname, router, searchParams, setCookie]);
 
   const loginGTMEvent = () => {
