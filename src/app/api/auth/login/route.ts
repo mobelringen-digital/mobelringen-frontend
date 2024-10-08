@@ -7,6 +7,9 @@ import {
 } from "@/types";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function POST(request: NextRequest) {
   const { email, password } = await request.json();
   try {
@@ -19,7 +22,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const data = await baseMagentoClient().request<
+    const data = await baseMagentoClient("POST", {
+      cache: "no-store",
+    }).request<
       GenerateCustomerTokenMutation,
       GenerateCustomerTokenMutationVariables
     >(GenerateCustomerTokenDocument, {
