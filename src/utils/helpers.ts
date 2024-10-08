@@ -1,4 +1,4 @@
-import { DeliveryType, Maybe, MrColor, ProductInterface } from "@/types";
+import { DeliveryType, MrColor } from "@/types";
 
 export const generatePrettyUrl = (
   nextPropsUrl: Array<string>,
@@ -15,14 +15,6 @@ export const generatePrettyUrl = (
   }
 
   return newUrl;
-};
-
-export const generateProductUrl = (product: Maybe<ProductInterface>) => {
-  if (!product?.name) {
-    return "";
-  }
-
-  return `/p/${generateUrl(product.name)}-${product.sku}`;
 };
 
 export const generateUrl = (name: string) => {
