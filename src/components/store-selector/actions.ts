@@ -17,11 +17,15 @@ import {
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
 export async function getStores() {
-  const data = await baseMagentoClient("GET", {
-    revalidate: 3600,
-  }).request<StoresListQuery>(StoresListDocument);
+  try {
+    const data = await baseMagentoClient("GET", {
+      revalidate: 3600,
+    }).request<StoresListQuery>(StoresListDocument);
 
-  return data.getStores;
+    return data.getStores;
+  } catch (e) {
+    return null;
+  }
 }
 
 export async function getSelectedStoreId() {

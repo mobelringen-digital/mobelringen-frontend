@@ -8,14 +8,18 @@ const STORES_LIST_QUERY_KEY = ["stores"];
 
 export const useStoresList = ({ searchInput }: { searchInput?: string }) => {
   const fetchStores = async () => {
-    const data = await baseMagentoClient("GET").request<StoresListQuery>(
-      StoresListDocument,
-      {
-        searchInput,
-      },
-    );
+    try {
+      const data = await baseMagentoClient("GET").request<StoresListQuery>(
+        StoresListDocument,
+        {
+          searchInput,
+        },
+      );
 
-    return data.getStores;
+      return data.getStores;
+    } catch (e) {
+      // Do nothing
+    }
   };
 
   return useQuery({
