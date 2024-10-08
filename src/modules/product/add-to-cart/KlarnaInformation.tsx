@@ -11,7 +11,7 @@ export const KlarnaInformation = () => {
     <>
       <div className="grid grid-cols-12 mt-2 text-xs lg:text-sm">
         <Link
-          href="/finansiering"
+          href="/kundeservice/betaling-og-finansiering"
           className="col-span-4 flex flex-col items-center justify-center text-center gap-2"
         >
           <Card />
