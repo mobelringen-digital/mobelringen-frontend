@@ -192,21 +192,32 @@ export const RegisterPage: React.FC<Props> = ({ stores }) => {
           </FieldWrapper>
 
           <div className="flex flex-col gap-4 w-full my-4">
-            <FieldWrapper control={control} name="accepts_terms">
+            <FieldWrapper
+              rules={{ required: "Dette er et påkrevd felt" }}
+              error={errors.accepts_terms}
+              control={control}
+              name="accepts_terms"
+            >
               <Checkbox>
                 Jeg ønsker å bli medlem av Kundeklubben og få eksklusive
-                rabatter på produkter, og samtykker til medlemsvilkårene.
-              </Checkbox>
-            </FieldWrapper>
-            <FieldWrapper control={control} name="accepts_sms">
-              <Checkbox>
-                Jeg samtykker til å motta kommunikasjon på SMS
+                rabatter på produkter, og samtykker til medlemsvilkårene. *
               </Checkbox>
             </FieldWrapper>
 
-            <FieldWrapper control={control} name="accepts_emails">
+            <FieldWrapper
+              rules={{ required: "Dette er et påkrevd felt" }}
+              error={errors.accepts_emails}
+              control={control}
+              name="accepts_emails"
+            >
+              <Checkbox required={true}>
+                Jeg samtykker til å motta kommunikasjon på e-post *
+              </Checkbox>
+            </FieldWrapper>
+
+            <FieldWrapper control={control} name="accepts_sms">
               <Checkbox>
-                Jeg samtykker til å motta kommunikasjon på e-post*
+                Jeg samtykker til å motta kommunikasjon på SMS
               </Checkbox>
             </FieldWrapper>
 
