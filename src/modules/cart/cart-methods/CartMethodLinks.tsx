@@ -11,8 +11,7 @@ import { StorefrontIcon } from "@/components/_ui/icons/StorefrontIcon";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { setDeliveryType } from "@/modules/cart/cart-methods/actions";
 import { CartMethodLink } from "@/modules/cart/cart-methods/CartMethodLink";
-import { BaseCartFragment, BaseStoreFragment } from "@/types";
-import { DELIVERY_TYPE_MAP } from "@/utils/helpers";
+import { BaseCartFragment, BaseStoreFragment, DeliveryType } from "@/types";
 
 interface Props {
   selectedStore?: BaseStoreFragment | null;
@@ -26,7 +25,7 @@ export const CartMethodLinks: React.FC<Props> = ({ selectedStore, cart }) => {
   const activeMethod = cookies.preferredMethod ?? searchParams.get("method");
   const router = useRouter();
 
-  const setPreferredMethod = async (method: "online" | "collect") => {
+  const setPreferredMethod = async (method: DeliveryType) => {
     if (!cart?.id) {
       return;
     }
@@ -34,7 +33,7 @@ export const CartMethodLinks: React.FC<Props> = ({ selectedStore, cart }) => {
 
     await setDeliveryType({
       cartId: cart?.id,
-      type: DELIVERY_TYPE_MAP[method],
+      type: method,
     })
       .then(() => {
         setCookie("preferredMethod", method, {
@@ -52,22 +51,22 @@ export const CartMethodLinks: React.FC<Props> = ({ selectedStore, cart }) => {
       {isLoading ? <PageTopLoader /> : null}
       <CartMethodLink
         icon={<LocalShippingIcon width={24} height={24} />}
-        setPreferredMethod={() => setPreferredMethod("online")}
+        setPreferredMethod={() => setPreferredMethod(DeliveryType.Online)}
         label="Hjemlevering"
         description="Til fortauskant eller utleveringssted"
-        isActive={activeMethod === "online"}
+        isActive={activeMethod === DeliveryType.Online}
         disabled={isLoading}
       />
       <CartMethodLink
         icon={<StorefrontIcon width={24} height={24} />}
-        setPreferredMethod={() => setPreferredMethod("collect")}
+        setPreferredMethod={() => setPreferredMethod(DeliveryType.Cac)}
         label="Klikk og hent"
         description={
           selectedStore
             ? `Hentes hos: ${selectedStore?.name}`
             : "Ingen butikk er valgt"
         }
-        isActive={activeMethod === "collect"}
+        isActive={activeMethod === DeliveryType.Cac}
         disabled={isLoading}
       />
     </div>
