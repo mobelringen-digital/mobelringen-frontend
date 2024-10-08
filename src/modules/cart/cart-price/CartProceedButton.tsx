@@ -12,9 +12,8 @@ import { openToast } from "@/components/_ui/toast-provider";
 import { setDeliveryType } from "@/modules/cart/cart-methods/actions";
 import { validateCart } from "@/modules/cart/cart-price/actions";
 import { useCart } from "@/modules/cart/hooks/useCart";
-import {BaseCartFragment, BaseStoreFragment, DeliveryType} from "@/types";
+import { BaseCartFragment, BaseStoreFragment, DeliveryType } from "@/types";
 import { formatGTMCartItems } from "@/utils/gtm";
-import { DELIVERY_TYPE_MAP } from "@/utils/helpers";
 
 import { navigate } from "../../../app/actions";
 
@@ -32,7 +31,10 @@ export const CartProceedButton: React.FC<Props> = ({
   const [isLoading, setIsLoading] = React.useState(false);
   const { isCheckoutEnabled } = useCart(cart);
   const searchParams = useSearchParams();
-  const activeMethod = searchParams.get("method") ?? "online";
+  const activeMethod =
+    searchParams.get("method") === DeliveryType.Cac
+      ? DeliveryType.Cac
+      : DeliveryType.Online;
 
   const isStoreSet =
     activeMethod === DeliveryType.Cac ? !!selectedStore?.external_id : true;
@@ -67,7 +69,7 @@ export const CartProceedButton: React.FC<Props> = ({
 
     await setDeliveryType({
       cartId: cart?.id,
-      type: DELIVERY_TYPE_MAP[activeMethod as keyof typeof DELIVERY_TYPE_MAP],
+      type: activeMethod as DeliveryType,
     });
     return navigate("/cart/checkout").finally(() => {
       beginCheckoutGTMEvent();
