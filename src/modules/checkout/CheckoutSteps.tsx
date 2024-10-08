@@ -6,7 +6,7 @@ import { CheckoutBlock } from "@/modules/checkout/CheckoutBlock";
 import { ContactFormController } from "@/modules/checkout/contact-form/ContactFormController";
 import { PaymentFormController } from "@/modules/checkout/payment/PaymentFormController";
 import { ShippingFormController } from "@/modules/checkout/shipping/ShippingFormController";
-import { BaseCartFragment, CustomerDataFragment } from "@/types";
+import { BaseCartFragment, CustomerDataFragment, DeliveryType } from "@/types";
 import { NextSearchParams } from "@/utils/ts-utils";
 
 export type Blocks = "contact" | "shipping" | "payment";
@@ -28,9 +28,9 @@ export const CheckoutSteps: React.FC<Props> = ({
 }) => {
   const cookiesStore = cookies();
   const isOnlineMethod =
-    cookiesStore.get("preferredMethod")?.value !== "collect";
+    cookiesStore.get("preferredMethod")?.value !== DeliveryType.Cac;
   const isClickAndCollect =
-    cookiesStore.get("preferredMethod")?.value === "collect";
+    cookiesStore.get("preferredMethod")?.value === DeliveryType.Cac;
 
   return (
     <div className="flex flex-col gap-6">

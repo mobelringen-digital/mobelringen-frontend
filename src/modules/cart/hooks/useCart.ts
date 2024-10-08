@@ -7,7 +7,7 @@ import { useCookies } from "react-cookie";
 import { useSearchParams } from "next/navigation";
 
 import { CartCookie } from "@/components/cart/fetchCartService";
-import { Availability, BaseCartFragment } from "@/types";
+import {Availability, BaseCartFragment, DeliveryType} from "@/types";
 import { useSession } from "@/utils/hooks/useSession";
 
 export const useCart = (cart?: BaseCartFragment | null) => {
@@ -18,8 +18,8 @@ export const useCart = (cart?: BaseCartFragment | null) => {
   const { token } = useSession();
   const searchParams = useSearchParams();
   const isClickAndCollect =
-    searchParams.get("method") === "collect" ||
-    cookies.preferredMethod === "collect";
+    searchParams.get("method") === DeliveryType.Cac ||
+    cookies.preferredMethod === DeliveryType.Cac;
 
   const prices = cart?.prices;
 

@@ -12,7 +12,7 @@ import { openToast } from "@/components/_ui/toast-provider";
 import { setDeliveryType } from "@/modules/cart/cart-methods/actions";
 import { validateCart } from "@/modules/cart/cart-price/actions";
 import { useCart } from "@/modules/cart/hooks/useCart";
-import { BaseCartFragment, BaseStoreFragment } from "@/types";
+import {BaseCartFragment, BaseStoreFragment, DeliveryType} from "@/types";
 import { formatGTMCartItems } from "@/utils/gtm";
 import { DELIVERY_TYPE_MAP } from "@/utils/helpers";
 
@@ -35,7 +35,7 @@ export const CartProceedButton: React.FC<Props> = ({
   const activeMethod = searchParams.get("method") ?? "online";
 
   const isStoreSet =
-    activeMethod === "collect" ? !!selectedStore?.external_id : true;
+    activeMethod === DeliveryType.Cac ? !!selectedStore?.external_id : true;
 
   const isButtonDisabled =
     disabled || !isCheckoutEnabled || isLoading || !isStoreSet;
