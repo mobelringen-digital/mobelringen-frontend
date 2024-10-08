@@ -1,6 +1,6 @@
+import Image from "next/image";
 import Link from "next/link";
 
-import { TempCategoryIcon } from "@/components/header-menu/cms-components/MegaMenuCategoriesDropdown/TempCategoryIcon";
 import { CategoryQueryDocument } from "@/queries/category.queries";
 import { CategoryQuery } from "@/types";
 import { baseMagentoClient } from "@/utils/lib/graphql";
@@ -37,7 +37,13 @@ export async function MegaMenuCategoriesDropdown() {
     <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6 my-2">
       {clearedCategories()?.map((category, idx) => (
         <div className="flex flex-col" key={idx}>
-          <TempCategoryIcon />
+          <Image
+            className="w-6 h-6"
+            width={24}
+            height={24}
+            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${category?.thumbnail}`}
+            alt={category?.name ?? ""}
+          />
           <Link
             href={category?.url_path ? `/${category?.url_path}` : "#"}
             className="text-xl font-medium my-2 hover:underline"

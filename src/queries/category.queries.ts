@@ -11,6 +11,7 @@ export const BaseCategoryDataFragment = graphql(`
     meta_title
     meta_keywords
     meta_description
+    thumbnail
     include_in_menu
     products {
       total_count
@@ -56,6 +57,7 @@ export const CategoryQueryDocument = graphql(`
           total_count
         }
         children {
+          thumbnail
           name
           uid
           url_path
@@ -65,6 +67,7 @@ export const CategoryQueryDocument = graphql(`
             total_count
           }
           children {
+            thumbnail
             name
             uid
             url_path
