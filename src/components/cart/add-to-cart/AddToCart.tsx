@@ -13,6 +13,7 @@ import {
   BaseCartFragment,
   BaseProductFragment,
   BaseStoreFragment,
+  DeliveryType,
   GetProductStockQuery,
 } from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
@@ -59,16 +60,16 @@ export const AddToCart: React.FC<Props> = ({
     });
   };
 
-  const handleAddItemToCart = async (preferredMethod: "online" | "collect") => {
+  const handleAddItemToCart = async (preferredMethod: DeliveryType) => {
     if (
-      preferredMethod === "online" &&
+      preferredMethod === DeliveryType.Online &&
       stock?.getProductStock.online?.availability === Availability.OutOfStock
     ) {
       return;
     }
 
     if (
-      preferredMethod === "collect" &&
+      preferredMethod === DeliveryType.Cac &&
       stock?.getProductStock.cac?.availability === Availability.OutOfStock
     ) {
       return;

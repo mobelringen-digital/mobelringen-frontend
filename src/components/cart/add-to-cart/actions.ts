@@ -16,7 +16,7 @@ import {
 export async function addToCart(
   cartId: string,
   cartItems: Array<CartItemInput> | CartItemInput,
-  preferredMethod?: "online" | "collect",
+  preferredMethod?: DeliveryType,
 ) {
   const cookieStore = cookies();
   const token = await getToken();
@@ -32,8 +32,7 @@ export async function addToCart(
   await updateCartItemsInStore();
   await setDeliveryType({
     cartId,
-    type:
-      preferredMethod === "collect" ? DeliveryType.Cac : DeliveryType.Online,
+    type: preferredMethod ?? DeliveryType.Online,
   });
 
   if (preferredMethod) {
@@ -71,7 +70,7 @@ export async function createEmptyCart() {
 
 export async function createCartAndAddProduct(
   cartItems: Array<CartItemInput> | CartItemInput,
-  preferredMethod?: "online" | "collect",
+  preferredMethod?: DeliveryType,
 ) {
   const data = await createEmptyCart();
   const cartId = data.createEmptyCart;

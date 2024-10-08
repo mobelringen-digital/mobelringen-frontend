@@ -79,11 +79,15 @@ export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
   };
 
   const onQuantityIncrement = () => {
-    return handleUpdateQuantity(item.quantity + 1);
+    return handleUpdateQuantity(
+      item.quantity + (item.availability?.online?.step ?? 1),
+    );
   };
 
   const onQuantityDecrement = () => {
-    return handleUpdateQuantity(item.quantity - 1);
+    return handleUpdateQuantity(
+      item.quantity - (item.availability?.online?.step ?? 1),
+    );
   };
 
   const handleRemoveProduct = async () => {

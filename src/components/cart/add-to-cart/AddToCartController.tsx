@@ -12,6 +12,7 @@ import {
   Availability,
   BaseProductFragment,
   BaseStoreFragment,
+  DeliveryType,
   GetProductStockQuery,
 } from "@/types";
 
@@ -20,7 +21,7 @@ interface Props {
   product: BaseProductFragment;
   quantity: number;
   onAddToCart: (
-    preferredMethod: "online" | "collect",
+    preferredMethod: DeliveryType,
   ) => Promise<string | AddProductToCartMutation | undefined>;
   stock?: GetProductStockQuery;
   selectedStore?: BaseStoreFragment | null;
@@ -48,11 +49,11 @@ export const AddToCartController: React.FC<Props> = ({
     return router.push(pathname);
   };
 
-  const handleAddItemToCart = async (preferredMethod: "online" | "collect") => {
-    if (preferredMethod === "online" && !canBuyOnline) {
+  const handleAddItemToCart = async (preferredMethod: DeliveryType) => {
+    if (preferredMethod === DeliveryType.Online && !canBuyOnline) {
       return;
     }
-    if (preferredMethod === "collect" && !canBuyCAC) {
+    if (preferredMethod === DeliveryType.Cac && !canBuyCAC) {
       return;
     }
 
@@ -81,7 +82,7 @@ export const AddToCartController: React.FC<Props> = ({
       />
       <div className="flex flex-col gap-4">
         <Button
-          onClick={() => handleAddItemToCart("online")}
+          onClick={() => handleAddItemToCart(DeliveryType.Online)}
           disabled={!canBuyOnline || isLoading}
           color="primary"
         >
@@ -97,7 +98,7 @@ export const AddToCartController: React.FC<Props> = ({
           </Button>
         ) : (
           <Button
-            onClick={() => handleAddItemToCart("collect")}
+            onClick={() => handleAddItemToCart(DeliveryType.Cac)}
             disabled={!canBuyCAC || isLoading}
             color="secondary"
           >
