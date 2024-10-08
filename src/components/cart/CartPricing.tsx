@@ -22,6 +22,16 @@ export async function CartPricing({ cart }: Props) {
         value: tax?.amount.value,
         currency: tax?.amount.currency,
       })),
+      delivery: {
+        label:
+          cart?.shipping_addresses?.[0]?.selected_shipping_method?.method_title,
+        value:
+          cart?.shipping_addresses?.[0]?.selected_shipping_method?.amount
+            ?.value,
+        currency:
+          cart?.shipping_addresses?.[0]?.selected_shipping_method?.amount
+            .currency,
+      },
       total: {
         label: "Total",
         value: prices?.grand_total?.value,
@@ -62,6 +72,14 @@ export async function CartPricing({ cart }: Props) {
             currency={tax.currency}
           />
         ))}
+
+        {pricingLines().delivery.value ? (
+          <CartPriceLine
+            label={pricingLines().delivery.label ?? ""}
+            value={pricingLines().delivery.value}
+            currency={pricingLines().delivery.currency}
+          />
+        ) : null}
       </div>
       <CartPriceLine
         labelClassName="font-semibold"
@@ -69,6 +87,15 @@ export async function CartPricing({ cart }: Props) {
         value={pricingLines().total.value}
         currency={pricingLines().total.currency}
       />
+
+      {pricingLines().delivery.value ? (
+        <span className="text-dark-grey mt-2 text-sm">
+          {
+            cart?.shipping_addresses?.[0]?.selected_shipping_method
+              ?.carrier_title
+          }
+        </span>
+      ) : null}
     </>
   );
 }
