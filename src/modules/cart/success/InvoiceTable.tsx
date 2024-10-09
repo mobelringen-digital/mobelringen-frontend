@@ -16,7 +16,7 @@ export const InvoiceTable: React.FC<Props> = ({ order }) => {
           </th>
         </tr>
       </thead>
-      <tbody className="border-l border-r border-b border-warm-grey">
+      <tbody className="border-l border-r border-b border-warm-grey text-sm lg:text-base">
         <tr>
           <td className="px-4 py-2">
             {[

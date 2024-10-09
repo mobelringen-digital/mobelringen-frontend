@@ -17,7 +17,7 @@ export const ItemsTable: React.FC<Props> = ({ order, showDelivery }) => {
           <th className="text-right rounded-tr-2xl p-4 bg-warm-grey">Pris</th>
         </tr>
       </thead>
-      <tbody className="border-l border-r border-b border-warm-grey">
+      <tbody className="border-l border-r border-b border-warm-grey text-sm lg:text-base">
         {order?.items?.map((item) => (
           <tr key={item?.sku}>
             <td className="px-4 py-2">{item?.name}</td>
