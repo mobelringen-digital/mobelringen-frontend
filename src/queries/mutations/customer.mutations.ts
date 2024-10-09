@@ -230,7 +230,7 @@ export const ChangeCustomerPasswordDocument = graphql(`
       currentPassword: $currentPassword
       newPassword: $newPassword
     ) {
-      ...CustomerData
+      email
     }
   }
 `);
