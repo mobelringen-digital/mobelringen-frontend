@@ -68,6 +68,7 @@ export const CmsPagesQueryDocument = graphql(`
         ogImage {
           url
         }
+        robots
       }
       createdAt
       pageThumbnail {
