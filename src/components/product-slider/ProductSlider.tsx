@@ -35,7 +35,7 @@ export const ProductSlider: React.FC<Props> = ({
     return (
       <div className="mb-12 relative">
         {!hideTitle ? (
-          <h2 className="text-2xl font-medium font-feature mb-4 lg:mb-8">
+          <h2 className="text-xl lg:text-3xl font-medium font-feature mb-4 lg:mb-8">
             {title}
           </h2>
         ) : null}
@@ -56,7 +56,7 @@ export const ProductSlider: React.FC<Props> = ({
   return (
     <div className="mb-12 product-slider relative">
       {!hideTitle ? (
-        <h2 className="text-2xl font-medium font-feature mb-4 lg:mb-8">
+        <h2 className="text-xl lg:text-3xl font-medium font-feature mb-4 lg:mb-8">
           {title}
         </h2>
       ) : null}

@@ -32,13 +32,13 @@ export const SalesBubble: React.FC<Props> = ({
       }}
     >
       <ul className="flex justify-center items-center flex-col list-none">
-        <li className="text-sm lg:text-base font-semibold">
+        <li className="text-sm lg:text-base font-medium">
           {salesBubble.topLine}
         </li>
         <li className="text-2xl lg:text-3xl font-feature font-medium">
           {salesBubble.middleLine}
         </li>
-        <li className="text-sm lg:text-base font-semibold">
+        <li className="text-sm lg:text-base font-medium">
           {salesBubble.bottomLine}
         </li>
       </ul>

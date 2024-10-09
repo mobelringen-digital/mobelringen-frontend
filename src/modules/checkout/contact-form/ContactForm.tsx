@@ -43,7 +43,7 @@ export const ContactForm: React.FC<Props> = ({
 
   const {
     control,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
     handleSubmit,
     setValue,
     watch,
@@ -106,6 +106,7 @@ export const ContactForm: React.FC<Props> = ({
           <MethodClickAndCollect control={control} />
         ) : (
           <MethodOnline
+            errors={errors}
             onAddressSelect={onAddressSelect}
             watchShippingAddressId={watchShippingAddressId}
             watchBillingAddressId={watchBillingAddressId}

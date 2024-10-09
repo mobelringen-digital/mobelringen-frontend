@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Control } from "react-hook-form";
+import { Control, FieldErrors } from "react-hook-form";
 
 import { AddressSelectModal } from "@/modules/checkout/contact-form/method-online/AddressSelectModal";
 import { OnlineBillingFormFields } from "@/modules/checkout/contact-form/method-online/OnlineBillingFormFields";
@@ -18,6 +18,7 @@ interface Props {
   resetCustomerAddressId: () => void;
   control: Control<CheckoutFormData>;
   isDifferentBillingAddress: boolean;
+  errors?: FieldErrors<CheckoutFormData>;
 }
 
 export const MethodOnline: React.FC<Props> = ({
@@ -29,19 +30,16 @@ export const MethodOnline: React.FC<Props> = ({
   resetCustomerAddressId,
   control,
   isDifferentBillingAddress,
+  errors,
 }) => {
   const [showAddressModal, setShowAddressModal] = React.useState(false);
 
   const selectedShippingCustomerAddress = React.useMemo(() => {
-    return customer?.addresses?.find(
-      (a) => a?.id === watchShippingAddressId,
-    );
+    return customer?.addresses?.find((a) => a?.id === watchShippingAddressId);
   }, [customer, watchShippingAddressId]);
 
   const selectedBillingCustomerAddress = React.useMemo(() => {
-    return customer?.addresses?.find(
-      (a) => a?.id === watchBillingAddressId,
-    );
+    return customer?.addresses?.find((a) => a?.id === watchBillingAddressId);
   }, [customer, watchBillingAddressId]);
 
   return (
@@ -75,10 +73,12 @@ export const MethodOnline: React.FC<Props> = ({
       ) : (
         <>
           <OnlineShippingFormFields
+            errors={errors}
             formDisabled={!!watchShippingAddressId}
             control={control}
           />
           <OnlineBillingFormFields
+            errors={errors}
             isDifferentBillingAddress={isDifferentBillingAddress}
             control={control}
           />
