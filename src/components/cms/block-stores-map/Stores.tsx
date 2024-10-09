@@ -7,6 +7,7 @@ import cx from "classnames";
 import { useDebounce } from "use-debounce";
 
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { ChevronRight } from "@/components/_ui/icons/ChevronRight";
@@ -16,6 +17,7 @@ import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { SearchInput } from "@/components/search/SearchInput";
 import { PageTitle } from "@/components/typography/PageTitle";
 import { BaseStoreFragment } from "@/types";
+import { stringToUrl } from "@/utils/helpers";
 
 const Map = dynamic(() => import("./Map"), { ssr: false });
 
@@ -117,12 +119,7 @@ export const Stores: React.FC<Props> = ({ title }) => {
             </div>
           </div>
 
-          <ScrollShadow
-            size={100}
-            className={cx({
-              "h-[520px]": stores && stores?.length > 0,
-            })}
-          >
+          <ScrollShadow size={100} className="max-h-[520px]">
             <div className="flex flex-col">
               {activeRegion ? (
                 <>
@@ -147,13 +144,23 @@ export const Stores: React.FC<Props> = ({ title }) => {
                         )}
                         key={idx}
                       >
-                        <div className="flex flex-col gap-1">
-                          <span className="font-normal">{store?.name}</span>
-                          <span className="text-sm font-light text-dark-grey">
-                            {[store?.street, store?.postcode, store?.city].join(
-                              ", ",
-                            )}
-                          </span>
+                        <div className="flex justify-between items-center">
+                          <div className="flex flex-col gap-1">
+                            <span className="font-normal">{store?.name}</span>
+                            <span className="text-sm font-light text-dark-grey">
+                              {[
+                                store?.street,
+                                store?.postcode,
+                                store?.city,
+                              ].join(", ")}
+                            </span>
+                          </div>
+                          <Link
+                            className="p-4"
+                            href={`/store/${store.external_id}/${stringToUrl(store.name)}`}
+                          >
+                            <ChevronRight />
+                          </Link>
                         </div>
                       </button>
                     ))}

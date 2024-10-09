@@ -31,9 +31,9 @@ export const StorePage: React.FC<Props> = ({
   const [isLoading, setIsLoading] = React.useState(false);
 
   const formattedAddress = [
+    store.street,
     store.postcode,
     store.city,
-    store.street,
     store.region,
   ]
     .filter(Boolean)
