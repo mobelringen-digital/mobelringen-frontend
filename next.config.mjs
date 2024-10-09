@@ -34,8 +34,8 @@ export default withSentryConfig(nextConfig, {
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options
 
-  org: "wiault",
-  project: "mobelringen",
+  org: "alpha-solutions-norge",
+  project: "mobelringen-frontend",
   telemetry: false,
 
   // Only print logs for uploading source maps in CI
