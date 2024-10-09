@@ -30,7 +30,7 @@ export const Communication: React.FC<Props> = ({ customer }) => {
   const {
     control,
     handleSubmit,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
   } = useForm<FormData>({
     defaultValues: {
       accepts_sms: customer?.accepts_sms ?? false,
@@ -55,22 +55,29 @@ export const Communication: React.FC<Props> = ({ customer }) => {
 
   return (
     <div className="p-8 bg-white rounded-2xl">
-      <h2 className="text-xl font-bold mb-4">Kommunikasjon</h2>
+      <h2 className="text-xl font-bold mb-4">Kundeklubb</h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-4 lg:w-1/2"
       >
-        <FieldWrapper control={control} name="accepts_emails">
-          <Checkbox isSelected={accepts_emails} onValueChange={setAcceptsEmails}>
-            Jeg samtykker til å motta kommunikasjon på e-post
+        <FieldWrapper
+          rules={{
+            required: "Dette er et påkrevd felt",
+          }}
+          error={errors.accepts_emails}
+          control={control}
+          name="accepts_emails"
+        >
+          <Checkbox
+            isSelected={accepts_emails}
+            onValueChange={setAcceptsEmails}
+          >
+            Jeg samtykker til å motta kommunikasjon på e-post *
           </Checkbox>
         </FieldWrapper>
 
         <FieldWrapper control={control} name="accepts_sms">
-          <Checkbox
-            isSelected={accepts_sms}
-            onValueChange={setAcceptsSms}
-          >
+          <Checkbox isSelected={accepts_sms} onValueChange={setAcceptsSms}>
             Jeg samtykker til å motta kommunikasjon på SMS
           </Checkbox>
         </FieldWrapper>
