@@ -1,4 +1,9 @@
-import { DeliveryType, MrColor } from "@/types";
+import {
+  CmsPromotionBubbleFragment,
+  CmsSalesBubbleFragment,
+  DeliveryType,
+  MrColor,
+} from "@/types";
 
 export const generatePrettyUrl = (
   nextPropsUrl: Array<string>,
@@ -74,4 +79,40 @@ export const CAMPAIGN_COLORS: Record<MrColor, string> = {
   MR_S13: "#AC1917",
   MR_S14: "#EFDDD3",
   MR_S15: "#F1EBE1",
+};
+
+export const getSalesBubbleSpacing = (
+  salesBubble?: CmsSalesBubbleFragment | null,
+) => {
+  let spacing = 0;
+
+  if (salesBubble?.topLine) {
+    spacing += 1;
+  }
+
+  if (salesBubble?.bottomLine) {
+    spacing += 1;
+  }
+
+  if (salesBubble?.middleLine) {
+    spacing += 1;
+  }
+
+  return spacing;
+};
+
+export const getPromotionBubbleSpacing = (
+  promotionBubble?: CmsPromotionBubbleFragment | null,
+) => {
+  let spacing = 0;
+
+  if (promotionBubble?.topLine) {
+    spacing += 1;
+  }
+
+  if (promotionBubble?.middleLine) {
+    spacing += 1;
+  }
+
+  return spacing;
 };

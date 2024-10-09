@@ -5,9 +5,17 @@ import cx from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 
+import {
+  IMAGE_BUBBLE_SPACINGS,
+  IMAGE_PROMOTION_SPACINGS,
+} from "@/components/cms/__components/image/CmsImage";
 import { ImageLinkPromotionBubbleWrapper } from "@/components/cms/__components/image-link/ImageLinkPromotionBubbleWrapper";
 import { ImageLinkSalesBubbleWrapper } from "@/components/cms/__components/image-link/ImageLinkSalesBubbleWrapper";
 import { CmsImageLinkFragment } from "@/types";
+import {
+  getPromotionBubbleSpacing,
+  getSalesBubbleSpacing,
+} from "@/utils/helpers";
 
 interface Props {
   data: CmsImageLinkFragment;
@@ -19,10 +27,16 @@ export const ImageLink: React.FC<Props> = ({ data, className, imageStyle }) => {
   return (
     <div className={cx("flex flex-col gap-2 group", className)}>
       <div
-        className={cx("relative rounded-3xl", {
-          "mb-4 lg:mb-0": !!data.salesBubble,
-          "mb-6 lg:mb-12": !!data.promotionBubble,
-        })}
+        className={cx(
+          "relative rounded-3xl",
+          IMAGE_BUBBLE_SPACINGS[getSalesBubbleSpacing(data.salesBubble)],
+          IMAGE_PROMOTION_SPACINGS[
+            getPromotionBubbleSpacing(data.promotionBubble)
+          ],
+          {
+            "mb-6 lg:mb-12": !!data.promotionBubble,
+          },
+        )}
       >
         <div
           className={cx(
