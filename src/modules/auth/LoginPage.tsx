@@ -15,8 +15,10 @@ import { Input } from "@/components/_ui/input/Input";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { login } from "@/modules/auth/actions";
+import { GenerateCustomerTokenMutation } from "@/types";
+import { useRequestCallback } from "@/utils/hooks/useRequestCallback";
 
-import {navigate} from "../../app/actions";
+import { navigate } from "../../app/actions";
 
 type FormData = {
   email: string;
@@ -29,12 +31,13 @@ export const LoginPage: React.FC = () => {
   const router = useRouter();
   const [cookie, setCookie] = useCookies();
   const [isLoading, setIsLoading] = React.useState(false);
-  const [error, setError] = React.useState<Array<Error> | null>(null);
+  const [error, _setError] = React.useState<Array<Error> | null>(null);
   const {
     control,
     handleSubmit,
     formState: { isSubmitting, errors },
   } = useForm<FormData>();
+  const { handlePossibleErrors } = useRequestCallback();
 
   React.useEffect(() => {
     if (searchParams.get("token") === "EXPIRED" && !!cookie.token) {
@@ -55,17 +58,17 @@ export const LoginPage: React.FC = () => {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     setIsLoading(true);
-    const res = await login(data).finally(() => setIsLoading(false));
+    const res = await login(data);
 
-    if (!res?.success) {
-      setError(res.errors);
-    }
+    handlePossibleErrors(res);
 
-    if (res?.success) {
+    if ((res as GenerateCustomerTokenMutation)?.generateCustomerToken?.token) {
       loginGTMEvent();
-      await navigate("/account");
-      setIsLoading(false);
+      return navigate("/account");
     }
+
+    setIsLoading(false);
+    return res;
   };
 
   return (

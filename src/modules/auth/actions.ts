@@ -5,14 +5,21 @@ import { cookies } from "next/headers";
 
 import { AssignCustomerToGuestCart } from "@/queries/cart.queries";
 import {
+  GenerateCustomerTokenDocument,
   RequestPasswordResetEmailDocument,
   ResetPasswordDocument,
 } from "@/queries/mutations/customer.mutations";
-import { CustomerCreateInput } from "@/types";
+import {
+  CustomerCreateInput,
+  GenerateCustomerTokenMutation,
+  GenerateCustomerTokenMutationVariables,
+} from "@/types";
 import {
   authorizedMagentoClient,
   baseMagentoClient,
 } from "@/utils/lib/graphql";
+
+import { handleError } from "../../app/actions";
 
 interface LoginInput {
   email: string;
@@ -22,28 +29,29 @@ interface LoginInput {
 export async function login({ email, password }: LoginInput) {
   const cookiesStore = cookies();
 
-  const data = await fetch(
-    process.env.NEXT_PUBLIC_APP_URL + "/api/auth/login",
-    {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-      cache: "no-store",
-    },
-  ).then((res) => res.json());
+  const data = await baseMagentoClient("POST", {
+    cache: "no-store",
+  })
+    .request<
+      GenerateCustomerTokenMutation,
+      GenerateCustomerTokenMutationVariables
+    >(GenerateCustomerTokenDocument, {
+      email,
+      password,
+    })
+    .catch((error) => {
+      return handleError(error);
+    });
 
-  if (data?.token) {
-    await assignCustomerToGuestCart(data.token);
+  const token = (data as GenerateCustomerTokenMutation)?.generateCustomerToken
+    ?.token;
+
+  if (token) {
+    await assignCustomerToGuestCart(token);
 
     const today = new Date();
     const oneWeekFromNow = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
-    cookiesStore.set("token", data.token, {
+    cookiesStore.set("token", token, {
       expires: oneWeekFromNow,
     });
   }
