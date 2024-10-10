@@ -18,7 +18,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <GoogleTagManager gtmId="GTM-NK7F7KF6" />
+      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID ?? ""} />
       <meta name="robots" content="noindex,nofollow" />
       <meta
         name="viewport"
