@@ -5,6 +5,8 @@ import { CustomerDocument } from "@/queries/mutations/customer.mutations";
 import { CustomerQuery } from "@/types";
 import { authorizedMagentoClient } from "@/utils/lib/graphql";
 
+import { navigate } from "../../../app/actions";
+
 export async function getCustomerDetails() {
   const token = await getToken();
 
@@ -31,8 +33,14 @@ export async function getCustomerOrders() {
 
   if (!token) return;
 
-  return await authorizedMagentoClient(token, "GET", {
-    tags: ["customer-orders"],
-    revalidate: 600,
-  }).request<CustomerQuery>(CustomerDocument);
+  try {
+    return await authorizedMagentoClient(token, "GET", {
+      tags: ["customer-orders"],
+      revalidate: 600,
+    }).request<CustomerQuery>(CustomerDocument);
+  } catch (e) {
+    await navigate("/auth/login?token=EXPIRED");
+
+    return null;
+  }
 }
