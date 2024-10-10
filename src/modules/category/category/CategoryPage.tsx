@@ -9,6 +9,7 @@ import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { CategoryFilters } from "@/modules/category/category/category-filters/CategoryFilters";
 import { useCategoryFilters } from "@/modules/category/category/category-filters/useCategoryFilters";
+import {useFiltersQuery} from "@/modules/category/category/category-filters/useFiltersQuery";
 import { ProductsList } from "@/modules/category/category/ProductsList";
 import { ProductsListSkeleton } from "@/modules/category/category/ProductsListSkeleton";
 import { useProductsQuery } from "@/modules/category/category/useProductsQuery";
@@ -21,7 +22,9 @@ interface Props {
 }
 
 export const CategoryPage: React.FC<Props> = ({ category }) => {
-  const { filterValues, sortValues } = useCategoryFilters();
+  const { sortValues } = useCategoryFilters();
+  const { filterValues } = useFiltersQuery();
+
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useProductsQuery({
       filter: {

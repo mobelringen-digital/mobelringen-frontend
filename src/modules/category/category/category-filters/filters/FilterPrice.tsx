@@ -1,10 +1,9 @@
 import React from "react";
 
-import qs from "qs";
 import RangeSlider from "react-range-slider-input";
 
 import { FilterWrapper } from "@/modules/category/category/category-filters/FilterWrapper";
-import { useCategoryFilters } from "@/modules/category/category/category-filters/useCategoryFilters";
+import { useFiltersQuery } from "@/modules/category/category/category-filters/useFiltersQuery";
 import { FilterRangeTypeInput, ProductAggregationsFragment } from "@/types";
 
 import "react-range-slider-input/dist/style.css";
@@ -15,12 +14,9 @@ interface Props {
 
 export const FilterPrice: React.FC<Props> = ({ data }) => {
   const [sliderValue, setSliderValue] = React.useState<[number, number]>();
-  const { setQueryFilter, getQueryFilter, removeQueryFilter } =
-    useCategoryFilters();
+  const { setFilter, getFilter, removeFilter } = useFiltersQuery();
 
-  const filter = getQueryFilter<FilterRangeTypeInput>(
-    data?.attribute_code ?? "",
-  );
+  const filter = getFilter<FilterRangeTypeInput>(data?.attribute_code ?? "");
   const value = React.useMemo(() => {
     if (!filter) return undefined;
 
@@ -36,12 +32,9 @@ export const FilterPrice: React.FC<Props> = ({ data }) => {
     if (!Array.isArray(val)) return;
 
     if (val.length === 2) {
-      setQueryFilter(
-        data.attribute_code,
-        qs.stringify({ from: val[0], to: val[1] }, { encode: false }),
-      );
+      setFilter(data.attribute_code, { from: val[0], to: val[1] });
     } else {
-      removeQueryFilter(data.attribute_code);
+      removeFilter(data.attribute_code);
     }
   };
 

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { FilterChip } from "@/modules/category/category/category-filters/chips/FilterChip";
-import { useCategoryFilters } from "@/modules/category/category/category-filters/useCategoryFilters";
+import { useFiltersQuery } from "@/modules/category/category/category-filters/useFiltersQuery";
 import {
   isBooleanFilter,
   isRangeFilter,
@@ -15,8 +15,7 @@ interface Props {
 }
 
 export const FilterChips: React.FC<Props> = ({ filters }) => {
-  const { filterValues, removeQueryFilter, resetQueryFilters } =
-    useCategoryFilters();
+  const { filterValues, removeFilter, resetQueryFilters } = useFiltersQuery();
 
   const getFilter = React.useCallback(
     (key: string) => {
@@ -91,7 +90,7 @@ export const FilterChips: React.FC<Props> = ({ filters }) => {
                 key={idx}
                 label={f.label as string}
                 value={f.value as string}
-                onRemove={() => removeQueryFilter(f.key as string)}
+                onRemove={() => removeFilter(f.key as string)}
               />
             );
           })}
