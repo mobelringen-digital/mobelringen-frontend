@@ -16,6 +16,8 @@ import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { login } from "@/modules/auth/actions";
 
+import {navigate} from "../../app/actions";
+
 type FormData = {
   email: string;
   password: string;
@@ -61,7 +63,7 @@ export const LoginPage: React.FC = () => {
 
     if (res?.success) {
       loginGTMEvent();
-      router.push("/account");
+      await navigate("/account");
       setIsLoading(false);
     }
   };
