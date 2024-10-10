@@ -8,6 +8,7 @@ export default async function sitemap() {
     CmsPagesQueryVariables
   >(CmsPagesQueryDocument, {
     where: {},
+    first: 1000,
   });
 
   return pages.pages.map((page) => ({
