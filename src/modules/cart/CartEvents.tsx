@@ -50,7 +50,9 @@ export const CartEvents: React.FC<Props> = ({ children, data }) => {
       });
       viewCartGTMEvent();
     }
-  }, [cookies.eventSentForCart, data, pathname, setCookie, viewCartGTMEvent]);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname, cookies.eventSentForCart, data?.id]);
 
   return <>{children}</>;
 };
