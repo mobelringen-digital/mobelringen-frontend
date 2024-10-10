@@ -8,6 +8,11 @@ interface Props {
 
 export const Debugger: React.FC<Props> = ({ data, name = "Debugger" }) => {
   const [isOpen, setIsOpen] = React.useState(false);
+
+  if (process.env.NODE_ENV !== "development") {
+    return null;
+  }
+
   return (
     <div className="my-16">
       <button
