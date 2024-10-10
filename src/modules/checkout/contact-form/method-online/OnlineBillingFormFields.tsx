@@ -1,6 +1,5 @@
 import React from "react";
 
-import { Checkbox } from "@nextui-org/react";
 import { Control, FieldErrors } from "react-hook-form";
 
 import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
@@ -20,13 +19,13 @@ export const OnlineBillingFormFields: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <div className="col-span-12">
-        <FieldWrapper control={control} name="different_billing_address">
-          <Checkbox isSelected={isDifferentBillingAddress}>
-            Jeg ønsker å bruke en annen fakturaadresse
-          </Checkbox>
-        </FieldWrapper>
-      </div>
+      {/*<div className="col-span-12">*/}
+      {/*  <FieldWrapper control={control} name="different_billing_address">*/}
+      {/*    <Checkbox isSelected={isDifferentBillingAddress}>*/}
+      {/*      Jeg ønsker å bruke en annen fakturaadresse*/}
+      {/*    </Checkbox>*/}
+      {/*  </FieldWrapper>*/}
+      {/*</div>*/}
 
       {isDifferentBillingAddress ? (
         <>
