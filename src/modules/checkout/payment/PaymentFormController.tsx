@@ -70,7 +70,7 @@ export const PaymentFormController: React.FC<Props> = ({ cart }) => {
           addPaymentInfoGTMEvent(method);
           setIsLoading(false);
           removeCartCookie();
-          return (window.location.href = data.vippsInitPayment.url);
+          return navigate(data.vippsInitPayment.url);
         }
       }
 
@@ -85,7 +85,7 @@ export const PaymentFormController: React.FC<Props> = ({ cart }) => {
           addPaymentInfoGTMEvent(method);
           setIsLoading(false);
           removeCartCookie();
-          return (window.location.href = data.initKlarnaHpp?.redirect_url);
+          return navigate(data.initKlarnaHpp?.redirect_url);
         }
       }
 
