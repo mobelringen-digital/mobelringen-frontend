@@ -4,6 +4,7 @@ import { notFound, redirect } from "next/navigation";
 
 import getCart from "@/components/cart/actions";
 import { StaticPageContent } from "@/components/cms/static-page-content/StaticPageContent";
+import { MetaTitle } from "@/components/meta";
 import { getSelectedStore } from "@/components/store-selector/actions";
 import { ConfigurableProductPage } from "@/modules/product/ConfigurableProduct";
 import { SimpleProductPage } from "@/modules/product/SimpleProduct";
@@ -11,7 +12,11 @@ import {
   GetProductStockDocument,
   ProductsQueryDocument,
 } from "@/queries/product/product.queries";
-import {BaseCartFragment, ProductsQuery, ProductsQueryVariables} from "@/types";
+import {
+  BaseCartFragment,
+  ProductsQuery,
+  ProductsQueryVariables,
+} from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
@@ -85,21 +90,27 @@ export default async function Product({ sku, url }: Props) {
   return (
     <>
       {isTypename(productData, ["SimpleProduct"]) ? (
-        <SimpleProductPage
-          selectedStore={selectedStore}
-          stock={stock}
-          cart={cart as BaseCartFragment}
-          product={productData}
-        />
+        <>
+          <MetaTitle title={productData.meta_title ?? productData.name ?? ""} />
+          <SimpleProductPage
+            selectedStore={selectedStore}
+            stock={stock}
+            cart={cart as BaseCartFragment}
+            product={productData}
+          />
+        </>
       ) : null}
 
       {isTypename(productData, ["ConfigurableProduct"]) ? (
-        <ConfigurableProductPage
-          stock={stock}
-          cart={cart as BaseCartFragment}
-          product={productData}
-          selectedStore={selectedStore}
-        />
+        <>
+          <MetaTitle title={productData.meta_title ?? productData.name ?? ""} />
+          <ConfigurableProductPage
+            stock={stock}
+            cart={cart as BaseCartFragment}
+            product={productData}
+            selectedStore={selectedStore}
+          />
+        </>
       ) : null}
 
       <StaticPageContent url={`/${url}`} />
