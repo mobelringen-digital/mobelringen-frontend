@@ -30,7 +30,7 @@ export const SubCategoriesSelect: React.FC<Props> = ({ category, url }) => {
           href={`/${category?.url_path}`}
           className="text-5xl font-medium font-feature hover:underline"
         >
-          {category?.name}
+          <h1>{category?.name}</h1>
         </Link>
         {hasChildren(category) ? (
           <div className="flex gap-2 lg:gap-3 mt-8 flex-wrap">
