@@ -66,5 +66,9 @@ export default async function Home({ params }: Props) {
 
   const data = await getPage(`/${url}`);
 
+  if (!data.pages[0]) {
+    return notFound();
+  }
+
   return <Page data={data} />;
 }
