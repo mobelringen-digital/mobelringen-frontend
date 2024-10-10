@@ -18,7 +18,7 @@ export const ProductTopInfo: React.FC<Props> = ({
   return (
     <div className="flex flex-col">
       {brand ? (
-        <Link href={`/b/${generateUrl(brand)}`}>
+        <Link href={`/merker/${generateUrl(brand)}`}>
           <h4 className="text-lg lg:text-xl text-dark-grey font-semibold">
             {brand}
           </h4>
