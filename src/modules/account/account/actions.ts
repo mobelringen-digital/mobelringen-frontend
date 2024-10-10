@@ -22,6 +22,8 @@ export async function getCustomerDetails() {
       return data.customer;
     }
   } catch (e) {
+    await navigate("/auth/login?token=EXPIRED");
+
     return null;
   }
 
