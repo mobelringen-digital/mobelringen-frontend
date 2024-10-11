@@ -28,6 +28,20 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      {
+        source: "/5-tips-nar-du-skal-fornye-stuen",
+        destination: "/inspirasjon/gode-tips-når-du-skal-fornye-stuen",
+        permanent: true,
+      },
+      {
+        source: "/betaling-og-finansiering",
+        destination: "/kundeservice/betaling-og-finansiering",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default withSentryConfig(nextConfig, {
