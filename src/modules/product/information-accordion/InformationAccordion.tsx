@@ -19,7 +19,7 @@ export const InformationAccordion: React.FC<Props> = ({ product }) => {
       title: "Om produktet",
       content: (
         <>
-          <p dangerouslySetInnerHTML={{ __html: product.description.html }} />
+          <div dangerouslySetInnerHTML={{ __html: product.description.html }} />
           <p className="text-dark-grey flex gap-1 mt-4">
             <span>Artikkelnr.</span>
             <span>{product.sku}</span>
@@ -43,7 +43,7 @@ export const InformationAccordion: React.FC<Props> = ({ product }) => {
     accordionData.push({
       title: "Vedlikehold",
       content: (
-        <p
+        <div
           dangerouslySetInnerHTML={{ __html: product.maintenance_description }}
         />
       ),

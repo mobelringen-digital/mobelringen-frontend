@@ -4,6 +4,8 @@ import React from "react";
 
 import { sendGTMEvent } from "@next/third-parties/google";
 
+import { useSearchParams } from "next/navigation";
+
 import { Loader } from "@/components/_ui/loader/Loader";
 import { LoaderInnerWrapper } from "@/components/_ui/loader/LoaderInnerWrapper";
 import { Breadcrumbs } from "@/components/breadcrumbs";
@@ -45,6 +47,8 @@ export const BaseProductLayout: React.FC<Props> = ({
   selectedStore,
 }) => {
   const { activeProductVariant } = useActiveProductData();
+  const searchParams = useSearchParams();
+  const params = searchParams.entries();
 
   const product = activeProductVariant.variant?.product ?? baseProductData;
   const { data: productSliderData, isLoading: isSlidersDataLoading } =
@@ -52,6 +56,11 @@ export const BaseProductLayout: React.FC<Props> = ({
 
   const viewProductGTMEvent = React.useCallback(() => {
     if (!product) {
+      return;
+    }
+
+    // Dont trigger second time when params change
+    if (!!Object.keys(params).length) {
       return;
     }
 
@@ -74,7 +83,7 @@ export const BaseProductLayout: React.FC<Props> = ({
         },
       ],
     });
-  }, [product]);
+  }, [params, product]);
 
   React.useEffect(() => {
     viewProductGTMEvent();
