@@ -35,9 +35,220 @@ const nextConfig = {
         destination: "/inspirasjon/gode-tips-når-du-skal-fornye-stuen",
         permanent: true,
       },
+
       {
         source: "/betaling-og-finansiering",
         destination: "/kundeservice/betaling-og-finansiering",
+        permanent: true,
+      },
+
+      {
+        source: "/blackweek",
+        destination: "/salg/blackweek",
+        permanent: true,
+      },
+
+      {
+        source: "/butikker/mobelringen-sortlands-mobelsenter",
+        destination: "/finn-butikk",
+        permanent: true,
+      },
+
+      {
+        source: "/butikker/telemark/wm-rjukan-interiorsenter-a-s/nb",
+        destination: "/finn-butikk",
+        permanent: true,
+      },
+
+      {
+        source: "/finn-trysil-vinn-trysil",
+        destination: "/salg",
+        permanent: true,
+      },
+
+      {
+        source: "/forus",
+        destination: "/finn-butikk",
+        permanent: true,
+      },
+
+      {
+        source: "/hjem/nb",
+        destination: "/",
+        permanent: true,
+      },
+
+      {
+        source: "/home",
+        destination: "/",
+        permanent: true,
+      },
+
+      {
+        source: "/inn-i-komfortsonen",
+        destination: "/inspirasjon/inn-i-komfortsonen",
+        permanent: true,
+      },
+
+      {
+        source: "/inspirasjon/mange-muligheter-med-moduler",
+        destination: "/inspirasjon/hva-er-en-modulsofa",
+        permanent: true,
+      },
+
+      {
+        source: "/julesalg",
+        destination: "/salg",
+        permanent: true,
+      },
+
+      {
+        source: "/kjopsbetingelser-for-netthandel",
+        destination: "/kundeservice/kjopsbetingelser",
+        permanent: true,
+      },
+
+      {
+        source: "/klikk-og-hent",
+        destination: "/kundeservice/handle-med-klikk-og-hent",
+        permanent: true,
+      },
+
+      {
+        source: "/konkurranse",
+        destination: "/salg/konkurranse",
+        permanent: true,
+      },
+
+      {
+        source: "/kontakt-oss",
+        destination: "/kundeservice/kontakt-oss",
+        permanent: true,
+      },
+
+      {
+        source: "/levering-og-montering",
+        destination: "/kundeservice/levering-og-montering",
+        permanent: true,
+      },
+
+      {
+        source: "/medlemsvilkar",
+        destination: "/kundelubb/medlemsvilkar",
+        permanent: true,
+      },
+
+      {
+        source: "/mobler",
+        destination: "/",
+        permanent: true,
+      },
+
+      {
+        source: "/ofte-stilte-sporsmal",
+        destination: "/kundeservice/ofte-stilte-sporsmal",
+        permanent: true,
+      },
+
+      {
+        source: "/proveligg",
+        destination: "/inspirasjon/proveligg",
+        permanent: true,
+      },
+
+      {
+        source: "/reklamasjon",
+        destination: "/kundeservice/reklamasjon",
+        permanent: true,
+      },
+
+      {
+        source: "/retur",
+        destination: "/kundeservice/retur",
+        permanent: true,
+      },
+
+      {
+        source: "/ryddesalg",
+        destination: "/salg",
+        permanent: true,
+      },
+
+      {
+        source: "/salg2022-1",
+        destination: "/salg",
+        permanent: true,
+      },
+
+      {
+        source: "/salg2023-1",
+        destination: "/salg",
+        permanent: true,
+      },
+
+      {
+        source: "/salg2024-1",
+        destination: "/salg",
+        permanent: true,
+      },
+
+      {
+        source: "/sommersalg",
+        destination: "/salg",
+        permanent: true,
+      },
+
+      {
+        source: "/soveromsdager",
+        destination: "/soverom",
+        permanent: true,
+      },
+
+      {
+        source: "/spisestuedager",
+        destination: "/spiseplass",
+        permanent: true,
+      },
+
+      {
+        source: "/stuedager",
+        destination: "/stue",
+        permanent: true,
+      },
+
+      {
+        source: "/vip-uke",
+        destination: "/salg",
+        permanent: true,
+      },
+
+      {
+        source: "/hoestens-nyheter2022",
+        destination: "/salg",
+        permanent: true,
+      },
+
+      {
+        source: "/handle-hos-mobelringen",
+        destination: "/kundeservice",
+        permanent: true,
+      },
+
+      {
+        source: "/kvalitet",
+        destination: "/",
+        permanent: true,
+      },
+
+      {
+        source: "/mobelfakta",
+        destination: "/",
+        permanent: true,
+      },
+
+      {
+        source: "/vedlikehold",
+        destination: "inspirasjon/vedlikehold",
         permanent: true,
       },
     ];
