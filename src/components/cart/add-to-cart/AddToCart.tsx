@@ -33,7 +33,7 @@ export const AddToCart: React.FC<Props> = ({
   stock,
   selectedStore,
 }) => {
-  const addToCartGTMEvent = () => {
+  const addToCartGTMEvent = (preferredMethod: DeliveryType) => {
     if (!cart?.id) {
       return;
     }
@@ -42,6 +42,7 @@ export const AddToCart: React.FC<Props> = ({
       event: "add_to_cart",
       currency: "NOK",
       value: product?.price_range?.maximum_price?.final_price?.value,
+      delivery_method: preferredMethod,
       items: [
         {
           item_id: product.sku,
@@ -98,7 +99,7 @@ export const AddToCart: React.FC<Props> = ({
     }
 
     if (!cart?.id && product.sku && quantity) {
-      addToCartGTMEvent();
+      addToCartGTMEvent(preferredMethod);
       const data = await createCartAndAddProduct(
         [
           {
