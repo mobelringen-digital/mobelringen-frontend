@@ -134,7 +134,7 @@ const nextConfig = {
 
       {
         source: "/medlemsvilkar",
-        destination: "/kundelubb/medlemsvilkar",
+        destination: "/kundeklubb/medlemsvilkar",
         permanent: true,
       },
 
