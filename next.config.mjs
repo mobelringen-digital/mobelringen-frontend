@@ -248,7 +248,7 @@ const nextConfig = {
 
       {
         source: "/vedlikehold",
-        destination: "inspirasjon/vedlikehold",
+        destination: "/inspirasjon/vedlikehold",
         permanent: true,
       },
     ];
