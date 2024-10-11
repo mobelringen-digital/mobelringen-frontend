@@ -95,7 +95,7 @@ export const ContactForm: React.FC<Props> = ({
       >
         {!isAuthorized ? (
           <div className="col-span-12 flex items-center gap-4 mb-4">
-            <span>Allerede kunde?</span>
+            <span>Logg inn eller opprett ny konto og bli medlem i Kundeklubben.</span>
             <Button color="secondary" onClick={navigateToLogin}>
               Logg inn
             </Button>
