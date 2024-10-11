@@ -94,10 +94,12 @@ export const ContactForm: React.FC<Props> = ({
         className="grid grid-cols-12 gap-4"
       >
         {!isAuthorized ? (
-          <div className="col-span-12 flex items-center gap-4 mb-4">
-            <span>Logg inn eller opprett ny konto og bli medlem i Kundeklubben.</span>
+          <div className="col-span-12 flex-col justify-center lg:justify-between items-start lg:flex-row flex lg:items-center gap-4 mb-4">
+            <span>
+              Logg inn eller opprett ny konto og bli medlem i Kundeklubben.
+            </span>
             <Button color="secondary" onClick={navigateToLogin}>
-              Logg inn
+              Logg inn / Opprett konto
             </Button>
           </div>
         ) : null}
