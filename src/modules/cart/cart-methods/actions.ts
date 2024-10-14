@@ -7,7 +7,9 @@ import { SetDeliveryTypeInput } from "@/types";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
 export async function setDeliveryType(input: SetDeliveryTypeInput) {
-  const data = await baseMagentoClient().request(setDeliveryTypeDocument, {
+  const data = await baseMagentoClient("POST", {
+    cache: "no-store",
+  }).request(setDeliveryTypeDocument, {
     input,
   });
 
