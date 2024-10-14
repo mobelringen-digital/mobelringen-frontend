@@ -21,13 +21,12 @@ export async function addToCart(
   const cookieStore = cookies();
   const token = await getToken();
 
-  const data = await authorizedMagentoClient(token, "POST").request(
-    AddProductToCartDocument,
-    {
-      cartId,
-      cartItems,
-    },
-  );
+  const data = await authorizedMagentoClient(token, "POST", {
+    cache: "no-store",
+  }).request(AddProductToCartDocument, {
+    cartId,
+    cartItems,
+  });
 
   await updateCartItemsInStore();
   await setDeliveryType({
@@ -49,7 +48,9 @@ export async function addToCart(
 
 export async function createEmptyCart() {
   const cookieStore = cookies();
-  const data = await baseMagentoClient("POST").request(
+  const data = await baseMagentoClient("POST", {
+    cache: "no-store",
+  }).request(
     CreateEmptyCartDocument,
     {},
   );
