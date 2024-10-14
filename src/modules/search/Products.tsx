@@ -5,6 +5,7 @@ import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { CmsBlockHeader } from "@/components/cms/cms-block-wrapper/CmsBlockHeader";
 import { CategoryFilters } from "@/modules/category/category/category-filters/CategoryFilters";
 import { useCategoryFilters } from "@/modules/category/category/category-filters/useCategoryFilters";
+import { useFiltersQuery } from "@/modules/category/category/category-filters/useFiltersQuery";
 import { ProductsList } from "@/modules/category/category/ProductsList";
 import { ProductsListSkeleton } from "@/modules/category/category/ProductsListSkeleton";
 import { useProductsQuery } from "@/modules/category/category/useProductsQuery";
@@ -14,7 +15,8 @@ interface Props {
 }
 
 export const Products: React.FC<Props> = ({ query }) => {
-  const { filterValues, sortValues } = useCategoryFilters();
+  const { sortValues } = useCategoryFilters();
+  const { filterValues } = useFiltersQuery();
   const {
     data,
     isLoading,

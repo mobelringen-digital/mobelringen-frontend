@@ -9,7 +9,7 @@ export const baseHygraphClient = (method?: "POST" | "GET") =>
       async (input: RequestInfo | URL, init?: RequestInit | undefined) =>
         fetch(input, {
           method,
-          next: { revalidate: 60 },
+          next: { revalidate: 86400 }, // 24 hours cache
           ...init,
           headers: {
             Authorization: `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_API_KEY}`,
