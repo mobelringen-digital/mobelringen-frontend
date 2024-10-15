@@ -2,7 +2,6 @@
 
 import React from "react";
 
-import { ScrollShadow } from "@nextui-org/react";
 import cx from "classnames";
 import { useDebounce } from "use-debounce";
 
@@ -119,86 +118,82 @@ export const Stores: React.FC<Props> = ({ title }) => {
             </div>
           </div>
 
-          <ScrollShadow size={100} className="max-h-[520px]">
-            <div className="flex flex-col">
-              {activeRegion ? (
-                <>
-                  <div className="flex items-center gap-2 text-xl py-2">
-                    <button onClick={() => setActiveRegion("")}>Fylke</button>
-                    <ChevronRight />
-                    <span>{activeRegion}</span>
-                  </div>
-                  {activeRegionStores
-                    ?.filter(
-                      (s) => s?.latitude && s?.longitude && s.is_visible_on_map,
-                    )
-                    .map((store, idx) => (
-                      <button
-                        onClick={() => setSelectedStore(store)}
-                        className={cx(
-                          "text-left py-4 border-b border-dark-grey border-opacity-30 hover:bg-warm-grey",
-                          {
-                            "bg-warm-grey":
-                              selectedStore?.external_id === store?.external_id,
-                          },
-                        )}
-                        key={idx}
-                      >
-                        <div className="flex justify-between items-center">
-                          <div className="flex flex-col gap-1">
-                            <span className="font-normal">{store?.name}</span>
-                            <span className="text-sm font-light text-dark-grey">
-                              {[
-                                store?.street,
-                                store?.postcode,
-                                store?.city,
-                              ].join(", ")}
-                            </span>
-                          </div>
-                          <Link
-                            className="p-4"
-                            href={`/store/${store.external_id}/${stringToUrl(store.name)}`}
-                          >
-                            <ChevronRight />
-                          </Link>
-                        </div>
-                      </button>
-                    ))}
-                </>
-              ) : (
-                <>
-                  <span className="text-xl py-2">Alle fylker</span>
-                  {!isLoading && stores?.length === 0 ? (
-                    <div className="text-center text-lg">Ingen resultater</div>
-                  ) : null}
-                  {groupedByRegions?.map((data, idx) => (
+          <div className="flex flex-col max-h-[520px]">
+            {activeRegion ? (
+              <>
+                <div className="flex items-center gap-2 text-xl py-2">
+                  <button onClick={() => setActiveRegion("")}>Fylke</button>
+                  <ChevronRight />
+                  <span>{activeRegion}</span>
+                </div>
+                {activeRegionStores
+                  ?.filter(
+                    (s) => s?.latitude && s?.longitude && s.is_visible_on_map,
+                  )
+                  .map((store, idx) => (
                     <button
-                      onClick={() =>
-                        setActiveRegion(
-                          activeRegion === data.region ? null : data.region,
-                        )
-                      }
+                      onClick={() => setSelectedStore(store)}
                       className={cx(
-                        "text-left py-4 border-b border-dark-grey border-opacity-30 hover:bg-warm-grey flex justify-between items-center px-2",
+                        "text-left py-4 border-b border-dark-grey border-opacity-30 hover:bg-warm-grey",
                         {
-                          "bg-warm-grey": activeRegion === data.region,
+                          "bg-warm-grey":
+                            selectedStore?.external_id === store?.external_id,
                         },
                       )}
                       key={idx}
                     >
-                      <span className="font-normal">{data.region}</span>
-                      <span className="flex gap-2">
-                        <span className="font-light text-dark-grey">
-                          {data.stores.length}
-                        </span>
-                        <ChevronRight />
-                      </span>
+                      <div className="flex justify-between items-center">
+                        <div className="flex flex-col gap-1">
+                          <span className="font-normal">{store?.name}</span>
+                          <span className="text-sm font-light text-dark-grey">
+                            {[store?.street, store?.postcode, store?.city].join(
+                              ", ",
+                            )}
+                          </span>
+                        </div>
+                        <Link
+                          className="p-4"
+                          href={`/store/${store.external_id}/${stringToUrl(store.name)}`}
+                        >
+                          <ChevronRight />
+                        </Link>
+                      </div>
                     </button>
                   ))}
-                </>
-              )}
-            </div>
-          </ScrollShadow>
+              </>
+            ) : (
+              <>
+                <span className="text-xl py-2">Alle fylker</span>
+                {!isLoading && stores?.length === 0 ? (
+                  <div className="text-center text-lg">Ingen resultater</div>
+                ) : null}
+                {groupedByRegions?.map((data, idx) => (
+                  <button
+                    onClick={() =>
+                      setActiveRegion(
+                        activeRegion === data.region ? null : data.region,
+                      )
+                    }
+                    className={cx(
+                      "text-left py-4 border-b border-dark-grey border-opacity-30 hover:bg-warm-grey flex justify-between items-center px-2",
+                      {
+                        "bg-warm-grey": activeRegion === data.region,
+                      },
+                    )}
+                    key={idx}
+                  >
+                    <span className="font-normal">{data.region}</span>
+                    <span className="flex gap-2">
+                      <span className="font-light text-dark-grey">
+                        {data.stores.length}
+                      </span>
+                      <ChevronRight />
+                    </span>
+                  </button>
+                ))}
+              </>
+            )}
+          </div>
         </div>
         <div className="col-span-12 lg:col-span-8">
           <Map selectedStore={selectedStore} stores={stores} />

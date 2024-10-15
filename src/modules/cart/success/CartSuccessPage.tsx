@@ -1,5 +1,7 @@
 import React from "react";
 
+import { sendGTMEvent } from "@next/third-parties/google";
+
 import Link from "next/link";
 
 import { Debugger } from "@/components/Debugger";
@@ -11,13 +13,33 @@ import { ItemsTable } from "@/modules/cart/success/ItemsTable";
 import { OrderInformation } from "@/modules/cart/success/OrderInformation";
 import { MaskedOrderFragment } from "@/types";
 
-// const DeliveryMap = dynamic(() => import("./DeliveryMap"), { ssr: false });
-
 interface Props {
   order?: MaskedOrderFragment | null;
 }
 
-export const CartSuccessPage: React.FC<Props> = ({ order }) => {
+const addPurchaseGTMEvent = async (order?: MaskedOrderFragment | null) => {
+  if (!order?.id) {
+    return;
+  }
+
+  return sendGTMEvent({
+    event: "purchase",
+    payment_type: order.payment_methods
+      ?.map((method) => method?.name)
+      .join(","),
+    currency: "NOK",
+    value: order.total?.grand_total?.value,
+    items: order.items.map((item, idx) => ({
+      item_id: item?.sku,
+      item_name: item?.name,
+      index: idx,
+      price: item?.price,
+      quantity: item?.quantity,
+    })),
+  });
+};
+
+export async function CartSuccessPage({ order }: Props) {
   const fullShippingAddress = [
     order?.shipping_address?.street,
     order?.shipping_address?.postcode,
@@ -27,6 +49,8 @@ export const CartSuccessPage: React.FC<Props> = ({ order }) => {
     .join(", ");
 
   const isClickAndCollect = order?.delivery_type === "CAC";
+
+  await addPurchaseGTMEvent(order);
 
   return (
     <ContainerLayout className="pb-12">
@@ -65,4 +89,4 @@ export const CartSuccessPage: React.FC<Props> = ({ order }) => {
       <Debugger data={order} />
     </ContainerLayout>
   );
-};
+}
