@@ -107,8 +107,7 @@ export const AddToCartController: React.FC<Props> = ({
         )}
         {!canBuyOnline && !canBuyCAC ? (
           <span className="text-error font-semibold text-sm px-2">
-            Selv om varen er tom på lager, kan du alltid bestille den i våre
-            butikker.
+            Er varen tom på lager kan den fortsatt bestilles i butikk.
           </span>
         ) : null}
       </div>
