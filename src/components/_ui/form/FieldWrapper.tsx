@@ -1,5 +1,6 @@
 import React from "react";
 
+import cx from "classnames";
 import {
   Controller,
   UseControllerProps,
@@ -12,6 +13,7 @@ interface Props<TFieldValues extends FieldValues = FieldValues>
   label?: string;
   children: React.ReactElement;
   error?: FieldError;
+  className?: string;
 }
 
 export function FieldWrapper<TFieldValues extends FieldValues = FieldValues>({
@@ -19,10 +21,11 @@ export function FieldWrapper<TFieldValues extends FieldValues = FieldValues>({
   children,
   name,
   error,
+  className,
   ...rest
 }: Props<TFieldValues>) {
   return (
-    <div className="flex flex-col gap-1">
+    <div className={cx("flex flex-col gap-1", className)}>
       {label ? (
         <label className="text-base font-normal" htmlFor={label}>
           {label}

@@ -1,13 +1,15 @@
 import React from "react";
 
+import { ApplyCoupon } from "@/modules/cart/cart-price/ApplyCoupon";
 import { CartPriceLine } from "@/modules/cart/cart-price/CartPriceLine";
 import { BaseCartFragment } from "@/types";
 
 interface Props {
   cart?: BaseCartFragment | null;
+  showApplyCoupon?: boolean;
 }
 
-export async function CartPricing({ cart }: Props) {
+export async function CartPricing({ cart, showApplyCoupon }: Props) {
   const prices = cart?.prices;
 
   const pricingLines = () => {
@@ -18,6 +20,11 @@ export async function CartPricing({ cart }: Props) {
         currency: prices?.items_grand_total_base_price?.currency,
       },
       taxes: prices?.applied_taxes?.map((tax) => ({
+        label: tax?.label,
+        value: tax?.amount.value,
+        currency: tax?.amount.currency,
+      })),
+      discounts: prices?.discounts?.map((tax) => ({
         label: tax?.label,
         value: tax?.amount.value,
         currency: tax?.amount.currency,
@@ -73,6 +80,15 @@ export async function CartPricing({ cart }: Props) {
           />
         ))}
 
+        {pricingLines().discounts?.map((tax, idx) => (
+          <CartPriceLine
+            key={idx}
+            label={tax.label ?? ""}
+            value={tax.value}
+            currency={tax.currency}
+          />
+        ))}
+
         {pricingLines().delivery.value ? (
           <CartPriceLine
             label={pricingLines().delivery.label ?? ""}
@@ -81,6 +97,9 @@ export async function CartPricing({ cart }: Props) {
           />
         ) : null}
       </div>
+
+      {showApplyCoupon ? <ApplyCoupon cart={cart} /> : null}
+
       <CartPriceLine
         labelClassName="font-semibold"
         label="Total"

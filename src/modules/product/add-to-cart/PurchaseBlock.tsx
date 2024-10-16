@@ -39,8 +39,6 @@ export const PurchaseBlock: React.FC<Props> = ({
   );
   const { activeProductVariant } = useActiveProductData();
 
-  const canBuyOnline =
-    stock?.getProductStock.online?.availability !== Availability.OutOfStock;
   const canBuyCAC =
     stock?.getProductStock.cac?.availability !== Availability.OutOfStock;
 
@@ -71,7 +69,7 @@ export const PurchaseBlock: React.FC<Props> = ({
     <div className="bg-white p-4 lg:p-8 rounded-2xl flex flex-col gap-4">
       <DeliveryInfo stock={stock} product={product} />
 
-      {!canBuyOnline && !canBuyCAC ? (
+      {!canBuyCAC ? (
         <div className="border border-red border-opacity-50 rounded-xl p-4">
           <div className="flex gap-2">
             <Info fill="#FF3E3E" />
