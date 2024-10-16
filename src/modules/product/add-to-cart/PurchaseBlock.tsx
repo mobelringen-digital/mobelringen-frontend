@@ -70,15 +70,12 @@ export const PurchaseBlock: React.FC<Props> = ({
       <DeliveryInfo stock={stock} product={product} />
 
       {!canBuyCAC ? (
-        <div className="border border-red border-opacity-50 rounded-xl p-4">
+        <div className="border border-red border-opacity-50 rounded-xl p-2">
           <div className="flex gap-2">
             <Info fill="#FF3E3E" />
-            <div className="flex flex-col gap-2 text-sm text-red">
-              <span className="font-semibold">Ikke på lager?</span>
-              <span>
-                Selv om varen er tom på lager, kan den fortsatt bestilles i
-                butikk.
-              </span>
+            <div className="flex flex-col gap-2 text-xs text-red">
+              Dersom varen ikke er på lager for Klikk og hent, kan du alltid
+              bestille den i våre butikker.
             </div>
           </div>
         </div>
