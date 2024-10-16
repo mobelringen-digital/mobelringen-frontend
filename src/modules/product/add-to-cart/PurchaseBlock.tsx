@@ -70,7 +70,7 @@ export const PurchaseBlock: React.FC<Props> = ({
       <DeliveryInfo stock={stock} product={product} />
 
       {!canBuyCAC ? (
-        <div className="border border-red border-opacity-50 rounded-xl p-2">
+        <div className="border border-red border-opacity-50 rounded-xl p-2 mb-2">
           <div className="flex gap-2">
             <Info fill="#FF3E3E" />
             <div className="flex flex-col gap-2 text-xs text-red">
