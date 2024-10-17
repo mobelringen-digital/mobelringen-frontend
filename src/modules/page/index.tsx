@@ -1,9 +1,7 @@
 import React from "react";
 
 import { CmsContentLoader } from "@/components/cms/cms-content-loader";
-import { MetaDescription, MetaTitle } from "@/components/meta";
-import { OgImage } from "@/components/meta/OgImage";
-import { MetaRobots } from "@/components/meta/Robots";
+import { MetaData } from "@/components/meta/MetaData";
 import { CmsPagesQuery } from "@/types";
 
 interface Props {
@@ -11,19 +9,9 @@ interface Props {
 }
 
 export const Page: React.FC<Props> = ({ data }) => {
-  const metaDescription = data.pages[0]?.seo?.metaDescription;
-  const title = data.pages[0]?.seo?.metaTitle;
-  const ogImage = data.pages[0]?.seo?.ogImage?.url;
-  const robots = data.pages[0]?.seo?.robots;
-
   return (
     <>
-      {title ? <MetaTitle title={title} /> : null}
-      {metaDescription ? (
-        <MetaDescription description={metaDescription} />
-      ) : null}
-      {ogImage ? <OgImage image={ogImage} /> : null}
-      {robots ? <MetaRobots robots={robots} /> : null}
+      <MetaData data={data.pages[0].seo} />
 
       {data.pages[0]?.content.map((content) => {
         return <CmsContentLoader key={content.__typename} data={content} />;

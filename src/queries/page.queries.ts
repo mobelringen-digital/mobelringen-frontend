@@ -1,16 +1,24 @@
 import { graphql } from "@/types/schema";
 
+export const SeoFragment = graphql(`
+  fragment Seo on Seo {
+    metaTitle
+    metaDescription
+    ogImage {
+      url
+    }
+    canonicalUrl
+    robots
+  }
+`);
+
 export const CmsPageNodeFragment = graphql(`
   fragment CmsPageNode on Page {
     id
     url
     title
     seo {
-      metaTitle
-      metaDescription
-      ogImage {
-        url
-      }
+      ...Seo
     }
     pageThumbnail {
       url
@@ -63,12 +71,7 @@ export const CmsPagesQueryDocument = graphql(`
       id
       title
       seo {
-        metaTitle
-        metaDescription
-        ogImage {
-          url
-        }
-        robots
+        ...Seo
       }
       createdAt
       pageThumbnail {
