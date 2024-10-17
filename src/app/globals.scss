@@ -26,6 +26,11 @@ body {
   @apply bg-brown text-white #{!important};
 }
 
+.leaflet-popup-content-wrapper {
+  &:hover {
+    @apply bg-warm-grey;
+  }
+}
 #cms-text-block {
   p {
     &:not(:first-of-type),
