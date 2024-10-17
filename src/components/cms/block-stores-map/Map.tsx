@@ -11,7 +11,6 @@ import Link from "next/link";
 
 import { ChevronRight } from "@/components/_ui/icons/ChevronRight";
 import { MapMarker } from "@/components/cms/block-stores-map/MapMarker";
-import { StoreWorkingDays } from "@/modules/store/StoreWorkingDays";
 import { BaseStoreFragment } from "@/types";
 import { stringToUrl } from "@/utils/helpers";
 
