@@ -44,25 +44,27 @@ export const Stores: React.FC<Props> = ({ title }) => {
   );
   const [value] = useDebounce(search, 1000);
 
-  const groupedByRegions = stores?.reduce(
-    (acc, rec) => {
-      const { region, ...store } = rec as BaseStoreFragment;
-      const regionIndex = acc.findIndex((item) => item.region === region);
+  const groupedByRegions = stores
+    ?.reduce(
+      (acc, rec) => {
+        const { region, ...store } = rec as BaseStoreFragment;
+        const regionIndex = acc.findIndex((item) => item.region === region);
 
-      if (regionIndex > -1) {
-        acc[regionIndex].stores.push(store);
-      } else {
-        if (region) {
-          acc.push({ region, stores: [store] });
+        if (regionIndex > -1) {
+          acc[regionIndex].stores.push(store);
         } else {
-          acc.push({ region: "Ukjent", stores: [store] });
+          if (region) {
+            acc.push({ region, stores: [store] });
+          } else {
+            acc.push({ region: "Ukjent", stores: [store] });
+          }
         }
-      }
 
-      return acc;
-    },
-    [] as { region: string; stores: BaseStoreFragment[] }[],
-  );
+        return acc;
+      },
+      [] as { region: string; stores: BaseStoreFragment[] }[],
+    )
+    .sort((a, b) => a.region.localeCompare(b.region));
 
   const activeRegionStores = React.useMemo(() => {
     if (!activeRegion) {
@@ -118,7 +120,7 @@ export const Stores: React.FC<Props> = ({ title }) => {
             </div>
           </div>
 
-          <div className="flex flex-col max-h-[520px]">
+          <div className="flex flex-col max-h-[520px] overflow-y-auto">
             {activeRegion ? (
               <>
                 <div className="flex items-center gap-2 text-xl py-2">
@@ -162,7 +164,7 @@ export const Stores: React.FC<Props> = ({ title }) => {
                   ))}
               </>
             ) : (
-              <>
+              <div className="block w-full">
                 <span className="text-xl py-2">Alle fylker</span>
                 {!isLoading && stores?.length === 0 ? (
                   <div className="text-center text-lg">Ingen resultater</div>
@@ -175,7 +177,7 @@ export const Stores: React.FC<Props> = ({ title }) => {
                       )
                     }
                     className={cx(
-                      "text-left py-4 border-b border-dark-grey border-opacity-30 hover:bg-warm-grey flex justify-between items-center px-2",
+                      "text-left w-full py-4 h-16 border-b border-dark-grey border-opacity-30 hover:bg-warm-grey flex justify-between items-center px-2",
                       {
                         "bg-warm-grey": activeRegion === data.region,
                       },
@@ -191,7 +193,7 @@ export const Stores: React.FC<Props> = ({ title }) => {
                     </span>
                   </button>
                 ))}
-              </>
+              </div>
             )}
           </div>
         </div>

@@ -9,8 +9,8 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 
 import Link from "next/link";
 
+import { ChevronRight } from "@/components/_ui/icons/ChevronRight";
 import { MapMarker } from "@/components/cms/block-stores-map/MapMarker";
-import { StoreWorkingDays } from "@/modules/store/StoreWorkingDays";
 import { BaseStoreFragment } from "@/types";
 import { stringToUrl } from "@/utils/helpers";
 
@@ -64,15 +64,19 @@ const Map: React.FC<Props> = ({ stores, selectedStore }) => {
                   <Popup className="!m-0">
                     <Link
                       href={`/store/${store.external_id}/${stringToUrl(store.name)}`}
-                      className="flex flex-col gap-1 pr-4 !text-black"
+                      className="flex w-full justify-between items-center gap-1 !text-black"
                     >
-                      <span className="font-semibold">{store?.name}</span>
-                      <span className="mb-2">
-                        {[store?.street, store?.postcode, store?.city].join(
-                          ", ",
-                        )}
-                      </span>
-                      <StoreWorkingDays store={store} />
+                      <div className="flex flex-col gap-1">
+                        <span className="font-semibold">{store?.name}</span>
+                        <span>
+                          {[store?.street, store?.postcode, store?.city].join(
+                            ", ",
+                          )}
+                        </span>
+                      </div>
+                      <div className="-mr-6">
+                        <ChevronRight />
+                      </div>
                     </Link>
                   </Popup>
                 </Marker>
