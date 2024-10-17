@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import { sendGTMEvent } from "@next/third-parties/google";
@@ -39,7 +41,8 @@ const addPurchaseGTMEvent = async (order?: MaskedOrderFragment | null) => {
   });
 };
 
-export async function CartSuccessPage({ order }: Props) {
+export const CartSuccessPage: React.FC<Props> = ({ order }) => {
+  const [eventSent, setEventSent] = React.useState(false);
   const fullShippingAddress = [
     order?.shipping_address?.street,
     order?.shipping_address?.postcode,
@@ -50,7 +53,13 @@ export async function CartSuccessPage({ order }: Props) {
 
   const isClickAndCollect = order?.delivery_type === "CAC";
 
-  await addPurchaseGTMEvent(order);
+  React.useEffect(() => {
+    if (!eventSent) {
+      addPurchaseGTMEvent(order).finally(() => {
+        setEventSent(true);
+      });
+    }
+  }, [eventSent, order]);
 
   return (
     <ContainerLayout className="pb-12">
@@ -89,4 +98,4 @@ export async function CartSuccessPage({ order }: Props) {
       <Debugger data={order} />
     </ContainerLayout>
   );
-}
+};
