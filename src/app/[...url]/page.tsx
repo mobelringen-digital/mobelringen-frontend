@@ -23,11 +23,11 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-async function getPage(url: string) {
-  return await baseHygraphClient("GET").request<
-    CmsPagesQuery,
-    CmsPagesQueryVariables
-  >(CmsPagesQueryDocument, {
+async function getPage(url: string, preview?: boolean) {
+  return await baseHygraphClient("GET", {
+    cache: preview ? "no-store" : undefined,
+    revalidate: preview ? 0 : 86400,
+  }).request<CmsPagesQuery, CmsPagesQueryVariables>(CmsPagesQueryDocument, {
     where: {
       url,
     },
@@ -43,10 +43,11 @@ async function getRoute(url: string) {
   });
 }
 
-export default async function Home({ params }: Props) {
+export default async function Home({ params, searchParams }: Props) {
   const url = generatePrettyUrl(params.url, {
     removeTrailSlash: true,
   });
+  const isPreview = searchParams.preview === "true";
 
   const routeData = await getRoute(url);
 
@@ -64,11 +65,16 @@ export default async function Home({ params }: Props) {
     return <Category url={url} />;
   }
 
-  const data = await getPage(`/${url}`);
+  const data = await getPage(`/${url}`, isPreview);
 
   if (!data.pages[0]) {
     return notFound();
   }
 
-  return <Page data={data} />;
+  return (
+    <>
+      {isPreview ? <meta name="robots" content="noindex" /> : null}
+      <Page data={data} />
+    </>
+  );
 }
