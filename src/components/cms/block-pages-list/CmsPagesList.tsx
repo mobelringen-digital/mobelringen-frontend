@@ -15,6 +15,7 @@ import { CmsBlockWrapper } from "@/components/cms/cms-block-wrapper";
 import { CmsBlockHeader } from "@/components/cms/cms-block-wrapper/CmsBlockHeader";
 import { PageThumbnail } from "@/components/page-thumbnail/PageThumbnail";
 import { CmsPagesListFragment } from "@/types";
+import { buildPathArray } from "@/utils/helpers";
 
 interface Props {
   data: CmsPagesListFragment;
@@ -43,22 +44,6 @@ export const CmsPagesList: React.FC<Props> = ({ data }) => {
     return acc + page.edges.length;
   }, 0);
   const totalCount = queryData?.pages[0]?.aggregate.count;
-
-  const buildPathArray = (url: string) => {
-    const segments = url.split("/").filter((segment) => segment !== "");
-    const result: Array<{ value: string; label: string }> = [];
-    let currentPath = "";
-
-    segments.forEach((segment) => {
-      currentPath += `/${segment}`;
-      result.push({
-        value: currentPath,
-        label: segment.replace(/[^\w\s]/g, " "),
-      });
-    });
-
-    return result;
-  };
 
   return (
     <CmsBlockWrapper config={data.blockConfig}>

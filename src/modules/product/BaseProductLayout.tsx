@@ -4,7 +4,7 @@ import React from "react";
 
 import { sendGTMEvent } from "@next/third-parties/google";
 
-import { useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 import { Loader } from "@/components/_ui/loader/Loader";
 import { LoaderInnerWrapper } from "@/components/_ui/loader/LoaderInnerWrapper";
@@ -29,7 +29,7 @@ import {
   GetProductStockQuery,
 } from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
-import { dateToNOFormat } from "@/utils/helpers";
+import { buildPathArray, dateToNOFormat } from "@/utils/helpers";
 
 interface Props {
   baseProductData: BaseProductFragmentType;
@@ -50,6 +50,7 @@ export const BaseProductLayout: React.FC<Props> = ({
   const { activeProductVariant } = useActiveProductData();
   const searchParams = useSearchParams();
   const params = searchParams.entries();
+  const pathname = usePathname();
 
   const product = activeProductVariant.variant?.product ?? baseProductData;
   const { data: productSliderData, isLoading: isSlidersDataLoading } =
@@ -99,19 +100,25 @@ export const BaseProductLayout: React.FC<Props> = ({
     product.campaign_period &&
     !isPastDate(product.campaign_period);
 
+  const breadcrumbs = () => {
+    const breadCrumbData = buildPathArray(pathname);
+
+    const lastItem = breadCrumbData[breadCrumbData.length - 1];
+    lastItem.label.split(" ");
+    //remove last item from lastItem because its always ID
+    lastItem.label = lastItem.label.replace(/[^ ]*$/, "");
+    return breadCrumbData;
+  };
+
   return (
     <>
       <ContainerLayout>
-        {baseProductData?.categories ? (
-          <Breadcrumbs
-            data={baseProductData.categories
-              .filter((c) => !c?.url_path?.includes("merker"))
-              .map((cat) => ({
-                label: cat?.name ?? "",
-                url: `/${cat?.url_path}`,
-              }))}
-          />
-        ) : null}
+        <Breadcrumbs
+          data={breadcrumbs().map((item) => ({
+            url: item.value,
+            label: item.label,
+          }))}
+        />
 
         <div className="grid grid-cols-12 gap-4 lg:gap-16">
           <div className="col-span-12 lg:col-span-7 flex flex-col gap-12">
