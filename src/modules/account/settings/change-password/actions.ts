@@ -1,19 +1,23 @@
 "use server";
 
+import { getToken } from "@/modules/auth/actions";
+import { ChangeCustomerPasswordDocument } from "@/types";
+import { authorizedMagentoClient } from "@/utils/lib/graphql";
+
+import { handleError } from "../../../../app/actions";
+
 export async function changeCustomerPassword(
   currentPassword: string,
   newPassword: string,
 ) {
-  return await fetch(
-    process.env.NEXT_PUBLIC_APP_URL + "/api/auth/change-password",
-    {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ currentPassword, newPassword }),
-      cache: "no-store",
-    },
-  ).then((res) => res.json());
+  const token = await getToken();
+
+  return authorizedMagentoClient(token, "POST")
+    .request(ChangeCustomerPasswordDocument, {
+      currentPassword,
+      newPassword,
+    })
+    .catch((error) => {
+      return handleError(error);
+    });
 }
