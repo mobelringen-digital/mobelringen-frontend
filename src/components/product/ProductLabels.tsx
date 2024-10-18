@@ -33,7 +33,7 @@ export const ProductLabels: React.FC<Props> = ({
           ) : null}
         </>
       </div>
-      <div className="absolute top-2 lg:top-4 left-2 lg:left-4">
+      <div className="absolute top-2 lg:top-4 left-0 sm:left-2 lg:left-4">
         {lowPrice ? <FixedLowPriceIconSmall /> : null}
       </div>
       <div className="absolute bottom-0 right-0 z-20">
