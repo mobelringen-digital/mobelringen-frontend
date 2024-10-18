@@ -26,7 +26,7 @@ export const FixedLowPrice: React.FC<Props> = ({ product }) => {
           </svg>
           <div className="p-8 absolute left-0 top-0 w-full flex flex-col gap-2">
             <FixedLowPriceIcon />
-            <p className="font-feature text-md md:text-lg lg:text-xl font-normal">
+            <p className="font-feature text-md xl:text-xl font-normal">
               Fast lavpris er utvalgte møbler og modeller til faste, komfortable
               priser. Perfekt for deg som er opptatt av kvalitet, uten at det
               skal gå utover lommeboka.
