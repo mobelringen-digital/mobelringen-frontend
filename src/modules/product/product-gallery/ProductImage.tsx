@@ -38,7 +38,7 @@ export const ProductImage: React.FC<Props> = ({
         alt={image.label ?? ""}
       />
 
-      <div className="absolute top-4 right-4 flex flex-col gap-1 items-center justify-center text-center">
+      <div className="absolute top-4 right-4 flex flex-col gap-1 items-end justify-center text-center">
         {percentageDiscount ? (
           <Label variant="powder">{percentageDiscount}</Label>
         ) : null}
