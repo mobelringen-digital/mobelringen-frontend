@@ -9,6 +9,8 @@ import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
 import { Input } from "@/components/_ui/input/Input";
 import { openToast } from "@/components/_ui/toast-provider";
 import { changeCustomerPassword } from "@/modules/account/settings/change-password/actions";
+import { ChangeCustomerPasswordMutation } from "@/types";
+import { useRequestCallback } from "@/utils/hooks/useRequestCallback";
 
 type FormData = {
   currentPassword: string;
@@ -17,12 +19,20 @@ type FormData = {
 };
 
 export const ChangePassword = () => {
+  const { handlePossibleErrors } = useRequestCallback();
   const {
     control,
     watch,
     handleSubmit,
+    reset,
     formState: { isSubmitting, errors },
-  } = useForm<FormData>();
+  } = useForm<FormData>({
+    defaultValues: {
+      currentPassword: "",
+      newPassword: "",
+      confirmNewPassword: "",
+    },
+  });
 
   const onSubmit = async (data: FormData) => {
     const res = await changeCustomerPassword(
@@ -30,17 +40,14 @@ export const ChangePassword = () => {
       data.newPassword,
     );
 
-    if (res.success) {
-      openToast({
-        content: "Passordet ditt er endret",
-      });
+    handlePossibleErrors(res);
+
+    if ((res as ChangeCustomerPasswordMutation).changeCustomerPassword?.email) {
+      reset();
+      openToast({ content: "Passordendring vellykket" });
     }
 
-    if (!res.success) {
-      openToast({
-        content: "Noe gikk galt",
-      });
-    }
+    return res;
   };
 
   return (

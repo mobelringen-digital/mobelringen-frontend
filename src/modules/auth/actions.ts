@@ -117,11 +117,15 @@ export async function resetPassword(
   resetPasswordToken: string,
   newPassword: string,
 ) {
-  const data = await baseMagentoClient("POST").request(ResetPasswordDocument, {
-    resetPasswordToken,
-    newPassword,
-    email,
-  });
+  const data = await baseMagentoClient("POST")
+    .request(ResetPasswordDocument, {
+      resetPasswordToken,
+      newPassword,
+      email,
+    })
+    .catch((e) => {
+      return handleError(e);
+    });
 
-  return data.resetPassword;
+  return data;
 }

@@ -13,6 +13,8 @@ import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { openToast } from "@/components/_ui/toast-provider";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { resetPassword } from "@/modules/auth/actions";
+import { ResetPasswordMutation } from "@/types";
+import { useRequestCallback } from "@/utils/hooks/useRequestCallback";
 
 import { navigate } from "../../app/actions";
 
@@ -26,6 +28,7 @@ type FormData = {
 export const ResetPasswordPage: React.FC = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const searchParams = useSearchParams();
+  const { handlePossibleErrors } = useRequestCallback();
 
   const {
     control,
@@ -43,13 +46,12 @@ export const ResetPasswordPage: React.FC = () => {
       return openToast({ content: "Noe gikk galt" });
     }
 
-    const res = await resetPassword(data.email, token, data.newPassword)
-      .catch(() => {
-        return openToast({ content: "Noe gikk galt" });
-      })
-      .finally(() => setIsLoading(false));
+    const res = await resetPassword(data.email, token, data.newPassword);
 
-    if (res) {
+    handlePossibleErrors(res);
+    setIsLoading(false);
+
+    if ((res as ResetPasswordMutation).resetPassword) {
       return navigate("/auth/reset/success");
     }
   };
