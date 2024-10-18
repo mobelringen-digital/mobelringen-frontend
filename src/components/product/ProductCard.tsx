@@ -38,6 +38,7 @@ export const ProductCard: React.FC<Props> = ({
       >
         <ProductImage productImage={productImage} />
         <ProductLabels
+          lowPrice={product.low_price}
           discount={percentageDiscount}
           labels={labels}
         />

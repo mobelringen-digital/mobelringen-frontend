@@ -15,6 +15,7 @@ import { useProductSliderDataQuery } from "@/components/product/hooks/useProduct
 import { ProductSlider } from "@/components/product-slider/ProductSlider";
 import { useActiveProductData } from "@/modules/product/active-product-data-provider/useActiveProductData";
 import { PurchaseBlock } from "@/modules/product/add-to-cart/PurchaseBlock";
+import { FixedLowPrice } from "@/modules/product/FixedLowPrice";
 import { InformationAccordion } from "@/modules/product/information-accordion/InformationAccordion";
 import { MoreInTheStore } from "@/modules/product/more-in-the-store/MoreInTheStore";
 import { MoreInformation } from "@/modules/product/MoreInformation";
@@ -141,6 +142,8 @@ export const BaseProductLayout: React.FC<Props> = ({
             </div>
 
             <MoreInTheStore />
+            <FixedLowPrice product={product} />
+
             <PurchaseBlock
               selectedStore={selectedStore}
               stock={stock}

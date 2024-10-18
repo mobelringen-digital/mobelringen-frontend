@@ -114,6 +114,7 @@ export const BaseProductFragment = graphql(`
     id
     url_key
     canonical_url
+    low_price
     description {
       html
     }
