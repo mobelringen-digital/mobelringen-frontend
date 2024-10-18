@@ -24,8 +24,15 @@ export const ChangePassword = () => {
     control,
     watch,
     handleSubmit,
+    reset,
     formState: { isSubmitting, errors },
-  } = useForm<FormData>();
+  } = useForm<FormData>({
+    defaultValues: {
+      currentPassword: "",
+      newPassword: "",
+      confirmNewPassword: "",
+    },
+  });
 
   const onSubmit = async (data: FormData) => {
     const res = await changeCustomerPassword(
@@ -36,6 +43,7 @@ export const ChangePassword = () => {
     handlePossibleErrors(res);
 
     if ((res as ChangeCustomerPasswordMutation).changeCustomerPassword?.email) {
+      reset();
       openToast({ content: "Passordendring vellykket" });
     }
 
