@@ -12,7 +12,7 @@ export interface InputProps extends Omit<NextUiInputProps, "variant"> {
 const VARIANTS = {
   bordered: {
     input: "text-normal rounded-md text-base",
-    inputWrapper: "bg-white rounded-md",
+    inputWrapper: "bg-white rounded-md h-[45px",
     mainWrapper: "border border-grey rounded-md",
   },
   filled: {
