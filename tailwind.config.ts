@@ -52,6 +52,9 @@ const config: Config = {
       ...COLORS,
     },
     extend: {
+      scale: {
+        "60": ".6",
+      },
       animation: {
         progress: "progress 1s infinite linear",
       },

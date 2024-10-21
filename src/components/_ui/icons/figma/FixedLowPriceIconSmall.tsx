@@ -1,7 +1,7 @@
 export const FixedLowPriceIconSmall = () => {
   return (
     <svg
-      className="scale-75 sm:scale-100"
+      className="scale-60 -ml-4 lg:m-0 sm:scale-100"
       xmlns="http://www.w3.org/2000/svg"
       width="118"
       height="24"
