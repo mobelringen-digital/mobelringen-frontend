@@ -1,5 +1,7 @@
 import React from "react";
 
+import { cookies } from "next/headers";
+
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { PageTitle } from "@/components/typography/PageTitle";
@@ -7,7 +9,7 @@ import { getCustomerDetails } from "@/modules/account/account/actions";
 import { CheckoutBreadcrumbs } from "@/modules/checkout/CheckoutBreadcrumbs";
 import { CheckoutSteps } from "@/modules/checkout/CheckoutSteps";
 import { CheckoutSummary } from "@/modules/checkout/CheckoutSummary";
-import { BaseCartFragment } from "@/types";
+import { BaseCartFragment, DeliveryType } from "@/types";
 import { NextSearchParams } from "@/utils/ts-utils";
 
 interface Props {
@@ -24,11 +26,18 @@ export async function CheckoutPage({
   isShippingAddressSet,
 }: Props) {
   const customer = await getCustomerDetails();
+  const cookiesStore = cookies();
+  const isClickAndCollect =
+    cookiesStore.get("preferredMethod")?.value === DeliveryType.Cac;
 
   return (
     <ContainerLayout>
       <CheckoutBreadcrumbs />
-      <PageTitle>Gjennomfør bestilling</PageTitle>
+      <PageTitle>
+        {isClickAndCollect
+          ? "Bekreft din reservasjon"
+          : "Gjennomfør bestilling"}
+      </PageTitle>
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-12 lg:col-span-7">
           <CheckoutSteps

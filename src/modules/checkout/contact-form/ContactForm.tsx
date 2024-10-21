@@ -126,7 +126,7 @@ export const ContactForm: React.FC<Props> = ({
             type="submit"
             disabled={isSubmitting || isLoading}
           >
-            Fortsett
+            {isClickAndCollect ? "Fullfør reservasjon" : "Fortsett"}
           </Button>
         </div>
       </form>
