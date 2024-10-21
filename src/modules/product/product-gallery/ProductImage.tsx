@@ -2,6 +2,7 @@ import React from "react";
 
 import Image from "next/image";
 
+import { FixedLowPriceIcon } from "@/components/_ui/icons/figma/FixedLowPriceIcon";
 import { ZoomIcon } from "@/components/_ui/icons/ZoomIcon";
 import { Label } from "@/components/_ui/label/Label";
 import { AddToWishList } from "@/components/product/add-to-wishlist/AddToWishList";
@@ -37,13 +38,11 @@ export const ProductImage: React.FC<Props> = ({
         alt={image.label ?? ""}
       />
 
-      <div className="absolute top-4 right-4 flex">
+      <div className="absolute top-4 right-4 flex flex-col gap-1 items-end justify-center text-center">
         {percentageDiscount ? (
           <Label variant="powder">{percentageDiscount}</Label>
         ) : null}
-      </div>
 
-      <div className="absolute top-4 left-4 flex flex-col gap-1 items-center justify-center text-center">
         {labels?.custom ? (
           <>
             {labels.custom.map((label, idx) => (
@@ -54,6 +53,12 @@ export const ProductImage: React.FC<Props> = ({
           </>
         ) : null}
       </div>
+
+      {product?.low_price ? (
+        <div className="absolute top-6 left-6 flex flex-col gap-1 items-center justify-center text-center">
+          <FixedLowPriceIcon />
+        </div>
+      ) : null}
 
       <div className="absolute bottom-4 right-4 flex gap-3">
         {product ? (

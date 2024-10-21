@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath, revalidateTag } from "next/cache";
+import { revalidateTag } from "next/cache";
 
 import getCart from "@/components/cart/actions";
 import { getToken } from "@/modules/auth/actions";
@@ -27,7 +27,6 @@ export async function updateCartItems(cartItems: Array<CartItemUpdateInput>) {
       return handleError(error);
     });
 
-  revalidatePath("/cart");
   revalidateTag("cart");
 
   return data;
@@ -49,7 +48,6 @@ export async function removeProductFromCart(cartItemId: number) {
     },
   );
 
-  revalidatePath("/cart");
   revalidateTag("cart");
 
   return data;

@@ -116,3 +116,19 @@ export const getPromotionBubbleSpacing = (
 
   return spacing;
 };
+
+export const buildPathArray = (url: string) => {
+  const segments = url.split("/").filter((segment) => segment !== "");
+  const result: Array<{ value: string; label: string }> = [];
+  let currentPath = "";
+
+  segments.forEach((segment) => {
+    currentPath += `/${segment}`;
+    result.push({
+      value: currentPath,
+      label: segment.replace(/[^\w\s]/g, " "),
+    });
+  });
+
+  return result;
+};

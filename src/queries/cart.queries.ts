@@ -243,6 +243,9 @@ export const BaseCartFragment = graphql(`
   fragment BaseCart on Cart {
     id
     email
+    applied_coupons {
+      code
+    }
     billing_address {
       ...BillingCartAddress
     }
@@ -473,6 +476,16 @@ export const validateCartDocument = graphql(`
     validateCart(cartId: $cart_id) {
       message
       success
+    }
+  }
+`);
+
+export const applyCouponToCartDocument = graphql(`
+  mutation ApplyCouponToCart($cart_id: String!, $coupon_code: String!) {
+    applyCouponToCart(input: { cart_id: $cart_id, coupon_code: $coupon_code }) {
+      cart {
+        ...BaseCart
+      }
     }
   }
 `);

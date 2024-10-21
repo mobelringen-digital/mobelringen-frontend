@@ -13,6 +13,7 @@ const COLORS = {
   sand: "#F8F4F1",
   "warm-grey": "#F0EBE5",
   "warm-grey-dark": "#E6DFD6",
+  pink: "#FCDFD4",
   beige: "#E5CFC2",
   white: "#FFFFFF",
   grey: "#78706D",
@@ -51,6 +52,9 @@ const config: Config = {
       ...COLORS,
     },
     extend: {
+      scale: {
+        "60": ".6",
+      },
       animation: {
         progress: "progress 1s infinite linear",
       },
