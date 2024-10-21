@@ -92,6 +92,10 @@ export default async function Product({ sku, url }: Props) {
       {isTypename(productData, ["SimpleProduct"]) ? (
         <>
           <MetaTitle title={productData.meta_title ?? productData.name ?? ""} />
+          <link
+            rel="canonical"
+            href={`${process.env.NEXT_PUBLIC_APP_URL}/${productData.canonical_url}`}
+          />
           <SimpleProductPage
             selectedStore={selectedStore}
             stock={stock}
