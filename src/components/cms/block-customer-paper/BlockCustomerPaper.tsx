@@ -16,8 +16,8 @@ export const BlockCustomerPaper: React.FC<Props> = ({ data }) => {
           src="https://viewer.ipaper.io/moebelringen/kampanjeaviser/2024/kampanje-45-2024/-/embedded/flat/singlepage/1/"
           style={{
             display: "block",
-            width: "250px",
-            height: "300px",
+            width: "300px",
+            height: "350px",
           }}
           allow="fullscreen"
         />
