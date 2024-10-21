@@ -1,5 +1,7 @@
 import React from "react";
 
+import Link from "next/link";
+
 import { FixedLowPriceIcon } from "@/components/_ui/icons/figma/FixedLowPriceIcon";
 import { BaseProductFragment } from "@/types";
 
@@ -11,7 +13,7 @@ export const FixedLowPrice: React.FC<Props> = ({ product }) => {
   return (
     <>
       {product?.low_price ? (
-        <div className="relative bg-pink rounded-2xl">
+        <Link href="/fast-lavpris" className="relative bg-pink rounded-2xl">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="275"
@@ -32,7 +34,7 @@ export const FixedLowPrice: React.FC<Props> = ({ product }) => {
               skal gå utover lommeboka.
             </p>
           </div>
-        </div>
+        </Link>
       ) : null}
     </>
   );
