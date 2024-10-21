@@ -122,47 +122,51 @@ export const Stores: React.FC<Props> = ({ title }) => {
 
           <div className="flex flex-col max-h-[520px] overflow-y-auto">
             {activeRegion ? (
-              <>
+              <div className="block w-full">
                 <div className="flex items-center gap-2 text-xl py-2">
                   <button onClick={() => setActiveRegion("")}>Fylke</button>
                   <ChevronRight />
                   <span>{activeRegion}</span>
                 </div>
-                {activeRegionStores
-                  ?.filter(
-                    (s) => s?.latitude && s?.longitude && s.is_visible_on_map,
-                  )
-                  .map((store, idx) => (
-                    <button
-                      onClick={() => setSelectedStore(store)}
-                      className={cx(
-                        "text-left py-4 border-b border-dark-grey border-opacity-30 hover:bg-warm-grey",
-                        {
-                          "bg-warm-grey":
-                            selectedStore?.external_id === store?.external_id,
-                        },
-                      )}
-                      key={idx}
-                    >
-                      <div className="flex justify-between items-center">
-                        <div className="flex flex-col gap-1">
-                          <span className="font-normal">{store?.name}</span>
-                          <span className="text-sm font-light text-dark-grey">
-                            {[store?.street, store?.postcode, store?.city].join(
-                              ", ",
-                            )}
-                          </span>
+                <div className="flex flex-col">
+                  {activeRegionStores
+                    ?.filter(
+                      (s) => s?.latitude && s?.longitude && s.is_visible_on_map,
+                    )
+                    .map((store, idx) => (
+                      <button
+                        onClick={() => setSelectedStore(store)}
+                        className={cx(
+                          "text-left py-4 border-b border-dark-grey border-opacity-30 hover:bg-warm-grey",
+                          {
+                            "bg-warm-grey":
+                              selectedStore?.external_id === store?.external_id,
+                          },
+                        )}
+                        key={idx}
+                      >
+                        <div className="flex justify-between items-center">
+                          <div className="flex flex-col gap-1">
+                            <span className="font-normal">{store?.name}</span>
+                            <span className="text-sm font-light text-dark-grey">
+                              {[
+                                store?.street,
+                                store?.postcode,
+                                store?.city,
+                              ].join(", ")}
+                            </span>
+                          </div>
+                          <Link
+                            className="p-4"
+                            href={`/store/${store.external_id}/${stringToUrl(store.name)}`}
+                          >
+                            <ChevronRight />
+                          </Link>
                         </div>
-                        <Link
-                          className="p-4"
-                          href={`/store/${store.external_id}/${stringToUrl(store.name)}`}
-                        >
-                          <ChevronRight />
-                        </Link>
-                      </div>
-                    </button>
-                  ))}
-              </>
+                      </button>
+                    ))}
+                </div>
+              </div>
             ) : (
               <div className="block w-full">
                 <span className="text-xl py-2">Alle fylker</span>
