@@ -31,6 +31,7 @@ const addPurchaseGTMEvent = async (order?: MaskedOrderFragment | null) => {
       .join(","),
     currency: "NOK",
     value: order.total?.grand_total?.value,
+    cart_type: order.delivery_type,
     items: order.items.map((item, idx) => ({
       item_id: item?.sku,
       item_name: item?.name,

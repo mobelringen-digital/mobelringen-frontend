@@ -50,6 +50,7 @@ export const CartProceedButton: React.FC<Props> = ({
     return sendGTMEvent({
       event: "begin_checkout",
       currency: "NOK",
+      cart_type: activeMethod,
       value: cart?.prices?.grand_total?.value,
       ...formatGTMCartItems(cart),
     });
