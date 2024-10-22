@@ -2,6 +2,8 @@ import { graphql } from "@/types/schema";
 
 export const MaskedOrderFragment = graphql(`
   fragment MaskedOrder on CustomerOrder {
+    increment_id
+    id
     applied_coupons {
       code
     }

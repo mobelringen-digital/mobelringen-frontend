@@ -68,6 +68,7 @@ export const CustomerOrderFragment = graphql(`
     id
     delivery_type
     shipping_method
+    increment_id
     total {
       base_grand_total {
         value

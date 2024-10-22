@@ -16,7 +16,9 @@ export const OrderInformation: React.FC<Props> = ({ order }) => {
       </div>
       <div className="text-base flex gap-1">
         <span>Ordrenummer:</span>
-        <span className="font-semibold">{order?.number}</span>
+        <span className="font-semibold">
+          {order?.increment_id ?? order?.id ?? order?.number}
+        </span>
       </div>
       <div className="text-base flex gap-1">
         <span>Dato:</span>
