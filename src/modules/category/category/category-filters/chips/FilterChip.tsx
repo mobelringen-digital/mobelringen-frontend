@@ -9,8 +9,8 @@ interface Props {
 export const FilterChip: React.FC<Props> = ({ label, value, onRemove }) => {
   return (
     <div className="rounded-xl px-2 lg:px-3 py-1 lg:py-2 flex items-center text-white bg-brown">
-      <span className="mr-2 flex items-center text-xs">
-        <span className="capitalize">{label}</span>: {value}
+      <span className="mr-2 flex items-center gap-1 text-xs">
+        <span className="capitalize flex-shrink-0">{label}:</span> <span>{value}</span>
       </span>
       <button onClick={onRemove}>
         <svg

@@ -15,8 +15,22 @@ export const OrderItem: React.FC<Props> = ({ data }) => {
       key={data?.id}
     >
       <div className="flex items-center gap-4">
-        <span className="text-xl font-semibold">Order: #{data?.increment_id ?? data?.id}</span>
-        <span className="text-sm text-dark-grey">({data?.status_label})</span>
+        <div className="flex w-full justify-between items-center">
+          <div className="flex gap-4 items-center">
+            <span className="text-xl font-semibold">
+              Order: #{data?.increment_id ?? data?.id}
+            </span>
+            <span className="text-sm text-dark-grey">
+              ({data?.status_label})
+            </span>
+          </div>
+
+          {data?.delivery_date ? (
+            <span className="text-base">
+              Forventet leveringsdato: {data.delivery_date}
+            </span>
+          ) : null}
+        </div>
       </div>
       <InfoRow data={data} />
       <OrderItems data={data} />
