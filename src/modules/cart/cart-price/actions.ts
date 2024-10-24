@@ -2,8 +2,12 @@
 
 import { revalidateTag } from "next/cache";
 
+import { getToken } from "@/modules/auth/actions";
 import { ApplyCouponToCartDocument, ValidateCartDocument } from "@/types";
-import { baseMagentoClient } from "@/utils/lib/graphql";
+import {
+  authorizedMagentoClient,
+  baseMagentoClient,
+} from "@/utils/lib/graphql";
 
 import { handleError } from "../../../app/actions";
 
@@ -18,7 +22,9 @@ export async function validateCart(cartId: string) {
 }
 
 export async function applyCouponToCart(cartId: string, couponCode: string) {
-  const data = await baseMagentoClient("POST")
+  const token = await getToken();
+
+  const data = await authorizedMagentoClient(token, "POST")
     .request(ApplyCouponToCartDocument, {
       cart_id: cartId,
       coupon_code: couponCode,
