@@ -9,6 +9,7 @@ import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
 import { Input } from "@/components/_ui/input/Input";
 import { openToast } from "@/components/_ui/toast-provider";
 import { changeCustomerPassword } from "@/modules/account/settings/change-password/actions";
+import { DeleteCustomer } from "@/modules/account/settings/change-password/DeleteCustomer";
 import { ChangeCustomerPasswordMutation } from "@/types";
 import { useRequestCallback } from "@/utils/hooks/useRequestCallback";
 
@@ -100,6 +101,9 @@ export const ChangePassword = () => {
           Lagre endringer
         </Button>
       </form>
+      <div className="flex mt-4 justify-end">
+        <DeleteCustomer />
+      </div>
     </div>
   );
 };
