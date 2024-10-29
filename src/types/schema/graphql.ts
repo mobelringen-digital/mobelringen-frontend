@@ -3338,6 +3338,468 @@ export type BlockBrandsListWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
 
+export type BlockCatalog = Entity & Node & {
+  __typename: 'BlockCatalog';
+  blockConfig?: Maybe<BlockConfig>;
+  /** The time the document was created */
+  createdAt: Scalars['DateTime']['output'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** Get the document in other stages */
+  documentInStages: Array<BlockCatalog>;
+  /** List of BlockCatalog versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  pages: Array<Page>;
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  title: Scalars['String']['output'];
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime']['output'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type BlockCatalogBlockConfigArgs = {
+  forceParentLocale: InputMaybe<Scalars['Boolean']['input']>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+
+export type BlockCatalogCreatedByArgs = {
+  forceParentLocale: InputMaybe<Scalars['Boolean']['input']>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+
+export type BlockCatalogDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean']['input'];
+  inheritLocale?: Scalars['Boolean']['input'];
+  stages?: Array<Stage>;
+};
+
+
+export type BlockCatalogHistoryArgs = {
+  limit?: Scalars['Int']['input'];
+  skip?: Scalars['Int']['input'];
+  stageOverride: InputMaybe<Stage>;
+};
+
+
+export type BlockCatalogPagesArgs = {
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale: InputMaybe<Scalars['Boolean']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  locales: InputMaybe<Array<Locale>>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  where: InputMaybe<PageWhereInput>;
+};
+
+
+export type BlockCatalogPublishedByArgs = {
+  forceParentLocale: InputMaybe<Scalars['Boolean']['input']>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+
+export type BlockCatalogScheduledInArgs = {
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale: InputMaybe<Scalars['Boolean']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  locales: InputMaybe<Array<Locale>>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  where: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type BlockCatalogUpdatedByArgs = {
+  forceParentLocale: InputMaybe<Scalars['Boolean']['input']>;
+  locales: InputMaybe<Array<Locale>>;
+};
+
+export type BlockCatalogConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: BlockCatalogWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type BlockCatalogConnection = {
+  __typename: 'BlockCatalogConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<BlockCatalogEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type BlockCatalogCreateInput = {
+  blockConfig?: InputMaybe<BlockConfigCreateOneInlineInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  pages?: InputMaybe<PageCreateManyInlineInput>;
+  title: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type BlockCatalogCreateManyInlineInput = {
+  /** Connect multiple existing BlockCatalog documents */
+  connect?: InputMaybe<Array<BlockCatalogWhereUniqueInput>>;
+  /** Create and connect multiple existing BlockCatalog documents */
+  create?: InputMaybe<Array<BlockCatalogCreateInput>>;
+};
+
+export type BlockCatalogCreateOneInlineInput = {
+  /** Connect one existing BlockCatalog document */
+  connect?: InputMaybe<BlockCatalogWhereUniqueInput>;
+  /** Create and connect one BlockCatalog document */
+  create?: InputMaybe<BlockCatalogCreateInput>;
+};
+
+/** An edge in a connection. */
+export type BlockCatalogEdge = {
+  __typename: 'BlockCatalogEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: BlockCatalog;
+};
+
+/** Identifies documents */
+export type BlockCatalogManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BlockCatalogWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BlockCatalogWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BlockCatalogWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  blockConfig?: InputMaybe<BlockConfigWhereInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<BlockCatalogWhereStageInput>;
+  documentInStages_none?: InputMaybe<BlockCatalogWhereStageInput>;
+  documentInStages_some?: InputMaybe<BlockCatalogWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  pages_every?: InputMaybe<PageWhereInput>;
+  pages_none?: InputMaybe<PageWhereInput>;
+  pages_some?: InputMaybe<PageWhereInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum BlockCatalogOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type BlockCatalogUpdateInput = {
+  blockConfig?: InputMaybe<BlockConfigUpdateOneInlineInput>;
+  pages?: InputMaybe<PageUpdateManyInlineInput>;
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BlockCatalogUpdateManyInlineInput = {
+  /** Connect multiple existing BlockCatalog documents */
+  connect?: InputMaybe<Array<BlockCatalogConnectInput>>;
+  /** Create and connect multiple BlockCatalog documents */
+  create?: InputMaybe<Array<BlockCatalogCreateInput>>;
+  /** Delete multiple BlockCatalog documents */
+  delete?: InputMaybe<Array<BlockCatalogWhereUniqueInput>>;
+  /** Disconnect multiple BlockCatalog documents */
+  disconnect?: InputMaybe<Array<BlockCatalogWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing BlockCatalog documents */
+  set?: InputMaybe<Array<BlockCatalogWhereUniqueInput>>;
+  /** Update multiple BlockCatalog documents */
+  update?: InputMaybe<Array<BlockCatalogUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple BlockCatalog documents */
+  upsert?: InputMaybe<Array<BlockCatalogUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type BlockCatalogUpdateManyInput = {
+  title?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type BlockCatalogUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: BlockCatalogUpdateManyInput;
+  /** Document search */
+  where: BlockCatalogWhereInput;
+};
+
+export type BlockCatalogUpdateOneInlineInput = {
+  /** Connect existing BlockCatalog document */
+  connect?: InputMaybe<BlockCatalogWhereUniqueInput>;
+  /** Create and connect one BlockCatalog document */
+  create?: InputMaybe<BlockCatalogCreateInput>;
+  /** Delete currently connected BlockCatalog document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Disconnect currently connected BlockCatalog document */
+  disconnect?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single BlockCatalog document */
+  update?: InputMaybe<BlockCatalogUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single BlockCatalog document */
+  upsert?: InputMaybe<BlockCatalogUpsertWithNestedWhereUniqueInput>;
+};
+
+export type BlockCatalogUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: BlockCatalogUpdateInput;
+  /** Unique document search */
+  where: BlockCatalogWhereUniqueInput;
+};
+
+export type BlockCatalogUpsertInput = {
+  /** Create document if it didn't exist */
+  create: BlockCatalogCreateInput;
+  /** Update document if it exists */
+  update: BlockCatalogUpdateInput;
+};
+
+export type BlockCatalogUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: BlockCatalogUpsertInput;
+  /** Unique document search */
+  where: BlockCatalogWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type BlockCatalogWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Identifies documents */
+export type BlockCatalogWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BlockCatalogWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BlockCatalogWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BlockCatalogWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  blockConfig?: InputMaybe<BlockConfigWhereInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<BlockCatalogWhereStageInput>;
+  documentInStages_none?: InputMaybe<BlockCatalogWhereStageInput>;
+  documentInStages_some?: InputMaybe<BlockCatalogWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  pages_every?: InputMaybe<PageWhereInput>;
+  pages_none?: InputMaybe<PageWhereInput>;
+  pages_some?: InputMaybe<PageWhereInput>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  title?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  title_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars['String']['input']>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type BlockCatalogWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<BlockCatalogWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<BlockCatalogWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<BlockCatalogWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<BlockCatalogWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References BlockCatalog record uniquely */
+export type BlockCatalogWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
 /** Her velger du farge for seksjonen. */
 export type BlockConfig = Entity & Node & {
   __typename: 'BlockConfig';
@@ -3467,6 +3929,7 @@ export type BlockConfigCreateInput = {
   cm1hm39bs00zo07w8e5ckfp00?: InputMaybe<BlockProductsListCreateManyInlineInput>;
   cm1j02xjy0dvv07w847sf4mqq?: InputMaybe<BlockBrandsListCreateManyInlineInput>;
   cm1tgh9h800sg07w86cblc3ln?: InputMaybe<BlockFlowboxCreateManyInlineInput>;
+  cm2u02sx7049r06w8hpgt6smx?: InputMaybe<BlockCatalogCreateManyInlineInput>;
   copyOfcm0z8z08p02to06upa5pm0jc5hDy2?: InputMaybe<BlockCustomerClubformCreateManyInlineInput>;
   copyOfcopyOfcm0z8z08p02to06upa5pm0jc5hDy2JWXa?: InputMaybe<BlockCustomerPaperCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -3628,6 +4091,7 @@ export type BlockConfigUpdateInput = {
   cm1hm39bs00zo07w8e5ckfp00?: InputMaybe<BlockProductsListUpdateManyInlineInput>;
   cm1j02xjy0dvv07w847sf4mqq?: InputMaybe<BlockBrandsListUpdateManyInlineInput>;
   cm1tgh9h800sg07w86cblc3ln?: InputMaybe<BlockFlowboxUpdateManyInlineInput>;
+  cm2u02sx7049r06w8hpgt6smx?: InputMaybe<BlockCatalogUpdateManyInlineInput>;
   copyOfcm0z8z08p02to06upa5pm0jc5hDy2?: InputMaybe<BlockCustomerClubformUpdateManyInlineInput>;
   copyOfcopyOfcm0z8z08p02to06upa5pm0jc5hDy2JWXa?: InputMaybe<BlockCustomerPaperUpdateManyInlineInput>;
   hideBlockTitle?: InputMaybe<Scalars['Boolean']['input']>;
@@ -17111,6 +17575,7 @@ export enum EntityTypeName {
   Banner = 'Banner',
   BlockBrand = 'BlockBrand',
   BlockBrandsList = 'BlockBrandsList',
+  BlockCatalog = 'BlockCatalog',
   /** Her velger du farge for seksjonen. */
   BlockConfig = 'BlockConfig',
   BlockCustomerClubform = 'BlockCustomerClubform',
@@ -22841,6 +23306,8 @@ export type Mutation = {
   createBlockBrand?: Maybe<BlockBrand>;
   /** Create one blockBrandsList */
   createBlockBrandsList?: Maybe<BlockBrandsList>;
+  /** Create one blockCatalog */
+  createBlockCatalog?: Maybe<BlockCatalog>;
   /** Create one blockConfig */
   createBlockConfig?: Maybe<BlockConfig>;
   /** Create one blockCustomerClubform */
@@ -22928,6 +23395,8 @@ export type Mutation = {
   deleteBlockBrand?: Maybe<BlockBrand>;
   /** Delete one blockBrandsList from _all_ existing stages. Returns deleted document. */
   deleteBlockBrandsList?: Maybe<BlockBrandsList>;
+  /** Delete one blockCatalog from _all_ existing stages. Returns deleted document. */
+  deleteBlockCatalog?: Maybe<BlockCatalog>;
   /** Delete one blockConfig from _all_ existing stages. Returns deleted document. */
   deleteBlockConfig?: Maybe<BlockConfig>;
   /** Delete one blockCustomerClubform from _all_ existing stages. Returns deleted document. */
@@ -22994,6 +23463,13 @@ export type Mutation = {
   deleteManyBlockBrandsLists: BatchPayload;
   /** Delete many BlockBrandsList documents, return deleted documents */
   deleteManyBlockBrandsListsConnection: BlockBrandsListConnection;
+  /**
+   * Delete many BlockCatalog documents
+   * @deprecated Please use the new paginated many mutation (deleteManyBlockCatalogsConnection)
+   */
+  deleteManyBlockCatalogs: BatchPayload;
+  /** Delete many BlockCatalog documents, return deleted documents */
+  deleteManyBlockCatalogsConnection: BlockCatalogConnection;
   /**
    * Delete many BlockConfig documents
    * @deprecated Please use the new paginated many mutation (deleteManyBlockConfigsConnection)
@@ -23199,6 +23675,8 @@ export type Mutation = {
   publishBlockBrand?: Maybe<BlockBrand>;
   /** Publish one blockBrandsList */
   publishBlockBrandsList?: Maybe<BlockBrandsList>;
+  /** Publish one blockCatalog */
+  publishBlockCatalog?: Maybe<BlockCatalog>;
   /** Publish one blockConfig */
   publishBlockConfig?: Maybe<BlockConfig>;
   /** Publish one blockCustomerClubform */
@@ -23259,6 +23737,13 @@ export type Mutation = {
   publishManyBlockBrandsLists: BatchPayload;
   /** Publish many BlockBrandsList documents */
   publishManyBlockBrandsListsConnection: BlockBrandsListConnection;
+  /**
+   * Publish many BlockCatalog documents
+   * @deprecated Please use the new paginated many mutation (publishManyBlockCatalogsConnection)
+   */
+  publishManyBlockCatalogs: BatchPayload;
+  /** Publish many BlockCatalog documents */
+  publishManyBlockCatalogsConnection: BlockCatalogConnection;
   /**
    * Publish many BlockConfig documents
    * @deprecated Please use the new paginated many mutation (publishManyBlockConfigsConnection)
@@ -23468,6 +23953,8 @@ export type Mutation = {
   schedulePublishBlockBrand?: Maybe<BlockBrand>;
   /** Schedule to publish one blockBrandsList */
   schedulePublishBlockBrandsList?: Maybe<BlockBrandsList>;
+  /** Schedule to publish one blockCatalog */
+  schedulePublishBlockCatalog?: Maybe<BlockCatalog>;
   /** Schedule to publish one blockConfig */
   schedulePublishBlockConfig?: Maybe<BlockConfig>;
   /** Schedule to publish one blockCustomerClubform */
@@ -23520,6 +24007,8 @@ export type Mutation = {
   scheduleUnpublishBlockBrand?: Maybe<BlockBrand>;
   /** Unpublish one blockBrandsList from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishBlockBrandsList?: Maybe<BlockBrandsList>;
+  /** Unpublish one blockCatalog from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishBlockCatalog?: Maybe<BlockCatalog>;
   /** Unpublish one blockConfig from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishBlockConfig?: Maybe<BlockConfig>;
   /** Unpublish one blockCustomerClubform from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -23596,6 +24085,8 @@ export type Mutation = {
   unpublishBlockBrand?: Maybe<BlockBrand>;
   /** Unpublish one blockBrandsList from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishBlockBrandsList?: Maybe<BlockBrandsList>;
+  /** Unpublish one blockCatalog from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishBlockCatalog?: Maybe<BlockCatalog>;
   /** Unpublish one blockConfig from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishBlockConfig?: Maybe<BlockConfig>;
   /** Unpublish one blockCustomerClubform from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -23656,6 +24147,13 @@ export type Mutation = {
   unpublishManyBlockBrandsLists: BatchPayload;
   /** Find many BlockBrandsList documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyBlockBrandsListsConnection: BlockBrandsListConnection;
+  /**
+   * Unpublish many BlockCatalog documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyBlockCatalogsConnection)
+   */
+  unpublishManyBlockCatalogs: BatchPayload;
+  /** Find many BlockCatalog documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyBlockCatalogsConnection: BlockCatalogConnection;
   /**
    * Unpublish many BlockConfig documents
    * @deprecated Please use the new paginated many mutation (unpublishManyBlockConfigsConnection)
@@ -23830,6 +24328,8 @@ export type Mutation = {
   updateBlockBrand?: Maybe<BlockBrand>;
   /** Update one blockBrandsList */
   updateBlockBrandsList?: Maybe<BlockBrandsList>;
+  /** Update one blockCatalog */
+  updateBlockCatalog?: Maybe<BlockCatalog>;
   /** Update one blockConfig */
   updateBlockConfig?: Maybe<BlockConfig>;
   /** Update one blockCustomerClubform */
@@ -23907,6 +24407,13 @@ export type Mutation = {
   updateManyBlockBrandsLists: BatchPayload;
   /** Update many BlockBrandsList documents */
   updateManyBlockBrandsListsConnection: BlockBrandsListConnection;
+  /**
+   * Update many blockCatalogs
+   * @deprecated Please use the new paginated many mutation (updateManyBlockCatalogsConnection)
+   */
+  updateManyBlockCatalogs: BatchPayload;
+  /** Update many BlockCatalog documents */
+  updateManyBlockCatalogsConnection: BlockCatalogConnection;
   /**
    * Update many blockConfigs
    * @deprecated Please use the new paginated many mutation (updateManyBlockConfigsConnection)
@@ -24087,6 +24594,8 @@ export type Mutation = {
   upsertBlockBrand?: Maybe<BlockBrand>;
   /** Upsert one blockBrandsList */
   upsertBlockBrandsList?: Maybe<BlockBrandsList>;
+  /** Upsert one blockCatalog */
+  upsertBlockCatalog?: Maybe<BlockCatalog>;
   /** Upsert one blockConfig */
   upsertBlockConfig?: Maybe<BlockConfig>;
   /** Upsert one blockCustomerClubform */
@@ -24267,6 +24776,11 @@ export type MutationCreateBlockBrandArgs = {
 
 export type MutationCreateBlockBrandsListArgs = {
   data: BlockBrandsListCreateInput;
+};
+
+
+export type MutationCreateBlockCatalogArgs = {
+  data: BlockCatalogCreateInput;
 };
 
 
@@ -24470,6 +24984,11 @@ export type MutationDeleteBlockBrandsListArgs = {
 };
 
 
+export type MutationDeleteBlockCatalogArgs = {
+  where: BlockCatalogWhereUniqueInput;
+};
+
+
 export type MutationDeleteBlockConfigArgs = {
   where: BlockConfigWhereUniqueInput;
 };
@@ -24617,6 +25136,21 @@ export type MutationDeleteManyBlockBrandsListsConnectionArgs = {
   last: InputMaybe<Scalars['Int']['input']>;
   skip: InputMaybe<Scalars['Int']['input']>;
   where: InputMaybe<BlockBrandsListManyWhereInput>;
+};
+
+
+export type MutationDeleteManyBlockCatalogsArgs = {
+  where: InputMaybe<BlockCatalogManyWhereInput>;
+};
+
+
+export type MutationDeleteManyBlockCatalogsConnectionArgs = {
+  after: InputMaybe<Scalars['ID']['input']>;
+  before: InputMaybe<Scalars['ID']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  where: InputMaybe<BlockCatalogManyWhereInput>;
 };
 
 
@@ -25088,6 +25622,12 @@ export type MutationPublishBlockBrandsListArgs = {
 };
 
 
+export type MutationPublishBlockCatalogArgs = {
+  to?: Array<Stage>;
+  where: BlockCatalogWhereUniqueInput;
+};
+
+
 export type MutationPublishBlockConfigArgs = {
   to?: Array<Stage>;
   where: BlockConfigWhereUniqueInput;
@@ -25259,6 +25799,24 @@ export type MutationPublishManyBlockBrandsListsConnectionArgs = {
   skip: InputMaybe<Scalars['Int']['input']>;
   to?: Array<Stage>;
   where: InputMaybe<BlockBrandsListManyWhereInput>;
+};
+
+
+export type MutationPublishManyBlockCatalogsArgs = {
+  to?: Array<Stage>;
+  where: InputMaybe<BlockCatalogManyWhereInput>;
+};
+
+
+export type MutationPublishManyBlockCatalogsConnectionArgs = {
+  after: InputMaybe<Scalars['ID']['input']>;
+  before: InputMaybe<Scalars['ID']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  from?: InputMaybe<Stage>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  to?: Array<Stage>;
+  where: InputMaybe<BlockCatalogManyWhereInput>;
 };
 
 
@@ -25823,6 +26381,14 @@ export type MutationSchedulePublishBlockBrandsListArgs = {
 };
 
 
+export type MutationSchedulePublishBlockCatalogArgs = {
+  releaseAt: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId: InputMaybe<Scalars['String']['input']>;
+  to?: Array<Stage>;
+  where: BlockCatalogWhereUniqueInput;
+};
+
+
 export type MutationSchedulePublishBlockConfigArgs = {
   releaseAt: InputMaybe<Scalars['DateTime']['input']>;
   releaseId: InputMaybe<Scalars['String']['input']>;
@@ -26030,6 +26596,14 @@ export type MutationScheduleUnpublishBlockBrandsListArgs = {
   releaseAt: InputMaybe<Scalars['DateTime']['input']>;
   releaseId: InputMaybe<Scalars['String']['input']>;
   where: BlockBrandsListWhereUniqueInput;
+};
+
+
+export type MutationScheduleUnpublishBlockCatalogArgs = {
+  from?: Array<Stage>;
+  releaseAt: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId: InputMaybe<Scalars['String']['input']>;
+  where: BlockCatalogWhereUniqueInput;
 };
 
 
@@ -26292,6 +26866,12 @@ export type MutationUnpublishBlockBrandsListArgs = {
 };
 
 
+export type MutationUnpublishBlockCatalogArgs = {
+  from?: Array<Stage>;
+  where: BlockCatalogWhereUniqueInput;
+};
+
+
 export type MutationUnpublishBlockConfigArgs = {
   from?: Array<Stage>;
   where: BlockConfigWhereUniqueInput;
@@ -26461,6 +27041,24 @@ export type MutationUnpublishManyBlockBrandsListsConnectionArgs = {
   skip: InputMaybe<Scalars['Int']['input']>;
   stage?: InputMaybe<Stage>;
   where: InputMaybe<BlockBrandsListManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyBlockCatalogsArgs = {
+  from?: Array<Stage>;
+  where: InputMaybe<BlockCatalogManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyBlockCatalogsConnectionArgs = {
+  after: InputMaybe<Scalars['ID']['input']>;
+  before: InputMaybe<Scalars['ID']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  from?: Array<Stage>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  stage?: InputMaybe<Stage>;
+  where: InputMaybe<BlockCatalogManyWhereInput>;
 };
 
 
@@ -26920,6 +27518,12 @@ export type MutationUpdateBlockBrandsListArgs = {
 };
 
 
+export type MutationUpdateBlockCatalogArgs = {
+  data: BlockCatalogUpdateInput;
+  where: BlockCatalogWhereUniqueInput;
+};
+
+
 export type MutationUpdateBlockConfigArgs = {
   data: BlockConfigUpdateInput;
   where: BlockConfigWhereUniqueInput;
@@ -27132,6 +27736,23 @@ export type MutationUpdateManyBlockBrandsListsConnectionArgs = {
   last: InputMaybe<Scalars['Int']['input']>;
   skip: InputMaybe<Scalars['Int']['input']>;
   where: InputMaybe<BlockBrandsListManyWhereInput>;
+};
+
+
+export type MutationUpdateManyBlockCatalogsArgs = {
+  data: BlockCatalogUpdateManyInput;
+  where: InputMaybe<BlockCatalogManyWhereInput>;
+};
+
+
+export type MutationUpdateManyBlockCatalogsConnectionArgs = {
+  after: InputMaybe<Scalars['ID']['input']>;
+  before: InputMaybe<Scalars['ID']['input']>;
+  data: BlockCatalogUpdateManyInput;
+  first: InputMaybe<Scalars['Int']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  where: InputMaybe<BlockCatalogManyWhereInput>;
 };
 
 
@@ -27585,6 +28206,12 @@ export type MutationUpsertBlockBrandArgs = {
 export type MutationUpsertBlockBrandsListArgs = {
   upsert: BlockBrandsListUpsertInput;
   where: BlockBrandsListWhereUniqueInput;
+};
+
+
+export type MutationUpsertBlockCatalogArgs = {
+  upsert: BlockCatalogUpsertInput;
+  where: BlockCatalogWhereUniqueInput;
 };
 
 
@@ -28726,12 +29353,13 @@ export type PageConnection = {
   pageInfo: PageInfo;
 };
 
-export type PageContent = Banner | BlockBrand | BlockBrandsList | BlockCustomerClubform | BlockCustomerPaper | BlockFaq | BlockFlowbox | BlockImageGallery | BlockImageLinksSlider | BlockNavigationButton | BlockPagesList | BlockPressRoom | BlockProductsList | BlockQuote | BlockRow | BlockSimilarPagesRow | BlockStoresMap | ProductSlider;
+export type PageContent = Banner | BlockBrand | BlockBrandsList | BlockCatalog | BlockCustomerClubform | BlockCustomerPaper | BlockFaq | BlockFlowbox | BlockImageGallery | BlockImageLinksSlider | BlockNavigationButton | BlockPagesList | BlockPressRoom | BlockProductsList | BlockQuote | BlockRow | BlockSimilarPagesRow | BlockStoresMap | ProductSlider;
 
 export type PageContentConnectInput = {
   Banner?: InputMaybe<BannerConnectInput>;
   BlockBrand?: InputMaybe<BlockBrandConnectInput>;
   BlockBrandsList?: InputMaybe<BlockBrandsListConnectInput>;
+  BlockCatalog?: InputMaybe<BlockCatalogConnectInput>;
   BlockCustomerClubform?: InputMaybe<BlockCustomerClubformConnectInput>;
   BlockCustomerPaper?: InputMaybe<BlockCustomerPaperConnectInput>;
   BlockFaq?: InputMaybe<BlockFaqConnectInput>;
@@ -28753,6 +29381,7 @@ export type PageContentCreateInput = {
   Banner?: InputMaybe<BannerCreateInput>;
   BlockBrand?: InputMaybe<BlockBrandCreateInput>;
   BlockBrandsList?: InputMaybe<BlockBrandsListCreateInput>;
+  BlockCatalog?: InputMaybe<BlockCatalogCreateInput>;
   BlockCustomerClubform?: InputMaybe<BlockCustomerClubformCreateInput>;
   BlockCustomerPaper?: InputMaybe<BlockCustomerPaperCreateInput>;
   BlockFaq?: InputMaybe<BlockFaqCreateInput>;
@@ -28788,6 +29417,7 @@ export type PageContentUpdateInput = {
   Banner?: InputMaybe<BannerUpdateInput>;
   BlockBrand?: InputMaybe<BlockBrandUpdateInput>;
   BlockBrandsList?: InputMaybe<BlockBrandsListUpdateInput>;
+  BlockCatalog?: InputMaybe<BlockCatalogUpdateInput>;
   BlockCustomerClubform?: InputMaybe<BlockCustomerClubformUpdateInput>;
   BlockCustomerPaper?: InputMaybe<BlockCustomerPaperUpdateInput>;
   BlockFaq?: InputMaybe<BlockFaqUpdateInput>;
@@ -28826,6 +29456,7 @@ export type PageContentUpdateManyWithNestedWhereInput = {
   Banner?: InputMaybe<BannerUpdateManyWithNestedWhereInput>;
   BlockBrand?: InputMaybe<BlockBrandUpdateManyWithNestedWhereInput>;
   BlockBrandsList?: InputMaybe<BlockBrandsListUpdateManyWithNestedWhereInput>;
+  BlockCatalog?: InputMaybe<BlockCatalogUpdateManyWithNestedWhereInput>;
   BlockCustomerClubform?: InputMaybe<BlockCustomerClubformUpdateManyWithNestedWhereInput>;
   BlockCustomerPaper?: InputMaybe<BlockCustomerPaperUpdateManyWithNestedWhereInput>;
   BlockFaq?: InputMaybe<BlockFaqUpdateManyWithNestedWhereInput>;
@@ -28862,6 +29493,7 @@ export type PageContentUpdateWithNestedWhereUniqueInput = {
   Banner?: InputMaybe<BannerUpdateWithNestedWhereUniqueInput>;
   BlockBrand?: InputMaybe<BlockBrandUpdateWithNestedWhereUniqueInput>;
   BlockBrandsList?: InputMaybe<BlockBrandsListUpdateWithNestedWhereUniqueInput>;
+  BlockCatalog?: InputMaybe<BlockCatalogUpdateWithNestedWhereUniqueInput>;
   BlockCustomerClubform?: InputMaybe<BlockCustomerClubformUpdateWithNestedWhereUniqueInput>;
   BlockCustomerPaper?: InputMaybe<BlockCustomerPaperUpdateWithNestedWhereUniqueInput>;
   BlockFaq?: InputMaybe<BlockFaqUpdateWithNestedWhereUniqueInput>;
@@ -28883,6 +29515,7 @@ export type PageContentUpsertWithNestedWhereUniqueInput = {
   Banner?: InputMaybe<BannerUpsertWithNestedWhereUniqueInput>;
   BlockBrand?: InputMaybe<BlockBrandUpsertWithNestedWhereUniqueInput>;
   BlockBrandsList?: InputMaybe<BlockBrandsListUpsertWithNestedWhereUniqueInput>;
+  BlockCatalog?: InputMaybe<BlockCatalogUpsertWithNestedWhereUniqueInput>;
   BlockCustomerClubform?: InputMaybe<BlockCustomerClubformUpsertWithNestedWhereUniqueInput>;
   BlockCustomerPaper?: InputMaybe<BlockCustomerPaperUpsertWithNestedWhereUniqueInput>;
   BlockFaq?: InputMaybe<BlockFaqUpsertWithNestedWhereUniqueInput>;
@@ -28904,6 +29537,7 @@ export type PageContentWhereInput = {
   Banner?: InputMaybe<BannerWhereInput>;
   BlockBrand?: InputMaybe<BlockBrandWhereInput>;
   BlockBrandsList?: InputMaybe<BlockBrandsListWhereInput>;
+  BlockCatalog?: InputMaybe<BlockCatalogWhereInput>;
   BlockCustomerClubform?: InputMaybe<BlockCustomerClubformWhereInput>;
   BlockCustomerPaper?: InputMaybe<BlockCustomerPaperWhereInput>;
   BlockFaq?: InputMaybe<BlockFaqWhereInput>;
@@ -28925,6 +29559,7 @@ export type PageContentWhereUniqueInput = {
   Banner?: InputMaybe<BannerWhereUniqueInput>;
   BlockBrand?: InputMaybe<BlockBrandWhereUniqueInput>;
   BlockBrandsList?: InputMaybe<BlockBrandsListWhereUniqueInput>;
+  BlockCatalog?: InputMaybe<BlockCatalogWhereUniqueInput>;
   BlockCustomerClubform?: InputMaybe<BlockCustomerClubformWhereUniqueInput>;
   BlockCustomerPaper?: InputMaybe<BlockCustomerPaperWhereUniqueInput>;
   BlockFaq?: InputMaybe<BlockFaqWhereUniqueInput>;
@@ -31725,6 +32360,14 @@ export type Query = {
   blockBrandsLists: Array<BlockBrandsList>;
   /** Retrieve multiple blockBrandsLists using the Relay connection interface */
   blockBrandsListsConnection: BlockBrandsListConnection;
+  /** Retrieve a single blockCatalog */
+  blockCatalog?: Maybe<BlockCatalog>;
+  /** Retrieve document version */
+  blockCatalogVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple blockCatalogs */
+  blockCatalogs: Array<BlockCatalog>;
+  /** Retrieve multiple blockCatalogs using the Relay connection interface */
+  blockCatalogsConnection: BlockCatalogConnection;
   /** Retrieve a single blockConfig */
   blockConfig?: Maybe<BlockConfig>;
   /** Retrieve document version */
@@ -31929,6 +32572,8 @@ export type Query = {
   guestOrder: CustomerOrder;
   /** Retrieve guest order details based on token. */
   guestOrderByToken: CustomerOrder;
+  /** Get iPapers from API. */
+  iPapers?: Maybe<Array<Maybe<IPaper>>>;
   /** Check whether the specified email has already been used to create a customer account. */
   isEmailAvailable?: Maybe<IsEmailAvailableOutput>;
   /** Retrieve a single menu */
@@ -32204,6 +32849,44 @@ export type QueryBlockBrandsListsConnectionArgs = {
   skip: InputMaybe<Scalars['Int']['input']>;
   stage?: Stage;
   where: InputMaybe<BlockBrandsListWhereInput>;
+};
+
+
+export type QueryBlockCatalogArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: BlockCatalogWhereUniqueInput;
+};
+
+
+export type QueryBlockCatalogVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryBlockCatalogsArgs = {
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy: InputMaybe<BlockCatalogOrderByInput>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where: InputMaybe<BlockCatalogWhereInput>;
+};
+
+
+export type QueryBlockCatalogsConnectionArgs = {
+  after: InputMaybe<Scalars['String']['input']>;
+  before: InputMaybe<Scalars['String']['input']>;
+  first: InputMaybe<Scalars['Int']['input']>;
+  last: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy: InputMaybe<BlockCatalogOrderByInput>;
+  skip: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where: InputMaybe<BlockCatalogWhereInput>;
 };
 
 
@@ -34863,7 +35546,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Banner | BlockBrand | BlockBrandsList | BlockConfig | BlockCustomerClubform | BlockCustomerPaper | BlockFaq | BlockFlowbox | BlockImageGallery | BlockImageLinksSlider | BlockNavigationButton | BlockPagesList | BlockPressRoom | BlockProductsList | BlockQuote | BlockRow | BlockSimilarPagesRow | BlockStoresMap | DynamicHeader | Menu | Page | PageCategory | ProductSlider | Seo | Store;
+export type ScheduledOperationAffectedDocument = Asset | Banner | BlockBrand | BlockBrandsList | BlockCatalog | BlockConfig | BlockCustomerClubform | BlockCustomerPaper | BlockFaq | BlockFlowbox | BlockImageGallery | BlockImageLinksSlider | BlockNavigationButton | BlockPagesList | BlockPressRoom | BlockProductsList | BlockQuote | BlockRow | BlockSimilarPagesRow | BlockStoresMap | DynamicHeader | Menu | Page | PageCategory | ProductSlider | Seo | Store;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -40207,6 +40890,15 @@ export type Hero_Hotspot = {
   product?: Maybe<ProductInterface>;
 };
 
+export type IPaper = {
+  __typename: 'iPaper';
+  id?: Maybe<Scalars['String']['output']>;
+  image?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
+  type?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
+};
+
 export type InitKlarnaHppInput = {
   cart_id: Scalars['String']['input'];
   frontend_url: Scalars['String']['input'];
@@ -40601,7 +41293,7 @@ export type CmsPagesQueryVariables = Exact<{
 }>;
 
 
-export type CmsPagesQuery = { __typename: 'Query', pages: Array<{ __typename: 'Page', id: string, title: string, createdAt: any, url: string, seo?: { __typename: 'Seo', metaTitle: string, metaDescription?: string | null, canonicalUrl?: string | null, robots?: Robots | null, ogImage?: { __typename: 'Asset', url: string } | null } | null, pageThumbnail: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, pageCategory: Array<{ __typename: 'PageCategory', name: string, categoryUrl?: string | null }>, content: Array<{ __typename: 'Banner', alt?: string | null, identify?: string | null, variant: BannerVariant, centerText?: string | null, bannerImage?: { __typename: 'Asset', mimeType?: string | null, url: string, width?: number | null } | null, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null, backgroundColor?: MrColor | null, textColor?: MrColor | null } | null } | { __typename: 'BlockBrand', title: string, viewMoreLink?: { __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null } | null, brands: Array<{ __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null, backgroundColor?: MrColor | null, textColor?: MrColor | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, backgroundColor?: MrColor | null, textColor?: MrColor | null, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockBrandsList', title: string, brands: Array<{ __typename: 'Brand', brandName: string, url: string, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null } }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockCustomerClubform', title: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockCustomerPaper', title: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockFaq', title: string, questions: Array<{ __typename: 'FaqQuestion', question: string, answer?: { __typename: 'RichText', html: string } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockFlowbox', flowKey: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockImageGallery', title: string, imagesDirection?: LayoutDirection | null, columnsCount: number, description?: { __typename: 'RichText', html: string } | null, images: Array<{ __typename: 'Image', label: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null, backgroundColor?: MrColor | null, textColor?: MrColor | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, backgroundColor?: MrColor | null, textColor?: MrColor | null, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null } | { __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null, backgroundColor?: MrColor | null, textColor?: MrColor | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, backgroundColor?: MrColor | null, textColor?: MrColor | null, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockImageLinksSlider', title: string, images: Array<{ __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null, backgroundColor?: MrColor | null, textColor?: MrColor | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, backgroundColor?: MrColor | null, textColor?: MrColor | null, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockNavigationButton', title: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockPagesList', pageType: PageType, title: string, displayCategories: boolean, pageCategory?: { __typename: 'PageCategory', id: string } | null, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockPressRoom', title: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockProductsList', title: string, brand?: string | null, categoryId?: string | null, sku?: string | null, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockQuote', id: string, author?: string | null, image?: { __typename: 'Asset', url: string, width?: number | null, height?: number | null } | null, quote?: { __typename: 'RichText', html: string } | null, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockRow', id: string, useFullPageWidth?: boolean | null, columns: Array<{ __typename: 'Column', id: string, desktopPosition?: number | null, mobilePosition?: number | null, content?: { __typename: 'Image', label: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null, backgroundColor?: MrColor | null, textColor?: MrColor | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, backgroundColor?: MrColor | null, textColor?: MrColor | null, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null } | { __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null, backgroundColor?: MrColor | null, textColor?: MrColor | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, backgroundColor?: MrColor | null, textColor?: MrColor | null, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null } | { __typename: 'MultipleTextBlock', id: string, paragraphs: Array<{ __typename: 'TextBlock', id: string, paragraphTypography: TypographyStyle, textAlign?: Position | null, title?: { __typename: 'RichText', html: string } | null, content?: { __typename: 'RichText', html: string } | null, links: Array<{ __typename: 'Link', id: string, label: string, url: string }> }> } | { __typename: 'TextBlock', id: string, paragraphTypography: TypographyStyle, textAlign?: Position | null, title?: { __typename: 'RichText', html: string } | null, content?: { __typename: 'RichText', html: string } | null, links: Array<{ __typename: 'Link', id: string, label: string, url: string }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockSimilarPagesRow', title: string, page: Array<{ __typename: 'Page', id: string, url: string, title: string, createdAt: any, seo?: { __typename: 'Seo', metaTitle: string, metaDescription?: string | null, canonicalUrl?: string | null, robots?: Robots | null, ogImage?: { __typename: 'Asset', url: string } | null } | null, pageThumbnail: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, pageCategory: Array<{ __typename: 'PageCategory', name: string, categoryUrl?: string | null }> }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockStoresMap', title: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'ProductSlider', categoryId?: string | null, specificProductsSku?: string | null, type: ProductSliderType, title: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null }> }> };
+export type CmsPagesQuery = { __typename: 'Query', pages: Array<{ __typename: 'Page', id: string, title: string, createdAt: any, url: string, seo?: { __typename: 'Seo', metaTitle: string, metaDescription?: string | null, canonicalUrl?: string | null, robots?: Robots | null, ogImage?: { __typename: 'Asset', url: string } | null } | null, pageThumbnail: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, pageCategory: Array<{ __typename: 'PageCategory', name: string, categoryUrl?: string | null }>, content: Array<{ __typename: 'Banner', alt?: string | null, identify?: string | null, variant: BannerVariant, centerText?: string | null, bannerImage?: { __typename: 'Asset', mimeType?: string | null, url: string, width?: number | null } | null, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null, backgroundColor?: MrColor | null, textColor?: MrColor | null } | null } | { __typename: 'BlockBrand', title: string, viewMoreLink?: { __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null } | null, brands: Array<{ __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null, backgroundColor?: MrColor | null, textColor?: MrColor | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, backgroundColor?: MrColor | null, textColor?: MrColor | null, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockBrandsList', title: string, brands: Array<{ __typename: 'Brand', brandName: string, url: string, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null } }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockCatalog' } | { __typename: 'BlockCustomerClubform', title: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockCustomerPaper', title: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockFaq', title: string, questions: Array<{ __typename: 'FaqQuestion', question: string, answer?: { __typename: 'RichText', html: string } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockFlowbox', flowKey: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockImageGallery', title: string, imagesDirection?: LayoutDirection | null, columnsCount: number, description?: { __typename: 'RichText', html: string } | null, images: Array<{ __typename: 'Image', label: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null, backgroundColor?: MrColor | null, textColor?: MrColor | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, backgroundColor?: MrColor | null, textColor?: MrColor | null, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null } | { __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null, backgroundColor?: MrColor | null, textColor?: MrColor | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, backgroundColor?: MrColor | null, textColor?: MrColor | null, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockImageLinksSlider', title: string, images: Array<{ __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null, backgroundColor?: MrColor | null, textColor?: MrColor | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, backgroundColor?: MrColor | null, textColor?: MrColor | null, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockNavigationButton', title: string, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockPagesList', pageType: PageType, title: string, displayCategories: boolean, pageCategory?: { __typename: 'PageCategory', id: string } | null, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockPressRoom', title: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockProductsList', title: string, brand?: string | null, categoryId?: string | null, sku?: string | null, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockQuote', id: string, author?: string | null, image?: { __typename: 'Asset', url: string, width?: number | null, height?: number | null } | null, quote?: { __typename: 'RichText', html: string } | null, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockRow', id: string, useFullPageWidth?: boolean | null, columns: Array<{ __typename: 'Column', id: string, desktopPosition?: number | null, mobilePosition?: number | null, content?: { __typename: 'Image', label: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null, backgroundColor?: MrColor | null, textColor?: MrColor | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, backgroundColor?: MrColor | null, textColor?: MrColor | null, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null } | { __typename: 'ImageLink', id: string, label: string, url: string, caption?: string | null, width?: number | null, height?: number | null, image: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null, backgroundColor?: MrColor | null, textColor?: MrColor | null } | null, promotionBubble?: { __typename: 'PromotionBubble', middleLine?: string | null, position?: Position | null, topLine: string, backgroundColor?: MrColor | null, textColor?: MrColor | null, links: Array<{ __typename: 'Link', label: string, url: string, icon?: { __typename: 'Asset', url: string } | null }> } | null } | { __typename: 'MultipleTextBlock', id: string, paragraphs: Array<{ __typename: 'TextBlock', id: string, paragraphTypography: TypographyStyle, textAlign?: Position | null, title?: { __typename: 'RichText', html: string } | null, content?: { __typename: 'RichText', html: string } | null, links: Array<{ __typename: 'Link', id: string, label: string, url: string }> }> } | { __typename: 'TextBlock', id: string, paragraphTypography: TypographyStyle, textAlign?: Position | null, title?: { __typename: 'RichText', html: string } | null, content?: { __typename: 'RichText', html: string } | null, links: Array<{ __typename: 'Link', id: string, label: string, url: string }> } | null }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockSimilarPagesRow', title: string, page: Array<{ __typename: 'Page', id: string, url: string, title: string, createdAt: any, seo?: { __typename: 'Seo', metaTitle: string, metaDescription?: string | null, canonicalUrl?: string | null, robots?: Robots | null, ogImage?: { __typename: 'Asset', url: string } | null } | null, pageThumbnail: { __typename: 'Asset', url: string, width?: number | null, height?: number | null }, pageCategory: Array<{ __typename: 'PageCategory', name: string, categoryUrl?: string | null }> }>, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'BlockStoresMap', title: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null } | { __typename: 'ProductSlider', categoryId?: string | null, specificProductsSku?: string | null, type: ProductSliderType, title: string, blockConfig?: { __typename: 'BlockConfig', id: string, backgroundColor?: BackgroundColor | null, hideBlockTitle?: boolean | null, spacingTop?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null, spacingBottom?: { __typename: 'BlockSpacing', desktop?: Spacing | null, mobile?: Spacing | null } | null } | null }> }> };
 
 export type CmsDynamicHeaderFragment = { __typename: 'DynamicHeader', id: string, rule: { __typename: 'RuleBlock', id: string, value: Array<string>, contentType: DynamicContentType }, banner?: { __typename: 'Banner', alt?: string | null, identify?: string | null, variant: BannerVariant, centerText?: string | null, bannerImage?: { __typename: 'Asset', mimeType?: string | null, url: string, width?: number | null } | null, salesBubble?: { __typename: 'SaleBubble', url?: string | null, middleLine: string, position: Position, topLine?: string | null, bottomLine?: string | null, backgroundColor?: MrColor | null, textColor?: MrColor | null } | null } | null };
 
