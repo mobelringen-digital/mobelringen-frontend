@@ -9,5 +9,5 @@ export const MetaTitle: React.FC<Props> = ({ title }) => {
     return <title>{`${title} | Møbelringen`}</title>;
   }
 
-  return <title>Mobelringen</title>;
+  return <title>Møbelringen</title>;
 };
