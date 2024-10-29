@@ -6,8 +6,8 @@ interface Props {
 
 export const MetaTitle: React.FC<Props> = ({ title }) => {
   if (title) {
-    return <title>{`${title} | Møbelringen`}</title>;
+    return <title key="title">{`${title} | Møbelringen`}</title>;
   }
 
-  return <title>Møbelringen</title>;
+  return <title key="title">Møbelringen</title>;
 };
