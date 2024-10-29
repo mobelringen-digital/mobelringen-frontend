@@ -67,6 +67,7 @@ export const CustomerOrderFragment = graphql(`
     email
     id
     delivery_type
+    delivery_date
     shipping_method
     increment_id
     total {

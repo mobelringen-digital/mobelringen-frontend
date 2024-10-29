@@ -16,7 +16,7 @@ export const ProductImage: React.FC<Props> = ({ productImage }) => {
           className="object-contain h-[200px] lg:h-[360px]"
           width={250}
           height={250}
-          src={productImage.url}
+          src={`${productImage.url}?quality=100&fit=bounds&height=250&width=250`}
           alt={productImage.label ?? ""}
         />
       ) : (
