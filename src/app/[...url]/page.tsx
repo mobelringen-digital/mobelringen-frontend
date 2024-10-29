@@ -1,20 +1,14 @@
 import React from "react";
 
+import { Metadata } from "next";
+
 import { notFound } from "next/navigation";
 
 import { Page } from "@/modules/page";
-import { CmsPagesQueryDocument } from "@/queries/page.queries";
-import { RouteDocument } from "@/queries/route.queries";
-import {
-  CmsPagesQuery,
-  CmsPagesQueryVariables,
-  RouteQuery,
-  RouteQueryVariables,
-} from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
-import { generatePrettyUrl } from "@/utils/helpers";
-import { baseHygraphClient, baseMagentoClient } from "@/utils/lib/graphql";
+import { formatMetaTitle, generatePrettyUrl } from "@/utils/helpers";
 
+import { getCategory, getPage, getProduct, getRoute } from "./actions";
 import Category from "./category";
 import Product from "./product";
 
@@ -23,24 +17,63 @@ type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-async function getPage(url: string, preview?: boolean) {
-  return await baseHygraphClient("GET", {
-    cache: preview ? "no-store" : undefined,
-    revalidate: preview ? 0 : 86400,
-  }).request<CmsPagesQuery, CmsPagesQueryVariables>(CmsPagesQueryDocument, {
-    where: {
-      url,
-    },
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const url = generatePrettyUrl(params.url, {
+    removeTrailSlash: true,
   });
-}
 
-async function getRoute(url: string) {
-  return await baseMagentoClient("GET").request<
-    RouteQuery,
-    RouteQueryVariables
-  >(RouteDocument, {
-    url,
-  });
+  const routeData = await getRoute(url);
+
+  if (routeData.route?.type === "CATEGORY") {
+    const category = await getCategory(url);
+    const currentCategory = category.categories?.items?.[0];
+
+    return {
+      title: formatMetaTitle(
+        currentCategory?.meta_title ?? currentCategory?.name,
+      ),
+      description: currentCategory?.meta_description ?? "",
+    };
+  }
+
+  if (routeData.route?.type === "PRODUCT") {
+    if (isTypename(routeData.route, ["ConfigurableProduct", "SimpleProduct"])) {
+      if (routeData.route.sku) {
+        const product = await getProduct(routeData.route.sku);
+        const products = product.products?.items;
+        const productData = products?.[0];
+
+        if (productData && isTypename(productData, ["SimpleProduct"])) {
+          return {
+            title: formatMetaTitle(
+              productData?.meta_title ?? productData?.name,
+            ),
+          };
+        }
+        if (productData && isTypename(productData, ["ConfigurableProduct"])) {
+          return {
+            title: formatMetaTitle(
+              productData?.meta_title ?? productData?.name,
+            ),
+          };
+        }
+      }
+    }
+  }
+
+  const data = await getPage(`/${url}`);
+  const page = data.pages[0];
+
+  if (page) {
+    return {
+      title: formatMetaTitle(page?.seo?.metaTitle),
+      description: page.seo?.metaDescription,
+    };
+  }
+
+  return {
+    title: "Møbelringen",
+  };
 }
 
 export default async function Home({ params, searchParams }: Props) {
