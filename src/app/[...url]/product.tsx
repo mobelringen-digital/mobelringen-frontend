@@ -4,37 +4,20 @@ import { notFound, redirect } from "next/navigation";
 
 import getCart from "@/components/cart/actions";
 import { StaticPageContent } from "@/components/cms/static-page-content/StaticPageContent";
-import { MetaTitle } from "@/components/meta";
 import { getSelectedStore } from "@/components/store-selector/actions";
 import { ConfigurableProductPage } from "@/modules/product/ConfigurableProduct";
 import { SimpleProductPage } from "@/modules/product/SimpleProduct";
-import {
-  GetProductStockDocument,
-  ProductsQueryDocument,
-} from "@/queries/product/product.queries";
-import {
-  BaseCartFragment,
-  ProductsQuery,
-  ProductsQueryVariables,
-} from "@/types";
+import { GetProductStockDocument } from "@/queries/product/product.queries";
+import { BaseCartFragment } from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
 import { baseMagentoClient } from "@/utils/lib/graphql";
+
+import { getProduct } from "./actions";
 
 type Props = {
   sku: string;
   url: string;
 };
-
-async function getProduct(sku: string) {
-  return await baseMagentoClient("GET").request<
-    ProductsQuery,
-    ProductsQueryVariables
-  >(ProductsQueryDocument, {
-    filter: { sku: { eq: sku } },
-    sort: {},
-    currentPage: 1,
-  });
-}
 
 async function getProductStock(productId: string, storeId: string) {
   return await baseMagentoClient("GET", {
@@ -91,7 +74,6 @@ export default async function Product({ sku, url }: Props) {
     <>
       {isTypename(productData, ["SimpleProduct"]) ? (
         <>
-          <MetaTitle title={productData.meta_title ?? productData.name ?? ""} />
           <link
             rel="canonical"
             href={`${process.env.NEXT_PUBLIC_APP_URL}/${productData.canonical_url}`}
@@ -107,7 +89,6 @@ export default async function Product({ sku, url }: Props) {
 
       {isTypename(productData, ["ConfigurableProduct"]) ? (
         <>
-          <MetaTitle title={productData.meta_title ?? productData.name ?? ""} />
           <ConfigurableProductPage
             stock={stock}
             cart={cart as BaseCartFragment}
