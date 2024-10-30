@@ -132,3 +132,11 @@ export const buildPathArray = (url: string) => {
 
   return result;
 };
+
+export const formatMetaTitle = (title?: string | null) => {
+  if (title) {
+    return `${title} | Møbelringen`;
+  }
+
+  return "Møbelringen";
+};
