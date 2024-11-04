@@ -43,7 +43,6 @@ export default function robots() {
     ],
     sitemap: [
       `${process.env.NEXT_PUBLIC_APP_URL}/sitemap.xml`,
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/sitemap_products_categories.xml`,
     ],
   };
 }
