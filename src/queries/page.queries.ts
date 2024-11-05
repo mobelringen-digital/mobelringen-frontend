@@ -103,6 +103,7 @@ export const CmsPagesQueryDocument = graphql(`
         ...CmsBlockCustomerClubForm
         ...CmsBlockCustomerPaper
         ...CmsBlockFlowbox
+        ...CmsBlockCatalog
       }
     }
   }
@@ -301,6 +302,30 @@ export const CmsBlockPressRoomFragment = graphql(`
       blockConfig {
         ...CmsBlockConfig
       }
+    }
+  }
+`);
+
+export const CmsBlockCatalogFragment = graphql(`
+  fragment CmsBlockCatalog on BlockCatalog {
+    ... on BlockCatalog {
+      __typename
+      title
+      blockConfig {
+        ...CmsBlockConfig
+      }
+    }
+  }
+`);
+
+export const IPaperDocument = graphql(`
+  query IPaper {
+    iPapers {
+      id
+      name
+      type
+      url
+      image
     }
   }
 `);
