@@ -14,7 +14,7 @@ export const baseHygraphClient = (
           method,
           next: {
             cache: method === "POST" ? "no-store" : undefined,
-            revalidate: method === "POST" ? 0 : 1800, // 30min cache
+            revalidate: method === "POST" ? 0 : 300, // 5min cache
             ...nextOptions,
           },
           ...init,
