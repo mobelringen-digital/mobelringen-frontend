@@ -3,7 +3,11 @@
 import { revalidateTag } from "next/cache";
 
 import { getToken } from "@/modules/auth/actions";
-import { ApplyCouponToCartDocument, ValidateCartDocument } from "@/types";
+import {
+  ApplyCouponToCartDocument,
+  RemoveCouponFromCartDocument,
+  ValidateCartDocument,
+} from "@/types";
 import {
   authorizedMagentoClient,
   baseMagentoClient,
@@ -28,6 +32,22 @@ export async function applyCouponToCart(cartId: string, couponCode: string) {
     .request(ApplyCouponToCartDocument, {
       cart_id: cartId,
       coupon_code: couponCode,
+    })
+    .catch((error) => {
+      return handleError(error);
+    });
+
+  revalidateTag("cart");
+
+  return data;
+}
+
+export async function removeCouponFromCart(cartId: string) {
+  const token = await getToken();
+
+  const data = await authorizedMagentoClient(token, "POST")
+    .request(RemoveCouponFromCartDocument, {
+      cart_id: cartId,
     })
     .catch((error) => {
       return handleError(error);

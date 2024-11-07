@@ -71,17 +71,9 @@ export async function CartPricing({ cart, showApplyCoupon }: Props) {
           />
         ) : null}
 
-        {pricingLines().taxes?.map((tax, idx) => (
-          <CartPriceLine
-            key={idx}
-            label={tax.label ?? ""}
-            value={tax.value}
-            currency={tax.currency}
-          />
-        ))}
-
         {pricingLines().discounts?.map((tax, idx) => (
           <CartPriceLine
+            isDiscount={true}
             key={idx}
             label={tax.label ?? ""}
             value={tax.value}
@@ -106,6 +98,17 @@ export async function CartPricing({ cart, showApplyCoupon }: Props) {
         value={pricingLines().total.value}
         currency={pricingLines().total.currency}
       />
+
+      {pricingLines().taxes?.map((tax, idx) => (
+        <CartPriceLine
+          labelClassName="text-dark-grey text-sm"
+          priceClassName="text-dark-grey text-sm !font-medium"
+          key={idx}
+          label={tax.label ?? ""}
+          value={tax.value}
+          currency={tax.currency}
+        />
+      ))}
 
       {pricingLines().delivery.value ? (
         <span className="text-dark-grey mt-2 text-sm">
