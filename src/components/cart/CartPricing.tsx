@@ -73,6 +73,7 @@ export async function CartPricing({ cart, showApplyCoupon }: Props) {
 
         {pricingLines().discounts?.map((tax, idx) => (
           <CartPriceLine
+            priceClassName="text-red"
             isDiscount={true}
             key={idx}
             label={tax.label ?? ""}
