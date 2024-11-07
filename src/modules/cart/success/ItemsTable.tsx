@@ -44,8 +44,8 @@ export const ItemsTable: React.FC<Props> = ({ order, showDelivery }) => {
         ) : null}
         {order?.total?.discounts?.map((discount) => (
           <tr key={discount?.label}>
-            <td className="px-4 py-2">{discount?.label}</td>
-            <td className="px-4 py-2 text-right">
+            <td className="px-4 py-2 border-t border-warm-grey">{discount?.label}</td>
+            <td className="px-4 py-2 border-t border-warm-grey text-right text-red">
               <FormatNumber
                 value={discount?.amount?.value}
                 format="currency"

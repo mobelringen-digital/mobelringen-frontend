@@ -87,6 +87,13 @@ export const CustomerOrderFragment = graphql(`
         currency
         value
       }
+      discounts {
+        amount {
+          currency
+          value
+        }
+        label
+      }
       total_tax {
         currency
         value
