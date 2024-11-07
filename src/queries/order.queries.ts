@@ -4,9 +4,6 @@ export const MaskedOrderFragment = graphql(`
   fragment MaskedOrder on CustomerOrder {
     increment_id
     id
-    applied_coupons {
-      code
-    }
     selected_store
     items {
       image
