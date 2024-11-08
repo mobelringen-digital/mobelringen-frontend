@@ -47,13 +47,13 @@ const SORT_OPTIONS = [
     value: "DESC",
   },
   {
-    label: "Høyeste rabatt",
+    label: "Høyeste rabatt (kr)",
     key: "discount-price-desc",
     param: "discount_price",
     value: "DESC",
   },
   {
-    label: "Høyeste rabattprosent",
+    label: "Høyeste rabatt (%)",
     key: "discount-percentage-desc",
     param: "discount_percentage",
     value: "DESC",
