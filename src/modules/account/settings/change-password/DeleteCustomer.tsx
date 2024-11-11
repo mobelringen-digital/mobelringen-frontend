@@ -20,9 +20,10 @@ export const DeleteCustomer: React.FC<Props> = ({ customer }) => {
 
   const handleDelete = async () => {
     const confirmed = await showConfirmation({
-      title: "Slett kunde",
+      title: "Slett min profil",
       message: <DeleteCustomerMessage customer={customer} />,
       proceedText: "Slett min profil",
+      proceedButtonId: "customer-delete-proceed",
     });
 
     if (!confirmed) {
@@ -40,8 +41,12 @@ export const DeleteCustomer: React.FC<Props> = ({ customer }) => {
   };
 
   return (
-    <button className="underline" onClick={handleDelete}>
-      Slett kunde
+    <button
+      id="customer-delete-init"
+      className="underline"
+      onClick={handleDelete}
+    >
+      Slett min profil
     </button>
   );
 };
