@@ -16,6 +16,7 @@ interface IContent {
   title?: string;
   message?: React.ReactNode;
   isLoading?: boolean;
+  proceedText?: string;
 }
 
 const ConfirmationModalContextProvider: React.FC<{
@@ -52,6 +53,7 @@ const ConfirmationModalContextProvider: React.FC<{
       {content ? (
         <ModalConfirm
           title={content.title}
+          proceedText={content.proceedText}
           content={content.message}
           onConfirm={handleConfirm}
           onCancel={handleCancel}

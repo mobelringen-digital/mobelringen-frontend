@@ -15,6 +15,7 @@ interface Props {
   onConfirm: () => void;
   title?: string;
   content?: React.ReactNode;
+  proceedText?: string;
 }
 
 export const ModalConfirm: React.FC<Props> = ({
@@ -22,6 +23,7 @@ export const ModalConfirm: React.FC<Props> = ({
   onConfirm,
   title,
   content,
+  proceedText,
 }) => {
   return (
     <Modal
@@ -50,7 +52,7 @@ export const ModalConfirm: React.FC<Props> = ({
                 Avbryt
               </Button>
               <Button className="w-full" color="primary" onPress={onConfirm}>
-                Fortsette
+                {proceedText ?? "Fortsette"}
               </Button>
             </ModalFooter>
           </>

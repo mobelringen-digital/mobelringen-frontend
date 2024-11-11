@@ -14,7 +14,7 @@ export const SettingsPage: React.FC<Props> = ({ customer }) => {
     <AccountPageLayout title="Profilinstillinger">
       <div className="flex flex-col w-full gap-8">
         <PersonalInformation customer={customer} />
-        <ChangePassword />
+        <ChangePassword customer={customer} />
       </div>
     </AccountPageLayout>
   );
