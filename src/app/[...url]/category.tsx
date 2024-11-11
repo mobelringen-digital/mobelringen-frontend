@@ -6,27 +6,14 @@ import { CategoryPage } from "@/modules/category/category/CategoryPage";
 import { CategoryDescription } from "@/modules/category/CategoryDescription";
 import { ParentCategoryPage } from "@/modules/category/parent-category/ParentCategoryPage";
 import { SubCategoriesSelect } from "@/modules/category/SubCategoriesSelect";
-import { CategoryQueryDocument } from "@/queries/category.queries";
-import {
-  BaseCategoryDataFragment,
-  CategoryQuery,
-  CategoryQueryVariables,
-} from "@/types";
+import { BaseCategoryDataFragment, CategoryQuery } from "@/types";
 import { generatePrettyUrl } from "@/utils/helpers";
-import { baseMagentoClient } from "@/utils/lib/graphql";
+
+import { getCategory } from "./actions";
 
 type Props = {
   url: string;
 };
-
-async function getCategory(url: string) {
-  return await baseMagentoClient("GET").request<
-    CategoryQuery,
-    CategoryQueryVariables
-  >(CategoryQueryDocument, {
-    filters: { url_path: { eq: url } },
-  });
-}
 
 const isLastCategoryInTree = (category: BaseCategoryDataFragment) => {
   return !!(category?.children && category.children.length === 0);
@@ -80,12 +67,10 @@ export default async function Category({ url }: Props) {
 
   return (
     <>
-      <title>{currentCategory.meta_title ?? currentCategory.name}</title>
-      <meta
-        name="description"
-        content={currentCategory.meta_description ?? ""}
+      <link
+        rel="canonical"
+        href={`${process.env.NEXT_PUBLIC_APP_URL}/${currentCategory.url_path}`}
       />
-
       {subCategoriesData ? (
         <SubCategoriesSelect category={subCategoriesData} url={url} />
       ) : null}

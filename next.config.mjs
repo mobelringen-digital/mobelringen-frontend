@@ -4,6 +4,20 @@ const nextConfig = {
   experimental: {
     scrollRestoration: false,
   },
+  reactStrictMode: true,
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "s-maxage=300, stale-while-revalidate=300",
+          },
+        ],
+      },
+    ];
+  },
   images: {
     unoptimized: true,
     dangerouslyAllowSVG: true,
