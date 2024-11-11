@@ -31,6 +31,8 @@ export const IMAGE_PROMOTION_SPACINGS: Record<number, string> = {
 };
 
 export const CmsImage: React.FC<Props> = ({ data, className, imageStyle }) => {
+  if (!data.image.url) return null;
+
   return (
     <div className={cx("flex flex-col gap-2", className)}>
       <div
