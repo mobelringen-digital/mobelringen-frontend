@@ -14,7 +14,7 @@ import {
   RouteQuery,
   RouteQueryVariables,
 } from "@/types";
-import { baseHygraphClient, baseMagentoClient } from "@/utils/lib/graphql";
+import {baseHygraphClient, baseMagentoClient, HYGRAPH_CACHE_TIME} from "@/utils/lib/graphql";
 
 export async function getProduct(sku: string) {
   return await baseMagentoClient("GET").request<
@@ -39,7 +39,7 @@ export async function getCategory(url: string) {
 export async function getPage(url: string, preview?: boolean) {
   return await baseHygraphClient("GET", {
     cache: preview ? "no-store" : undefined,
-    revalidate: preview ? 0 : 86400,
+    revalidate: preview ? 0 : HYGRAPH_CACHE_TIME,
   }).request<CmsPagesQuery, CmsPagesQueryVariables>(CmsPagesQueryDocument, {
     where: {
       url,
