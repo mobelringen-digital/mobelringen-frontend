@@ -24,6 +24,8 @@ interface Props {
 }
 
 export const ImageLink: React.FC<Props> = ({ data, className, imageStyle }) => {
+  if (!data.image.url) return null;
+
   return (
     <div className={cx("flex flex-col gap-2 group", className)}>
       <div
