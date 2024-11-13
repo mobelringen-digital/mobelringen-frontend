@@ -263,3 +263,9 @@ export const ResetPasswordDocument = graphql(`
     )
   }
 `);
+
+export const DeleteCustomerDocument = graphql(`
+  mutation DeleteCustomer {
+    deleteCustomer
+  }
+`);

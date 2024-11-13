@@ -9,7 +9,8 @@ import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
 import { Input } from "@/components/_ui/input/Input";
 import { openToast } from "@/components/_ui/toast-provider";
 import { changeCustomerPassword } from "@/modules/account/settings/change-password/actions";
-import { ChangeCustomerPasswordMutation } from "@/types";
+import { DeleteCustomer } from "@/modules/account/settings/change-password/DeleteCustomer";
+import { ChangeCustomerPasswordMutation, CustomerDataFragment } from "@/types";
 import { useRequestCallback } from "@/utils/hooks/useRequestCallback";
 
 type FormData = {
@@ -18,7 +19,11 @@ type FormData = {
   confirmNewPassword: string;
 };
 
-export const ChangePassword = () => {
+interface Props {
+  customer?: CustomerDataFragment | null;
+}
+
+export const ChangePassword: React.FC<Props> = ({ customer }) => {
   const { handlePossibleErrors } = useRequestCallback();
   const {
     control,
@@ -100,6 +105,9 @@ export const ChangePassword = () => {
           Lagre endringer
         </Button>
       </form>
+      <div className="flex mt-4 justify-end">
+        <DeleteCustomer customer={customer} />
+      </div>
     </div>
   );
 };
