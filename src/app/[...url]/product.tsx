@@ -22,6 +22,7 @@ type Props = {
 async function getProductStock(productId: string, storeId: string) {
   return await baseMagentoClient("GET", {
     tags: ["stock", String(productId), String(storeId)],
+    revalidate: 600,
   }).request(GetProductStockDocument, {
     productId,
     storeId,
