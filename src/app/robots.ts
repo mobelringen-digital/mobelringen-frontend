@@ -1,25 +1,30 @@
 export default function robots() {
+  const allowance =
+    process.env.NEXT_PUBLIC_ENVIRONMENT === "Production"
+      ? { allow: "/" }
+      : { disallow: "/" };
+
   return {
     rules: [
       {
         userAgent: "Googlebot",
-        allow: "/",
+        ...allowance,
       },
       {
         userAgent: "googlebot-image",
-        allow: "/",
+        ...allowance,
       },
       {
         userAgent: "DuckDuckBot",
-        allow: "/",
+        ...allowance,
       },
       {
         userAgent: "googlebot-mobile",
-        allow: "/",
+        ...allowance,
       },
       {
         userAgent: "Bingbot",
-        allow: "/",
+        ...allowance,
       },
       {
         userAgent: "Yandex",
@@ -38,11 +43,9 @@ export default function robots() {
           "*?sort=*",
           "*?srsltid*",
         ],
-        allow: "/",
+        ...allowance,
       },
     ],
-    sitemap: [
-      `${process.env.NEXT_PUBLIC_APP_URL}/sitemap.xml`,
-    ],
+    sitemap: [`${process.env.NEXT_PUBLIC_APP_URL}/sitemap.xml`],
   };
 }

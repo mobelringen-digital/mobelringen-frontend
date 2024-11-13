@@ -10,6 +10,14 @@ const nextConfig = {
       {
         source: "/(.*)",
         headers: [
+          ...(process.env.NEXT_PUBLIC_ENVIRONMENT !== "Production"
+            ? [
+                {
+                  key: "X-Robots-Tag",
+                  value: "noindex",
+                },
+              ]
+            : []),
           {
             key: "Cache-Control",
             value: "s-maxage=300, stale-while-revalidate=300",
