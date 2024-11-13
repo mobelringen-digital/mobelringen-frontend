@@ -17,7 +17,7 @@ export const Breadcrumbs: React.FC<Props> = ({
   className = "mt-6 lg:mt-16 mb-6 lg:mb-12",
 }) => {
   return (
-    <ul className={cx("flex list-none gap-2", className)}>
+    <ul className={cx("flex flex-wrap list-none gap-2", className)}>
       <li>
         <Link
           className={cx(
