@@ -25,6 +25,18 @@ export const OrderItemTotal: React.FC<Props> = ({ data }) => {
               />
             </span>
           </div>
+          {data?.total?.discounts?.map((discount) => (
+            <div className="flex justify-between" key={discount?.label}>
+              <span className="text-dark-grey">{discount?.label}</span>
+              <span className="text-red">
+                <FormatNumber
+                  value={discount?.amount?.value}
+                  format="currency"
+                  suffix=" kr"
+                />
+              </span>
+            </div>
+          ))}
           <div className="flex justify-between">
             <span className="text-dark-grey">Frakt</span>
             <span>

@@ -87,6 +87,13 @@ export const CustomerOrderFragment = graphql(`
         currency
         value
       }
+      discounts {
+        amount {
+          currency
+          value
+        }
+        label
+      }
       total_tax {
         currency
         value
@@ -254,5 +261,11 @@ export const ResetPasswordDocument = graphql(`
       resetPasswordToken: $resetPasswordToken
       newPassword: $newPassword
     )
+  }
+`);
+
+export const DeleteCustomerDocument = graphql(`
+  mutation DeleteCustomer {
+    deleteCustomer
   }
 `);

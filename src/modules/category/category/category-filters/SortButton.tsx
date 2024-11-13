@@ -46,6 +46,18 @@ const SORT_OPTIONS = [
     param: "relevance",
     value: "DESC",
   },
+  {
+    label: "Høyeste rabatt (kr)",
+    key: "discount-price-desc",
+    param: "discount_price",
+    value: "DESC",
+  },
+  {
+    label: "Høyeste rabatt (%)",
+    key: "discount-percentage-desc",
+    param: "discount_percentage",
+    value: "DESC",
+  },
 ];
 
 export const SortButton = () => {

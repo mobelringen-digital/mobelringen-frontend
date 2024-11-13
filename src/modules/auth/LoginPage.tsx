@@ -133,7 +133,7 @@ export const LoginPage: React.FC = () => {
             href="/auth/register"
             color="secondary"
           >
-            Opprett bruker
+            Opprett ny bruker
           </Button>
         </div>
       </ContainerLayout>

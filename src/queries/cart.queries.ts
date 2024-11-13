@@ -489,3 +489,13 @@ export const applyCouponToCartDocument = graphql(`
     }
   }
 `);
+
+export const removeCouponFromCartDocument = graphql(`
+  mutation RemoveCouponFromCart($cart_id: String!) {
+    removeCouponFromCart(input: { cart_id: $cart_id }) {
+      cart {
+        ...BaseCart
+      }
+    }
+  }
+`);

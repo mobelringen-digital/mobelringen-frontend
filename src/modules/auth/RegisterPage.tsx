@@ -5,6 +5,8 @@ import React from "react";
 import { Checkbox, Select, SelectItem } from "@nextui-org/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
+import Link from "next/link";
+
 import { Button } from "@/components/_ui/button/Button";
 import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
 import { Input } from "@/components/_ui/input/Input";
@@ -243,6 +245,16 @@ export const RegisterPage: React.FC<Props> = ({ stores }) => {
           >
             Opprett ny bruker
           </Button>
+
+          <div className="flex flex-col w-full font-light">
+            <p>Felt merket med * må fylles ut.</p>
+            <p>
+              Når du trykker på &quot;opprett ny bruker&quot; godtar du våre{" "}
+              <Link className="underline" href="/medlemsvilkar">
+                medlemsvilkår.
+              </Link>
+            </p>
+          </div>
         </form>
       </ContainerLayout>
     </>
