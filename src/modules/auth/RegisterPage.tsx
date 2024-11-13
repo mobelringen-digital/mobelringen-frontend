@@ -249,7 +249,7 @@ export const RegisterPage: React.FC<Props> = ({ stores }) => {
           <div className="flex flex-col w-full font-light">
             <p>Felt merket med * må fylles ut.</p>
             <p>
-              Når du trykker på &quot;opprett bruker&quot; godtar du våre{" "}
+              Når du trykker på &quot;opprett ny bruker&quot; godtar du våre{" "}
               <Link className="underline" href="/medlemsvilkar">
                 medlemsvilkår.
               </Link>
