@@ -86,6 +86,13 @@ export const MaskedOrderFragment = graphql(`
         currency
         value
       }
+      discounts {
+        amount {
+          currency
+          value
+        }
+        label
+      }
     }
   }
 `);
