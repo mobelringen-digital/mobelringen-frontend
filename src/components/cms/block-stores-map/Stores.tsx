@@ -6,17 +6,17 @@ import cx from "classnames";
 import { useDebounce } from "use-debounce";
 
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+import { ArrowLeftAlt } from "@/components/_ui/icons/ArrowLeftAlt";
 import { ChevronRight } from "@/components/_ui/icons/ChevronRight";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
+import { Store } from "@/components/cms/block-stores-map/Store";
 import { useStoresList } from "@/components/cms/block-stores-map/useStoresList";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { SearchInput } from "@/components/search/SearchInput";
 import { PageTitle } from "@/components/typography/PageTitle";
 import { BaseStoreFragment } from "@/types";
-import { stringToUrl } from "@/utils/helpers";
 
 const Map = dynamic(() => import("./Map"), { ssr: false });
 
@@ -103,7 +103,7 @@ export const Stores: React.FC<Props> = ({ title }) => {
               onChange={onSearchChange}
               value={search}
               variant="bordered"
-              placeholder="Skriv postnummer eller sted"
+              placeholder="Postnummer eller butikknavn"
             />
             <div className="flex w-full justify-end">
               {searchParams.get("searchInput") ? (
@@ -123,11 +123,21 @@ export const Stores: React.FC<Props> = ({ title }) => {
           <div className="flex flex-col max-h-[520px] overflow-y-auto">
             {activeRegion ? (
               <div className="block w-full">
-                <div className="flex items-center gap-2 text-xl py-2">
-                  <button onClick={() => setActiveRegion("")}>Fylke</button>
-                  <ChevronRight />
-                  <span>{activeRegion}</span>
+                <div className="flex flex-col items-start">
+                  <button
+                    className="mb-4 text-left flex items-center gap-1"
+                    onClick={() => setActiveRegion("")}
+                  >
+                    <ArrowLeftAlt />
+                    <span>Tilbake til butikkoversikten</span>
+                  </button>
+                  <div className="flex items-center gap-2 text-xl py-2">
+                    <span>Fylke</span>
+                    <ChevronRight />
+                    <span>{activeRegion}</span>
+                  </div>
                 </div>
+
                 <div className="flex flex-col">
                   {activeRegionStores
                     ?.filter(
@@ -145,24 +155,7 @@ export const Stores: React.FC<Props> = ({ title }) => {
                         )}
                         key={idx}
                       >
-                        <div className="flex justify-between items-center">
-                          <div className="flex flex-col gap-1">
-                            <span className="font-normal">{store?.name}</span>
-                            <span className="text-sm font-light text-dark-grey">
-                              {[
-                                store?.street,
-                                store?.postcode,
-                                store?.city,
-                              ].join(", ")}
-                            </span>
-                          </div>
-                          <Link
-                            className="p-4"
-                            href={`/store/${store.external_id}/${stringToUrl(store.name)}`}
-                          >
-                            <ChevronRight />
-                          </Link>
-                        </div>
+                        <Store store={store} />
                       </button>
                     ))}
                 </div>
