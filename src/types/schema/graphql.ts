@@ -321,6 +321,24 @@ export type ApplyCouponToCartOutput = {
   cart: Cart;
 };
 
+/** The strategy to apply coupons to the cart. */
+export enum ApplyCouponsStrategy {
+  /** Append new coupons keeping the coupons that have been applied before. */
+  Append = 'APPEND',
+  /** Remove all the coupons from the cart and apply only new provided coupons. */
+  Replace = 'REPLACE'
+}
+
+/** Apply coupons to the cart. */
+export type ApplyCouponsToCartInput = {
+  /** The unique ID of a `Cart` object. */
+  cart_id: Scalars['String']['input'];
+  /** An array of valid coupon codes. */
+  coupon_codes: Array<InputMaybe<Scalars['String']['input']>>;
+  /** `replace` to replace the existing coupon(s) or `append` to add the coupon to the coupon(s) list. */
+  type?: InputMaybe<ApplyCouponsStrategy>;
+};
+
 /** Defines the input required to run the `applyGiftCardToCart` mutation. */
 export type ApplyGiftCardToCartInput = {
   /** The unique ID that identifies the customer's cart. */
@@ -12554,6 +12572,7 @@ export type BundleProduct = CustomizableProductInterface & PhysicalProductInterf
   /** Detailed information about the product. The value can include simple HTML tags. */
   description?: Maybe<ComplexTextValue>;
   discount_amount?: Maybe<Scalars['Float']['output']>;
+  discount_percentage?: Maybe<Scalars['Float']['output']>;
   /** Indicates whether the bundle product has a dynamic price. */
   dynamic_price?: Maybe<Scalars['Boolean']['output']>;
   /** Indicates whether the bundle product has a dynamic SKU. */
@@ -12693,6 +12712,7 @@ export type BundleProduct = CustomizableProductInterface & PhysicalProductInterf
   staged: Scalars['Boolean']['output'];
   /** The stock status of the product. */
   stock_status?: Maybe<ProductStockStatus>;
+  stocks?: Maybe<GetProductStockOutput>;
   /** An array containing information about all the stores with product quantities. */
   stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
   /** The file name of a swatch image. */
@@ -14186,6 +14206,7 @@ export type ConfigurableProduct = CustomizableProductInterface & PhysicalProduct
   /** Detailed information about the product. The value can include simple HTML tags. */
   description?: Maybe<ComplexTextValue>;
   discount_amount?: Maybe<Scalars['Float']['output']>;
+  discount_percentage?: Maybe<Scalars['Float']['output']>;
   /** @deprecated Use the `custom_attributes` field instead. */
   firmness?: Maybe<Scalars['Int']['output']>;
   /** Indicates whether a gift message is available. */
@@ -14311,6 +14332,7 @@ export type ConfigurableProduct = CustomizableProductInterface & PhysicalProduct
   staged: Scalars['Boolean']['output'];
   /** The stock status of the product. */
   stock_status?: Maybe<ProductStockStatus>;
+  stocks?: Maybe<GetProductStockOutput>;
   /** An array containing information about all the stores with product quantities. */
   stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
   /** The file name of a swatch image. */
@@ -16050,6 +16072,7 @@ export type CustomerOrderReturnsArgs = {
 
 export type CustomerOrderItem = {
   __typename: 'CustomerOrderItem';
+  delivery_date?: Maybe<Scalars['String']['output']>;
   image?: Maybe<Scalars['String']['output']>;
   link?: Maybe<Scalars['String']['output']>;
   name: Scalars['String']['output'];
@@ -16835,6 +16858,7 @@ export type DownloadableProduct = CustomizableProductInterface & ProductInterfac
   /** Detailed information about the product. The value can include simple HTML tags. */
   description?: Maybe<ComplexTextValue>;
   discount_amount?: Maybe<Scalars['Float']['output']>;
+  discount_percentage?: Maybe<Scalars['Float']['output']>;
   /** An array containing information about the links for this downloadable product. */
   downloadable_product_links?: Maybe<Array<Maybe<DownloadableProductLinks>>>;
   /** An array containing information about samples of this downloadable product. */
@@ -16968,6 +16992,7 @@ export type DownloadableProduct = CustomizableProductInterface & ProductInterfac
   staged: Scalars['Boolean']['output'];
   /** The stock status of the product. */
   stock_status?: Maybe<ProductStockStatus>;
+  stocks?: Maybe<GetProductStockOutput>;
   /** An array containing information about all the stores with product quantities. */
   stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
   /** The file name of a swatch image. */
@@ -18417,6 +18442,7 @@ export type GiftCardProduct = CustomizableProductInterface & PhysicalProductInte
   /** Detailed information about the product. The value can include simple HTML tags. */
   description?: Maybe<ComplexTextValue>;
   discount_amount?: Maybe<Scalars['Float']['output']>;
+  discount_percentage?: Maybe<Scalars['Float']['output']>;
   /** @deprecated Use the `custom_attributes` field instead. */
   firmness?: Maybe<Scalars['Int']['output']>;
   /** An array of customizable gift card options. */
@@ -18558,6 +18584,7 @@ export type GiftCardProduct = CustomizableProductInterface & PhysicalProductInte
   staged: Scalars['Boolean']['output'];
   /** The stock status of the product. */
   stock_status?: Maybe<ProductStockStatus>;
+  stocks?: Maybe<GetProductStockOutput>;
   /** An array containing information about all the stores with product quantities. */
   stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
   /** The file name of a swatch image. */
@@ -19021,6 +19048,7 @@ export type GroupedProduct = PhysicalProductInterface & ProductInterface & Routa
   /** Detailed information about the product. The value can include simple HTML tags. */
   description?: Maybe<ComplexTextValue>;
   discount_amount?: Maybe<Scalars['Float']['output']>;
+  discount_percentage?: Maybe<Scalars['Float']['output']>;
   /** @deprecated Use the `custom_attributes` field instead. */
   firmness?: Maybe<Scalars['Int']['output']>;
   /** Indicates whether a gift message is available. */
@@ -19146,6 +19174,7 @@ export type GroupedProduct = PhysicalProductInterface & ProductInterface & Routa
   staged: Scalars['Boolean']['output'];
   /** The stock status of the product. */
   stock_status?: Maybe<ProductStockStatus>;
+  stocks?: Maybe<GetProductStockOutput>;
   /** An array containing information about all the stores with product quantities. */
   stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
   /** The file name of a swatch image. */
@@ -23315,6 +23344,8 @@ export type Mutation = {
   addWishlistItemsToCart?: Maybe<AddWishlistItemsToCartOutput>;
   /** Apply a pre-defined coupon code to the specified cart. */
   applyCouponToCart?: Maybe<ApplyCouponToCartOutput>;
+  /** Apply a pre-defined coupon code to the specified cart. */
+  applyCouponsToCart?: Maybe<ApplyCouponToCartOutput>;
   /** Apply a pre-defined gift card code to the specified cart. */
   applyGiftCardToCart?: Maybe<ApplyGiftCardToCartOutput>;
   /** Apply all available points, up to the cart total. Partial redemption is not available. */
@@ -23947,6 +23978,8 @@ export type Mutation = {
   redeemGiftCardBalanceAsStoreCredit?: Maybe<GiftCardAccount>;
   /** Remove a previously-applied coupon from the cart. The cart must contain at least one item in order to remove the coupon. */
   removeCouponFromCart?: Maybe<RemoveCouponFromCartOutput>;
+  /** Remove a previously-applied coupon from the cart. The cart must contain at least one item in order to remove the coupon. */
+  removeCouponsFromCart?: Maybe<RemoveCouponFromCartOutput>;
   /** Removes a gift card from the cart. */
   removeGiftCardFromCart?: Maybe<RemoveGiftCardFromCartOutput>;
   /** Delete the specified gift registry. */
@@ -24746,6 +24779,11 @@ export type MutationAddWishlistItemsToCartArgs = {
 
 export type MutationApplyCouponToCartArgs = {
   input: InputMaybe<ApplyCouponToCartInput>;
+};
+
+
+export type MutationApplyCouponsToCartArgs = {
+  input: InputMaybe<ApplyCouponsToCartInput>;
 };
 
 
@@ -26292,6 +26330,11 @@ export type MutationRedeemGiftCardBalanceAsStoreCreditArgs = {
 
 export type MutationRemoveCouponFromCartArgs = {
   input: InputMaybe<RemoveCouponFromCartInput>;
+};
+
+
+export type MutationRemoveCouponsFromCartArgs = {
+  input: InputMaybe<RemoveCouponsFromCartInput>;
 };
 
 
@@ -30508,6 +30551,8 @@ export type ProductAttributeFilterInput = {
 
 /** Specifies the attribute to use for sorting search results and indicates whether the results are sorted in ascending or descending order. It's possible to sort products using searchable attributes with enabled 'Use in Filter Options' option */
 export type ProductAttributeSortInput = {
+  /** Sort by the discount percentage. */
+  discount_percentage?: InputMaybe<SortEnum>;
   /** Sort by the discount amount. */
   discount_price?: InputMaybe<SortEnum>;
   /** Attribute label: Produktnavn */
@@ -30678,6 +30723,7 @@ export type ProductInterface = {
   /** Detailed information about the product. The value can include simple HTML tags. */
   description?: Maybe<ComplexTextValue>;
   discount_amount?: Maybe<Scalars['Float']['output']>;
+  discount_percentage?: Maybe<Scalars['Float']['output']>;
   /** @deprecated Use the `custom_attributes` field instead. */
   firmness?: Maybe<Scalars['Int']['output']>;
   /** Indicates whether a gift message is available. */
@@ -30797,6 +30843,7 @@ export type ProductInterface = {
   staged: Scalars['Boolean']['output'];
   /** The stock status of the product. */
   stock_status?: Maybe<ProductStockStatus>;
+  stocks?: Maybe<GetProductStockOutput>;
   /** An array containing information about all the stores with product quantities. */
   stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
   /** The file name of a swatch image. */
@@ -34145,6 +34192,14 @@ export type RemoveCouponFromCartOutput = {
   __typename: 'RemoveCouponFromCartOutput';
   /** The cart after removing a coupon. */
   cart?: Maybe<Cart>;
+};
+
+/** Remove coupons from the cart. */
+export type RemoveCouponsFromCartInput = {
+  /** The unique ID of a `Cart` object. */
+  cart_id: Scalars['String']['input'];
+  /** An array of coupon codes to be removed from the quote. If coupon_codes is empty all coupons will be removed from the quote. */
+  coupon_codes: Array<InputMaybe<Scalars['String']['input']>>;
 };
 
 /** Defines the input required to run the `removeGiftCardFromCart` mutation. */
@@ -37635,6 +37690,7 @@ export type SimpleProduct = CustomizableProductInterface & PhysicalProductInterf
   /** Detailed information about the product. The value can include simple HTML tags. */
   description?: Maybe<ComplexTextValue>;
   discount_amount?: Maybe<Scalars['Float']['output']>;
+  discount_percentage?: Maybe<Scalars['Float']['output']>;
   /** @deprecated Use the `custom_attributes` field instead. */
   firmness?: Maybe<Scalars['Int']['output']>;
   /** Indicates whether a gift message is available. */
@@ -37760,6 +37816,7 @@ export type SimpleProduct = CustomizableProductInterface & PhysicalProductInterf
   staged: Scalars['Boolean']['output'];
   /** The stock status of the product. */
   stock_status?: Maybe<ProductStockStatus>;
+  stocks?: Maybe<GetProductStockOutput>;
   /** An array containing information about all the stores with product quantities. */
   stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
   /** The file name of a swatch image. */
@@ -40400,6 +40457,7 @@ export type VirtualProduct = CustomizableProductInterface & ProductInterface & R
   /** Detailed information about the product. The value can include simple HTML tags. */
   description?: Maybe<ComplexTextValue>;
   discount_amount?: Maybe<Scalars['Float']['output']>;
+  discount_percentage?: Maybe<Scalars['Float']['output']>;
   /** @deprecated Use the `custom_attributes` field instead. */
   firmness?: Maybe<Scalars['Int']['output']>;
   /** Indicates whether a gift message is available. */
@@ -40525,6 +40583,7 @@ export type VirtualProduct = CustomizableProductInterface & ProductInterface & R
   staged: Scalars['Boolean']['output'];
   /** The stock status of the product. */
   stock_status?: Maybe<ProductStockStatus>;
+  stocks?: Maybe<GetProductStockOutput>;
   /** An array containing information about all the stores with product quantities. */
   stores?: Maybe<Array<Maybe<ProductInterfaceStoreItem>>>;
   /** The file name of a swatch image. */
