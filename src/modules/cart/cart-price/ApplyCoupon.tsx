@@ -48,7 +48,7 @@ export const ApplyCoupon: React.FC<Props> = ({ cart }) => {
     return res;
   };
 
-  const removeDiscount = async () => {
+  const removeDiscount = async (couponCode?: string) => {
     if (!cart?.id) return;
 
     const confirmed = await showConfirmation({
@@ -57,9 +57,10 @@ export const ApplyCoupon: React.FC<Props> = ({ cart }) => {
     });
 
     if (!confirmed) return;
+    if (!couponCode) return;
 
     setIsLoading(true);
-    const res = await removeCouponFromCart(cart?.id);
+    const res = await removeCouponFromCart(cart?.id, couponCode);
 
     handlePossibleErrors(res);
     setIsLoading(false);
@@ -99,7 +100,10 @@ export const ApplyCoupon: React.FC<Props> = ({ cart }) => {
         >
           Rabattkode <span className="font-semibold">{coupon?.code}</span> lagt
           til!
-          <button onClick={removeDiscount} className="absolute right-1 top-1">
+          <button
+            onClick={() => removeDiscount(coupon?.code)}
+            className="absolute right-1 top-1"
+          >
             <CloseIcon width={18} height={18} />
           </button>
         </div>
