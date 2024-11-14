@@ -4,8 +4,9 @@ import { revalidateTag } from "next/cache";
 
 import { getToken } from "@/modules/auth/actions";
 import {
-  ApplyCouponToCartDocument,
-  RemoveCouponFromCartDocument,
+  ApplyCouponsStrategy,
+  ApplyCouponsToCartDocument,
+  RemoveCouponsFromCartDocument,
   ValidateCartDocument,
 } from "@/types";
 import {
@@ -29,9 +30,10 @@ export async function applyCouponToCart(cartId: string, couponCode: string) {
   const token = await getToken();
 
   const data = await authorizedMagentoClient(token, "POST")
-    .request(ApplyCouponToCartDocument, {
+    .request(ApplyCouponsToCartDocument, {
       cart_id: cartId,
-      coupon_code: couponCode,
+      coupon_codes: [couponCode],
+      type: ApplyCouponsStrategy.Append,
     })
     .catch((error) => {
       return handleError(error);
@@ -42,12 +44,13 @@ export async function applyCouponToCart(cartId: string, couponCode: string) {
   return data;
 }
 
-export async function removeCouponFromCart(cartId: string) {
+export async function removeCouponFromCart(cartId: string, couponCode: string) {
   const token = await getToken();
 
   const data = await authorizedMagentoClient(token, "POST")
-    .request(RemoveCouponFromCartDocument, {
+    .request(RemoveCouponsFromCartDocument, {
       cart_id: cartId,
+      coupon_codes: [couponCode],
     })
     .catch((error) => {
       return handleError(error);

@@ -490,9 +490,33 @@ export const applyCouponToCartDocument = graphql(`
   }
 `);
 
+export const applyCouponsToCartDocument = graphql(`
+  mutation ApplyCouponsToCart($cart_id: String!, $coupon_codes: [String!]!, $type: ApplyCouponsStrategy!) {
+    applyCouponsToCart(
+      input: { cart_id: $cart_id, coupon_codes: $coupon_codes, type: $type }
+    ) {
+      cart {
+        ...BaseCart
+      }
+    }
+  }
+`);
+
 export const removeCouponFromCartDocument = graphql(`
   mutation RemoveCouponFromCart($cart_id: String!) {
     removeCouponFromCart(input: { cart_id: $cart_id }) {
+      cart {
+        ...BaseCart
+      }
+    }
+  }
+`);
+
+export const removeCouponsFromCartDocument = graphql(`
+  mutation RemoveCouponsFromCart($cart_id: String!, $coupon_codes: [String!]!) {
+    removeCouponsFromCart(
+      input: { cart_id: $cart_id, coupon_codes: $coupon_codes }
+    ) {
       cart {
         ...BaseCart
       }
