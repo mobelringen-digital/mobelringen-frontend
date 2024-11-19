@@ -1,6 +1,8 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import cx from "classnames";
+
+import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 
 interface Props {
   children: React.ReactNode;
@@ -14,16 +16,18 @@ export const ContainerLayout: React.FC<Props> = ({
   fullWidth,
 }) => {
   return (
-    <div
-      className={cx(
-        {
-          "mx-auto px-4 lg:px-6 container": !fullWidth,
-          "px-8": fullWidth,
-        },
-        className,
-      )}
-    >
-      {children}
-    </div>
+    <Suspense fallback={<PageTopLoader />}>
+      <div
+        className={cx(
+          {
+            "mx-auto px-4 lg:px-6 container": !fullWidth,
+            "px-8": fullWidth,
+          },
+          className,
+        )}
+      >
+        {children}
+      </div>
+    </Suspense>
   );
 };
