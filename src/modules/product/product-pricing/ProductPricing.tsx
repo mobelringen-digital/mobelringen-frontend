@@ -45,6 +45,7 @@ export const ProductPricing: React.FC<Props> = ({ product }) => {
                 <Popover isOpen={open} triggerType="dialog" placement="top">
                   <PopoverTrigger>
                     <button
+                      aria-labelledby="Product pricing popover"
                       onMouseEnter={() => setOpen(true)}
                       onMouseLeave={() => setOpen(false)}
                     >

@@ -27,7 +27,7 @@ export const ImageLinkSalesBubbleWrapper: React.FC<Props> = ({ data }) => {
         })}
       >
         {salesBubble.url ? (
-          <Link href={salesBubble.url}>
+          <Link aria-label={salesBubble.middleLine} href={salesBubble.url}>
             <SalesBubble size="small" salesBubble={salesBubble} />
           </Link>
         ) : (

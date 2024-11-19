@@ -35,7 +35,9 @@ export const ChangeStoreModal: React.FC<Props> = ({
                     key={store?.external_id}
                   >
                     <div className="flex flex-col gap-2">
-                      <span className="text-black font-semibold">{store?.name}</span>
+                      <span className="text-black font-semibold">
+                        {store?.name}
+                      </span>
 
                       <div className="flex gap-1.5 items-center">
                         <StatusCircle variant="green" />
@@ -47,6 +49,7 @@ export const ChangeStoreModal: React.FC<Props> = ({
 
                     <div className="flex gap-2 items-center">
                       <Button
+                        aria-labelledby="Velg butikk"
                         size="sm"
                         className="h-8"
                         color="secondary"

@@ -31,6 +31,7 @@ export const Variant: React.FC<Props> = ({ variant }) => {
 
   return (
     <button
+      aria-labelledby="Product variant"
       onClick={handleVariantSelect}
       className={cx(
         "w-[64px] h-[64px] bg-warm-grey p-2 flex items-center justify-center rounded-2xl",

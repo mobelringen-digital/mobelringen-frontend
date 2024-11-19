@@ -28,6 +28,7 @@ export const DropdownMenuProvider: React.FC<Props> = ({ children, title }) => {
   return (
     <li className="py-2" ref={ref}>
       <button
+        aria-labelledby={title}
         onClick={() => setIsActive((prev) => !prev)}
         className="cursor-pointer flex items-center"
       >

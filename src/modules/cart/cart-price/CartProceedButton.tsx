@@ -82,6 +82,7 @@ export const CartProceedButton: React.FC<Props> = ({
     <>
       {isLoading ? <PageTopLoader /> : null}
       <Button
+        aria-labelledby="Fortsett"
         disabled={isButtonDisabled}
         onClick={navigateToCheckout}
         color="tertiary"

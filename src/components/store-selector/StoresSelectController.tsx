@@ -47,12 +47,17 @@ export const StoresSelectController: React.FC<Props> = ({
       {/*Desktop menu*/}
       <div className="gap-4 text-xs hidden lg:flex">
         <button
+          aria-labelledby={selectedStore?.name ?? "Velg butikk"}
           onClick={() => router.push(`${pathname}?store=select`)}
           className="flex gap-1 items-center"
         >
           <Location /> {selectedStore?.name ?? "Velg butikk"}
         </button>
-        <Link href="/finn-butikk" className="flex gap-1 items-center">
+        <Link
+          aria-label="Butikkoversikt"
+          href="/finn-butikk"
+          className="flex gap-1 items-center"
+        >
           <Storefront /> Butikkoversikt
         </Link>
       </div>
@@ -61,6 +66,7 @@ export const StoresSelectController: React.FC<Props> = ({
       <ul className="flex-col gap-5 py-8 border-t border-t-cold-grey-dark flex lg:hidden">
         <li className="flex justify-between items-center">
           <button
+            aria-labelledby={selectedStore?.name ?? "Velg butikk"}
             className="flex gap-1 items-center"
             onClick={() => router.push(`${pathname}?store=select`)}
           >
@@ -70,7 +76,11 @@ export const StoresSelectController: React.FC<Props> = ({
           <ChevronRight />
         </li>
         <li className="flex justify-between items-center">
-          <Link href="/finn-butikk" className="flex gap-2 items-center">
+          <Link
+            aria-label="Butikkoversikt"
+            href="/finn-butikk"
+            className="flex gap-2 items-center"
+          >
             <Storefront width={20} height={20} /> Butikkoversikt
           </Link>
           <ChevronRight />

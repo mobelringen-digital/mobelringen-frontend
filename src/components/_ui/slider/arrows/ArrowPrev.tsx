@@ -12,6 +12,7 @@ export const ArrowPrev: React.FC<CustomArrowProps> = ({
 }): React.JSX.Element => {
   return (
     <button
+      aria-labelledby="Prev"
       {...rest}
       type="button"
       className={cx(

@@ -239,6 +239,7 @@ export const RegisterPage: React.FC<Props> = ({ stores }) => {
           ) : null}
 
           <Button
+            aria-labelledby="Opprett ny bruker"
             disabled={isLoading || isSubmitting}
             color="primary"
             type="submit"
@@ -250,7 +251,7 @@ export const RegisterPage: React.FC<Props> = ({ stores }) => {
             <p>Felt merket med * må fylles ut.</p>
             <p>
               Når du trykker på &quot;opprett ny bruker&quot; godtar du våre{" "}
-              <Link className="underline" href="/medlemsvilkar">
+              <Link aria-label="medlemsvilkår" className="underline" href="/medlemsvilkar">
                 medlemsvilkår.
               </Link>
             </p>

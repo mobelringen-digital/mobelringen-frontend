@@ -73,10 +73,16 @@ export const ShippingForm: React.FC<Props> = ({ cart, onSubmit, onBack }) => {
       </div>
 
       <div className="col-span-12 flex justify-end mt-6 gap-2">
-        <Button color="secondary" type="button" onClick={onBack}>
+        <Button
+          aria-labelledby="Tilbake"
+          color="secondary"
+          type="button"
+          onClick={onBack}
+        >
           Tilbake
         </Button>
         <Button
+          aria-labelledby="Fortsett"
           onClick={handleSelect}
           color="tertiary"
           type="submit"

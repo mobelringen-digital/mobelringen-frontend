@@ -14,6 +14,7 @@ export const QuantityButton: React.FC<Props> = ({
 }) => {
   return (
     <button
+      aria-labelledby="Quantity button"
       disabled={disabled}
       className={cx(
         "bg-sand w-[36px] h-[36px] flex items-center justify-center z-20",

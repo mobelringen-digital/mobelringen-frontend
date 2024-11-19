@@ -16,6 +16,7 @@ export const MobileMenuWithChildren: React.FC<Props> = ({ menu, children }) => {
   return (
     <li>
       <button
+        aria-labelledby={menu.label}
         className="w-full flex justify-between items-center"
         onClick={() => setIsActive((prev) => !prev)}
       >

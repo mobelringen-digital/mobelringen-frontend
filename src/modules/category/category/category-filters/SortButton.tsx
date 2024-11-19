@@ -93,6 +93,7 @@ export const SortButton = () => {
       <Dropdown>
         <DropdownTrigger>
           <Button
+            aria-labelledby="Sortering"
             type="button"
             className="flex items-center gap-2 bg-warm-grey text-dark-grey hover:bg-cold-grey-dark rounded-full py-6 px-6 lg:px-8 text-sm lg:text-base"
           >

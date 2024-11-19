@@ -61,6 +61,7 @@ export const Products: React.FC<Props> = ({ query }) => {
               </span>
               {hasNextPage ? (
                 <Button
+                  aria-labelledby="Last inn flere"
                   disabled={isFetchingNextPage}
                   onClick={() => fetchNextPage()}
                 >

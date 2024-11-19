@@ -26,6 +26,7 @@ export const MobileMenuDropdown: React.FC<Props> = (props) => {
     >
       <ContainerLayout>
         <button
+          aria-labelledby="Tilbake"
           className="flex gap-1 font-bold mb-6"
           onClick={() => props.setIsActive(false)}
         >

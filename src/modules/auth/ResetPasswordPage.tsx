@@ -97,6 +97,7 @@ export const ResetPasswordPage: React.FC = () => {
           </FieldWrapper>
 
           <Button
+            aria-labelledby="Sett nytt passord"
             disabled={isLoading || isSubmitting}
             color="primary"
             type="submit"

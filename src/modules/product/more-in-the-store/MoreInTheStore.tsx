@@ -19,7 +19,10 @@ export const MoreInTheStore = () => {
           <h4 className="text-lg lg:text-xl font-semibold">
             Flere valgmuligheter i butikk
           </h4>
-          <button onClick={() => setIsOpened((prev) => !prev)}>
+          <button
+            aria-labelledby="More in store"
+            onClick={() => setIsOpened((prev) => !prev)}
+          >
             <CirclePlusIcon />
           </button>
         </div>

@@ -44,6 +44,7 @@ export const ModalConfirm: React.FC<Props> = ({
             <ModalBody>{content}</ModalBody>
             <ModalFooter className="flex justify-between px-2 lg:px-5 gap-2 lg:gap-4">
               <Button
+                aria-labelledby="Avbryt"
                 className="w-full"
                 color="tertiary"
                 onPress={() => {
@@ -54,6 +55,7 @@ export const ModalConfirm: React.FC<Props> = ({
                 Avbryt
               </Button>
               <Button
+                aria-labelledby={proceedText ?? "Fortsette"}
                 id={proceedButtonId}
                 className="w-full"
                 color="primary"

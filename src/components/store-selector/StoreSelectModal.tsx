@@ -120,6 +120,7 @@ export const StoreSelectModal: React.FC<Props> = ({
         </ModalContent>
         <ModalActions position="end">
           <Button
+            aria-labelledby="Fortsette"
             disabled={!store || isLoading}
             onClick={submitStore}
             color="primary"
