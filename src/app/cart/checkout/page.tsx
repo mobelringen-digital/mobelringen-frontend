@@ -1,8 +1,11 @@
+import React, { Suspense } from "react";
+
+import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import getCart from "@/components/cart/actions";
 import { StaticPageContent } from "@/components/cms/static-page-content/StaticPageContent";
 import { getToken } from "@/modules/auth/actions";
 import { CheckoutPage } from "@/modules/checkout/CheckoutPage";
-import {BaseCartFragment} from "@/types";
+import { BaseCartFragment } from "@/types";
 import { NextSearchParams } from "@/utils/ts-utils";
 
 import { navigate } from "../../actions";
@@ -32,7 +35,7 @@ export default async function Checkout({
   }
 
   return (
-    <>
+    <Suspense fallback={<PageTopLoader />}>
       <CheckoutPage
         isShippingMethodSet={isShippingMethodSet}
         isShippingAddressSet={isShippingAddressSet}
@@ -40,6 +43,6 @@ export default async function Checkout({
         cart={cart as BaseCartFragment}
       />
       <StaticPageContent url="/cart/checkout" />
-    </>
+    </Suspense>
   );
 }
