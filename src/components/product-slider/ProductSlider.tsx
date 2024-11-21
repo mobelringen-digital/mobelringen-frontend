@@ -52,7 +52,7 @@ const selectItemGTMEvent = (product: BaseProductDataForCardFragment) => {
     value: product.price_range.maximum_price?.final_price?.value,
     addable_to_cart: (product as any).addable_to_cart,
     discount: product.price_range.maximum_price?.discount?.amount_off,
-    label: product.productLabel,
+    label: product.productLabel?.custom?.join(", "),
     items: [
       {
         item_id: product.sku,
