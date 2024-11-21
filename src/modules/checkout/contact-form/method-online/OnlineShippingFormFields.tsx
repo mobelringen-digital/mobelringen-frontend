@@ -32,6 +32,10 @@ export const OnlineShippingFormFields: React.FC<Props> = ({
           disabled={formDisabled}
           rules={{
             required: "Dette er et påkrevd felt",
+            pattern: {
+              value: /^[A-Za-z]+$/,
+              message: "Fornavn må kun inneholde bokstaver.",
+            },
           }}
           error={errors?.shipping?.address?.firstname}
           control={control}
@@ -46,6 +50,10 @@ export const OnlineShippingFormFields: React.FC<Props> = ({
           disabled={formDisabled}
           rules={{
             required: "Dette er et påkrevd felt",
+            pattern: {
+              value: /^[A-Za-z]+$/,
+              message: "Fornavn må kun inneholde bokstaver.",
+            },
           }}
           error={errors?.shipping?.address?.lastname}
           control={control}
@@ -60,6 +68,11 @@ export const OnlineShippingFormFields: React.FC<Props> = ({
           disabled={formDisabled}
           rules={{
             required: "Dette er et påkrevd felt",
+            pattern: {
+              value: /^(?:\+47)?[ ]?(\d{3})[ ]?(\d{3})[ ]?(\d{2,4})$/,
+              message:
+                "Vennligst oppgi et gyldig norsk mobilnummer. Nummeret skal være 8 sifre, eller begynne med +47 etterfulgt av 8 sifre.",
+            },
           }}
           error={errors?.shipping?.address?.telephone}
           control={control}
@@ -75,6 +88,10 @@ export const OnlineShippingFormFields: React.FC<Props> = ({
             disabled={formDisabled}
             rules={{
               required: !token ? "Dette er et påkrevd felt" : false,
+              pattern: {
+                value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/,
+                message: "E-postadressen er ugyldig.",
+              },
             }}
             error={errors?.email}
             control={control}
@@ -103,6 +120,10 @@ export const OnlineShippingFormFields: React.FC<Props> = ({
           disabled={formDisabled}
           rules={{
             required: "Dette er et påkrevd felt",
+            minLength: {
+              value: 4,
+              message: "Postnummeret må være numerisk og 4 sifre.",
+            },
           }}
           error={errors?.shipping?.address?.postcode}
           control={control}
@@ -117,6 +138,10 @@ export const OnlineShippingFormFields: React.FC<Props> = ({
           disabled={formDisabled}
           rules={{
             required: "Dette er et påkrevd felt",
+            pattern: {
+              value: /^[A-Za-z]+$/,
+              message: "Poststed må kun inneholde bokstaver",
+            },
           }}
           error={errors?.shipping?.address?.city}
           control={control}
