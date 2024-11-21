@@ -28,7 +28,7 @@ export const QuantityInput: React.FC<Props> = ({
     <div className="rounded-2xl w-[120px] bg-sand flex items-center px-2 py-1">
       <Input
         {...rest}
-        disabled={disabled}
+        disabled={true}
         startContent={
           <QuantityButton onClick={onQuantityDecrement} disabled={disabled}>
             <MinusIcon width={24} height={24} />
