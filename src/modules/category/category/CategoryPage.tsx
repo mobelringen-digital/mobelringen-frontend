@@ -14,7 +14,11 @@ import { ProductsList } from "@/modules/category/category/ProductsList";
 import { ProductsListSkeleton } from "@/modules/category/category/ProductsListSkeleton";
 import { useProductsQuery } from "@/modules/category/category/useProductsQuery";
 import { CategoryItemEntity } from "@/modules/category/types";
-import { BaseProductDataForCardFragment, ProductsQuery } from "@/types";
+import {
+  BaseProductDataForCardFragment,
+  BaseProductFragment,
+  ProductsQuery,
+} from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
 
 interface Props {
@@ -28,7 +32,6 @@ const clickOnItemGTMEvent = (product: BaseProductDataForCardFragment) => {
 
   return sendGTMEvent({
     event: "select_item",
-    item_list_name: category?.name,
     items: [
       {
         item_id: product.sku,
@@ -54,13 +57,15 @@ const viewItemListGTMEvent = (
     event: "view_item_list",
     item_list_name: category?.name,
     items: products?.items?.map((product) => ({
-      item_id: product.sku,
-      item_name: product.name,
-      item_brand: product.productBrand?.name,
-      price: product.price_range.maximum_price?.final_price.value,
-      discount: product.price_range.maximum_price?.discount?.amount_off,
+      item_id: (product as BaseProductFragment).sku,
+      item_name: (product as BaseProductFragment).name,
+      item_brand: (product as BaseProductFragment).productBrand?.name,
+      price: (product as BaseProductFragment).price_range.maximum_price
+        ?.final_price.value,
+      discount: (product as BaseProductFragment).price_range.maximum_price
+        ?.discount?.amount_off,
       ...formatGTMCategories(
-        product.categories?.map((cat) => ({
+        (product as BaseProductFragment).categories?.map((cat) => ({
           name: cat?.name,
         })),
       ),
