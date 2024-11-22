@@ -10,6 +10,7 @@ import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { PageTitle } from "@/components/typography/PageTitle";
 import { CartBreadcrumbs } from "@/modules/cart/CartBreadcrumbs";
+import { DeliverySteps } from "@/modules/cart/success/DeliverySteps";
 import { InvoiceTable } from "@/modules/cart/success/InvoiceTable";
 import { ItemsTable } from "@/modules/cart/success/ItemsTable";
 import { OrderInformation } from "@/modules/cart/success/OrderInformation";
@@ -86,6 +87,7 @@ export const CartSuccessPage: React.FC<Props> = ({ order }) => {
               </Link>
             </span>
           </div>
+          <DeliverySteps />
         </div>
         <div className="col-span-12 lg:col-span-5">
           <div className="bg-white p-4 lg:p-8 rounded-2xl flex flex-col gap-2">
