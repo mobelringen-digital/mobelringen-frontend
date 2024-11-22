@@ -69,7 +69,7 @@ export const ProductImage: React.FC<Props> = ({
 
         {typeof onZoomClick === "function" ? (
           <button
-            aria-labelledby="Zoom"
+            aria-label="Zoom"
             onClick={onZoomClick}
             className="p-2 bg-white flex items-center justify-center text-center rounded-full"
           >

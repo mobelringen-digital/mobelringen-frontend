@@ -43,7 +43,7 @@ export const OrdersPage: React.FC<Props> = ({ orders }) => {
         {CATEGORIES.map((category) => {
           return (
             <button
-              aria-labelledby={category.title}
+              aria-label={category.title}
               onClick={() => setActiveCategory(category.type)}
               key={category.type}
               className={cx("font-feature text-2xl", {

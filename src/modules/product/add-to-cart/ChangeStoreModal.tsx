@@ -49,7 +49,7 @@ export const ChangeStoreModal: React.FC<Props> = ({
 
                     <div className="flex gap-2 items-center">
                       <Button
-                        aria-labelledby="Velg butikk"
+                        aria-label="Velg butikk"
                         size="sm"
                         className="h-8"
                         color="secondary"

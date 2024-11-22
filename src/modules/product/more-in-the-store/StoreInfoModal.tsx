@@ -55,7 +55,7 @@ export const StoreInfoModal: React.FC<Props> = ({ isOpen, onClose }) => {
           </ModalBody>
           <ModalFooter className="flex justify-center px-2 lg:px-5 gap-2 lg:gap-4">
             <Button
-              aria-labelledby="Finn din butikk"
+              aria-label="Finn din butikk"
               className="w-full"
               color="secondary"
               as={Link}

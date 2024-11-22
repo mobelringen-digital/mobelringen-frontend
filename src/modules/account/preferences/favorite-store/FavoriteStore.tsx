@@ -80,7 +80,7 @@ export const FavoriteStore: React.FC<Props> = ({ customer, stores }) => {
         </FieldWrapper>
 
         <Button
-          aria-labelledby="Lagre endringer"
+          aria-label="Lagre endringer"
           className="w-1/2"
           disabled={isSubmitting}
           color="primary"

@@ -94,7 +94,7 @@ export const CategoryPage: React.FC<Props> = ({ category }) => {
           </span>
           {hasNextPage ? (
             <Button
-              aria-labelledby="Last inn flere"
+              aria-label="Last inn flere"
               tabIndex={0}
               disabled={isFetchingNextPage}
               onClick={() => fetchNextPage()}

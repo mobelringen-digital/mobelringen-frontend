@@ -50,7 +50,7 @@ export const BlockBrands: React.FC<Props> = ({ data }) => {
           <>
             {data.viewMoreLink?.url ? (
               <Button
-                aria-labelledby={data.viewMoreLink.label}
+                aria-label={data.viewMoreLink.label}
                 as={Link}
                 href={data.viewMoreLink.url}
                 color="secondary"

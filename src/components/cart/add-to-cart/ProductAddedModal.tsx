@@ -66,7 +66,7 @@ export const ProductAddedModal: React.FC<Props> = ({
       </ModalContent>
       <ModalActions>
         <Button
-          aria-labelledby="Fortsett å handle"
+          aria-label="Fortsett å handle"
           className="w-full"
           color="secondary"
           onPress={onOpenChange}
@@ -74,7 +74,7 @@ export const ProductAddedModal: React.FC<Props> = ({
           Fortsett å handle
         </Button>
         <Button
-          aria-labelledby="Gå til handlekurv"
+          aria-label="Gå til handlekurv"
           className="w-full"
           color="primary"
           onPress={async () => {

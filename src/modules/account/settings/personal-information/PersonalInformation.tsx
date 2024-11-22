@@ -90,7 +90,7 @@ export const PersonalInformation: React.FC<Props> = ({ customer }) => {
         </div>
 
         <Button
-          aria-labelledby="Lagre endringer"
+          aria-label="Lagre endringer"
           className="w-1/4"
           disabled={isSubmitting}
           color="primary"

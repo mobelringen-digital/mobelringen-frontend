@@ -90,7 +90,7 @@ export const ApplyCoupon: React.FC<Props> = ({ cart }) => {
           />
         </FieldWrapper>
         <Button
-          aria-labelledby="Legg til"
+          aria-label="Legg til"
           disabled={isSubmitting}
           type="submit"
           color="secondary"
@@ -106,7 +106,7 @@ export const ApplyCoupon: React.FC<Props> = ({ cart }) => {
           Rabattkode <span className="font-semibold">{coupon?.code}</span> lagt
           til!
           <button
-            aria-labelledby="Close"
+            aria-label="Close"
             onClick={() => removeDiscount(coupon?.code)}
             className="absolute right-1 top-1"
           >

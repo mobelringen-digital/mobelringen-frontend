@@ -82,7 +82,7 @@ export const AddToCartController: React.FC<Props> = ({
       />
       <div className="flex flex-col gap-4">
         <Button
-          aria-labelledby=" Legg i handlekurv"
+          aria-label=" Legg i handlekurv"
           onClick={() => handleAddItemToCart(DeliveryType.Online)}
           disabled={!canBuyOnline || isLoading}
           color="primary"
@@ -91,7 +91,7 @@ export const AddToCartController: React.FC<Props> = ({
         </Button>
         {!selectedStore?.external_id ? (
           <Button
-            aria-labelledby="Velg butikk"
+            aria-label="Velg butikk"
             onClick={handleOpenStoreSelect}
             disabled={!canBuyCAC || isLoading}
             color="secondary"
@@ -100,7 +100,7 @@ export const AddToCartController: React.FC<Props> = ({
           </Button>
         ) : (
           <Button
-            aria-labelledby="Klikk og hent"
+            aria-label="Klikk og hent"
             onClick={() => handleAddItemToCart(DeliveryType.Cac)}
             disabled={!canBuyCAC || isLoading}
             color="secondary"

@@ -41,7 +41,7 @@ export const FiltersDrawer = React.forwardRef<HTMLDivElement, Props>(
           {title ? (
             <div className="flex items-center justify-between px-8 py-6 border-b border-cold-grey-dark">
               <span className="font-semibold text-lg">{title}</span>
-              <button aria-labelledby="Close" onClick={onClose}>
+              <button aria-label="Close" onClick={onClose}>
                 <Close />
               </button>
             </div>

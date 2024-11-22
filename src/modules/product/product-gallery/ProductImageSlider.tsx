@@ -25,7 +25,7 @@ export const ProductImageSlider: React.FC<Props> = ({
 
       return (
         <button
-          aria-labelledby="Slider navigation"
+          aria-label="Slider navigation"
           id="navigation-link"
           className="relative w-[64px] h-[64px] lg:w-[96px] lg:h-[96px] transition-all border border-warm-grey p-2 bg-warm-grey rounded-2xl !flex justify-center items-center cursor-pointer"
         >

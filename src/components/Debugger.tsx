@@ -16,7 +16,7 @@ export const Debugger: React.FC<Props> = ({ data, name = "Debugger" }) => {
   return (
     <div className="my-16">
       <button
-        aria-labelledby={name}
+        aria-label={name}
         className="text-sm bg-black text-white p-2"
         onClick={() => setIsOpen((prev) => !prev)}
       >

@@ -20,7 +20,7 @@ export const CartMethodLink: React.FC<Props> = ({
 }) => {
   return (
     <button
-      aria-labelledby="Select delivery"
+      aria-label="Select delivery"
       onClick={setPreferredMethod}
       className={cx(
         "relative text-left w-full px-4 py-1.5 lg:py-3 flex items-center gap-3 rounded-xl transition-all border hover:border-black",

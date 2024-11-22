@@ -239,7 +239,7 @@ export const RegisterPage: React.FC<Props> = ({ stores }) => {
           ) : null}
 
           <Button
-            aria-labelledby="Opprett ny bruker"
+            aria-label="Opprett ny bruker"
             disabled={isLoading || isSubmitting}
             color="primary"
             type="submit"

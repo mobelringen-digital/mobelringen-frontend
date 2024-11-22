@@ -39,7 +39,7 @@ export const CartErrorPage = () => {
         Det ser ut til at noe gikk galt. Vennligst prøv igjen senere.
       </p>
       <div className="flex my-12 justify-center">
-        <Button aria-labelledby="Til forsiden" as={Link} href="/">
+        <Button aria-label="Til forsiden" as={Link} href="/">
           Til forsiden
         </Button>
       </div>

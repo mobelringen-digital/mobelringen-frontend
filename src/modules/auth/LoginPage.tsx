@@ -110,7 +110,7 @@ export const LoginPage: React.FC = () => {
           </FieldWrapper>
 
           <Button
-            aria-labelledby="Logg inn"
+            aria-label="Logg inn"
             disabled={isLoading || isSubmitting}
             color="primary"
             type="submit"
@@ -131,7 +131,7 @@ export const LoginPage: React.FC = () => {
             deg inn i kundeklubben.
           </p>
           <Button
-            aria-labelledby="Opprett ny bruker"
+            aria-label="Opprett ny bruker"
             className="mt-2"
             as={Link}
             href="/auth/register"

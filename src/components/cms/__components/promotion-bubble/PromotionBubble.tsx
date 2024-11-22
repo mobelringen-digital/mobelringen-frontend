@@ -32,7 +32,7 @@ export const PromotionBubble: React.FC<Props> = ({ data }) => {
           {data.links.map((link, index) => (
             <li key={index}>
               <Button
-                aria-labelledby={link.label}
+                aria-label={link.label}
                 color="tertiary"
                 as={Link}
                 href={link.url}

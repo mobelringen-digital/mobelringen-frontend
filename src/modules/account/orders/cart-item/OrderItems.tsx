@@ -21,7 +21,7 @@ export const OrderItems: React.FC<Props> = ({ data }) => {
     <div className="block">
       {!isOpen ? (
         <Button
-          aria-labelledby="Detaljer"
+          aria-label="Detaljer"
           onClick={() => setIsOpen((prev) => !prev)}
           color="secondary"
         >
@@ -70,7 +70,7 @@ export const OrderItems: React.FC<Props> = ({ data }) => {
           <OrderItemTotal data={data} />
           <div className="block mt-4 border-t border-dark-grey border-opacity-30 pt-4">
             <Button
-              aria-labelledby="Lukk"
+              aria-label="Lukk"
               onClick={() => setIsOpen((prev) => !prev)}
               color="secondary"
             >

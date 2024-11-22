@@ -74,7 +74,7 @@ export const PaymentForm: React.FC<Props> = ({
 
       <div className="col-span-12 flex justify-end mt-6 gap-2">
         <Button
-          aria-labelledby="Tilbake"
+          aria-label="Tilbake"
           color="secondary"
           type="button"
           onClick={onBack}
@@ -82,7 +82,7 @@ export const PaymentForm: React.FC<Props> = ({
           Tilbake
         </Button>
         <Button
-          aria-labelledby="Fortsett"
+          aria-label="Fortsett"
           onClick={handleSelect}
           color="tertiary"
           type="submit"

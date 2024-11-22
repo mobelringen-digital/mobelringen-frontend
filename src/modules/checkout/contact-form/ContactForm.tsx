@@ -99,7 +99,7 @@ export const ContactForm: React.FC<Props> = ({
               Logg inn eller opprett ny konto og bli medlem i Kundeklubben.
             </span>
             <Button
-              aria-labelledby="Logg inn"
+              aria-label="Logg inn"
               color="secondary"
               onClick={navigateToLogin}
             >
@@ -126,7 +126,7 @@ export const ContactForm: React.FC<Props> = ({
 
         <div className="col-span-12 flex justify-end mt-6">
           <Button
-            aria-labelledby="Fortsett"
+            aria-label="Fortsett"
             color="tertiary"
             type="submit"
             disabled={isSubmitting || isLoading}

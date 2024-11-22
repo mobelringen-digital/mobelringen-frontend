@@ -108,7 +108,7 @@ export const Stores: React.FC<Props> = ({ title }) => {
             <div className="flex w-full justify-end">
               {searchParams.get("searchInput") ? (
                 <button
-                  aria-labelledby="Nullstill søk"
+                  aria-label="Nullstill søk"
                   onClick={() => {
                     setSearch("");
                     router.push(pathname);
@@ -126,7 +126,7 @@ export const Stores: React.FC<Props> = ({ title }) => {
               <div className="block w-full">
                 <div className="flex flex-col items-start">
                   <button
-                    aria-labelledby="Tilbake til butikkoversikten"
+                    aria-label="Tilbake til butikkoversikten"
                     className="mb-4 text-left flex items-center gap-1"
                     onClick={() => setActiveRegion("")}
                   >
@@ -147,7 +147,7 @@ export const Stores: React.FC<Props> = ({ title }) => {
                     )
                     .map((store, idx) => (
                       <button
-                        aria-labelledby="Select store button"
+                        aria-label="Select store button"
                         onClick={() => setSelectedStore(store)}
                         className={cx(
                           "text-left py-4 border-b border-dark-grey border-opacity-30 hover:bg-warm-grey",
@@ -171,7 +171,7 @@ export const Stores: React.FC<Props> = ({ title }) => {
                 ) : null}
                 {groupedByRegions?.map((data, idx) => (
                   <button
-                    aria-labelledby="Region button"
+                    aria-label="Region button"
                     onClick={() =>
                       setActiveRegion(
                         activeRegion === data.region ? null : data.region,

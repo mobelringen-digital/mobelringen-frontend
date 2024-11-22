@@ -97,7 +97,7 @@ export const ChangePassword: React.FC<Props> = ({ customer }) => {
         </FieldWrapper>
 
         <Button
-          aria-labelledby="Lagre endringer"
+          aria-label="Lagre endringer"
           className="w-1/2"
           disabled={isSubmitting}
           color="primary"

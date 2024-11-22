@@ -11,7 +11,7 @@ export const FilterActions: React.FC<Props> = ({ onClose, onReset }) => {
   return (
     <div className="sticky p-4 bg-white bottom-0 border-t border-cold-grey-dark flex justify-between gap-4 z-40">
       <Button
-        aria-labelledby="Fjern alle"
+        aria-label="Fjern alle"
         type="button"
         color="grey"
         className="w-full"
@@ -20,7 +20,7 @@ export const FilterActions: React.FC<Props> = ({ onClose, onReset }) => {
         Fjern alle
       </Button>
       <Button
-        aria-labelledby="Vis resultater"
+        aria-label="Vis resultater"
         type="submit"
         color="primary"
         className="w-full"

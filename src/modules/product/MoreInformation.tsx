@@ -31,7 +31,7 @@ export const MoreInformation = () => {
           </div>
           <div className="col-span-6 lg:col-span-2 flex justify-center lg:justify-end">
             <Button
-              aria-labelledby="Kontakt din nærmeste butikk"
+              aria-label="Kontakt din nærmeste butikk"
               as={Link}
               href="/finn-butikk"
               color="secondary"

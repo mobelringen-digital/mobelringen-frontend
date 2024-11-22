@@ -12,7 +12,7 @@ export const ArrowNext: React.FC<CustomArrowProps> = ({
 }): React.JSX.Element => {
   return (
     <button
-      aria-labelledby="Next"
+      aria-label="Next"
       {...rest}
       type="button"
       className={cx(

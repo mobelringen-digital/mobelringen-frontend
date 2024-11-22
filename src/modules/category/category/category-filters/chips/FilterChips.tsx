@@ -95,7 +95,7 @@ export const FilterChips: React.FC<Props> = ({ filters }) => {
             );
           })}
           <button
-            aria-labelledby="Fjern filtre"
+            aria-label="Fjern filtre"
             className="underline text-sm"
             onClick={resetQueryFilters}
           >

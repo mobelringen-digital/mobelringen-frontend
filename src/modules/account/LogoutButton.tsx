@@ -19,7 +19,7 @@ export const LogoutButton = () => {
 
   return (
     <button
-      aria-labelledby="Logg ut"
+      aria-label="Logg ut"
       className="p-4 rounded-2xl hover:bg-warm-grey group text-left flex gap-2"
       onClick={handleSignOut}
     >

@@ -95,7 +95,7 @@ export const CmsPagesList: React.FC<Props> = ({ data }) => {
           </span>
           {hasNextPage ? (
             <Button
-              aria-labelledby="Last inn flere"
+              aria-label="Last inn flere"
               disabled={isFetchingNextPage}
               onClick={() => fetchNextPage()}
             >

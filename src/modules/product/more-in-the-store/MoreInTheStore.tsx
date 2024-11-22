@@ -20,7 +20,7 @@ export const MoreInTheStore = () => {
             Flere valgmuligheter i butikk
           </h4>
           <button
-            aria-labelledby="More in store"
+            aria-label="More in store"
             onClick={() => setIsOpened((prev) => !prev)}
           >
             <CirclePlusIcon />
