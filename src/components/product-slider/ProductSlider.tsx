@@ -87,7 +87,7 @@ export const ProductSlider: React.FC<Props> = ({
       ) : null}
       <Slider {...config}>
         {data?.map((product, idx: number) => (
-          <div key={idx} className="!w-[260px]">
+          <div key={idx} className="w-[260px]">
             {product &&
             isTypename(product, ["SimpleProduct", "ConfigurableProduct"]) ? (
                   <ProductCard

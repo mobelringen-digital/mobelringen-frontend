@@ -5,9 +5,8 @@ import { useCookies } from "react-cookie";
 import Image from "next/image";
 
 import { Button } from "@/components/_ui/button/Button";
-import { useCrossSellQuery } from "@/components/cart/add-to-cart/useCrossellQuery";
+import { CrossSellListSlider } from "@/components/cart/add-to-cart/CrossSellListSlider";
 import { ModalActions, ModalContent, Modal } from "@/components/modal";
-import { ProductSlider } from "@/components/product-slider/ProductSlider";
 import { BaseProductFragment, BaseStoreFragment } from "@/types";
 
 import { navigate } from "../../../app/actions";
@@ -28,11 +27,6 @@ export const ProductAddedModal: React.FC<Props> = ({
   selectedStore,
 }) => {
   const [cookies] = useCookies();
-  const { data: crossSellProducts } = useCrossSellQuery(
-    product.id,
-    cookies.preferredMethod,
-    selectedStore?.external_id,
-  );
 
   const navigateToCart = async () => {
     if (cookies.preferredMethod) {
@@ -47,6 +41,7 @@ export const ProductAddedModal: React.FC<Props> = ({
       onClose={onClose}
       onOpenChange={onOpenChange}
       size="4xl"
+      placement="top"
       title="Lagt til i handlekurv!"
     >
       <ModalContent>
@@ -74,51 +69,7 @@ export const ProductAddedModal: React.FC<Props> = ({
             />
           </div>
         </div>
-        {crossSellProducts && crossSellProducts.length > 0 ? (
-          <div className="flex flex-col mt-4">
-            <ProductSlider
-              cardHeight="small"
-              nonSliderClassName="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3"
-              sliderConfig={{
-                dots: false,
-                variableWidth: true,
-                adaptiveHeight: true,
-                infinite: false,
-                arrows: false,
-                slidesToScroll: 1,
-                responsive: [
-                  {
-                    breakpoint: 1024,
-                    settings: {
-                      variableWidth: true,
-                      slidesToShow: 1,
-                      slidesToScroll: 1,
-                    },
-                  },
-                  {
-                    breakpoint: 768,
-                    settings: {
-                      variableWidth: true,
-                      slidesToShow: 1,
-                      slidesToScroll: 1,
-                    },
-                  },
-                  {
-                    breakpoint: 480,
-                    settings: {
-                      variableWidth: true,
-                      slidesToShow: 1,
-                      slidesToScroll: 1,
-                    },
-                  },
-                ],
-              }}
-              hasAddToCart={true}
-              title="Andre har også kjøpt"
-              data={crossSellProducts}
-            />
-          </div>
-        ) : null}
+        <CrossSellListSlider product={product} selectedStore={selectedStore} />
       </ModalContent>
       <ModalActions>
         <Button className="w-full" color="secondary" onPress={onOpenChange}>
