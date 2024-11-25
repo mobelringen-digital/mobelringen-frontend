@@ -16,18 +16,16 @@ export const ContainerLayout: React.FC<Props> = ({
   fullWidth,
 }) => {
   return (
-    <Suspense fallback={<PageTopLoader />}>
-      <div
-        className={cx(
-          {
-            "mx-auto px-4 lg:px-6 container": !fullWidth,
-            "px-8": fullWidth,
-          },
-          className,
-        )}
-      >
-        {children}
-      </div>
-    </Suspense>
+    <div
+      className={cx(
+        {
+          "mx-auto px-4 lg:px-6 container": !fullWidth,
+          "px-8": fullWidth,
+        },
+        className,
+      )}
+    >
+      {children}
+    </div>
   );
 };
