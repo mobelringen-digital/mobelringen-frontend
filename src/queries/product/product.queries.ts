@@ -299,3 +299,19 @@ export const GetProductStockDocument = graphql(`
     }
   }
 `);
+
+export const getProductCrossSellDocument = graphql(`
+  query CrossSellStockProducts(
+    $product_id: Int!
+    $pos_type: DeliveryType!
+    $pos_id: String
+  ) {
+    crossSellStockProducts(
+      product_id: $product_id
+      pos_type: $pos_type
+      pos_id: $pos_id
+    ) {
+      ...BaseProduct
+    }
+  }
+`);

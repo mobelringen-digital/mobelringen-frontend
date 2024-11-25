@@ -8,7 +8,6 @@ import { Button } from "@/components/_ui/button/Button";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { ProductAddedModal } from "@/components/cart/add-to-cart/ProductAddedModal";
 import {
-  AddProductToCartMutation,
   Availability,
   BaseProductFragment,
   BaseStoreFragment,
@@ -20,9 +19,7 @@ interface Props {
   isDisabled?: boolean;
   product: BaseProductFragment;
   quantity: number;
-  onAddToCart: (
-    preferredMethod: DeliveryType,
-  ) => Promise<string | AddProductToCartMutation | undefined>;
+  onAddToCart: (preferredMethod: DeliveryType) => Promise<undefined | void>;
   stock?: GetProductStockQuery;
   selectedStore?: BaseStoreFragment | null;
 }
@@ -59,7 +56,7 @@ export const AddToCartController: React.FC<Props> = ({
 
     setIsLoading(true);
     await onAddToCart(preferredMethod).finally(() => {
-      router.push(`${pathname}?cart=true`);
+      router.push(`${pathname}?cart=true&preferredMethod=${preferredMethod}`);
     });
   };
 
@@ -79,6 +76,7 @@ export const AddToCartController: React.FC<Props> = ({
         isOpen={isOpen}
         onOpenChange={() => setClose()}
         onClose={() => setClose()}
+        selectedStore={selectedStore}
       />
       <div className="flex flex-col gap-4">
         <Button
