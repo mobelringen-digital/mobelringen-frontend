@@ -118,6 +118,16 @@ export const BaseProductFragment = graphql(`
     description {
       html
     }
+    stocks {
+      online {
+        availability
+        message
+      }
+      cac {
+        availability
+        message
+      }
+    }
     stores {
       ...ProductStores
     }
