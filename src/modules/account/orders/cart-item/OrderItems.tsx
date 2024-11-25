@@ -51,7 +51,7 @@ export const OrderItems: React.FC<Props> = ({ data }) => {
                     Antall: {item?.quantity}
                   </span>
                 </div>
-                <div className="flex">
+                <div className="flex flex-col justify-between">
                   <span className="font-semibold">
                     <FormatNumber
                       value={item?.price}
@@ -59,6 +59,11 @@ export const OrderItems: React.FC<Props> = ({ data }) => {
                       suffix=" kr"
                     />
                   </span>
+                  {item?.delivery_date ? (
+                    <span className="text-sm">
+                      Forventet leveringsdato: {item.delivery_date}
+                    </span>
+                  ) : null}
                 </div>
               </div>
             );
