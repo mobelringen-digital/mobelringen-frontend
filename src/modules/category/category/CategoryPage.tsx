@@ -32,6 +32,7 @@ const clickOnItemGTMEvent = (product: BaseProductDataForCardFragment) => {
 
   return sendGTMEvent({
     event: "select_item",
+    addable_to_cart: product.addable_to_cart,
     items: [
       {
         item_id: product.sku,
