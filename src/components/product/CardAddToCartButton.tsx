@@ -10,10 +10,14 @@ import { Loader } from "@/components/_ui/loader/Loader";
 import { openToast } from "@/components/_ui/toast-provider";
 import { addItemToCartHandler } from "@/components/cart/add-to-cart/actions";
 import { addToCartGTMEvent } from "@/components/cart/add-to-cart/AddToCart";
-import { BaseProductFragment, DeliveryType } from "@/types";
+import {
+  BaseProductDataForCardFragment,
+  BaseProductFragment,
+  DeliveryType,
+} from "@/types";
 
 interface Props {
-  product: BaseProductFragment;
+  product: BaseProductDataForCardFragment;
 }
 
 export const CardAddToCartButton: React.FC<Props> = ({ product }) => {
@@ -28,7 +32,11 @@ export const CardAddToCartButton: React.FC<Props> = ({ product }) => {
   const handleAddItemToCart = async (preferredMethod: DeliveryType) => {
     if (isLoading) return;
     setIsLoading(true);
-    return addItemToCartHandler(product, preferredMethod, 1)
+    return addItemToCartHandler(
+      product as BaseProductFragment,
+      preferredMethod,
+      1,
+    )
       .then((data) => {
         if (data?.addProductsToCart?.user_errors) {
           data.addProductsToCart.user_errors.forEach((error) => {
@@ -36,7 +44,7 @@ export const CardAddToCartButton: React.FC<Props> = ({ product }) => {
           });
         }
 
-        addToCartGTMEvent(preferredMethod, product, 1);
+        addToCartGTMEvent(preferredMethod, product as BaseProductFragment, 1);
         openToast({ content: "Produktet er lagt i handlekurven" });
       })
       .finally(() => {

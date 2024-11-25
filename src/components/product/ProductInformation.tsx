@@ -3,10 +3,10 @@ import React from "react";
 import Link from "next/link";
 
 import { CardAddToCartButton } from "@/components/product/CardAddToCartButton";
-import { BaseProductFragment } from "@/types";
+import { BaseProductDataForCardFragment } from "@/types";
 
 interface Props {
-  product: BaseProductFragment;
+  product: BaseProductDataForCardFragment;
   hasAddToCart?: boolean;
 }
 
