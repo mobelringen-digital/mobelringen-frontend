@@ -87,7 +87,9 @@ export const CartSuccessPage: React.FC<Props> = ({ order }) => {
               </Link>
             </span>
           </div>
-          <DeliverySteps />
+          <DeliverySteps
+            isOnline={order?.delivery_type === "ONLINE"}
+          />
         </div>
         <div className="col-span-12 lg:col-span-5">
           <div className="bg-white p-4 lg:p-8 rounded-2xl flex flex-col gap-2">

@@ -2,7 +2,7 @@ import React from "react";
 
 import cx from "classnames";
 
-const MESSAGES = [
+const ONLINE_MESSAGES = [
   {
     title: "Ordren er registrert",
     message: "Nettbutikken har mottatt din ordre",
@@ -23,7 +23,33 @@ const MESSAGES = [
   },
 ];
 
-export const DeliverySteps = () => {
+const CLICK_AND_COLLECT_MESSAGES = [
+  {
+    title: "Ordren er registrert",
+    message: "Butikken har mottatt din ordre og vil snart behandle den",
+  },
+  {
+    title: "Ordren behandles",
+    message: "Ordren din pakkes ila 2 timer innenfor butikkens åpningstid",
+  },
+  {
+    title: "Ordren er klar for henting",
+    message:
+      "Når ordren din er pakket vil du motta en SMS om at den er klar for henting",
+  },
+  {
+    title: "Fullfør handelen",
+    message: "Husk å hente varene ila 48 timer. Du betaler ved henting",
+  },
+];
+
+interface Props {
+  isOnline?: boolean;
+}
+
+export const DeliverySteps: React.FC<Props> = ({ isOnline }) => {
+  const MESSAGES = isOnline ? ONLINE_MESSAGES : CLICK_AND_COLLECT_MESSAGES;
+
   return (
     <div className="bg-white p-4 lg:p-8 rounded-2xl flex flex-col gap-2">
       <div className="text-xl font-semibold mb-2">Hva skjer nå?</div>
