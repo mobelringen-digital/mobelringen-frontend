@@ -36,7 +36,7 @@ export const OnlineBillingFormFields: React.FC<Props> = ({
                   ? "Dette er et påkrevd felt"
                   : false,
                 pattern: {
-                  value: /^[A-Za-z]+$/,
+                  value: /(?![×÷])[A-Za-zÀ-ÿ]/,
                   message: "Fornavn må kun inneholde bokstaver.",
                 },
               }}
@@ -55,8 +55,8 @@ export const OnlineBillingFormFields: React.FC<Props> = ({
                   ? "Dette er et påkrevd felt"
                   : false,
                 pattern: {
-                  value: /^[A-Za-z]+$/,
-                  message: "Fornavn må kun inneholde bokstaver.",
+                  value: /(?![×÷])[A-Za-zÀ-ÿ]/,
+                  message: "Etternavn må kun inneholde bokstaver.",
                 },
               }}
               error={errors?.billing?.address?.lastname}
@@ -127,7 +127,7 @@ export const OnlineBillingFormFields: React.FC<Props> = ({
                   ? "Dette er et påkrevd felt"
                   : false,
                 pattern: {
-                  value: /^[A-Za-z]+$/,
+                  value: /(?![×÷])[A-Za-zÀ-ÿ]/,
                   message: "Poststed må kun inneholde bokstaver.",
                 },
               }}

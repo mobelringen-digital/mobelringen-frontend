@@ -50,7 +50,7 @@ export const MethodClickAndCollect: React.FC<Props> = ({
           rules={{
             required: "Dette er et påkrevd felt",
             pattern: {
-              value: /^[A-Za-z]+$/,
+              value: /(?![×÷])[A-Za-zÀ-ÿ]/,
               message: "Fornavn må kun inneholde bokstaver.",
             },
           }}
@@ -67,8 +67,8 @@ export const MethodClickAndCollect: React.FC<Props> = ({
           rules={{
             required: "Dette er et påkrevd felt",
             pattern: {
-              value: /^[A-Za-z]+$/,
-              message: "Fornavn må kun inneholde bokstaver.",
+              value: /(?![×÷])[A-Za-zÀ-ÿ]/,
+              message: "Etternavn må kun inneholde bokstaver.",
             },
           }}
           control={control}
