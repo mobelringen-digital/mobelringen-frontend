@@ -1,8 +1,6 @@
-import React, { Suspense } from "react";
+import React from "react";
 
 import cx from "classnames";
-
-import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 
 interface Props {
   children: React.ReactNode;
