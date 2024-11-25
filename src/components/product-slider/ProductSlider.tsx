@@ -28,6 +28,7 @@ const viewItemListGTMEvent = (
     item_list_name: title,
     items: products?.map((product) => ({
       item_id: product?.sku,
+      addable_to_cart: product?.addable_to_cart,
       item_name: product?.name,
       item_brand: product?.productBrand?.name,
       price: product?.price_range.maximum_price?.final_price.value,
@@ -56,6 +57,7 @@ const selectItemGTMEvent = (product: BaseProductDataForCardFragment) => {
     items: [
       {
         item_id: product.sku,
+        addable_to_cart: product.addable_to_cart,
         item_name: product.name,
         item_brand: product.productBrand?.name,
         price: product.price_range.maximum_price?.final_price.value,

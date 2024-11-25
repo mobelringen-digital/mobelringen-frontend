@@ -59,6 +59,7 @@ const viewItemListGTMEvent = (
     item_list_name: category?.name,
     items: products?.items?.map((product) => ({
       item_id: (product as BaseProductFragment).sku,
+      addable_to_cart: (product as BaseProductFragment).addable_to_cart,
       item_name: (product as BaseProductFragment).name,
       item_brand: (product as BaseProductFragment).productBrand?.name,
       price: (product as BaseProductFragment).price_range.maximum_price
