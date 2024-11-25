@@ -35,13 +35,16 @@ export const DeliverySteps = () => {
             })}
             key={index}
           >
-            <span className="absolute text-sm flex items-center justify-center w-6 h-6 bg-[#FF3E3E] ring-[#FF3E3E] rounded-full -start-3 ring-3 font-semibold text-[#3F1414]">
-              {index + 1}
-            </span>
+            <div className="absolute -start-3 ring-4 justify-center w-6 h-6 bg-white ring-white rounded-full font-semibold text-[#3F1414]">
+              <span className="text-sm flex justify-center items-center w-6 h-6 bg-[#FF3E3E] ring-[#FF3E3E] rounded-full font-semibold text-[#3F1414]">
+                {index + 1}
+              </span>
+            </div>
             <h3 className="font-semibold leading-tight">{data.title}</h3>
-            <p className="text-sm text=[#786E6D]">{data.message}</p>
+            <p className="text-sm text-dark-grey">{data.message}</p>
           </li>
         ))}
+        <li className="absolute bottom-0 -left-2 flex flex-shrink-0 bg-white h-4 w-4 rounded-full border-red" />
       </ol>
     </div>
   );
