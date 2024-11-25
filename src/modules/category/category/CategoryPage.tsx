@@ -32,11 +32,11 @@ const clickOnItemGTMEvent = (product: BaseProductDataForCardFragment) => {
 
   return sendGTMEvent({
     event: "select_item",
-    addable_to_cart: product.addable_to_cart,
     items: [
       {
         item_id: product.sku,
         item_name: product.name,
+        addable_to_cart: product.addable_to_cart,
         item_brand: product.productBrand?.name,
         price: product.price_range.maximum_price?.final_price.value,
         discount: product.price_range.maximum_price?.discount?.amount_off,
