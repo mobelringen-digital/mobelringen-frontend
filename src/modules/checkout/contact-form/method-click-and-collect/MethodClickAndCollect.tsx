@@ -7,6 +7,7 @@ import { Control } from "react-hook-form";
 import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
 import { Input } from "@/components/_ui/input/Input";
 import { CheckoutFormData } from "@/modules/checkout/factories";
+import {EMAIL_REGEX, NO_PHONE_REGEX, NUMBERS_AND_LETTERS_REGEX} from "@/utils/helpers";
 import { useSession } from "@/utils/hooks/useSession";
 
 interface Props {
@@ -32,7 +33,7 @@ export const MethodClickAndCollect: React.FC<Props> = ({
             rules={{
               required: !token ? "Dette er et påkrevd felt" : false,
               pattern: {
-                value: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/,
+                value: EMAIL_REGEX,
                 message: "E-postadressen er ugyldig.",
               },
             }}
@@ -50,7 +51,7 @@ export const MethodClickAndCollect: React.FC<Props> = ({
           rules={{
             required: "Dette er et påkrevd felt",
             pattern: {
-              value: /(?![×÷])[A-Za-zÀ-ÿ]/,
+              value: NUMBERS_AND_LETTERS_REGEX,
               message: "Fornavn må kun inneholde bokstaver.",
             },
           }}
@@ -67,7 +68,7 @@ export const MethodClickAndCollect: React.FC<Props> = ({
           rules={{
             required: "Dette er et påkrevd felt",
             pattern: {
-              value: /(?![×÷])[A-Za-zÀ-ÿ]/,
+              value: NUMBERS_AND_LETTERS_REGEX,
               message: "Etternavn må kun inneholde bokstaver.",
             },
           }}
@@ -84,7 +85,7 @@ export const MethodClickAndCollect: React.FC<Props> = ({
           rules={{
             required: "Dette er et påkrevd felt",
             pattern: {
-              value: /^(?:\+47)?[ ]?(\d{3})[ ]?(\d{3})[ ]?(\d{2,4})$/,
+              value: NO_PHONE_REGEX,
               message:
                 "Vennligst oppgi et gyldig norsk mobilnummer. Nummeret skal være 8 sifre, eller begynne med +47 etterfulgt av 8 sifre.",
             },

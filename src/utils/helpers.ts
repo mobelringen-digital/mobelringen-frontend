@@ -5,6 +5,12 @@ import {
   MrColor,
 } from "@/types";
 
+export const NUMBERS_REGEX = /^[0-9]*$/;
+export const NUMBERS_AND_LETTERS_REGEX = /^[a-zA-ZÀ-ÿ0-9_.-]*$/;
+export const EMAIL_REGEX =
+  /^[A-Za-zÀ-ÿ0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
+export const NO_PHONE_REGEX = /^(0047|\+47|47)?[2-9]\d{7}$/;
+
 export const generatePrettyUrl = (
   nextPropsUrl: Array<string>,
   options?: {

@@ -5,6 +5,11 @@ import { Control, FieldErrors } from "react-hook-form";
 import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
 import { Input } from "@/components/_ui/input/Input";
 import { CheckoutFormData } from "@/modules/checkout/factories";
+import {
+  NO_PHONE_REGEX,
+  NUMBERS_AND_LETTERS_REGEX,
+  NUMBERS_REGEX,
+} from "@/utils/helpers";
 
 interface Props {
   control: Control<CheckoutFormData>;
@@ -36,7 +41,7 @@ export const OnlineBillingFormFields: React.FC<Props> = ({
                   ? "Dette er et påkrevd felt"
                   : false,
                 pattern: {
-                  value: /(?![×÷])[A-Za-zÀ-ÿ]/,
+                  value: NUMBERS_AND_LETTERS_REGEX,
                   message: "Fornavn må kun inneholde bokstaver.",
                 },
               }}
@@ -55,7 +60,7 @@ export const OnlineBillingFormFields: React.FC<Props> = ({
                   ? "Dette er et påkrevd felt"
                   : false,
                 pattern: {
-                  value: /(?![×÷])[A-Za-zÀ-ÿ]/,
+                  value: NUMBERS_AND_LETTERS_REGEX,
                   message: "Etternavn må kun inneholde bokstaver.",
                 },
               }}
@@ -74,7 +79,7 @@ export const OnlineBillingFormFields: React.FC<Props> = ({
                   ? "Dette er et påkrevd felt"
                   : false,
                 pattern: {
-                  value: /^(?:\+47)?[ ]?(\d{3})[ ]?(\d{3})[ ]?(\d{2,4})$/,
+                  value: NO_PHONE_REGEX,
                   message:
                     "Vennligst oppgi et gyldig norsk mobilnummer. Nummeret skal være 8 sifre, eller begynne med +47 etterfulgt av 8 sifre.",
                 },
@@ -107,6 +112,10 @@ export const OnlineBillingFormFields: React.FC<Props> = ({
                 required: isDifferentBillingAddress
                   ? "Dette er et påkrevd felt"
                   : false,
+                pattern: {
+                  value: NUMBERS_REGEX,
+                  message: "Postnummeret må være numerisk og 4 sifre.",
+                },
                 minLength: {
                   value: 4,
                   message: "Postnummeret må være numerisk og 4 sifre.",
@@ -127,7 +136,7 @@ export const OnlineBillingFormFields: React.FC<Props> = ({
                   ? "Dette er et påkrevd felt"
                   : false,
                 pattern: {
-                  value: /(?![×÷])[A-Za-zÀ-ÿ]/,
+                  value: NUMBERS_AND_LETTERS_REGEX,
                   message: "Poststed må kun inneholde bokstaver.",
                 },
               }}
