@@ -42,10 +42,12 @@ export const AddToCart: React.FC<Props> = ({
       event: "add_to_cart",
       currency: "NOK",
       value: product?.price_range?.maximum_price?.final_price?.value,
+      selected_store: selectedStore?.name,
       delivery_method: preferredMethod,
       items: [
         {
           item_id: product.sku,
+          addable_to_cart: product.addable_to_cart,
           item_name: product.name,
           item_brand: product.productBrand?.name,
           price: product.price_range.maximum_price?.final_price.value,

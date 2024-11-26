@@ -14,12 +14,66 @@ import { ProductsList } from "@/modules/category/category/ProductsList";
 import { ProductsListSkeleton } from "@/modules/category/category/ProductsListSkeleton";
 import { useProductsQuery } from "@/modules/category/category/useProductsQuery";
 import { CategoryItemEntity } from "@/modules/category/types";
-import { BaseProductDataForCardFragment } from "@/types";
+import {
+  BaseProductDataForCardFragment,
+  BaseProductFragment,
+  ProductsQuery,
+} from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
 
 interface Props {
   category: CategoryItemEntity;
 }
+
+const clickOnItemGTMEvent = (product: BaseProductDataForCardFragment) => {
+  if (!product) {
+    return;
+  }
+
+  return sendGTMEvent({
+    event: "select_item",
+    items: [
+      {
+        item_id: product.sku,
+        item_name: product.name,
+        addable_to_cart: product.addable_to_cart,
+        item_brand: product.productBrand?.name,
+        price: product.price_range.maximum_price?.final_price.value,
+        discount: product.price_range.maximum_price?.discount?.amount_off,
+        ...formatGTMCategories(
+          product.categories?.map((cat) => ({
+            name: cat?.name,
+          })),
+        ),
+      },
+    ],
+  });
+};
+
+const viewItemListGTMEvent = (
+  category: CategoryItemEntity,
+  products?: ProductsQuery["products"],
+) => {
+  return sendGTMEvent({
+    event: "view_item_list",
+    item_list_name: category?.name,
+    items: products?.items?.map((product) => ({
+      item_id: (product as BaseProductFragment).sku,
+      addable_to_cart: (product as BaseProductFragment).addable_to_cart,
+      item_name: (product as BaseProductFragment).name,
+      item_brand: (product as BaseProductFragment).productBrand?.name,
+      price: (product as BaseProductFragment).price_range.maximum_price
+        ?.final_price.value,
+      discount: (product as BaseProductFragment).price_range.maximum_price
+        ?.discount?.amount_off,
+      ...formatGTMCategories(
+        (product as BaseProductFragment).categories?.map((cat) => ({
+          name: cat?.name,
+        })),
+      ),
+    })),
+  });
+};
 
 export const CategoryPage: React.FC<Props> = ({ category }) => {
   const { sortValues } = useCategoryFilters();
@@ -36,28 +90,9 @@ export const CategoryPage: React.FC<Props> = ({ category }) => {
       sort: sortValues,
     });
 
-  const clickOnItemGTMEvent = (product: BaseProductDataForCardFragment) => {
-    if (!product) {
-      return;
-    }
-
-    return sendGTMEvent({
-      event: "select_item",
-      item_list_name: category?.name,
-      items: [
-        {
-          item_id: product.sku,
-          item_name: product.name,
-          item_brand: product.productBrand?.name,
-          price: product.price_range.maximum_price?.final_price.value,
-          discount: product.price_range.maximum_price?.discount?.amount_off,
-          ...formatGTMCategories(
-            product.categories?.map((cat) => ({
-              name: cat?.name,
-            })),
-          ),
-        },
-      ],
+  const loadMore = () => {
+    fetchNextPage().then(() => {
+      viewItemListGTMEvent(category, data?.pages[data?.pages.length - 1]);
     });
   };
 
@@ -65,6 +100,10 @@ export const CategoryPage: React.FC<Props> = ({ category }) => {
     return acc + (page?.items?.length ?? 0);
   }, 0);
   const totalCount = data?.pages[0]?.total_count;
+
+  React.useEffect(() => {
+    viewItemListGTMEvent(category, data?.pages[0]);
+  }, [category, data]);
 
   return (
     <ContainerLayout className="mt-12">
@@ -93,12 +132,7 @@ export const CategoryPage: React.FC<Props> = ({ category }) => {
             Viser {currentlyLoaded} av {totalCount} produkter
           </span>
           {hasNextPage ? (
-            <Button
-              aria-label="Last inn flere"
-              tabIndex={0}
-              disabled={isFetchingNextPage}
-              onClick={() => fetchNextPage()}
-            >
+            <Button aria-label="Last inn flere" tabIndex={0} disabled={isFetchingNextPage} onClick={loadMore}>
               Last inn flere
             </Button>
           ) : null}

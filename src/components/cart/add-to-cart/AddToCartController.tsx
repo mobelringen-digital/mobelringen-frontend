@@ -2,6 +2,8 @@
 
 import React from "react";
 
+import { sendGTMEvent } from "@next/third-parties/google";
+
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/_ui/button/Button";
@@ -15,6 +17,7 @@ import {
   DeliveryType,
   GetProductStockQuery,
 } from "@/types";
+import { formatGTMCategories } from "@/utils/gtm";
 
 interface Props {
   isDisabled?: boolean;
@@ -26,6 +29,30 @@ interface Props {
   stock?: GetProductStockQuery;
   selectedStore?: BaseStoreFragment | null;
 }
+
+const selectStoreGTMEvent = (product: BaseProductFragment) => {
+  if (!product) {
+    return;
+  }
+
+  return sendGTMEvent({
+    event: "select_store",
+    items: [
+      {
+        item_id: product.sku,
+        item_name: product.name,
+        item_brand: product.productBrand?.name,
+        price: product.price_range.maximum_price?.final_price.value,
+        discount: product.price_range.maximum_price?.discount?.amount_off,
+        ...formatGTMCategories(
+          product.categories?.map((category) => ({
+            name: category?.name,
+          })),
+        ),
+      },
+    ],
+  });
+};
 
 export const AddToCartController: React.FC<Props> = ({
   product,
@@ -67,6 +94,8 @@ export const AddToCartController: React.FC<Props> = ({
     if (!canBuyCAC || isLoading) {
       return;
     }
+
+    selectStoreGTMEvent(product);
 
     return router.push(`${pathname}?store=change`);
   };
