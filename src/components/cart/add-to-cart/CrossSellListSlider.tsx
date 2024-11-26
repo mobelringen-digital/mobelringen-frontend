@@ -28,7 +28,7 @@ export const CrossSellListSlider: React.FC<Props> = ({
         <div className="flex flex-col mt-4">
           <ProductSlider
             cardHeight="small"
-            nonSliderClassName="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3"
+            nonSliderClassName="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4"
             sliderConfig={{
               dots: false,
               variableWidth: true,
