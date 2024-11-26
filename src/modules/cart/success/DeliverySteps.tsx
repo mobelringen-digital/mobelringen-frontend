@@ -8,7 +8,7 @@ const ONLINE_MESSAGES = [
     message: "Nettbutikken har mottatt din ordre",
   },
   {
-    title: "Pakkes",
+    title: "Ordren pakkes",
     message:
       "Din ordre oversendes til vårt lager eller til en av våre leverandører, avhengig av hvilken eller hvilke varer du har bestilt",
   },
