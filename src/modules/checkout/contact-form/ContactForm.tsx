@@ -99,7 +99,7 @@ export const ContactForm: React.FC<Props> = ({
               Logg inn eller opprett ny konto og bli medlem i Kundeklubben.
             </span>
             <Button
-                aria-label="Logg inn"
+              aria-label="Logg inn"
               id="checkout_step1_login_init"
               color="secondary"
               onClick={navigateToLogin}
