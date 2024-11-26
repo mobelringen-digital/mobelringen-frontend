@@ -28,7 +28,7 @@ const viewItemListGTMEvent = (
     item_list_name: title,
     items: products?.map((product) => ({
       item_id: product?.sku,
-      addable_to_cart: product?.addable_to_cart,
+      addable_to_cart: product?.addable_to_cart ?? 0,
       item_name: product?.name,
       item_brand: product?.productBrand?.name,
       price: product?.price_range.maximum_price?.final_price.value,
@@ -48,10 +48,10 @@ const selectItemGTMEvent = (product: BaseProductDataForCardFragment) => {
   }
 
   return sendGTMEvent({
-    event: "view_item",
+    event: "select_item",
     currency: "NOK",
     value: product.price_range.maximum_price?.final_price?.value,
-    addable_to_cart: (product as any).addable_to_cart,
+    addable_to_cart: (product as any).addable_to_cart ?? 0,
     discount: product.price_range.maximum_price?.discount?.amount_off,
     label: product.productLabel?.custom?.join(", "),
     items: [
