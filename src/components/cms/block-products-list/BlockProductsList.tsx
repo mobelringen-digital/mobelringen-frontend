@@ -8,7 +8,7 @@ import { CmsBlockWrapper } from "@/components/cms/cms-block-wrapper";
 import { CmsBlockHeader } from "@/components/cms/cms-block-wrapper/CmsBlockHeader";
 import { CategoryFilters } from "@/modules/category/category/category-filters/CategoryFilters";
 import { useCategoryFilters } from "@/modules/category/category/category-filters/useCategoryFilters";
-import {useFiltersQuery} from "@/modules/category/category/category-filters/useFiltersQuery";
+import { useFiltersQuery } from "@/modules/category/category/category-filters/useFiltersQuery";
 import { ProductsList } from "@/modules/category/category/ProductsList";
 import { ProductsListSkeleton } from "@/modules/category/category/ProductsListSkeleton";
 import { useProductsQuery } from "@/modules/category/category/useProductsQuery";
@@ -83,6 +83,7 @@ export const BlockProductsList: React.FC<Props> = ({ data }) => {
           </span>
           {hasNextPage ? (
             <Button
+              aria-label="Last inn flere"
               disabled={isFetchingNextPage}
               onClick={() => fetchNextPage()}
             >

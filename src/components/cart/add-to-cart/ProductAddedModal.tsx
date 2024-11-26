@@ -65,10 +65,16 @@ export const ProductAddedModal: React.FC<Props> = ({
         </div>
       </ModalContent>
       <ModalActions>
-        <Button className="w-full" color="secondary" onPress={onOpenChange}>
+        <Button
+          aria-label="Fortsett å handle"
+          className="w-full"
+          color="secondary"
+          onPress={onOpenChange}
+        >
           Fortsett å handle
         </Button>
         <Button
+          aria-label="Gå til handlekurv"
           className="w-full"
           color="primary"
           onPress={async () => {

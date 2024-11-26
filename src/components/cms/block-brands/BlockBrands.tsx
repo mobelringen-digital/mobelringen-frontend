@@ -49,7 +49,12 @@ export const BlockBrands: React.FC<Props> = ({ data }) => {
         rightContent={
           <>
             {data.viewMoreLink?.url ? (
-              <Button as={Link} href={data.viewMoreLink.url} color="secondary">
+              <Button
+                aria-label={data.viewMoreLink.label}
+                as={Link}
+                href={data.viewMoreLink.url}
+                color="secondary"
+              >
                 {data.viewMoreLink.label}
               </Button>
             ) : null}
@@ -61,7 +66,7 @@ export const BlockBrands: React.FC<Props> = ({ data }) => {
         {data?.brands.map((imageData, idx) => (
           <div key={idx} className="w-[260px]">
             {data && isTypename(imageData, ["ImageLink"]) ? (
-              <Link href={imageData.url} className="relative group">
+              <Link aria-label={imageData.label} href={imageData.url} className="relative group">
                 <Image
                   className="rounded-2xl"
                   width={imageData.width ?? imageData.image.width ?? 175}

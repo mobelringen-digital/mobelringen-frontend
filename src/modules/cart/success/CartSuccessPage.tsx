@@ -81,7 +81,11 @@ export const CartSuccessPage: React.FC<Props> = ({ order }) => {
             <div className="text-xl font-semibold mb-2">Spørsmål?</div>
             <span className="text-base">
               Har du spørsmål om denne ordren, vennligst{" "}
-              <Link href="/kundeservice" className="underline">
+              <Link
+                aria-label="kontakt kundeservice"
+                href="/kundeservice"
+                className="underline"
+              >
                 kontakt kundeservice
               </Link>
             </span>

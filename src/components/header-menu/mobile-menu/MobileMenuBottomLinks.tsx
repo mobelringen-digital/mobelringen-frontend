@@ -39,7 +39,7 @@ export async function MobileMenuBottomLinks() {
         <ul className="list-none flex justify-between items-center">
           {LINKS.map((link) => (
             <li key={link.label}>
-              <Link href={link.url} className="flex flex-col items-center">
+              <Link aria-label={link.label} href={link.url} className="flex flex-col items-center">
                 {link.icon}
                 <span>{link.label}</span>
               </Link>

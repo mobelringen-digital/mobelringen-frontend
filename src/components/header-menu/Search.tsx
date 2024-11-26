@@ -17,7 +17,7 @@ export const Search = () => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         startContent={
-          <button type="submit">
+          <button aria-label="Search" type="submit">
             <SearchIcon />
           </button>
         }

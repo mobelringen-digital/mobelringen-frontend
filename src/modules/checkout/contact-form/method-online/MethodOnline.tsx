@@ -55,6 +55,7 @@ export const MethodOnline: React.FC<Props> = ({
         <span className="font-semibold mb-2">Leveringsadresse</span>
         {isAuthorized ? (
           <button
+            aria-label="Legg til adresse"
             type="button"
             className="text-sm"
             onClick={() => setShowAddressModal((prev) => !prev)}

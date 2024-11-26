@@ -110,6 +110,7 @@ export const LoginPage: React.FC = () => {
           </FieldWrapper>
 
           <Button
+            aria-label="Logg inn"
             disabled={isLoading || isSubmitting}
             color="primary"
             type="submit"
@@ -117,7 +118,9 @@ export const LoginPage: React.FC = () => {
             Logg inn
           </Button>
           <div className="flex w-full justify-end mt-2">
-            <Link href="/auth/forgot">Glemt passord?</Link>
+            <Link aria-label="Glemt passord" href="/auth/forgot">
+              Glemt passord?
+            </Link>
           </div>
         </form>
         <div className="mt-8 pt-4 border-t border-dark-grey border-opacity-30 flex flex-col">
@@ -128,6 +131,7 @@ export const LoginPage: React.FC = () => {
             deg inn i kundeklubben.
           </p>
           <Button
+            aria-label="Opprett ny bruker"
             className="mt-2"
             as={Link}
             href="/auth/register"
