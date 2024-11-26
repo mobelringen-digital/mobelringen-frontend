@@ -2,6 +2,7 @@
 
 import React from "react";
 
+import cx from "classnames";
 import { useCookies } from "react-cookie";
 
 import { useSearchParams } from "next/navigation";
@@ -11,6 +12,7 @@ import { openToast } from "@/components/_ui/toast-provider";
 import { addItemToCartHandler } from "@/components/cart/add-to-cart/actions";
 import { addToCartGTMEvent } from "@/components/cart/add-to-cart/AddToCart";
 import {
+  Availability,
   BaseProductDataForCardFragment,
   BaseProductFragment,
   DeliveryType,
@@ -52,10 +54,25 @@ export const CardAddToCartButton: React.FC<Props> = ({ product }) => {
       });
   };
 
+  const isButtonDisabled = React.useMemo(() => {
+    if (activeMethod === DeliveryType.Online) {
+      return product.stocks?.online?.availability === Availability.OutOfStock;
+    }
+
+    if (activeMethod === DeliveryType.Cac) {
+      return product.stocks?.cac?.availability === Availability.OutOfStock;
+    }
+
+    return false;
+  }, [activeMethod, product.stocks]);
+
   return (
     <button
+      disabled={isButtonDisabled}
       aria-label="Add to cart"
-      className="w-[40px] h-[40px] flex flex-shrink-0"
+      className={cx("w-[40px] h-[40px] flex flex-shrink-0", {
+        "opacity-50 cursor-not-allowed": isButtonDisabled,
+      })}
       onClick={() => handleAddItemToCart(activeMethod)}
     >
       {isLoading ? (

@@ -6,6 +6,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/_ui/button/Button";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
+import { revalidateCart } from "@/components/cart/add-to-cart/actions";
 import { ProductAddedModal } from "@/components/cart/add-to-cart/ProductAddedModal";
 import {
   Availability,
@@ -41,7 +42,8 @@ export const AddToCartController: React.FC<Props> = ({
   const canBuyCAC =
     stock?.getProductStock.cac?.availability !== Availability.OutOfStock;
 
-  const setClose = () => {
+  const setClose = async () => {
+    await revalidateCart();
     setIsLoading(false);
     return router.push(pathname);
   };

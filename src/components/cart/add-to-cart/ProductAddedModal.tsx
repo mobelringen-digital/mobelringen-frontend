@@ -5,6 +5,7 @@ import { useCookies } from "react-cookie";
 import Image from "next/image";
 
 import { Button } from "@/components/_ui/button/Button";
+import { revalidateCart } from "@/components/cart/add-to-cart/actions";
 import { CrossSellListSlider } from "@/components/cart/add-to-cart/CrossSellListSlider";
 import { ModalActions, ModalContent, Modal } from "@/components/modal";
 import { BaseProductFragment, BaseStoreFragment } from "@/types";
@@ -29,6 +30,7 @@ export const ProductAddedModal: React.FC<Props> = ({
   const [cookies] = useCookies();
 
   const navigateToCart = async () => {
+    await revalidateCart();
     if (cookies.preferredMethod) {
       return navigate(`/cart?method=${cookies.preferredMethod}`);
     }

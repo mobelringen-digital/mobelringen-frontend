@@ -46,9 +46,6 @@ export async function addToCart(
     });
   }
 
-  revalidateTag("cart");
-  revalidateTag("cart-items");
-
   return data;
 }
 
@@ -64,9 +61,6 @@ export async function createEmptyCart() {
     cookieStore.set("cart", data.createEmptyCart, {
       expires: oneWeekFromNow,
     });
-
-    revalidateTag("cart");
-    revalidateTag("cart-items");
   }
 
   return data;
@@ -115,4 +109,9 @@ export const addItemToCartHandler = async (
       preferredMethod,
     );
   }
+};
+
+export const revalidateCart = async () => {
+  revalidateTag("cart");
+  revalidateTag("cart-items");
 };
