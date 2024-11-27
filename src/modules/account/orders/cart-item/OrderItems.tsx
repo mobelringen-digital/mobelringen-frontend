@@ -52,7 +52,7 @@ export const OrderItems: React.FC<Props> = ({ data }) => {
                       Antall: {item?.quantity}
                     </span>
                   </div>
-                  <div className="flex flex-col justify-between">
+                  <div className="flex flex-col justify-between items-end">
                     <span className="font-semibold text-sm lg:text-base">
                       <FormatNumber
                         value={item?.price}
