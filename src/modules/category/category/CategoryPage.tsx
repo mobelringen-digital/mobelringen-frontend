@@ -98,7 +98,7 @@ export const CategoryPage: React.FC<Props> = ({ category }) => {
   const totalCount = data?.pages[0]?.total_count;
 
   React.useEffect(() => {
-    viewItemListGTMEvent(category, data?.pages[0]);
+    viewItemListGTMEvent(category);
   }, [category, data]);
 
   return (
