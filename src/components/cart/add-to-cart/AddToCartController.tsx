@@ -2,6 +2,8 @@
 
 import React from "react";
 
+import { sendGTMEvent } from "@next/third-parties/google";
+
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/_ui/button/Button";
@@ -15,6 +17,7 @@ import {
   DeliveryType,
   GetProductStockQuery,
 } from "@/types";
+import { formatGTMCategories } from "@/utils/gtm";
 
 interface Props {
   isDisabled?: boolean;
@@ -26,6 +29,30 @@ interface Props {
   stock?: GetProductStockQuery;
   selectedStore?: BaseStoreFragment | null;
 }
+
+const selectStoreGTMEvent = (product: BaseProductFragment) => {
+  if (!product) {
+    return;
+  }
+
+  return sendGTMEvent({
+    event: "select_store",
+    items: [
+      {
+        item_id: product.sku,
+        item_name: product.name,
+        item_brand: product.productBrand?.name,
+        price: product.price_range.maximum_price?.final_price.value,
+        discount: product.price_range.maximum_price?.discount?.amount_off,
+        ...formatGTMCategories(
+          product.categories?.map((category) => ({
+            name: category?.name,
+          })),
+        ),
+      },
+    ],
+  });
+};
 
 export const AddToCartController: React.FC<Props> = ({
   product,
@@ -68,6 +95,8 @@ export const AddToCartController: React.FC<Props> = ({
       return;
     }
 
+    selectStoreGTMEvent(product);
+
     return router.push(`${pathname}?store=change`);
   };
 
@@ -82,6 +111,7 @@ export const AddToCartController: React.FC<Props> = ({
       />
       <div className="flex flex-col gap-4">
         <Button
+          aria-label=" Legg i handlekurv"
           onClick={() => handleAddItemToCart(DeliveryType.Online)}
           disabled={!canBuyOnline || isLoading}
           color="primary"
@@ -90,6 +120,7 @@ export const AddToCartController: React.FC<Props> = ({
         </Button>
         {!selectedStore?.external_id ? (
           <Button
+            aria-label="Velg butikk"
             onClick={handleOpenStoreSelect}
             disabled={!canBuyCAC || isLoading}
             color="secondary"
@@ -98,6 +129,7 @@ export const AddToCartController: React.FC<Props> = ({
           </Button>
         ) : (
           <Button
+            aria-label="Klikk og hent"
             onClick={() => handleAddItemToCart(DeliveryType.Cac)}
             disabled={!canBuyCAC || isLoading}
             color="secondary"

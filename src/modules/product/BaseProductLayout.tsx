@@ -40,6 +40,40 @@ interface Props {
   selectedStore?: BaseStoreFragment | null;
 }
 
+const viewProductGTMEvent = (
+  product: BaseProductFragmentType,
+  stock?: GetProductStockQuery,
+) => {
+  if (!product) {
+    return;
+  }
+
+  return sendGTMEvent({
+    event: "view_item",
+    currency: "NOK",
+    value: product.price_range.maximum_price?.final_price?.value,
+    addable_to_cart: product.addable_to_cart,
+    stock_status: stock?.getProductStock,
+    discount: product.price_range.maximum_price?.discount?.amount_off,
+    label: product.productLabel,
+    items: [
+      {
+        item_id: product.sku,
+        item_name: product.name,
+        addable_to_cart: product.addable_to_cart,
+        item_brand: product.productBrand?.name,
+        price: product.price_range.maximum_price?.final_price.value,
+        discount: product.price_range.maximum_price?.discount?.amount_off,
+        ...formatGTMCategories(
+          product.categories?.map((cat) => ({
+            name: cat?.name,
+          })),
+        ),
+      },
+    ],
+  });
+};
+
 export const BaseProductLayout: React.FC<Props> = ({
   baseProductData,
   configurationBlock,
@@ -56,40 +90,14 @@ export const BaseProductLayout: React.FC<Props> = ({
   const { data: productSliderData, isLoading: isSlidersDataLoading } =
     useProductSliderDataQuery(product.sku);
 
-  const viewProductGTMEvent = React.useCallback(() => {
-    if (!product) {
-      return;
-    }
-
+  React.useEffect(() => {
     // Dont trigger second time when params change
     if (!!Object.keys(params).length) {
       return;
     }
 
-    return sendGTMEvent({
-      event: "view_item",
-      currency: "NOK",
-      value: product.price_range.maximum_price?.final_price?.value,
-      items: [
-        {
-          item_id: product.sku,
-          item_name: product.name,
-          item_brand: product.productBrand?.name,
-          price: product.price_range.maximum_price?.final_price.value,
-          discount: product.price_range.maximum_price?.discount?.amount_off,
-          ...formatGTMCategories(
-            product.categories?.map((cat) => ({
-              name: cat?.name,
-            })),
-          ),
-        },
-      ],
-    });
-  }, [params, product]);
-
-  React.useEffect(() => {
-    viewProductGTMEvent();
-  }, [product, viewProductGTMEvent]);
+    viewProductGTMEvent(product, stock);
+  }, [params, product, stock]);
 
   const isPastDate = (date: string) => {
     return new Date(date) < new Date();

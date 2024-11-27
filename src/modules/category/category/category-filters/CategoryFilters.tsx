@@ -41,6 +41,7 @@ export const CategoryFilters: React.FC<Props> = ({ filters, totalCount }) => {
 
       <div className="flex justify-between items-start">
         <Button
+          aria-label="Alle filtre"
           color="grey"
           className="flex items-center gap-2"
           onClick={() => setIsActive((prev) => !prev)}

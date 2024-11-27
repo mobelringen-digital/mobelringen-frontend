@@ -16,7 +16,7 @@ export const Actions = () => {
         </Suspense>
       </li>
       <li>
-        <Link href="/account">
+        <Link aria-label="Profile" href="/account">
           <Profile width={24} height={24} />
         </Link>
       </li>

@@ -46,13 +46,13 @@ export const ImageLink: React.FC<Props> = ({ data, className, imageStyle }) => {
             "transition-all rounded-3xl bg-black opacity-0 group-hover:opacity-10 pointer-events-none",
           )}
         />
-        <Link href={data.url}>
+        <Link aria-label={data.label} href={data.url}>
           <Image
             className="rounded-3xl"
             src={data.image.url}
             width={data.width ?? data.image.width ?? 700}
             height={data.height ?? data.image.height ?? 700}
-            alt={data.label}
+            alt={data.alt ?? data.label}
             style={imageStyle}
           />
         </Link>

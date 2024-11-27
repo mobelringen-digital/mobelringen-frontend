@@ -31,7 +31,12 @@ export const PromotionBubble: React.FC<Props> = ({ data }) => {
         <ul className="flex justify-center gap-2 lg:gap-4 mt-2 lg:mt-8">
           {data.links.map((link, index) => (
             <li key={index}>
-              <Button color="tertiary" as={Link} href={link.url}>
+              <Button
+                aria-label={link.label}
+                color="tertiary"
+                as={Link}
+                href={link.url}
+              >
                 {link.label}
               </Button>
             </li>

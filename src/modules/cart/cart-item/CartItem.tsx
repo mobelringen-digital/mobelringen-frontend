@@ -162,6 +162,7 @@ export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
                 value={String(item?.quantity ?? 1)}
               />
               <button
+                aria-label="Fjern produkt"
                 onClick={handleRemoveProduct}
                 className="underline text-black text-xs lg:text-base"
               >

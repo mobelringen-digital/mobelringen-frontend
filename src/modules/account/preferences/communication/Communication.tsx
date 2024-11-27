@@ -92,6 +92,7 @@ export const Communication: React.FC<Props> = ({ customer }) => {
         </FieldWrapper>
 
         <Button
+          aria-label="Lagre endringer"
           className="w-1/2"
           disabled={isSubmitting}
           color="primary"

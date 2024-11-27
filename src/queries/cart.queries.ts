@@ -94,6 +94,7 @@ export const BaseProductDataForCartFragment = graphql(`
     name
     sku
     canonical_url
+    addable_to_cart
     special_price
     brand
     productBrand {
@@ -491,7 +492,11 @@ export const applyCouponToCartDocument = graphql(`
 `);
 
 export const applyCouponsToCartDocument = graphql(`
-  mutation ApplyCouponsToCart($cart_id: String!, $coupon_codes: [String!]!, $type: ApplyCouponsStrategy!) {
+  mutation ApplyCouponsToCart(
+    $cart_id: String!
+    $coupon_codes: [String!]!
+    $type: ApplyCouponsStrategy!
+  ) {
     applyCouponsToCart(
       input: { cart_id: $cart_id, coupon_codes: $coupon_codes, type: $type }
     ) {

@@ -35,6 +35,7 @@ export const CheckoutBlock: React.FC<Props> = ({
   return (
     <div className="bg-white flex flex-col gap-6 rounded-2xl p-4 lg:p-8">
       <button
+        aria-label={title}
         disabled={disabled}
         onClick={() => navigateTo(type)}
         className="flex items-center gap-4"

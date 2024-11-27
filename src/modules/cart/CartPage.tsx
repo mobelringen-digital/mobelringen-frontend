@@ -29,7 +29,11 @@ export async function CartPage({ data }: Props) {
         {isEmptyCart ? (
           <div className="flex flex-col text-center gap-2">
             <span>Du har ingen produkter i handlekurven.</span>
-            <Link className="underline" href="/">
+            <Link
+              aria-label="Klikk her for å handle videre"
+              className="underline"
+              href="/"
+            >
               Klikk her for å handle videre.
             </Link>
           </div>

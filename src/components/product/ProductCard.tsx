@@ -8,6 +8,7 @@ import { ProductImage } from "@/components/product/ProductImage";
 import { ProductInformation } from "@/components/product/ProductInformation";
 import { ProductLabels } from "@/components/product/ProductLabels";
 import { ProductPricing } from "@/components/product/ProductPricing";
+import { ProductStock } from "@/components/product/ProductStock";
 import { BaseProductDataForCardFragment } from "@/types";
 import { usePriceRange } from "@/utils/hooks/usePriceRange";
 
@@ -32,6 +33,7 @@ export const ProductCard: React.FC<Props> = ({
   return (
     <div className={cx("relative flex w-full flex-col", className)}>
       <Link
+        legacyBehavior={false}
         onClick={onClick ? () => onClick(product) : undefined}
         className="relative flex items-center justify-center bg-warm-grey px-2 lg:px-6 py-8 lg:py-12 rounded-2xl h-[240px] lg:h-[420px]"
         href={`/${product.canonical_url}`}
@@ -47,7 +49,7 @@ export const ProductCard: React.FC<Props> = ({
         <ProductInformation product={product} />
         <ProductPricing priceRange={priceRange} />
       </div>
-      {/*<ProductStock />*/}
+      <ProductStock product={product} />
     </div>
   );
 };

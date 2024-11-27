@@ -2,12 +2,14 @@
 
 import React from "react";
 
+import { sendGTMEvent } from "@next/third-parties/google";
 import Slider from "react-slick";
 
 import { ProductCard } from "@/components/product/ProductCard";
 import { ProductSliderSkeleton } from "@/components/product-slider/ProductSliderSkeleton";
 import { BaseProductDataForCardFragment } from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
+import { formatGTMCategories } from "@/utils/gtm";
 import { productSliderConfig } from "@/utils/lib/slick";
 
 interface Props {
@@ -16,6 +18,59 @@ interface Props {
   data: Array<BaseProductDataForCardFragment | null> | null;
   isLoading?: boolean;
 }
+
+// const viewItemListGTMEvent = (
+//   title: string,
+//   products?: Array<BaseProductDataForCardFragment | null> | null,
+// ) => {
+//   return sendGTMEvent({
+//     event: "view_item_list",
+//     item_list_name: title,
+//     items: products?.map((product) => ({
+//       item_id: product?.sku,
+//       addable_to_cart: product?.addable_to_cart ?? 0,
+//       item_name: product?.name,
+//       item_brand: product?.productBrand?.name,
+//       price: product?.price_range.maximum_price?.final_price.value,
+//       discount: product?.price_range.maximum_price?.discount?.amount_off,
+//       ...formatGTMCategories(
+//         product?.categories?.map((cat) => ({
+//           name: cat?.name,
+//         })),
+//       ),
+//     })),
+//   });
+// };
+
+const selectItemGTMEvent = (product: BaseProductDataForCardFragment) => {
+  if (!product) {
+    return;
+  }
+
+  return sendGTMEvent({
+    event: "select_item",
+    currency: "NOK",
+    value: product.price_range.maximum_price?.final_price?.value,
+    addable_to_cart: (product as any).addable_to_cart ?? 0,
+    discount: product.price_range.maximum_price?.discount?.amount_off,
+    label: product.productLabel?.custom?.join(", "),
+    items: [
+      {
+        item_id: product.sku,
+        addable_to_cart: product.addable_to_cart ?? 0,
+        item_name: product.name,
+        item_brand: product.productBrand?.name,
+        price: product.price_range.maximum_price?.final_price.value,
+        discount: product.price_range.maximum_price?.discount?.amount_off,
+        ...formatGTMCategories(
+          product.categories?.map((cat) => ({
+            name: cat?.name,
+          })),
+        ),
+      },
+    ],
+  });
+};
 
 export const ProductSlider: React.FC<Props> = ({
   title,
@@ -44,7 +99,10 @@ export const ProductSlider: React.FC<Props> = ({
             <React.Fragment key={idx}>
               {product &&
               isTypename(product, ["SimpleProduct", "ConfigurableProduct"]) ? (
-                    <ProductCard product={product} />
+                    <ProductCard
+                      onClick={() => selectItemGTMEvent(product)}
+                      product={product}
+                    />
                   ) : null}
             </React.Fragment>
           ))}
@@ -65,7 +123,10 @@ export const ProductSlider: React.FC<Props> = ({
           <div key={idx} className="w-[260px]">
             {product &&
             isTypename(product, ["SimpleProduct", "ConfigurableProduct"]) ? (
-                  <ProductCard product={product} />
+                  <ProductCard
+                    onClick={() => selectItemGTMEvent(product)}
+                    product={product}
+                  />
                 ) : null}
           </div>
         ))}

@@ -144,6 +144,7 @@ export const CmsImageFragment = graphql(`
         width
         height
       }
+      alt
       width
       height
       salesBubble {
@@ -176,6 +177,7 @@ export const CmsImageLinkFragment = graphql(`
       label
       url
       caption
+      alt
       image {
         url
         width
