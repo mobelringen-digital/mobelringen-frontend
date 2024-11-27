@@ -32,38 +32,50 @@ export const OrderItems: React.FC<Props> = ({ data }) => {
           {data?.items.map((item) => {
             return (
               <div
-                className="flex gap-4 lg:gap-6 border-b pb-4 border-dark-grey border-opacity-30"
+                className="flex flex-col gap-2 border-b pb-4 border-dark-grey border-opacity-30"
                 key={item?.sku}
               >
-                <Link
-                  href={item?.link ?? ""}
-                  className="relative p-4 w-[80px] h-[80px] bg-warm-grey rounded-xl lg:rounded-3xl !flex justify-center items-center"
-                >
-                  {item?.image && (
-                    <Image
-                      className="object-contain h-[64px]"
-                      width={64}
-                      height={64}
-                      src={item?.image}
-                      alt={item?.name ?? ""}
-                    />
-                  )}
-                </Link>
-                <div className="flex flex-col grow gap-2 justify-center">
-                  <span className="font-semibold">{item?.name}</span>
-                  <span className="text-dark-grey text-sm">
-                    Antall: {item?.quantity}
-                  </span>
+                <div className="flex gap-4 lg:gap-6">
+                  <Link
+                    href={item?.link ?? ""}
+                    className="relative p-4 w-[80px] h-[80px] bg-warm-grey rounded-xl lg:rounded-3xl !flex justify-center items-center"
+                  >
+                    {item?.image && (
+                      <Image
+                        className="object-contain h-[64px]"
+                        width={64}
+                        height={64}
+                        src={item?.image}
+                        alt={item?.name ?? ""}
+                      />
+                    )}
+                  </Link>
+                  <div className="flex flex-col grow gap-2 justify-center">
+                    <span className="font-semibold">{item?.name}</span>
+                    <span className="text-dark-grey text-sm">
+                      Antall: {item?.quantity}
+                    </span>
+                  </div>
+                  <div className="flex flex-col justify-between items-end">
+                    <span className="font-semibold text-sm lg:text-base">
+                      <FormatNumber
+                        value={item?.price}
+                        format="currency"
+                        suffix=" kr"
+                      />
+                    </span>
+                    {item?.delivery_date ? (
+                      <span className="text-sm hidden lg:flex">
+                        Forventet leveringsdato: {item.delivery_date}
+                      </span>
+                    ) : null}
+                  </div>
                 </div>
-                <div className="flex">
-                  <span className="font-semibold">
-                    <FormatNumber
-                      value={item?.price}
-                      format="currency"
-                      suffix=" kr"
-                    />
+                {item?.delivery_date ? (
+                  <span className="text-sm flex lg:hidden">
+                    Forventet leveringsdato: {item.delivery_date}
                   </span>
-                </div>
+                ) : null}
               </div>
             );
           })}

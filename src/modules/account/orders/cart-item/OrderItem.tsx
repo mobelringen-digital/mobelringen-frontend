@@ -15,7 +15,7 @@ export const OrderItem: React.FC<Props> = ({ data }) => {
       key={data?.id}
     >
       <div className="flex items-center gap-4">
-        <div className="flex w-full justify-between items-center">
+        <div className="flex w-full flex-col lg:flex-row justify-between lg:items-center">
           <div className="flex gap-4 items-center">
             <span className="text-xl font-semibold">
               Order: #{data?.increment_id ?? data?.id}
