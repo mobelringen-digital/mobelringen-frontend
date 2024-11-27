@@ -35,7 +35,7 @@ export const useCrossSellQuery = (
   storeId?: string | null,
 ) => {
   return useQuery({
-    queryKey: [...CROSS_SELL_QUERY_KEY],
+    queryKey: [...CROSS_SELL_QUERY_KEY, productId, delivery, storeId],
     queryFn: () => fetchCartService(productId, delivery, storeId),
   });
 };
