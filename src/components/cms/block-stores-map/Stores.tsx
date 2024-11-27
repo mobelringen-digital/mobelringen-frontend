@@ -128,7 +128,7 @@ export const Stores: React.FC<Props> = ({ title }) => {
                     className="mb-4 text-left flex items-center gap-1"
                     onClick={() => setActiveRegion("")}
                   >
-                    <ArrowLeftAlt />
+                    <ArrowLeftAlt id="stores-back-arrow" />
                     <span>Tilbake til butikkoversikten</span>
                   </button>
                   <div className="flex items-center gap-2 text-xl py-2">
