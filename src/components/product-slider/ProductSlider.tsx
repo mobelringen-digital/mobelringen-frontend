@@ -19,28 +19,28 @@ interface Props {
   isLoading?: boolean;
 }
 
-const viewItemListGTMEvent = (
-  title: string,
-  products?: Array<BaseProductDataForCardFragment | null> | null,
-) => {
-  return sendGTMEvent({
-    event: "view_item_list",
-    item_list_name: title,
-    items: products?.map((product) => ({
-      item_id: product?.sku,
-      addable_to_cart: product?.addable_to_cart ?? 0,
-      item_name: product?.name,
-      item_brand: product?.productBrand?.name,
-      price: product?.price_range.maximum_price?.final_price.value,
-      discount: product?.price_range.maximum_price?.discount?.amount_off,
-      ...formatGTMCategories(
-        product?.categories?.map((cat) => ({
-          name: cat?.name,
-        })),
-      ),
-    })),
-  });
-};
+// const viewItemListGTMEvent = (
+//   title: string,
+//   products?: Array<BaseProductDataForCardFragment | null> | null,
+// ) => {
+//   return sendGTMEvent({
+//     event: "view_item_list",
+//     item_list_name: title,
+//     items: products?.map((product) => ({
+//       item_id: product?.sku,
+//       addable_to_cart: product?.addable_to_cart ?? 0,
+//       item_name: product?.name,
+//       item_brand: product?.productBrand?.name,
+//       price: product?.price_range.maximum_price?.final_price.value,
+//       discount: product?.price_range.maximum_price?.discount?.amount_off,
+//       ...formatGTMCategories(
+//         product?.categories?.map((cat) => ({
+//           name: cat?.name,
+//         })),
+//       ),
+//     })),
+//   });
+// };
 
 const selectItemGTMEvent = (product: BaseProductDataForCardFragment) => {
   if (!product) {
@@ -78,10 +78,6 @@ export const ProductSlider: React.FC<Props> = ({
   isLoading,
   hideTitle,
 }) => {
-  React.useEffect(() => {
-    viewItemListGTMEvent(title, data);
-  }, [data, title]);
-
   if (isLoading) {
     return <ProductSliderSkeleton />;
   }
