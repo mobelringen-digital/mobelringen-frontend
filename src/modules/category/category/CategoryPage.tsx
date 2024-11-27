@@ -14,11 +14,7 @@ import { ProductsList } from "@/modules/category/category/ProductsList";
 import { ProductsListSkeleton } from "@/modules/category/category/ProductsListSkeleton";
 import { useProductsQuery } from "@/modules/category/category/useProductsQuery";
 import { CategoryItemEntity } from "@/modules/category/types";
-import {
-  BaseProductDataForCardFragment,
-  BaseProductFragment,
-  ProductsQuery,
-} from "@/types";
+import { BaseProductDataForCardFragment } from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
 
 interface Props {
@@ -50,30 +46,30 @@ const clickOnItemGTMEvent = (product: BaseProductDataForCardFragment) => {
   });
 };
 
-const viewItemListGTMEvent = (
-  category: CategoryItemEntity,
-  products?: ProductsQuery["products"],
-) => {
-  return sendGTMEvent({
-    event: "view_item_list",
-    item_list_name: category?.name,
-    items: products?.items?.map((product) => ({
-      item_id: (product as BaseProductFragment).sku,
-      addable_to_cart: (product as BaseProductFragment).addable_to_cart,
-      item_name: (product as BaseProductFragment).name,
-      item_brand: (product as BaseProductFragment).productBrand?.name,
-      price: (product as BaseProductFragment).price_range.maximum_price
-        ?.final_price.value,
-      discount: (product as BaseProductFragment).price_range.maximum_price
-        ?.discount?.amount_off,
-      ...formatGTMCategories(
-        (product as BaseProductFragment).categories?.map((cat) => ({
-          name: cat?.name,
-        })),
-      ),
-    })),
-  });
-};
+// const viewItemListGTMEvent = (
+//   category: CategoryItemEntity,
+//   products?: ProductsQuery["products"],
+// ) => {
+//   return sendGTMEvent({
+//     event: "view_item_list",
+//     item_list_name: category?.name,
+//     items: products?.items?.map((product) => ({
+//       item_id: (product as BaseProductFragment).sku,
+//       addable_to_cart: (product as BaseProductFragment).addable_to_cart,
+//       item_name: (product as BaseProductFragment).name,
+//       item_brand: (product as BaseProductFragment).productBrand?.name,
+//       price: (product as BaseProductFragment).price_range.maximum_price
+//         ?.final_price.value,
+//       discount: (product as BaseProductFragment).price_range.maximum_price
+//         ?.discount?.amount_off,
+//       ...formatGTMCategories(
+//         (product as BaseProductFragment).categories?.map((cat) => ({
+//           name: cat?.name,
+//         })),
+//       ),
+//     })),
+//   });
+// };
 
 export const CategoryPage: React.FC<Props> = ({ category }) => {
   const { sortValues } = useCategoryFilters();
@@ -91,19 +87,13 @@ export const CategoryPage: React.FC<Props> = ({ category }) => {
     });
 
   const loadMore = () => {
-    fetchNextPage().then(() => {
-      viewItemListGTMEvent(category, data?.pages[data?.pages.length - 1]);
-    });
+    fetchNextPage();
   };
 
   const currentlyLoaded = data?.pages.reduce((acc, page) => {
     return acc + (page?.items?.length ?? 0);
   }, 0);
   const totalCount = data?.pages[0]?.total_count;
-
-  React.useEffect(() => {
-    viewItemListGTMEvent(category, data?.pages[0]);
-  }, [category, data]);
 
   return (
     <ContainerLayout className="mt-12">
