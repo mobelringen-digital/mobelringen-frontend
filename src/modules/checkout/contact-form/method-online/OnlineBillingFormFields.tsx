@@ -6,9 +6,9 @@ import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
 import { Input } from "@/components/_ui/input/Input";
 import { CheckoutFormData } from "@/modules/checkout/factories";
 import {
+  LETTERS_REGEX,
   NO_PHONE_REGEX,
-  NUMBERS_AND_LETTERS_REGEX,
-  NUMBERS_REGEX,
+  NO_POSTCODE_REGEX,
 } from "@/utils/helpers";
 
 interface Props {
@@ -41,7 +41,7 @@ export const OnlineBillingFormFields: React.FC<Props> = ({
                   ? "Dette er et påkrevd felt"
                   : false,
                 pattern: {
-                  value: NUMBERS_AND_LETTERS_REGEX,
+                  value: LETTERS_REGEX,
                   message: "Fornavn må kun inneholde bokstaver.",
                 },
               }}
@@ -60,7 +60,7 @@ export const OnlineBillingFormFields: React.FC<Props> = ({
                   ? "Dette er et påkrevd felt"
                   : false,
                 pattern: {
-                  value: NUMBERS_AND_LETTERS_REGEX,
+                  value: LETTERS_REGEX,
                   message: "Etternavn må kun inneholde bokstaver.",
                 },
               }}
@@ -113,10 +113,14 @@ export const OnlineBillingFormFields: React.FC<Props> = ({
                   ? "Dette er et påkrevd felt"
                   : false,
                 pattern: {
-                  value: NUMBERS_REGEX,
+                  value: NO_POSTCODE_REGEX,
                   message: "Postnummeret må være numerisk og 4 sifre.",
                 },
                 minLength: {
+                  value: 4,
+                  message: "Postnummeret må være numerisk og 4 sifre.",
+                },
+                maxLength: {
                   value: 4,
                   message: "Postnummeret må være numerisk og 4 sifre.",
                 },
@@ -136,7 +140,7 @@ export const OnlineBillingFormFields: React.FC<Props> = ({
                   ? "Dette er et påkrevd felt"
                   : false,
                 pattern: {
-                  value: NUMBERS_AND_LETTERS_REGEX,
+                  value: LETTERS_REGEX,
                   message: "Poststed må kun inneholde bokstaver.",
                 },
               }}

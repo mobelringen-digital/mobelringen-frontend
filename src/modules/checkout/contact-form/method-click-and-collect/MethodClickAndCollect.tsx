@@ -7,7 +7,7 @@ import { Control } from "react-hook-form";
 import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
 import { Input } from "@/components/_ui/input/Input";
 import { CheckoutFormData } from "@/modules/checkout/factories";
-import {EMAIL_REGEX, NO_PHONE_REGEX, NUMBERS_AND_LETTERS_REGEX} from "@/utils/helpers";
+import { EMAIL_REGEX, LETTERS_REGEX, NO_PHONE_REGEX } from "@/utils/helpers";
 import { useSession } from "@/utils/hooks/useSession";
 
 interface Props {
@@ -51,7 +51,7 @@ export const MethodClickAndCollect: React.FC<Props> = ({
           rules={{
             required: "Dette er et påkrevd felt",
             pattern: {
-              value: NUMBERS_AND_LETTERS_REGEX,
+              value: LETTERS_REGEX,
               message: "Fornavn må kun inneholde bokstaver.",
             },
           }}
@@ -68,7 +68,7 @@ export const MethodClickAndCollect: React.FC<Props> = ({
           rules={{
             required: "Dette er et påkrevd felt",
             pattern: {
-              value: NUMBERS_AND_LETTERS_REGEX,
+              value: LETTERS_REGEX,
               message: "Etternavn må kun inneholde bokstaver.",
             },
           }}
