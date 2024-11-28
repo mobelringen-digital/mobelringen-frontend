@@ -7,7 +7,7 @@ import { useCookies } from "react-cookie";
 
 import { usePathname } from "next/navigation";
 
-import { BaseCartFragment } from "@/types";
+import { BaseCartFragment, DeliveryType } from "@/types";
 import { formatGTMCartItems } from "@/utils/gtm";
 
 interface Props {
@@ -15,25 +15,34 @@ interface Props {
   children: React.ReactNode;
 }
 
+const viewCartGTMEvent = (
+  cookies: {
+    eventSentForCart?: string | undefined;
+    preferredMethod?: string | undefined;
+  },
+  data?: BaseCartFragment | null,
+  isClickAndCollect?: boolean,
+) => {
+  if (!data?.id || cookies.eventSentForCart === data?.id) {
+    return;
+  }
+
+  return sendGTMEvent({
+    event: "view_cart",
+    currency: "NOK",
+    value: data?.prices?.grand_total?.value,
+    cart_type: isClickAndCollect ? DeliveryType.Cac : DeliveryType.Online,
+    ...formatGTMCartItems(data),
+  });
+};
+
 export const CartEvents: React.FC<Props> = ({ children, data }) => {
   const [cookies, setCookie] = useCookies<
-    "eventSentForCart",
-    { eventSentForCart?: string }
+    "eventSentForCart" | "preferredMethod",
+    { eventSentForCart?: string; preferredMethod?: string }
   >(["eventSentForCart"]);
+  const isClickAndCollect = cookies.preferredMethod === DeliveryType.Cac;
   const pathname = usePathname();
-
-  const viewCartGTMEvent = React.useCallback(() => {
-    if (!data?.id || cookies.eventSentForCart === data?.id) {
-      return;
-    }
-
-    return sendGTMEvent({
-      event: "view_cart",
-      currency: "NOK",
-      value: data?.prices?.grand_total?.value,
-      ...formatGTMCartItems(data),
-    });
-  }, [cookies.eventSentForCart, data]);
 
   React.useEffect(() => {
     if (
@@ -48,7 +57,7 @@ export const CartEvents: React.FC<Props> = ({ children, data }) => {
         path: pathname,
         expires: oneWeekFromNow,
       });
-      viewCartGTMEvent();
+      viewCartGTMEvent(cookies, data, isClickAndCollect);
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps

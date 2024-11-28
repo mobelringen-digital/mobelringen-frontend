@@ -16,6 +16,7 @@ export async function HeaderCartButton() {
 
   return (
     <Link
+      aria-label="Cart"
       href={
         preferredMethod?.value
           ? `/cart?method=${preferredMethod?.value}`

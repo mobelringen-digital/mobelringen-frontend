@@ -126,6 +126,7 @@ export const DeliveryInfo: React.FC<Props> = ({ product, stock }) => {
             </span>
             {storesWithStock?.length && storesWithStock.length > 0 ? (
               <button
+                aria-label="Stock info"
                 onClick={() => router.push(`${pathname}?store=change`)}
                 className="text-xs lg:text-sm text-dark-grey text-left"
               >

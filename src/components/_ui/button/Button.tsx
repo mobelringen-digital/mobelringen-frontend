@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import { Button as NextUIButton } from "@nextui-org/button";
@@ -31,8 +33,32 @@ export const Button: React.FC<Props> = ({
   disabled,
   ...rest
 }) => {
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+
+  const handleClick = (e: any) => {
+    if (disabled) {
+      return;
+    }
+
+    return rest.onClick?.(e);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleClick(e);
+    }
+    if (e.key === " ") {
+      e.preventDefault();
+      handleClick(e);
+    }
+  };
+
   return (
     <NextUIButton
+      ref={buttonRef}
+      onKeyDown={handleKeyDown}
+      onClick={handleClick}
       className={cx(
         "rounded-full py-6 px-6 lg:px-8 text-sm lg:text-base",
         className,

@@ -27,6 +27,7 @@ export const SelectedCustomerAddress: React.FC<Props> = ({
           <span>{shippingAddress.postcode}</span>
           <span>T: {shippingAddress.telephone}</span>
           <Button
+            aria-label="Endre adresse"
             color="secondary"
             className="mt-4 p-2 text-sm"
             onClick={onReset}

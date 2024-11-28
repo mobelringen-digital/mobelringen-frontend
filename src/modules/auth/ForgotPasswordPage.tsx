@@ -53,6 +53,7 @@ export const ForgotPasswordPage: React.FC = () => {
           </FieldWrapper>
 
           <Button
+            aria-label="Send e-post"
             disabled={isLoading || isSubmitting}
             color="primary"
             type="submit"

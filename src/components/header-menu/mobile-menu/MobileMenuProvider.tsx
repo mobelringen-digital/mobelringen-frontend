@@ -43,10 +43,13 @@ export const MobileMenuProvider: React.FC<Props> = ({ children }) => {
 
   return (
     <div className="flex gap-2 items-center lg:hidden">
-      <button onClick={handleMenuButtonClick}>
+      <button aria-label="Mobile menu" onClick={handleMenuButtonClick}>
         <MenuIcon />
       </button>
-      <button onClick={() => router.push("?store=select")}>
+      <button
+        aria-label="Location"
+        onClick={() => router.push("?store=select")}
+      >
         <LocationIcon />
       </button>
 
@@ -61,7 +64,7 @@ export const MobileMenuProvider: React.FC<Props> = ({ children }) => {
       >
         <ContainerLayout className={cx("flex h-[80px]")}>
           <div className="flex items-center gap-8 w-full">
-            <button onClick={handleMenuButtonClick}>
+            <button aria-label="Close" onClick={handleMenuButtonClick}>
               <CloseIcon />
             </button>
             <Suspense fallback={null}>

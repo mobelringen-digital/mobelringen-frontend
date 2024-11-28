@@ -117,6 +117,7 @@ export const CustomerOrderFragment = graphql(`
       vat_id
     }
     items {
+      delivery_date
       image
       link
       name

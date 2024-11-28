@@ -53,7 +53,7 @@ export const CmsImage: React.FC<Props> = ({ data, className, imageStyle }) => {
             src={data.image.url}
             width={data.width ?? data.image.width ?? 700}
             height={data.height ?? data.image.height ?? 700}
-            alt={data.label}
+            alt={data.alt ?? data.label}
             style={imageStyle}
           />
         ) : null}

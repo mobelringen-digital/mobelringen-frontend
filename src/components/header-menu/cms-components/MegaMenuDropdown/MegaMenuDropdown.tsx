@@ -19,7 +19,7 @@ export const MegaMenuDropdown: React.FC<Props> = ({ link }) => {
       {link.items.map((item, index) => (
         <li key={index}>
           {isTypename(item, ["ImageLink"]) ? (
-            <Link href={item.url}>
+            <Link aria-label={item.label} href={item.url}>
               <Image
                 width={380}
                 height={250}

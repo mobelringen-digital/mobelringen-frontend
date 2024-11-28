@@ -23,7 +23,7 @@ export const PageThumbnail: React.FC<Props> = ({ page }) => {
 
   return (
     <div className="flex flex-col gap-2" key={page.id}>
-      <Link href={page.url} className="relative group">
+      <Link aria-label={page.title} href={page.url} className="relative group">
         <div
           className={cx(
             "absolute left-0 right-0 top-0 bottom-0",
@@ -46,7 +46,7 @@ export const PageThumbnail: React.FC<Props> = ({ page }) => {
       </Link>
       <div className="flex mt-2 gap-4 text-sm lg:text-base text-dark-grey">
         {page.pageCategory.map((category, idx) => (
-          <Link href={category.categoryUrl ?? ""} key={idx}>
+          <Link aria-label={category.name} href={category.categoryUrl ?? ""} key={idx}>
             <span>{category.name}</span>
           </Link>
         ))}

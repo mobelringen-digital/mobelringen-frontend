@@ -12,7 +12,7 @@ export const FilterChip: React.FC<Props> = ({ label, value, onRemove }) => {
       <span className="mr-2 flex items-center gap-1 text-xs">
         <span className="capitalize flex-shrink-0">{label}:</span> <span>{value}</span>
       </span>
-      <button onClick={onRemove} className="w-6 h-6 flex-shrink-0 flex items-center justify-center">
+      <button aria-label={label} onClick={onRemove} className="w-6 h-6 flex-shrink-0 flex items-center justify-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

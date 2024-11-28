@@ -42,6 +42,7 @@ export const DeleteCustomer: React.FC<Props> = ({ customer }) => {
 
   return (
     <button
+      aria-label="Slett min profil"
       id="customer-delete-init"
       className="underline"
       onClick={handleDelete}

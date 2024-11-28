@@ -41,7 +41,7 @@ export async function BlockCatalog({ data }: Props) {
                 width={250}
                 height={500}
                 src={link.image}
-                alt={link.id ?? ""}
+                alt={link.name ?? ""}
               />
             ) : null}
             <span>{link?.name}</span>

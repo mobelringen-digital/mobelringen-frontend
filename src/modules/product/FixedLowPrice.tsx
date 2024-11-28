@@ -13,7 +13,7 @@ export const FixedLowPrice: React.FC<Props> = ({ product }) => {
   return (
     <>
       {product?.low_price ? (
-        <Link href="/fast-lavpris" className="relative bg-pink rounded-2xl">
+        <Link aria-label="Fixed low price link" href="/fast-lavpris" className="relative bg-pink rounded-2xl">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="275"
