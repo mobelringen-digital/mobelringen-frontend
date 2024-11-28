@@ -28,7 +28,6 @@ export const ProductCard: React.FC<Props> = ({
   product,
   className,
   onClick,
-  hasAddToCart,
   cardHeight = "large",
 }) => {
   const priceRange = product?.price_range;
@@ -56,7 +55,7 @@ export const ProductCard: React.FC<Props> = ({
         />
       </Link>
       <div className="mt-4 px-2 pb-2 mb-2 border-b border-b-cold-grey-dark">
-        <ProductInformation hasAddToCart={hasAddToCart} product={product} />
+        <ProductInformation product={product} />
         <ProductPricing priceRange={priceRange} />
       </div>
       {/*<ProductStock product={product} />*/}

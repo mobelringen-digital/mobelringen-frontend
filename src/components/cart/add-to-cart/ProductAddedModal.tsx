@@ -6,7 +6,7 @@ import Image from "next/image";
 
 import { Button } from "@/components/_ui/button/Button";
 import { revalidateCart } from "@/components/cart/add-to-cart/actions";
-import { CrossSellListSlider } from "@/components/cart/add-to-cart/CrossSellListSlider";
+import { CrossSellListSlider } from "@/components/cart/add-to-cart/cross-sell/CrossSellListSlider";
 import { ModalActions, ModalContent, Modal } from "@/components/modal";
 import { BaseProductFragment, BaseStoreFragment } from "@/types";
 
