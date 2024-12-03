@@ -26,6 +26,7 @@ const clickOnItemGTMEvent = (product: BaseProductDataForCardFragment) => {
     return;
   }
 
+  sendGTMEvent({ ecommerce: null });
   return sendGTMEvent({
     event: "select_item",
     items: [

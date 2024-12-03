@@ -27,6 +27,7 @@ const viewCartGTMEvent = (
     return;
   }
 
+  sendGTMEvent({ ecommerce: null });
   return sendGTMEvent({
     event: "view_cart",
     currency: "NOK",

@@ -47,6 +47,7 @@ export const CartProceedButton: React.FC<Props> = ({
       return;
     }
 
+    sendGTMEvent({ ecommerce: null });
     return sendGTMEvent({
       event: "begin_checkout",
       currency: "NOK",

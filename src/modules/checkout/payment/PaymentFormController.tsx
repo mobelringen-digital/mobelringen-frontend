@@ -37,6 +37,7 @@ export const PaymentFormController: React.FC<Props> = ({ cart }) => {
       return;
     }
 
+    sendGTMEvent({ ecommerce: null });
     return sendGTMEvent({
       event: "add_payment_info",
       currency: "NOK",
