@@ -11,7 +11,7 @@ export const LETTERS_REGEX = /^[a-zA-ZÀ-ÿ_.\- /]*$/;
 export const EMAIL_REGEX =
   /^[A-Za-zÀ-ÿ0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
 export const NO_PHONE_REGEX = /^(0047|\+47|47)?[2-9]\d{7}$/;
-export const NO_POSTCODE_REGEX = /^(?!917[0-9])(?!8099)\d{4}$/;
+export const NO_POSTCODE_REGEX = /^(?!917[0-9])(?!8099).*$/;
 
 export const generatePrettyUrl = (
   nextPropsUrl: Array<string>,
