@@ -9,7 +9,7 @@ interface Props {
 
 export const FilterActions: React.FC<Props> = ({ onClose, onReset }) => {
   return (
-    <div className="sticky p-4 bg-white bottom-0 border-t border-cold-grey-dark flex justify-between gap-4 z-40">
+    <div className="fixed lg:sticky left-0 right-0 p-4 bg-white bottom-0 border-t border-cold-grey-dark flex justify-between gap-4 z-40">
       <Button
         aria-label="Fjern alle"
         type="button"
