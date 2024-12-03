@@ -117,6 +117,14 @@ export const OnlineBillingFormFields: React.FC<Props> = ({
                   message:
                     "Vi sender dessverre ikke varer til dette postnummeret. Ta kontakt med kundeservice dersom du ønsker mer informasjon.",
                 },
+                validate: {
+                  isNumeric: (value) => {
+                    if (isNaN(Number(value))) {
+                      return "Postnummeret må være numerisk og 4 sifre.";
+                    }
+                    return true;
+                  },
+                },
                 minLength: {
                   value: 4,
                   message: "Postnummeret må være numerisk og 4 sifre.",
