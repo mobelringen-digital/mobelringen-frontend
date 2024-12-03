@@ -114,7 +114,8 @@ export const OnlineBillingFormFields: React.FC<Props> = ({
                   : false,
                 pattern: {
                   value: NO_POSTCODE_REGEX,
-                  message: "Postnummeret må være numerisk og 4 sifre.",
+                  message:
+                    "Vi sender dessverre ikke varer til dette postnummeret. Ta kontakt med kundeservice dersom du ønsker mer informasjon.",
                 },
                 minLength: {
                   value: 4,
