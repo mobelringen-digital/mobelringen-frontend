@@ -60,7 +60,7 @@ export const ChangePassword: React.FC<Props> = ({ customer }) => {
       <h2 className="text-xl font-bold mb-4">Sikkerhet</h2>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col gap-4 w-1/2"
+        className="flex flex-col gap-4 lg:w-1/2"
       >
         <FieldWrapper
           rules={{ required: "Dette er et påkrevd felt" }}
