@@ -47,7 +47,7 @@ export const FiltersDrawer = React.forwardRef<HTMLDivElement, Props>(
             </div>
           ) : null}
 
-          <div className="w-full block mb-[85px] lg:mb-0">{children}</div>
+          <div className="w-full">{children}</div>
         </div>
       </>
     );
