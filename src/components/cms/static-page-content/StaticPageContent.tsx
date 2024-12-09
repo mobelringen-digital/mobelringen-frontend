@@ -1,5 +1,7 @@
 import React from "react";
 
+import {notFound} from "next/navigation";
+
 import { CmsContentLoader } from "@/components/cms/cms-content-loader";
 import { getPage } from "@/components/cms/static-page-content/actions";
 import { MetaData } from "@/components/meta/MetaData";
@@ -12,7 +14,7 @@ export async function StaticPageContent({ url }: Props) {
   const data = await getPage(url);
 
   if (!data.pages[0]) {
-    return null;
+    return notFound();
   }
 
   return (

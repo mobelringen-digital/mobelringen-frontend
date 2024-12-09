@@ -84,7 +84,7 @@ export default async function Category({ url }: Props) {
   }
 
   return (
-    <HydrationBoundary state={dehydrate(queryClient)}>
+    <>
       <link
         rel="canonical"
         href={`${process.env.NEXT_PUBLIC_APP_URL}/${currentCategory.url_path}`}
@@ -94,7 +94,9 @@ export default async function Category({ url }: Props) {
       ) : null}
 
       {isLastCategoryWithChildren(currentCategory) ? (
-        <CategoryPage category={currentCategory} />
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <CategoryPage category={currentCategory} />
+        </HydrationBoundary>
       ) : (
         <ParentCategoryPage url={url} />
       )}
@@ -105,6 +107,6 @@ export default async function Category({ url }: Props) {
           description={currentCategory.description}
         />
       ) : null}
-    </HydrationBoundary>
+    </>
   );
 }
