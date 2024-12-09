@@ -55,7 +55,7 @@ export const ProductAddedModal: React.FC<Props> = ({
             <p className="text-left text-lg lg:text-xl font-semibold">
               {product.name}
             </p>
-            <p
+            <div
               className="text-xs lg:text-sm font-normal text-dark-grey"
               dangerouslySetInnerHTML={{
                 __html: product.short_description?.html ?? "",

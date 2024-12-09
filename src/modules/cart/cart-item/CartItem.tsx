@@ -142,7 +142,7 @@ export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
                   >
                     {item?.product.name}
                   </Link>
-                  <p
+                  <div
                     className="text-xs lg:text-sm font-normal text-dark-grey"
                     dangerouslySetInnerHTML={{
                       __html: item?.product.short_description?.html ?? "",
