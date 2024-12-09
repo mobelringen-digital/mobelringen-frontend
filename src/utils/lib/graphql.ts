@@ -69,9 +69,9 @@ export const authorizedMagentoClient = (
           },
           cache: nextOptions?.cache,
           ...init,
-          credentials: "include",
           headers: {
             ...(token ? { Authorization: `Bearer ${token ?? ""}` } : {}),
+            Origin: process.env.NEXT_PUBLIC_APP_URL ?? "",
             Accept:
               "application/graphql-response+json, application/json, multipart/mixed",
             ContentType: "application/json",

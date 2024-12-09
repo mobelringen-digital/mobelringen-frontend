@@ -16,7 +16,7 @@ export const useCustomerQuery = () => {
   };
 
   return useQuery({
-    queryKey: ["customer"],
+    queryKey: ["customer", session.token],
     queryFn: fetchCustomer,
     enabled: !!session.token,
     staleTime: 3600,

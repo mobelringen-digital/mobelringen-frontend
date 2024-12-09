@@ -4,6 +4,7 @@ import cx from "classnames";
 
 import Link from "next/link";
 
+import { AddToWishList } from "@/components/product/add-to-wishlist/AddToWishList";
 import { ProductImage } from "@/components/product/ProductImage";
 import { ProductInformation } from "@/components/product/ProductInformation";
 import { ProductLabels } from "@/components/product/ProductLabels";
@@ -43,6 +44,11 @@ export const ProductCard: React.FC<Props> = ({
           lowPrice={product.low_price}
           discount={percentageDiscount}
           labels={labels}
+          addToWishList={
+            <>
+              {product.sku ? <AddToWishList productSku={product.sku} /> : null}
+            </>
+          }
         />
       </Link>
       <div className="mt-4 px-2 pb-2 mb-2 border-b border-b-cold-grey-dark">
