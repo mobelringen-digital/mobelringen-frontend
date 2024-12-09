@@ -1,7 +1,15 @@
 import React from "react";
 
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
+
 import { notFound } from "next/navigation";
 
+import { fetchCustomer } from "@/modules/account/services/fetchCustomer";
+import { getToken } from "@/modules/auth/actions";
 import { CategoryPage } from "@/modules/category/category/CategoryPage";
 import { CategoryDescription } from "@/modules/category/CategoryDescription";
 import { ParentCategoryPage } from "@/modules/category/parent-category/ParentCategoryPage";
@@ -48,6 +56,7 @@ async function getLastCategoryWithChildren(
 export default async function Category({ url }: Props) {
   const category = await getCategory(url);
   const currentCategory = category.categories?.items?.[0];
+  const token = await getToken();
 
   /**
    * Parent category is only fetched when last category is reached
@@ -65,8 +74,17 @@ export default async function Category({ url }: Props) {
     return notFound();
   }
 
+  const queryClient = new QueryClient();
+
+  if (token) {
+    await queryClient.prefetchQuery({
+      queryKey: ["customer", token],
+      queryFn: () => fetchCustomer(token),
+    });
+  }
+
   return (
-    <>
+    <HydrationBoundary state={dehydrate(queryClient)}>
       <link
         rel="canonical"
         href={`${process.env.NEXT_PUBLIC_APP_URL}/${currentCategory.url_path}`}
@@ -87,6 +105,6 @@ export default async function Category({ url }: Props) {
           description={currentCategory.description}
         />
       ) : null}
-    </>
+    </HydrationBoundary>
   );
 }

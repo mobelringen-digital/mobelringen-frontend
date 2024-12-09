@@ -5,10 +5,14 @@ import {
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
+  Selection,
 } from "@nextui-org/react";
+import { useQueryClient } from "@tanstack/react-query";
 import cx from "classnames";
 
 import { Favorite } from "@/components/_ui/icons/figma/Favorite";
+import { FavoriteFilled } from "@/components/_ui/icons/figma/FavoriteFilled";
+import { openToast } from "@/components/_ui/toast-provider";
 import { addToWishlist } from "@/components/product/add-to-wishlist/actions";
 import { useCustomerQuery } from "@/modules/account/useCustomerQuery";
 
@@ -19,12 +23,29 @@ interface Props {
 
 export const AddToWishList: React.FC<Props> = ({ className, productSku }) => {
   const { data: customer } = useCustomerQuery();
+  const queryClient = useQueryClient();
 
-  const onSelect = async () => {
+  const onSelect = async (keys: Selection) => {
+    const key = Array.from(keys).join(", ").replaceAll("_", " ");
     if (!productSku) return;
 
-    await addToWishlist("46169", productSku);
+    await addToWishlist(key, productSku).then(() => {
+      queryClient.invalidateQueries({ queryKey: ["customer"] });
+      return openToast({
+        content: "Produktet ble lagt til i ønskelisten",
+      });
+    });
   };
+
+  const isProductInWishlist = React.useMemo(
+    () =>
+      customer?.wishlists.some((wishlist) =>
+        wishlist?.items_v2?.items.some(
+          (item) => item?.product?.sku === productSku,
+        ),
+      ),
+    [customer?.wishlists, productSku],
+  );
 
   if (!customer?.wishlists) return null;
 
@@ -36,8 +57,12 @@ export const AddToWishList: React.FC<Props> = ({ className, productSku }) => {
           e.preventDefault();
         }}
       >
-        <button className={cx("p-4 transition-all", className)}>
-          <Favorite width={24} height={24} />
+        <button className={cx("p-4 transition-all outline-0", className)}>
+          {isProductInWishlist ? (
+            <FavoriteFilled />
+          ) : (
+            <Favorite width={24} height={24} />
+          )}
         </button>
       </DropdownTrigger>
       <DropdownMenu

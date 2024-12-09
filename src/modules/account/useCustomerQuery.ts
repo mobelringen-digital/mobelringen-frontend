@@ -1,23 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { CustomerDocument } from "@/types";
+import { fetchCustomer } from "@/modules/account/services/fetchCustomer";
 import { useSession } from "@/utils/hooks/useSession";
-import { authorizedMagentoClient } from "@/utils/lib/graphql";
 
 export const useCustomerQuery = () => {
   const session = useSession();
 
-  const fetchCustomer = async () => {
-    const data = await authorizedMagentoClient(session.token, "GET").request(
-      CustomerDocument,
-    );
-
-    return data.customer;
-  };
-
   return useQuery({
     queryKey: ["customer", session.token],
-    queryFn: fetchCustomer,
+    queryFn: () => fetchCustomer(session.token),
     enabled: !!session.token,
     staleTime: 3600,
   });
