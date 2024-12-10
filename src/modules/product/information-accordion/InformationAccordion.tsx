@@ -37,7 +37,7 @@ export const InformationAccordion: React.FC<Props> = ({ product, reviews }) => {
 
   accordionData.push({
     title: `Kundeanmeldelser (${reviews?.total_reviews ?? 0})`,
-    content: <ProductReviews product={product} />,
+    content: <ProductReviews reviews={reviews} product={product} />,
   });
 
   if (product?.maintenance_description) {

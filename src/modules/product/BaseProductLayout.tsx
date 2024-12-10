@@ -135,7 +135,7 @@ export const BaseProductLayout: React.FC<Props> = ({
           <div className="col-span-12 lg:col-span-7 flex flex-col gap-12">
             <ProductGallery product={product} />
             <div className="hidden lg:block">
-              <InformationAccordion product={product} />
+              <InformationAccordion reviews={reviews} product={product} />
             </div>
           </div>
           <div className="col-span-12 lg:col-span-5 flex flex-col gap-8">

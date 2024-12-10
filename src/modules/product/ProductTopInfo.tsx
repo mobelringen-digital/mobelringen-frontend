@@ -31,7 +31,7 @@ export const ProductTopInfo: React.FC<Props> = ({
         ) : null}
         <StarRating
           rating={reviews?.total_rating ?? 0}
-          total={reviews?.total_rating ?? 0}
+          total={reviews?.total_reviews ?? 0}
         />
       </div>
 
