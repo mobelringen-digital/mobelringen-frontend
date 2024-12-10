@@ -31,7 +31,7 @@ export const AddToWishList: React.FC<Props> = ({ className, productSku }) => {
   return (
     <Dropdown className="z-20">
       <DropdownTrigger
-        onClick={(e) => {
+        onClick={(e: Event) => {
           e.stopPropagation();
           e.preventDefault();
         }}

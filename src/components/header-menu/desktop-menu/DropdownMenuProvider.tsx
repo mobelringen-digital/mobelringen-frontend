@@ -14,7 +14,7 @@ interface Props {
 }
 
 export const DropdownMenuProvider: React.FC<Props> = ({ children, title }) => {
-  const ref = React.useRef(null);
+  const ref = React.useRef<HTMLElement>(null);
   const [isActive, setIsActive] = useDetectOutsideClick(ref, false);
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -26,7 +26,7 @@ export const DropdownMenuProvider: React.FC<Props> = ({ children, title }) => {
   }, [pathname, searchParams]);
 
   return (
-    <li className="py-2" ref={ref}>
+    <li className="py-2" ref={ref as any}>
       <button
         aria-label={title}
         onClick={() => setIsActive((prev) => !prev)}

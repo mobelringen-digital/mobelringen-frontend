@@ -3130,7 +3130,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nextui-org/react@npm:^2.4.2":
+"@nextui-org/react@npm:^2.6.5":
   version: 2.6.5
   resolution: "@nextui-org/react@npm:2.6.5"
   dependencies:
@@ -13988,7 +13988,7 @@ __metadata:
     "@graphql-mesh/graphql": "npm:^0.98.4"
     "@graphql-mesh/runtime": "npm:^0.99.5"
     "@next/third-parties": "npm:^14.2.11"
-    "@nextui-org/react": "npm:^2.4.2"
+    "@nextui-org/react": "npm:^2.6.5"
     "@parcel/watcher": "npm:^2.4.1"
     "@sentry/nextjs": "npm:8"
     "@tanstack/react-query": "npm:^5.36.0"

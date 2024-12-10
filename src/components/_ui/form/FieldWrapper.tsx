@@ -35,7 +35,7 @@ export function FieldWrapper<TFieldValues extends FieldValues = FieldValues>({
         name={name}
         rules={{}}
         render={({ field }) =>
-          React.cloneElement(children, {
+          React.cloneElement<any>(children, {
             ...field,
             name,
             id: name,
