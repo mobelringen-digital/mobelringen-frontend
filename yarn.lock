@@ -6073,7 +6073,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tanstack/react-query@npm:^5.36.0":
+"@tanstack/react-query@npm:^5.62.3":
   version: 5.62.3
   resolution: "@tanstack/react-query@npm:5.62.3"
   dependencies:
@@ -13952,7 +13952,7 @@ __metadata:
     "@nextui-org/react": "npm:^2.6.7"
     "@parcel/watcher": "npm:^2.4.1"
     "@sentry/nextjs": "npm:8"
-    "@tanstack/react-query": "npm:^5.36.0"
+    "@tanstack/react-query": "npm:^5.62.3"
     "@tanstack/react-query-devtools": "npm:^5.56.2"
     "@types/leaflet": "npm:^1.9.12"
     "@types/lodash": "npm:^4"

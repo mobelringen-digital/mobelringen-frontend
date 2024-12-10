@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { ButtonProps } from "@nextui-org/react";
+import { Button as NextUiButton, ButtonProps } from "@nextui-org/react";
 import cx from "classnames";
 
 interface Props extends Omit<ButtonProps, "color" | "variant"> {
@@ -57,7 +57,7 @@ export const Button = React.forwardRef<HTMLButtonElement, Props>(
     };
 
     return (
-      <button
+      <NextUiButton
         ref={ref}
         className={cx(
           "transition-all rounded-full py-6 px-6 lg:px-8 text-sm lg:text-base h-12 flex items-center justify-center",
@@ -71,10 +71,11 @@ export const Button = React.forwardRef<HTMLButtonElement, Props>(
         )}
         {...rest}
         onClick={handleClick}
+        onPress={handleClick}
         onKeyDown={handleKeyDown}
       >
         {children}
-      </button>
+      </NextUiButton>
     );
   },
 );
