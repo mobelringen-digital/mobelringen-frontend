@@ -309,3 +309,52 @@ export const GetProductStockDocument = graphql(`
     }
   }
 `);
+
+export const ReviewFragment = graphql(`
+  fragment Review on YotpoReviews {
+    content
+    created_at
+    votes_up
+    votes_down
+    id
+    score
+    social_pushed
+    title
+    user_type
+    verified_buyer
+    user {
+      bio
+      display_name
+      is_social_connected
+      score
+      social_image
+    }
+  }
+`);
+
+export const ProductReviewsFragment = graphql(`
+  fragment ProductReviews on ProductYotpoReviews {
+    total_reviews
+    total_rating
+    reviews {
+      ...Review
+    }
+  }
+`);
+
+export const GetProductReviewsDocument = graphql(`
+  query GetProductReviews($productId: String!) {
+    getReviewsByProductId(product_id: $productId) {
+      ...ProductReviews
+    }
+  }
+`);
+
+export const VoteForReviewDocument = graphql(`
+  query VoteForReview($reviewId: String!, $type: ReviewType) {
+    voteForReview(review_id: $reviewId, type: $type) {
+      message
+      success
+    }
+  }
+`);

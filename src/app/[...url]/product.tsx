@@ -12,7 +12,7 @@ import { BaseCartFragment } from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
-import { getProduct } from "./actions";
+import { getProduct, getProductReviews } from "./actions";
 
 type Props = {
   sku: string;
@@ -70,6 +70,10 @@ export default async function Product({ sku, url }: Props) {
     productData.id,
     selectedStore?.external_id ?? "",
   );
+  const productReviews = await getProductReviews(
+    // @ts-expect-error - productData is not null
+    productData.id,
+  );
 
   return (
     <>
@@ -84,6 +88,7 @@ export default async function Product({ sku, url }: Props) {
             stock={stock}
             cart={cart as BaseCartFragment}
             product={productData}
+            reviews={productReviews}
           />
         </>
       ) : null}
@@ -95,6 +100,7 @@ export default async function Product({ sku, url }: Props) {
             cart={cart as BaseCartFragment}
             product={productData}
             selectedStore={selectedStore}
+            reviews={productReviews}
           />
         </>
       ) : null}

@@ -27,6 +27,7 @@ import {
   BaseProductFragment as BaseProductFragmentType,
   BaseStoreFragment,
   GetProductStockQuery,
+  ProductReviewsFragment,
 } from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
 import { buildPathArray, dateToNOFormat } from "@/utils/helpers";
@@ -38,6 +39,7 @@ interface Props {
   cart?: BaseCartFragment | null;
   stock?: GetProductStockQuery;
   selectedStore?: BaseStoreFragment | null;
+  reviews?: ProductReviewsFragment | null;
 }
 
 const viewProductGTMEvent = (
@@ -80,6 +82,7 @@ export const BaseProductLayout: React.FC<Props> = ({
   cart,
   stock,
   selectedStore,
+  reviews,
 }) => {
   const { activeProductVariant } = useActiveProductData();
   const searchParams = useSearchParams();
@@ -140,6 +143,7 @@ export const BaseProductLayout: React.FC<Props> = ({
               brand={product?.productBrand?.name}
               name={product?.name}
               shortDescription={product?.short_description?.html}
+              reviews={reviews}
             />
 
             {configurationBlock}

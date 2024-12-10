@@ -6336,6 +6336,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-star-ratings@npm:^2":
+  version: 2.3.3
+  resolution: "@types/react-star-ratings@npm:2.3.3"
+  dependencies:
+    "@types/react": "npm:*"
+  checksum: 10c0/7e8f3190be67616419555369bd95ff61aa1ea668f2781c5a5dc7dd437b60bc8016075a7fdf5869ce9757f43d0bc1f984e619c97b83075251d1c719d5a8cfaba4
+  languageName: node
+  linkType: hard
+
 "@types/react@npm:*, @types/react@npm:^17.0.0 || ^18.0.0 || ^19.0.0, @types/react@npm:^19.0.1":
   version: 19.0.1
   resolution: "@types/react@npm:19.0.1"
@@ -7495,7 +7504,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"classnames@npm:^2.2.5, classnames@npm:^2.5.1":
+"classnames@npm:^2.2.1, classnames@npm:^2.2.5, classnames@npm:^2.5.1":
   version: 2.5.1
   resolution: "classnames@npm:2.5.1"
   checksum: 10c0/afff4f77e62cea2d79c39962980bf316bacb0d7c49e13a21adaadb9221e1c6b9d3cdb829d8bb1b23c406f4e740507f37e1dcf506f7e3b7113d17c5bab787aa69
@@ -10683,7 +10692,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loose-envify@npm:^1.0.0, loose-envify@npm:^1.4.0":
+"loose-envify@npm:^1.0.0, loose-envify@npm:^1.1.0, loose-envify@npm:^1.4.0":
   version: 1.4.0
   resolution: "loose-envify@npm:1.4.0"
   dependencies:
@@ -12082,7 +12091,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.6.0, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -12297,6 +12306,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-star-ratings@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "react-star-ratings@npm:2.3.0"
+  dependencies:
+    classnames: "npm:^2.2.1"
+    prop-types: "npm:^15.6.0"
+    react: "npm:^16.1.0"
+  checksum: 10c0/6a0bbfe312fbb6043868cec7ceb17d49ccecf4d22b4eb0c134fc73d29fe1c7e18b650c701b73dc696e06570d89b044977a827197ad504fccb74a7be1d52112f4
+  languageName: node
+  linkType: hard
+
 "react-textarea-autosize@npm:^8.5.3":
   version: 8.5.6
   resolution: "react-textarea-autosize@npm:8.5.6"
@@ -12307,6 +12327,17 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
   checksum: 10c0/652d290d316c55a253507ecf65ca27f2162801dace10c715f2241203e81d82e9de6d282095b758b26c6bc9e1af9ca552cab5c3a361b230e5fcf25bec31e1bd25
+  languageName: node
+  linkType: hard
+
+"react@npm:^16.1.0":
+  version: 16.14.0
+  resolution: "react@npm:16.14.0"
+  dependencies:
+    loose-envify: "npm:^1.1.0"
+    object-assign: "npm:^4.1.1"
+    prop-types: "npm:^15.6.2"
+  checksum: 10c0/df8faae43e01387013900e8f8fb3c4ce9935b7edbcbaa77e12999c913eb958000a0a8750bf9a0886dae0ad768dd4a4ee983752d5bade8d840adbe0ce890a2438
   languageName: node
   linkType: hard
 
@@ -14002,6 +14033,7 @@ __metadata:
     "@types/react-dom": "npm:^19.0.2"
     "@types/react-responsive-masonry": "npm:^2"
     "@types/react-slick": "npm:^0.23.13"
+    "@types/react-star-ratings": "npm:^2"
     "@typescript-eslint/eslint-plugin": "npm:^7.8.0"
     "@typescript-eslint/parser": "npm:^7.8.0"
     "@u-wave/react-vimeo": "npm:^0.9.10"
@@ -14033,6 +14065,7 @@ __metadata:
     react-photo-gallery: "npm:^8.0.0"
     react-range-slider-input: "npm:^3.0.7"
     react-slick: "npm:^0.30.2"
+    react-star-ratings: "npm:^2.3.0"
     sass: "npm:^1.77.8"
     sharp: "npm:^0.33.5"
     slick-carousel: "npm:^1.8.1"

@@ -2,7 +2,10 @@
 
 import { CategoryQueryDocument } from "@/queries/category.queries";
 import { CmsPagesQueryDocument } from "@/queries/page.queries";
-import { ProductsQueryDocument } from "@/queries/product/product.queries";
+import {
+  GetProductReviewsDocument,
+  ProductsQueryDocument,
+} from "@/queries/product/product.queries";
 import { RouteDocument } from "@/queries/route.queries";
 import {
   CategoryQuery,
@@ -14,7 +17,11 @@ import {
   RouteQuery,
   RouteQueryVariables,
 } from "@/types";
-import {baseHygraphClient, baseMagentoClient, HYGRAPH_CACHE_TIME} from "@/utils/lib/graphql";
+import {
+  baseHygraphClient,
+  baseMagentoClient,
+  HYGRAPH_CACHE_TIME,
+} from "@/utils/lib/graphql";
 
 export async function getProduct(sku: string) {
   return await baseMagentoClient("GET").request<
@@ -54,4 +61,15 @@ export async function getRoute(url: string) {
   >(RouteDocument, {
     url,
   });
+}
+
+export async function getProductReviews(productId: string) {
+  const data = await baseMagentoClient("GET", {
+    tags: ["reviews", productId],
+    revalidate: 3600,
+  }).request(GetProductReviewsDocument, {
+    productId,
+  });
+
+  return data.getReviewsByProductId;
 }
