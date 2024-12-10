@@ -8,6 +8,28 @@ export const GenerateCustomerTokenDocument = graphql(`
   }
 `);
 
+export const CustomerWishListItemFragment = graphql(`
+  fragment CustomerWishListItem on WishlistItemInterface {
+    id
+    product {
+      name
+      sku
+      url_key
+      small_image {
+        url
+      }
+      price_range {
+        maximum_price {
+          final_price {
+            currency
+            value
+          }
+        }
+      }
+    }
+  }
+`);
+
 export const CustomerWishlistFragment = graphql(`
   fragment CustomerWishlist on Wishlist {
     id
@@ -15,23 +37,7 @@ export const CustomerWishlistFragment = graphql(`
     sharing_code
     items_v2 {
       items {
-        id
-        product {
-          name
-          sku
-          url_key
-          small_image {
-            url
-          }
-          price_range {
-            maximum_price {
-              final_price {
-                currency
-                value
-              }
-            }
-          }
-        }
+        ...CustomerWishListItem
       }
     }
   }

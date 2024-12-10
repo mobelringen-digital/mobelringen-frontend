@@ -3,7 +3,6 @@ import { withSentryConfig } from "@sentry/nextjs";
 const nextConfig = {
   experimental: {
     scrollRestoration: false,
-    serverActions: true,
   },
   reactStrictMode: true,
   async headers() {
