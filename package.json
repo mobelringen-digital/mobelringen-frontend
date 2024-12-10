@@ -22,7 +22,7 @@
     "classnames": "^2.5.1",
     "framer-motion": "^11.2.10",
     "leaflet": "^1.9.4",
-    "next": "14.2.15",
+    "next": "14.2.20",
     "qs": "^6.13.0",
     "react": "^19.0.0",
     "react-cookie": "^7.1.4",
