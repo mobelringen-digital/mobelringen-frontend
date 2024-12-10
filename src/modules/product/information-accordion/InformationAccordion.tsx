@@ -5,13 +5,14 @@ import React from "react";
 import { Accordion } from "@/components/_ui/accordion/Accordion";
 import { ProductMeasurements } from "@/modules/product/information-accordion/measurements/ProductMeasurements";
 import { ProductReviews } from "@/modules/product/information-accordion/reviews/ProductReviews";
-import { BaseProductFragment } from "@/types";
+import { BaseProductFragment, ProductReviewsFragment } from "@/types";
 
 interface Props {
   product: BaseProductFragment;
+  reviews?: ProductReviewsFragment | null;
 }
 
-export const InformationAccordion: React.FC<Props> = ({ product }) => {
+export const InformationAccordion: React.FC<Props> = ({ product, reviews }) => {
   const accordionData = [];
 
   if (product?.description?.html) {
@@ -35,7 +36,7 @@ export const InformationAccordion: React.FC<Props> = ({ product }) => {
   });
 
   accordionData.push({
-    title: `Kundeanmeldelser (${product.review_count})`,
+    title: `Kundeanmeldelser (${reviews?.total_reviews ?? 0})`,
     content: <ProductReviews product={product} />,
   });
 

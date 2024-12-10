@@ -72,7 +72,7 @@ export default async function Product({ sku, url }: Props) {
   );
   const productReviews = await getProductReviews(
     // @ts-expect-error - productData is not null
-    productData.id,
+    String(productData.id),
   );
 
   return (

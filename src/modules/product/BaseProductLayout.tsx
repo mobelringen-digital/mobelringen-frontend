@@ -170,7 +170,7 @@ export const BaseProductLayout: React.FC<Props> = ({
               product={product}
             />
             <div className="block lg:hidden">
-              <InformationAccordion product={product} />
+              <InformationAccordion reviews={reviews} product={product} />
             </div>
           </div>
         </div>

@@ -1,10 +1,11 @@
 import React from "react";
 
 import { useProductReviewsQuery } from "@/modules/product/information-accordion/reviews/useProductReviewsQuery";
-import { BaseProductFragment } from "@/types";
+import { BaseProductFragment, ProductReviewsFragment } from "@/types";
 
 interface Props {
   product: BaseProductFragment;
+  reviews?: ProductReviewsFragment | null;
 }
 
 export const ProductReviews: React.FC<Props> = ({ product }) => {

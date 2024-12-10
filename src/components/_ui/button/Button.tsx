@@ -60,7 +60,7 @@ export const Button: React.FC<Props> = ({
       onKeyDown={handleKeyDown}
       onClick={handleClick}
       className={cx(
-        "rounded-full py-6 px-6 lg:px-8 text-sm lg:text-base",
+        "rounded-full py-6 px-6 lg:px-8 text-sm lg:text-base cursor-pointer",
         className,
         COLORS[color],
         VARIANTS[variant],
