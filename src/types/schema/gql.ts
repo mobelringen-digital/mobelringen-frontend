@@ -140,7 +140,7 @@ const documents = {
     "\n  query StoresList($searchInput: String) {\n    getStores(searchInput: $searchInput) {\n      ...BaseStore\n    }\n  }\n": types.StoresListDocument,
     "\n  query Store($id: String!) {\n    getStore(storeId: $id) {\n      ...BaseStore\n    }\n  }\n": types.StoreDocument,
     "\n  mutation UpdateCartItemsIsInStore($cartId: String!, $storeId: String!) {\n    updateCartItemsIsInStore(cartId: $cartId, storeId: $storeId) {\n      success\n      message\n    }\n  }\n": types.UpdateCartItemsIsInStoreDocument,
-    "\n  fragment CmsStore on Store {\n    storeName\n    topBanner {\n      url\n      width\n      height\n    }\n    seo {\n      metaTitle\n      metaDescription\n    }\n    bottomImage {\n      ...CmsImageLink\n    }\n    content {\n      ...CmsMultipleTextBlock\n    }\n  }\n": types.CmsStoreFragmentDoc,
+    "\n  fragment CmsStore on Store {\n    storeName\n    topBanner {\n      url\n      width\n      height\n    }\n    seo {\n      metaTitle\n      metaDescription\n    }\n    bottomImage {\n      ...CmsImageLink\n    }\n    content {\n      ...CmsMultipleTextBlock\n    }\n    hoursDescription {\n      ...CmsTextBlock\n    }\n  }\n": types.CmsStoreFragmentDoc,
     "\n  query CmsStore($where: StoreWhereInput) {\n    stores(where: $where) {\n      ...CmsStore\n    }\n  }\n": types.CmsStoreDocument,
 };
 
@@ -665,7 +665,7 @@ export function graphql(source: "\n  mutation UpdateCartItemsIsInStore($cartId: 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  fragment CmsStore on Store {\n    storeName\n    topBanner {\n      url\n      width\n      height\n    }\n    seo {\n      metaTitle\n      metaDescription\n    }\n    bottomImage {\n      ...CmsImageLink\n    }\n    content {\n      ...CmsMultipleTextBlock\n    }\n  }\n"): (typeof documents)["\n  fragment CmsStore on Store {\n    storeName\n    topBanner {\n      url\n      width\n      height\n    }\n    seo {\n      metaTitle\n      metaDescription\n    }\n    bottomImage {\n      ...CmsImageLink\n    }\n    content {\n      ...CmsMultipleTextBlock\n    }\n  }\n"];
+export function graphql(source: "\n  fragment CmsStore on Store {\n    storeName\n    topBanner {\n      url\n      width\n      height\n    }\n    seo {\n      metaTitle\n      metaDescription\n    }\n    bottomImage {\n      ...CmsImageLink\n    }\n    content {\n      ...CmsMultipleTextBlock\n    }\n    hoursDescription {\n      ...CmsTextBlock\n    }\n  }\n"): (typeof documents)["\n  fragment CmsStore on Store {\n    storeName\n    topBanner {\n      url\n      width\n      height\n    }\n    seo {\n      metaTitle\n      metaDescription\n    }\n    bottomImage {\n      ...CmsImageLink\n    }\n    content {\n      ...CmsMultipleTextBlock\n    }\n    hoursDescription {\n      ...CmsTextBlock\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

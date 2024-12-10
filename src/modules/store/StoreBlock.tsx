@@ -3,7 +3,7 @@ import React from "react";
 import cx from "classnames";
 
 interface Props {
-  title: string;
+  title?: string;
   content: React.ReactNode;
   borderTop?: boolean;
 }
@@ -15,7 +15,14 @@ export const StoreBlock: React.FC<Props> = ({ title, content, borderTop }) => {
         "border-t border-dark-grey border-opacity-30": borderTop,
       })}
     >
-      <span className="text-base font-semibold">{title}</span>
+      {title ? (
+        <span
+          className="text-base font-semibold"
+          dangerouslySetInnerHTML={{
+            __html: title ?? "",
+          }}
+        />
+      ) : null}
       <div className="mt-2 font-light">{content}</div>
     </div>
   );

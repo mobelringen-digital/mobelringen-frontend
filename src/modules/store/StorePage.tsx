@@ -118,6 +118,20 @@ export const StorePage: React.FC<Props> = ({
               borderTop={true}
               content={<StoreWorkingDays store={store} />}
             />
+            {storeCmsData.hoursDescription ? (
+              <StoreBlock
+                title={storeCmsData.hoursDescription.title?.html ?? ""}
+                borderTop={true}
+                content={
+                  <div
+                    id="cms-text-block"
+                    dangerouslySetInnerHTML={{
+                      __html: storeCmsData.hoursDescription.content?.html ?? "",
+                    }}
+                  />
+                }
+              />
+            ) : null}
             <StoreBlock
               title="Kontaktinformasjon"
               borderTop={true}
