@@ -11,6 +11,7 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * 3. It does not support dead code elimination, so it will add unused operations.
  *
  * Therefore it is highly recommended to use the babel or swc plugin for production.
+ * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
     "\n  fragment CartPrice on CartPrices {\n    is_special_price\n    grand_total_special_price_diff {\n      currency\n      value\n    }\n    items_grand_total_base_price {\n      currency\n      value\n    }\n    grand_total {\n      currency\n      value\n    }\n    discounts {\n      label\n      amount {\n        currency\n        value\n      }\n    }\n    applied_taxes {\n      amount {\n        currency\n        value\n      }\n      label\n    }\n    subtotal_excluding_tax {\n      currency\n      value\n    }\n    subtotal_including_tax {\n      currency\n      value\n    }\n    subtotal_with_discount_excluding_tax {\n      currency\n      value\n    }\n  }\n": types.CartPriceFragmentDoc,
