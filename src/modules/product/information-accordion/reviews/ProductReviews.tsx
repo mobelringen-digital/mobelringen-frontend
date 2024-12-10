@@ -12,7 +12,7 @@ export const ProductReviews: React.FC<Props> = ({ reviews }) => {
   return (
     <ul className="grid grid-cols-1">
       {reviews?.reviews?.map((review, idx) => (
-        <li className="bg-powder flex flex-col gap-4 p-4 rounded-2xl" key={idx}>
+        <li className="bg-cream flex flex-col gap-4 p-4 lg:p-6 rounded-2xl" key={idx}>
           <div className="flex justify-between items-center">
             {review?.score ? <Stars rating={parseInt(review?.score)} /> : null}
             <span className="text-sm font-light text-brown">{review?.created_at}</span>
