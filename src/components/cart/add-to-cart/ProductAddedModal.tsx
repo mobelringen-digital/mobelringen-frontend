@@ -17,7 +17,7 @@ interface Props {
   onClose?: () => void;
 }
 
-export const ProductAddedModal: React.FC<Props> = ({
+const ProductAddedModal: React.FC<Props> = ({
   product,
   isOpen,
   onOpenChange,
@@ -88,3 +88,5 @@ export const ProductAddedModal: React.FC<Props> = ({
     </Modal>
   );
 };
+
+export default ProductAddedModal;
