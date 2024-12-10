@@ -16,7 +16,6 @@ export const Modal: React.FC<Props> = ({ title, children, ...rest }) => {
     <NextUIModal
       size="2xl"
       className="mx-2"
-      backdrop="blur"
       placement="center"
       closeButton={null}
       {...rest}

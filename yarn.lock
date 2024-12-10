@@ -13376,7 +13376,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwindcss@npm:^3.4.1":
+"tailwindcss@npm:^3.4.16":
   version: 3.4.16
   resolution: "tailwindcss@npm:3.4.16"
   dependencies:
@@ -14036,7 +14036,7 @@ __metadata:
     sass: "npm:^1.77.8"
     sharp: "npm:^0.33.5"
     slick-carousel: "npm:^1.8.1"
-    tailwindcss: "npm:^3.4.1"
+    tailwindcss: "npm:^3.4.16"
     ts-node: "npm:^10.9.2"
     typescript: "npm:^5.7.2"
     use-debounce: "npm:^10.0.3"
