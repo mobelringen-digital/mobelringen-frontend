@@ -128,7 +128,7 @@ const documents = {
     "\n  fragment Review on YotpoReviews {\n    content\n    created_at\n    votes_up\n    votes_down\n    id\n    score\n    social_pushed\n    title\n    user_type\n    verified_buyer\n    user {\n      bio\n      display_name\n      is_social_connected\n      score\n      social_image\n    }\n  }\n": types.ReviewFragmentDoc,
     "\n  fragment ProductReviews on ProductYotpoReviews {\n    total_reviews\n    total_rating\n    reviews {\n      ...Review\n    }\n  }\n": types.ProductReviewsFragmentDoc,
     "\n  query GetProductReviews($productId: String!) {\n    getReviewsByProductId(product_id: $productId) {\n      ...ProductReviews\n    }\n  }\n": types.GetProductReviewsDocument,
-    "\n  query VoteForReview($reviewId: String!, $type: ReviewType) {\n    voteForReview(review_id: $reviewId, type: $type) {\n      message\n      success\n    }\n  }\n": types.VoteForReviewDocument,
+    "\n  mutation VoteForReview($reviewId: String!, $type: ReviewType) {\n    voteForReview(review_id: $reviewId, type: $type) {\n      message\n      success\n    }\n  }\n": types.VoteForReviewDocument,
     "\n  fragment SimpleProduct on SimpleProduct {\n    ...BaseProduct\n  }\n": types.SimpleProductFragmentDoc,
     "\n  mutation AddProductsToWishlist($wishlistId: ID!, $sku: String!) {\n    addProductsToWishlist(\n      wishlistId: $wishlistId\n      wishlistItems: { sku: $sku, quantity: 1 }\n    ) {\n      wishlist {\n        id\n        items_count\n      }\n    }\n  }\n": types.AddProductsToWishlistDocument,
     "\n  fragment BaseProductDataForCard on ProductInterface {\n    __typename\n    name\n    sku\n    canonical_url\n    addable_to_cart\n    low_price\n    stocks {\n      online {\n        availability\n        message\n      }\n      cac {\n        availability\n        message\n      }\n    }\n    productBrand {\n      name\n    }\n    categories {\n      name\n    }\n    short_description {\n      html\n    }\n    price_range {\n      ...ProductPriceRange\n    }\n    image {\n      ...ProductImageFragment\n    }\n    productLabel {\n      ...ProductLabel\n    }\n  }\n": types.BaseProductDataForCardFragmentDoc,
@@ -621,7 +621,7 @@ export function graphql(source: "\n  query GetProductReviews($productId: String!
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query VoteForReview($reviewId: String!, $type: ReviewType) {\n    voteForReview(review_id: $reviewId, type: $type) {\n      message\n      success\n    }\n  }\n"): (typeof documents)["\n  query VoteForReview($reviewId: String!, $type: ReviewType) {\n    voteForReview(review_id: $reviewId, type: $type) {\n      message\n      success\n    }\n  }\n"];
+export function graphql(source: "\n  mutation VoteForReview($reviewId: String!, $type: ReviewType) {\n    voteForReview(review_id: $reviewId, type: $type) {\n      message\n      success\n    }\n  }\n"): (typeof documents)["\n  mutation VoteForReview($reviewId: String!, $type: ReviewType) {\n    voteForReview(review_id: $reviewId, type: $type) {\n      message\n      success\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -351,7 +351,7 @@ export const GetProductReviewsDocument = graphql(`
 `);
 
 export const VoteForReviewDocument = graphql(`
-  query VoteForReview($reviewId: String!, $type: ReviewType) {
+  mutation VoteForReview($reviewId: String!, $type: ReviewType) {
     voteForReview(review_id: $reviewId, type: $type) {
       message
       success
