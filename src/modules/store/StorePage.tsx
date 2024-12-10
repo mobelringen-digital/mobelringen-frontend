@@ -90,7 +90,7 @@ export const StorePage: React.FC<Props> = ({
           </div>
         </div>
         <div className="order-1 lg:order-2 col-span-5 lg:col-span-2 lg:sticky top-[150px]">
-          <div className="bg-white rounded-2xl p-8 flex flex-col">
+          <div className="bg-white lg:sticky lg:top-32 rounded-2xl p-8 flex flex-col">
             <div className="flex flex-col items-center justify-center mb-8">
               <div className="bg-powder flex rounded-2xl px-4 py-2 items-center gap-2">
                 <Checkbox
