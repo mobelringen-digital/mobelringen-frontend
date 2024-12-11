@@ -47,7 +47,7 @@ export const ModalConfirm: React.FC<Props> = ({
                 aria-label="Avbryt"
                 className="w-full"
                 color="tertiary"
-                onPress={() => {
+                onClick={() => {
                   onClose();
                   onCancel();
                 }}
@@ -59,7 +59,7 @@ export const ModalConfirm: React.FC<Props> = ({
                 id={proceedButtonId}
                 className="w-full"
                 color="primary"
-                onPress={onConfirm}
+                onClick={onConfirm}
               >
                 {proceedText ?? "Fortsette"}
               </Button>
