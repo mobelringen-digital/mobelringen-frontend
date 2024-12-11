@@ -1,7 +1,5 @@
 "use server";
 
-import { revalidateTag } from "next/cache";
-
 import { ReviewType, VoteForReviewDocument } from "@/types";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
@@ -16,8 +14,6 @@ export async function voteForReview({
     reviewId,
     type,
   });
-
-  revalidateTag("reviews");
 
   return data.voteForReview;
 }

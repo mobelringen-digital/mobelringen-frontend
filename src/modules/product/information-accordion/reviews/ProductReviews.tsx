@@ -2,14 +2,16 @@ import React from "react";
 
 import { Stars } from "@/components/_ui/Stars/Stars";
 import { ReviewRating } from "@/modules/product/information-accordion/reviews/ReviewRating";
-import { BaseProductFragment, ProductReviewsFragment } from "@/types";
+import { useProductReviewsQuery } from "@/modules/product/information-accordion/reviews/useProductReviewsQuery";
+import { BaseProductFragment } from "@/types";
 
 interface Props {
   product: BaseProductFragment;
-  reviews?: ProductReviewsFragment | null;
 }
 
-export const ProductReviews: React.FC<Props> = ({ reviews }) => {
+export const ProductReviews: React.FC<Props> = ({ product }) => {
+  const { data: reviews } = useProductReviewsQuery(String(product?.id));
+
   return (
     <ul className="grid grid-cols-1">
       {reviews?.reviews?.map((review, idx) => (

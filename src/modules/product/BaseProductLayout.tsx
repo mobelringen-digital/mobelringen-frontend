@@ -17,6 +17,7 @@ import { useActiveProductData } from "@/modules/product/active-product-data-prov
 import { PurchaseBlock } from "@/modules/product/add-to-cart/PurchaseBlock";
 import { FixedLowPrice } from "@/modules/product/FixedLowPrice";
 import { InformationAccordion } from "@/modules/product/information-accordion/InformationAccordion";
+import { useProductReviewsQuery } from "@/modules/product/information-accordion/reviews/useProductReviewsQuery";
 import { MoreInTheStore } from "@/modules/product/more-in-the-store/MoreInTheStore";
 import { MoreInformation } from "@/modules/product/MoreInformation";
 import { ProductGallery } from "@/modules/product/product-gallery/ProductGallery";
@@ -27,7 +28,6 @@ import {
   BaseProductFragment as BaseProductFragmentType,
   BaseStoreFragment,
   GetProductStockQuery,
-  ProductReviewsFragment,
 } from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
 import { buildPathArray, dateToNOFormat } from "@/utils/helpers";
@@ -39,7 +39,6 @@ interface Props {
   cart?: BaseCartFragment | null;
   stock?: GetProductStockQuery;
   selectedStore?: BaseStoreFragment | null;
-  reviews?: ProductReviewsFragment | null;
 }
 
 const viewProductGTMEvent = (
@@ -82,8 +81,8 @@ export const BaseProductLayout: React.FC<Props> = ({
   cart,
   stock,
   selectedStore,
-  reviews,
 }) => {
+  const { data: reviews } = useProductReviewsQuery(String(baseProductData?.id));
   const { activeProductVariant } = useActiveProductData();
   const searchParams = useSearchParams();
   const params = searchParams.entries();
@@ -135,7 +134,7 @@ export const BaseProductLayout: React.FC<Props> = ({
           <div className="col-span-12 lg:col-span-7 flex flex-col gap-12">
             <ProductGallery product={product} />
             <div className="hidden lg:block">
-              <InformationAccordion reviews={reviews} product={product} />
+              <InformationAccordion product={product} />
             </div>
           </div>
           <div className="col-span-12 lg:col-span-5 flex flex-col gap-8">
@@ -170,7 +169,7 @@ export const BaseProductLayout: React.FC<Props> = ({
               product={product}
             />
             <div className="block lg:hidden">
-              <InformationAccordion reviews={reviews} product={product} />
+              <InformationAccordion product={product} />
             </div>
           </div>
         </div>

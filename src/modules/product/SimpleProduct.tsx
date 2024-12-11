@@ -6,7 +6,6 @@ import {
   BaseCartFragment,
   BaseStoreFragment,
   GetProductStockQuery,
-  ProductReviewsFragment,
   SimpleProductFragment,
 } from "@/types";
 
@@ -15,7 +14,6 @@ interface Props {
   cart?: BaseCartFragment | null;
   stock?: GetProductStockQuery;
   selectedStore?: BaseStoreFragment | null;
-  reviews?: ProductReviewsFragment | null;
 }
 
 export async function SimpleProductPage({
@@ -23,12 +21,10 @@ export async function SimpleProductPage({
   cart,
   stock,
   selectedStore,
-  reviews,
 }: Props) {
   return (
     <ActiveProductDataContextProvider>
       <BaseProductLayout
-        reviews={reviews}
         selectedStore={selectedStore}
         stock={stock}
         cart={cart}

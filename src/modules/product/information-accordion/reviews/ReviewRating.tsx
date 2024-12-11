@@ -1,5 +1,7 @@
 import React from "react";
 
+import { useQueryClient } from "@tanstack/react-query";
+
 import { voteForReview } from "@/modules/product/information-accordion/reviews/actions";
 import { ReviewFragment, ReviewType } from "@/types";
 
@@ -8,6 +10,7 @@ interface Props {
 }
 
 export const ReviewRating: React.FC<Props> = ({ review }) => {
+  const queryClient = useQueryClient();
   const [upVotes, setUpVotes] = React.useState<number>(
     review?.votes_up ? parseInt(review?.votes_up) : 0,
   );
@@ -25,6 +28,7 @@ export const ReviewRating: React.FC<Props> = ({ review }) => {
     );
 
     if (data?.success) {
+      await queryClient.invalidateQueries({ queryKey: ["product-reviews"] });
       if (vote === ReviewType.Up) {
         setUpVotes((prev) => prev + 1);
       } else {
