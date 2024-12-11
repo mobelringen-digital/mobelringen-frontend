@@ -7,9 +7,5 @@ interface Props {
 }
 
 export async function ParentCategoryPage({ url }: Props) {
-  return (
-    <>
-      <StaticPageContent url={`/${url}`} />
-    </>
-  );
+  return <StaticPageContent url={`/${url}`} />;
 }

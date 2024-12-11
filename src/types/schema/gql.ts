@@ -11,6 +11,7 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  * 3. It does not support dead code elimination, so it will add unused operations.
  *
  * Therefore it is highly recommended to use the babel or swc plugin for production.
+ * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
     "\n  fragment CartPrice on CartPrices {\n    is_special_price\n    grand_total_special_price_diff {\n      currency\n      value\n    }\n    items_grand_total_base_price {\n      currency\n      value\n    }\n    grand_total {\n      currency\n      value\n    }\n    discounts {\n      label\n      amount {\n        currency\n        value\n      }\n    }\n    applied_taxes {\n      amount {\n        currency\n        value\n      }\n      label\n    }\n    subtotal_excluding_tax {\n      currency\n      value\n    }\n    subtotal_including_tax {\n      currency\n      value\n    }\n    subtotal_with_discount_excluding_tax {\n      currency\n      value\n    }\n  }\n": types.CartPriceFragmentDoc,
@@ -139,7 +140,7 @@ const documents = {
     "\n  query StoresList($searchInput: String) {\n    getStores(searchInput: $searchInput) {\n      ...BaseStore\n    }\n  }\n": types.StoresListDocument,
     "\n  query Store($id: String!) {\n    getStore(storeId: $id) {\n      ...BaseStore\n    }\n  }\n": types.StoreDocument,
     "\n  mutation UpdateCartItemsIsInStore($cartId: String!, $storeId: String!) {\n    updateCartItemsIsInStore(cartId: $cartId, storeId: $storeId) {\n      success\n      message\n    }\n  }\n": types.UpdateCartItemsIsInStoreDocument,
-    "\n  fragment CmsStore on Store {\n    storeName\n    topBanner {\n      url\n      width\n      height\n    }\n    seo {\n      metaTitle\n      metaDescription\n    }\n    bottomImage {\n      ...CmsImageLink\n    }\n    content {\n      ...CmsMultipleTextBlock\n    }\n  }\n": types.CmsStoreFragmentDoc,
+    "\n  fragment CmsStore on Store {\n    storeName\n    topBanner {\n      url\n      width\n      height\n    }\n    seo {\n      metaTitle\n      metaDescription\n    }\n    bottomImage {\n      ...CmsImageLink\n    }\n    content {\n      ...CmsMultipleTextBlock\n    }\n    hoursDescription {\n      ...CmsTextBlock\n    }\n  }\n": types.CmsStoreFragmentDoc,
     "\n  query CmsStore($where: StoreWhereInput) {\n    stores(where: $where) {\n      ...CmsStore\n    }\n  }\n": types.CmsStoreDocument,
 };
 
@@ -664,7 +665,7 @@ export function graphql(source: "\n  mutation UpdateCartItemsIsInStore($cartId: 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  fragment CmsStore on Store {\n    storeName\n    topBanner {\n      url\n      width\n      height\n    }\n    seo {\n      metaTitle\n      metaDescription\n    }\n    bottomImage {\n      ...CmsImageLink\n    }\n    content {\n      ...CmsMultipleTextBlock\n    }\n  }\n"): (typeof documents)["\n  fragment CmsStore on Store {\n    storeName\n    topBanner {\n      url\n      width\n      height\n    }\n    seo {\n      metaTitle\n      metaDescription\n    }\n    bottomImage {\n      ...CmsImageLink\n    }\n    content {\n      ...CmsMultipleTextBlock\n    }\n  }\n"];
+export function graphql(source: "\n  fragment CmsStore on Store {\n    storeName\n    topBanner {\n      url\n      width\n      height\n    }\n    seo {\n      metaTitle\n      metaDescription\n    }\n    bottomImage {\n      ...CmsImageLink\n    }\n    content {\n      ...CmsMultipleTextBlock\n    }\n    hoursDescription {\n      ...CmsTextBlock\n    }\n  }\n"): (typeof documents)["\n  fragment CmsStore on Store {\n    storeName\n    topBanner {\n      url\n      width\n      height\n    }\n    seo {\n      metaTitle\n      metaDescription\n    }\n    bottomImage {\n      ...CmsImageLink\n    }\n    content {\n      ...CmsMultipleTextBlock\n    }\n    hoursDescription {\n      ...CmsTextBlock\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
