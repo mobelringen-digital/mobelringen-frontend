@@ -48,6 +48,7 @@ const viewProductGTMEvent = (
     return;
   }
 
+  sendGTMEvent({ ecommerce: null });
   return sendGTMEvent({
     event: "view_item",
     currency: "NOK",

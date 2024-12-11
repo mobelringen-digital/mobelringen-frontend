@@ -24,6 +24,7 @@ const addPurchaseGTMEvent = async (order?: MaskedOrderFragment | null) => {
     return;
   }
 
+  sendGTMEvent({ ecommerce: null });
   return sendGTMEvent({
     event: "purchase",
     payment_type: order.payment_methods
