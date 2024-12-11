@@ -1,13 +1,16 @@
 import React from "react";
 
-import { QueryClient } from "@tanstack/react-query";
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
 
 import { notFound, redirect } from "next/navigation";
 
 import getCart from "@/components/cart/actions";
 import { StaticPageContent } from "@/components/cms/static-page-content/StaticPageContent";
 import { getSelectedStore } from "@/components/store-selector/actions";
-import { fetchCustomer } from "@/modules/account/services/fetchCustomer";
 import { ConfigurableProductPage } from "@/modules/product/ConfigurableProduct";
 import {
   fetchReviews,
@@ -19,7 +22,7 @@ import { BaseCartFragment } from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
-import { getProduct, getProductReviews } from "./actions";
+import { getProduct } from "./actions";
 
 type Props = {
   sku: string;
@@ -77,44 +80,47 @@ export default async function Product({ sku, url }: Props) {
     productData.id,
     selectedStore?.external_id ?? "",
   );
-  const queryClient = new QueryClient();
 
+  // Prefetch product Reviews
+  const queryClient = new QueryClient();
   if (isTypename(productData, ["SimpleProduct", "ConfigurableProduct"])) {
     await queryClient.prefetchQuery({
-      queryKey: [...PRODUCT_REVIEWS_QUERY_KEY, productData.id],
+      queryKey: [...PRODUCT_REVIEWS_QUERY_KEY, String(productData.id)],
       queryFn: () => fetchReviews(String(productData.id)),
     });
   }
 
   return (
     <>
-      {isTypename(productData, ["SimpleProduct"]) ? (
-        <>
-          <link
-            rel="canonical"
-            href={`${process.env.NEXT_PUBLIC_APP_URL}/${productData.canonical_url}`}
-          />
-          <SimpleProductPage
-            selectedStore={selectedStore}
-            stock={stock}
-            cart={cart as BaseCartFragment}
-            product={productData}
-          />
-        </>
-      ) : null}
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        {isTypename(productData, ["SimpleProduct"]) ? (
+          <>
+            <link
+              rel="canonical"
+              href={`${process.env.NEXT_PUBLIC_APP_URL}/${productData.canonical_url}`}
+            />
+            <SimpleProductPage
+              selectedStore={selectedStore}
+              stock={stock}
+              cart={cart as BaseCartFragment}
+              product={productData}
+            />
+          </>
+        ) : null}
 
-      {isTypename(productData, ["ConfigurableProduct"]) ? (
-        <>
-          <ConfigurableProductPage
-            stock={stock}
-            cart={cart as BaseCartFragment}
-            product={productData}
-            selectedStore={selectedStore}
-          />
-        </>
-      ) : null}
+        {isTypename(productData, ["ConfigurableProduct"]) ? (
+          <>
+            <ConfigurableProductPage
+              stock={stock}
+              cart={cart as BaseCartFragment}
+              product={productData}
+              selectedStore={selectedStore}
+            />
+          </>
+        ) : null}
 
-      <StaticPageContent url={`/${url}`} />
+        <StaticPageContent url={`/${url}`} />
+      </HydrationBoundary>
     </>
   );
 }
