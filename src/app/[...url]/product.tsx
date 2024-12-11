@@ -1,11 +1,18 @@
 import React from "react";
 
+import { QueryClient } from "@tanstack/react-query";
+
 import { notFound, redirect } from "next/navigation";
 
 import getCart from "@/components/cart/actions";
 import { StaticPageContent } from "@/components/cms/static-page-content/StaticPageContent";
 import { getSelectedStore } from "@/components/store-selector/actions";
+import { fetchCustomer } from "@/modules/account/services/fetchCustomer";
 import { ConfigurableProductPage } from "@/modules/product/ConfigurableProduct";
+import {
+  fetchReviews,
+  PRODUCT_REVIEWS_QUERY_KEY,
+} from "@/modules/product/information-accordion/reviews/useProductReviewsQuery";
 import { SimpleProductPage } from "@/modules/product/SimpleProduct";
 import { GetProductStockDocument } from "@/queries/product/product.queries";
 import { BaseCartFragment } from "@/types";
@@ -70,10 +77,14 @@ export default async function Product({ sku, url }: Props) {
     productData.id,
     selectedStore?.external_id ?? "",
   );
-  const productReviews = await getProductReviews(
-    // @ts-expect-error - productData is not null
-    String(productData.id),
-  );
+  const queryClient = new QueryClient();
+
+  if (isTypename(productData, ["SimpleProduct", "ConfigurableProduct"])) {
+    await queryClient.prefetchQuery({
+      queryKey: [...PRODUCT_REVIEWS_QUERY_KEY, productData.id],
+      queryFn: () => fetchReviews(String(productData.id)),
+    });
+  }
 
   return (
     <>
@@ -88,7 +99,6 @@ export default async function Product({ sku, url }: Props) {
             stock={stock}
             cart={cart as BaseCartFragment}
             product={productData}
-            reviews={productReviews}
           />
         </>
       ) : null}
@@ -100,7 +110,6 @@ export default async function Product({ sku, url }: Props) {
             cart={cart as BaseCartFragment}
             product={productData}
             selectedStore={selectedStore}
-            reviews={productReviews}
           />
         </>
       ) : null}
