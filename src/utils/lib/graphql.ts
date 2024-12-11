@@ -63,7 +63,6 @@ export const authorizedMagentoClient = (
       authorization: `Bearer ${token ?? ""}`,
     },
     mode: "cors",
-    credentials: "include",
     referrer: process.env.NEXT_PUBLIC_APP_URL,
     fetch: cache(
       async (input: RequestInfo | URL, init?: RequestInit | undefined) =>
