@@ -34,7 +34,7 @@ export const FiltersDrawer = React.forwardRef<HTMLDivElement, Props>(
         <div
           ref={ref}
           className={cx(
-            "fixed top-0 right-0 z-40 h-screen overflow-y-auto transition-transform bg-white w-full lg:w-[480px]",
+            "fixed top-0 right-0 z-40 h-dvh overflow-y-auto transition-transform bg-white w-full lg:w-[480px]",
             { "transform translate-x-full": !isOpen },
           )}
         >

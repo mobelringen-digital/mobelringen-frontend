@@ -2,14 +2,19 @@
 
 import React from "react";
 
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { ChevronRight } from "@/components/_ui/icons/ChevronRight";
 import { Location } from "@/components/_ui/icons/figma/Location";
 import { Storefront } from "@/components/_ui/icons/figma/Storefront";
-import { StoreSelectModal } from "@/components/store-selector/StoreSelectModal";
 import { BaseStoreFragment } from "@/types";
+
+const StoreSelectModal = dynamic(
+  () => import("@/components/store-selector/StoreSelectModal"),
+  { ssr: false },
+);
 
 interface Props {
   stores: Array<BaseStoreFragment | null>;
@@ -36,13 +41,15 @@ export const StoresSelectController: React.FC<Props> = ({
 
   return (
     <React.Fragment>
-      <StoreSelectModal
-        stores={stores}
-        isOpen={isOpen}
-        selectedStore={selectedStore}
-        isAuthorized={isAuthorized}
-        onClose={onClose}
-      />
+      {isOpen ? (
+        <StoreSelectModal
+          stores={stores}
+          isOpen={isOpen}
+          selectedStore={selectedStore}
+          isAuthorized={isAuthorized}
+          onClose={onClose}
+        />
+      ) : null}
 
       {/*Desktop menu*/}
       <div className="gap-4 text-xs hidden lg:flex">
