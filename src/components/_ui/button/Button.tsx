@@ -2,8 +2,7 @@
 
 import React from "react";
 
-import { Button as NextUIButton } from "@nextui-org/button";
-import { ButtonProps } from "@nextui-org/react";
+import { Button as NextUiButton, ButtonProps } from "@nextui-org/react";
 import cx from "classnames";
 
 interface Props extends Omit<ButtonProps, "color" | "variant"> {
@@ -25,53 +24,60 @@ const VARIANTS = {
   bordered: "border border-black",
 } as const;
 
-export const Button: React.FC<Props> = ({
-  children,
-  color = "primary",
-  variant = "default",
-  className,
-  disabled,
-  ...rest
-}) => {
-  const buttonRef = React.useRef<HTMLButtonElement>(null);
+export const Button = React.forwardRef<HTMLButtonElement, Props>(
+  function Button(
+    {
+      children,
+      color = "primary",
+      variant = "default",
+      className,
+      disabled,
+      onClick,
+      ...rest
+    },
+    ref,
+  ) {
+    const handleClick = (e: any) => {
+      if (disabled) {
+        return;
+      }
 
-  const handleClick = (e: any) => {
-    if (disabled) {
-      return;
-    }
+      return onClick?.(e);
+    };
 
-    return rest.onClick?.(e);
-  };
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleClick(e);
+      }
+      if (e.key === " ") {
+        e.preventDefault();
+        handleClick(e);
+      }
+    };
 
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      handleClick(e);
-    }
-    if (e.key === " ") {
-      e.preventDefault();
-      handleClick(e);
-    }
-  };
+    return (
+      <NextUiButton
+        ref={ref}
+        className={cx(
+          "transition-all rounded-full py-6 px-6 lg:px-8 text-sm lg:text-base h-12 flex items-center justify-center",
+          className,
+          COLORS[color],
+          VARIANTS[variant],
+          {
+            "!bg-cold-grey-dark !text-dark-grey !cursor-not-allowed !hover:bg-cold-grey-dark":
+              disabled,
+          },
+        )}
+        {...rest}
+        onClick={handleClick}
+        onPress={handleClick}
+        onKeyDown={handleKeyDown}
+      >
+        {children}
+      </NextUiButton>
+    );
+  },
+);
 
-  return (
-    <NextUIButton
-      ref={buttonRef}
-      onKeyDown={handleKeyDown}
-      onClick={handleClick}
-      className={cx(
-        "rounded-full py-6 px-6 lg:px-8 text-sm lg:text-base",
-        className,
-        COLORS[color],
-        VARIANTS[variant],
-        {
-          "bg-cold-grey-dark text-dark-grey cursor-not-allowed hover:bg-cold-grey-dark":
-            disabled,
-        },
-      )}
-      {...rest}
-    >
-      {children}
-    </NextUIButton>
-  );
-};
+Button.displayName = "Button";
