@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 
 import { GoogleTagManager } from "@next/third-parties/google";
 
@@ -6,8 +6,6 @@ import { CmsDynamicHeaders } from "@/components/cms/dynamic-header/CmsDynamicHea
 import { Footer } from "@/components/footer/Footer";
 import { HeaderMenu } from "@/components/header-menu";
 import { Providers } from "@/components/Providers";
-
-import Loading from "./loading";
 
 import "./globals.scss";
 
@@ -29,7 +27,7 @@ export default async function RootLayout({
           <HeaderMenu />
           <CmsDynamicHeaders />
           <main className="min-h-[30vh] flex flex-col items-center justify-between w-full">
-            <Suspense fallback={<Loading />}>{children}</Suspense>
+            {children}
           </main>
           <Footer />
         </Providers>
