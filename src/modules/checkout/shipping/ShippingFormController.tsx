@@ -28,6 +28,7 @@ export const ShippingFormController: React.FC<Props> = ({ cart }) => {
       return;
     }
 
+    sendGTMEvent({ ecommerce: null });
     return sendGTMEvent({
       event: "add_shipping_info",
       shipping_price: method.amount?.value,

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { toast, Toaster, resolveValue } from "react-hot-toast";
+import { toast, Toaster, resolveValue, ToastOptions } from "react-hot-toast";
 
 import { IToastProps, Toast } from "@/components/_ui/toast-provider/Toast";
 
@@ -15,7 +15,7 @@ export const openToast = ({
   ...props
 }: IToastOptions): string =>
   toast(
-    (t) => (
+    (t: ToastOptions) => (
       <Toast {...props} isOpen={true} onClose={() => toast.dismiss(t.id)} />
     ),
     {
@@ -24,7 +24,7 @@ export const openToast = ({
     },
   );
 
-export const ToastProvider = (): JSX.Element => {
+export const ToastProvider = () => {
   return (
     <Toaster containerStyle={{ bottom: "1rem" }}>
       {(t) => <>{resolveValue(t.message, t)}</>}

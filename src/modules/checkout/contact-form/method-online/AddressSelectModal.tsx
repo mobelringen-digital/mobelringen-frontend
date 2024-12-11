@@ -4,7 +4,6 @@ import { RadioGroup } from "@nextui-org/radio";
 
 import { RadioBlock } from "@/components/_ui/radio/RadioBlock";
 import { Modal, ModalContent } from "@/components/modal";
-import { useCustomerQuery } from "@/modules/account/hooks/useCustomerQuery";
 import { CustomerDataFragment } from "@/types";
 
 interface Props {
@@ -18,9 +17,8 @@ export const AddressSelectModal: React.FC<Props> = ({
   isOpen,
   onOpenChange,
   onSelect,
+  customer,
 }) => {
-  const { data: customer } = useCustomerQuery();
-
   return (
     <Modal isOpen={isOpen} onOpenChange={onOpenChange} title="Velg adresse">
       <ModalContent>

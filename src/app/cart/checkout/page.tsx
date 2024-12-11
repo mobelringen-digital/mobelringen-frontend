@@ -1,8 +1,10 @@
+import React from "react";
+
 import getCart from "@/components/cart/actions";
 import { StaticPageContent } from "@/components/cms/static-page-content/StaticPageContent";
 import { getToken } from "@/modules/auth/actions";
 import { CheckoutPage } from "@/modules/checkout/CheckoutPage";
-import {BaseCartFragment} from "@/types";
+import { BaseCartFragment } from "@/types";
 import { NextSearchParams } from "@/utils/ts-utils";
 
 import { navigate } from "../../actions";

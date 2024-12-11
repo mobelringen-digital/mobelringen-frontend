@@ -35,6 +35,7 @@ const selectStoreGTMEvent = (product: BaseProductFragment) => {
     return;
   }
 
+  sendGTMEvent({ ecommerce: null });
   return sendGTMEvent({
     event: "select_store",
     items: [
