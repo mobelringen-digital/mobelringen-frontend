@@ -32,7 +32,7 @@ export const Button = React.forwardRef<HTMLButtonElement, Props>(
       variant = "default",
       className,
       disabled,
-      onClick,
+      onPress,
       ...rest
     },
     ref,
@@ -42,7 +42,7 @@ export const Button = React.forwardRef<HTMLButtonElement, Props>(
         return;
       }
 
-      return onClick?.(e);
+      return onPress?.(e);
     };
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
@@ -69,10 +69,9 @@ export const Button = React.forwardRef<HTMLButtonElement, Props>(
               disabled,
           },
         )}
-        {...rest}
-        onClick={handleClick}
         onPress={handleClick}
         onKeyDown={handleKeyDown}
+        {...rest}
       >
         {children}
       </NextUiButton>

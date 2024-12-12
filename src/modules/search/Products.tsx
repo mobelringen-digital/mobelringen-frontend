@@ -63,7 +63,7 @@ export const Products: React.FC<Props> = ({ query }) => {
                 <Button
                   aria-label="Last inn flere"
                   disabled={isFetchingNextPage}
-                  onClick={() => fetchNextPage()}
+                  onPress={() => fetchNextPage()}
                 >
                   Last inn flere
                 </Button>

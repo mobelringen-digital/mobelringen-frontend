@@ -122,7 +122,7 @@ const StoreSelectModal: React.FC<Props> = ({
           <Button
             aria-label="Fortsette"
             disabled={!store || isLoading}
-            onClick={submitStore}
+            onPress={submitStore}
             color="primary"
           >
             Fortsette
