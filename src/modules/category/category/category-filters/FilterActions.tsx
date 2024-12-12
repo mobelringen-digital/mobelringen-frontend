@@ -15,7 +15,7 @@ export const FilterActions: React.FC<Props> = ({ onClose, onReset }) => {
         type="button"
         color="grey"
         className="w-full"
-        onClick={onReset}
+        onPress={onReset}
       >
         Fjern alle
       </Button>
@@ -24,7 +24,7 @@ export const FilterActions: React.FC<Props> = ({ onClose, onReset }) => {
         type="submit"
         color="primary"
         className="w-full"
-        onClick={onClose}
+        onPress={onClose}
       >
         Vis resultater
       </Button>

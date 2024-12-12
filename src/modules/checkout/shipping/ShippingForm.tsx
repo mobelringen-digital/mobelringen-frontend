@@ -77,13 +77,13 @@ export const ShippingForm: React.FC<Props> = ({ cart, onSubmit, onBack }) => {
           aria-label="Tilbake"
           color="secondary"
           type="button"
-          onClick={onBack}
+          onPress={onBack}
         >
           Tilbake
         </Button>
         <Button
           aria-label="Fortsett"
-          onClick={handleSelect}
+          onPress={handleSelect}
           color="tertiary"
           type="submit"
           disabled={!selectedMethod}

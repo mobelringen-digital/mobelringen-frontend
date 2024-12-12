@@ -102,7 +102,7 @@ export const ContactForm: React.FC<Props> = ({
               aria-label="Logg inn"
               id="checkout_step1_login_init"
               color="secondary"
-              onClick={navigateToLogin}
+              onPress={navigateToLogin}
             >
               Logg inn / Opprett konto
             </Button>
