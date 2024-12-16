@@ -29,10 +29,12 @@ export const ProductTopInfo: React.FC<Props> = ({
             </h4>
           </Link>
         ) : null}
-        <StarRating
-          rating={reviews?.total_rating ?? 0}
-          total={reviews?.total_reviews ?? 0}
-        />
+        {reviews?.total_rating ? (
+          <StarRating
+            rating={reviews?.total_rating ?? 0}
+            total={reviews?.total_reviews ?? 0}
+          />
+        ) : null}
       </div>
 
       <h1 className="mt-2 mb-4 font-medium text-4xl lg:text-5xl font-feature leading-[3.5rem]">

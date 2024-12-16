@@ -3,13 +3,14 @@ import React from "react";
 import { useQueryClient } from "@tanstack/react-query";
 
 import { voteForReview } from "@/modules/product/information-accordion/reviews/actions";
-import { ReviewFragment, ReviewType } from "@/types";
+import { BaseProductFragment, ReviewFragment, ReviewType } from "@/types";
 
 interface Props {
+  product: BaseProductFragment;
   review?: ReviewFragment | null;
 }
 
-export const ReviewRating: React.FC<Props> = ({ review }) => {
+export const ReviewRating: React.FC<Props> = ({ product, review }) => {
   const queryClient = useQueryClient();
   const [upVotes, setUpVotes] = React.useState<number>(
     review?.votes_up ? parseInt(review?.votes_up) : 0,
@@ -22,10 +23,13 @@ export const ReviewRating: React.FC<Props> = ({ review }) => {
 
   const handleVote = async (vote: ReviewType, reviewId?: string | null) => {
     if (!reviewId) return;
+    if (!product.id) return;
 
-    const data = await voteForReview({ reviewId, type: vote }).catch(
-      () => null,
-    );
+    const data = await voteForReview({
+      productId: String(product.id),
+      reviewId,
+      type: vote,
+    }).catch(() => null);
 
     if (data?.success) {
       await queryClient.invalidateQueries({ queryKey: ["product-reviews"] });

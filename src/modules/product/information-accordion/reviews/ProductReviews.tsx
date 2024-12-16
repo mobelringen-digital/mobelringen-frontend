@@ -39,7 +39,7 @@ export const ProductReviews: React.FC<Props> = ({ product }) => {
               {review?.user?.display_name}
             </p>
             <div className="flex gap-1">
-              <ReviewRating review={review} />
+              <ReviewRating product={product} review={review} />
             </div>
           </div>
         </li>

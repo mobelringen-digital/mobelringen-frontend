@@ -36,11 +36,6 @@ export const InformationAccordion: React.FC<Props> = ({ product }) => {
     content: <ProductMeasurements product={product} />,
   });
 
-  accordionData.push({
-    title: `Kundeanmeldelser (${reviews?.total_reviews ?? 0})`,
-    content: <ProductReviews product={product} />,
-  });
-
   if (product?.maintenance_description) {
     accordionData.push({
       title: "Vedlikehold",
@@ -51,6 +46,11 @@ export const InformationAccordion: React.FC<Props> = ({ product }) => {
       ),
     });
   }
+
+  accordionData.push({
+    title: `Kundeanmeldelser (${reviews?.total_reviews ?? 0})`,
+    content: <ProductReviews product={product} />,
+  });
 
   return <Accordion data={accordionData} />;
 };
