@@ -7,6 +7,12 @@ import { Control, FieldErrors } from "react-hook-form";
 import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
 import { Input } from "@/components/_ui/input/Input";
 import { CheckoutFormData } from "@/modules/checkout/factories";
+import {
+  EMAIL_REGEX,
+  LETTERS_REGEX,
+  NO_PHONE_REGEX,
+  NO_POSTCODE_REGEX,
+} from "@/utils/helpers";
 import { useSession } from "@/utils/hooks/useSession";
 
 interface Props {
@@ -32,6 +38,10 @@ export const OnlineShippingFormFields: React.FC<Props> = ({
           disabled={formDisabled}
           rules={{
             required: "Dette er et påkrevd felt",
+            pattern: {
+              value: LETTERS_REGEX,
+              message: "Fornavn må kun inneholde bokstaver.",
+            },
           }}
           error={errors?.shipping?.address?.firstname}
           control={control}
@@ -46,6 +56,10 @@ export const OnlineShippingFormFields: React.FC<Props> = ({
           disabled={formDisabled}
           rules={{
             required: "Dette er et påkrevd felt",
+            pattern: {
+              value: LETTERS_REGEX,
+              message: "Etternavn må kun inneholde bokstaver.",
+            },
           }}
           error={errors?.shipping?.address?.lastname}
           control={control}
@@ -60,6 +74,11 @@ export const OnlineShippingFormFields: React.FC<Props> = ({
           disabled={formDisabled}
           rules={{
             required: "Dette er et påkrevd felt",
+            pattern: {
+              value: NO_PHONE_REGEX,
+              message:
+                "Vennligst oppgi et gyldig norsk mobilnummer. Nummeret skal være 8 sifre, eller begynne med +47 etterfulgt av 8 sifre.",
+            },
           }}
           error={errors?.shipping?.address?.telephone}
           control={control}
@@ -75,6 +94,10 @@ export const OnlineShippingFormFields: React.FC<Props> = ({
             disabled={formDisabled}
             rules={{
               required: !token ? "Dette er et påkrevd felt" : false,
+              pattern: {
+                value: EMAIL_REGEX,
+                message: "E-postadressen er ugyldig.",
+              },
             }}
             error={errors?.email}
             control={control}
@@ -103,6 +126,27 @@ export const OnlineShippingFormFields: React.FC<Props> = ({
           disabled={formDisabled}
           rules={{
             required: "Dette er et påkrevd felt",
+            pattern: {
+              value: NO_POSTCODE_REGEX,
+              message:
+                "Vi sender dessverre ikke varer til dette postnummeret. Ta kontakt med kundeservice dersom du ønsker mer informasjon.",
+            },
+            validate: {
+              isNumeric: (value) => {
+                if (isNaN(Number(value))) {
+                  return "Postnummeret må være numerisk og 4 sifre.";
+                }
+                return true;
+              },
+            },
+            minLength: {
+              value: 4,
+              message: "Postnummeret må være numerisk og 4 sifre.",
+            },
+            maxLength: {
+              value: 4,
+              message: "Postnummeret må være numerisk og 4 sifre.",
+            },
           }}
           error={errors?.shipping?.address?.postcode}
           control={control}
@@ -117,6 +161,10 @@ export const OnlineShippingFormFields: React.FC<Props> = ({
           disabled={formDisabled}
           rules={{
             required: "Dette er et påkrevd felt",
+            pattern: {
+              value: LETTERS_REGEX,
+              message: "Poststed må kun inneholde bokstaver",
+            },
           }}
           error={errors?.shipping?.address?.city}
           control={control}

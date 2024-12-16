@@ -91,7 +91,7 @@ export const PersonalInformation: React.FC<Props> = ({ customer }) => {
 
         <Button
           aria-label="Lagre endringer"
-          className="w-1/4"
+          className="w-full lg:w-1/4"
           disabled={isSubmitting}
           color="primary"
           type="submit"

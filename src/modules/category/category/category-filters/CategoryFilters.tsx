@@ -7,7 +7,7 @@ import { FilterActions } from "@/modules/category/category/category-filters/Filt
 import { FilterController } from "@/modules/category/category/category-filters/FilterController";
 import { FiltersDrawer } from "@/modules/category/category/category-filters/FiltersDrawer";
 import { SortButton } from "@/modules/category/category/category-filters/SortButton";
-import {useFiltersQuery} from "@/modules/category/category/category-filters/useFiltersQuery";
+import { useFiltersQuery } from "@/modules/category/category/category-filters/useFiltersQuery";
 import { ProductAggregationsFragment } from "@/types";
 import { useDetectOutsideClick } from "@/utils/hooks/useDetectOutsideClick";
 
@@ -34,7 +34,13 @@ export const CategoryFilters: React.FC<Props> = ({ filters, totalCount }) => {
         isOpen={isActive}
       >
         {filters?.map((filter, idx) => {
-          return <FilterController filter={filter} key={idx} />;
+          return (
+            <FilterController
+              isLastElement={idx === filters.length - 1}
+              filter={filter}
+              key={idx}
+            />
+          );
         })}
         <FilterActions onReset={resetForm} onClose={() => setIsActive(false)} />
       </FiltersDrawer>

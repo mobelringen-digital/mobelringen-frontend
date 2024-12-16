@@ -7,6 +7,7 @@ import { Control } from "react-hook-form";
 import { FieldWrapper } from "@/components/_ui/form/FieldWrapper";
 import { Input } from "@/components/_ui/input/Input";
 import { CheckoutFormData } from "@/modules/checkout/factories";
+import { EMAIL_REGEX, LETTERS_REGEX, NO_PHONE_REGEX } from "@/utils/helpers";
 import { useSession } from "@/utils/hooks/useSession";
 
 interface Props {
@@ -31,6 +32,10 @@ export const MethodClickAndCollect: React.FC<Props> = ({
             disabled={formDisabled}
             rules={{
               required: !token ? "Dette er et påkrevd felt" : false,
+              pattern: {
+                value: EMAIL_REGEX,
+                message: "E-postadressen er ugyldig.",
+              },
             }}
             control={control}
             label="E-post *"
@@ -45,6 +50,10 @@ export const MethodClickAndCollect: React.FC<Props> = ({
           disabled={formDisabled}
           rules={{
             required: "Dette er et påkrevd felt",
+            pattern: {
+              value: LETTERS_REGEX,
+              message: "Fornavn må kun inneholde bokstaver.",
+            },
           }}
           control={control}
           label="Fornavn *"
@@ -58,6 +67,10 @@ export const MethodClickAndCollect: React.FC<Props> = ({
           disabled={formDisabled}
           rules={{
             required: "Dette er et påkrevd felt",
+            pattern: {
+              value: LETTERS_REGEX,
+              message: "Etternavn må kun inneholde bokstaver.",
+            },
           }}
           control={control}
           label="Etternavn *"
@@ -71,6 +84,11 @@ export const MethodClickAndCollect: React.FC<Props> = ({
           disabled={formDisabled}
           rules={{
             required: "Dette er et påkrevd felt",
+            pattern: {
+              value: NO_PHONE_REGEX,
+              message:
+                "Vennligst oppgi et gyldig norsk mobilnummer. Nummeret skal være 8 sifre, eller begynne med +47 etterfulgt av 8 sifre.",
+            },
           }}
           control={control}
           label="Mobilnummer *"

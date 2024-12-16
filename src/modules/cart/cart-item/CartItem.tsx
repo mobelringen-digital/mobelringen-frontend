@@ -38,6 +38,7 @@ export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
       return;
     }
 
+    sendGTMEvent({ ecommerce: null });
     return sendGTMEvent({
       event: "remove_from_cart",
       currency: "NOK",

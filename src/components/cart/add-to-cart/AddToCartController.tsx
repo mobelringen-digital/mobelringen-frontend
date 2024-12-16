@@ -4,11 +4,11 @@ import React from "react";
 
 import { sendGTMEvent } from "@next/third-parties/google";
 
+import dynamic from "next/dynamic";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/_ui/button/Button";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
-import { ProductAddedModal } from "@/components/cart/add-to-cart/ProductAddedModal";
 import {
   AddProductToCartMutation,
   Availability,
@@ -18,6 +18,11 @@ import {
   GetProductStockQuery,
 } from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
+
+const ProductAddedModal = dynamic(
+  () => import("@/components/cart/add-to-cart/ProductAddedModal"),
+  { ssr: false },
+);
 
 interface Props {
   isDisabled?: boolean;
@@ -35,6 +40,7 @@ const selectStoreGTMEvent = (product: BaseProductFragment) => {
     return;
   }
 
+  sendGTMEvent({ ecommerce: null });
   return sendGTMEvent({
     event: "select_store",
     items: [
@@ -103,12 +109,15 @@ export const AddToCartController: React.FC<Props> = ({
   return (
     <>
       {isLoading ? <PageTopLoader /> : null}
-      <ProductAddedModal
-        product={product}
-        isOpen={isOpen}
-        onOpenChange={() => setClose()}
-        onClose={() => setClose()}
-      />
+      {isOpen ? (
+        <ProductAddedModal
+          product={product}
+          isOpen={isOpen}
+          onOpenChange={() => setClose()}
+          onClose={() => setClose()}
+        />
+      ) : null}
+
       <div className="flex flex-col gap-4">
         <Button
           aria-label=" Legg i handlekurv"

@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "mesh-dev": "mesh dev",
-    "build": "next build",
+    "build": "yarn codegen && next build",
     "start": "next start",
     "lint": "next lint",
     "codegen": "mesh build && graphql-codegen --config codegen.ts",
@@ -14,15 +14,15 @@
   },
   "dependencies": {
     "@next/third-parties": "^14.2.11",
-    "@nextui-org/react": "^2.4.2",
+    "@nextui-org/react": "^2.6.8",
     "@sentry/nextjs": "8",
-    "@tanstack/react-query": "^5.36.0",
+    "@tanstack/react-query": "^5.62.3",
     "@tanstack/react-query-devtools": "^5.56.2",
     "@u-wave/react-vimeo": "^0.9.10",
     "classnames": "^2.5.1",
-    "framer-motion": "^11.2.10",
+    "framer-motion": "^11.13.5",
     "leaflet": "^1.9.4",
-    "next": "14.2.19",
+    "next": "^14.2.15",
     "qs": "^6.13.0",
     "react": "^19.0.0",
     "react-cookie": "^7.1.4",
@@ -39,7 +39,6 @@
     "sass": "^1.77.8",
     "sharp": "^0.33.5",
     "slick-carousel": "^1.8.1",
-    "typescript": "^5.7.2",
     "use-debounce": "^10.0.3"
   },
   "devDependencies": {
@@ -55,8 +54,8 @@
     "@types/lodash.debounce": "^4",
     "@types/node": "^20",
     "@types/qs": "^6.9.15",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
     "@types/react-responsive-masonry": "^2",
     "@types/react-slick": "^0.23.13",
     "@typescript-eslint/eslint-plugin": "^7.8.0",
@@ -72,8 +71,9 @@
     "lint-staged": "^15.2.5",
     "postcss": "^8",
     "prettier": "^3.2.5",
-    "tailwindcss": "^3.4.1",
-    "ts-node": "^10.9.2"
+    "tailwindcss": "^3.4.16",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
   },
   "resolutions": {
     "strip-ansi": "6.0.0"

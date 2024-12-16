@@ -50,6 +50,7 @@ export const LoginPage: React.FC = () => {
   }, [cookie.token, pathname, router, searchParams, setCookie]);
 
   const loginGTMEvent = () => {
+    sendGTMEvent({ ecommerce: null });
     return sendGTMEvent({
       event: "login",
       method: "email",

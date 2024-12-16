@@ -73,6 +73,9 @@ export const CmsStoreFragment = graphql(`
     content {
       ...CmsMultipleTextBlock
     }
+    hoursDescription {
+      ...CmsTextBlock
+    }
   }
 `);
 
