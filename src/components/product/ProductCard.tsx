@@ -46,7 +46,12 @@ export const ProductCard: React.FC<Props> = ({
           labels={labels}
           addToWishList={
             <>
-              {product.sku ? <AddToWishList productSku={product.sku} /> : null}
+              {product.sku ? (
+                <AddToWishList
+                  productId={String(product.id)}
+                  productSku={product.sku}
+                />
+              ) : null}
             </>
           }
         />

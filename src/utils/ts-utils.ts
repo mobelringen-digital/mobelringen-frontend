@@ -4,6 +4,6 @@ export type ArrayElement<ArrayType> =
 export type NextSearchParams = { [key: string]: string | string[] | undefined };
 
 export type NextServerComponentProps = {
-  params: { url: Array<string> };
+  params: Record<string, string>;
   searchParams: NextSearchParams;
 };

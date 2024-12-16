@@ -12,20 +12,8 @@ export const CustomerWishListItemFragment = graphql(`
   fragment CustomerWishListItem on WishlistItemInterface {
     id
     product {
-      name
-      sku
-      url_key
-      small_image {
-        url
-      }
-      price_range {
-        maximum_price {
-          final_price {
-            currency
-            value
-          }
-        }
-      }
+      __typename
+      ...BaseProduct
     }
   }
 `);

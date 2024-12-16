@@ -1,7 +1,10 @@
+"use client";
+
 import React from "react";
 
 import { Debugger } from "@/components/Debugger";
 import { AccountPageLayout } from "@/modules/account/components/AccountPageLayout";
+import { CreateWishlistModal } from "@/modules/account/wishlist/CreateWishlistModal";
 import { WishlistListItem } from "@/modules/account/wishlist/WishlistListItem";
 import { CustomerDataFragment } from "@/types";
 
@@ -10,8 +13,29 @@ interface Props {
 }
 
 export const WishlistPage: React.FC<Props> = ({ wishlist }) => {
+  const [addNewWishlist, setAddNewWishlist] = React.useState(false);
+  const canBeEdited = wishlist && wishlist?.length > 1;
+
   return (
-    <AccountPageLayout title="Ønskelister">
+    <AccountPageLayout
+      title="Ønskelister"
+      // rightContent={
+      //   <Button
+      //     color="secondary"
+      //     onPress={() => setAddNewWishlist(true)}
+      //     className="bg-warm-grey rounded-full p-4"
+      //   >
+      //     Lag ny ønskeliste
+      //   </Button>
+      // }
+    >
+      {addNewWishlist ? (
+        <CreateWishlistModal
+          isOpen={addNewWishlist}
+          onClose={() => setAddNewWishlist(false)}
+        />
+      ) : null}
+
       <div className="flex flex-col gap-4">
         {wishlist?.map((item) => {
           const isMoreThanFour = (item?.items_v2?.items?.length ?? 0) > 4;
@@ -21,6 +45,7 @@ export const WishlistPage: React.FC<Props> = ({ wishlist }) => {
               key={item?.id}
               isMoreThanFour={isMoreThanFour}
               item={item}
+              canBeEdited={canBeEdited}
             />
           );
         })}
