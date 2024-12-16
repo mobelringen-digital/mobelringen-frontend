@@ -53,7 +53,7 @@ export const ChangeStoreModal: React.FC<Props> = ({
                         size="sm"
                         className="h-8"
                         color="secondary"
-                        onClick={() => onStoreChange(store)}
+                        onPress={() => onStoreChange(store)}
                       >
                         Velg butikk
                       </Button>

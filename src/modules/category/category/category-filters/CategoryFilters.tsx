@@ -25,6 +25,14 @@ export const CategoryFilters: React.FC<Props> = ({ filters, totalCount }) => {
     return resetQueryFilters();
   };
 
+  const handleClick = () => {
+    setIsActive((prev) => !prev);
+  };
+
+  const handleClose = () => {
+    setIsActive(false);
+  };
+
   return (
     <div className="mb-4">
       <FiltersDrawer
@@ -42,7 +50,7 @@ export const CategoryFilters: React.FC<Props> = ({ filters, totalCount }) => {
             />
           );
         })}
-        <FilterActions onReset={resetForm} onClose={() => setIsActive(false)} />
+        <FilterActions onReset={resetForm} onClose={handleClose} />
       </FiltersDrawer>
 
       <div className="flex justify-between items-start">
@@ -50,7 +58,7 @@ export const CategoryFilters: React.FC<Props> = ({ filters, totalCount }) => {
           aria-label="Alle filtre"
           color="grey"
           className="flex items-center gap-2"
-          onClick={() => setIsActive((prev) => !prev)}
+          onPress={handleClick}
         >
           Alle filtre <Filters />
         </Button>

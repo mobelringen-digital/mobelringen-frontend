@@ -97,7 +97,7 @@ export const CmsPagesList: React.FC<Props> = ({ data }) => {
             <Button
               aria-label="Last inn flere"
               disabled={isFetchingNextPage}
-              onClick={() => fetchNextPage()}
+              onPress={() => fetchNextPage()}
             >
               Last inn flere
             </Button>
