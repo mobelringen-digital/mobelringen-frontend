@@ -17,7 +17,7 @@ export const AccountPageLayout: React.FC<Props> = ({
     <div className="flex flex-col gap-6 lg:gap-12">
       <div className="flex w-full justify-between">
         {title ? (
-          <div className="flex item-center gap-2">
+          <div className="flex flex-col gap-4">
             {goBack ? goBack : null}
             <h1 className="font-feature text-3xl lg:text-5xl">{title}</h1>
           </div>

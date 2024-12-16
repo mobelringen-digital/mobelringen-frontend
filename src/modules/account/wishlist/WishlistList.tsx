@@ -24,6 +24,7 @@ export const WishlistList: React.FC<Props> = ({ wishlist }) => {
           className="text-left flex items-center gap-1"
         >
           <ArrowLeftAlt id="stores-back-arrow" />
+          <span>Tilbake til ønskelister</span>
         </Link>
       }
       title={wishlist.name ?? "Ønskelister"}
