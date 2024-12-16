@@ -14,7 +14,7 @@ interface Props {
   wishlist: CustomerWishlistFragment;
 }
 
-export const WishlistList: React.FC<Props> = ({ wishlist }) => {
+export const WishlistItemsList: React.FC<Props> = ({ wishlist }) => {
   return (
     <AccountPageLayout
       goBack={

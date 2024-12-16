@@ -4,8 +4,8 @@ import React from "react";
 
 import { Debugger } from "@/components/Debugger";
 import { AccountPageLayout } from "@/modules/account/components/AccountPageLayout";
-import { CreateWishlistModal } from "@/modules/account/wishlist/CreateWishlistModal";
-import { WishlistListItem } from "@/modules/account/wishlist/WishlistListItem";
+import { CreateWishlistModal } from "@/modules/account/wishlist/create-wishlist/CreateWishlistModal";
+import { WishlistBlock } from "@/modules/account/wishlist/wishlist-block/WishlistBlock";
 import { CustomerDataFragment } from "@/types";
 
 interface Props {
@@ -38,12 +38,9 @@ export const WishlistPage: React.FC<Props> = ({ wishlist }) => {
 
       <div className="flex flex-col gap-4">
         {wishlist?.map((item) => {
-          const isMoreThanFour = (item?.items_v2?.items?.length ?? 0) > 4;
-
           return (
-            <WishlistListItem
+            <WishlistBlock
               key={item?.id}
-              isMoreThanFour={isMoreThanFour}
               item={item}
               canBeEdited={canBeEdited}
             />

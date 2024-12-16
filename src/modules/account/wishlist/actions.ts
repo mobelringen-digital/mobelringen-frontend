@@ -22,7 +22,7 @@ export async function getWishlist() {
 
 export async function createWishlist(
   name: string,
-  visibility: WishlistVisibilityEnum,
+  visibility: WishlistVisibilityEnum = WishlistVisibilityEnum.Private,
 ) {
   const token = await getToken();
 

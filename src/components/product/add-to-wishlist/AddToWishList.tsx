@@ -12,7 +12,6 @@ import cx from "classnames";
 
 import { Favorite } from "@/components/_ui/icons/figma/Favorite";
 import { FavoriteFilled } from "@/components/_ui/icons/figma/FavoriteFilled";
-import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { openToast } from "@/components/_ui/toast-provider";
 import {
   addToWishlist,
@@ -102,7 +101,6 @@ export const AddToWishList: React.FC<Props> = ({
   if (isSingleWishlist) {
     return (
       <>
-        {isLoading || isFetching ? <PageTopLoader /> : null}
         <button
           disabled={isLoading || isFetching}
           onClick={(e) => {
@@ -126,7 +124,6 @@ export const AddToWishList: React.FC<Props> = ({
 
   return (
     <>
-      {isLoading || isFetching ? <PageTopLoader /> : null}
       <Dropdown className="z-20" isDisabled={isLoading || isFetching}>
         <DropdownTrigger
           disabled={isLoading || isFetching}

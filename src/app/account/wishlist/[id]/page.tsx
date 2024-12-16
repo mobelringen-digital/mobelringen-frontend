@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { getCustomerDetails } from "@/modules/account/account/actions";
-import { WishlistList } from "@/modules/account/wishlist/WishlistList";
+import { WishlistItemsList } from "@/modules/account/wishlist/wishlist-items-list/WishlistItemsList";
 import { NextServerComponentProps } from "@/utils/ts-utils";
 
 export default async function Wishlist({ params }: NextServerComponentProps) {
@@ -14,7 +14,7 @@ export default async function Wishlist({ params }: NextServerComponentProps) {
 
   return (
     <>
-      <WishlistList wishlist={wishlist} />
+      <WishlistItemsList wishlist={wishlist} />
     </>
   );
 }

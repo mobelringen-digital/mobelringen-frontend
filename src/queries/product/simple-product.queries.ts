@@ -46,7 +46,7 @@ export const CreateWishlistDocument = graphql(`
     $name: String!
     $visibility: WishlistVisibilityEnum!
   ) {
-    createWishlist(input: { name: $name, visibility: PUBLIC }) {
+    createWishlist(input: { name: $name, visibility: $visibility }) {
       wishlist {
         name
       }
