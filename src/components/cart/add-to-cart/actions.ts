@@ -3,11 +3,17 @@
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
+import getCart from "@/components/cart/actions";
 import { updateCartItemsInStore } from "@/components/store-selector/actions";
 import { getToken } from "@/modules/auth/actions";
 import { setDeliveryType } from "@/modules/cart/cart-methods/actions";
 import { CreateEmptyCartDocument } from "@/queries/cart.queries";
-import { AddProductToCartDocument, CartItemInput, DeliveryType } from "@/types";
+import {
+  AddProductToCartDocument,
+  BaseProductFragment,
+  CartItemInput,
+  DeliveryType,
+} from "@/types";
 import {
   authorizedMagentoClient,
   baseMagentoClient,
@@ -40,9 +46,6 @@ export async function addToCart(
     });
   }
 
-  revalidateTag("cart");
-  revalidateTag("cart-items");
-
   return data;
 }
 
@@ -50,10 +53,7 @@ export async function createEmptyCart() {
   const cookieStore = cookies();
   const data = await baseMagentoClient("POST", {
     cache: "no-store",
-  }).request(
-    CreateEmptyCartDocument,
-    {},
-  );
+  }).request(CreateEmptyCartDocument, {});
 
   if (data.createEmptyCart) {
     const today = new Date();
@@ -61,9 +61,6 @@ export async function createEmptyCart() {
     cookieStore.set("cart", data.createEmptyCart, {
       expires: oneWeekFromNow,
     });
-
-    revalidateTag("cart");
-    revalidateTag("cart-items");
   }
 
   return data;
@@ -80,3 +77,41 @@ export async function createCartAndAddProduct(
 
   return await addToCart(cartId, cartItems, preferredMethod);
 }
+
+export const addItemToCartHandler = async (
+  product: BaseProductFragment,
+  preferredMethod: DeliveryType,
+  quantity: number,
+) => {
+  const cart = await getCart();
+
+  if (cart?.id && product.sku && quantity) {
+    return await addToCart(
+      cart?.id,
+      [
+        {
+          sku: product.sku,
+          quantity,
+        },
+      ],
+      preferredMethod,
+    );
+  }
+
+  if (!cart?.id && product.sku && quantity) {
+    return await createCartAndAddProduct(
+      [
+        {
+          sku: product.sku,
+          quantity,
+        },
+      ],
+      preferredMethod,
+    );
+  }
+};
+
+export const revalidateCart = async () => {
+  revalidateTag("cart");
+  revalidateTag("cart-items");
+};

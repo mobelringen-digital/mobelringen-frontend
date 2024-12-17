@@ -8,20 +8,27 @@ import { ProductImage } from "@/components/product/ProductImage";
 import { ProductInformation } from "@/components/product/ProductInformation";
 import { ProductLabels } from "@/components/product/ProductLabels";
 import { ProductPricing } from "@/components/product/ProductPricing";
-import { ProductStock } from "@/components/product/ProductStock";
 import { BaseProductDataForCardFragment } from "@/types";
 import { usePriceRange } from "@/utils/hooks/usePriceRange";
+
+export const CARD_SIZE = {
+  small: "lg:h-[200px]",
+  large: "lg:h-[420px]",
+};
 
 interface Props {
   product: BaseProductDataForCardFragment;
   className?: string;
   onClick?: (product: BaseProductDataForCardFragment) => void;
+  hasAddToCart?: boolean;
+  cardHeight?: keyof typeof CARD_SIZE;
 }
 
 export const ProductCard: React.FC<Props> = ({
   product,
   className,
   onClick,
+  cardHeight = "large",
 }) => {
   const priceRange = product?.price_range;
   const productImage = product?.image;
@@ -35,10 +42,13 @@ export const ProductCard: React.FC<Props> = ({
       <Link
         legacyBehavior={false}
         onClick={onClick ? () => onClick(product) : undefined}
-        className="relative flex items-center justify-center bg-warm-grey px-2 lg:px-6 py-8 lg:py-12 rounded-2xl h-[240px] lg:h-[420px]"
+        className={cx(
+          "relative flex items-center justify-center bg-warm-grey px-2 lg:px-6 py-8 lg:py-12 rounded-2xl h-[240px]",
+          CARD_SIZE[cardHeight],
+        )}
         href={`/${product.canonical_url}`}
       >
-        <ProductImage productImage={productImage} />
+        <ProductImage cardHeight={cardHeight} productImage={productImage} />
         <ProductLabels
           lowPrice={product.low_price}
           discount={percentageDiscount}
@@ -49,7 +59,7 @@ export const ProductCard: React.FC<Props> = ({
         <ProductInformation product={product} />
         <ProductPricing priceRange={priceRange} />
       </div>
-      <ProductStock product={product} />
+      {/*<ProductStock product={product} />*/}
     </div>
   );
 };

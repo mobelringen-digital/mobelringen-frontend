@@ -9,8 +9,8 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/_ui/button/Button";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
+import { revalidateCart } from "@/components/cart/add-to-cart/actions";
 import {
-  AddProductToCartMutation,
   Availability,
   BaseProductFragment,
   BaseStoreFragment,
@@ -28,9 +28,7 @@ interface Props {
   isDisabled?: boolean;
   product: BaseProductFragment;
   quantity: number;
-  onAddToCart: (
-    preferredMethod: DeliveryType,
-  ) => Promise<string | AddProductToCartMutation | undefined>;
+  onAddToCart: (preferredMethod: DeliveryType) => Promise<undefined | void>;
   stock?: GetProductStockQuery;
   selectedStore?: BaseStoreFragment | null;
 }
@@ -77,7 +75,8 @@ export const AddToCartController: React.FC<Props> = ({
   const canBuyCAC =
     stock?.getProductStock.cac?.availability !== Availability.OutOfStock;
 
-  const setClose = () => {
+  const setClose = async () => {
+    await revalidateCart();
     setIsLoading(false);
     return router.push(pathname);
   };
@@ -92,7 +91,7 @@ export const AddToCartController: React.FC<Props> = ({
 
     setIsLoading(true);
     await onAddToCart(preferredMethod).finally(() => {
-      router.push(`${pathname}?cart=true`);
+      router.push(`${pathname}?cart=true&preferredMethod=${preferredMethod}`);
     });
   };
 
@@ -115,6 +114,7 @@ export const AddToCartController: React.FC<Props> = ({
           isOpen={isOpen}
           onOpenChange={() => setClose()}
           onClose={() => setClose()}
+          selectedStore={selectedStore}
         />
       ) : null}
 

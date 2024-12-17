@@ -3,10 +3,7 @@ import React from "react";
 import { sendGTMEvent } from "@next/third-parties/google";
 
 import { openToast } from "@/components/_ui/toast-provider";
-import {
-  addToCart,
-  createCartAndAddProduct,
-} from "@/components/cart/add-to-cart/actions";
+import { addItemToCartHandler } from "@/components/cart/add-to-cart/actions";
 import { AddToCartController } from "@/components/cart/add-to-cart/AddToCartController";
 import {
   Availability,
@@ -26,44 +23,43 @@ interface Props {
   selectedStore?: BaseStoreFragment | null;
 }
 
+export const addToCartGTMEvent = (
+  preferredMethod: DeliveryType,
+  product: BaseProductFragment,
+  quantity: number,
+  selectedStore?: BaseStoreFragment | null,
+) => {
+  return sendGTMEvent({
+    event: "add_to_cart",
+    currency: "NOK",
+    value: product?.price_range?.maximum_price?.final_price?.value,
+    selected_store: selectedStore?.name,
+    delivery_method: preferredMethod,
+    items: [
+      {
+        item_id: product.sku,
+        addable_to_cart: product.addable_to_cart,
+        item_name: product.name,
+        item_brand: product.productBrand?.name,
+        price: product.price_range.maximum_price?.final_price.value,
+        discount: product.price_range.maximum_price?.discount?.amount_off,
+        quantity: quantity,
+        ...formatGTMCategories(
+          product.categories?.map((category) => ({
+            name: category?.name,
+          })),
+        ),
+      },
+    ],
+  });
+};
+
 export const AddToCart: React.FC<Props> = ({
   product,
   quantity,
-  cart,
   stock,
   selectedStore,
 }) => {
-  const addToCartGTMEvent = (preferredMethod: DeliveryType) => {
-    if (!cart?.id) {
-      return;
-    }
-
-    sendGTMEvent({ ecommerce: null });
-    return sendGTMEvent({
-      event: "add_to_cart",
-      currency: "NOK",
-      value: product?.price_range?.maximum_price?.final_price?.value,
-      selected_store: selectedStore?.name,
-      delivery_method: preferredMethod,
-      items: [
-        {
-          item_id: product.sku,
-          addable_to_cart: product.addable_to_cart,
-          item_name: product.name,
-          item_brand: product.productBrand?.name,
-          price: product.price_range.maximum_price?.final_price.value,
-          discount: product.price_range.maximum_price?.discount?.amount_off,
-          quantity: quantity,
-          ...formatGTMCategories(
-            product.categories?.map((category) => ({
-              name: category?.name,
-            })),
-          ),
-        },
-      ],
-    });
-  };
-
   const handleAddItemToCart = async (preferredMethod: DeliveryType) => {
     if (
       preferredMethod === DeliveryType.Online &&
@@ -79,48 +75,17 @@ export const AddToCart: React.FC<Props> = ({
       return;
     }
 
-    if (cart?.id && product.sku && quantity) {
-      addToCartGTMEvent(preferredMethod);
-      const data = await addToCart(
-        cart?.id,
-        [
-          {
-            sku: product.sku,
-            quantity,
-          },
-        ],
-        preferredMethod,
-      );
+    return addItemToCartHandler(product, preferredMethod, quantity).then(
+      (data) => {
+        if (data?.addProductsToCart?.user_errors) {
+          data.addProductsToCart.user_errors.forEach((error) => {
+            return openToast({ content: error?.message });
+          });
+        }
 
-      if (data.addProductsToCart?.user_errors) {
-        data.addProductsToCart.user_errors.forEach((error) => {
-          return openToast({ content: error?.message });
-        });
-      }
-
-      return data;
-    }
-
-    if (!cart?.id && product.sku && quantity) {
-      addToCartGTMEvent(preferredMethod);
-      const data = await createCartAndAddProduct(
-        [
-          {
-            sku: product.sku,
-            quantity,
-          },
-        ],
-        preferredMethod,
-      );
-
-      if (data?.addProductsToCart?.user_errors) {
-        data.addProductsToCart.user_errors.forEach((error) => {
-          return openToast({ content: error?.message });
-        });
-      }
-
-      return data;
-    }
+        addToCartGTMEvent(preferredMethod, product, quantity);
+      },
+    );
   };
 
   return (
