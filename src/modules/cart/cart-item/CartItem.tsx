@@ -41,23 +41,25 @@ export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
     sendGTMEvent({ ecommerce: null });
     return sendGTMEvent({
       event: "remove_from_cart",
-      currency: "NOK",
-      value: item.prices?.price.value,
-      items: [
-        {
-          item_id: item?.product.sku,
-          item_name: item?.product.name,
-          item_brand: item?.product.brand,
-          price: item?.prices?.price.value,
-          discount: item?.prices?.total_item_discount?.value,
-          quantity: item?.quantity,
-          ...formatGTMCategories(
-            item?.product.categories?.map((category) => ({
-              name: category?.name,
-            })),
-          ),
-        },
-      ],
+      ecommerce: {
+        currency: "NOK",
+        value: item.prices?.price.value,
+        items: [
+          {
+            item_id: item?.product.sku,
+            item_name: item?.product.name,
+            item_brand: item?.product.brand,
+            price: item?.prices?.price.value,
+            discount: item?.prices?.total_item_discount?.value,
+            quantity: item?.quantity,
+            ...formatGTMCategories(
+              item?.product.categories?.map((category) => ({
+                name: category?.name,
+              })),
+            ),
+          },
+        ],
+      },
     });
   };
 

@@ -43,20 +43,22 @@ const selectStoreGTMEvent = (product: BaseProductFragment) => {
   sendGTMEvent({ ecommerce: null });
   return sendGTMEvent({
     event: "select_store",
-    items: [
-      {
-        item_id: product.sku,
-        item_name: product.name,
-        item_brand: product.productBrand?.name,
-        price: product.price_range.maximum_price?.final_price.value,
-        discount: product.price_range.maximum_price?.discount?.amount_off,
-        ...formatGTMCategories(
-          product.categories?.map((category) => ({
-            name: category?.name,
-          })),
-        ),
-      },
-    ],
+    ecommerce: {
+      items: [
+        {
+          item_id: product.sku,
+          item_name: product.name,
+          item_brand: product.productBrand?.name,
+          price: product.price_range.maximum_price?.final_price.value,
+          discount: product.price_range.maximum_price?.discount?.amount_off,
+          ...formatGTMCategories(
+            product.categories?.map((category) => ({
+              name: category?.name,
+            })),
+          ),
+        },
+      ],
+    },
   });
 };
 

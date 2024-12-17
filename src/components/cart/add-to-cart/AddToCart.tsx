@@ -38,29 +38,31 @@ export const AddToCart: React.FC<Props> = ({
       return;
     }
 
-    sendGTMEvent({ ecommerce: {} });
+    sendGTMEvent({ ecommerce: null });
     return sendGTMEvent({
       event: "add_to_cart",
-      currency: "NOK",
-      value: product?.price_range?.maximum_price?.final_price?.value,
-      selected_store: selectedStore?.name,
-      delivery_method: preferredMethod,
-      items: [
-        {
-          item_id: product.sku,
-          addable_to_cart: product.addable_to_cart,
-          item_name: product.name,
-          item_brand: product.productBrand?.name,
-          price: product.price_range.maximum_price?.final_price.value,
-          discount: product.price_range.maximum_price?.discount?.amount_off,
-          quantity: quantity,
-          ...formatGTMCategories(
-            product.categories?.map((category) => ({
-              name: category?.name,
-            })),
-          ),
-        },
-      ],
+      ecommerce: {
+        currency: "NOK",
+        value: product?.price_range?.maximum_price?.final_price?.value,
+        selected_store: selectedStore?.name,
+        delivery_method: preferredMethod,
+        items: [
+          {
+            item_id: product.sku,
+            addable_to_cart: product.addable_to_cart,
+            item_name: product.name,
+            item_brand: product.productBrand?.name,
+            price: product.price_range.maximum_price?.final_price.value,
+            discount: product.price_range.maximum_price?.discount?.amount_off,
+            quantity: quantity,
+            ...formatGTMCategories(
+              product.categories?.map((category) => ({
+                name: category?.name,
+              })),
+            ),
+          },
+        ],
+      },
     });
   };
 
