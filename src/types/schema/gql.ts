@@ -130,10 +130,11 @@ const documents = {
     "\n  fragment ProductReviews on ProductYotpoReviews {\n    total_reviews\n    total_rating\n    reviews {\n      ...Review\n    }\n  }\n": types.ProductReviewsFragmentDoc,
     "\n  query GetProductReviews($productId: String!) {\n    getReviewsByProductId(product_id: $productId) {\n      ...ProductReviews\n    }\n  }\n": types.GetProductReviewsDocument,
     "\n  mutation VoteForReview(\n    $productId: String!\n    $reviewId: String!\n    $type: ReviewType\n  ) {\n    voteForReview(product_id: $productId, review_id: $reviewId, type: $type) {\n      message\n      success\n    }\n  }\n": types.VoteForReviewDocument,
+    "\n  query CrossSellStockProducts(\n    $product_id: Int!\n    $pos_type: DeliveryType!\n    $pos_id: String\n  ) {\n    crossSellStockProducts(\n      product_id: $product_id\n      pos_type: $pos_type\n      pos_id: $pos_id\n    ) {\n      ...BaseProduct\n    }\n  }\n": types.CrossSellStockProductsDocument,
     "\n  fragment SimpleProduct on SimpleProduct {\n    ...BaseProduct\n  }\n": types.SimpleProductFragmentDoc,
     "\n  mutation AddProductsToWishlist($wishlistId: ID!, $sku: String!) {\n    addProductsToWishlist(\n      wishlistId: $wishlistId\n      wishlistItems: { sku: $sku, quantity: 1 }\n    ) {\n      wishlist {\n        id\n        items_count\n      }\n    }\n  }\n": types.AddProductsToWishlistDocument,
     "\n  mutation RemoveProductsFromWishlist(\n    $wishlistId: ID!\n    $wishlistItemsIds: [ID!]!\n  ) {\n    removeProductsFromWishlist(\n      wishlistId: $wishlistId\n      wishlistItemsIds: $wishlistItemsIds\n    ) {\n      user_errors {\n        code\n        message\n      }\n      wishlist {\n        id\n        items_count\n      }\n    }\n  }\n": types.RemoveProductsFromWishlistDocument,
-    "\n  mutation CreateWishlist(\n    $name: String!\n    $visibility: WishlistVisibilityEnum!\n  ) {\n    createWishlist(input: { name: $name, visibility: PUBLIC }) {\n      wishlist {\n        name\n      }\n    }\n  }\n": types.CreateWishlistDocument,
+    "\n  mutation CreateWishlist(\n    $name: String!\n    $visibility: WishlistVisibilityEnum!\n  ) {\n    createWishlist(input: { name: $name, visibility: $visibility }) {\n      wishlist {\n        name\n      }\n    }\n  }\n": types.CreateWishlistDocument,
     "\n  fragment BaseProductDataForCard on ProductInterface {\n    __typename\n    name\n    sku\n    id\n    canonical_url\n    addable_to_cart\n    low_price\n    stocks {\n      online {\n        availability\n        message\n      }\n      cac {\n        availability\n        message\n      }\n    }\n    productBrand {\n      name\n    }\n    categories {\n      name\n    }\n    short_description {\n      html\n    }\n    price_range {\n      ...ProductPriceRange\n    }\n    image {\n      ...ProductImageFragment\n    }\n    productLabel {\n      ...ProductLabel\n    }\n  }\n": types.BaseProductDataForCardFragmentDoc,
     "\n  fragment ProductSeriesSliderData on ProductInterface {\n    __typename\n    series {\n      ...BaseProductDataForCard\n    }\n  }\n": types.ProductSeriesSliderDataFragmentDoc,
     "\n  fragment RelatedProductsSliderData on ProductInterface {\n    __typename\n    related_products {\n      ...BaseProductDataForCard\n    }\n  }\n": types.RelatedProductsSliderDataFragmentDoc,
@@ -632,6 +633,10 @@ export function graphql(source: "\n  mutation VoteForReview(\n    $productId: St
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function graphql(source: "\n  query CrossSellStockProducts(\n    $product_id: Int!\n    $pos_type: DeliveryType!\n    $pos_id: String\n  ) {\n    crossSellStockProducts(\n      product_id: $product_id\n      pos_type: $pos_type\n      pos_id: $pos_id\n    ) {\n      ...BaseProduct\n    }\n  }\n"): (typeof documents)["\n  query CrossSellStockProducts(\n    $product_id: Int!\n    $pos_type: DeliveryType!\n    $pos_id: String\n  ) {\n    crossSellStockProducts(\n      product_id: $product_id\n      pos_type: $pos_type\n      pos_id: $pos_id\n    ) {\n      ...BaseProduct\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function graphql(source: "\n  fragment SimpleProduct on SimpleProduct {\n    ...BaseProduct\n  }\n"): (typeof documents)["\n  fragment SimpleProduct on SimpleProduct {\n    ...BaseProduct\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -644,7 +649,7 @@ export function graphql(source: "\n  mutation RemoveProductsFromWishlist(\n    $
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  mutation CreateWishlist(\n    $name: String!\n    $visibility: WishlistVisibilityEnum!\n  ) {\n    createWishlist(input: { name: $name, visibility: PUBLIC }) {\n      wishlist {\n        name\n      }\n    }\n  }\n"): (typeof documents)["\n  mutation CreateWishlist(\n    $name: String!\n    $visibility: WishlistVisibilityEnum!\n  ) {\n    createWishlist(input: { name: $name, visibility: PUBLIC }) {\n      wishlist {\n        name\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  mutation CreateWishlist(\n    $name: String!\n    $visibility: WishlistVisibilityEnum!\n  ) {\n    createWishlist(input: { name: $name, visibility: $visibility }) {\n      wishlist {\n        name\n      }\n    }\n  }\n"): (typeof documents)["\n  mutation CreateWishlist(\n    $name: String!\n    $visibility: WishlistVisibilityEnum!\n  ) {\n    createWishlist(input: { name: $name, visibility: $visibility }) {\n      wishlist {\n        name\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
