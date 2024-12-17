@@ -19,13 +19,14 @@ export const NavbarSearch = () => {
       </button>
       <div
         className={cx("absolute top-[75px] left-0 right-0 transition-all", {
-          "opacity-100 visible translate-y-0 border-t border-dark-grey border-opacity-10 z-30": isActive,
+          "opacity-100 visible translate-y-0 border-t border-dark-grey border-opacity-10 z-30":
+            isActive,
           "opacity-0 invisible -translate-x-1/2 -z-100": !isActive,
         })}
       >
         <div className="bg-white w-full py-4 px-2">
           <Suspense fallback={null}>
-            <Search searchIconPosition="right" />
+            <Search clearAfterSubmit={true} searchIconPosition="right" />
           </Suspense>
         </div>
       </div>

@@ -9,11 +9,17 @@ import { Input } from "@/components/_ui/input/Input";
 
 interface Props {
   searchIconPosition?: "left" | "right";
+  clearAfterSubmit?: boolean;
 }
 
-export const Search: React.FC<Props> = ({ searchIconPosition = "left" }) => {
+export const Search: React.FC<Props> = ({
+  searchIconPosition = "left",
+  clearAfterSubmit,
+}) => {
   const searchParams = useSearchParams();
-  const [search, setSearch] = React.useState(searchParams.get("q") || "");
+  const [search, setSearch] = React.useState(
+    clearAfterSubmit ? "" : searchParams.get("q") || "",
+  );
 
   const positionProps =
     searchIconPosition === "left"
