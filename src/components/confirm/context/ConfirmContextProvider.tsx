@@ -24,7 +24,7 @@ const ConfirmationModalContextProvider: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
   const [content, setContent] = React.useState<IContent | undefined>();
-  const resolver = React.useRef<(value: boolean) => void>();
+  const resolver = React.useRef<(value: boolean) => void>(null);
 
   const handleShow = (ctx: IContent): Promise<boolean> => {
     setContent(ctx);

@@ -3,14 +3,12 @@ import React from "react";
 import { useCookies } from "react-cookie";
 
 import Image from "next/image";
+import Link from "next/link";
 
 import { Button } from "@/components/_ui/button/Button";
-import { revalidateCart } from "@/components/cart/add-to-cart/actions";
 import { CrossSellListSlider } from "@/components/cart/add-to-cart/cross-sell/CrossSellListSlider";
 import { ModalActions, ModalContent, Modal } from "@/components/modal";
 import { BaseProductFragment, BaseStoreFragment } from "@/types";
-
-import { navigate } from "../../../app/actions";
 
 interface Props {
   product: BaseProductFragment;
@@ -20,7 +18,7 @@ interface Props {
   selectedStore?: BaseStoreFragment | null;
 }
 
-export const ProductAddedModal: React.FC<Props> = ({
+const ProductAddedModal: React.FC<Props> = ({
   product,
   isOpen,
   onOpenChange,
@@ -28,14 +26,6 @@ export const ProductAddedModal: React.FC<Props> = ({
   selectedStore,
 }) => {
   const [cookies] = useCookies();
-
-  const navigateToCart = async () => {
-    await revalidateCart();
-    if (cookies.preferredMethod) {
-      return navigate(`/cart?method=${cookies.preferredMethod}`);
-    }
-    return navigate("/cart");
-  };
 
   return (
     <Modal
@@ -75,21 +65,20 @@ export const ProductAddedModal: React.FC<Props> = ({
       </ModalContent>
       <ModalActions>
         <Button
+          as={Link}
+          href={`/${product.canonical_url}`}
           aria-label="Fortsett å handle"
           className="w-full"
           color="secondary"
-          onPress={onOpenChange}
         >
           Fortsett å handle
         </Button>
         <Button
+          as={Link}
+          href={`/cart?method=${cookies.preferredMethod}`}
           aria-label="Gå til handlekurv"
           className="w-full"
           color="primary"
-          onPress={async () => {
-            onOpenChange();
-            await navigateToCart();
-          }}
         >
           Gå til handlekurv
         </Button>
@@ -97,3 +86,5 @@ export const ProductAddedModal: React.FC<Props> = ({
     </Modal>
   );
 };
+
+export default ProductAddedModal;

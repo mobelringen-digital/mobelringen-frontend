@@ -1,5 +1,8 @@
+import React, { Suspense } from "react";
+
 import { revalidateTag } from "next/cache";
 
+import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { StaticPageContent } from "@/components/cms/static-page-content/StaticPageContent";
 import { CartSuccessPage } from "@/modules/cart/success/CartSuccessPage";
 import { MaskedOrderDocument } from "@/queries/order.queries";
@@ -33,9 +36,9 @@ export default async function CartSuccess({
   }
 
   return (
-    <>
+    <Suspense fallback={<PageTopLoader />}>
       <CartSuccessPage order={order} />
       <StaticPageContent url="/cart/success" />
-    </>
+    </Suspense>
   );
 }

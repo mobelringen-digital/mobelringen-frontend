@@ -25,7 +25,7 @@ const searchFields: Array<keyof BaseStoreFragment> = [
   "city",
 ];
 
-export const StoreSelectModal: React.FC<Props> = ({
+const StoreSelectModal: React.FC<Props> = ({
   isOpen,
   onClose,
   stores,
@@ -122,7 +122,7 @@ export const StoreSelectModal: React.FC<Props> = ({
           <Button
             aria-label="Fortsette"
             disabled={!store || isLoading}
-            onClick={submitStore}
+            onPress={submitStore}
             color="primary"
           >
             Fortsette
@@ -132,3 +132,5 @@ export const StoreSelectModal: React.FC<Props> = ({
     </Modal>
   );
 };
+
+export default StoreSelectModal;

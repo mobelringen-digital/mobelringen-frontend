@@ -17,12 +17,16 @@ interface Props {
 export const OrderItems: React.FC<Props> = ({ data }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
+  const handleClick = () => {
+    setIsOpen((prev) => !prev);
+  };
+
   return (
     <div className="block">
       {!isOpen ? (
         <Button
           aria-label="Detaljer"
-          onClick={() => setIsOpen((prev) => !prev)}
+          onPress={handleClick}
           color="secondary"
         >
           Detaljer
@@ -81,11 +85,7 @@ export const OrderItems: React.FC<Props> = ({ data }) => {
           })}
           <OrderItemTotal data={data} />
           <div className="block mt-4 border-t border-dark-grey border-opacity-30 pt-4">
-            <Button
-              aria-label="Lukk"
-              onClick={() => setIsOpen((prev) => !prev)}
-              color="secondary"
-            >
+            <Button aria-label="Lukk" onPress={handleClick} color="secondary">
               Lukk
             </Button>
           </div>

@@ -26,6 +26,7 @@ const clickOnItemGTMEvent = (product: BaseProductDataForCardFragment) => {
     return;
   }
 
+  sendGTMEvent({ ecommerce: null });
   return sendGTMEvent({
     event: "select_item",
     items: [
@@ -122,7 +123,12 @@ export const CategoryPage: React.FC<Props> = ({ category }) => {
             Viser {currentlyLoaded} av {totalCount} produkter
           </span>
           {hasNextPage ? (
-            <Button aria-label="Last inn flere" tabIndex={0} disabled={isFetchingNextPage} onClick={loadMore}>
+            <Button
+              aria-label="Last inn flere"
+              tabIndex={0}
+              disabled={isFetchingNextPage}
+              onPress={loadMore}
+            >
               Last inn flere
             </Button>
           ) : null}

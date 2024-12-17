@@ -30,7 +30,7 @@ export const SelectedCustomerAddress: React.FC<Props> = ({
             aria-label="Endre adresse"
             color="secondary"
             className="mt-4 p-2 text-sm"
-            onClick={onReset}
+            onPress={onReset}
           >
             <span className="text-sm">Endre adresse</span>
           </Button>

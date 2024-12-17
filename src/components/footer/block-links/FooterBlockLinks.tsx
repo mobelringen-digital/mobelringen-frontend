@@ -23,7 +23,7 @@ export async function FooterBlockLinks({ data }: Props) {
         <p className="text-sm">
           Dette er klubben for deg som brenner for det samme som oss -personlig
           interiør som gjør det hjemmekoselig – uansett om du er hjemme eller på
-          hytta. Meld deg inn i Kundeklubben og få 25%* på et helt kjøp!
+          hytta. Meld deg inn i Kundeklubben og få 20%* på et helt kjøp!
         </p>
         <p className="mt-4">
           <Link

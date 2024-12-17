@@ -47,6 +47,7 @@ export const CartProceedButton: React.FC<Props> = ({
       return;
     }
 
+    sendGTMEvent({ ecommerce: null });
     return sendGTMEvent({
       event: "begin_checkout",
       currency: "NOK",
@@ -84,7 +85,7 @@ export const CartProceedButton: React.FC<Props> = ({
       <Button
         aria-label="Fortsett"
         disabled={isButtonDisabled}
-        onClick={navigateToCheckout}
+        onPress={navigateToCheckout}
         color="tertiary"
         className="w-full mt-4"
       >
