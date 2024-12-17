@@ -7,20 +7,37 @@ import { useSearchParams } from "next/navigation";
 import { SearchIcon } from "@/components/_ui/icons/SearchIcon";
 import { Input } from "@/components/_ui/input/Input";
 
-export const Search = () => {
+interface Props {
+  searchIconPosition?: "left" | "right";
+}
+
+export const Search: React.FC<Props> = ({ searchIconPosition = "left" }) => {
   const searchParams = useSearchParams();
   const [search, setSearch] = React.useState(searchParams.get("q") || "");
+
+  const positionProps =
+    searchIconPosition === "left"
+      ? {
+          startContent: (
+            <button aria-label="Search" type="submit">
+              <SearchIcon />
+            </button>
+          ),
+        }
+      : {
+          endContent: (
+            <button aria-label="Search" type="submit">
+              <SearchIcon />
+            </button>
+          ),
+        };
 
   return (
     <form className="w-full" method="GET" action="/search">
       <Input
         value={search}
         onChange={(e) => setSearch(e.target.value)}
-        startContent={
-          <button aria-label="Search" type="submit">
-            <SearchIcon />
-          </button>
-        }
+        {...positionProps}
         name="q"
         placeholder="Finn produkter"
       />
