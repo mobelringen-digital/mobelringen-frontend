@@ -38,7 +38,7 @@ export const AddToCart: React.FC<Props> = ({
       return;
     }
 
-    sendGTMEvent({ ecommerce: null });
+    sendGTMEvent({ ecommerce: {} });
     return sendGTMEvent({
       event: "add_to_cart",
       currency: "NOK",
