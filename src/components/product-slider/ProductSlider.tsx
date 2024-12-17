@@ -50,26 +50,28 @@ const selectItemGTMEvent = (product: BaseProductDataForCardFragment) => {
   sendGTMEvent({ ecommerce: null });
   return sendGTMEvent({
     event: "select_item",
-    currency: "NOK",
-    value: product.price_range.maximum_price?.final_price?.value,
-    addable_to_cart: (product as any).addable_to_cart ?? 0,
-    discount: product.price_range.maximum_price?.discount?.amount_off,
-    label: product.productLabel?.custom?.join(", "),
-    items: [
-      {
-        item_id: product.sku,
-        addable_to_cart: product.addable_to_cart ?? 0,
-        item_name: product.name,
-        item_brand: product.productBrand?.name,
-        price: product.price_range.maximum_price?.final_price.value,
-        discount: product.price_range.maximum_price?.discount?.amount_off,
-        ...formatGTMCategories(
-          product.categories?.map((cat) => ({
-            name: cat?.name,
-          })),
-        ),
-      },
-    ],
+    ecommerce: {
+      currency: "NOK",
+      value: product.price_range.maximum_price?.final_price?.value,
+      addable_to_cart: (product as any).addable_to_cart ?? 0,
+      discount: product.price_range.maximum_price?.discount?.amount_off,
+      label: product.productLabel?.custom?.join(", "),
+      items: [
+        {
+          item_id: product.sku,
+          addable_to_cart: product.addable_to_cart ?? 0,
+          item_name: product.name,
+          item_brand: product.productBrand?.name,
+          price: product.price_range.maximum_price?.final_price.value,
+          discount: product.price_range.maximum_price?.discount?.amount_off,
+          ...formatGTMCategories(
+            product.categories?.map((cat) => ({
+              name: cat?.name,
+            })),
+          ),
+        },
+      ],
+    },
   });
 };
 

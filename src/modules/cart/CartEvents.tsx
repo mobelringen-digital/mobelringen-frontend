@@ -30,10 +30,12 @@ const viewCartGTMEvent = (
   sendGTMEvent({ ecommerce: null });
   return sendGTMEvent({
     event: "view_cart",
-    currency: "NOK",
-    value: data?.prices?.grand_total?.value,
-    cart_type: isClickAndCollect ? DeliveryType.Cac : DeliveryType.Online,
-    ...formatGTMCartItems(data),
+    ecommerce: {
+      currency: "NOK",
+      value: data?.prices?.grand_total?.value,
+      cart_type: isClickAndCollect ? DeliveryType.Cac : DeliveryType.Online,
+      ...formatGTMCartItems(data),
+    },
   });
 };
 

@@ -28,19 +28,21 @@ const addPurchaseGTMEvent = async (order?: MaskedOrderFragment | null) => {
   sendGTMEvent({ ecommerce: null });
   return sendGTMEvent({
     event: "purchase",
-    payment_type: order.payment_methods
-      ?.map((method) => method?.name)
-      .join(","),
-    currency: "NOK",
-    value: order.total?.grand_total?.value,
-    cart_type: order.delivery_type,
-    items: order.items.map((item, idx) => ({
-      item_id: item?.sku,
-      item_name: item?.name,
-      index: idx,
-      price: item?.price,
-      quantity: item?.quantity,
-    })),
+    ecommerce: {
+      payment_type: order.payment_methods
+        ?.map((method) => method?.name)
+        .join(","),
+      currency: "NOK",
+      value: order.total?.grand_total?.value,
+      cart_type: order.delivery_type,
+      items: order.items.map((item, idx) => ({
+        item_id: item?.sku,
+        item_name: item?.name,
+        index: idx,
+        price: item?.price,
+        quantity: item?.quantity,
+      })),
+    },
   });
 };
 
@@ -92,9 +94,7 @@ export const CartSuccessPage: React.FC<Props> = ({ order }) => {
               </Link>
             </span>
           </div>
-          <DeliverySteps
-            isOnline={order?.delivery_type === "ONLINE"}
-          />
+          <DeliverySteps isOnline={order?.delivery_type === "ONLINE"} />
         </div>
         <div className="col-span-12 lg:col-span-5">
           <div className="bg-white p-4 lg:p-8 rounded-2xl flex flex-col gap-2">
