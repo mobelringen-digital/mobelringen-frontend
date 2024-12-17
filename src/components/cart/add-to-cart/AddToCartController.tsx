@@ -9,8 +9,8 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/_ui/button/Button";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
+import { revalidateCart } from "@/components/cart/add-to-cart/actions";
 import {
-  AddProductToCartMutation,
   Availability,
   BaseProductFragment,
   BaseStoreFragment,

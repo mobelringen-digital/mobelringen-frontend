@@ -1,13 +1,13 @@
 import React from "react";
 
+import { Link } from "@nextui-org/link";
 import { useCookies } from "react-cookie";
 
 import Image from "next/image";
-import Link from "next/link";
 
 import { Button } from "@/components/_ui/button/Button";
 import { CrossSellListSlider } from "@/components/cart/add-to-cart/cross-sell/CrossSellListSlider";
-import { ModalActions, ModalContent, Modal } from "@/components/modal";
+import { ModalContent, Modal } from "@/components/modal";
 import { BaseProductFragment, BaseStoreFragment } from "@/types";
 
 interface Props {
@@ -61,28 +61,29 @@ const ProductAddedModal: React.FC<Props> = ({
             />
           </div>
         </div>
+        <div className="flex w-full gap-4 mt-4">
+          <Button
+            as={Link}
+            href={`/${product.canonical_url}`}
+            aria-label="Fortsett å handle"
+            className="w-full"
+            color="secondary"
+          >
+            Fortsett å handle
+          </Button>
+          <Button
+            as={Link}
+            href={`/cart?method=${cookies.preferredMethod}`}
+            aria-label="Gå til handlekurv"
+            className="w-full"
+            color="primary"
+          >
+            Gå til handlekurv
+          </Button>
+        </div>
+
         <CrossSellListSlider product={product} selectedStore={selectedStore} />
       </ModalContent>
-      <ModalActions>
-        <Button
-          as={Link}
-          href={`/${product.canonical_url}`}
-          aria-label="Fortsett å handle"
-          className="w-full"
-          color="secondary"
-        >
-          Fortsett å handle
-        </Button>
-        <Button
-          as={Link}
-          href={`/cart?method=${cookies.preferredMethod}`}
-          aria-label="Gå til handlekurv"
-          className="w-full"
-          color="primary"
-        >
-          Gå til handlekurv
-        </Button>
-      </ModalActions>
     </Modal>
   );
 };
