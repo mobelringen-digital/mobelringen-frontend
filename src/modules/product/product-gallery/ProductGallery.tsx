@@ -12,15 +12,15 @@ interface Props {
 }
 
 export const ProductGallery: React.FC<Props> = ({ product }) => {
-  const [photoIndex, setPhotoIndex] = React.useState<number | null>(null);
+  const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    if (photoIndex !== null) {
+    if (isOpen) {
       document.body.classList.add("overflow-hidden");
     } else {
       document.body.classList.remove("overflow-hidden");
     }
-  }, [photoIndex]);
+  }, [isOpen]);
 
   const images = React.useMemo(() => {
     if (product.media_gallery && product.media_gallery.length > 0) {
@@ -42,17 +42,20 @@ export const ProductGallery: React.FC<Props> = ({ product }) => {
 
   return (
     <>
-      {photoIndex !== null ? (
+      {isOpen !== null ? (
         <ProductLightbox
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
           images={images}
-          photoIndex={photoIndex}
-          setPhotoIndex={setPhotoIndex}
         />
       ) : null}
       {product.media_gallery && product.media_gallery.length > 0 ? (
-        <ProductImageSlider product={product} setPhotoIndex={setPhotoIndex} />
+        <ProductImageSlider
+          product={product}
+          setPhotoIndex={() => setIsOpen(true)}
+        />
       ) : product.image?.url ? (
-        <ProductImage product={product} onZoomClick={() => setPhotoIndex(0)} />
+        <ProductImage product={product} onZoomClick={() => setIsOpen(true)} />
       ) : null}
     </>
   );

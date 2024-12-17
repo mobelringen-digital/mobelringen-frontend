@@ -1,35 +1,33 @@
 import React from "react";
 
-import Lightbox from "react-image-lightbox";
+import Lightbox from "yet-another-react-lightbox";
+import { Zoom } from "yet-another-react-lightbox/plugins";
 
-import "react-image-lightbox/style.css";
+import "yet-another-react-lightbox/styles.css";
 
 interface Props {
+  isOpen: boolean;
+  onClose: () => void;
   images: Array<{
     url: string | null | undefined;
     label: string | null | undefined;
   }>;
-  photoIndex: number;
-  setPhotoIndex: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
 export const ProductLightbox: React.FC<Props> = ({
   images,
-  photoIndex,
-  setPhotoIndex,
+  isOpen,
+  onClose,
 }) => {
   return (
     <Lightbox
-      mainSrc={images?.[photoIndex].url ?? ""}
-      nextSrc={images?.[(photoIndex + 1) % images.length].url ?? ""}
-      prevSrc={
-        images?.[(photoIndex + images.length - 1) % images.length].url ?? ""
-      }
-      onCloseRequest={() => setPhotoIndex(null)}
-      onMovePrevRequest={() =>
-        setPhotoIndex((photoIndex + images.length - 1) % images.length)
-      }
-      onMoveNextRequest={() => setPhotoIndex((photoIndex + 1) % images.length)}
+      open={isOpen}
+      close={onClose}
+      plugins={[Zoom]}
+      slides={images.map((img) => ({
+        src: img.url ?? "",
+        caption: img.label ?? "",
+      }))}
     />
   );
 };
