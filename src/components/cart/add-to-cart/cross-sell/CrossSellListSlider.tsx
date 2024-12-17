@@ -28,7 +28,7 @@ export const CrossSellListSlider: React.FC<Props> = ({
       {crossSellProducts && crossSellProducts.length > 0 ? (
         <>
           <h2 className="text-xl lg:text-3xl font-medium font-feature mt-8">
-            Andre har også kjøpt
+            Forleng levetiden
           </h2>
           {isLoading ? <CrossSellListItemSkeleton /> : null}
 
