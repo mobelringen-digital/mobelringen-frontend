@@ -41,7 +41,7 @@ export const ProductTopInfo: React.FC<Props> = ({
         {name}
       </h1>
       {shortDescription ? (
-        <p
+        <div
           className="text-base font-normal text-black"
           dangerouslySetInnerHTML={{
             __html: shortDescription,

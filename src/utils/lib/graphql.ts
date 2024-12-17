@@ -42,7 +42,6 @@ export const baseMagentoClient = (
             revalidate: method === "POST" ? 0 : 3600,
             ...nextOptions,
           },
-          credentials: "include",
           ...init,
         }),
     ),
@@ -59,24 +58,22 @@ export const authorizedMagentoClient = (
 ) =>
   new GraphQLClient(process.env.NEXT_PUBLIC_MAGENTO_URL as string, {
     method,
+    errorPolicy: "all",
+    headers: {
+      authorization: `Bearer ${token ?? ""}`,
+    },
+    mode: "cors",
+    referrer: process.env.NEXT_PUBLIC_APP_URL,
     fetch: cache(
       async (input: RequestInfo | URL, init?: RequestInit | undefined) =>
         fetch(input, {
           method,
           next: {
+            cache: method === "POST" ? "no-store" : undefined,
             revalidate: method === "POST" ? 0 : 3600,
             ...nextOptions,
           },
-          cache: nextOptions?.cache,
           ...init,
-          credentials: "include",
-          headers: {
-            ...(token ? { Authorization: `Bearer ${token ?? ""}` } : {}),
-            Accept:
-              "application/graphql-response+json, application/json, multipart/mixed",
-            ContentType: "application/json",
-            "Content-Type": "application/json",
-          },
         }),
     ),
   });

@@ -5,6 +5,7 @@ export const BaseProductDataForCarFragment = graphql(`
     __typename
     name
     sku
+    id
     canonical_url
     addable_to_cart
     low_price
