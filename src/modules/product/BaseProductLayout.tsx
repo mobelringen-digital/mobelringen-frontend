@@ -17,6 +17,7 @@ import { useActiveProductData } from "@/modules/product/active-product-data-prov
 import { PurchaseBlock } from "@/modules/product/add-to-cart/PurchaseBlock";
 import { FixedLowPrice } from "@/modules/product/FixedLowPrice";
 import { InformationAccordion } from "@/modules/product/information-accordion/InformationAccordion";
+import { useProductReviewsQuery } from "@/modules/product/information-accordion/reviews/useProductReviewsQuery";
 import { MoreInTheStore } from "@/modules/product/more-in-the-store/MoreInTheStore";
 import { MoreInformation } from "@/modules/product/MoreInformation";
 import { ProductGallery } from "@/modules/product/product-gallery/ProductGallery";
@@ -82,6 +83,7 @@ export const BaseProductLayout: React.FC<Props> = ({
   stock,
   selectedStore,
 }) => {
+  const { data: reviews } = useProductReviewsQuery(String(baseProductData?.id));
   const { activeProductVariant } = useActiveProductData();
   const searchParams = useSearchParams();
   const params = searchParams.entries();
@@ -141,6 +143,7 @@ export const BaseProductLayout: React.FC<Props> = ({
               brand={product?.productBrand?.name}
               name={product?.name}
               shortDescription={product?.short_description?.html}
+              reviews={reviews}
             />
 
             {configurationBlock}

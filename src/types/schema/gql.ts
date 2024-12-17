@@ -125,6 +125,10 @@ const documents = {
     "\n  query ProductMeasurements(\n    $pageSize: Int = 1\n    $filter: ProductAttributeFilterInput\n  ) {\n    products(pageSize: $pageSize, filter: $filter) {\n      items {\n        measurement_depth\n        measurement_diameter\n        measurement_gross_weight\n        measurement_height\n        measurement_length\n        measurement_seat_height\n        measurement_thickness\n        measurement_volume\n        measurement_width\n      }\n    }\n  }\n": types.ProductMeasurementsDocument,
     "\n  fragment ProductAvailability on ProductAvailability {\n    availability\n    max\n    message\n    min\n    step\n  }\n": types.ProductAvailabilityFragmentDoc,
     "\n  query GetProductStock($productId: String!, $storeId: String) {\n    getProductStock(input: { productId: $productId, storeId: $storeId }) {\n      cac {\n        ...ProductAvailability\n      }\n      online {\n        ...ProductAvailability\n      }\n    }\n  }\n": types.GetProductStockDocument,
+    "\n  fragment Review on YotpoReviews {\n    content\n    created_at\n    votes_up\n    votes_down\n    id\n    score\n    social_pushed\n    title\n    user_type\n    verified_buyer\n    user {\n      bio\n      display_name\n      is_social_connected\n      score\n      social_image\n    }\n  }\n": types.ReviewFragmentDoc,
+    "\n  fragment ProductReviews on ProductYotpoReviews {\n    total_reviews\n    total_rating\n    reviews {\n      ...Review\n    }\n  }\n": types.ProductReviewsFragmentDoc,
+    "\n  query GetProductReviews($productId: String!) {\n    getReviewsByProductId(product_id: $productId) {\n      ...ProductReviews\n    }\n  }\n": types.GetProductReviewsDocument,
+    "\n  mutation VoteForReview(\n    $productId: String!\n    $reviewId: String!\n    $type: ReviewType\n  ) {\n    voteForReview(product_id: $productId, review_id: $reviewId, type: $type) {\n      message\n      success\n    }\n  }\n": types.VoteForReviewDocument,
     "\n  fragment SimpleProduct on SimpleProduct {\n    ...BaseProduct\n  }\n": types.SimpleProductFragmentDoc,
     "\n  mutation AddProductsToWishlist($wishlistId: ID!, $sku: String!) {\n    addProductsToWishlist(\n      wishlistId: $wishlistId\n      wishlistItems: { sku: $sku, quantity: 1 }\n    ) {\n      wishlist {\n        id\n        items_count\n      }\n    }\n  }\n": types.AddProductsToWishlistDocument,
     "\n  fragment BaseProductDataForCard on ProductInterface {\n    __typename\n    name\n    sku\n    canonical_url\n    addable_to_cart\n    low_price\n    stocks {\n      online {\n        availability\n        message\n      }\n      cac {\n        availability\n        message\n      }\n    }\n    productBrand {\n      name\n    }\n    categories {\n      name\n    }\n    short_description {\n      html\n    }\n    price_range {\n      ...ProductPriceRange\n    }\n    image {\n      ...ProductImageFragment\n    }\n    productLabel {\n      ...ProductLabel\n    }\n  }\n": types.BaseProductDataForCardFragmentDoc,
@@ -602,6 +606,22 @@ export function graphql(source: "\n  fragment ProductAvailability on ProductAvai
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query GetProductStock($productId: String!, $storeId: String) {\n    getProductStock(input: { productId: $productId, storeId: $storeId }) {\n      cac {\n        ...ProductAvailability\n      }\n      online {\n        ...ProductAvailability\n      }\n    }\n  }\n"): (typeof documents)["\n  query GetProductStock($productId: String!, $storeId: String) {\n    getProductStock(input: { productId: $productId, storeId: $storeId }) {\n      cac {\n        ...ProductAvailability\n      }\n      online {\n        ...ProductAvailability\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  fragment Review on YotpoReviews {\n    content\n    created_at\n    votes_up\n    votes_down\n    id\n    score\n    social_pushed\n    title\n    user_type\n    verified_buyer\n    user {\n      bio\n      display_name\n      is_social_connected\n      score\n      social_image\n    }\n  }\n"): (typeof documents)["\n  fragment Review on YotpoReviews {\n    content\n    created_at\n    votes_up\n    votes_down\n    id\n    score\n    social_pushed\n    title\n    user_type\n    verified_buyer\n    user {\n      bio\n      display_name\n      is_social_connected\n      score\n      social_image\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  fragment ProductReviews on ProductYotpoReviews {\n    total_reviews\n    total_rating\n    reviews {\n      ...Review\n    }\n  }\n"): (typeof documents)["\n  fragment ProductReviews on ProductYotpoReviews {\n    total_reviews\n    total_rating\n    reviews {\n      ...Review\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query GetProductReviews($productId: String!) {\n    getReviewsByProductId(product_id: $productId) {\n      ...ProductReviews\n    }\n  }\n"): (typeof documents)["\n  query GetProductReviews($productId: String!) {\n    getReviewsByProductId(product_id: $productId) {\n      ...ProductReviews\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation VoteForReview(\n    $productId: String!\n    $reviewId: String!\n    $type: ReviewType\n  ) {\n    voteForReview(product_id: $productId, review_id: $reviewId, type: $type) {\n      message\n      success\n    }\n  }\n"): (typeof documents)["\n  mutation VoteForReview(\n    $productId: String!\n    $reviewId: String!\n    $type: ReviewType\n  ) {\n    voteForReview(product_id: $productId, review_id: $reviewId, type: $type) {\n      message\n      success\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
