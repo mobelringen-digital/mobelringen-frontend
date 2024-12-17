@@ -42,7 +42,7 @@ export const ProductGallery: React.FC<Props> = ({ product }) => {
 
   return (
     <>
-      {isOpen !== null ? (
+      {isOpen ? (
         <ProductLightbox
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}
