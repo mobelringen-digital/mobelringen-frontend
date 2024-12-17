@@ -1,6 +1,13 @@
-export const SearchIcon = () => {
+import React from "react";
+
+interface Props {
+  id?: string;
+}
+
+export const SearchIcon: React.FC<Props> = ({ id = "search-icon" }) => {
   return (
     <svg
+      id={id}
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
@@ -8,7 +15,7 @@ export const SearchIcon = () => {
       fill="none"
     >
       <mask
-        id="mask0_1292_3647"
+        id={id}
         maskUnits="userSpaceOnUse"
         x="0"
         y="0"
