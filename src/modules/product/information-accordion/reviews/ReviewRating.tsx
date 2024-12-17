@@ -42,8 +42,8 @@ export const ReviewRating: React.FC<Props> = ({ product, review }) => {
   };
 
   return (
-    <div className="flex flex-col items-center">
-      <span className="font-feature text-sm mb-2">Nyttig?</span>
+    <div className="flex gap-3 items-center">
+      <span className="font-feature text-sm">Nyttig?</span>
       <div className="flex gap-2">
         <button
           onClick={() => handleVote(ReviewType.Up, review?.id)}
