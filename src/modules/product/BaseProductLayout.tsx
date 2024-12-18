@@ -17,6 +17,7 @@ import { useActiveProductData } from "@/modules/product/active-product-data-prov
 import { PurchaseBlock } from "@/modules/product/add-to-cart/PurchaseBlock";
 import { FixedLowPrice } from "@/modules/product/FixedLowPrice";
 import { InformationAccordion } from "@/modules/product/information-accordion/InformationAccordion";
+import { useProductReviewsQuery } from "@/modules/product/information-accordion/reviews/useProductReviewsQuery";
 import { MoreInTheStore } from "@/modules/product/more-in-the-store/MoreInTheStore";
 import { MoreInformation } from "@/modules/product/MoreInformation";
 import { ProductGallery } from "@/modules/product/product-gallery/ProductGallery";
@@ -51,27 +52,29 @@ const viewProductGTMEvent = (
   sendGTMEvent({ ecommerce: null });
   return sendGTMEvent({
     event: "view_item",
-    currency: "NOK",
-    value: product.price_range.maximum_price?.final_price?.value,
-    addable_to_cart: product.addable_to_cart,
-    stock_status: stock?.getProductStock,
-    discount: product.price_range.maximum_price?.discount?.amount_off,
-    label: product.productLabel,
-    items: [
-      {
-        item_id: product.sku,
-        item_name: product.name,
-        addable_to_cart: product.addable_to_cart,
-        item_brand: product.productBrand?.name,
-        price: product.price_range.maximum_price?.final_price.value,
-        discount: product.price_range.maximum_price?.discount?.amount_off,
-        ...formatGTMCategories(
-          product.categories?.map((cat) => ({
-            name: cat?.name,
-          })),
-        ),
-      },
-    ],
+    ecommerce: {
+      currency: "NOK",
+      value: product.price_range.maximum_price?.final_price?.value,
+      addable_to_cart: product.addable_to_cart,
+      stock_status: stock?.getProductStock,
+      discount: product.price_range.maximum_price?.discount?.amount_off,
+      label: product.productLabel,
+      items: [
+        {
+          item_id: product.sku,
+          item_name: product.name,
+          addable_to_cart: product.addable_to_cart,
+          item_brand: product.productBrand?.name,
+          price: product.price_range.maximum_price?.final_price.value,
+          discount: product.price_range.maximum_price?.discount?.amount_off,
+          ...formatGTMCategories(
+            product.categories?.map((cat) => ({
+              name: cat?.name,
+            })),
+          ),
+        },
+      ],
+    },
   });
 };
 
@@ -82,6 +85,7 @@ export const BaseProductLayout: React.FC<Props> = ({
   stock,
   selectedStore,
 }) => {
+  const { data: reviews } = useProductReviewsQuery(String(baseProductData?.id));
   const { activeProductVariant } = useActiveProductData();
   const searchParams = useSearchParams();
   const params = searchParams.entries();
@@ -141,6 +145,7 @@ export const BaseProductLayout: React.FC<Props> = ({
               brand={product?.productBrand?.name}
               name={product?.name}
               shortDescription={product?.short_description?.html}
+              reviews={reviews}
             />
 
             {configurationBlock}

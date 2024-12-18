@@ -21,7 +21,7 @@ export const BlockQuote: React.FC<Props> = ({ data }) => {
         )}
       >
         <Quote />
-        <p
+        <div
           className="text-xl lg:text-3xl text-center mt-2"
           dangerouslySetInnerHTML={{
             __html: data.quote?.html ?? "",

@@ -5,6 +5,7 @@ import React from "react";
 import { Accordion } from "@/components/_ui/accordion/Accordion";
 import { ProductMeasurements } from "@/modules/product/information-accordion/measurements/ProductMeasurements";
 import { ProductReviews } from "@/modules/product/information-accordion/reviews/ProductReviews";
+import { useProductReviewsQuery } from "@/modules/product/information-accordion/reviews/useProductReviewsQuery";
 import { BaseProductFragment } from "@/types";
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export const InformationAccordion: React.FC<Props> = ({ product }) => {
+  const { data: reviews } = useProductReviewsQuery(String(product?.id));
   const accordionData = [];
 
   if (product?.description?.html) {
@@ -34,11 +36,6 @@ export const InformationAccordion: React.FC<Props> = ({ product }) => {
     content: <ProductMeasurements product={product} />,
   });
 
-  accordionData.push({
-    title: `Kundeanmeldelser (${product.review_count})`,
-    content: <ProductReviews product={product} />,
-  });
-
   if (product?.maintenance_description) {
     accordionData.push({
       title: "Vedlikehold",
@@ -49,6 +46,11 @@ export const InformationAccordion: React.FC<Props> = ({ product }) => {
       ),
     });
   }
+
+  accordionData.push({
+    title: `Kundeanmeldelser (${reviews?.total_reviews ?? 0})`,
+    content: <ProductReviews product={product} />,
+  });
 
   return <Accordion data={accordionData} />;
 };

@@ -6268,6 +6268,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/react-star-ratings@npm:^2":
+  version: 2.3.3
+  resolution: "@types/react-star-ratings@npm:2.3.3"
+  dependencies:
+    "@types/react": "npm:*"
+  checksum: 10c0/7e8f3190be67616419555369bd95ff61aa1ea668f2781c5a5dc7dd437b60bc8016075a7fdf5869ce9757f43d0bc1f984e619c97b83075251d1c719d5a8cfaba4
+  languageName: node
+  linkType: hard
+
 "@types/react@npm:*, @types/react@npm:^17.0.0 || ^18.0.0 || ^19.0.0, @types/react@npm:^19.0.1":
   version: 19.0.1
   resolution: "@types/react@npm:19.0.1"
@@ -7427,7 +7436,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"classnames@npm:^2.2.5, classnames@npm:^2.5.1":
+"classnames@npm:^2.2.1, classnames@npm:^2.2.5, classnames@npm:^2.5.1":
   version: 2.5.1
   resolution: "classnames@npm:2.5.1"
   checksum: 10c0/afff4f77e62cea2d79c39962980bf316bacb0d7c49e13a21adaadb9221e1c6b9d3cdb829d8bb1b23c406f4e740507f37e1dcf506f7e3b7113d17c5bab787aa69
@@ -8626,13 +8635,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"exenv@npm:^1.2.0":
-  version: 1.2.2
-  resolution: "exenv@npm:1.2.2"
-  checksum: 10c0/4e96b355a6b9b9547237288ca779dd673b2e698458b409e88b50df09feb7c85ef94c07354b6b87bc3ed0193a94009a6f7a3c71956da12f45911c0d0f5aa3caa0
-  languageName: node
-  linkType: hard
-
 "exponential-backoff@npm:^3.1.1":
   version: 3.1.1
   resolution: "exponential-backoff@npm:3.1.1"
@@ -9329,7 +9331,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql-request@npm:^7.1.0":
+"graphql-request@npm:^7.1.2":
   version: 7.1.2
   resolution: "graphql-request@npm:7.1.2"
   dependencies:
@@ -9381,10 +9383,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql@npm:^16.8.1":
-  version: 16.9.0
-  resolution: "graphql@npm:16.9.0"
-  checksum: 10c0/a8850f077ff767377237d1f8b1da2ec70aeb7623cdf1dfc9e1c7ae93accc0c8149c85abe68923be9871a2934b1bce5a2496f846d4d56e1cfb03eaaa7ddba9b6a
+"graphql@npm:^16.9.0":
+  version: 16.10.0
+  resolution: "graphql@npm:16.10.0"
+  checksum: 10c0/303730675538c8bd6c76b447dc6f03e61242e2d2596b408c34759666ec4877409e5593a7a0467d590ac5407b8c663b093b599556a77f24f281abea69ddc53de6
   languageName: node
   linkType: hard
 
@@ -10610,7 +10612,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"loose-envify@npm:^1.0.0, loose-envify@npm:^1.4.0":
+"loose-envify@npm:^1.0.0, loose-envify@npm:^1.1.0, loose-envify@npm:^1.4.0":
   version: 1.4.0
   resolution: "loose-envify@npm:1.4.0"
   dependencies:
@@ -11052,7 +11054,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:^14.2.20":
+"next@npm:^14.2.15":
   version: 14.2.20
   resolution: "next@npm:14.2.20"
   dependencies:
@@ -12009,7 +12011,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
+"prop-types@npm:^15.6.0, prop-types@npm:^15.6.2, prop-types@npm:^15.7.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -12106,19 +12108,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-image-lightbox@npm:^5.1.4":
-  version: 5.1.4
-  resolution: "react-image-lightbox@npm:5.1.4"
-  dependencies:
-    prop-types: "npm:^15.7.2"
-    react-modal: "npm:^3.11.1"
-  peerDependencies:
-    react: 16.x || 17.x
-    react-dom: 16.x || 17.x
-  checksum: 10c0/526fb24249979b0df8be51f436a3fc2cf8c52802be9cdc7a3e75e8d229ca93e135d17e8b7ea29a2f98669ff31cca3605636515e454d5e5897f1770c6cba556a2
-  languageName: node
-  linkType: hard
-
 "react-is@npm:^16.13.1, react-is@npm:^16.7.0, react-is@npm:^16.8.1":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
@@ -12150,28 +12139,6 @@ __metadata:
     react: ^18.0.0
     react-dom: ^18.0.0
   checksum: 10c0/2e9d1687e883fd7d2e9798e51a04600e1b14784dc98b981a44507e65eb39a24f08c7f237c7522ae5667e999eb53b8d565ebd0f5baa25ef73a0278d6bfcc369e1
-  languageName: node
-  linkType: hard
-
-"react-lifecycles-compat@npm:^3.0.0":
-  version: 3.0.4
-  resolution: "react-lifecycles-compat@npm:3.0.4"
-  checksum: 10c0/1d0df3c85af79df720524780f00c064d53a9dd1899d785eddb7264b378026979acbddb58a4b7e06e7d0d12aa1494fd5754562ee55d32907b15601068dae82c27
-  languageName: node
-  linkType: hard
-
-"react-modal@npm:^3.11.1":
-  version: 3.16.1
-  resolution: "react-modal@npm:3.16.1"
-  dependencies:
-    exenv: "npm:^1.2.0"
-    prop-types: "npm:^15.7.2"
-    react-lifecycles-compat: "npm:^3.0.0"
-    warning: "npm:^4.0.3"
-  peerDependencies:
-    react: ^0.14.0 || ^15.0.0 || ^16 || ^17 || ^18
-    react-dom: ^0.14.0 || ^15.0.0 || ^16 || ^17 || ^18
-  checksum: 10c0/7b56e2c505b2b924736c471a34754a4211df40ac2d6fb0949cf095aea5e65d3326bd9f111fa7898acf40afa54f526809ad8aa47e02b8328663d11422568dc7b1
   languageName: node
   linkType: hard
 
@@ -12224,6 +12191,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-star-ratings@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "react-star-ratings@npm:2.3.0"
+  dependencies:
+    classnames: "npm:^2.2.1"
+    prop-types: "npm:^15.6.0"
+    react: "npm:^16.1.0"
+  checksum: 10c0/6a0bbfe312fbb6043868cec7ceb17d49ccecf4d22b4eb0c134fc73d29fe1c7e18b650c701b73dc696e06570d89b044977a827197ad504fccb74a7be1d52112f4
+  languageName: node
+  linkType: hard
+
 "react-textarea-autosize@npm:^8.5.3":
   version: 8.5.6
   resolution: "react-textarea-autosize@npm:8.5.6"
@@ -12234,6 +12212,17 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
   checksum: 10c0/652d290d316c55a253507ecf65ca27f2162801dace10c715f2241203e81d82e9de6d282095b758b26c6bc9e1af9ca552cab5c3a361b230e5fcf25bec31e1bd25
+  languageName: node
+  linkType: hard
+
+"react@npm:^16.1.0":
+  version: 16.14.0
+  resolution: "react@npm:16.14.0"
+  dependencies:
+    loose-envify: "npm:^1.1.0"
+    object-assign: "npm:^4.1.1"
+    prop-types: "npm:^15.6.2"
+  checksum: 10c0/df8faae43e01387013900e8f8fb3c4ce9935b7edbcbaa77e12999c913eb958000a0a8750bf9a0886dae0ad768dd4a4ee983752d5bade8d840adbe0ce890a2438
   languageName: node
   linkType: hard
 
@@ -13929,6 +13918,7 @@ __metadata:
     "@types/react-dom": "npm:^19.0.2"
     "@types/react-responsive-masonry": "npm:^2"
     "@types/react-slick": "npm:^0.23.13"
+    "@types/react-star-ratings": "npm:^2"
     "@typescript-eslint/eslint-plugin": "npm:^7.8.0"
     "@typescript-eslint/parser": "npm:^7.8.0"
     "@u-wave/react-vimeo": "npm:^0.9.10"
@@ -13937,14 +13927,14 @@ __metadata:
     eslint-config-next: "npm:^14.2.15"
     eslint-config-prettier: "npm:^9.1.0"
     framer-motion: "npm:^11.13.5"
-    graphql: "npm:^16.8.1"
-    graphql-request: "npm:^7.1.0"
+    graphql: "npm:^16.9.0"
+    graphql-request: "npm:^7.1.2"
     graphql-tag: "npm:^2.12.6"
     husky: "npm:^9.0.11"
     immutability-helper: "npm:^3.1.1"
     leaflet: "npm:^1.9.4"
     lint-staged: "npm:^15.2.5"
-    next: "npm:^14.2.20"
+    next: "npm:^14.2.15"
     postcss: "npm:^8"
     prettier: "npm:^3.2.5"
     qs: "npm:^6.13.0"
@@ -13953,13 +13943,13 @@ __metadata:
     react-dom: "npm:^19.0.0"
     react-hook-form: "npm:^7.51.5"
     react-hot-toast: "npm:^2.4.1"
-    react-image-lightbox: "npm:^5.1.4"
     react-leaflet: "npm:^4.2.1"
     react-leaflet-cluster: "npm:^2.1.0"
     react-number-format: "npm:^5.4.0"
     react-photo-gallery: "npm:^8.0.0"
     react-range-slider-input: "npm:^3.0.7"
     react-slick: "npm:^0.30.2"
+    react-star-ratings: "npm:^2.3.0"
     sass: "npm:^1.77.8"
     sharp: "npm:^0.33.5"
     slick-carousel: "npm:^1.8.1"
@@ -13967,17 +13957,9 @@ __metadata:
     ts-node: "npm:^10.9.2"
     typescript: "npm:^5.7.2"
     use-debounce: "npm:^10.0.3"
+    yet-another-react-lightbox: "npm:^3.21.7"
   languageName: unknown
   linkType: soft
-
-"warning@npm:^4.0.3":
-  version: 4.0.3
-  resolution: "warning@npm:4.0.3"
-  dependencies:
-    loose-envify: "npm:^1.0.0"
-  checksum: 10c0/aebab445129f3e104c271f1637fa38e55eb25f968593e3825bd2f7a12bd58dc3738bb70dc8ec85826621d80b4acfed5a29ebc9da17397c6125864d72301b937e
-  languageName: node
-  linkType: hard
 
 "wcwidth@npm:^1.0.1":
   version: 1.0.1
@@ -14313,6 +14295,16 @@ __metadata:
     y18n: "npm:^5.0.5"
     yargs-parser: "npm:^21.1.1"
   checksum: 10c0/ccd7e723e61ad5965fffbb791366db689572b80cca80e0f96aad968dfff4156cd7cd1ad18607afe1046d8241e6fb2d6c08bf7fa7bfb5eaec818735d8feac8f05
+  languageName: node
+  linkType: hard
+
+"yet-another-react-lightbox@npm:^3.21.7":
+  version: 3.21.7
+  resolution: "yet-another-react-lightbox@npm:3.21.7"
+  peerDependencies:
+    react: ">=16.8.0"
+    react-dom: ">=16.8.0"
+  checksum: 10c0/05f939552e16bca5d7dcf28448ff807ee93f26ec1fa6aee9f22f98657d7f7f56740529a8716c90f8cc425ae2b2e4dcb569e22d9f46e9e48eb1bab65d85b59ee5
   languageName: node
   linkType: hard
 

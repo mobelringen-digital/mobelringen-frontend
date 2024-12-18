@@ -13,6 +13,7 @@ import { CustomerService } from "@/modules/account/components/icons/CustomerServ
 import { Orders } from "@/modules/account/components/icons/Orders";
 import { Preferences } from "@/modules/account/components/icons/Preferences";
 import { Settings } from "@/modules/account/components/icons/Settings";
+import {Wishlist} from "@/modules/account/components/icons/Wishlist";
 import { LogoutButton } from "@/modules/account/LogoutButton";
 
 const ACCOUNT_LINKS = [
@@ -26,11 +27,11 @@ const ACCOUNT_LINKS = [
     url: "/account/orders",
     icon: <Orders />,
   },
-  // {
-  //   label: "Ønskelister",
-  //   url: "/account/wishlist",
-  //   icon: <Wishlist />,
-  // },
+  {
+    label: "Ønskelister",
+    url: "/account/wishlist",
+    icon: <Wishlist />,
+  },
   // {
   //   label: "Rabattkuponger",
   //   url: "/account/coupons",

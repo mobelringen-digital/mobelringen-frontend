@@ -1,7 +1,7 @@
 export const Loader = () => {
   return (
     <svg
-      className="w-16 h-16 animate-spin text-dark-red"
+      className="w-12 h-12 animate-spin text-dark-red"
       viewBox="0 0 64 64"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

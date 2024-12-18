@@ -1,11 +1,21 @@
 import React from "react";
 
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from "@tanstack/react-query";
+
 import { notFound, redirect } from "next/navigation";
 
 import getCart from "@/components/cart/actions";
 import { StaticPageContent } from "@/components/cms/static-page-content/StaticPageContent";
 import { getSelectedStore } from "@/components/store-selector/actions";
 import { ConfigurableProductPage } from "@/modules/product/ConfigurableProduct";
+import {
+  fetchReviews,
+  PRODUCT_REVIEWS_QUERY_KEY,
+} from "@/modules/product/information-accordion/reviews/useProductReviewsQuery";
 import { SimpleProductPage } from "@/modules/product/SimpleProduct";
 import { GetProductStockDocument } from "@/queries/product/product.queries";
 import { BaseCartFragment } from "@/types";
@@ -71,35 +81,46 @@ export default async function Product({ sku, url }: Props) {
     selectedStore?.external_id ?? "",
   );
 
+  // Prefetch product Reviews
+  const queryClient = new QueryClient();
+  if (isTypename(productData, ["SimpleProduct", "ConfigurableProduct"])) {
+    await queryClient.prefetchQuery({
+      queryKey: [...PRODUCT_REVIEWS_QUERY_KEY, String(productData.id)],
+      queryFn: () => fetchReviews(String(productData.id)),
+    });
+  }
+
   return (
     <>
-      {isTypename(productData, ["SimpleProduct"]) ? (
-        <>
-          <link
-            rel="canonical"
-            href={`${process.env.NEXT_PUBLIC_APP_URL}/${productData.canonical_url}`}
-          />
-          <SimpleProductPage
-            selectedStore={selectedStore}
-            stock={stock}
-            cart={cart as BaseCartFragment}
-            product={productData}
-          />
-        </>
-      ) : null}
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        {isTypename(productData, ["SimpleProduct"]) ? (
+          <>
+            <link
+              rel="canonical"
+              href={`${process.env.NEXT_PUBLIC_APP_URL}/${productData.canonical_url}`}
+            />
+            <SimpleProductPage
+              selectedStore={selectedStore}
+              stock={stock}
+              cart={cart as BaseCartFragment}
+              product={productData}
+            />
+          </>
+        ) : null}
 
-      {isTypename(productData, ["ConfigurableProduct"]) ? (
-        <>
-          <ConfigurableProductPage
-            stock={stock}
-            cart={cart as BaseCartFragment}
-            product={productData}
-            selectedStore={selectedStore}
-          />
-        </>
-      ) : null}
+        {isTypename(productData, ["ConfigurableProduct"]) ? (
+          <>
+            <ConfigurableProductPage
+              stock={stock}
+              cart={cart as BaseCartFragment}
+              product={productData}
+              selectedStore={selectedStore}
+            />
+          </>
+        ) : null}
 
-      <StaticPageContent url={`/${url}`} />
+        <StaticPageContent url={`/${url}`} />
+      </HydrationBoundary>
     </>
   );
 }

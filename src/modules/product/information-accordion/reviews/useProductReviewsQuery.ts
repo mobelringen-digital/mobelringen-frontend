@@ -1,34 +1,28 @@
 import { useQuery } from "@tanstack/react-query";
 
-import {
-  ProductReviewsDocument,
-  ProductReviewsQuery,
-  ProductReviewsQueryVariables,
-} from "@/types";
+import { GetProductReviewsDocument } from "@/queries/product/product.queries";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
 export const PRODUCT_REVIEWS_QUERY_KEY = ["product-reviews"];
 
-export const fetchReviews = async (sku?: string | null) => {
-  const data = await baseMagentoClient("GET").request<
-    ProductReviewsQuery,
-    ProductReviewsQueryVariables
-  >(ProductReviewsDocument, {
-    filter: {
-      sku: {
-        eq: sku,
-      },
-    },
-  });
+export const fetchReviews = async (productId?: string | null) => {
+  if (!productId) return;
 
-  return data.products?.items?.[0];
+  const data = await baseMagentoClient("GET").request(
+    GetProductReviewsDocument,
+    {
+      productId,
+    },
+  );
+
+  return data.getReviewsByProductId;
 };
 
-export const useProductReviewsQuery = (sku?: string | null) => {
+export const useProductReviewsQuery = (productId?: string | null) => {
   return useQuery({
-    queryKey: [...PRODUCT_REVIEWS_QUERY_KEY, sku],
-    queryFn: () => fetchReviews(sku),
-    enabled: !!sku,
+    queryKey: [...PRODUCT_REVIEWS_QUERY_KEY, productId],
+    queryFn: () => fetchReviews(productId),
+    enabled: !!productId,
     staleTime: 3600,
   });
 };

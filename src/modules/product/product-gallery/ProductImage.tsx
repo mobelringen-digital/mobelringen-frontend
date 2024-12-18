@@ -63,7 +63,11 @@ export const ProductImage: React.FC<Props> = ({
       <div className="absolute bottom-4 right-4 flex gap-3">
         {product ? (
           <div className="bg-white flex items-center justify-center text-center rounded-full">
-            <AddToWishList productSku={product.sku} className="!p-2" />
+            <AddToWishList
+              productId={String(product.id)}
+              productSku={product.sku}
+              className="!p-2"
+            />
           </div>
         ) : null}
 
