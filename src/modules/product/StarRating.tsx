@@ -14,7 +14,7 @@ export const StarRating: React.FC<Props> = ({ rating, total }) => {
       {total ? (
         <span
           aria-label={`${total} total reviews`}
-          className="text-md text-dark-grey"
+          className="text-md text-dark-grey mt-0.5"
         >
           ({total})
         </span>

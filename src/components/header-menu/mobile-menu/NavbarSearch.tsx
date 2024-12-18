@@ -4,7 +4,7 @@ import React, { Suspense } from "react";
 
 import cx from "classnames";
 
-import { SearchIcon } from "@/components/_ui/icons/SearchIcon";
+import { MenuSearch } from "@/components/_ui/icons/figma/MenuSearch";
 import { Search } from "@/components/header-menu/Search";
 import { useDetectOutsideClick } from "@/utils/hooks/useDetectOutsideClick";
 
@@ -15,7 +15,7 @@ export const NavbarSearch = () => {
   return (
     <div ref={ref as any} className="z-10 flex items-nceter lg:hidden">
       <button onClick={() => setIsActive((prev) => !prev)}>
-        <SearchIcon id="mobile-search-icon" />
+        <MenuSearch />
       </button>
       <div
         className={cx("absolute top-[75px] left-0 right-0 transition-all", {
