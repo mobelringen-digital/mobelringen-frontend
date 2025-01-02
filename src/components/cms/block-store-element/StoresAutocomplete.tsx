@@ -19,32 +19,40 @@ interface Props {
 export type FieldState = {
   selectedKey: React.Key | null;
   inputValue: string;
-  items?: Array<BaseStoreFragment | null> | null;
+  items?: Array<{
+    key?: string | null;
+    label?: string | null;
+    description?: string | null;
+  }>;
 };
 
 export const StoresAutocomplete: React.FC<Props> = ({ stores }) => {
+  const storesData = stores?.map((store) => ({
+    key: store?.external_id,
+    label: store?.name,
+    description: store?.postcode,
+  }));
+
   const [fieldState, setFieldState] = React.useState<FieldState>({
     selectedKey: "",
     inputValue: "",
-    items: stores,
+    items: storesData,
   });
   const { startsWith } = useFilter({ sensitivity: "base" });
 
   if (!stores) return null;
 
-  console.log(fieldState);
-
   const onSelectionChange = (key: React.Key | null) => {
     setFieldState((prevState) => {
       const selectedItem = prevState.items?.find(
-        (option) => option?.external_id === key,
+        (option) => option?.key === key,
       );
 
       return {
-        inputValue: selectedItem?.name || "",
+        inputValue: selectedItem?.label || "",
         selectedKey: key,
-        items: stores.filter((item) =>
-          startsWith(item?.postcode || "", selectedItem?.name || ""),
+        items: storesData?.filter((item) =>
+          startsWith(item?.description || "", selectedItem?.label || ""),
         ),
       };
     });
@@ -54,7 +62,7 @@ export const StoresAutocomplete: React.FC<Props> = ({ stores }) => {
     setFieldState((prevState) => ({
       inputValue: value,
       selectedKey: value === "" ? null : prevState.selectedKey,
-      items: stores.filter((item) => startsWith(item?.postcode || "", value)),
+      items: storesData?.filter((item) => startsWith(item?.description || "", value)),
     }));
   };
 
@@ -63,22 +71,16 @@ export const StoresAutocomplete: React.FC<Props> = ({ stores }) => {
       setFieldState((prevState) => ({
         inputValue: prevState.inputValue,
         selectedKey: prevState.selectedKey,
-        items: stores,
+        items: storesData,
       }));
     }
   };
-
-  const storesData = stores?.map((store) => ({
-    key: store?.external_id,
-    label: store?.name,
-    description: store?.postcode,
-  }));
 
   return (
     <form className="flex gap-4" action="/finn-butikk">
       <Autocomplete
         name="searchInput"
-        defaultItems={storesData}
+        items={fieldState.items}
         placeholder="Skriv postnummer eller sted"
         onInputChange={onInputChange}
         onOpenChange={onOpenChange}
@@ -94,7 +96,10 @@ export const StoresAutocomplete: React.FC<Props> = ({ stores }) => {
           <AutocompleteItem key={item.key}>{item.label}</AutocompleteItem>
         )}
       </Autocomplete>
-      <button className="bg-red p-4 rounded-xl w-[58px] flex-shrink-0 flex items-center justify-center" type="submit">
+      <button
+        className="bg-red p-4 rounded-xl w-[58px] flex-shrink-0 flex items-center justify-center"
+        type="submit"
+      >
         <LocationIcon />
       </button>
     </form>
