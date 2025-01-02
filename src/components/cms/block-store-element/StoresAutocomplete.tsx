@@ -7,7 +7,6 @@ import {
   AutocompleteItem,
   MenuTriggerAction,
 } from "@nextui-org/react";
-import { useFilter } from "@react-aria/i18n";
 
 import { LocationIcon } from "@/components/cms/block-store-element/LocationIcon";
 import { BaseStoreFragment } from "@/types";
@@ -38,8 +37,6 @@ export const StoresAutocomplete: React.FC<Props> = ({ stores }) => {
     inputValue: "",
     items: storesData,
   });
-  const { startsWith } = useFilter({ sensitivity: "base" });
-
   if (!stores) return null;
 
   const onSelectionChange = (key: React.Key | null) => {
@@ -51,8 +48,14 @@ export const StoresAutocomplete: React.FC<Props> = ({ stores }) => {
       return {
         inputValue: selectedItem?.label || "",
         selectedKey: key,
-        items: storesData?.filter((item) =>
-          startsWith(item?.description || "", selectedItem?.label || ""),
+        items: storesData?.filter(
+          (item) =>
+            item?.label
+              ?.toLocaleLowerCase()
+              .includes(selectedItem?.label?.toLocaleLowerCase() || "") ||
+            item?.description
+              ?.toLocaleLowerCase()
+              .includes(selectedItem?.description?.toLocaleLowerCase() || ""),
         ),
       };
     });
@@ -62,7 +65,15 @@ export const StoresAutocomplete: React.FC<Props> = ({ stores }) => {
     setFieldState((prevState) => ({
       inputValue: value,
       selectedKey: value === "" ? null : prevState.selectedKey,
-      items: storesData?.filter((item) => startsWith(item?.description || "", value)),
+      items: storesData?.filter(
+        (item) =>
+          item?.label
+            ?.toLocaleLowerCase()
+            .includes(value.toLocaleLowerCase()) ||
+          item?.description
+            ?.toLocaleLowerCase()
+            .includes(value.toLocaleLowerCase()),
+      ),
     }));
   };
 
@@ -81,6 +92,7 @@ export const StoresAutocomplete: React.FC<Props> = ({ stores }) => {
       <Autocomplete
         name="searchInput"
         items={fieldState.items}
+        aria-label="Søk etter butikk"
         placeholder="Skriv postnummer eller sted"
         onInputChange={onInputChange}
         onOpenChange={onOpenChange}
