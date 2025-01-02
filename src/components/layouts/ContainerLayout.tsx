@@ -18,7 +18,7 @@ export const ContainerLayout: React.FC<Props> = ({
       className={cx(
         {
           "mx-auto px-4 lg:px-6 container": !fullWidth,
-          "px-8": fullWidth,
+          "px-4 lg:px-8": fullWidth,
         },
         className,
       )}
