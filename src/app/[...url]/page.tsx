@@ -13,12 +13,13 @@ import Category from "./category";
 import Product from "./product";
 
 type Props = {
-  params: { url: Array<string> };
+  params: Promise<{ url: Array<string> }>;
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const url = generatePrettyUrl(params.url, {
+  const paramsData = await params;
+  const url = generatePrettyUrl(paramsData.url, {
     removeTrailSlash: true,
   });
 
@@ -77,7 +78,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Home({ params, searchParams }: Props) {
-  const url = generatePrettyUrl(params.url, {
+  const paramsData = await params;
+  const url = generatePrettyUrl(paramsData.url, {
     removeTrailSlash: true,
   });
   const isPreview = searchParams.preview === "true";

@@ -5,8 +5,9 @@ import { WishlistItemsList } from "@/modules/account/wishlist/wishlist-items-lis
 import { NextServerComponentProps } from "@/utils/ts-utils";
 
 export default async function Wishlist({ params }: NextServerComponentProps) {
+  const paramsData = await params;
   const customer = await getCustomerDetails();
-  const wishlist = customer?.wishlists.find((w) => w?.id === params.id);
+  const wishlist = customer?.wishlists.find((w) => w?.id === paramsData.id);
 
   if (!wishlist) {
     return notFound();

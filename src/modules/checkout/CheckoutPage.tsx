@@ -26,7 +26,7 @@ export async function CheckoutPage({
   isShippingAddressSet,
 }: Props) {
   const customer = await getCustomerDetails();
-  const cookiesStore = cookies();
+  const cookiesStore = await cookies();
   const isClickAndCollect =
     cookiesStore.get("preferredMethod")?.value === DeliveryType.Cac;
 

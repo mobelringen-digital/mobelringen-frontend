@@ -14,8 +14,13 @@ export const Page: React.FC<Props> = ({ data }) => {
     <Suspense fallback={<PageTopLoader />}>
       <MetaData data={data.pages[0].seo} />
 
-      {data.pages[0]?.content.map((content) => {
-        return <CmsContentLoader key={content.__typename} data={content} />;
+      {data.pages[0]?.content.map((content, index) => {
+        return (
+          <CmsContentLoader
+            key={`${content.__typename}=${index}`}
+            data={content}
+          />
+        );
       })}
     </Suspense>
   );

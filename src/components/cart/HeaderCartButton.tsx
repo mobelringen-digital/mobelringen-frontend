@@ -8,7 +8,7 @@ import getCart from "@/components/cart/actions";
 
 export async function HeaderCartButton() {
   const data = await getCart();
-  const cookiesStore = cookies();
+  const cookiesStore = await cookies();
   const preferredMethod = cookiesStore.get("preferredMethod");
 
   const totalQuantity =

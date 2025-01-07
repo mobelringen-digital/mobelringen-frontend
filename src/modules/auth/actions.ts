@@ -27,7 +27,7 @@ interface LoginInput {
 }
 
 export async function login({ email, password }: LoginInput) {
-  const cookiesStore = cookies();
+  const cookiesStore = await cookies();
 
   const data = await baseMagentoClient("POST", {
     cache: "no-store",
@@ -72,7 +72,7 @@ export async function createCustomer(input: CustomerCreateInput) {
 }
 
 export async function assignCustomerToGuestCart(token: string) {
-  const cookiesStore = cookies();
+  const cookiesStore = await cookies();
   const guestCartId = cookiesStore.get("cart")?.value;
 
   if (!token || !guestCartId) {
@@ -96,7 +96,7 @@ export async function assignCustomerToGuestCart(token: string) {
 }
 
 export async function getToken() {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
 
   return cookieStore.get("token")?.value;
 }

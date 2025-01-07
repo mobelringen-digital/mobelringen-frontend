@@ -26,7 +26,7 @@ export const CheckoutSteps: React.FC<Props> = ({
   cart,
   searchParams,
 }) => {
-  const cookiesStore = cookies();
+  const cookiesStore = await cookies();
   const isOnlineMethod =
     cookiesStore.get("preferredMethod")?.value !== DeliveryType.Cac;
   const isClickAndCollect =

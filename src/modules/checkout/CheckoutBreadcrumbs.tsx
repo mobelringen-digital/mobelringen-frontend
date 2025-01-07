@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 import { Breadcrumbs } from "@/components/breadcrumbs";
 
 export const CheckoutBreadcrumbs = () => {
-  const cookiesStore = cookies();
+  const cookiesStore = await cookies();
   const preferredMethod = cookiesStore.get("preferredMethod");
 
   return (
