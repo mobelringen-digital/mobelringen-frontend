@@ -9,11 +9,12 @@ import { NextSearchParams } from "@/utils/ts-utils";
 
 import { navigate } from "../../actions";
 
-export default async function Checkout({
-  searchParams,
-}: {
-  searchParams?: NextSearchParams;
-}) {
+export default async function Checkout(
+  props: {
+    searchParams?: Promise<NextSearchParams>;
+  }
+) {
+  const searchParams = await props.searchParams;
   const cart = await getCart();
   const token = await getToken();
 
@@ -38,7 +39,7 @@ export default async function Checkout({
       <CheckoutPage
         isShippingMethodSet={isShippingMethodSet}
         isShippingAddressSet={isShippingAddressSet}
-        searchParams={searchParams}
+        searchParams={props.searchParams}
         cart={cart as BaseCartFragment}
       />
       <StaticPageContent url="/cart/checkout" />

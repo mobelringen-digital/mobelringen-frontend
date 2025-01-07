@@ -14,7 +14,7 @@ import { NextSearchParams } from "@/utils/ts-utils";
 
 interface Props {
   cart?: BaseCartFragment | null;
-  searchParams?: NextSearchParams;
+  searchParams?: Promise<NextSearchParams>;
   isShippingAddressSet: boolean;
   isShippingMethodSet: boolean;
 }

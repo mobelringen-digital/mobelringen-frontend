@@ -16,16 +16,17 @@ interface Props {
   isShippingMethodSet: boolean;
   customer?: CustomerDataFragment | null;
   cart?: BaseCartFragment | null;
-  searchParams?: NextSearchParams;
+  searchParams?: Promise<NextSearchParams>;
 }
 
-export const CheckoutSteps: React.FC<Props> = ({
+export async function CheckoutSteps({
   isShippingAddressSet,
   isShippingMethodSet,
   customer,
   cart,
-  searchParams,
-}) => {
+  ...rest
+}: Props) {
+  const searchParams = await rest.searchParams;
   const cookiesStore = await cookies();
   const isOnlineMethod =
     cookiesStore.get("preferredMethod")?.value !== DeliveryType.Cac;
@@ -69,4 +70,4 @@ export const CheckoutSteps: React.FC<Props> = ({
       ) : null}
     </div>
   );
-};
+}

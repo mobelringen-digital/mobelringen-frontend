@@ -6,12 +6,12 @@ import { StorePage } from "@/modules/store/StorePage";
 
 type Props = {
   params: Promise<{ url: Array<string> }>;
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export default async function Store({ params }: Props) {
-  const paramsData = await params;
-  const storeId = paramsData.url[0];
+export default async function Store(props: Props) {
+  const params = await props.params;
+  const storeId = params.url[0];
   const cmsData = await getCmsStoreInfo(storeId);
   const storeData = await getStoreInfo(storeId);
   const selectedStore = await getSelectedStore();

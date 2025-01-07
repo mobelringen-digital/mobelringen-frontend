@@ -21,9 +21,8 @@ async function getMaskedOrder(maskId: string) {
   return data.getOrderByMask;
 }
 
-export default async function CartSuccess({
-  searchParams,
-}: NextServerComponentProps) {
+export default async function CartSuccess(props: NextServerComponentProps) {
+  const searchParams = await props.searchParams;
   const order = await getMaskedOrder(String(searchParams.masked_id)).catch(() =>
     navigate(`/cart/error/unknown?mask=${searchParams.masked_id}`),
   );

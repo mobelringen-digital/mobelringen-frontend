@@ -2,7 +2,8 @@ import { searchArticles, searchProducts } from "@/modules/search/actions";
 import { SearchPage } from "@/modules/search/SearchPage";
 import {NextServerComponentProps} from "@/utils/ts-utils";
 
-export default async function Search({ searchParams }: NextServerComponentProps) {
+export default async function Search(props: NextServerComponentProps) {
+  const searchParams = await props.searchParams;
   const searchQuery = searchParams.q as string;
 
   const productsData = await searchProducts(searchQuery);
