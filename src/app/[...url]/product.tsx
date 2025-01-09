@@ -72,22 +72,28 @@ export default async function Product({ sku, url }: Props) {
     });
   }
 
+  if (
+    !!configurableProductData &&
+    isTypename(currentProductData, ["SimpleProduct"])
+  ) {
+    return (
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <ConfigurableProductPage
+          configurableProductData={configurableProductData}
+          stock={stock}
+          cart={cart as BaseCartFragment}
+          product={currentProductData}
+          selectedStore={selectedStore}
+        />
+
+        <StaticPageContent url={`/${url}`} />
+      </HydrationBoundary>
+    );
+  }
+
   return (
     <>
       <HydrationBoundary state={dehydrate(queryClient)}>
-        {!!configurableProductData &&
-        isTypename(currentProductData, ["SimpleProduct"]) ? (
-              <>
-                <ConfigurableProductPage
-                  configurableProductData={configurableProductData}
-                  stock={stock}
-                  cart={cart as BaseCartFragment}
-                  product={currentProductData}
-                  selectedStore={selectedStore}
-                />
-              </>
-            ) : null}
-
         {isTypename(currentProductData, ["SimpleProduct"]) ? (
           <>
             <link

@@ -11,7 +11,7 @@ interface Props {
 
 export const Variants: React.FC<Props> = ({ variants }) => {
   return (
-    <div className="flex flex-wrap gap-4 justify-between lg:justify-start">
+    <div className="flex flex-wrap gap-4 justify-start">
       {variants?.map((variant, idx) => <Variant variant={variant} key={idx} />)}
     </div>
   );
