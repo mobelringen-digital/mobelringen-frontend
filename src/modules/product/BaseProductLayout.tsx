@@ -13,7 +13,6 @@ import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { useProductSliderDataQuery } from "@/components/product/hooks/useProductSliderDataQuery";
 import { ProductSlider } from "@/components/product-slider/ProductSlider";
-import { useActiveProductData } from "@/modules/product/active-product-data-provider/useActiveProductData";
 import { PurchaseBlock } from "@/modules/product/add-to-cart/PurchaseBlock";
 import { FixedLowPrice } from "@/modules/product/FixedLowPrice";
 import { InformationAccordion } from "@/modules/product/information-accordion/InformationAccordion";
@@ -86,12 +85,11 @@ export const BaseProductLayout: React.FC<Props> = ({
   selectedStore,
 }) => {
   const { data: reviews } = useProductReviewsQuery(String(baseProductData?.id));
-  const { activeProductVariant } = useActiveProductData();
   const searchParams = useSearchParams();
   const params = searchParams.entries();
   const pathname = usePathname();
 
-  const product = activeProductVariant.variant?.product ?? baseProductData;
+  const product = baseProductData;
   const { data: productSliderData, isLoading: isSlidersDataLoading } =
     useProductSliderDataQuery(product.sku);
 
