@@ -10,13 +10,13 @@ interface Props {
 }
 
 export const BlockHTMLCode: React.FC<Props> = ({ data }) => {
-  if (!data.content) {
+  if (!data.markup) {
     return null;
   }
 
   return (
     <CmsBlockWrapper config={data.blockConfig}>
-      <div id="cms-text-block" dangerouslySetInnerHTML={{ __html: data.content }} />
+      <div id="cms-text-block" dangerouslySetInnerHTML={{ __html: data.markup }} />
     </CmsBlockWrapper>
   );
 };

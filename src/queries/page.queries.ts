@@ -338,7 +338,7 @@ export const CmsBlockHTMLCodeFragment = graphql(`
     ... on BlockHtmlCode {
       __typename
       title
-      content
+      markup
       blockConfig {
         ...CmsBlockConfig
       }

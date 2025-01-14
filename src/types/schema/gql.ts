@@ -107,7 +107,7 @@ const documents = {
     "\n  fragment CmsBlockPressRoom on BlockPressRoom {\n    ... on BlockPressRoom {\n      __typename\n      title\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsBlockPressRoomFragmentDoc,
     "\n  fragment CmsBlockCatalog on BlockCatalog {\n    ... on BlockCatalog {\n      __typename\n      title\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsBlockCatalogFragmentDoc,
     "\n  query IPaper {\n    iPapers {\n      id\n      name\n      type\n      url\n      image\n    }\n  }\n": types.IPaperDocument,
-    "\n  fragment CmsBlockHTMLCode on BlockHtmlCode {\n    ... on BlockHtmlCode {\n      __typename\n      title\n      content\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsBlockHtmlCodeFragmentDoc,
+    "\n  fragment CmsBlockHTMLCode on BlockHtmlCode {\n    ... on BlockHtmlCode {\n      __typename\n      title\n      markup\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsBlockHtmlCodeFragmentDoc,
     "\n  fragment ConfigurableProductOptions on ConfigurableProductOptions {\n    __typename\n    values {\n      default_label\n      label\n      store_label\n      uid\n      use_default_value\n      value_index\n    }\n    attribute_code\n    attribute_uid\n    label\n    position\n    uid\n    use_default\n  }\n": types.ConfigurableProductOptionsFragmentDoc,
     "\n  fragment ConfigurableProductVariants on ConfigurableVariant {\n    __typename\n    attributes {\n      code\n      label\n      uid\n      value_index\n    }\n    product {\n      ...BaseProduct\n    }\n  }\n": types.ConfigurableProductVariantsFragmentDoc,
     "\n  fragment ConfigurableProduct on ConfigurableProduct {\n    __typename\n    ...BaseProduct\n    configurable_options {\n      ...ConfigurableProductOptions\n    }\n    variants {\n      ...ConfigurableProductVariants\n    }\n  }\n": types.ConfigurableProductFragmentDoc,
@@ -542,7 +542,7 @@ export function graphql(source: "\n  query IPaper {\n    iPapers {\n      id\n  
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  fragment CmsBlockHTMLCode on BlockHtmlCode {\n    ... on BlockHtmlCode {\n      __typename\n      title\n      content\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"): (typeof documents)["\n  fragment CmsBlockHTMLCode on BlockHtmlCode {\n    ... on BlockHtmlCode {\n      __typename\n      title\n      content\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  fragment CmsBlockHTMLCode on BlockHtmlCode {\n    ... on BlockHtmlCode {\n      __typename\n      title\n      markup\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"): (typeof documents)["\n  fragment CmsBlockHTMLCode on BlockHtmlCode {\n    ... on BlockHtmlCode {\n      __typename\n      title\n      markup\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
