@@ -1,7 +1,5 @@
 import React from "react";
 
-import { useCookies } from "react-cookie";
-
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -22,10 +20,8 @@ interface Props {
 export const CrossSellListItem: React.FC<Props> = ({ product }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const searchParams = useSearchParams();
-  const [cookies] = useCookies();
   const activeMethod =
-    cookies.preferredMethod ??
-    searchParams.get("preferredMethod") ??
+    (searchParams.get("preferredMethod") as DeliveryType) ??
     DeliveryType.Online;
   const labels = product?.productLabel;
   const { percentageDiscount } = usePriceRange(product?.price_range);

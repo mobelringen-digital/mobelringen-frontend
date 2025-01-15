@@ -93,7 +93,7 @@ export const AddToCartController: React.FC<Props> = ({
 
     setIsLoading(true);
     await onAddToCart(preferredMethod).finally(() => {
-      router.push(`${pathname}?cart=true`);
+      router.push(`${pathname}?cart=true&preferredMethod=${preferredMethod}`);
     });
   };
 
