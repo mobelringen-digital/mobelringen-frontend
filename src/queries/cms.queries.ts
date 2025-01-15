@@ -12,6 +12,22 @@ export const SalesBubbleFragment = graphql(`
   }
 `);
 
+export const TacticalBubbleFragment = graphql(`
+  fragment CmsTacticalBubble on TacticalBubble {
+    position
+    mainBubbleTopLine
+    mainBubbleMiddleLine
+    mainBubbleBottomLine
+    mainBubbleBackgroundColor
+    mainBubbleTextColor
+    supplementBubbleTopLine
+    supplementBubbleMiddleLine
+    supplementBubbleBackgroundColor
+    supplementBubbleTextColor
+    linkUrl
+  }
+`);
+
 export const PromotionBubbleFragment = graphql(`
   fragment CmsPromotionBubble on PromotionBubble {
     middleLine
