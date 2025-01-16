@@ -12,11 +12,11 @@ interface Props {
 }
 
 const POSITION_CLASSES: Record<BubblePosition, string> = {
-  TOP_LEFT: "top-6 left-6",
-  TOP_RIGHT: "top-6 right-6",
+  TOP_LEFT: "top-16 left-8",
+  TOP_RIGHT: "top-16 right-12",
   CENTER: "top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2",
-  BOTTOM_LEFT: "bottom-6 left-6",
-  BOTTOM_RIGHT: "bottom-6 right-6",
+  BOTTOM_LEFT: "bottom-8 left-8",
+  BOTTOM_RIGHT: "bottom-8 right-12",
 };
 
 const SIZE_VARIANTS = {
