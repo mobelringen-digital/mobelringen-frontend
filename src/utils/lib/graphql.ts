@@ -58,7 +58,6 @@ export const authorizedMagentoClient = (
 ) =>
   new GraphQLClient(process.env.NEXT_PUBLIC_MAGENTO_URL as string, {
     method,
-    errorPolicy: "all",
     headers: {
       authorization: `Bearer ${token ?? ""}`,
     },
