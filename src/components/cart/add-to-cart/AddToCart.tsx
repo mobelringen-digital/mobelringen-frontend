@@ -5,22 +5,18 @@ import { sendGTMEvent } from "@next/third-parties/google";
 import { openToast } from "@/components/_ui/toast-provider";
 import { addItemToCartHandler } from "@/components/cart/add-to-cart/actions";
 import { AddToCartController } from "@/components/cart/add-to-cart/AddToCartController";
+import { useProductData } from "@/modules/product/context/useProductData";
 import {
   Availability,
-  BaseCartFragment,
   BaseProductFragment,
   BaseStoreFragment,
   DeliveryType,
-  GetProductStockQuery,
 } from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
 
 interface Props {
   product: BaseProductFragment;
   quantity: number;
-  cart?: BaseCartFragment | null;
-  stock?: GetProductStockQuery;
-  selectedStore?: BaseStoreFragment | null;
 }
 
 export const addToCartGTMEvent = (
@@ -56,12 +52,8 @@ export const addToCartGTMEvent = (
   });
 };
 
-export const AddToCart: React.FC<Props> = ({
-  product,
-  quantity,
-  stock,
-  selectedStore,
-}) => {
+export const AddToCart: React.FC<Props> = ({ product, quantity }) => {
+  const { selectedStore, stock } = useProductData();
   const handleAddItemToCart = async (preferredMethod: DeliveryType) => {
     if (
       preferredMethod === DeliveryType.Online &&

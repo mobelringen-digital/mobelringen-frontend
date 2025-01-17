@@ -15,6 +15,7 @@ import { useProductSliderDataQuery } from "@/components/product/hooks/useProduct
 import { ProductSlider } from "@/components/product-slider/ProductSlider";
 import { useActiveProductData } from "@/modules/product/active-product-data-provider/useActiveProductData";
 import { PurchaseBlock } from "@/modules/product/add-to-cart/PurchaseBlock";
+import { useProductData } from "@/modules/product/context/useProductData";
 import { FixedLowPrice } from "@/modules/product/FixedLowPrice";
 import { InformationAccordion } from "@/modules/product/information-accordion/InformationAccordion";
 import { useProductReviewsQuery } from "@/modules/product/information-accordion/reviews/useProductReviewsQuery";
@@ -24,9 +25,7 @@ import { ProductGallery } from "@/modules/product/product-gallery/ProductGallery
 import { ProductPricing } from "@/modules/product/product-pricing/ProductPricing";
 import { ProductTopInfo } from "@/modules/product/ProductTopInfo";
 import {
-  BaseCartFragment,
   BaseProductFragment as BaseProductFragmentType,
-  BaseStoreFragment,
   GetProductStockQuery,
 } from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
@@ -35,10 +34,6 @@ import { buildPathArray, dateToNOFormat } from "@/utils/helpers";
 interface Props {
   baseProductData: BaseProductFragmentType;
   configurationBlock?: React.ReactNode;
-  productGallery?: React.ReactNode;
-  cart?: BaseCartFragment | null;
-  stock?: GetProductStockQuery;
-  selectedStore?: BaseStoreFragment | null;
 }
 
 const viewProductGTMEvent = (
@@ -81,15 +76,14 @@ const viewProductGTMEvent = (
 export const BaseProductLayout: React.FC<Props> = ({
   baseProductData,
   configurationBlock,
-  cart,
-  stock,
-  selectedStore,
 }) => {
   const { data: reviews } = useProductReviewsQuery(String(baseProductData?.id));
   const { activeProductVariant } = useActiveProductData();
   const searchParams = useSearchParams();
   const params = searchParams.entries();
   const pathname = usePathname();
+
+  const { stock } = useProductData();
 
   const product = activeProductVariant.variant?.product ?? baseProductData;
   const { data: productSliderData, isLoading: isSlidersDataLoading } =
@@ -165,12 +159,7 @@ export const BaseProductLayout: React.FC<Props> = ({
             <MoreInTheStore />
             <FixedLowPrice product={product} />
 
-            <PurchaseBlock
-              selectedStore={selectedStore}
-              stock={stock}
-              cart={cart}
-              product={product}
-            />
+            <PurchaseBlock product={product} />
             <div className="block lg:hidden">
               <InformationAccordion product={product} />
             </div>

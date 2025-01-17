@@ -1,35 +1,22 @@
+"use client";
+
 import React from "react";
 
 import { ActiveProductDataContextProvider } from "@/modules/product/active-product-data-provider/ActiveProductDataProvider";
 import { BaseProductLayout } from "@/modules/product/BaseProductLayout";
-import {
-  BaseCartFragment,
-  BaseStoreFragment,
-  GetProductStockQuery,
-  SimpleProductFragment,
-} from "@/types";
+import { useProductData } from "@/modules/product/context/useProductData";
+import { SimpleProductFragment } from "@/types";
 
-interface Props {
-  product: SimpleProductFragment;
-  cart?: BaseCartFragment | null;
-  stock?: GetProductStockQuery;
-  selectedStore?: BaseStoreFragment | null;
-}
+export const SimpleProductPage: React.FC = () => {
+  const { product } = useProductData<SimpleProductFragment>();
 
-export async function SimpleProductPage({
-  product,
-  cart,
-  stock,
-  selectedStore,
-}: Props) {
+  if (!product) {
+    return null;
+  }
+
   return (
     <ActiveProductDataContextProvider>
-      <BaseProductLayout
-        selectedStore={selectedStore}
-        stock={stock}
-        cart={cart}
-        baseProductData={product}
-      />
+      <BaseProductLayout baseProductData={product} />
     </ActiveProductDataContextProvider>
   );
-}
+};

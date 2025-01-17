@@ -128,9 +128,6 @@ export const BaseProductFragment = graphql(`
         message
       }
     }
-    stores {
-      ...ProductStores
-    }
     gift_message_available
     review_count
     image {
@@ -227,6 +224,39 @@ export const ProductsQueryDocument = graphql(`
         }
         ... on ConfigurableProduct {
           ...ConfigurableProduct
+        }
+      }
+    }
+  }
+`);
+
+export const ProductsStoresQueryDocument = graphql(`
+  query ProductsStores(
+    $pageSize: Int = 12
+    $filter: ProductAttributeFilterInput
+    $sort: ProductAttributeSortInput
+    $currentPage: Int
+    $search: String = ""
+  ) {
+    products(
+      pageSize: $pageSize
+      filter: $filter
+      sort: $sort
+      currentPage: $currentPage
+      search: $search
+    ) {
+      items {
+        ... on SimpleProduct {
+          __typename
+          stores {
+            ...ProductStores
+          }
+        }
+        ... on ConfigurableProduct {
+          __typename
+          stores {
+            ...ProductStores
+          }
         }
       }
     }

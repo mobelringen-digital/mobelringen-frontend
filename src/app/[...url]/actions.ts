@@ -13,7 +13,9 @@ import {
   CmsPagesQuery,
   CmsPagesQueryVariables,
   ProductsQuery,
-  ProductsQueryVariables,
+  ProductsQueryVariables, ProductsStoresDocument,
+  ProductsStoresQuery,
+  ProductsStoresQueryVariables,
   RouteQuery,
   RouteQueryVariables,
 } from "@/types";
@@ -32,6 +34,19 @@ export async function getProduct(sku: string) {
     sort: {},
     currentPage: 1,
   });
+}
+
+export async function getProductStores(sku: string) {
+  return await baseMagentoClient("GET", {
+    revalidate: 600,
+  }).request<ProductsStoresQuery, ProductsStoresQueryVariables>(
+    ProductsStoresDocument,
+    {
+      filter: { sku: { eq: sku } },
+      sort: {},
+      currentPage: 1,
+    },
+  );
 }
 
 export async function getCategory(url: string) {

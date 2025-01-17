@@ -9,29 +9,17 @@ import { AddToCart } from "@/components/cart/add-to-cart/AddToCart";
 import { useActiveProductData } from "@/modules/product/active-product-data-provider/useActiveProductData";
 import { DeliveryInfo } from "@/modules/product/add-to-cart/DeliveryInfo";
 import { KlarnaInformation } from "@/modules/product/add-to-cart/KlarnaInformation";
-import {
-  Availability,
-  BaseCartFragment,
-  BaseProductFragment,
-  BaseStoreFragment,
-  GetProductStockQuery,
-} from "@/types";
+import { useProductData } from "@/modules/product/context/useProductData";
+import { Availability, BaseProductFragment } from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
 import { usePriceRange } from "@/utils/hooks/usePriceRange";
 
 interface Props {
   product: BaseProductFragment;
-  cart?: BaseCartFragment | null;
-  stock?: GetProductStockQuery;
-  selectedStore?: BaseStoreFragment | null;
 }
 
-export const PurchaseBlock: React.FC<Props> = ({
-  product,
-  cart,
-  stock,
-  selectedStore,
-}) => {
+export const PurchaseBlock: React.FC<Props> = ({ product }) => {
+  const { stock } = useProductData();
   const priceRange = product.price_range;
   const { finalPrice, currency } = usePriceRange(priceRange);
   const [quantity, setQuantity] = React.useState(
@@ -67,7 +55,7 @@ export const PurchaseBlock: React.FC<Props> = ({
 
   return (
     <div className="bg-white p-4 lg:p-8 rounded-2xl flex flex-col gap-4">
-      <DeliveryInfo stock={stock} product={product} />
+      <DeliveryInfo product={product} />
 
       {!canBuyCAC ? (
         <div className="border border-red border-opacity-50 rounded-xl p-2 mb-2">
@@ -102,13 +90,7 @@ export const PurchaseBlock: React.FC<Props> = ({
           </div>
         ) : null}
       </div>
-      <AddToCart
-        selectedStore={selectedStore}
-        cart={cart}
-        product={product}
-        quantity={quantity}
-        stock={stock}
-      />
+      <AddToCart product={product} quantity={quantity} />
 
       <KlarnaInformation />
     </div>
