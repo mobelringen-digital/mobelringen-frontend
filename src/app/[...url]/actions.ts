@@ -40,7 +40,7 @@ export async function getProduct(sku: string) {
 export async function getProductStores(sku: string) {
   return await baseMagentoClient("GET", {
     revalidate: 600,
-    tags: ["products", "stores", sku],
+    tags: ["product", "stores", sku],
   }).request<ProductsStoresQuery, ProductsStoresQueryVariables>(
     ProductsStoresDocument,
     {
@@ -82,7 +82,7 @@ export async function getRoute(url: string) {
 
 export async function getProductReviews(productId: string) {
   const data = await baseMagentoClient("GET", {
-    tags: ["reviews", productId],
+    tags: ["product", "reviews", productId],
     revalidate: 3600,
   }).request(GetProductReviewsDocument, {
     productId,
