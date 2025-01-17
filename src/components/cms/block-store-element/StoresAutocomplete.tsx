@@ -64,7 +64,7 @@ export const StoresAutocomplete: React.FC<Props> = () => {
         items={list.items}
         inputProps={{
           classNames: {
-            input: "ml-1",
+            input: "ml-1 text-base",
             inputWrapper: "h-[58px]",
           },
         }}
