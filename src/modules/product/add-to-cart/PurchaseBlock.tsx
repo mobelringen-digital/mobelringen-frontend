@@ -6,12 +6,10 @@ import { FormatNumber } from "@/components/_ui/format-number/FormatNumber";
 import { Info } from "@/components/_ui/icons/figma/Info";
 import { QuantityInput } from "@/components/_ui/quantity-input/QuantityInput";
 import { AddToCart } from "@/components/cart/add-to-cart/AddToCart";
-import { useActiveProductData } from "@/modules/product/active-product-data-provider/useActiveProductData";
 import { DeliveryInfo } from "@/modules/product/add-to-cart/DeliveryInfo";
 import { KlarnaInformation } from "@/modules/product/add-to-cart/KlarnaInformation";
 import { useProductData } from "@/modules/product/context/useProductData";
 import { Availability, BaseProductFragment } from "@/types";
-import { isTypename } from "@/types/graphql-helpers";
 import { usePriceRange } from "@/utils/hooks/usePriceRange";
 
 interface Props {
@@ -25,14 +23,9 @@ export const PurchaseBlock: React.FC<Props> = ({ product }) => {
   const [quantity, setQuantity] = React.useState(
     stock?.getProductStock.online?.step ?? 1,
   );
-  const { activeProductVariant } = useActiveProductData();
 
   const canBuyCAC =
     stock?.getProductStock.cac?.availability !== Availability.OutOfStock;
-
-  const isVariantNotSelected =
-    isTypename(product, ["ConfigurableProduct"]) &&
-    !activeProductVariant.variant;
 
   const setQuantityData = (type: "inc" | "dec") => {
     const min =
@@ -71,7 +64,6 @@ export const PurchaseBlock: React.FC<Props> = ({ product }) => {
 
       <div className="flex gap-4 items-center">
         <QuantityInput
-          disabled={isVariantNotSelected}
           value={quantity.toString()}
           onChange={(e) => setQuantity(parseInt(e.target.value, 10))}
           onQuantityIncrement={() => setQuantityData("inc")}
@@ -90,7 +82,7 @@ export const PurchaseBlock: React.FC<Props> = ({ product }) => {
           </div>
         ) : null}
       </div>
-      <AddToCart product={product} quantity={quantity} />
+        <AddToCart product={product} quantity={quantity} />
 
       <KlarnaInformation />
     </div>

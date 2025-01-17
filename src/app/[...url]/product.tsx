@@ -6,7 +6,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 
 import getCart from "@/components/cart/actions";
 import { StaticPageContent } from "@/components/cms/static-page-content/StaticPageContent";
@@ -44,87 +44,78 @@ export default async function Product({ sku, url }: Props) {
   const cart = await getCart();
 
   const products = product.products?.items;
-  if (products && products.length > 1) {
-    const firstProduct = products[0];
-    const secondProduct = products[1];
+  const configurableProductData =
+    products?.[0] && isTypename(products[0], ["ConfigurableProduct"])
+      ? products[0]
+      : null;
+  const currentProductData = products?.[products?.length - 1];
 
-    /**
-     * If Magento returns two items with same SKU request, it means that product is either
-     * Configurable product or Configurable Product Variant.
-     *
-     * First returned - Configurable Product (Parent)
-     * Second returned - Its variant (Child)
-     *
-     * When opening a configurable product variant, instead of real product from the list
-     * we set variant search param and redirect to its parent configurable product
-     */
-    if (
-      firstProduct &&
-      isTypename(firstProduct, ["ConfigurableProduct"]) &&
-      secondProduct &&
-      isTypename(secondProduct, ["SimpleProduct"])
-    ) {
-      redirect(`/${firstProduct.canonical_url}?variant=${secondProduct.sku}`);
-    }
-  }
-
-  const productData = products?.[0];
-
-  if (!productData) {
+  if (!currentProductData) {
     return notFound();
   }
 
   const selectedStore = await getSelectedStore();
-  const stores = await getProductStores(
-    // @ts-expect-error - productData is not null
-    productData.sku,
-  );
+    const stores = await getProductStores(
+        // @ts-expect-error - productData is not null
+        productData.sku,
+    );
   const stock = await getProductStock(
     // @ts-expect-error - productData is not null
-    productData.id,
+    currentProductData.id,
     selectedStore?.external_id ?? "",
   );
 
   // Prefetch product Reviews
   const queryClient = new QueryClient();
-  if (isTypename(productData, ["SimpleProduct", "ConfigurableProduct"])) {
+  if (
+    isTypename(currentProductData, ["SimpleProduct", "ConfigurableProduct"])
+  ) {
     await queryClient.prefetchQuery({
-      queryKey: [...PRODUCT_REVIEWS_QUERY_KEY, String(productData.id)],
-      queryFn: () => fetchReviews(String(productData.id)),
+      queryKey: [...PRODUCT_REVIEWS_QUERY_KEY, String(currentProductData.id)],
+      queryFn: () => fetchReviews(String(currentProductData.id)),
     });
+  }
+
+  if (
+    !!configurableProductData &&
+    isTypename(currentProductData, ["SimpleProduct"])
+  ) {
+    return (
+      <HydrationBoundary state={dehydrate(queryClient)}>
+          <ProductDataContextProvider
+              product={currentProductData}
+              stores={stores}
+              selectedStore={selectedStore}
+              cart={cart}
+              stock={stock}
+          >
+              <ConfigurableProductPage configurableProductData={configurableProductData} />
+          </ProductDataContextProvider>
+
+        <StaticPageContent url={`/${url}`} />
+      </HydrationBoundary>
+    );
   }
 
   return (
     <>
       <HydrationBoundary state={dehydrate(queryClient)}>
-        {isTypename(productData, ["SimpleProduct"]) ? (
+        {isTypename(currentProductData, ["SimpleProduct"]) ? (
           <>
             <link
               rel="canonical"
-              href={`${process.env.NEXT_PUBLIC_APP_URL}/${productData.canonical_url}`}
+              href={`${process.env.NEXT_PUBLIC_APP_URL}/${currentProductData.canonical_url}`}
             />
-            <ProductDataContextProvider
-              product={productData}
-              stores={stores}
-              selectedStore={selectedStore}
-              cart={cart}
-              stock={stock}
-            >
-              <SimpleProductPage />
-            </ProductDataContextProvider>
+              <ProductDataContextProvider
+                  product={currentProductData}
+                  stores={stores}
+                  selectedStore={selectedStore}
+                  cart={cart}
+                  stock={stock}
+              >
+                  <SimpleProductPage />
+              </ProductDataContextProvider>
           </>
-        ) : null}
-
-        {isTypename(productData, ["ConfigurableProduct"]) ? (
-          <ProductDataContextProvider
-            product={productData}
-            stores={stores}
-            selectedStore={selectedStore}
-            cart={cart}
-            stock={stock}
-          >
-            <ConfigurableProductPage />
-          </ProductDataContextProvider>
         ) : null}
 
         <StaticPageContent url={`/${url}`} />
