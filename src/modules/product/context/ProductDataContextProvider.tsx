@@ -2,39 +2,34 @@
 
 import React from "react";
 
-import { once } from "lodash";
-
 import {
   BaseCartFragment,
+  BaseProductFragment,
   BaseStoreFragment,
   GetProductStockQuery,
   ProductsStoresQuery,
 } from "@/types";
 
-export interface ProductDataContextType<T> {
-  product: T | null;
+export interface ProductDataContextType {
+  product: BaseProductFragment;
   stores?: ProductsStoresQuery;
   selectedStore?: BaseStoreFragment | null;
   stock?: GetProductStockQuery;
   cart?: BaseCartFragment | null;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export const createProductDataContext = once(<T, _ = any>() =>
-  React.createContext({} as ProductDataContextType<T>),
+export const ProductDataContext = React.createContext<ProductDataContextType>(
+  {} as ProductDataContextType,
 );
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const ProductDataContextProvider = <_, T>({
-  product,
-  stores,
-  selectedStore,
-  stock,
-  cart,
-  children,
-}: ProductDataContextType<T> & { children: React.ReactNode }) => {
-  const ProductDataContext = createProductDataContext<T>();
-
+const ProductDataContextProvider: React.FC<{
+  product: BaseProductFragment;
+  stores?: ProductsStoresQuery;
+  selectedStore?: BaseStoreFragment | null;
+  stock?: GetProductStockQuery;
+  cart?: BaseCartFragment | null;
+  children: React.ReactNode;
+}> = ({ children, product, stores, selectedStore, stock, cart }) => {
   return (
     <ProductDataContext.Provider
       value={{

@@ -2,7 +2,8 @@
 
 import React from "react";
 
-import { createProductDataContext } from "@/modules/product/context/ProductDataContextProvider";
-const useProductData = <T>() => React.useContext(createProductDataContext<T>());
+import { ProductDataContext } from "@/modules/product/context/ProductDataContextProvider";
+
+const useProductData = () => React.useContext(ProductDataContext);
 
 export { useProductData };

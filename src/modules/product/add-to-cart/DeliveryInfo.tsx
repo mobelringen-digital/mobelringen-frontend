@@ -45,7 +45,7 @@ export const DeliveryInfo: React.FC<Props> = ({ product }) => {
   };
 
   const storesData = React.useMemo(() => {
-    const productData = stores?.products?.items?.[0];
+    const productData = stores?.products?.items?.[stores?.products?.items?.length - 1];
 
     if (!productData) return null;
 

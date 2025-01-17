@@ -118,6 +118,9 @@ export const BaseProductFragment = graphql(`
     description {
       html
     }
+    stores {
+      ...ProductStores
+    }
     stocks {
       online {
         availability
@@ -230,7 +233,7 @@ export const ProductsQueryDocument = graphql(`
   }
 `);
 
-export const ProductsStoresQueryDocument = graphql(`
+export const ProductsStoresDocument = graphql(`
   query ProductsStores(
     $pageSize: Int = 12
     $filter: ProductAttributeFilterInput

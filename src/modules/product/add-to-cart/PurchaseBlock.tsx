@@ -82,7 +82,7 @@ export const PurchaseBlock: React.FC<Props> = ({ product }) => {
           </div>
         ) : null}
       </div>
-        <AddToCart product={product} quantity={quantity} />
+      <AddToCart product={product} quantity={quantity} />
 
       <KlarnaInformation />
     </div>

@@ -55,10 +55,11 @@ export default async function Product({ sku, url }: Props) {
   }
 
   const selectedStore = await getSelectedStore();
-    const stores = await getProductStores(
-        // @ts-expect-error - productData is not null
-        productData.sku,
-    );
+  const stores = await getProductStores(
+    // @ts-expect-error - productData is not null
+    currentProductData.sku,
+  );
+
   const stock = await getProductStock(
     // @ts-expect-error - productData is not null
     currentProductData.id,
@@ -82,15 +83,17 @@ export default async function Product({ sku, url }: Props) {
   ) {
     return (
       <HydrationBoundary state={dehydrate(queryClient)}>
-          <ProductDataContextProvider
-              product={currentProductData}
-              stores={stores}
-              selectedStore={selectedStore}
-              cart={cart}
-              stock={stock}
-          >
-              <ConfigurableProductPage configurableProductData={configurableProductData} />
-          </ProductDataContextProvider>
+        <ProductDataContextProvider
+          product={currentProductData}
+          stores={stores}
+          selectedStore={selectedStore}
+          cart={cart}
+          stock={stock}
+        >
+          <ConfigurableProductPage
+            configurableProductData={configurableProductData}
+          />
+        </ProductDataContextProvider>
 
         <StaticPageContent url={`/${url}`} />
       </HydrationBoundary>
@@ -106,15 +109,15 @@ export default async function Product({ sku, url }: Props) {
               rel="canonical"
               href={`${process.env.NEXT_PUBLIC_APP_URL}/${currentProductData.canonical_url}`}
             />
-              <ProductDataContextProvider
-                  product={currentProductData}
-                  stores={stores}
-                  selectedStore={selectedStore}
-                  cart={cart}
-                  stock={stock}
-              >
-                  <SimpleProductPage />
-              </ProductDataContextProvider>
+            <ProductDataContextProvider
+              product={currentProductData}
+              stores={stores}
+              selectedStore={selectedStore}
+              cart={cart}
+              stock={stock}
+            >
+              <SimpleProductPage />
+            </ProductDataContextProvider>
           </>
         ) : null}
 

@@ -5,6 +5,7 @@ import { CmsPagesQueryDocument } from "@/queries/page.queries";
 import {
   GetProductReviewsDocument,
   ProductsQueryDocument,
+  ProductsStoresDocument,
 } from "@/queries/product/product.queries";
 import { RouteDocument } from "@/queries/route.queries";
 import {
@@ -13,7 +14,7 @@ import {
   CmsPagesQuery,
   CmsPagesQueryVariables,
   ProductsQuery,
-  ProductsQueryVariables, ProductsStoresDocument,
+  ProductsQueryVariables,
   ProductsStoresQuery,
   ProductsStoresQueryVariables,
   RouteQuery,
@@ -39,6 +40,7 @@ export async function getProduct(sku: string) {
 export async function getProductStores(sku: string) {
   return await baseMagentoClient("GET", {
     revalidate: 600,
+    tags: ["products", "stores", sku],
   }).request<ProductsStoresQuery, ProductsStoresQueryVariables>(
     ProductsStoresDocument,
     {
