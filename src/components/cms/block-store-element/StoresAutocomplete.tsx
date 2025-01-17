@@ -2,101 +2,66 @@
 
 import React from "react";
 
-import {
-  Autocomplete,
-  AutocompleteItem,
-  MenuTriggerAction,
-} from "@nextui-org/react";
+import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
+import { useAsyncList } from "@react-stately/data";
+import { debounce } from "lodash";
 
 import { LocationIcon } from "@/components/cms/block-store-element/LocationIcon";
-import { BaseStoreFragment } from "@/types";
+import {
+  BaseStoreFragment,
+  StoresListDocument,
+  StoresListQuery,
+} from "@/types";
+import { baseMagentoClient } from "@/utils/lib/graphql";
 
 interface Props {
   stores?: Array<BaseStoreFragment | null> | null;
 }
 
-export type FieldState = {
-  selectedKey: React.Key | null;
-  inputValue: string;
-  items?: Array<{
-    key?: string | null;
-    label?: string | null;
-    description?: string | null;
-  }>;
+type StoreData = {
+  key?: string | null;
+  label?: string | null;
+  description?: string | null;
 };
 
-export const StoresAutocomplete: React.FC<Props> = ({ stores }) => {
-  const storesData = stores?.map((store) => ({
-    key: store?.external_id,
-    label: store?.name,
-    description: store?.postcode,
-  }));
-
-  const [fieldState, setFieldState] = React.useState<FieldState>({
-    selectedKey: "",
-    inputValue: "",
-    items: storesData,
-  });
-  if (!stores) return null;
-
-  const onSelectionChange = (key: React.Key | null) => {
-    setFieldState((prevState) => {
-      const selectedItem = prevState.items?.find(
-        (option) => option?.key === key,
-      );
+export const StoresAutocomplete: React.FC<Props> = () => {
+  const list = useAsyncList<StoreData>({
+    async load({ signal, filterText }) {
+      const data = await baseMagentoClient(
+        "GET",
+        {},
+        signal,
+      ).request<StoresListQuery>(StoresListDocument, {
+        searchInput: filterText,
+      });
 
       return {
-        inputValue: selectedItem?.label || "",
-        selectedKey: key,
-        items: storesData?.filter(
-          (item) =>
-            item?.label
-              ?.toLocaleLowerCase()
-              .includes(selectedItem?.label?.toLocaleLowerCase() || "") ||
-            item?.description
-              ?.toLocaleLowerCase()
-              .includes(selectedItem?.description?.toLocaleLowerCase() || ""),
-        ),
+        items:
+          data.getStores?.map((store) => ({
+            key: store?.id,
+            label: store?.name,
+            description: store?.postcode,
+          })) ?? [],
       };
-    });
+    },
+  });
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    return debounce(() => list.setFilterText(e.target.value), 1000);
   };
 
-  const onInputChange = (value: string) => {
-    setFieldState((prevState) => ({
-      inputValue: value,
-      selectedKey: value === "" ? null : prevState.selectedKey,
-      items: storesData?.filter(
-        (item) =>
-          item?.label
-            ?.toLocaleLowerCase()
-            .includes(value.toLocaleLowerCase()) ||
-          item?.description
-            ?.toLocaleLowerCase()
-            .includes(value.toLocaleLowerCase()),
-      ),
-    }));
-  };
-
-  const onOpenChange = (isOpen: boolean, menuTrigger: MenuTriggerAction) => {
-    if (menuTrigger === "manual" && isOpen) {
-      setFieldState((prevState) => ({
-        inputValue: prevState.inputValue,
-        selectedKey: prevState.selectedKey,
-        items: storesData,
-      }));
-    }
-  };
+  if (!list.items) return null;
 
   return (
     <form className="flex gap-4" action="/finn-butikk">
       <Autocomplete
         name="searchInput"
-        items={fieldState.items}
         aria-label="Søk etter butikk"
+        onInputChange={list.setFilterText}
         placeholder="Skriv postnummer eller sted"
-        onInputChange={onInputChange}
-        onOpenChange={onOpenChange}
-        onSelectionChange={onSelectionChange}
+        onChange={handleSearchChange}
+        isLoading={list.isLoading}
+        items={list.items}
         inputProps={{
           classNames: {
             input: "ml-1",
@@ -111,6 +76,7 @@ export const StoresAutocomplete: React.FC<Props> = ({ stores }) => {
       <button
         className="bg-red p-4 rounded-xl w-[58px] flex-shrink-0 flex items-center justify-center"
         type="submit"
+        disabled={list.isLoading}
       >
         <LocationIcon />
       </button>
