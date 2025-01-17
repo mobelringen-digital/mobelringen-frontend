@@ -46,9 +46,9 @@ export const StoresAutocomplete: React.FC<Props> = () => {
     },
   });
 
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    return debounce(() => list.setFilterText(e.target.value), 1000);
-  };
+  const handleSearchChange = debounce((value: string) => {
+    list.setFilterText(value);
+  }, 300);
 
   if (!list.items) return null;
 
@@ -57,9 +57,8 @@ export const StoresAutocomplete: React.FC<Props> = () => {
       <Autocomplete
         name="searchInput"
         aria-label="Søk etter butikk"
-        onInputChange={list.setFilterText}
+        onInputChange={(e) => handleSearchChange(e)}
         placeholder="Skriv postnummer eller sted"
-        onChange={handleSearchChange}
         isLoading={list.isLoading}
         items={list.items}
         inputProps={{
