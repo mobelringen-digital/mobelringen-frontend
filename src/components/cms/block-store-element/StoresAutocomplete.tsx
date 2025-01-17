@@ -1,17 +1,21 @@
 "use client";
 
-import React from "react";
+import React, { Key } from "react";
 
 import { Autocomplete, AutocompleteItem } from "@nextui-org/react";
 import { useAsyncList } from "@react-stately/data";
 import { debounce } from "lodash";
 
+import { useRouter } from "next/navigation";
+
+import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { LocationIcon } from "@/components/cms/block-store-element/LocationIcon";
 import {
   BaseStoreFragment,
   StoresListDocument,
   StoresListQuery,
 } from "@/types";
+import { stringToUrl } from "@/utils/helpers";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
 interface Props {
@@ -25,6 +29,10 @@ type StoreData = {
 };
 
 export const StoresAutocomplete: React.FC<Props> = () => {
+  const [selectedKey, setSelectedKey] = React.useState<Key | null>(null);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const router = useRouter();
+
   const list = useAsyncList<StoreData>({
     async load({ signal, filterText }) {
       const data = await baseMagentoClient(
@@ -38,7 +46,7 @@ export const StoresAutocomplete: React.FC<Props> = () => {
       return {
         items:
           data.getStores?.map((store) => ({
-            key: store?.id,
+            key: store?.external_id,
             label: store?.name,
             description: store?.postcode,
           })) ?? [],
@@ -50,14 +58,24 @@ export const StoresAutocomplete: React.FC<Props> = () => {
     list.setFilterText(value);
   }, 300);
 
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const selectedStore = list.items?.find((item) => item.key === selectedKey);
+    router.push(`/store/${selectedKey}/${stringToUrl(selectedStore?.label)}`);
+    setIsLoading(false);
+  };
+
   if (!list.items) return null;
 
   return (
-    <form className="flex gap-4" action="/finn-butikk">
+    <form className="flex gap-4" onSubmit={onSubmit} action="/finn-butikk">
+      {isLoading ? <PageTopLoader /> : null}
       <Autocomplete
         name="searchInput"
         aria-label="Søk etter butikk"
         onInputChange={(e) => handleSearchChange(e)}
+        onSelectionChange={(key) => setSelectedKey(key)}
         placeholder="Skriv postnummer eller sted"
         isLoading={list.isLoading}
         items={list.items}
