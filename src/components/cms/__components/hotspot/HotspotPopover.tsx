@@ -19,6 +19,7 @@ const HotspotPopover: React.FC<Props> = ({ sku }) => {
 
   return (
     <Link
+      aria-label={`Les mer om ${product?.name}`}
       href={`/${product?.canonical_url}`}
       className="absolute w-64 -translate-y-3/4 translate-x-full -top-3/4 -right-0 bg-white p-4 shadow-lg rounded-full rounded-bl-none hover:shadow-xl"
     >

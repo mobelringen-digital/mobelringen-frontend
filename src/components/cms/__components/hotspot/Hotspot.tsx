@@ -19,6 +19,7 @@ export const Hotspot: React.FC<Props> = ({ data }) => {
 
   return (
     <button
+      aria-label="Hotspot"
       onClick={() => setShowPopover((prev) => !prev)}
       onMouseLeave={() => setShowPopover(false)}
       className="absolute group transition-all items-center bg-black bg-opacity-30 rounded-full p-8 cursor-pointer"
