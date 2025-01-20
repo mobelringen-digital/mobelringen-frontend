@@ -1,7 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { ProductsQueryDocument } from "@/queries/product/product.queries";
-import {BaseProductFragment, ProductsQuery, ProductsQueryVariables} from "@/types";
+import {
+  BaseProductFragment,
+  ProductsQuery,
+  ProductsQueryVariables,
+} from "@/types";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
 export const useProductQuery = (sku: string) => {
@@ -15,7 +19,9 @@ export const useProductQuery = (sku: string) => {
       currentPage: 1,
     });
 
-    return data.products?.items?.[0] as BaseProductFragment;
+    return data.products?.items?.[
+      data.products?.items?.length - 1
+    ] as BaseProductFragment;
   };
 
   return useQuery({

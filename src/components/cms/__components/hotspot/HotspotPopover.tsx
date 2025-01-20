@@ -21,18 +21,18 @@ const HotspotPopover: React.FC<Props> = ({ sku }) => {
     <Link
       aria-label={`Les mer om ${product?.name}`}
       href={`/${product?.canonical_url}`}
-      className="absolute w-64 -translate-y-3/4 translate-x-full -top-3/4 -right-0 bg-white p-4 shadow-lg rounded-full rounded-bl-none hover:shadow-xl"
+      className="absolute min-w-64 -translate-y-3/4 translate-x-full -top-3/4 -right-0 bg-white p-4 shadow-lg rounded-full rounded-bl-none hover:shadow-xl"
     >
       <div className="flex justify-between items-center">
         <div className="flex flex-col items-start text-left ml-2">
-          <div className="text-md font-semibold">{product?.name}</div>
+          <div className="text-md font-semibold text-nowrap">{product?.name}</div>
           <div
             className="text-xs font-normal text-dark-grey"
             dangerouslySetInnerHTML={{
               __html: product?.short_description?.html ?? "",
             }}
           />
-          <div className="flex gap-4 mt-2">
+          <div className="flex gap-2 mt-2">
             <div className="text-sm">
               <FormatNumber
                 value={finalPrice}
