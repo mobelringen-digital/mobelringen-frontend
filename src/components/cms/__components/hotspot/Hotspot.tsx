@@ -2,6 +2,8 @@
 
 import React from "react";
 
+import { Popover, PopoverContent, PopoverTrigger } from "@nextui-org/react";
+
 import dynamic from "next/dynamic";
 
 import { HotspotFragment } from "@/types";
@@ -15,24 +17,29 @@ interface Props {
 }
 
 export const Hotspot: React.FC<Props> = ({ data }) => {
-  const [showPopover, setShowPopover] = React.useState(false);
-
   return (
-    <button
-      aria-label="Hotspot"
-      onClick={() => setShowPopover((prev) => !prev)}
-      onMouseLeave={() => setShowPopover(false)}
-      className="absolute group transition-all items-center bg-black bg-opacity-30 rounded-full p-8 cursor-pointer"
-      style={{
-        left: `${data.horizontalPosition}%`,
-        bottom: `${data.verticalPosition}%`,
+    <Popover
+      placement="right-end"
+      classNames={{
+        base: "mb-12",
+        content: "rounded-3xl rounded-bl-none p-4",
       }}
     >
-      <div className="absolute transition-all left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white h-4 w-4 group-hover:h-6 group-hover:w-6 rounded-full">
-        {showPopover && data.productSku ? (
-          <HotspotPopover sku={data.productSku} />
-        ) : null}
-      </div>
-    </button>
+      <PopoverTrigger>
+        <button
+          aria-label="Hotspot"
+          className="absolute group outline-0 group transition-all bg-black bg-opacity-30 rounded-full p-8 cursor-pointer"
+          style={{
+            left: `${data.horizontalPosition}%`,
+            bottom: `${data.verticalPosition}%`,
+          }}
+        >
+          <span className="absolute left-1/2 top-1/2 transition-all -translate-x-1/2 -translate-y-1/2 bg-white rounded-full p-2 group-hover:p-4" />
+        </button>
+      </PopoverTrigger>
+      <PopoverContent>
+        <HotspotPopover sku={String(data.productSku)} />
+      </PopoverContent>
+    </Popover>
   );
 };
