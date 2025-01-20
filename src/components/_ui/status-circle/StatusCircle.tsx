@@ -12,11 +12,11 @@ const VARIANTS = {
   green: "bg-success",
   red: "bg-error",
   yellow: "bg-[#FFBA07]",
-  "green-circle": "bg-white border-2 border-success",
+  "green-circle": "bg-white border-3 border-success",
 };
 
 const SIZINGS = {
-  small: "w-2 h-2",
+  small: "w-2.5 h-2.5",
   medium: "w-3 h-3",
   large: "w-4 h-4",
 };
