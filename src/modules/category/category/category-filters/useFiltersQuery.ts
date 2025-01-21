@@ -10,26 +10,31 @@ export const useFiltersQuery = () => {
   const pathname = usePathname();
 
   const setFilters = (filter: Record<string, any>) => {
-    const query = qs.stringify(
-      {
-        filters: filter,
-      },
-      {
-        skipNulls: true,
-        encode: false,
-        allowDots: true,
-      },
-    );
+    const params = getQueryParams() ?? {};
+    params.filters = filter;
+
+    const query = qs.stringify(params, {
+      skipNulls: true,
+      encode: false,
+      allowDots: true,
+    });
 
     return router.push(`${pathname}?${query}`);
   };
 
-  const getFilters = useCallback(() => {
-    const decodedFilters = qs.parse(searchParams.toString(), {
+  const getQueryParams = useCallback(() => {
+    const params = qs.parse(searchParams.toString(), {
       allowDots: true,
     });
-    return decodedFilters.filters as Record<string, any>;
+
+    return params as Record<string, any>;
   }, [searchParams]);
+
+  const getFilters = useCallback(() => {
+    const params = getQueryParams();
+
+    return params.filters as Record<string, any>;
+  }, [getQueryParams]);
 
   const setFilter = (key: string, value: any) => {
     const filters = getFilters() || {};
