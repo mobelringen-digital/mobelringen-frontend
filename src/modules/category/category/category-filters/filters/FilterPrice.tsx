@@ -3,8 +3,8 @@ import React from "react";
 import RangeSlider from "react-range-slider-input";
 
 import { FilterWrapper } from "@/modules/category/category/category-filters/FilterWrapper";
-import { useFiltersQuery } from "@/modules/category/category/category-filters/useFiltersQuery";
 import { FilterRangeTypeInput, ProductAggregationsFragment } from "@/types";
+import { useQueryParams } from "@/utils/hooks/useQueryParams";
 
 import "react-range-slider-input/dist/style.css";
 
@@ -14,7 +14,7 @@ interface Props {
 
 export const FilterPrice: React.FC<Props> = ({ data }) => {
   const [sliderValue, setSliderValue] = React.useState<[number, number]>();
-  const { setFilter, getFilter, removeFilter } = useFiltersQuery();
+  const { setFilter, getFilter, removeFilter } = useQueryParams();
 
   const filter = getFilter<FilterRangeTypeInput>(data?.attribute_code ?? "");
   const value = React.useMemo(() => {

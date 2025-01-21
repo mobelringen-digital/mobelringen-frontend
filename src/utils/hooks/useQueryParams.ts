@@ -4,22 +4,30 @@ import qs from "qs";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-export const useFiltersQuery = () => {
+export const useQueryParams = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
 
-  const setFilters = (filter: Record<string, any>) => {
-    const params = getQueryParams() ?? {};
-    params.filters = filter;
+  const setQuery = (query: Record<string, any>) => {
+    const oldParams = getQueryParams() ?? {};
 
-    const query = qs.stringify(params, {
+    const params = {
+      ...oldParams,
+      ...query,
+    };
+
+    const queryString = qs.stringify(params, {
       skipNulls: true,
       encode: false,
       allowDots: true,
     });
 
-    return router.push(`${pathname}?${query}`);
+    return router.push(`${pathname}?${queryString}`);
+  };
+
+  const setFilters = (filter: Record<string, any>) => {
+    setQuery({ filters: filter });
   };
 
   const getQueryParams = useCallback(() => {
@@ -76,6 +84,8 @@ export const useFiltersQuery = () => {
 
   return {
     setFilter,
+    getQueryParams,
+    setQuery,
     getFilter,
     getFilters,
     setFilters,

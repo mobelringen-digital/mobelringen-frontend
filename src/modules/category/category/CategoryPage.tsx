@@ -8,14 +8,13 @@ import { Button } from "@/components/_ui/button/Button";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { CategoryFilters } from "@/modules/category/category/category-filters/CategoryFilters";
-import { useCategoryFilters } from "@/modules/category/category/category-filters/useCategoryFilters";
-import { useFiltersQuery } from "@/modules/category/category/category-filters/useFiltersQuery";
 import { ProductsList } from "@/modules/category/category/ProductsList";
 import { ProductsListSkeleton } from "@/modules/category/category/ProductsListSkeleton";
 import { useProductsQuery } from "@/modules/category/category/useProductsQuery";
 import { CategoryItemEntity } from "@/modules/category/types";
 import { BaseProductDataForCardFragment } from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
+import { useQueryParams } from "@/utils/hooks/useQueryParams";
 
 interface Props {
   category: CategoryItemEntity;
@@ -75,8 +74,7 @@ const clickOnItemGTMEvent = (product: BaseProductDataForCardFragment) => {
 // };
 
 export const CategoryPage: React.FC<Props> = ({ category }) => {
-  const { sortValues } = useCategoryFilters();
-  const { filterValues } = useFiltersQuery();
+  const { getQueryParams } = useQueryParams();
 
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useProductsQuery({
@@ -84,9 +82,9 @@ export const CategoryPage: React.FC<Props> = ({ category }) => {
         category_id: {
           eq: String(category?.id),
         },
-        ...filterValues,
+        ...getQueryParams().filter,
       },
-      sort: sortValues,
+      sort: getQueryParams().sort,
     });
 
   const loadMore = () => {

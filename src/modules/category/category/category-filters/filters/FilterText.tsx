@@ -3,8 +3,8 @@ import React from "react";
 import { Radio, RadioGroup } from "@nextui-org/react";
 
 import { FilterWrapper } from "@/modules/category/category/category-filters/FilterWrapper";
-import { useFiltersQuery } from "@/modules/category/category/category-filters/useFiltersQuery";
 import { FilterStringTypeInput, ProductAggregationsFragment } from "@/types";
+import { useQueryParams } from "@/utils/hooks/useQueryParams";
 
 interface Props {
   data: ProductAggregationsFragment | null;
@@ -14,7 +14,7 @@ const SHOW_FIRST_FILTERS = 3;
 
 export const FilterText: React.FC<Props> = ({ data }) => {
   const [showAll, setShowAll] = React.useState(false);
-  const { setFilter, getFilter, removeFilter } = useFiltersQuery();
+  const { setFilter, getFilter, removeFilter } = useQueryParams();
   if (!data) return null;
 
   const onFilterChange = (value: string) => {

@@ -4,19 +4,17 @@ import { Button } from "@/components/_ui/button/Button";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { CmsBlockHeader } from "@/components/cms/cms-block-wrapper/CmsBlockHeader";
 import { CategoryFilters } from "@/modules/category/category/category-filters/CategoryFilters";
-import { useCategoryFilters } from "@/modules/category/category/category-filters/useCategoryFilters";
-import { useFiltersQuery } from "@/modules/category/category/category-filters/useFiltersQuery";
 import { ProductsList } from "@/modules/category/category/ProductsList";
 import { ProductsListSkeleton } from "@/modules/category/category/ProductsListSkeleton";
 import { useProductsQuery } from "@/modules/category/category/useProductsQuery";
+import { useQueryParams } from "@/utils/hooks/useQueryParams";
 
 interface Props {
   query: string;
 }
 
 export const Products: React.FC<Props> = ({ query }) => {
-  const { sortValues } = useCategoryFilters();
-  const { filterValues } = useFiltersQuery();
+  const { getQueryParams } = useQueryParams();
   const {
     data,
     isLoading,
@@ -26,8 +24,8 @@ export const Products: React.FC<Props> = ({ query }) => {
     isFetchingNextPage,
   } = useProductsQuery({
     search: query,
-    filter: filterValues,
-    sort: sortValues,
+    filter: getQueryParams().filters,
+    sort: getQueryParams().sort,
   });
 
   const currentlyLoaded = data?.pages.reduce((acc, page) => {
