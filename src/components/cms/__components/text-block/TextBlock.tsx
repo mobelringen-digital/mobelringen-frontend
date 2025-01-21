@@ -3,7 +3,8 @@ import React from "react";
 import cx from "classnames";
 
 import { CmsLink } from "@/components/cms/__components/link/CmsLink";
-import { CmsTextBlockFragment, Position, TypographyStyle } from "@/types";
+import { CmsTextBlockFragment, Position } from "@/types";
+import { PARAGRAPH_STYLE } from "@/utils/helpers";
 
 interface Props {
   data: CmsTextBlockFragment;
@@ -19,14 +20,6 @@ const BUTTON_JUSTIFY: Record<Position, string> = {
   LEFT: "lg:justify-start",
   CENTER: "lg:justify-center",
   RIGHT: "lg:justify-end",
-};
-
-const PARAGRAPH_STYLE: Record<TypographyStyle, string> = {
-  xl: "text-xl lg:text-2xl",
-  lg: "text-lg lg:text-xl",
-  md: "text-sm lg:text-base",
-  sm: "text-xs lg:text-sm",
-  xs: "text-xs lg:text-xs",
 };
 
 const isEmptyHTML = (html: string) => html === "<p></p>";
