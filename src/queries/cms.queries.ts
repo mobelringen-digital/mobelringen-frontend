@@ -41,6 +41,26 @@ export const BannerFragment = graphql(`
       salesBubble {
         ...CmsSalesBubble
       }
+      promoText {
+        ...CmsBannerPromo
+      }
+    }
+  }
+`);
+
+export const CmsBannerPromo = graphql(`
+  fragment CmsBannerPromo on BannerPromo {
+    ... on BannerPromo {
+      __typename
+      topLine
+      bottomLine
+      promoImage {
+        url
+        width
+        height
+      }
+      textColor
+      textSize
     }
   }
 `);
