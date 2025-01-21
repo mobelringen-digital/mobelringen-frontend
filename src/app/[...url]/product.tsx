@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import {
   dehydrate,
@@ -16,6 +16,7 @@ import {
   fetchReviews,
   PRODUCT_REVIEWS_QUERY_KEY,
 } from "@/modules/product/information-accordion/reviews/useProductReviewsQuery";
+import { ProductPageSkeleton } from "@/modules/product/ProductPageSkeleton";
 import { SimpleProductPage } from "@/modules/product/SimpleProduct";
 import { GetProductStockDocument } from "@/queries/product/product.queries";
 import { BaseCartFragment } from "@/types";
@@ -91,7 +92,7 @@ export default async function Product({ sku, url }: Props) {
   }
 
   return (
-    <>
+    <Suspense fallback={<ProductPageSkeleton />}>
       <HydrationBoundary state={dehydrate(queryClient)}>
         {isTypename(productData, ["SimpleProduct"]) ? (
           <>
@@ -121,6 +122,6 @@ export default async function Product({ sku, url }: Props) {
 
         <StaticPageContent url={`/${url}`} />
       </HydrationBoundary>
-    </>
+    </Suspense>
   );
 }
