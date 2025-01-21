@@ -9,7 +9,6 @@ import {
 import { notFound } from "next/navigation";
 
 import getCart from "@/components/cart/actions";
-import { StaticPageContent } from "@/components/cms/static-page-content/StaticPageContent";
 import { getSelectedStore } from "@/components/store-selector/actions";
 import { ConfigurableProductPage } from "@/modules/product/ConfigurableProduct";
 import {
@@ -39,7 +38,7 @@ async function getProductStock(productId: string, storeId: string) {
   });
 }
 
-export default async function Product({ sku, url }: Props) {
+export default async function Product({ sku }: Props) {
   const product = await getProduct(sku);
   const cart = await getCart();
 
@@ -85,8 +84,6 @@ export default async function Product({ sku, url }: Props) {
           product={currentProductData}
           selectedStore={selectedStore}
         />
-
-        <StaticPageContent url={`/${url}`} />
       </HydrationBoundary>
     );
   }
@@ -108,8 +105,6 @@ export default async function Product({ sku, url }: Props) {
             />
           </>
         ) : null}
-
-        <StaticPageContent url={`/${url}`} />
       </HydrationBoundary>
     </>
   );
