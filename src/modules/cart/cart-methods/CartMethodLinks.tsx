@@ -4,8 +4,6 @@ import React from "react";
 
 import { useCookies } from "react-cookie";
 
-import { useRouter, useSearchParams } from "next/navigation";
-
 import { LocalShippingIcon } from "@/components/_ui/icons/LocalShippingIcon";
 import { StorefrontIcon } from "@/components/_ui/icons/StorefrontIcon";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
@@ -20,10 +18,8 @@ interface Props {
 
 export const CartMethodLinks: React.FC<Props> = ({ selectedStore, cart }) => {
   const [isLoading, setIsLoading] = React.useState(false);
-  const searchParams = useSearchParams();
-  const [cookies, setCookie] = useCookies();
-  const activeMethod = cookies.preferredMethod ?? searchParams.get("method");
-  const router = useRouter();
+  const [_cookies, setCookie] = useCookies();
+  const activeMethod = cart?.delivery_type ?? DeliveryType.Online;
 
   const setPreferredMethod = async (method: DeliveryType) => {
     if (!cart?.id) {
@@ -39,7 +35,6 @@ export const CartMethodLinks: React.FC<Props> = ({ selectedStore, cart }) => {
         setCookie("preferredMethod", method, {
           path: "/",
         });
-        router.push(`/cart?method=${method}`);
       })
       .finally(() => {
         setIsLoading(false);

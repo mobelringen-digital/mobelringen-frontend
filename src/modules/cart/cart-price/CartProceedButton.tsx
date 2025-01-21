@@ -4,12 +4,9 @@ import React from "react";
 
 import { sendGTMEvent } from "@next/third-parties/google";
 
-import { useSearchParams } from "next/navigation";
-
 import { Button } from "@/components/_ui/button/Button";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { openToast } from "@/components/_ui/toast-provider";
-import { setDeliveryType } from "@/modules/cart/cart-methods/actions";
 import { validateCart } from "@/modules/cart/cart-price/actions";
 import { useCart } from "@/modules/cart/hooks/useCart";
 import { BaseCartFragment, BaseStoreFragment, DeliveryType } from "@/types";
@@ -30,11 +27,7 @@ export const CartProceedButton: React.FC<Props> = ({
 }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const { isCheckoutEnabled } = useCart(cart);
-  const searchParams = useSearchParams();
-  const activeMethod =
-    searchParams.get("method") === DeliveryType.Cac
-      ? DeliveryType.Cac
-      : DeliveryType.Online;
+  const activeMethod = cart?.delivery_type ?? DeliveryType.Online;
 
   const isStoreSet =
     activeMethod === DeliveryType.Cac ? !!selectedStore?.external_id : true;
@@ -71,10 +64,6 @@ export const CartProceedButton: React.FC<Props> = ({
       return openToast({ content: validateOutdatedCart?.message });
     }
 
-    await setDeliveryType({
-      cartId: cart?.id,
-      type: activeMethod as DeliveryType,
-    });
     return navigate("/cart/checkout").finally(() => {
       beginCheckoutGTMEvent();
       setIsLoading(false);

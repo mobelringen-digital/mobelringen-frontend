@@ -1,7 +1,5 @@
 import React from "react";
 
-import { cookies } from "next/headers";
-
 import { CheckoutBlock } from "@/modules/checkout/CheckoutBlock";
 import { ContactFormController } from "@/modules/checkout/contact-form/ContactFormController";
 import { PaymentFormController } from "@/modules/checkout/payment/PaymentFormController";
@@ -24,14 +22,11 @@ export async function CheckoutSteps({
   isShippingMethodSet,
   customer,
   cart,
-  ...rest
+  ...rest,
 }: Props) {
   const searchParams = await rest.searchParams;
-  const cookiesStore = await cookies();
-  const isOnlineMethod =
-    cookiesStore.get("preferredMethod")?.value !== DeliveryType.Cac;
-  const isClickAndCollect =
-    cookiesStore.get("preferredMethod")?.value === DeliveryType.Cac;
+  const isOnlineMethod = cart?.delivery_type !== DeliveryType.Cac;
+  const isClickAndCollect = cart?.delivery_type === DeliveryType.Cac;
 
   return (
     <div className="flex flex-col gap-6">
@@ -70,4 +65,4 @@ export async function CheckoutSteps({
       ) : null}
     </div>
   );
-}
+};

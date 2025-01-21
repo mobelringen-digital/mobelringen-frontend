@@ -46,7 +46,7 @@ export async function CartPage({ data }: Props) {
                   <CartWarnings cart={data} />
                 </div>
                 <div className="border-t border-t-cold-grey-dark border-opacity-80" />
-                {data.items ? <CartItems data={data?.items} /> : null}
+                {data.items ? <CartItems cart={data} /> : null}
               </div>
             </div>
             <CartPrice

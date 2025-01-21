@@ -24,7 +24,6 @@ export async function addToCart(
   cartItems: Array<CartItemInput> | CartItemInput,
   preferredMethod?: DeliveryType,
 ) {
-  const cookieStore = await cookies();
   const token = await getToken();
 
   const data = await authorizedMagentoClient(token, "POST", {
@@ -39,12 +38,6 @@ export async function addToCart(
     cartId,
     type: preferredMethod ?? DeliveryType.Online,
   });
-
-  if (preferredMethod) {
-    cookieStore.set("preferredMethod", preferredMethod, {
-      path: "/",
-    });
-  }
 
   return data;
 }
