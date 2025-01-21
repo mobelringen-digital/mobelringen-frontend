@@ -50,7 +50,7 @@ const HotspotPopover: React.FC<Props> = ({ sku }) => {
             ) : null}
           </div>
         </div>
-        <div className="bg-warm-grey p-2 ml-2 rounded-full">
+        <div className="bg-warm-grey p-2 ml-4 rounded-full">
           <ChevronRight />
         </div>
       </div>

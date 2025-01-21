@@ -40,7 +40,12 @@ export const Banner: React.FC<Props> = ({ data, children }) => {
           </div>
         </div>
       ) : null}
-      {data.hotspots ? <HotspotsWrapper data={data.hotspots} /> : null}
+      {data.hotspots && data.hotspots.length ? (
+        <HotspotsWrapper
+          className={VARIANTS[data.variant]}
+          data={data.hotspots}
+        />
+      ) : null}
       {children}
       {salesBubble ? <BannerSalesBubbleWrapper data={salesBubble} /> : null}
     </section>

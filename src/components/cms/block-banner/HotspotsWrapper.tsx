@@ -1,17 +1,20 @@
 import React from "react";
 
+import cx from "classnames";
+
 import { Hotspot } from "@/components/cms/__components/hotspot/Hotspot";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { HotspotFragment } from "@/types";
 
 interface Props {
   data: HotspotFragment[];
+  className?: string;
 }
 
-export const HotspotsWrapper: React.FC<Props> = ({ data }) => {
+export const HotspotsWrapper: React.FC<Props> = ({ data, className }) => {
   return (
     <div className="absolute left-0 right-0 top-0 bottom-0 w-full">
-      <ContainerLayout className="h-[430px] lg:h-[820px] max-h-[calc(100vh-115px)] relative z-20">
+      <ContainerLayout className={cx("relative z-20", className)}>
         {data.map((hotspot, index) => (
           <Hotspot data={hotspot} key={index} />
         ))}
