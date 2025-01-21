@@ -22,7 +22,7 @@ export const SalesBubble: React.FC<Props> = ({
   return (
     <div
       className={cx(
-        "text-center rounded-full rounded-bl-none",
+        "text-center rounded-full rounded-bl-none pointer-events-auto",
         SIZE_VARIANTS[size],
       )}
       style={{
