@@ -2,19 +2,23 @@
 
 import React from "react";
 
-import { useActiveProductData } from "@/modules/product/active-product-data-provider/useActiveProductData";
-import { ConfigurableProductOptionsFragment } from "@/types";
+import {
+  ConfigurableProductOptionsFragment,
+  ConfigurableProductVariantsFragment,
+} from "@/types";
 
 interface Props {
+  activeProductVariant?: ConfigurableProductVariantsFragment | null;
   configurations?: Array<ConfigurableProductOptionsFragment | null> | null;
 }
 
-export const ConfigurationInfo: React.FC<Props> = ({ configurations }) => {
-  const { activeProductVariant } = useActiveProductData();
-
+export const ConfigurationInfo: React.FC<Props> = ({
+  activeProductVariant,
+  configurations,
+}) => {
   if (!activeProductVariant) return null;
 
-  const activeAttributes = activeProductVariant.variant?.attributes?.map(
+  const activeAttributes = activeProductVariant?.attributes?.map(
     (attr) => attr?.value_index,
   );
 

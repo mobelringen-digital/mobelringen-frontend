@@ -1,6 +1,5 @@
 import React from "react";
 
-import { ActiveProductDataContextProvider } from "@/modules/product/active-product-data-provider/ActiveProductDataProvider";
 import { BaseProductLayout } from "@/modules/product/BaseProductLayout";
 import {
   BaseCartFragment,
@@ -23,13 +22,11 @@ export async function SimpleProductPage({
   selectedStore,
 }: Props) {
   return (
-    <ActiveProductDataContextProvider>
-      <BaseProductLayout
-        selectedStore={selectedStore}
-        stock={stock}
-        cart={cart}
-        baseProductData={product}
-      />
-    </ActiveProductDataContextProvider>
+    <BaseProductLayout
+      selectedStore={selectedStore}
+      stock={stock}
+      cart={cart}
+      baseProductData={product}
+    />
   );
 }

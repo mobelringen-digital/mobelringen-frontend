@@ -5,9 +5,9 @@ import React from "react";
 import cx from "classnames";
 
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-import { useActiveProductData } from "@/modules/product/active-product-data-provider/useActiveProductData";
 import { ConfigurableProductVariantsFragment } from "@/types";
 
 interface Props {
@@ -15,32 +15,23 @@ interface Props {
 }
 
 export const Variant: React.FC<Props> = ({ variant }) => {
-  const { activeProductVariant } = useActiveProductData();
-  const selectedProduct = activeProductVariant.variant?.product;
-  const variantProduct = variant?.product;
   const pathname = usePathname();
-  const router = useRouter();
+  const isActive = pathname.includes(variant?.product?.canonical_url ?? "");
+  const variantProduct = variant?.product;
 
   if (!variantProduct) return null;
 
-  const handleVariantSelect = () => {
-    if (!variantProduct.sku) return;
-
-    router.push(`${pathname}?variant=${variant?.product?.sku}`);
-  };
-
   return (
-    <button
+    <Link
+      href={`/${variant?.product?.canonical_url}`}
       aria-label="Product variant"
-      onClick={handleVariantSelect}
       className={cx(
         "w-[64px] h-[64px] bg-warm-grey p-2 flex items-center justify-center rounded-2xl",
         {
-          "border-1 border-black": selectedProduct?.sku === variantProduct.sku,
+          "border-1 border-black": isActive,
         },
         {
-          "border-1 border-warm-grey":
-            selectedProduct?.sku !== variantProduct.sku,
+          "border-1 border-warm-grey": !isActive,
         },
       )}
     >
@@ -51,6 +42,6 @@ export const Variant: React.FC<Props> = ({ variant }) => {
         width={45}
         height={45}
       />
-    </button>
+    </Link>
   );
 };
