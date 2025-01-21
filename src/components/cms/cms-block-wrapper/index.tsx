@@ -9,6 +9,8 @@ interface Props {
   isFullWidth?: boolean;
   children: React.ReactNode;
   config?: CmsBlockConfigFragment | null;
+  style?: React.CSSProperties;
+  className?: string;
 }
 
 const BACKGROUND_COLOR: Record<BackgroundColor, string> & { None: "" } = {
@@ -46,9 +48,12 @@ export const CmsBlockWrapper: React.FC<Props> = ({
   isFullWidth,
   children,
   config,
+  style,
+  className,
 }) => {
   return (
     <section
+      style={style}
       className={cx(
         "w-full",
         BACKGROUND_COLOR[config?.backgroundColor ?? "None"],
@@ -58,6 +63,7 @@ export const CmsBlockWrapper: React.FC<Props> = ({
         ],
         BLOCK_SPACINGS_TOP_MOBILE[config?.spacingTop?.mobile ?? "medium"],
         BLOCK_SPACINGS_BOTTOM_MOBILE[config?.spacingBottom?.mobile ?? "medium"],
+        className
       )}
     >
       <ContainerLayout fullWidth={isFullWidth}>{children}</ContainerLayout>

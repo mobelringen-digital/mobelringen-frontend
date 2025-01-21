@@ -19,6 +19,7 @@ import { BlockProductsList } from "@/components/cms/block-products-list/BlockPro
 import { BlockQuote } from "@/components/cms/block-quote/BlockQuote";
 import { BlockRow } from "@/components/cms/block-row";
 import { CmsSimilarPagesRow } from "@/components/cms/block-similar-pages-row/CmsSimilarPagesRow";
+import { BlockStoreElement } from "@/components/cms/block-store-element/BlockStoreElement";
 import { BlockStoresMap } from "@/components/cms/block-stores-map/BlockStoresMap";
 import { CmsPagesQuery } from "@/types";
 import { ArrayElement } from "@/utils/ts-utils";
@@ -91,6 +92,9 @@ export const CmsContentLoader: React.FC<CmsContentProps> = ({ data }) => {
 
     case "BlockCatalog":
       return <BlockCatalog data={data} />;
+
+    case "BlockStoreElement":
+      return <BlockStoreElement data={data} />;
 
     default:
       return null;
