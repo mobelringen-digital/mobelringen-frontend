@@ -333,3 +333,34 @@ export const IPaperDocument = graphql(`
     }
   }
 `);
+
+export const CmsBlockHTMLCodeFragment = graphql(`
+  fragment CmsBlockHTMLCode on BlockHtmlCode {
+    ... on BlockHtmlCode {
+      __typename
+      title
+      markup
+      blockConfig {
+        ...CmsBlockConfig
+      }
+    }
+  }
+`);
+
+export const CmsStoreElement = graphql(`
+  fragment CmsStoreElement on BlockStoreElement {
+    __typename
+    title
+    content {
+      ...CmsMultipleTextBlock
+    }
+    backgroundImage {
+      url
+      width
+      height
+    }
+    blockConfig {
+      ...CmsBlockConfig
+    }
+  }
+`);
