@@ -22,7 +22,7 @@ export async function CheckoutSteps({
   isShippingMethodSet,
   customer,
   cart,
-  ...rest,
+  ...rest
 }: Props) {
   const searchParams = await rest.searchParams;
   const isOnlineMethod = cart?.delivery_type !== DeliveryType.Cac;
