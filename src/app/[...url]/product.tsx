@@ -77,15 +77,17 @@ export default async function Product({ sku }: Props) {
     isTypename(currentProductData, ["SimpleProduct"])
   ) {
     return (
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        <ConfigurableProductPage
-          configurableProductData={configurableProductData}
-          stock={stock}
-          cart={cart as BaseCartFragment}
-          product={currentProductData}
-          selectedStore={selectedStore}
-        />
-      </HydrationBoundary>
+      <Suspense fallback={<ProductPageSkeleton />}>
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <ConfigurableProductPage
+            configurableProductData={configurableProductData}
+            stock={stock}
+            cart={cart as BaseCartFragment}
+            product={currentProductData}
+            selectedStore={selectedStore}
+          />
+        </HydrationBoundary>
+      </Suspense>
     );
   }
 
