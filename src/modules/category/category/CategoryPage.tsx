@@ -82,7 +82,7 @@ export const CategoryPage: React.FC<Props> = ({ category }) => {
         category_id: {
           eq: String(category?.id),
         },
-        ...getQueryParams().filter,
+        ...getQueryParams().filters,
       },
       sort: getQueryParams().sort,
     });
