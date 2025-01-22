@@ -48,7 +48,6 @@ export default async function getCart() {
         return customerQuery.customerCart;
       }
     } catch (e) {
-      revalidateTag("cart");
       return await getGuestCart();
     }
   }
