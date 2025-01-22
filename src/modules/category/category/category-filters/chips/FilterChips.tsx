@@ -1,7 +1,6 @@
 import React from "react";
 
 import { FilterChip } from "@/modules/category/category/category-filters/chips/FilterChip";
-import { useFiltersQuery } from "@/modules/category/category/category-filters/useFiltersQuery";
 import {
   isBooleanFilter,
   isRangeFilter,
@@ -9,13 +8,14 @@ import {
   isTextFilter,
 } from "@/modules/category/factories";
 import { ProductAggregationsFragment } from "@/types";
+import { useQueryParams } from "@/utils/hooks/useQueryParams";
 
 interface Props {
   filters?: Array<ProductAggregationsFragment | null> | null;
 }
 
 export const FilterChips: React.FC<Props> = ({ filters }) => {
-  const { filterValues, removeFilter, resetQueryFilters } = useFiltersQuery();
+  const { filterValues, removeFilter, resetQueryFilters } = useQueryParams();
 
   const getFilter = React.useCallback(
     (key: string) => {

@@ -10,7 +10,7 @@ import { CustomerCartDocument, CartDocument } from "@/queries/cart.queries";
 import { authorizedMagentoClient } from "@/utils/lib/graphql";
 
 export const getGuestCart = async () => {
-  const cookiesStore = cookies();
+  const cookiesStore = await cookies();
   const cartCookie = cookiesStore.get("cart");
   const store = await getSelectedStore();
 
@@ -23,12 +23,12 @@ export const getGuestCart = async () => {
       .request(CartDocument, {
         cart_id: String(cartCookie.value),
       })
-      .catch(() => null);
+      .catch(() => {
+        revalidateTag("cart");
+      });
 
     return guestCart?.cart;
   }
-
-  revalidateTag("cart");
   return null;
 };
 

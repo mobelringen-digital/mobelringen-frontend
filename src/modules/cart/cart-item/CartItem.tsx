@@ -13,25 +13,23 @@ import { useConfirm } from "@/components/confirm/hooks/useConfirm";
 import { updateCartItems } from "@/modules/cart/cart-item/actions";
 import { CartItemDeliveryInfo } from "@/modules/cart/cart-item/CartItemDeliveryInfo";
 import { CartItemPrice } from "@/modules/cart/cart-item/CartItemPrice";
-import { useCartItem } from "@/modules/cart/hooks/useCartItem";
-import { CartItemFragment, RemoveProductFromCartMutation } from "@/types";
+import { BaseCartFragment, CartItemFragment, DeliveryType } from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
 import { useRequestCallback } from "@/utils/hooks/useRequestCallback";
 
 interface Props {
   item: CartItemFragment | null;
-  onRemoveProduct: (
-    itemId: number,
-  ) => Promise<RemoveProductFromCartMutation | undefined>;
+  cart?: BaseCartFragment | null;
+  onRemoveProduct: (itemId: number) => Promise<void>;
 }
 
-export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
+export const CartItem: React.FC<Props> = ({ item, cart, ...restProps }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const { showConfirmation } = useConfirm();
-  const { isClickAndCollect } = useCartItem(item);
   const { handlePossibleErrors } = useRequestCallback();
 
   if (!item) return null;
+  const isClickAndCollect = cart?.delivery_type === DeliveryType.Cac;
 
   const removeFromCartGTMEvent = () => {
     if (!item?.id) {
@@ -157,7 +155,7 @@ export const CartItem: React.FC<Props> = ({ item, ...restProps }) => {
                 <CartItemPrice item={item} />
               </div>
             </div>
-            <CartItemDeliveryInfo item={item} />
+            <CartItemDeliveryInfo cart={cart} item={item} />
             <div className="w-full lg:text-base flex items-center gap-4">
               <QuantityInput
                 onQuantityIncrement={onQuantityIncrement}

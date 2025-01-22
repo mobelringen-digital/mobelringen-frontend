@@ -72,7 +72,9 @@ export const AddToCart: React.FC<Props> = ({
 
     if (
       preferredMethod === DeliveryType.Cac &&
-      stock?.getProductStock.cac?.availability === Availability.OutOfStock
+      (stock?.getProductStock.cac?.availability === Availability.OutOfStock ||
+        stock?.getProductStock.cac?.availability ===
+          Availability.OnlineBackorderCacOutOfStock)
     ) {
       return;
     }

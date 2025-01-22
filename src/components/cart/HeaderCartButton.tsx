@@ -1,6 +1,5 @@
 import React from "react";
 
-import { cookies } from "next/headers";
 import Link from "next/link";
 
 import { Cart } from "@/components/_ui/icons/figma/Cart";
@@ -8,8 +7,6 @@ import getCart from "@/components/cart/actions";
 
 export async function HeaderCartButton() {
   const data = await getCart();
-  const cookiesStore = cookies();
-  const preferredMethod = cookiesStore.get("preferredMethod");
 
   const totalQuantity =
     data?.items?.reduce((acc, item) => acc + (item?.quantity ?? 0), 0) ?? 0;
@@ -17,11 +14,7 @@ export async function HeaderCartButton() {
   return (
     <Link
       aria-label="Cart"
-      href={
-        preferredMethod?.value
-          ? `/cart?method=${preferredMethod?.value}`
-          : "/cart"
-      }
+      href="/cart"
       className="relative"
     >
       <Cart width={24} height={24} />

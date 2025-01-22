@@ -1,9 +1,11 @@
 export type ArrayElement<ArrayType> =
   ArrayType extends readonly (infer ElementType)[] ? ElementType : never;
 
-export type NextSearchParams = { [key: string]: string | string[] | undefined };
+export type NextSearchParams = Promise<{
+  [key: string]: string | string[] | undefined;
+}>;
 
 export type NextServerComponentProps = {
-  params: Record<string, string>;
+  params: Promise<Record<string, string>>;
   searchParams: NextSearchParams;
 };

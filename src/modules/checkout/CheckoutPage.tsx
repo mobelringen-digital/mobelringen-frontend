@@ -1,7 +1,5 @@
 import React from "react";
 
-import { cookies } from "next/headers";
-
 import { Debugger } from "@/components/Debugger";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { PageTitle } from "@/components/typography/PageTitle";
@@ -14,7 +12,7 @@ import { NextSearchParams } from "@/utils/ts-utils";
 
 interface Props {
   cart?: BaseCartFragment | null;
-  searchParams?: NextSearchParams;
+  searchParams?: Promise<NextSearchParams>;
   isShippingAddressSet: boolean;
   isShippingMethodSet: boolean;
 }
@@ -26,9 +24,7 @@ export async function CheckoutPage({
   isShippingAddressSet,
 }: Props) {
   const customer = await getCustomerDetails();
-  const cookiesStore = cookies();
-  const isClickAndCollect =
-    cookiesStore.get("preferredMethod")?.value === DeliveryType.Cac;
+  const isClickAndCollect = cart?.delivery_type === DeliveryType.Cac;
 
   return (
     <ContainerLayout>

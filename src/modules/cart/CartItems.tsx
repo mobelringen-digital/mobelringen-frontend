@@ -2,24 +2,26 @@
 
 import React from "react";
 
+import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { removeProductFromCart } from "@/modules/cart/cart-item/actions";
 import { CartItem } from "@/modules/cart/cart-item/CartItem";
-import { CartItemFragment } from "@/types";
+import { BaseCartFragment, CartItemFragment } from "@/types";
 
 interface Props {
-  data: Array<CartItemFragment | null>;
+  cart?: BaseCartFragment | null;
 }
 
-export const CartItems: React.FC<Props> = ({ data }) => {
+export const CartItems: React.FC<Props> = ({ cart }) => {
+  const [isPending, startTransition] = React.useTransition();
   const [items, setItems] = React.useOptimistic(
-    data,
+    cart?.items,
     (
       state,
       { action, item }: { action: string; item?: CartItemFragment | null },
     ) => {
       switch (action) {
         case "remove":
-          return state.filter((i) => i?.id !== item?.id);
+          return state?.filter((i) => i?.id !== item?.id);
         default:
           return state;
       }
@@ -27,17 +29,25 @@ export const CartItems: React.FC<Props> = ({ data }) => {
   );
 
   const handleRemoveProduct = async (itemId: number) => {
-    setItems({
-      action: "remove",
-      item: items.find((i) => i?.id === itemId.toString()),
+    return startTransition(() => {
+      setItems({
+        action: "remove",
+        item: items?.find((i) => i?.id === itemId.toString()),
+      });
+      removeProductFromCart(itemId);
     });
-    return removeProductFromCart(itemId);
   };
 
   return (
     <>
+      {isPending ? <PageTopLoader /> : null}
       {items?.map((item, idx) => (
-        <CartItem onRemoveProduct={handleRemoveProduct} key={idx} item={item} />
+        <CartItem
+          cart={cart}
+          onRemoveProduct={handleRemoveProduct}
+          key={idx}
+          item={item}
+        />
       ))}
     </>
   );

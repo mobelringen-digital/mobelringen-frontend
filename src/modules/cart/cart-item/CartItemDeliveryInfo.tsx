@@ -1,16 +1,22 @@
 import React from "react";
 
 import { StatusCircle } from "@/components/_ui/status-circle/StatusCircle";
-import { useCartItem } from "@/modules/cart/hooks/useCartItem";
 import { PRODUCT_STOCK_STATUS_COLOR } from "@/modules/product/add-to-cart/DeliveryInfo";
-import { Availability, CartItemFragment } from "@/types";
+import {
+  Availability,
+  BaseCartFragment,
+  CartItemFragment,
+  DeliveryType,
+} from "@/types";
 
 interface Props {
   item: CartItemFragment;
+  cart?: BaseCartFragment | null;
 }
 
-export const CartItemDeliveryInfo: React.FC<Props> = ({ item }) => {
-  const { isOnline, isClickAndCollect } = useCartItem(item);
+export const CartItemDeliveryInfo: React.FC<Props> = ({ item, cart }) => {
+  const isOnline = cart?.delivery_type === DeliveryType.Online;
+  const isClickAndCollect = cart?.delivery_type === DeliveryType.Cac;
 
   const hasOnlineStock =
     item.availability?.online?.availability !== Availability.OutOfStock;

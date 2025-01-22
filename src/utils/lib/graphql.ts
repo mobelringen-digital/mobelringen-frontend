@@ -30,6 +30,7 @@ export const baseHygraphClient = (
 export const baseMagentoClient = (
   method?: "POST" | "GET",
   nextOptions?: { revalidate?: number; tags?: string[]; cache?: string },
+  signal?: AbortSignal,
 ) =>
   new GraphQLClient(process.env.NEXT_PUBLIC_MAGENTO_URL as string, {
     method,
@@ -37,6 +38,7 @@ export const baseMagentoClient = (
       async (input: RequestInfo | URL, init?: RequestInit | undefined) =>
         fetch(input, {
           method,
+          signal,
           next: {
             cache: method === "POST" ? "no-store" : undefined,
             revalidate: method === "POST" ? 0 : 3600,
@@ -58,7 +60,6 @@ export const authorizedMagentoClient = (
 ) =>
   new GraphQLClient(process.env.NEXT_PUBLIC_MAGENTO_URL as string, {
     method,
-    errorPolicy: "all",
     headers: {
       authorization: `Bearer ${token ?? ""}`,
     },

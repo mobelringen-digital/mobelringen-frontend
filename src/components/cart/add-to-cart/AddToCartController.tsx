@@ -74,8 +74,17 @@ export const AddToCartController: React.FC<Props> = ({
 
   const canBuyOnline =
     stock?.getProductStock.online?.availability !== Availability.OutOfStock;
-  const canBuyCAC =
-    stock?.getProductStock.cac?.availability !== Availability.OutOfStock;
+
+  const isCacDisabled = React.useMemo(() => {
+    if (stock?.getProductStock.cac?.availability === Availability.OutOfStock) {
+      return true;
+    }
+
+    return (
+      stock?.getProductStock.cac?.availability ===
+      Availability.OnlineBackorderCacOutOfStock
+    );
+  }, [stock]);
 
   const setClose = async () => {
     await revalidateCart();
@@ -87,7 +96,7 @@ export const AddToCartController: React.FC<Props> = ({
     if (preferredMethod === DeliveryType.Online && !canBuyOnline) {
       return;
     }
-    if (preferredMethod === DeliveryType.Cac && !canBuyCAC) {
+    if (preferredMethod === DeliveryType.Cac && isCacDisabled) {
       return;
     }
 
@@ -98,7 +107,7 @@ export const AddToCartController: React.FC<Props> = ({
   };
 
   const handleOpenStoreSelect = () => {
-    if (!canBuyCAC || isLoading) {
+    if (isCacDisabled || isLoading) {
       return;
     }
 
@@ -133,7 +142,7 @@ export const AddToCartController: React.FC<Props> = ({
           <Button
             aria-label="Velg butikk"
             onPress={handleOpenStoreSelect}
-            disabled={!canBuyCAC || isLoading}
+            disabled={isCacDisabled || isLoading}
             color="secondary"
           >
             Velg butikk
@@ -142,7 +151,7 @@ export const AddToCartController: React.FC<Props> = ({
           <Button
             aria-label="Klikk og hent"
             onPress={() => handleAddItemToCart(DeliveryType.Cac)}
-            disabled={!canBuyCAC || isLoading}
+            disabled={isCacDisabled || isLoading}
             color="secondary"
           >
             Klikk og hent

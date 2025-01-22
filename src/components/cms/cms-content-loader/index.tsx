@@ -11,6 +11,7 @@ import { BlockCustomerClubForm } from "@/components/cms/block-customer-club-form
 import { BlockCustomerPaper } from "@/components/cms/block-customer-paper/BlockCustomerPaper";
 import { BlockFaq } from "@/components/cms/block-faq/BlockFaq";
 import { BlockFlowbox } from "@/components/cms/block-flowbox/BlockFlowbox";
+import { BlockHTMLCode } from "@/components/cms/block-html-code/BlockHTMLCode";
 import { BlockImageLinksSlider } from "@/components/cms/block-image-links-slider/BlockImageLinksSlider";
 import { BlockNavigationButtons } from "@/components/cms/block-navigation-buttons/BlockNavigationButtons";
 import { CmsPagesList } from "@/components/cms/block-pages-list/CmsPagesList";
@@ -19,6 +20,7 @@ import { BlockProductsList } from "@/components/cms/block-products-list/BlockPro
 import { BlockQuote } from "@/components/cms/block-quote/BlockQuote";
 import { BlockRow } from "@/components/cms/block-row";
 import { CmsSimilarPagesRow } from "@/components/cms/block-similar-pages-row/CmsSimilarPagesRow";
+import { BlockStoreElement } from "@/components/cms/block-store-element/BlockStoreElement";
 import { BlockStoresMap } from "@/components/cms/block-stores-map/BlockStoresMap";
 import { CmsPagesQuery } from "@/types";
 import { ArrayElement } from "@/utils/ts-utils";
@@ -91,6 +93,12 @@ export const CmsContentLoader: React.FC<CmsContentProps> = ({ data }) => {
 
     case "BlockCatalog":
       return <BlockCatalog data={data} />;
+
+    case "BlockHtmlCode":
+      return <BlockHTMLCode data={data} />;
+
+    case "BlockStoreElement":
+      return <BlockStoreElement data={data} />;
 
     default:
       return null;

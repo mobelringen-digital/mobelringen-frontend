@@ -24,7 +24,6 @@ export async function addToCart(
   cartItems: Array<CartItemInput> | CartItemInput,
   preferredMethod?: DeliveryType,
 ) {
-  const cookieStore = cookies();
   const token = await getToken();
 
   const data = await authorizedMagentoClient(token, "POST", {
@@ -40,17 +39,11 @@ export async function addToCart(
     type: preferredMethod ?? DeliveryType.Online,
   });
 
-  if (preferredMethod) {
-    cookieStore.set("preferredMethod", preferredMethod, {
-      path: "/",
-    });
-  }
-
   return data;
 }
 
 export async function createEmptyCart() {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const data = await baseMagentoClient("POST", {
     cache: "no-store",
   }).request(CreateEmptyCartDocument, {});

@@ -7,9 +7,9 @@ import { FilterActions } from "@/modules/category/category/category-filters/Filt
 import { FilterController } from "@/modules/category/category/category-filters/FilterController";
 import { FiltersDrawer } from "@/modules/category/category/category-filters/FiltersDrawer";
 import { SortButton } from "@/modules/category/category/category-filters/SortButton";
-import { useFiltersQuery } from "@/modules/category/category/category-filters/useFiltersQuery";
 import { ProductAggregationsFragment } from "@/types";
 import { useDetectOutsideClick } from "@/utils/hooks/useDetectOutsideClick";
+import { useQueryParams } from "@/utils/hooks/useQueryParams";
 
 interface Props {
   totalCount?: number | null;
@@ -19,7 +19,7 @@ interface Props {
 export const CategoryFilters: React.FC<Props> = ({ filters, totalCount }) => {
   const ref = React.useRef(null);
   const [isActive, setIsActive] = useDetectOutsideClick(ref, false);
-  const { resetQueryFilters } = useFiltersQuery();
+  const { resetQueryFilters } = useQueryParams();
 
   const resetForm = async () => {
     return resetQueryFilters();

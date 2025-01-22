@@ -30,6 +30,7 @@ export const BannerFragment = graphql(`
     ... on Banner {
       __typename
       alt
+      linkUrl
       identify
       variant
       centerText

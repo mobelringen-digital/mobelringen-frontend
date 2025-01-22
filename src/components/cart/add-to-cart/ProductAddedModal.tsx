@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Link } from "@nextui-org/link";
-import { useCookies } from "react-cookie";
 
 import Image from "next/image";
 
@@ -25,8 +24,6 @@ const ProductAddedModal: React.FC<Props> = ({
   onClose,
   selectedStore,
 }) => {
-  const [cookies] = useCookies();
-
   return (
     <Modal
       isOpen={isOpen}
@@ -73,7 +70,7 @@ const ProductAddedModal: React.FC<Props> = ({
           </Button>
           <Button
             as={Link}
-            href={`/cart?method=${cookies.preferredMethod}`}
+            href="/cart"
             aria-label="Gå til handlekurv"
             className="w-full"
             color="primary"

@@ -244,6 +244,7 @@ export const BaseCartFragment = graphql(`
   fragment BaseCart on Cart {
     id
     email
+    delivery_type
     applied_coupons {
       code
     }

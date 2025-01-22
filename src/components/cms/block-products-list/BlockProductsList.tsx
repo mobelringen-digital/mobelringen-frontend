@@ -7,20 +7,18 @@ import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { CmsBlockWrapper } from "@/components/cms/cms-block-wrapper";
 import { CmsBlockHeader } from "@/components/cms/cms-block-wrapper/CmsBlockHeader";
 import { CategoryFilters } from "@/modules/category/category/category-filters/CategoryFilters";
-import { useCategoryFilters } from "@/modules/category/category/category-filters/useCategoryFilters";
-import { useFiltersQuery } from "@/modules/category/category/category-filters/useFiltersQuery";
 import { ProductsList } from "@/modules/category/category/ProductsList";
 import { ProductsListSkeleton } from "@/modules/category/category/ProductsListSkeleton";
 import { useProductsQuery } from "@/modules/category/category/useProductsQuery";
 import { CmsBlockProductsListFragment } from "@/types";
+import { useQueryParams } from "@/utils/hooks/useQueryParams";
 
 interface Props {
   data: CmsBlockProductsListFragment;
 }
 
 export const BlockProductsList: React.FC<Props> = ({ data }) => {
-  const { sortValues } = useCategoryFilters();
-  const { filterValues } = useFiltersQuery();
+  const { getQueryParams } = useQueryParams();
   const categories = data.categoryId?.split(",");
   const skus = data.sku?.split(",");
   const brands = data.brand?.split(",");
@@ -43,9 +41,9 @@ export const BlockProductsList: React.FC<Props> = ({ data }) => {
       brand: {
         in: brands,
       },
-      ...filterValues,
+      ...getQueryParams().filters,
     },
-    sort: sortValues,
+    sort: getQueryParams().sort,
   });
 
   const currentlyLoaded = products?.pages.reduce((acc, page) => {

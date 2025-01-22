@@ -22,6 +22,7 @@ const BUTTON_JUSTIFY: Record<Position, string> = {
 };
 
 const PARAGRAPH_STYLE: Record<TypographyStyle, string> = {
+  xxl: "text-2xl lg:text-4xl",
   xl: "text-xl lg:text-2xl",
   lg: "text-lg lg:text-xl",
   md: "text-sm lg:text-base",

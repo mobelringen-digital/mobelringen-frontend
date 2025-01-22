@@ -29,7 +29,7 @@ export async function getStores() {
 }
 
 export async function getSelectedStoreId() {
-  const cookiesStore = cookies();
+  const cookiesStore = await cookies();
   const guestStoreId = cookiesStore.get("storeId");
 
   const data = await getCustomerDetails();
@@ -84,7 +84,7 @@ export async function updateCartItemsInStore() {
 
 export async function setFavoriteStoreId(storeId: string) {
   const token = await getToken();
-  const cookiesStore = cookies();
+  const cookiesStore = await cookies();
   const customer = await getCustomerDetails();
 
   if (token && customer) {

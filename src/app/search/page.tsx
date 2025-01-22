@@ -1,12 +1,9 @@
 import { searchArticles, searchProducts } from "@/modules/search/actions";
 import { SearchPage } from "@/modules/search/SearchPage";
+import {NextServerComponentProps} from "@/utils/ts-utils";
 
-type Props = {
-  params: { url: Array<string> };
-  searchParams: { [key: string]: string | string[] | undefined };
-};
-
-export default async function Search({ searchParams }: Props) {
+export default async function Search(props: NextServerComponentProps) {
+  const searchParams = await props.searchParams;
   const searchQuery = searchParams.q as string;
 
   const productsData = await searchProducts(searchQuery);

@@ -12,13 +12,20 @@ interface Props {
   data: CmsSalesBubbleFragment;
 }
 
+const POSITION_CLASSES = {
+  [Position.Left]: "lg:left-0",
+  [Position.Right]: "lg:right-0",
+  [Position.Center]: "lg:left-1/2 lg:transform lg:-translate-x-1/2",
+};
+
 export const BannerSalesBubbleWrapper: React.FC<Props> = ({ data }) => {
   const salesBubble = data;
 
   return (
     <div
       className={cx(
-        "absolute bottom-0 left-0 right-0 translate-y-1/2 lg:translate-y-0 lg:bottom-[40px] w-full",
+        "absolute bottom-0 left-0 right-0  pointer-events-none translate-y-1/2 lg:translate-y-0 lg:bottom-[40px] w-full z-20",
+        POSITION_CLASSES[salesBubble.position],
       )}
     >
       <ContainerLayout
@@ -28,7 +35,7 @@ export const BannerSalesBubbleWrapper: React.FC<Props> = ({ data }) => {
         })}
       >
         {salesBubble.url ? (
-          <Link aria-label={salesBubble.middleLine} href={salesBubble.url}>
+          <Link className="pointer-events-auto" aria-label={salesBubble.middleLine} href={salesBubble.url}>
             <SalesBubble salesBubble={salesBubble} />
           </Link>
         ) : (

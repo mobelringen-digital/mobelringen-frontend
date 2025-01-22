@@ -10,10 +10,9 @@ import {
   DropdownTrigger,
   Selection,
 } from "@nextui-org/react";
-import qs from "qs";
 
 import { ArrowDown } from "@/components/_ui/icons/figma/ArrowDown";
-import { useCategoryFilters } from "@/modules/category/category/category-filters/useCategoryFilters";
+import { useQueryParams } from "@/utils/hooks/useQueryParams";
 
 const SORT_OPTIONS = [
   {
@@ -61,7 +60,8 @@ const SORT_OPTIONS = [
 ];
 
 export const SortButton = () => {
-  const { setQueryFilter, sortValues } = useCategoryFilters();
+  const { setQuery, getQueryParams } = useQueryParams();
+  const sortValues = getQueryParams().sort;
 
   const selectedValue = React.useMemo(() => {
     return SORT_OPTIONS.find((option) => {
@@ -82,10 +82,7 @@ export const SortButton = () => {
       return;
     }
 
-    setQueryFilter(
-      "sort",
-      qs.stringify({ [selectedOption?.param]: selectedOption?.value }),
-    );
+    setQuery({ sort: { [selectedOption.param]: selectedOption.value } });
   };
 
   return (

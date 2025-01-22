@@ -4,22 +4,14 @@ import React from "react";
 
 import { useCookies } from "react-cookie";
 
-import { useSearchParams } from "next/navigation";
-
 import { CartCookie } from "@/components/cart/fetchCartService";
-import {Availability, BaseCartFragment, DeliveryType} from "@/types";
+import { Availability, BaseCartFragment, DeliveryType } from "@/types";
 import { useSession } from "@/utils/hooks/useSession";
 
 export const useCart = (cart?: BaseCartFragment | null) => {
-  const [cookies] = useCookies<"cart" | "preferredMethod", CartCookie>([
-    "cart",
-    "preferredMethod",
-  ]);
+  const [cookies] = useCookies<"cart", CartCookie>(["cart"]);
   const { token } = useSession();
-  const searchParams = useSearchParams();
-  const isClickAndCollect =
-    searchParams.get("method") === DeliveryType.Cac ||
-    cookies.preferredMethod === DeliveryType.Cac;
+  const isClickAndCollect = cart?.delivery_type === DeliveryType.Cac;
 
   const prices = cart?.prices;
 
