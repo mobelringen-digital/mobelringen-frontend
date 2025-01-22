@@ -2,6 +2,7 @@
 
 import React from "react";
 
+import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { removeProductFromCart } from "@/modules/cart/cart-item/actions";
 import { CartItem } from "@/modules/cart/cart-item/CartItem";
 import { BaseCartFragment, CartItemFragment } from "@/types";
@@ -11,6 +12,7 @@ interface Props {
 }
 
 export const CartItems: React.FC<Props> = ({ cart }) => {
+  const [isPending, startTransition] = React.useTransition();
   const [items, setItems] = React.useOptimistic(
     cart?.items,
     (
@@ -27,15 +29,18 @@ export const CartItems: React.FC<Props> = ({ cart }) => {
   );
 
   const handleRemoveProduct = async (itemId: number) => {
-    setItems({
-      action: "remove",
-      item: items?.find((i) => i?.id === itemId.toString()),
+    return startTransition(() => {
+      setItems({
+        action: "remove",
+        item: items?.find((i) => i?.id === itemId.toString()),
+      });
+      removeProductFromCart(itemId);
     });
-    return removeProductFromCart(itemId);
   };
 
   return (
     <>
+      {isPending ? <PageTopLoader /> : null}
       {items?.map((item, idx) => (
         <CartItem
           cart={cart}
