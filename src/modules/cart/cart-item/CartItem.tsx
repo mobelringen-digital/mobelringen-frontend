@@ -13,14 +13,20 @@ import { useConfirm } from "@/components/confirm/hooks/useConfirm";
 import { updateCartItems } from "@/modules/cart/cart-item/actions";
 import { CartItemDeliveryInfo } from "@/modules/cart/cart-item/CartItemDeliveryInfo";
 import { CartItemPrice } from "@/modules/cart/cart-item/CartItemPrice";
-import { BaseCartFragment, CartItemFragment, DeliveryType } from "@/types";
+import {
+  BaseCartFragment,
+  CartItemFragment, DeliveryType,
+  RemoveProductFromCartMutation,
+} from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
 import { useRequestCallback } from "@/utils/hooks/useRequestCallback";
 
 interface Props {
   item: CartItemFragment | null;
   cart?: BaseCartFragment | null;
-  onRemoveProduct: (itemId: number) => Promise<void>;
+  onRemoveProduct: (
+    itemId: number,
+  ) => Promise<RemoveProductFromCartMutation | undefined>;
 }
 
 export const CartItem: React.FC<Props> = ({ item, cart, ...restProps }) => {
