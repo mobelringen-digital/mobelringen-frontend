@@ -1,6 +1,5 @@
 "use server";
 
-import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 import { getSelectedStore } from "@/components/store-selector/actions";
@@ -24,7 +23,7 @@ export const getGuestCart = async () => {
         cart_id: String(cartCookie.value),
       })
       .catch(() => {
-        revalidateTag("cart");
+        return null;
       });
 
     return guestCart?.cart;
