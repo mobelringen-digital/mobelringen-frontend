@@ -44,6 +44,7 @@ export const CategoryQueryDocument = graphql(`
     categories(filters: $filters) {
       items {
         name
+        default_sort_by
         description
         id
         uid
@@ -57,6 +58,7 @@ export const CategoryQueryDocument = graphql(`
           total_count
         }
         children {
+          default_sort_by
           thumbnail
           name
           uid
@@ -67,6 +69,7 @@ export const CategoryQueryDocument = graphql(`
             total_count
           }
           children {
+            default_sort_by
             thumbnail
             name
             uid

@@ -12,7 +12,11 @@ import { ProductsList } from "@/modules/category/category/ProductsList";
 import { ProductsListSkeleton } from "@/modules/category/category/ProductsListSkeleton";
 import { useProductsQuery } from "@/modules/category/category/useProductsQuery";
 import { CategoryItemEntity } from "@/modules/category/types";
-import { BaseProductDataForCardFragment } from "@/types";
+import {
+  BaseProductDataForCardFragment,
+  ProductAttributeSortInput,
+  SortEnum,
+} from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
 import { useQueryParams } from "@/utils/hooks/useQueryParams";
 
@@ -48,33 +52,30 @@ const clickOnItemGTMEvent = (product: BaseProductDataForCardFragment) => {
   });
 };
 
-// const viewItemListGTMEvent = (
-//   category: CategoryItemEntity,
-//   products?: ProductsQuery["products"],
-// ) => {
-//   return sendGTMEvent({
-//     event: "view_item_list",
-//     item_list_name: category?.name,
-//     items: products?.items?.map((product) => ({
-//       item_id: (product as BaseProductFragment).sku,
-//       addable_to_cart: (product as BaseProductFragment).addable_to_cart,
-//       item_name: (product as BaseProductFragment).name,
-//       item_brand: (product as BaseProductFragment).productBrand?.name,
-//       price: (product as BaseProductFragment).price_range.maximum_price
-//         ?.final_price.value,
-//       discount: (product as BaseProductFragment).price_range.maximum_price
-//         ?.discount?.amount_off,
-//       ...formatGTMCategories(
-//         (product as BaseProductFragment).categories?.map((cat) => ({
-//           name: cat?.name,
-//         })),
-//       ),
-//     })),
-//   });
-// };
+const DEFAULT_CATEGORY_SORT_VALUES: Record<
+  string,
+  ProductAttributeSortInput | undefined
+> = {
+  price_asc: { price: SortEnum.Asc },
+  price_desc: { price: SortEnum.Desc },
+  position: { position: SortEnum.Asc },
+  "": undefined,
+} as const;
 
 export const CategoryPage: React.FC<Props> = ({ category }) => {
   const { getQueryParams } = useQueryParams();
+
+  const sortValue = React.useMemo(() => {
+    if (getQueryParams().sort) {
+      return getQueryParams().sort;
+    }
+
+    if (category && category?.default_sort_by) {
+      return DEFAULT_CATEGORY_SORT_VALUES[category.default_sort_by];
+    }
+
+    return undefined;
+  }, [category, getQueryParams]);
 
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useProductsQuery({
@@ -84,7 +85,7 @@ export const CategoryPage: React.FC<Props> = ({ category }) => {
         },
         ...getQueryParams().filters,
       },
-      sort: getQueryParams().sort,
+      sort: sortValue,
     });
 
   const loadMore = () => {

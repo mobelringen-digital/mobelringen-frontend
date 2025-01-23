@@ -41,7 +41,7 @@ export const MainBubble: React.FC<Props> = ({
     >
       <div
         className={cx(
-          "text-center rounded-full rounded-bl-none",
+          "text-center rounded-full rounded-bl-none min-w-44",
           SIZE_VARIANTS[size],
         )}
         style={{
@@ -78,7 +78,7 @@ export const MainBubble: React.FC<Props> = ({
           <li className="text-sm font-medium">
             {tacticalBubble.mainBubbleTopLine}
           </li>
-          <li className="text-xl lg:text-3xl font-feature font-medium">
+          <li className="text-xl lg:text-3xl font-feature font-medium text-nowrap">
             {tacticalBubble.mainBubbleMiddleLine}
           </li>
           <li className="text-sm font-medium">
