@@ -26,7 +26,7 @@ export const SupplementBubble: React.FC<Props> = ({
       }}
     >
       <ul className="flex justify-center items-center flex-col list-none gap-0">
-        <li className="text-xs font-medium text-nowrap break-keep">{topLine}</li>
+        <li className="text-sm font-medium text-nowrap break-keep">{topLine}</li>
         <li className="text-2xl font-feature font-medium">
           {middleLine}
         </li>

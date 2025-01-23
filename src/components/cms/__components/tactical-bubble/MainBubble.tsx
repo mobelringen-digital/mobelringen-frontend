@@ -75,13 +75,13 @@ export const MainBubble: React.FC<Props> = ({
             "justify-center items-center": !isSupplementBubble,
           })}
         >
-          <li className="text-xs font-medium">
+          <li className="text-sm font-medium">
             {tacticalBubble.mainBubbleTopLine}
           </li>
           <li className="text-xl lg:text-3xl font-feature font-medium">
             {tacticalBubble.mainBubbleMiddleLine}
           </li>
-          <li className="text-xs font-medium">
+          <li className="text-sm font-medium">
             {tacticalBubble.mainBubbleBottomLine}
           </li>
         </ul>
