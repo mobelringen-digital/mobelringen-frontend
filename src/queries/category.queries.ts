@@ -45,6 +45,7 @@ export const CategoryQueryDocument = graphql(`
       items {
         name
         default_sort_by
+        sort_direction
         description
         id
         uid
@@ -59,6 +60,7 @@ export const CategoryQueryDocument = graphql(`
         }
         children {
           default_sort_by
+          sort_direction
           thumbnail
           name
           uid
@@ -70,6 +72,7 @@ export const CategoryQueryDocument = graphql(`
           }
           children {
             default_sort_by
+            sort_direction
             thumbnail
             name
             uid

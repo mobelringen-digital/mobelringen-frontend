@@ -12,11 +12,7 @@ import { ProductsList } from "@/modules/category/category/ProductsList";
 import { ProductsListSkeleton } from "@/modules/category/category/ProductsListSkeleton";
 import { useProductsQuery } from "@/modules/category/category/useProductsQuery";
 import { CategoryItemEntity } from "@/modules/category/types";
-import {
-  BaseProductDataForCardFragment,
-  ProductAttributeSortInput,
-  SortEnum,
-} from "@/types";
+import { BaseProductDataForCardFragment } from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
 import { useQueryParams } from "@/utils/hooks/useQueryParams";
 
@@ -52,16 +48,6 @@ const clickOnItemGTMEvent = (product: BaseProductDataForCardFragment) => {
   });
 };
 
-const DEFAULT_CATEGORY_SORT_VALUES: Record<
-  string,
-  ProductAttributeSortInput | undefined
-> = {
-  price_asc: { price: SortEnum.Asc },
-  price_desc: { price: SortEnum.Desc },
-  position: { position: SortEnum.Asc },
-  "": undefined,
-} as const;
-
 export const CategoryPage: React.FC<Props> = ({ category }) => {
   const { getQueryParams } = useQueryParams();
 
@@ -70,8 +56,10 @@ export const CategoryPage: React.FC<Props> = ({ category }) => {
       return getQueryParams().sort;
     }
 
-    if (category && category?.default_sort_by) {
-      return DEFAULT_CATEGORY_SORT_VALUES[category.default_sort_by];
+    if (category && category?.default_sort_by && category.sort_direction) {
+      return {
+        [category.default_sort_by]: category.sort_direction.toUpperCase(),
+      };
     }
 
     return undefined;
