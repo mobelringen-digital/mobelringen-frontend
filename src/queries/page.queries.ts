@@ -100,8 +100,6 @@ export const CmsPagesQueryDocument = graphql(`
         ...CmsBlockPressRoom
         ...CmsBlockProductsList
         ...CmsBlockBrandsList
-        ...CmsBlockCustomerClubForm
-        ...CmsBlockCustomerPaper
         ...CmsBlockFlowbox
         ...CmsBlockCatalog
         ...CmsBlockHTMLCode
