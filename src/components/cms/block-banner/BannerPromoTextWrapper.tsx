@@ -17,7 +17,7 @@ export const BannerPromoTextWrapper: React.FC<Props> = ({ data }) => {
 
   return (
     <div
-      className={cx("absolute top-10 left-0 right-0 lg:bottom-[40px] w-full")}
+      className={cx("absolute top-0 p-10 left-0 right-0 lg:bottom-[40px] w-full")}
     >
       <ContainerLayout
         className={cx(
@@ -35,6 +35,7 @@ export const BannerPromoTextWrapper: React.FC<Props> = ({ data }) => {
         {promo.promoImage ? (
           <Image
             src={promo.promoImage.url}
+            className="max-w-full max-h-52 object-contain"
             alt={promo.topLine ?? "promo-image"}
             width={promo.promoImage.width ?? 200}
             height={promo.promoImage.height ?? 200}
