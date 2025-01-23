@@ -1,32 +1,16 @@
+"use client";
+
 import React from "react";
 
 import { BaseProductLayout } from "@/modules/product/BaseProductLayout";
-import {
-  BaseCartFragment,
-  BaseStoreFragment,
-  GetProductStockQuery,
-  SimpleProductFragment,
-} from "@/types";
+import { useProductData } from "@/modules/product/context/useProductData";
 
-interface Props {
-  product: SimpleProductFragment;
-  cart?: BaseCartFragment | null;
-  stock?: GetProductStockQuery;
-  selectedStore?: BaseStoreFragment | null;
-}
+export const SimpleProductPage: React.FC = () => {
+  const { product } = useProductData();
 
-export async function SimpleProductPage({
-  product,
-  cart,
-  stock,
-  selectedStore,
-}: Props) {
-  return (
-    <BaseProductLayout
-      selectedStore={selectedStore}
-      stock={stock}
-      cart={cart}
-      baseProductData={product}
-    />
-  );
-}
+  if (!product) {
+    return null;
+  }
+
+  return <BaseProductLayout baseProductData={product} />;
+};

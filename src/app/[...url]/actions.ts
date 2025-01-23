@@ -5,6 +5,7 @@ import { CmsPagesQueryDocument } from "@/queries/page.queries";
 import {
   GetProductReviewsDocument,
   ProductsQueryDocument,
+  ProductsStoresDocument,
 } from "@/queries/product/product.queries";
 import { RouteDocument } from "@/queries/route.queries";
 import {
@@ -14,6 +15,8 @@ import {
   CmsPagesQueryVariables,
   ProductsQuery,
   ProductsQueryVariables,
+  ProductsStoresQuery,
+  ProductsStoresQueryVariables,
   RouteQuery,
   RouteQueryVariables,
 } from "@/types";
@@ -32,6 +35,20 @@ export async function getProduct(sku: string) {
     sort: {},
     currentPage: 1,
   });
+}
+
+export async function getProductStores(sku: string) {
+  return await baseMagentoClient("GET", {
+    revalidate: 600,
+    tags: ["product", "stores", sku],
+  }).request<ProductsStoresQuery, ProductsStoresQueryVariables>(
+    ProductsStoresDocument,
+    {
+      filter: { sku: { eq: sku } },
+      sort: {},
+      currentPage: 1,
+    },
+  );
 }
 
 export async function getCategory(url: string) {
@@ -65,7 +82,7 @@ export async function getRoute(url: string) {
 
 export async function getProductReviews(productId: string) {
   const data = await baseMagentoClient("GET", {
-    tags: ["reviews", productId],
+    tags: ["product", "reviews", productId],
     revalidate: 3600,
   }).request(GetProductReviewsDocument, {
     productId,
