@@ -2,6 +2,7 @@ import React from "react";
 
 import cx from "classnames";
 
+import { BannerPromoTextWrapper } from "@/components/cms/block-banner/BannerPromoTextWrapper";
 import { BannerSalesBubbleWrapper } from "@/components/cms/block-banner/BannerSalesBubbleWrapper";
 import { HotspotsWrapper } from "@/components/cms/block-banner/HotspotsWrapper";
 import { BannerVariant, CmsBannerFragment } from "@/types";
@@ -53,6 +54,7 @@ export const Banner: React.FC<Props> = ({ data, children }) => {
         />
       ) : null}
       {children}
+      {data.promoText ? <BannerPromoTextWrapper data={data.promoText} /> : null}
       {salesBubble ? <BannerSalesBubbleWrapper data={salesBubble} /> : null}
     </section>
   );

@@ -3,6 +3,7 @@ import {
   CmsSalesBubbleFragment,
   DeliveryType,
   MrColor,
+  TypographyStyle,
 } from "@/types";
 
 export const NUMBERS_REGEX = /^[0-9]*$/;
@@ -87,6 +88,15 @@ export const CAMPAIGN_COLORS: Record<MrColor, string> = {
   MR_S13: "#AC1917",
   MR_S14: "#EFDDD3",
   MR_S15: "#F1EBE1",
+};
+
+export const PARAGRAPH_STYLE: Record<TypographyStyle, string> = {
+  xxl: "text-2xl lg:text-4xl",
+  xl: "text-xl lg:text-2xl",
+  lg: "text-lg lg:text-xl",
+  md: "text-sm lg:text-base",
+  sm: "text-xs lg:text-sm",
+  xs: "text-xs lg:text-xs",
 };
 
 export const getSalesBubbleSpacing = (
