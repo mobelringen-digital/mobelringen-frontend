@@ -3,6 +3,7 @@ import React from "react";
 import cx from "classnames";
 
 import { BannerSalesBubbleWrapper } from "@/components/cms/block-banner/BannerSalesBubbleWrapper";
+import { HotspotsWrapper } from "@/components/cms/block-banner/HotspotsWrapper";
 import { BannerVariant, CmsBannerFragment } from "@/types";
 
 interface Props {
@@ -44,6 +45,12 @@ export const Banner: React.FC<Props> = ({ data, children }) => {
             {data.centerText}
           </div>
         </div>
+      ) : null}
+      {data.hotspots && data.hotspots.length ? (
+        <HotspotsWrapper
+          className={VARIANTS[data.variant]}
+          data={data.hotspots}
+        />
       ) : null}
       {children}
       {salesBubble ? <BannerSalesBubbleWrapper data={salesBubble} /> : null}

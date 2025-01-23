@@ -41,6 +41,14 @@ export const PromotionBubbleFragment = graphql(`
   }
 `);
 
+export const HotspotFragment = graphql(`
+  fragment Hotspot on ProductHotspot {
+    productSku
+    verticalPosition
+    horizontalPosition
+  }
+`);
+
 export const BannerFragment = graphql(`
   fragment CmsBanner on Banner {
     ... on Banner {
@@ -54,6 +62,9 @@ export const BannerFragment = graphql(`
         mimeType
         url
         width
+      }
+      hotspots {
+        ...Hotspot
       }
       salesBubble {
         ...CmsSalesBubble
