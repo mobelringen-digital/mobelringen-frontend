@@ -244,30 +244,6 @@ export const BlockBrandsListFragment = graphql(`
   }
 `);
 
-export const BlockCustomerClubFormFragment = graphql(`
-  fragment CmsBlockCustomerClubForm on BlockCustomerClubform {
-    ... on BlockCustomerClubform {
-      __typename
-      title
-      blockConfig {
-        ...CmsBlockConfig
-      }
-    }
-  }
-`);
-
-export const BlockCustomerPaperFragment = graphql(`
-  fragment CmsBlockCustomerPaper on BlockCustomerPaper {
-    ... on BlockCustomerPaper {
-      __typename
-      title
-      blockConfig {
-        ...CmsBlockConfig
-      }
-    }
-  }
-`);
-
 export const BlockFlowboxFragment = graphql(`
   fragment CmsBlockFlowbox on BlockFlowbox {
     ... on BlockFlowbox {
