@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import {
   dehydrate,
@@ -77,30 +77,28 @@ export default async function Product({ sku }: Props) {
     });
   }
 
-    if (
-        !!configurableProductData &&
-        isTypename(currentProductData, ["SimpleProduct"])
-    ) {
-        return (
-            <Suspense fallback={<ProductPageSkeleton />}>
-            <HydrationBoundary state={dehydrate(queryClient)}>
-                <ProductDataContextProvider
-                    product={currentProductData}
-                    stores={stores}
-                    selectedStore={selectedStore}
-                    cart={cart}
-                    stock={stock}
-                >
-                    <ConfigurableProductPage
-                        configurableProductData={configurableProductData}
-                    />
-                </ProductDataContextProvider>
-
-                <StaticPageContent url={`/${url}`} />
-            </HydrationBoundary>
-            </Suspense>
-        );
-    }
+  if (
+    !!configurableProductData &&
+    isTypename(currentProductData, ["SimpleProduct"])
+  ) {
+    return (
+      <Suspense fallback={<ProductPageSkeleton />}>
+        <HydrationBoundary state={dehydrate(queryClient)}>
+          <ProductDataContextProvider
+            product={currentProductData}
+            stores={stores}
+            selectedStore={selectedStore}
+            cart={cart}
+            stock={stock}
+          >
+            <ConfigurableProductPage
+              configurableProductData={configurableProductData}
+            />
+          </ProductDataContextProvider>
+        </HydrationBoundary>
+      </Suspense>
+    );
+  }
 
   return (
     <Suspense fallback={<ProductPageSkeleton />}>

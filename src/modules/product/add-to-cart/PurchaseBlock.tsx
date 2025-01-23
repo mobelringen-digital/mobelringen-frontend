@@ -7,10 +7,10 @@ import { QuantityInput } from "@/components/_ui/quantity-input/QuantityInput";
 import { AddToCart } from "@/components/cart/add-to-cart/AddToCart";
 import { DeliveryInfo } from "@/modules/product/add-to-cart/DeliveryInfo";
 import { KlarnaInformation } from "@/modules/product/add-to-cart/KlarnaInformation";
+import { useProductData } from "@/modules/product/context/useProductData";
 import {
   BaseProductFragment,
 } from "@/types";
-import { useProductData } from "@/modules/product/context/useProductData";
 import { usePriceRange } from "@/utils/hooks/usePriceRange";
 
 interface Props {
