@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 
 import {
   dehydrate,
@@ -11,6 +11,7 @@ import { notFound } from "next/navigation";
 import getCart from "@/components/cart/actions";
 import { getSelectedStore } from "@/components/store-selector/actions";
 import { ConfigurableProductPage } from "@/modules/product/ConfigurableProduct";
+import { ProductDataContextProvider } from "@/modules/product/context/ProductDataContextProvider";
 import {
   fetchReviews,
   PRODUCT_REVIEWS_QUERY_KEY,
@@ -18,11 +19,10 @@ import {
 import { ProductPageSkeleton } from "@/modules/product/ProductPageSkeleton";
 import { SimpleProductPage } from "@/modules/product/SimpleProduct";
 import { GetProductStockDocument } from "@/queries/product/product.queries";
-import { BaseCartFragment } from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
-import { getProduct } from "./actions";
+import { getProduct, getProductStores } from "./actions";
 
 type Props = {
   sku: string;
@@ -31,7 +31,7 @@ type Props = {
 
 async function getProductStock(productId: string, storeId: string) {
   return await baseMagentoClient("GET", {
-    tags: ["stock", String(productId), String(storeId)],
+    tags: ["product", "stock", String(productId), String(storeId)],
     revalidate: 600,
   }).request(GetProductStockDocument, {
     productId,
@@ -55,6 +55,11 @@ export default async function Product({ sku }: Props) {
   }
 
   const selectedStore = await getSelectedStore();
+  const stores = await getProductStores(
+    // @ts-expect-error - productData is not null
+    currentProductData.sku,
+  );
+
   const stock = await getProductStock(
     // @ts-expect-error - productData is not null
     currentProductData.id,
@@ -72,24 +77,30 @@ export default async function Product({ sku }: Props) {
     });
   }
 
-  if (
-    !!configurableProductData &&
-    isTypename(currentProductData, ["SimpleProduct"])
-  ) {
-    return (
-      <Suspense fallback={<ProductPageSkeleton />}>
-        <HydrationBoundary state={dehydrate(queryClient)}>
-          <ConfigurableProductPage
-            configurableProductData={configurableProductData}
-            stock={stock}
-            cart={cart as BaseCartFragment}
-            product={currentProductData}
-            selectedStore={selectedStore}
-          />
-        </HydrationBoundary>
-      </Suspense>
-    );
-  }
+    if (
+        !!configurableProductData &&
+        isTypename(currentProductData, ["SimpleProduct"])
+    ) {
+        return (
+            <Suspense fallback={<ProductPageSkeleton />}>
+            <HydrationBoundary state={dehydrate(queryClient)}>
+                <ProductDataContextProvider
+                    product={currentProductData}
+                    stores={stores}
+                    selectedStore={selectedStore}
+                    cart={cart}
+                    stock={stock}
+                >
+                    <ConfigurableProductPage
+                        configurableProductData={configurableProductData}
+                    />
+                </ProductDataContextProvider>
+
+                <StaticPageContent url={`/${url}`} />
+            </HydrationBoundary>
+            </Suspense>
+        );
+    }
 
   return (
     <Suspense fallback={<ProductPageSkeleton />}>
@@ -100,12 +111,15 @@ export default async function Product({ sku }: Props) {
               rel="canonical"
               href={`${process.env.NEXT_PUBLIC_APP_URL}/${currentProductData.canonical_url}`}
             />
-            <SimpleProductPage
-              selectedStore={selectedStore}
-              stock={stock}
-              cart={cart as BaseCartFragment}
+            <ProductDataContextProvider
               product={currentProductData}
-            />
+              stores={stores}
+              selectedStore={selectedStore}
+              cart={cart}
+              stock={stock}
+            >
+              <SimpleProductPage />
+            </ProductDataContextProvider>
           </>
         ) : null}
       </HydrationBoundary>

@@ -1,40 +1,31 @@
+"use client";
+
 import React from "react";
 
 import { BaseProductLayout } from "@/modules/product/BaseProductLayout";
 import { ConfigurationInfo } from "@/modules/product/configurable-product/ConfigurationInfo";
 import { Variants } from "@/modules/product/configurable-product/Variants";
-import {
-  BaseCartFragment,
-  BaseProductFragment,
-  BaseStoreFragment,
-  ConfigurableProductFragment,
-  GetProductStockQuery,
-} from "@/types";
+import { useProductData } from "@/modules/product/context/useProductData";
+import { ConfigurableProductFragment } from "@/types";
 
 interface Props {
   configurableProductData: ConfigurableProductFragment | null;
-  product: BaseProductFragment;
-  cart?: BaseCartFragment | null;
-  stock?: GetProductStockQuery;
-  selectedStore?: BaseStoreFragment | null;
 }
 
-export async function ConfigurableProductPage({
+export const ConfigurableProductPage: React.FC<Props> = ({
   configurableProductData,
-  product,
-  cart,
-  selectedStore,
-  stock,
-}: Props) {
+}) => {
+  const { product } = useProductData();
   const activeProductVariant = configurableProductData?.variants?.find(
-    (variant) => variant?.product?.sku === product.sku,
+    (variant) => variant?.product?.sku === product?.sku,
   );
+
+  if (!product) {
+    return null;
+  }
 
   return (
     <BaseProductLayout
-      selectedStore={selectedStore}
-      cart={cart}
-      stock={stock}
       baseProductData={product}
       configurationBlock={
         <div className="flex flex-col gap-2">
@@ -47,4 +38,4 @@ export async function ConfigurableProductPage({
       }
     />
   );
-}
+};

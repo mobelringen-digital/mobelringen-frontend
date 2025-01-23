@@ -118,6 +118,9 @@ export const BaseProductFragment = graphql(`
     description {
       html
     }
+    stores {
+      ...ProductStores
+    }
     stocks {
       online {
         availability
@@ -127,9 +130,6 @@ export const BaseProductFragment = graphql(`
         availability
         message
       }
-    }
-    stores {
-      ...ProductStores
     }
     gift_message_available
     review_count
@@ -227,6 +227,39 @@ export const ProductsQueryDocument = graphql(`
         }
         ... on ConfigurableProduct {
           ...ConfigurableProduct
+        }
+      }
+    }
+  }
+`);
+
+export const ProductsStoresDocument = graphql(`
+  query ProductsStores(
+    $pageSize: Int = 12
+    $filter: ProductAttributeFilterInput
+    $sort: ProductAttributeSortInput
+    $currentPage: Int
+    $search: String = ""
+  ) {
+    products(
+      pageSize: $pageSize
+      filter: $filter
+      sort: $sort
+      currentPage: $currentPage
+      search: $search
+    ) {
+      items {
+        ... on SimpleProduct {
+          __typename
+          stores {
+            ...ProductStores
+          }
+        }
+        ... on ConfigurableProduct {
+          __typename
+          stores {
+            ...ProductStores
+          }
         }
       }
     }

@@ -10,16 +10,16 @@ import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { StatusCircle } from "@/components/_ui/status-circle/StatusCircle";
 import { setFavoriteStoreId } from "@/components/store-selector/actions";
 import { ChangeStoreModal } from "@/modules/product/add-to-cart/ChangeStoreModal";
+import { useProductData } from "@/modules/product/context/useProductData";
 import {
   Availability,
   BaseProductFragment,
-  GetProductStockQuery,
   ProductStoresFragment,
 } from "@/types";
+import { isTypename } from "@/types/graphql-helpers";
 
 interface Props {
   product: BaseProductFragment;
-  stock?: GetProductStockQuery;
 }
 
 export const PRODUCT_STOCK_STATUS_COLOR: Record<
@@ -32,18 +32,34 @@ export const PRODUCT_STOCK_STATUS_COLOR: Record<
   ONLINE_BACKORDER_CAC_OUT_OF_STOCK: "green-circle",
 };
 
-export const DeliveryInfo: React.FC<Props> = ({ product, stock }) => {
+export const DeliveryInfo: React.FC<Props> = ({ product }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
   const isModalOpen = searchParams.get("store") === "change";
 
+  const { stores, stock } = useProductData();
+
   const closeModal = () => {
     router.push(pathname);
   };
 
-  const storesWithStock = product.stores?.filter(
+  const storesData = React.useMemo(() => {
+    const productData = stores?.products?.items?.[stores?.products?.items?.length - 1];
+
+    if (!productData) return null;
+
+    if (isTypename(productData, ["ConfigurableProduct"])) {
+      return productData.stores;
+    }
+
+    if (isTypename(productData, ["SimpleProduct"])) {
+      return productData.stores;
+    }
+  }, [stores]);
+
+  const storesWithStock = storesData?.filter(
     (store) => store?.qty && store.qty > 0,
   );
   const stockData = stock?.getProductStock;
