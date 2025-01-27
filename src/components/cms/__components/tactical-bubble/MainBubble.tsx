@@ -78,7 +78,7 @@ export const MainBubble: React.FC<Props> = ({
           <li className="text-sm font-medium">
             {tacticalBubble.mainBubbleTopLine}
           </li>
-          <li className="text-xl lg:text-3xl font-feature font-medium text-nowrap">
+          <li className="text-2xl lg:text-3xl font-feature font-medium text-nowrap">
             {tacticalBubble.mainBubbleMiddleLine}
           </li>
           <li className="text-sm font-medium">
