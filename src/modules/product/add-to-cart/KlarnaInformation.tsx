@@ -18,7 +18,7 @@ const CustomKlarnaElement: React.FC<{ finalPrice: number }> = ({
   return React.createElement("klarna-placement", {
     "data-key": "credit-promotion-auto-size",
     "data-locale": "no-NO",
-    "data-purchase-amount": finalPrice,
+    "data-purchase-amount": finalPrice * 100, // Klarna expects the amount in cents
   });
 };
 

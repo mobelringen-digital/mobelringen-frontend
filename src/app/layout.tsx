@@ -26,6 +26,7 @@ export default async function RootLayout({
 
       <body className="bg-sand font-suisse">
         <Script
+          strategy="beforeInteractive"
           async={true}
           data-environment={process.env.NEXT_PUBLIC_KLARNA_ENVIRONMENT}
           src="https://js.klarna.com/web-sdk/v1/klarna.js"
