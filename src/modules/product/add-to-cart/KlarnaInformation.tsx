@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 import Link from "next/link";
@@ -6,7 +8,21 @@ import { Card } from "@/components/_ui/icons/figma/Card";
 import { PriceTag } from "@/components/_ui/icons/figma/PriceTag";
 import { Truck } from "@/components/_ui/icons/figma/Truck";
 
-export const KlarnaInformation = () => {
+interface Props {
+  finalPrice: number;
+}
+
+const CustomKlarnaElement: React.FC<{ finalPrice: number }> = ({
+  finalPrice,
+}) => {
+  return React.createElement("klarna-placement", {
+    "data-key": "credit-promotion-auto-size",
+    "data-locale": "no-NO",
+    "data-purchase-amount": finalPrice,
+  });
+};
+
+export const KlarnaInformation: React.FC<Props> = ({ finalPrice }) => {
   return (
     <>
       <div className="grid grid-cols-12 mt-2 text-xs lg:text-sm">
@@ -34,15 +50,9 @@ export const KlarnaInformation = () => {
           </div>
         </Link>
       </div>
-      {/*<div className="flex text-xs lg:text-sm mt-2 justify-between bg-sand rounded-2xl px-4 py-3">*/}
-      {/*  <div className="flex items-center gap-1">*/}
-      {/*    <span>Betal xxxx kr/mnd i 6 måneder med</span>*/}
-      {/*    <Klarna />*/}
-      {/*  </div>*/}
-      {/*  <Link className="underline" href="#">*/}
-      {/*    Les mer*/}
-      {/*  </Link>*/}
-      {/*</div>*/}
+      <div className="flex mt-2 px-4 py-3">
+        <CustomKlarnaElement finalPrice={finalPrice} />
+      </div>
     </>
   );
 };

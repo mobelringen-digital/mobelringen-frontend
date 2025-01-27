@@ -8,9 +8,7 @@ import { AddToCart } from "@/components/cart/add-to-cart/AddToCart";
 import { DeliveryInfo } from "@/modules/product/add-to-cart/DeliveryInfo";
 import { KlarnaInformation } from "@/modules/product/add-to-cart/KlarnaInformation";
 import { useProductData } from "@/modules/product/context/useProductData";
-import {
-  BaseProductFragment,
-} from "@/types";
+import { BaseProductFragment } from "@/types";
 import { usePriceRange } from "@/utils/hooks/usePriceRange";
 
 interface Props {
@@ -82,7 +80,7 @@ export const PurchaseBlock: React.FC<Props> = ({ product }) => {
       </div>
       <AddToCart product={product} quantity={quantity} />
 
-      <KlarnaInformation />
+      {finalPrice ? <KlarnaInformation finalPrice={finalPrice} /> : null}
     </div>
   );
 };
