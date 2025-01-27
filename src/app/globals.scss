@@ -18,6 +18,11 @@ body {
   min-width: 0;
 }
 
+#klarna-placement::part(osm-message),
+#klarna-placement::part(osm-cta) {
+  @apply font-suisse text-sm;
+}
+
 .marker-cluster-small div,
 .marker-cluster-medium div {
   @apply bg-brown text-white #{!important};
