@@ -39,14 +39,15 @@ export const DeliveryInfo: React.FC<Props> = ({ product }) => {
   const router = useRouter();
   const isModalOpen = searchParams.get("store") === "change";
 
-  const { stores, stock } = useProductData();
+  const { stores, stock, canBuyOnline } = useProductData();
 
   const closeModal = () => {
     router.push(pathname);
   };
 
   const storesData = React.useMemo(() => {
-    const productData = stores?.products?.items?.[stores?.products?.items?.length - 1];
+    const productData =
+      stores?.products?.items?.[stores?.products?.items?.length - 1];
 
     if (!productData) return null;
 
@@ -63,8 +64,6 @@ export const DeliveryInfo: React.FC<Props> = ({ product }) => {
     (store) => store?.qty && store.qty > 0,
   );
   const stockData = stock?.getProductStock;
-  const canBuyOnline =
-    stockData?.online?.availability !== Availability.OutOfStock;
 
   const selectDifferentStore = async (store: ProductStoresFragment | null) => {
     if (!store) return;

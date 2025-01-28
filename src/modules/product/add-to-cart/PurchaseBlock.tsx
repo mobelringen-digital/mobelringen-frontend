@@ -16,7 +16,7 @@ interface Props {
 }
 
 export const PurchaseBlock: React.FC<Props> = ({ product }) => {
-  const { stock } = useProductData();
+  const { stock, canBuyOnline } = useProductData();
   const priceRange = product.price_range;
   const { finalPrice, currency } = usePriceRange(priceRange);
   const [quantity, setQuantity] = React.useState(
@@ -80,7 +80,12 @@ export const PurchaseBlock: React.FC<Props> = ({ product }) => {
       </div>
       <AddToCart product={product} quantity={quantity} />
 
-      {finalPrice ? <KlarnaInformation finalPrice={finalPrice} /> : null}
+      {finalPrice ? (
+        <KlarnaInformation
+          isKlarnaEnabled={canBuyOnline}
+          finalPrice={finalPrice}
+        />
+      ) : null}
     </div>
   );
 };

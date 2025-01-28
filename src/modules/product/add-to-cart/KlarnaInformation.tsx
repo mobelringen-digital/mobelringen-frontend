@@ -10,6 +10,7 @@ import { Truck } from "@/components/_ui/icons/figma/Truck";
 
 interface Props {
   finalPrice: number;
+  isKlarnaEnabled: boolean;
 }
 
 const CustomKlarnaElement: React.FC<{ finalPrice: number }> = ({
@@ -23,7 +24,10 @@ const CustomKlarnaElement: React.FC<{ finalPrice: number }> = ({
   });
 };
 
-export const KlarnaInformation: React.FC<Props> = ({ finalPrice }) => {
+export const KlarnaInformation: React.FC<Props> = ({
+  finalPrice,
+  isKlarnaEnabled,
+}) => {
   return (
     <>
       <div className="grid grid-cols-12 mt-2 text-xs lg:text-sm">
@@ -51,9 +55,11 @@ export const KlarnaInformation: React.FC<Props> = ({ finalPrice }) => {
           </div>
         </Link>
       </div>
-      <div className="flex mt-2 px-4 py-3">
-        <CustomKlarnaElement finalPrice={finalPrice} />
-      </div>
+      {isKlarnaEnabled ? (
+        <div className="flex mt-2 px-4 py-3">
+          <CustomKlarnaElement finalPrice={finalPrice} />
+        </div>
+      ) : null}
     </>
   );
 };

@@ -3,6 +3,7 @@
 import React from "react";
 
 import {
+  Availability,
   BaseCartFragment,
   BaseProductFragment,
   BaseStoreFragment,
@@ -16,6 +17,7 @@ export interface ProductDataContextType {
   selectedStore?: BaseStoreFragment | null;
   stock?: GetProductStockQuery;
   cart?: BaseCartFragment | null;
+  canBuyOnline: boolean;
 }
 
 export const ProductDataContext = React.createContext<ProductDataContextType>(
@@ -30,6 +32,10 @@ const ProductDataContextProvider: React.FC<{
   cart?: BaseCartFragment | null;
   children: React.ReactNode;
 }> = ({ children, product, stores, selectedStore, stock, cart }) => {
+  const stockData = stock?.getProductStock;
+  const canBuyOnline =
+    stockData?.online?.availability !== Availability.OutOfStock;
+
   return (
     <ProductDataContext.Provider
       value={{
@@ -38,6 +44,7 @@ const ProductDataContextProvider: React.FC<{
         selectedStore,
         stock,
         cart,
+        canBuyOnline,
       }}
     >
       {children}
