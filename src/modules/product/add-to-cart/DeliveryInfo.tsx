@@ -46,7 +46,8 @@ export const DeliveryInfo: React.FC<Props> = ({ product }) => {
   };
 
   const storesData = React.useMemo(() => {
-    const productData = stores?.products?.items?.[stores?.products?.items?.length - 1];
+    const productData =
+      stores?.products?.items?.[stores?.products?.items?.length - 1];
 
     if (!productData) return null;
 
@@ -149,7 +150,8 @@ export const DeliveryInfo: React.FC<Props> = ({ product }) => {
               >
                 Tilgjengelig i{" "}
                 <span className="underline">
-                  {storesWithStock?.length ?? 0} butikker
+                  {storesWithStock?.length ?? 0}{" "}
+                  {storesWithStock.length > 1 ? "butikker" : "butikk"}
                 </span>
               </button>
             ) : null}
