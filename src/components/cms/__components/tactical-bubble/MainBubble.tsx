@@ -41,7 +41,7 @@ export const MainBubble: React.FC<Props> = ({
     >
       <div
         className={cx(
-          "text-center rounded-full rounded-bl-none min-w-44",
+          "text-center rounded-full rounded-bl-none lg:min-w-44",
           SIZE_VARIANTS[size],
         )}
         style={{
