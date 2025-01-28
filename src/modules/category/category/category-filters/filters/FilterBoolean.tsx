@@ -2,8 +2,10 @@ import React from "react";
 
 import { Checkbox, CheckboxGroup } from "@nextui-org/react";
 
+import { ExpandFilters } from "@/modules/category/category/category-filters/ExpandFilters";
 import { FilterWrapper } from "@/modules/category/category/category-filters/FilterWrapper";
 import { FilterStringTypeInput, ProductAggregationsFragment } from "@/types";
+import { FILTERS_INITIAL_COUNT } from "@/utils/helpers";
 import { useQueryParams } from "@/utils/hooks/useQueryParams";
 
 interface Props {
@@ -11,6 +13,7 @@ interface Props {
 }
 
 export const FilterBoolean: React.FC<Props> = ({ data }) => {
+  const [showAll, setShowAll] = React.useState(false);
   const { setFilter, getFilter, removeFilter } = useQueryParams();
 
   if (!data) return null;
@@ -23,6 +26,12 @@ export const FilterBoolean: React.FC<Props> = ({ data }) => {
     }
   };
 
+  const handleLoad = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setShowAll((prev) => !prev);
+  };
+
   const filter = getFilter<FilterStringTypeInput>(data.attribute_code);
   const value = (filter?.in as string[]) ?? [];
 
@@ -33,12 +42,15 @@ export const FilterBoolean: React.FC<Props> = ({ data }) => {
         aria-label={String(data.label)}
         onValueChange={onFilterChange}
       >
-        {data.options?.map((option, idx) => (
-          <Checkbox key={idx} value={option?.value as string}>
-            {option?.label} ({option?.count})
-          </Checkbox>
-        ))}
+        {data.options
+          ?.slice(0, showAll ? data.options?.length : FILTERS_INITIAL_COUNT)
+          .map((option, idx) => (
+            <Checkbox key={idx} value={option?.value as string}>
+              {option?.label} ({option?.count})
+            </Checkbox>
+          ))}
       </CheckboxGroup>
+      <ExpandFilters onClick={handleLoad} data={data} showAll={showAll} />
     </FilterWrapper>
   );
 };

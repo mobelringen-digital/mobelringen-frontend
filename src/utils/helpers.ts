@@ -6,6 +6,8 @@ import {
   TypographyStyle,
 } from "@/types";
 
+export const FILTERS_INITIAL_COUNT = 3;
+
 export const NUMBERS_REGEX = /^[0-9]*$/;
 export const NUMBERS_AND_LETTERS_REGEX = /^[a-zA-ZÀ-ÿ0-9_.\- /]*$/;
 export const LETTERS_REGEX = /^[a-zA-ZÀ-ÿ_.\- /]*$/;
