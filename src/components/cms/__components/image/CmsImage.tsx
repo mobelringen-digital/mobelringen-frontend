@@ -6,6 +6,7 @@ import Image from "next/image";
 
 import { ImageLinkPromotionBubbleWrapper } from "@/components/cms/__components/image-link/ImageLinkPromotionBubbleWrapper";
 import { ImageLinkSalesBubbleWrapper } from "@/components/cms/__components/image-link/ImageLinkSalesBubbleWrapper";
+import { TacticalBubble } from "@/components/cms/__components/tactical-bubble/TacticalBubble";
 import { CmsImageFragment } from "@/types";
 import {
   getPromotionBubbleSpacing,
@@ -63,6 +64,9 @@ export const CmsImage: React.FC<Props> = ({ data, className, imageStyle }) => {
         ) : null}
         {data.promotionBubble ? (
           <ImageLinkPromotionBubbleWrapper data={data.promotionBubble} />
+        ) : null}
+        {data.tacticalBubble ? (
+          <TacticalBubble tacticalBubble={data.tacticalBubble} />
         ) : null}
       </div>
       {data.caption ? (

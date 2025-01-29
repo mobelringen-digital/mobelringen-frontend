@@ -12,6 +12,7 @@ interface Props {
 }
 
 export const FooterCopyright: React.FC<Props> = ({ data }) => {
+  const currentYear = new Date().getFullYear();
   if (data?.menuLocation !== MenuType.FooterCopyrightMenu) {
     return null;
   }
@@ -19,7 +20,7 @@ export const FooterCopyright: React.FC<Props> = ({ data }) => {
   return (
     <div className="flex flex-col lg:flex-row justify-center lg:justify-between items-center mt-8 text-sm">
       <div className="flex gap-2 mb-8 lg:mb-0 text-xs lg:text-sm">
-        <span className="mr-6">© Møbelringen 2024</span>
+        <span className="mr-6">© Møbelringen {currentYear}</span>
         {data.links.map((link, idx) => (
           <React.Fragment key={idx}>
             {isTypename(link, ["Link"]) ? (

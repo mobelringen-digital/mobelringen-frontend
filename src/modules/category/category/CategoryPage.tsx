@@ -48,33 +48,22 @@ const clickOnItemGTMEvent = (product: BaseProductDataForCardFragment) => {
   });
 };
 
-// const viewItemListGTMEvent = (
-//   category: CategoryItemEntity,
-//   products?: ProductsQuery["products"],
-// ) => {
-//   return sendGTMEvent({
-//     event: "view_item_list",
-//     item_list_name: category?.name,
-//     items: products?.items?.map((product) => ({
-//       item_id: (product as BaseProductFragment).sku,
-//       addable_to_cart: (product as BaseProductFragment).addable_to_cart,
-//       item_name: (product as BaseProductFragment).name,
-//       item_brand: (product as BaseProductFragment).productBrand?.name,
-//       price: (product as BaseProductFragment).price_range.maximum_price
-//         ?.final_price.value,
-//       discount: (product as BaseProductFragment).price_range.maximum_price
-//         ?.discount?.amount_off,
-//       ...formatGTMCategories(
-//         (product as BaseProductFragment).categories?.map((cat) => ({
-//           name: cat?.name,
-//         })),
-//       ),
-//     })),
-//   });
-// };
-
 export const CategoryPage: React.FC<Props> = ({ category }) => {
   const { getQueryParams } = useQueryParams();
+
+  const sortValue = React.useMemo(() => {
+    if (getQueryParams().sort) {
+      return getQueryParams().sort;
+    }
+
+    if (category && category?.default_sort_by && category.sort_direction) {
+      return {
+        [category.default_sort_by]: category.sort_direction.toUpperCase(),
+      };
+    }
+
+    return undefined;
+  }, [category, getQueryParams]);
 
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useProductsQuery({
@@ -84,7 +73,7 @@ export const CategoryPage: React.FC<Props> = ({ category }) => {
         },
         ...getQueryParams().filters,
       },
-      sort: getQueryParams().sort,
+      sort: sortValue,
     });
 
   const loadMore = () => {

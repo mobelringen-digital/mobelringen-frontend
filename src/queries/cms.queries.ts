@@ -12,6 +12,22 @@ export const SalesBubbleFragment = graphql(`
   }
 `);
 
+export const TacticalBubbleFragment = graphql(`
+  fragment CmsTacticalBubble on TacticalBubble {
+    position
+    mainBubbleTopLine
+    mainBubbleMiddleLine
+    mainBubbleBottomLine
+    mainBubbleBackgroundColor
+    mainBubbleTextColor
+    supplementBubbleTopLine
+    supplementBubbleMiddleLine
+    supplementBubbleBackgroundColor
+    supplementBubbleTextColor
+    linkUrl
+  }
+`);
+
 export const PromotionBubbleFragment = graphql(`
   fragment CmsPromotionBubble on PromotionBubble {
     middleLine
@@ -22,6 +38,14 @@ export const PromotionBubbleFragment = graphql(`
     }
     backgroundColor
     textColor
+  }
+`);
+
+export const HotspotFragment = graphql(`
+  fragment Hotspot on ProductHotspot {
+    productSku
+    verticalPosition
+    horizontalPosition
   }
 `);
 
@@ -39,9 +63,32 @@ export const BannerFragment = graphql(`
         url
         width
       }
+      hotspots {
+        ...Hotspot
+      }
       salesBubble {
         ...CmsSalesBubble
       }
+      promoText {
+        ...CmsBannerPromo
+      }
+    }
+  }
+`);
+
+export const CmsBannerPromo = graphql(`
+  fragment CmsBannerPromo on BannerPromo {
+    ... on BannerPromo {
+      __typename
+      topLine
+      bottomLine
+      promoImage {
+        url
+        width
+        height
+      }
+      textColor
+      textSize
     }
   }
 `);
@@ -237,30 +284,6 @@ export const BlockBrandsListFragment = graphql(`
       brands(first: 100) {
         ...CmsBrand
       }
-      blockConfig {
-        ...CmsBlockConfig
-      }
-    }
-  }
-`);
-
-export const BlockCustomerClubFormFragment = graphql(`
-  fragment CmsBlockCustomerClubForm on BlockCustomerClubform {
-    ... on BlockCustomerClubform {
-      __typename
-      title
-      blockConfig {
-        ...CmsBlockConfig
-      }
-    }
-  }
-`);
-
-export const BlockCustomerPaperFragment = graphql(`
-  fragment CmsBlockCustomerPaper on BlockCustomerPaper {
-    ... on BlockCustomerPaper {
-      __typename
-      title
       blockConfig {
         ...CmsBlockConfig
       }

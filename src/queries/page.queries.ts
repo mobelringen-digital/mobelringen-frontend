@@ -100,8 +100,6 @@ export const CmsPagesQueryDocument = graphql(`
         ...CmsBlockPressRoom
         ...CmsBlockProductsList
         ...CmsBlockBrandsList
-        ...CmsBlockCustomerClubForm
-        ...CmsBlockCustomerPaper
         ...CmsBlockFlowbox
         ...CmsBlockCatalog
         ...CmsBlockHTMLCode
@@ -155,6 +153,9 @@ export const CmsImageFragment = graphql(`
       promotionBubble {
         ...CmsPromotionBubble
       }
+      tacticalBubble {
+        ...CmsTacticalBubble
+      }
     }
   }
 `);
@@ -192,6 +193,9 @@ export const CmsImageLinkFragment = graphql(`
       }
       promotionBubble {
         ...CmsPromotionBubble
+      }
+      tacticalBubble {
+        ...CmsTacticalBubble
       }
     }
   }
