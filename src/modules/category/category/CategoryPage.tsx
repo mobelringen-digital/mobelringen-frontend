@@ -56,14 +56,14 @@ export const CategoryPage: React.FC<Props> = ({ category }) => {
       return getQueryParams().sort;
     }
 
-    if (category && category?.default_sort_by && category.sort_direction) {
-      return {
-        [category.default_sort_by]: category.sort_direction.toUpperCase(),
-      };
-    }
+    // if (category && category?.default_sort_by && category.sort_direction) {
+    //   return {
+    //     [category.default_sort_by]: category.sort_direction.toUpperCase(),
+    //   };
+    // }
 
     return undefined;
-  }, [category, getQueryParams]);
+  }, [getQueryParams]);
 
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useProductsQuery({
