@@ -75,11 +75,12 @@ type PageConfig = {
 };
 
 export async function loadBlocksData(
+  url: string,
   ids: Record<string, any[]>,
   stage: Stage = Stage.Published,
 ) {
   const highPriorityBlocks = await baseHygraphClient("GET", {
-    tags: ["page", "high-priority-blocks", stage],
+    tags: ["page", "high-priority-blocks", url, stage],
     revalidate: HYGRAPH_CACHE_TIME.HIGH_PRIORITY,
   }).request(CmsPageHighPriorityContentBlocks, {
     stage: stage,
@@ -113,7 +114,7 @@ export async function loadBlocksData(
   });
 
   const mediumPriorityBlocks = await baseHygraphClient("GET", {
-    tags: ["page", "medium-priority-blocks", stage],
+    tags: ["page", "medium-priority-blocks", url, stage],
     revalidate: HYGRAPH_CACHE_TIME.MEDIUM_PRIORITY,
   }).request(CmsPageMediumPriorityContentBlocks, {
     stage,
@@ -179,6 +180,7 @@ export async function getPage(
   const pageContent = page.pages[0].content;
   const data = convertPageDataToBlockIds(page.pages[0].content);
   const blocksData = await loadBlocksData(
+    config.where.url as string,
     {
       banners: data.banners,
       blockRows: data.blockRows,
