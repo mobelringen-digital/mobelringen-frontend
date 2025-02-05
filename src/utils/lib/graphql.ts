@@ -2,7 +2,10 @@ import { cache } from "react";
 
 import { GraphQLClient } from "graphql-request";
 
-export const HYGRAPH_CACHE_TIME = 300; // 5min cache
+export const HYGRAPH_CACHE_TIME = {
+  HIGH_PRIORITY: 300, // 10min cache
+  MEDIUM_PRIORITY: 3600, // 1hr cache
+} as const;
 
 export const baseHygraphClient = (
   method?: "POST" | "GET",
@@ -16,7 +19,7 @@ export const baseHygraphClient = (
           method,
           next: {
             cache: method === "POST" ? "no-store" : undefined,
-            revalidate: method === "POST" ? 0 : HYGRAPH_CACHE_TIME, // 5min cache
+            revalidate: method === "POST" ? 0 : HYGRAPH_CACHE_TIME.HIGH_PRIORITY, // 5min cache
             ...nextOptions,
           },
           ...init,

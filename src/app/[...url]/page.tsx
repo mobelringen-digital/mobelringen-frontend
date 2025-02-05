@@ -62,8 +62,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const data = await getPage(`/${url}`);
-  const page = data.pages[0];
+  const page = await getPage({ where: { url: `/${url}` } });
 
   if (page) {
     return {
@@ -101,9 +100,9 @@ export default async function Home(props: Props) {
     return <Category url={url} />;
   }
 
-  const data = await getPage(`/${url}`, isPreview);
+  const data = await getPage({ where: { url: `/${url}` }, preview: isPreview });
 
-  if (!data.pages[0]) {
+  if (!data || !data.content) {
     return notFound();
   }
 

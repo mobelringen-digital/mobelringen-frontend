@@ -65,46 +65,73 @@ export const CmsPagesConnectionDocument = graphql(`
   }
 `);
 
-export const CmsPagesQueryDocument = graphql(`
-  query CmsPages($first: Int = 1, $where: PageWhereInput) {
-    pages(where: $where, first: $first) {
-      id
-      title
-      seo {
-        ...Seo
-      }
-      createdAt
-      pageThumbnail {
-        url
-        width
-        height
-      }
-      pageCategory {
-        name
-        categoryUrl
-      }
+export const CmsPageDetailsFragment = graphql(`
+  fragment CmsPageDetails on Page {
+    id
+    title
+    seo {
+      ...Seo
+    }
+    createdAt
+    pageThumbnail {
       url
+      width
+      height
+    }
+    pageCategory {
+      name
+      categoryUrl
+    }
+    url
+  }
+`);
+
+export const CmsPagesHighPriorityBlocksQueryDocument = graphql(`
+  query CmsPagesHighPriorityBlocks($first: Int = 1, $where: PageWhereInput) {
+    pages(where: $where, first: $first) {
+      ...CmsPageDetails
       content(first: 100) {
         ...CmsBanner
-        ...CmsProductSlider
         ...CmsBlockRow
-        ...CmsBlockQuote
-        ...CmsPagesList
-        ...CmsSimilarPagesRow
+        ...CmsProductSlider
         ...CmsImagesGallery
+        ...CmsBlockImageLinksSlider
+        ...CmsPagesList
+        ...CmsBlockProductsList
+        ...CmsBlockBrandsList
+        ...CmsSimilarPagesRow
+      }
+    }
+  }
+`);
+
+export const CmsPagesMediumPriorityBlocksQueryDocument = graphql(`
+  query CmsPagesMediumPriorityBlocks($first: Int = 1, $where: PageWhereInput) {
+    pages(where: $where, first: $first) {
+      content(first: 100) {
+        ...CmsBlockQuote
         ...CmsBlockFaq
         ...CmsBlockNavigationButtons
-        ...CmsBlockImageLinksSlider
         ...CmsBlockBrands
         ...CmsBlockStoresMap
         ...CmsBlockPressRoom
-        ...CmsBlockProductsList
-        ...CmsBlockBrandsList
         ...CmsBlockFlowbox
         ...CmsBlockCatalog
         ...CmsBlockHTMLCode
         ...CmsStoreElement
       }
+    }
+  }
+`);
+
+/**
+ * Dummy query for easier typescript integration
+ * TODO: Find a way to remove this query
+ */
+export const CmsPagesQueryDocument = graphql(`
+  query CmsPages($first: Int = 1, $where: PageWhereInput) {
+    pages(where: $where, first: $first) {
+      ...CmsPageDetails
     }
   }
 `);
