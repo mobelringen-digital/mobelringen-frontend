@@ -12,7 +12,7 @@ interface Props {
 export async function StaticPageContent({ url }: Props) {
   const data = await getPage({ where: { url } });
 
-  if (!data.content) {
+  if (!data?.content) {
     return null;
   }
 
@@ -20,10 +20,10 @@ export async function StaticPageContent({ url }: Props) {
     <>
       <MetaData data={data.seo} />
 
-      {data.content.map((content) => {
+      {data.content.map((content, idx) => {
         return (
           <CmsContentLoader
-            key={content.__typename}
+            key={`${content.__typename}-${idx}`}
             data={content as CmsPageContent}
           />
         );

@@ -97,11 +97,18 @@ export async function getPage(
     first: config.first,
   });
 
+  if (
+    !highPriorityBlocksData?.pages[0] ||
+    !mediumPriorityBlocksData?.pages[0]
+  ) {
+    return null;
+  }
+
   return {
-    ...highPriorityBlocksData.pages[0],
+    ...highPriorityBlocksData?.pages[0],
     content: [
-      ...highPriorityBlocksData.pages[0].content,
-      ...mediumPriorityBlocksData.pages[0].content,
+      ...highPriorityBlocksData?.pages[0]?.content,
+      ...mediumPriorityBlocksData?.pages[0]?.content,
     ],
   } as CmsPageType;
 }
