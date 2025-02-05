@@ -21,10 +21,8 @@ import { CmsSimilarPagesRow } from "@/components/cms/block-similar-pages-row/Cms
 import { BlockStoreElement } from "@/components/cms/block-store-element/BlockStoreElement";
 import { BlockStoresMap } from "@/components/cms/block-stores-map/BlockStoresMap";
 
-import { CmsPageContent } from "../../../app/[...url]/actions";
-
 interface CmsContentProps {
-  data: CmsPageContent;
+  data: any;
 }
 
 export const CmsContentLoader: React.FC<CmsContentProps> = ({ data }) => {

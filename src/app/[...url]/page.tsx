@@ -4,7 +4,9 @@ import { Metadata } from "next";
 
 import { notFound } from "next/navigation";
 
+import { PageStageSwitch } from "@/components/page-stage-switch/PageStageSwitch";
 import { Page } from "@/modules/page";
+import { Stage } from "@/types";
 import { isTypename } from "@/types/graphql-helpers";
 import { formatMetaTitle, generatePrettyUrl } from "@/utils/helpers";
 
@@ -17,8 +19,12 @@ type Props = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+  searchParams,
+}: Props): Promise<Metadata> {
   const paramsData = await params;
+  const searchParamsData = await searchParams;
   const url = generatePrettyUrl(paramsData.url, {
     removeTrailSlash: true,
   });
@@ -62,7 +68,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const page = await getPage({ where: { url: `/${url}` } });
+  const page = await getPage({
+    where: { url: `/${url}` },
+    stage: (searchParamsData.stage as Stage) ?? Stage.Published,
+  });
 
   if (page) {
     return {
@@ -100,7 +109,10 @@ export default async function Home(props: Props) {
     return <Category url={url} />;
   }
 
-  const data = await getPage({ where: { url: `/${url}` }, preview: isPreview });
+  const data = await getPage({
+    where: { url: `/${url}` },
+    stage: (searchParams.stage as Stage) ?? Stage.Published,
+  });
 
   if (!data || !data.content) {
     return notFound();
@@ -109,6 +121,7 @@ export default async function Home(props: Props) {
   return (
     <>
       {isPreview ? <meta name="robots" content="noindex" /> : null}
+      {isPreview ? <PageStageSwitch /> : null}
       <Page data={data} />
     </>
   );

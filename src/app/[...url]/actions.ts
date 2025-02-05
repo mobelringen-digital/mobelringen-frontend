@@ -2,8 +2,9 @@
 
 import { CategoryQueryDocument } from "@/queries/category.queries";
 import {
-  CmsPagesMediumPriorityBlocksQueryDocument,
-  CmsPagesHighPriorityBlocksQueryDocument,
+  CmsPageHighPriorityContentBlocks,
+  CmsPageMediumPriorityContentBlocks,
+  CmsPagesQueryDocument,
 } from "@/queries/page.queries";
 import {
   ProductsQueryDocument,
@@ -13,8 +14,6 @@ import { RouteDocument } from "@/queries/route.queries";
 import {
   CategoryQuery,
   CategoryQueryVariables,
-  CmsPagesHighPriorityBlocksQuery,
-  CmsPagesMediumPriorityBlocksQuery,
   PageWhereInput,
   ProductsQuery,
   ProductsQueryVariables,
@@ -22,13 +21,17 @@ import {
   ProductsStoresQueryVariables,
   RouteQuery,
   RouteQueryVariables,
+  Stage,
 } from "@/types";
+import {
+  convertPageDataToBlockIds,
+  mapToSingleArrayOfBlocks,
+} from "@/utils/cms-blocks";
 import {
   baseHygraphClient,
   baseMagentoClient,
   HYGRAPH_CACHE_TIME,
 } from "@/utils/lib/graphql";
-import { MergeUnionByTypename } from "@/utils/ts-utils";
 
 export async function getProduct(sku: string) {
   return await baseMagentoClient("GET").request<
@@ -64,53 +67,154 @@ export async function getCategory(url: string) {
   });
 }
 
-export type CmsPageType = CmsPagesHighPriorityBlocksQuery["pages"][0] &
-  CmsPagesMediumPriorityBlocksQuery["pages"][0];
-export type CmsPageContent = MergeUnionByTypename<
-  CmsPagesHighPriorityBlocksQuery["pages"][0]["content"],
-  CmsPagesMediumPriorityBlocksQuery["pages"][0]["content"]
->;
-
 type PageConfig = {
   where: PageWhereInput;
+  stage?: Stage;
   first?: number;
   preview?: boolean;
 };
 
-export async function getPage(
-  config: PageConfig = { first: 1, where: {}, preview: false },
+export async function loadBlocksData(
+  ids: Record<string, any[]>,
+  stage: Stage = Stage.Published,
 ) {
-  const highPriorityBlocksData = await baseHygraphClient("GET", {
-    tags: ["page", "high-priority", config.where.url ?? ""],
-    cache: config.preview ? "no-store" : undefined,
-    revalidate: config.preview ? 0 : HYGRAPH_CACHE_TIME.HIGH_PRIORITY,
-  }).request(CmsPagesHighPriorityBlocksQueryDocument, {
-    where: config.where,
-    first: config.first,
+  const highPriorityBlocks = await baseHygraphClient("GET", {
+    tags: ["page", "high-priority-blocks", stage],
+    revalidate: HYGRAPH_CACHE_TIME.HIGH_PRIORITY,
+  }).request(CmsPageHighPriorityContentBlocks, {
+    stage: stage,
+    bannersWhere: {
+      id_in: ids.banners ?? [],
+    },
+    blockRowsWhere: {
+      id_in: ids.blockRows ?? [],
+    },
+    productSlidersWhere: {
+      id_in: ids.productSliders ?? [],
+    },
+    blockImagesGalleriesWhere: {
+      id_in: ids.blockImagesGalleries ?? [],
+    },
+    blockImageLinksSlidersWhere: {
+      id_in: ids.blockImageLinksSliders ?? [],
+    },
+    pagesListsWhere: {
+      id_in: ids.pagesLists ?? [],
+    },
+    blockProductsListsWhere: {
+      id_in: ids.blockProductsLists ?? [],
+    },
+    blockBrandsListsWhere: {
+      id_in: ids.blockBrandsLists ?? [],
+    },
+    blockSimilarPagesRowsWhere: {
+      id_in: ids.blockSimilarPagesRows ?? [],
+    },
   });
-  const mediumPriorityBlocksData = await baseHygraphClient("GET", {
-    tags: ["page", "medium-priority", config.where.url ?? ""],
-    cache: config.preview ? "no-store" : undefined,
-    revalidate: config.preview ? 0 : HYGRAPH_CACHE_TIME.MEDIUM_PRIORITY,
-  }).request(CmsPagesMediumPriorityBlocksQueryDocument, {
+
+  const mediumPriorityBlocks = await baseHygraphClient("GET", {
+    tags: ["page", "medium-priority-blocks", stage],
+    revalidate: HYGRAPH_CACHE_TIME.MEDIUM_PRIORITY,
+  }).request(CmsPageMediumPriorityContentBlocks, {
+    stage,
+    blockQuotesWhere: {
+      id_in: ids.blockQuotes ?? [],
+    },
+    blockFaqsWhere: {
+      id_in: ids.blockFaqs ?? [],
+    },
+    blockNavigationButtonsWhere: {
+      id_in: ids.blockNavigationButtons ?? [],
+    },
+    blockBrandsWhere: {
+      id_in: ids.blockBrands ?? [],
+    },
+    blockStoresMapsWhere: {
+      id_in: ids.blockStoresMaps ?? [],
+    },
+    blockPressRoomsWhere: {
+      id_in: ids.blockPressRooms ?? [],
+    },
+    blockFlowboxesWhere: {
+      id_in: ids.blockFlowboxes ?? [],
+    },
+    blockCatalogsWhere: {
+      id_in: ids.blockCatalogs ?? [],
+    },
+    blockHtmlCodesWhere: {
+      id_in: ids.blockHtmlCodes ?? [],
+    },
+    storeElementsWhere: {
+      id_in: ids.storeElements ?? [],
+    },
+  });
+
+  return [
+    ...mapToSingleArrayOfBlocks(highPriorityBlocks as any),
+    ...mapToSingleArrayOfBlocks(mediumPriorityBlocks as any),
+  ];
+}
+
+export async function getPage(
+  config: PageConfig = {
+    first: 1,
+    where: {},
+    stage: Stage.Published,
+    preview: false,
+  },
+) {
+  const page = await baseHygraphClient("GET", {
+    tags: [
+      "page",
+      JSON.stringify(config.where.url),
+      config.stage ?? Stage.Published,
+    ],
+    revalidate: HYGRAPH_CACHE_TIME.HIGH_PRIORITY,
+  }).request(CmsPagesQueryDocument, {
     where: config.where,
+    stage: config.stage,
     first: config.first,
   });
 
-  if (
-    !highPriorityBlocksData?.pages[0] ||
-    !mediumPriorityBlocksData?.pages[0]
-  ) {
-    return null;
-  }
+  const pageContent = page.pages[0].content;
+  const data = convertPageDataToBlockIds(page.pages[0].content);
+  const blocksData = await loadBlocksData(
+    {
+      banners: data.banners,
+      blockRows: data.blockRows,
+      productSliders: data.productSliders,
+      blockImagesGalleries: data.blockImageGalleries,
+      blockImageLinksSliders: data.blockImageLinksSliders,
+      pagesLists: data.blockPagesLists,
+      blockProductsLists: data.blockProductsLists,
+      blockBrandsLists: data.blockBrandsLists,
+      blockSimilarPagesRows: data.blockSimilarPagesRows,
+      blockQuotes: data.blockQuotes,
+      blockFaqs: data.blockFaqs,
+      blockNavigationButtons: data.blockNavigationButtons,
+      blockBrands: data.blockBrands,
+      blockStoresMaps: data.blockStoresMaps,
+      blockPressRooms: data.blockPressRooms,
+      blockFlowboxes: data.blockFlowboxes,
+      blockCatalogs: data.blockCatalogs,
+      blockHtmlCodes: data.blockHtmlCodes,
+      storeElements: data.storeElements,
+    },
+    config.stage,
+  );
+  const mappedDataWithContent = pageContent.map((content) => {
+    const block = blocksData.find((b) => b.id === content.id);
+
+    return {
+      ...content,
+      ...block,
+    };
+  });
 
   return {
-    ...highPriorityBlocksData?.pages[0],
-    content: [
-      ...highPriorityBlocksData?.pages[0]?.content,
-      ...mediumPriorityBlocksData?.pages[0]?.content,
-    ],
-  } as CmsPageType;
+    ...page.pages[0],
+    content: mappedDataWithContent,
+  };
 }
 
 export async function getRoute(url: string) {

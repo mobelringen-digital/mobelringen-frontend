@@ -10,6 +10,10 @@ interface Props {
 }
 
 export const CmsSimilarPagesRow: React.FC<Props> = ({ data }) => {
+  if (!data.page) {
+    return null;
+  }
+
   return (
     <CmsBlockWrapper config={data.blockConfig}>
       <CmsBlockHeader
