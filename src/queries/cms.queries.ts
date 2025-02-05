@@ -82,6 +82,8 @@ export const CmsBannerPromo = graphql(`
       __typename
       topLine
       bottomLine
+      backgroundOverlay
+      position
       promoImage {
         url
         width
