@@ -4,8 +4,10 @@ import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { CmsContentLoader } from "@/components/cms/cms-content-loader";
 import { MetaData } from "@/components/meta/MetaData";
 
+import { CmsPageEntity } from "../../app/[...url]/actions";
+
 interface Props {
-  data: any;
+  data: CmsPageEntity;
 }
 
 export const Page: React.FC<Props> = ({ data }) => {
@@ -13,13 +15,8 @@ export const Page: React.FC<Props> = ({ data }) => {
     <Suspense fallback={<PageTopLoader />}>
       <MetaData data={data?.seo} />
 
-      {data?.content.map((content: any, index: number) => {
-        return (
-          <CmsContentLoader
-            key={`${content.__typename}=${index}`}
-            data={content}
-          />
-        );
+      {data?.content.map((content, index: number) => {
+        return <CmsContentLoader key={index} data={content} />;
       })}
     </Suspense>
   );

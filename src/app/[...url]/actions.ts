@@ -2,8 +2,8 @@
 
 import { CategoryQueryDocument } from "@/queries/category.queries";
 import {
-  CmsPageHighPriorityContentBlocks,
-  CmsPageMediumPriorityContentBlocks,
+  CmsPageHighPriorityContentEntities,
+  CmsPageMediumPriorityContentEntities,
   CmsPagesQueryDocument,
 } from "@/queries/page.queries";
 import {
@@ -14,6 +14,7 @@ import { RouteDocument } from "@/queries/route.queries";
 import {
   CategoryQuery,
   CategoryQueryVariables,
+  EntityWhereInput,
   PageWhereInput,
   ProductsQuery,
   ProductsQueryVariables,
@@ -23,10 +24,6 @@ import {
   RouteQueryVariables,
   Stage,
 } from "@/types";
-import {
-  convertPageDataToBlockIds,
-  mapToSingleArrayOfBlocks,
-} from "@/utils/cms-blocks";
 import {
   baseHygraphClient,
   baseMagentoClient,
@@ -74,85 +71,41 @@ type PageConfig = {
   preview?: boolean;
 };
 
-export async function loadBlocksData(
-  url: string,
-  ids: Record<string, any[]>,
-  stage: Stage = Stage.Published,
-) {
+async function loadBlockEntities({
+  url,
+  stage = Stage.Published,
+  where,
+}: {
+  url: string;
+  stage: Stage;
+  where: Array<{ __typename: string; id: string; stage: Stage }>;
+}) {
+  // __typename with typename
+  const correctedWhere = where.map((w) => {
+    return {
+      typename: w.__typename,
+      id: w.id,
+      stage: w.stage,
+    };
+  }) as EntityWhereInput[];
+
   const highPriorityBlocks = await baseHygraphClient("GET", {
     tags: ["page", "high-priority-blocks", url, stage],
     revalidate: HYGRAPH_CACHE_TIME.HIGH_PRIORITY,
-  }).request(CmsPageHighPriorityContentBlocks, {
-    stage: stage,
-    bannersWhere: {
-      id_in: ids.banners ?? [],
-    },
-    blockRowsWhere: {
-      id_in: ids.blockRows ?? [],
-    },
-    productSlidersWhere: {
-      id_in: ids.productSliders ?? [],
-    },
-    blockImagesGalleriesWhere: {
-      id_in: ids.blockImagesGalleries ?? [],
-    },
-    blockImageLinksSlidersWhere: {
-      id_in: ids.blockImageLinksSliders ?? [],
-    },
-    pagesListsWhere: {
-      id_in: ids.pagesLists ?? [],
-    },
-    blockProductsListsWhere: {
-      id_in: ids.blockProductsLists ?? [],
-    },
-    blockBrandsListsWhere: {
-      id_in: ids.blockBrandsLists ?? [],
-    },
-    blockSimilarPagesRowsWhere: {
-      id_in: ids.blockSimilarPagesRows ?? [],
-    },
+  }).request(CmsPageHighPriorityContentEntities, {
+    where: correctedWhere,
   });
 
   const mediumPriorityBlocks = await baseHygraphClient("GET", {
     tags: ["page", "medium-priority-blocks", url, stage],
     revalidate: HYGRAPH_CACHE_TIME.MEDIUM_PRIORITY,
-  }).request(CmsPageMediumPriorityContentBlocks, {
-    stage,
-    blockQuotesWhere: {
-      id_in: ids.blockQuotes ?? [],
-    },
-    blockFaqsWhere: {
-      id_in: ids.blockFaqs ?? [],
-    },
-    blockNavigationButtonsWhere: {
-      id_in: ids.blockNavigationButtons ?? [],
-    },
-    blockBrandsWhere: {
-      id_in: ids.blockBrands ?? [],
-    },
-    blockStoresMapsWhere: {
-      id_in: ids.blockStoresMaps ?? [],
-    },
-    blockPressRoomsWhere: {
-      id_in: ids.blockPressRooms ?? [],
-    },
-    blockFlowboxesWhere: {
-      id_in: ids.blockFlowboxes ?? [],
-    },
-    blockCatalogsWhere: {
-      id_in: ids.blockCatalogs ?? [],
-    },
-    blockHtmlCodesWhere: {
-      id_in: ids.blockHtmlCodes ?? [],
-    },
-    storeElementsWhere: {
-      id_in: ids.storeElements ?? [],
-    },
+  }).request(CmsPageMediumPriorityContentEntities, {
+    where: correctedWhere,
   });
 
   return [
-    ...mapToSingleArrayOfBlocks(highPriorityBlocks as any),
-    ...mapToSingleArrayOfBlocks(mediumPriorityBlocks as any),
+    ...(highPriorityBlocks.entities ?? []),
+    ...(mediumPriorityBlocks.entities ?? []),
   ];
 }
 
@@ -176,36 +129,18 @@ export async function getPage(
     stage: config.stage,
     first: config.first,
   });
-
   const pageContent = page.pages[0].content;
-  const data = convertPageDataToBlockIds(page.pages[0].content);
-  const blocksData = await loadBlocksData(
-    config.where.url as string,
-    {
-      banners: data.banners,
-      blockRows: data.blockRows,
-      productSliders: data.productSliders,
-      blockImagesGalleries: data.blockImageGalleries,
-      blockImageLinksSliders: data.blockImageLinksSliders,
-      pagesLists: data.blockPagesLists,
-      blockProductsLists: data.blockProductsLists,
-      blockBrandsLists: data.blockBrandsLists,
-      blockSimilarPagesRows: data.blockSimilarPagesRows,
-      blockQuotes: data.blockQuotes,
-      blockFaqs: data.blockFaqs,
-      blockNavigationButtons: data.blockNavigationButtons,
-      blockBrands: data.blockBrands,
-      blockStoresMaps: data.blockStoresMaps,
-      blockPressRooms: data.blockPressRooms,
-      blockFlowboxes: data.blockFlowboxes,
-      blockCatalogs: data.blockCatalogs,
-      blockHtmlCodes: data.blockHtmlCodes,
-      storeElements: data.storeElements,
-    },
-    config.stage,
-  );
+
+  const blocksData = await loadBlockEntities({
+    url: config.where.url ?? "/not-found",
+    stage: config.stage as Stage,
+    where: pageContent,
+  });
+
   const mappedDataWithContent = pageContent.map((content) => {
-    const block = blocksData.find((b) => b.id === content.id);
+    const block = blocksData?.find((b) =>
+      "id" in b ? b.id === content.id : null,
+    );
 
     return {
       ...content,

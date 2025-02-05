@@ -100,97 +100,84 @@ export const CmsPagesQueryDocument = graphql(`
           __typename
           id
         }
+        __typename
+        ... on Entity {
+          __typename
+          id
+          stage
+        }
       }
     }
   }
 `);
 
-export const CmsPageHighPriorityContentBlocks = graphql(`
-  query PageHighPriorityContentBlocks(
-    $stage: Stage = PUBLISHED
-    $bannersWhere: BannerWhereInput
-    $blockRowsWhere: BlockRowWhereInput
-    $productSlidersWhere: ProductSliderWhereInput
-    $blockImagesGalleriesWhere: BlockImageGalleryWhereInput
-    $blockImageLinksSlidersWhere: BlockImageLinksSliderWhereInput
-    $pagesListsWhere: BlockPagesListWhereInput
-    $blockProductsListsWhere: BlockProductsListWhereInput
-    $blockBrandsListsWhere: BlockBrandsListWhereInput
-    $blockSimilarPagesRowsWhere: BlockSimilarPagesRowWhereInput
-  ) {
-    banners(where: $bannersWhere, stage: $stage) {
-      ...CmsBanner
-    }
-    blockRows(where: $blockRowsWhere, stage: $stage) {
-      ...CmsBlockRow
-    }
-    productSliders(where: $productSlidersWhere, stage: $stage) {
-      ...CmsProductSlider
-    }
-    blockImageGalleries(where: $blockImagesGalleriesWhere, stage: $stage) {
-      ...CmsImagesGallery
-    }
-    blockImageLinksSliders(where: $blockImageLinksSlidersWhere, stage: $stage) {
-      ...CmsBlockImageLinksSlider
-    }
-    blockPagesLists(where: $pagesListsWhere, stage: $stage) {
-      ...CmsPagesList
-    }
-    blockProductsLists(where: $blockProductsListsWhere, stage: $stage) {
-      ...CmsBlockProductsList
-    }
-    blockBrandsLists(where: $blockBrandsListsWhere, stage: $stage) {
-      ...CmsBlockBrandsList
-    }
-    blockSimilarPagesRows(where: $blockSimilarPagesRowsWhere, stage: $stage) {
-      ...CmsSimilarPagesRow
+export const CmsPageHighPriorityContentEntities = graphql(`
+  query HighPriorityBlocks($where: [EntityWhereInput!]!) {
+    entities(where: $where) {
+      ... on Banner {
+        ...CmsBanner
+      }
+      ... on BlockRow {
+        ...CmsBlockRow
+      }
+      ... on ProductSlider {
+        ...CmsProductSlider
+      }
+      ... on BlockImageGallery {
+        ...CmsImagesGallery
+      }
+      ... on BlockImageLinksSlider {
+        ...CmsBlockImageLinksSlider
+      }
+      ... on BlockPagesList {
+        ...CmsPagesList
+      }
+      ... on BlockProductsList {
+        ...CmsBlockProductsList
+      }
+      ... on BlockBrandsList {
+        ...CmsBlockBrandsList
+      }
+      ... on BlockSimilarPagesRow {
+        ...CmsSimilarPagesRow
+      }
     }
   }
 `);
 
-export const CmsPageMediumPriorityContentBlocks = graphql(`
-  query PageMediumPriorityContentBlocks(
-    $stage: Stage = PUBLISHED
-    $blockQuotesWhere: BlockQuoteWhereInput
-    $blockFaqsWhere: BlockFaqWhereInput
-    $blockNavigationButtonsWhere: BlockNavigationButtonWhereInput
-    $blockBrandsWhere: BlockBrandWhereInput
-    $blockStoresMapsWhere: BlockStoresMapWhereInput
-    $blockPressRoomsWhere: BlockPressRoomWhereInput
-    $blockFlowboxesWhere: BlockFlowboxWhereInput
-    $blockCatalogsWhere: BlockCatalogWhereInput
-    $blockHtmlCodesWhere: BlockHtmlCodeWhereInput
-    $storeElementsWhere: BlockStoreElementWhereInput
-  ) {
-    blockQuotes(where: $blockQuotesWhere, stage: $stage) {
-      ...CmsBlockQuote
-    }
-    blockFaqs(where: $blockFaqsWhere, stage: $stage) {
-      ...CmsBlockFaq
-    }
-    blockNavigationButtons(where: $blockNavigationButtonsWhere, stage: $stage) {
-      ...CmsBlockNavigationButtons
-    }
-    blockBrands(where: $blockBrandsWhere, stage: $stage) {
-      ...CmsBlockBrands
-    }
-    blockStoresMaps(where: $blockStoresMapsWhere, stage: $stage) {
-      ...CmsBlockStoresMap
-    }
-    blockPressRooms(where: $blockPressRoomsWhere, stage: $stage) {
-      ...CmsBlockPressRoom
-    }
-    blockFlowboxes(where: $blockFlowboxesWhere, stage: $stage) {
-      ...CmsBlockFlowbox
-    }
-    blockCatalogs(where: $blockCatalogsWhere, stage: $stage) {
-      ...CmsBlockCatalog
-    }
-    blockHtmlCodes(where: $blockHtmlCodesWhere, stage: $stage) {
-      ...CmsBlockHTMLCode
-    }
-    blockStoreElements(where: $storeElementsWhere, stage: $stage) {
-      ...CmsStoreElement
+export const CmsPageMediumPriorityContentEntities = graphql(`
+  query MediumPriorityBlocks($where: [EntityWhereInput!]!) {
+    entities(where: $where) {
+      ... on BlockQuote {
+        ...CmsBlockQuote
+      }
+      ... on BlockFaq {
+        ...CmsBlockFaq
+      }
+      ... on BlockNavigationButton {
+        ...CmsBlockNavigationButtons
+      }
+      ... on BlockBrand {
+        ...CmsBlockBrands
+      }
+      ... on BlockStoresMap {
+        ...CmsBlockStoresMap
+      }
+      ... on BlockPressRoom {
+        ...CmsBlockPressRoom
+      }
+      ... on BlockFlowbox {
+        ...CmsBlockFlowbox
+      }
+      ... on BlockCatalog {
+        ...CmsBlockCatalog
+      }
+      ... on BlockHtmlCode {
+        ...CmsBlockHTMLCode
+      }
+      ... on BlockStoreElement {
+        ...CmsStoreElement
+      }
     }
   }
 `);
