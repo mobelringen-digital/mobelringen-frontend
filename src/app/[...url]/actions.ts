@@ -75,10 +75,12 @@ async function loadBlockEntities({
   url,
   stage = Stage.Published,
   where,
+  isPreview,
 }: {
   url: string;
   stage: Stage;
   where: Array<{ __typename: string; id: string; stage: Stage }>;
+  isPreview?: boolean;
 }) {
   // __typename with typename
   const correctedWhere = where.map((w) => {
@@ -91,6 +93,7 @@ async function loadBlockEntities({
 
   const highPriorityBlocks = await baseHygraphClient("GET", {
     tags: ["page", "high-priority-blocks", url, stage],
+    cache: isPreview ? "no-cache" : "force-cache",
     revalidate: HYGRAPH_CACHE_TIME.HIGH_PRIORITY,
   }).request(CmsPageHighPriorityContentEntities, {
     where: correctedWhere,
@@ -98,6 +101,7 @@ async function loadBlockEntities({
 
   const mediumPriorityBlocks = await baseHygraphClient("GET", {
     tags: ["page", "medium-priority-blocks", url, stage],
+    cache: isPreview ? "no-cache" : "force-cache",
     revalidate: HYGRAPH_CACHE_TIME.MEDIUM_PRIORITY,
   }).request(CmsPageMediumPriorityContentEntities, {
     where: correctedWhere,
@@ -135,6 +139,7 @@ export async function getPage(
     url: config.where.url ?? "/not-found",
     stage: config.stage as Stage,
     where: pageContent,
+    isPreview: config.preview,
   });
 
   const mappedDataWithContent = pageContent.map((content) => {
