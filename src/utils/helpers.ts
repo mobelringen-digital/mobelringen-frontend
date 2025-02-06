@@ -40,6 +40,9 @@ export const generateUrl = (name: string) => {
 
   return name
     ?.toLowerCase()
+    .replaceAll(/ø/g, "o")
+    .replaceAll(/å/g, "a")
+    .replaceAll(/æ/g, "ae")
     .replace(/[^a-zA-Z ]/g, "")
     .replaceAll(" ", "-");
 };
