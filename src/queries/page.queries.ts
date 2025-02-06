@@ -96,11 +96,6 @@ export const CmsPagesQueryDocument = graphql(`
       ...CmsPageDetails
       content(first: 100) {
         __typename
-        ... on Node {
-          __typename
-          id
-        }
-        __typename
         ... on Entity {
           __typename
           id
