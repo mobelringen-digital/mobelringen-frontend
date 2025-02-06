@@ -133,7 +133,11 @@ export async function getPage(
     stage: config.stage,
     first: config.first,
   });
-  const pageContent = page.pages[0].content;
+  const pageContent = page.pages[0]?.content;
+
+  if (!pageContent || pageContent.length === 0) {
+    return null;
+  }
 
   const blocksData = await loadBlockEntities({
     url: config.where.url ?? "/not-found",
