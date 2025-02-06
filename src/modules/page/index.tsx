@@ -6,7 +6,7 @@ import { MetaData } from "@/components/meta/MetaData";
 import { CmsPageDetailsFragment, Entity } from "@/types";
 
 interface Props {
-  data: CmsPageDetailsFragment & { content: Entity[] };
+  data: CmsPageDetailsFragment & { content: Entity[] } | null;
 }
 
 export const Page: React.FC<Props> = ({ data }) => {
