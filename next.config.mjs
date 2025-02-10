@@ -53,6 +53,23 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: "/merker/north-living",
+        destination: "/konsepter/north-living",
+        permanent: true,
+      },
+
+      {
+        source: "/merker/woodstory",
+        destination: "/konsepter/woodstory",
+        permanent: true,
+      },
+
+      {
+        source: "/merker/north-beds",
+        destination: "/konsepter/north-beds",
+        permanent: true,
+      },
+      {
         source: "/5-tips-nar-du-skal-fornye-stuen",
         destination: "/inspirasjon/gode-tips-når-du-skal-fornye-stuen",
         permanent: true,
