@@ -2,18 +2,27 @@
 
 import React from "react";
 
+import dynamic from "next/dynamic";
+
 import { CirclePlusIcon } from "@/components/_ui/icons/CirclePlusIcon";
-import { StoreInfoModal } from "@/modules/product/more-in-the-store/StoreInfoModal";
+import { ModalType } from "@/types";
+
+const CmsModal = dynamic(() => import("@/components/cms/modal/CmsModal"), {
+  ssr: false,
+});
 
 export const MoreInTheStore = () => {
   const [isOpened, setIsOpened] = React.useState(false);
 
   return (
     <>
-      <StoreInfoModal
-        isOpen={isOpened}
-        onClose={() => setIsOpened((prev) => !prev)}
-      />
+      {isOpened ? (
+        <CmsModal
+          isOpen={isOpened}
+          onClose={() => setIsOpened(false)}
+          type={ModalType.MoreInTheStore}
+        />
+      ) : null}
       <div className="bg-warm-grey p-4 lg:p-8 rounded-2xl">
         <div className="flex items-center justify-between mb-2">
           <h4 className="text-lg lg:text-xl font-semibold">
