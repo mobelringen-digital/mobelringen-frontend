@@ -83,7 +83,7 @@ const StoreSelectModal: React.FC<Props> = ({
             <SearchInput
               onChange={onSearchChange}
               variant="bordered"
-              placeholder="Skriv postnummer eller sted"
+              placeholder="Postnummer eller butikknavn"
             />
           </div>
 
