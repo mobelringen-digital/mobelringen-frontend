@@ -47,8 +47,8 @@ export const CartMethodLinks: React.FC<Props> = ({ selectedStore, cart }) => {
       <CartMethodLink
         icon={<LocalShippingIcon width={24} height={24} />}
         setPreferredMethod={() => setPreferredMethod(DeliveryType.Online)}
-        label="Hjemlevering"
-        description="Til fortauskant eller utleveringssted"
+        label="Nettbutikk"
+        description="Med hjemlevering eller til utleveringssted"
         isActive={activeMethod === DeliveryType.Online}
         disabled={isLoading}
       />

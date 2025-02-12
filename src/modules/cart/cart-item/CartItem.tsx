@@ -12,6 +12,7 @@ import { QuantityInput } from "@/components/_ui/quantity-input/QuantityInput";
 import { useConfirm } from "@/components/confirm/hooks/useConfirm";
 import { updateCartItems } from "@/modules/cart/cart-item/actions";
 import { CartItemDeliveryInfo } from "@/modules/cart/cart-item/CartItemDeliveryInfo";
+import { CartItemError } from "@/modules/cart/cart-item/CartItemError";
 import { CartItemPrice } from "@/modules/cart/cart-item/CartItemPrice";
 import { BaseCartFragment, CartItemFragment, DeliveryType } from "@/types";
 import { formatGTMCategories } from "@/utils/gtm";
@@ -27,6 +28,30 @@ export const CartItem: React.FC<Props> = ({ item, cart, ...restProps }) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const { showConfirmation } = useConfirm();
   const { handlePossibleErrors } = useRequestCallback();
+
+  const errorMessage = React.useMemo(() => {
+    if (cart?.delivery_type === DeliveryType.Online) {
+      return item?.availability?.online?.cart_message;
+    }
+
+    if (cart?.delivery_type === DeliveryType.Cac) {
+      return item?.availability?.cac?.cart_message;
+    }
+
+    return null;
+  }, [cart, item]);
+
+  const isError = React.useMemo(() => {
+    if (cart?.delivery_type === DeliveryType.Online) {
+      return item?.availability?.online?.cart_message_show;
+    }
+
+    if (cart?.delivery_type === DeliveryType.Cac) {
+      return item?.availability?.cac?.cart_message_show;
+    }
+
+    return false;
+  }, [cart, item]);
 
   if (!item) return null;
   const isClickAndCollect = cart?.delivery_type === DeliveryType.Cac;
@@ -170,6 +195,7 @@ export const CartItem: React.FC<Props> = ({ item, cart, ...restProps }) => {
                 Fjern produkt
               </button>
             </div>
+            <CartItemError message={errorMessage} isError={isError} />
             {isClickAndCollect && !item.is_in_store ? (
               <div className="block">
                 <span className="bg-error-light text-error py-1 px-2 rounded-2xl mt-2 text-xs">
