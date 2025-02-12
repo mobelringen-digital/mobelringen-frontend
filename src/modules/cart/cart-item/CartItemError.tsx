@@ -14,7 +14,7 @@ export const CartItemError: React.FC<Props> = ({ message, isError }) => {
 
   return (
     <div
-      className={cx("text-sm shrink-0 p-2.5 flex items-center gap-1", {
+      className={cx("text-xs shrink-0 p-2.5 flex items-center gap-1", {
         "bg-error-light text-error rounded-lg": isError,
       })}
     >
