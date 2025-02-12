@@ -63,7 +63,7 @@ export const CartItemDeliveryInfo: React.FC<Props> = ({ item, cart }) => {
               size="small"
             />
           ) : null}
-          <span className="text-xs">{item.availability?.cac?.message}</span>
+          <span className="text-xs">{item.availability?.cac?.stock_info}</span>
         </div>
       ) : null}
     </div>
