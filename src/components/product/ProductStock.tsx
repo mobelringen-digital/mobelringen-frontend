@@ -14,7 +14,7 @@ export const ProductStock: React.FC<Props> = ({ product }) => {
     <div className="flex flex-col gap-2 px-2">
       {isTypename(product, ["ConfigurableProduct", "SimpleProduct"]) ? (
         <>
-          {product.stocks?.online?.message ? (
+          {product.stocks?.online?.stock_info ? (
             <div className="flex items-center gap-2">
               <StatusCircle
                 size="small"
@@ -25,7 +25,7 @@ export const ProductStock: React.FC<Props> = ({ product }) => {
                 }
               />
               <span className="text-xs">
-                {product.stocks?.online?.message ?? ""}
+                {product.stocks?.online?.stock_info ?? ""}
               </span>
             </div>
           ) : null}

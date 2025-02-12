@@ -40,7 +40,7 @@ export const CartItemDeliveryInfo: React.FC<Props> = ({ item, cart }) => {
             <span className="text-xs">{item.product.delivery_promise}</span>
           ) : (
             <span className="text-xs">
-              {item.availability?.online?.message}
+              {item.availability?.online?.stock_info}
             </span>
           )}
         </div>
