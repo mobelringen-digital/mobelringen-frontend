@@ -54,7 +54,6 @@ export const CartItem: React.FC<Props> = ({ item, cart, ...restProps }) => {
   }, [cart, item]);
 
   if (!item) return null;
-  const isClickAndCollect = cart?.delivery_type === DeliveryType.Cac;
 
   const removeFromCartGTMEvent = () => {
     if (!item?.id) {
@@ -196,13 +195,6 @@ export const CartItem: React.FC<Props> = ({ item, cart, ...restProps }) => {
               </button>
             </div>
             <CartItemError message={errorMessage} isError={isError} />
-            {isClickAndCollect && !item.is_in_store ? (
-              <div className="block">
-                <span className="bg-error-light text-error py-1 px-2 rounded-2xl mt-2 text-xs">
-                  Ikke tilgjengelig i valgt butikk
-                </span>
-              </div>
-            ) : null}
           </div>
         </div>
       </div>

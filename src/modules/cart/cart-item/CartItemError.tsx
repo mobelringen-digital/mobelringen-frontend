@@ -14,11 +14,15 @@ export const CartItemError: React.FC<Props> = ({ message, isError }) => {
 
   return (
     <div
-      className={cx("text-sm p-2.5 flex items-center gap-1", {
+      className={cx("text-sm shrink-0 p-2.5 flex items-center gap-1", {
         "bg-error-light text-error rounded-lg": isError,
       })}
     >
-      {isError ? <Info fill="#c82b2b" /> : null}
+      {isError ? (
+        <div className="flex shrink-0 w-6 h-6">
+          <Info fill="#c82b2b" />
+        </div>
+      ) : null}
       {message}
     </div>
   );
