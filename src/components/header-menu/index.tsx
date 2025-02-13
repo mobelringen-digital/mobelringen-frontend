@@ -1,7 +1,5 @@
 import React from "react";
 
-import {cookies} from "next/headers";
-
 import { Actions } from "@/components/header-menu/Actions";
 import { DesktopMenuAdditionalLinks } from "@/components/header-menu/desktop-menu/additional-links/DesktopMenuAdditionalLinks";
 import { DesktopMenu } from "@/components/header-menu/desktop-menu/DesktopMenu";
@@ -34,7 +32,6 @@ async function getMenu() {
 export async function HeaderMenu() {
   const data = await getMenu();
   const notifications = await getNotificationBars();
-  const cookiesStores = await cookies();
 
   return (
     <>
