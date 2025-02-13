@@ -33,15 +33,7 @@ export const CartItemDeliveryInfo: React.FC<Props> = ({ item, cart }) => {
           </span>
         </div>
       ) : null}
-      {isClickAndCollect && !item.is_in_store ? (
-        <div className="flex items-center gap-2">
-          {item.availability?.cac?.availability ? (
-            <StatusCircle variant="red" size="small" />
-          ) : null}
-          <span className="text-xs">Ikke tilgjengelig i butikk</span>
-        </div>
-      ) : null}
-      {isClickAndCollect && item.is_in_store ? (
+      {isClickAndCollect ? (
         <div className="flex items-center gap-2">
           {item.availability?.cac?.availability ? (
             <StatusCircle
