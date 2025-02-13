@@ -110,6 +110,8 @@ const documents = {
     "\n  query IPaper {\n    iPapers {\n      id\n      name\n      type\n      url\n      image\n    }\n  }\n": types.IPaperDocument,
     "\n  fragment CmsBlockHTMLCode on BlockHtmlCode {\n    ... on BlockHtmlCode {\n      __typename\n      title\n      markup\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsBlockHtmlCodeFragmentDoc,
     "\n  fragment CmsStoreElement on BlockStoreElement {\n    __typename\n    title\n    content {\n      ...CmsMultipleTextBlock\n    }\n    backgroundImage {\n      url\n      width\n      height\n    }\n    blockConfig {\n      ...CmsBlockConfig\n    }\n  }\n": types.CmsStoreElementFragmentDoc,
+    "\n  fragment Notification on Notification {\n    id\n    content {\n      html\n    }\n    backgroundColor\n    textColor\n    link\n    openLinkInNewWindow\n  }\n": types.NotificationFragmentDoc,
+    "\n  query NotificationBar {\n    notificationBars {\n      position\n      content {\n        ...Notification\n      }\n    }\n  }\n": types.NotificationBarDocument,
     "\n  fragment ConfigurableProductOptions on ConfigurableProductOptions {\n    __typename\n    values {\n      default_label\n      label\n      store_label\n      uid\n      use_default_value\n      value_index\n    }\n    attribute_code\n    attribute_uid\n    label\n    position\n    uid\n    use_default\n  }\n": types.ConfigurableProductOptionsFragmentDoc,
     "\n  fragment ConfigurableProductVariants on ConfigurableVariant {\n    __typename\n    attributes {\n      code\n      label\n      uid\n      value_index\n    }\n    product {\n      ...BaseProduct\n    }\n  }\n": types.ConfigurableProductVariantsFragmentDoc,
     "\n  fragment ConfigurableProduct on ConfigurableProduct {\n    __typename\n    ...BaseProduct\n    configurable_options {\n      ...ConfigurableProductOptions\n    }\n    variants {\n      ...ConfigurableProductVariants\n    }\n  }\n": types.ConfigurableProductFragmentDoc,
@@ -554,6 +556,14 @@ export function graphql(source: "\n  fragment CmsBlockHTMLCode on BlockHtmlCode 
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  fragment CmsStoreElement on BlockStoreElement {\n    __typename\n    title\n    content {\n      ...CmsMultipleTextBlock\n    }\n    backgroundImage {\n      url\n      width\n      height\n    }\n    blockConfig {\n      ...CmsBlockConfig\n    }\n  }\n"): (typeof documents)["\n  fragment CmsStoreElement on BlockStoreElement {\n    __typename\n    title\n    content {\n      ...CmsMultipleTextBlock\n    }\n    backgroundImage {\n      url\n      width\n      height\n    }\n    blockConfig {\n      ...CmsBlockConfig\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  fragment Notification on Notification {\n    id\n    content {\n      html\n    }\n    backgroundColor\n    textColor\n    link\n    openLinkInNewWindow\n  }\n"): (typeof documents)["\n  fragment Notification on Notification {\n    id\n    content {\n      html\n    }\n    backgroundColor\n    textColor\n    link\n    openLinkInNewWindow\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query NotificationBar {\n    notificationBars {\n      position\n      content {\n        ...Notification\n      }\n    }\n  }\n"): (typeof documents)["\n  query NotificationBar {\n    notificationBars {\n      position\n      content {\n        ...Notification\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

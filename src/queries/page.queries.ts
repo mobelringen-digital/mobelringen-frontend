@@ -368,3 +368,27 @@ export const CmsStoreElement = graphql(`
     }
   }
 `);
+
+export const NotificationFragment = graphql(`
+  fragment Notification on Notification {
+    id
+    content {
+      html
+    }
+    backgroundColor
+    textColor
+    link
+    openLinkInNewWindow
+  }
+`);
+
+export const NotificationBarsDocument = graphql(`
+  query NotificationBar {
+    notificationBars {
+      position
+      content {
+        ...Notification
+      }
+    }
+  }
+`);
