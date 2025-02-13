@@ -29,7 +29,7 @@ export const CartItemDeliveryInfo: React.FC<Props> = ({ item, cart }) => {
           ) : null}
 
           <span className="text-xs">
-            {item.availability?.online?.stock_info}
+            {item.availability?.online?.cart_stock_info}
           </span>
         </div>
       ) : null}
@@ -38,12 +38,18 @@ export const CartItemDeliveryInfo: React.FC<Props> = ({ item, cart }) => {
           {item.availability?.cac?.availability ? (
             <StatusCircle
               variant={
-                PRODUCT_STOCK_STATUS_COLOR[item.availability?.cac?.availability]
+                item.is_in_store
+                  ? PRODUCT_STOCK_STATUS_COLOR[
+                    item.availability?.cac?.availability
+                  ]
+                  : "red"
               }
               size="small"
             />
           ) : null}
-          <span className="text-xs">{item.availability?.cac?.stock_info}</span>
+          <span className="text-xs">
+            {item.availability?.cac?.cart_stock_info}
+          </span>
         </div>
       ) : null}
     </div>
