@@ -17,16 +17,10 @@ const StoreSelectModal = dynamic(
 );
 
 interface Props {
-  stores: Array<BaseStoreFragment | null>;
-  isAuthorized: boolean;
   selectedStore?: BaseStoreFragment | null;
 }
 
-export const StoresSelectController: React.FC<Props> = ({
-  stores,
-  isAuthorized,
-  selectedStore,
-}) => {
+export const StoresSelectController: React.FC<Props> = ({ selectedStore }) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -43,10 +37,8 @@ export const StoresSelectController: React.FC<Props> = ({
     <React.Fragment>
       {isOpen ? (
         <StoreSelectModal
-          stores={stores}
-          isOpen={isOpen}
+          isOpen={true}
           selectedStore={selectedStore}
-          isAuthorized={isAuthorized}
           onClose={onClose}
         />
       ) : null}

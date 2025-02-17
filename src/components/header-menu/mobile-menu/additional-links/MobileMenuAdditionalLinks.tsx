@@ -3,6 +3,7 @@ import React from "react";
 import { ChevronRight } from "@/components/_ui/icons/ChevronRight";
 import { CmsLink } from "@/components/cms/__components/link/CmsLink";
 import { MobileMenuAdditionalLinksBlock } from "@/components/header-menu/mobile-menu/additional-links/MobileMenuAdditionalLinksBlock";
+import {getSelectedStore} from "@/components/store-selector/actions";
 import { StoreSelector } from "@/components/store-selector/StoreSelector";
 import { MenuQueryDocument } from "@/queries/menu.queries";
 import { MenuQuery, MenuType } from "@/types";
@@ -19,6 +20,7 @@ async function getMenuItems() {
 
 export default async function MobileMenuAdditionalLinks() {
   const items = await getMenuItems();
+  const selectedStore = await getSelectedStore();
   const data = items.menus[0].links;
 
   return (
@@ -38,7 +40,7 @@ export default async function MobileMenuAdditionalLinks() {
           ) : null}
         </React.Fragment>
       ))}
-      <StoreSelector />
+      <StoreSelector selectedStore={selectedStore} />
     </div>
   );
 }
