@@ -5,7 +5,7 @@ import cx from "classnames";
 interface Props {
   icon: React.ReactNode;
   setPreferredMethod: () => void;
-  label: string;
+  label: React.ReactNode;
   description: React.ReactNode;
   disabled?: boolean;
   isActive?: boolean;
@@ -33,7 +33,7 @@ export const CartMethodLink: React.FC<Props> = ({
       )}
     >
       {icon}
-      <div className="flex flex-col">
+      <div className="flex flex-col w-full">
         <span className="font-semibold">{label}</span>
         <span className="text-xs lg:text-sm font-normal text-dark-grey">
           {description}
