@@ -14,7 +14,7 @@ export const ItemsTable: React.FC<Props> = ({ order, showDelivery }) => {
       <thead>
         <tr>
           <th className="text-left rounded-tl-2xl p-4 bg-warm-grey">Produkt</th>
-          <th className="text-center w-4 p-4 bg-warm-grey">Frakt</th>
+          <th className="text-center w-4 p-4 bg-warm-grey">Antall</th>
           <th className="text-right rounded-tr-2xl p-4 bg-warm-grey">Pris</th>
         </tr>
       </thead>
