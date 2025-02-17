@@ -108,7 +108,7 @@ const StoreSelectModal: React.FC<Props> = ({
             />
             <button
               onClick={handleLocationClick}
-              className="bg-red p-4 rounded-xl w-[50px] h-[50px] flex-shrink-0 flex items-center justify-center"
+              className="bg-red p-4 rounded-xl w-[50px] h-[50px] flex-shrink-0 flex items-center justify-center "
               type="button"
             >
               <LocationIcon />
