@@ -47,8 +47,8 @@ export const NotificationBar: React.FC<Props> = ({ data, position, id }) => {
     return null;
   }
 
-  const onClose = (id: string) => {
-    return hideNotification(id);
+  const onClose = (notificationId: string) => {
+    return hideNotification(notificationId);
   };
 
   if (content?.link) {
