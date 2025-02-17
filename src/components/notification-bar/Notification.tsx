@@ -9,6 +9,7 @@ interface Props {
   backgroundColor?: MrColor | null;
   color?: MrColor | null;
   onClose?: () => void;
+  id?: string;
 }
 
 export const Notification: React.FC<Props> = ({
@@ -16,10 +17,12 @@ export const Notification: React.FC<Props> = ({
   backgroundColor,
   color,
   onClose,
+  id,
 }) => {
   return (
     <div
-      className="p-2 w-full text-xs flex justify-center items-center relative transition-all duration-300"
+      id={id}
+      className="p-2 w-full text-xs flex justify-center items-center transition-all duration-300 relative z-20"
       style={{
         backgroundColor: CAMPAIGN_COLORS[backgroundColor ?? "MR_powder"],
         color: CAMPAIGN_COLORS[color ?? "MR_black"],

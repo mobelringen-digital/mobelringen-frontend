@@ -14,6 +14,7 @@ export const ItemsTable: React.FC<Props> = ({ order, showDelivery }) => {
       <thead>
         <tr>
           <th className="text-left rounded-tl-2xl p-4 bg-warm-grey">Produkt</th>
+          <th className="text-center w-4 p-4 bg-warm-grey">Frakt</th>
           <th className="text-right rounded-tr-2xl p-4 bg-warm-grey">Pris</th>
         </tr>
       </thead>
@@ -21,9 +22,12 @@ export const ItemsTable: React.FC<Props> = ({ order, showDelivery }) => {
         {order?.items?.map((item) => (
           <tr key={item?.sku}>
             <td className="px-4 py-2">{item?.name}</td>
+            <td className="px-4 py-2 text-center">{item?.quantity}</td>
             <td className="px-4 py-2 text-right">
               <FormatNumber
-                value={item?.price}
+                value={
+                  item?.price && item?.quantity ? item.price * item.quantity : 0
+                }
                 format="currency"
                 suffix=" kr"
               />
@@ -35,7 +39,10 @@ export const ItemsTable: React.FC<Props> = ({ order, showDelivery }) => {
             <td className="px-4 py-2 border-t border-warm-grey">
               {discount?.label}
             </td>
-            <td className="px-4 py-2 border-t border-warm-grey text-right text-red">
+            <td
+              colSpan={2}
+              className="px-4 py-2 border-t border-warm-grey text-right text-red"
+            >
               <FormatNumber
                 value={discount?.amount?.value}
                 format="currency"
@@ -47,7 +54,10 @@ export const ItemsTable: React.FC<Props> = ({ order, showDelivery }) => {
         {showDelivery ? (
           <tr>
             <td className="px-4 py-2 border-t border-warm-grey">Frakt</td>
-            <td className="px-4 py-2 border-t border-warm-grey text-right">
+            <td
+              colSpan={2}
+              className="px-4 py-2 border-t border-warm-grey text-right"
+            >
               <FormatNumber
                 value={order?.total?.total_shipping?.value}
                 format="currency"
@@ -60,7 +70,10 @@ export const ItemsTable: React.FC<Props> = ({ order, showDelivery }) => {
           <td className="px-4 py-2 border-t border-warm-grey font-semibold">
             Totalt
           </td>
-          <td className="px-4 py-2 border-t border-warm-grey text-right">
+          <td
+            colSpan={2}
+            className="px-4 py-2 border-t border-warm-grey text-right"
+          >
             <FormatNumber
               value={order?.total?.grand_total?.value}
               format="currency"

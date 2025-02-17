@@ -11,9 +11,10 @@ import { NotificationBarPosition, NotificationBarQuery } from "@/types";
 interface Props {
   position: NotificationBarPosition;
   data?: NotificationBarQuery;
+  id?: string;
 }
 
-export const NotificationBar: React.FC<Props> = ({ data, position }) => {
+export const NotificationBar: React.FC<Props> = ({ data, position, id }) => {
   const notifications = data?.notificationBars.filter(
     (not) => not.position === position,
   );
@@ -53,10 +54,12 @@ export const NotificationBar: React.FC<Props> = ({ data, position }) => {
   if (content?.link) {
     return (
       <Link
+        id={id}
         href={content?.link ?? ""}
         target={content?.openLinkInNewWindow ? "_blank" : ""}
       >
         <Notification
+          id={id}
           content={content.content.html}
           backgroundColor={backgroundColor}
           color={textColor}
@@ -68,6 +71,7 @@ export const NotificationBar: React.FC<Props> = ({ data, position }) => {
 
   return (
     <Notification
+      id={id}
       content={content?.content.html}
       backgroundColor={backgroundColor}
       color={textColor}

@@ -49,10 +49,14 @@ export async function HeaderMenu() {
             <Actions />
           </ContainerLayout>
         </header>
-        <NotificationBar
-          position={NotificationBarPosition.UnderMenu}
-          data={notifications}
-        />
+        <div className="relative -z-10">
+          <NotificationBar
+            id="under-menu-notification-bar"
+            position={NotificationBarPosition.UnderMenu}
+            data={notifications}
+          />
+        </div>
+
         <div className="fixed bottom-0 left-0 right-0 z-30">
           <NotificationBar
             position={NotificationBarPosition.Bottom}
