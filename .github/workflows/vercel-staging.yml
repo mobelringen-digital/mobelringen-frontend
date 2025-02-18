@@ -29,8 +29,8 @@ jobs:
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=integration --token=${{ secrets.VERCEL_TOKEN }}
       - name: Rename Vercel Env file
-        run: mv .vercel/.env.integration.local .vercel/.env
+        run: mv .vercel/.env.integration.local .env
       - name: Build Project Artifacts
-        run: vercel build --target=integration --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel build --target=integration --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --target=integration --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --target=integration --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
