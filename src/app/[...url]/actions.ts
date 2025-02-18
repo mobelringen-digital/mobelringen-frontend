@@ -1,9 +1,12 @@
 "use server";
 
 import { CategoryQueryDocument } from "@/queries/category.queries";
-import { CmsPagesQueryDocument } from "@/queries/page.queries";
 import {
-  GetProductReviewsDocument,
+  CmsPageHighPriorityContentEntities,
+  CmsPageMediumPriorityContentEntities,
+  CmsPagesQueryDocument,
+} from "@/queries/page.queries";
+import {
   ProductsQueryDocument,
   ProductsStoresDocument,
 } from "@/queries/product/product.queries";
@@ -11,14 +14,15 @@ import { RouteDocument } from "@/queries/route.queries";
 import {
   CategoryQuery,
   CategoryQueryVariables,
-  CmsPagesQuery,
-  CmsPagesQueryVariables,
+  EntityWhereInput,
+  PageWhereInput,
   ProductsQuery,
   ProductsQueryVariables,
   ProductsStoresQuery,
   ProductsStoresQueryVariables,
   RouteQuery,
   RouteQueryVariables,
+  Stage,
 } from "@/types";
 import {
   baseHygraphClient,
@@ -60,15 +64,103 @@ export async function getCategory(url: string) {
   });
 }
 
-export async function getPage(url: string, preview?: boolean) {
-  return await baseHygraphClient("GET", {
-    cache: preview ? "no-store" : undefined,
-    revalidate: preview ? 0 : HYGRAPH_CACHE_TIME,
-  }).request<CmsPagesQuery, CmsPagesQueryVariables>(CmsPagesQueryDocument, {
-    where: {
-      url,
-    },
+type PageConfig = {
+  where: PageWhereInput;
+  stage?: Stage;
+  first?: number;
+  preview?: boolean;
+};
+
+async function loadBlockEntities({
+  url,
+  stage = Stage.Published,
+  where,
+  isPreview,
+}: {
+  url: string;
+  stage: Stage;
+  where: Array<{ __typename: string; id: string; stage: Stage }>;
+  isPreview?: boolean;
+}) {
+  // __typename with typename
+  const correctedWhere = where.map((w) => {
+    return {
+      typename: w.__typename,
+      id: w.id,
+      stage: w.stage,
+    };
+  }) as EntityWhereInput[];
+
+  const highPriorityBlocks = await baseHygraphClient("GET", {
+    tags: ["page", "high-priority-blocks", url, stage],
+    cache: isPreview ? "no-cache" : "force-cache",
+    revalidate: HYGRAPH_CACHE_TIME.HIGH_PRIORITY,
+  }).request(CmsPageHighPriorityContentEntities, {
+    where: correctedWhere,
   });
+
+  const mediumPriorityBlocks = await baseHygraphClient("GET", {
+    tags: ["page", "medium-priority-blocks", url, stage],
+    cache: isPreview ? "no-cache" : "force-cache",
+    revalidate: HYGRAPH_CACHE_TIME.MEDIUM_PRIORITY,
+  }).request(CmsPageMediumPriorityContentEntities, {
+    where: correctedWhere,
+  });
+
+  return [
+    ...(highPriorityBlocks.entities ?? []),
+    ...(mediumPriorityBlocks.entities ?? []),
+  ];
+}
+
+export async function getPage(
+  config: PageConfig = {
+    first: 1,
+    where: {},
+    stage: Stage.Published,
+    preview: false,
+  },
+) {
+  const page = await baseHygraphClient("GET", {
+    tags: [
+      "page",
+      JSON.stringify(config.where.url),
+      config.stage ?? Stage.Published,
+    ],
+    revalidate: HYGRAPH_CACHE_TIME.HIGH_PRIORITY,
+  }).request(CmsPagesQueryDocument, {
+    where: config.where,
+    stage: config.stage,
+    first: config.first,
+  });
+  const pageContent = page.pages[0]?.content;
+
+  if (!pageContent || pageContent.length === 0) {
+    return null;
+  }
+
+  const blocksData = await loadBlockEntities({
+    url: config.where.url ?? "/not-found",
+    stage: config.stage as Stage,
+    where: pageContent,
+    isPreview: config.preview,
+  });
+
+  const mappedDataWithContent = pageContent.map((content) => {
+    const block = blocksData?.find((b) =>
+      "id" in b ? b.id === content.id : null,
+    );
+
+    return {
+      ...content,
+      ...block,
+    };
+  });
+
+  return {
+    ...page.pages[0],
+    content: mappedDataWithContent,
+  };
 }
 
 export async function getRoute(url: string) {
@@ -78,15 +170,4 @@ export async function getRoute(url: string) {
   >(RouteDocument, {
     url,
   });
-}
-
-export async function getProductReviews(productId: string) {
-  const data = await baseMagentoClient("GET", {
-    tags: ["product", "reviews", productId],
-    revalidate: 3600,
-  }).request(GetProductReviewsDocument, {
-    productId,
-  });
-
-  return data.getReviewsByProductId;
 }

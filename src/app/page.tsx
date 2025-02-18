@@ -8,8 +8,7 @@ import { formatMetaTitle } from "@/utils/helpers";
 import { getPage } from "./[...url]/actions";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const data = await getPage(`/`);
-  const page = data.pages[0];
+  const page = await getPage({ where: { url: "/" } });
 
   if (page) {
     return {
@@ -24,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  const data = await getPage("/");
+  const data = await getPage({ where: { url: "/" } });
 
   return <Page data={data} />;
 }

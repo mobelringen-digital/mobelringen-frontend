@@ -65,44 +65,112 @@ export const CmsPagesConnectionDocument = graphql(`
   }
 `);
 
-export const CmsPagesQueryDocument = graphql(`
-  query CmsPages($first: Int = 1, $where: PageWhereInput) {
-    pages(where: $where, first: $first) {
-      id
-      title
-      seo {
-        ...Seo
-      }
-      createdAt
-      pageThumbnail {
-        url
-        width
-        height
-      }
-      pageCategory {
-        name
-        categoryUrl
-      }
+export const CmsPageDetailsFragment = graphql(`
+  fragment CmsPageDetails on Page {
+    id
+    title
+    seo {
+      ...Seo
+    }
+    createdAt
+    pageThumbnail {
       url
+      width
+      height
+    }
+    pageCategory {
+      name
+      categoryUrl
+    }
+    url
+  }
+`);
+
+export const CmsPagesQueryDocument = graphql(`
+  query CmsPages(
+    $first: Int = 1
+    $stage: Stage = PUBLISHED
+    $where: PageWhereInput
+  ) {
+    pages(where: $where, stage: $stage, first: $first) {
+      ...CmsPageDetails
       content(first: 100) {
+        __typename
+        ... on Entity {
+          __typename
+          id
+          stage
+        }
+      }
+    }
+  }
+`);
+
+export const CmsPageHighPriorityContentEntities = graphql(`
+  query HighPriorityBlocks($where: [EntityWhereInput!]!) {
+    entities(where: $where) {
+      ... on Banner {
         ...CmsBanner
-        ...CmsProductSlider
+      }
+      ... on BlockRow {
         ...CmsBlockRow
-        ...CmsBlockQuote
-        ...CmsPagesList
-        ...CmsSimilarPagesRow
+      }
+      ... on ProductSlider {
+        ...CmsProductSlider
+      }
+      ... on BlockImageGallery {
         ...CmsImagesGallery
-        ...CmsBlockFaq
-        ...CmsBlockNavigationButtons
+      }
+      ... on BlockImageLinksSlider {
         ...CmsBlockImageLinksSlider
-        ...CmsBlockBrands
-        ...CmsBlockStoresMap
-        ...CmsBlockPressRoom
+      }
+      ... on BlockPagesList {
+        ...CmsPagesList
+      }
+      ... on BlockProductsList {
         ...CmsBlockProductsList
+      }
+      ... on BlockBrandsList {
         ...CmsBlockBrandsList
+      }
+      ... on BlockSimilarPagesRow {
+        ...CmsSimilarPagesRow
+      }
+    }
+  }
+`);
+
+export const CmsPageMediumPriorityContentEntities = graphql(`
+  query MediumPriorityBlocks($where: [EntityWhereInput!]!) {
+    entities(where: $where) {
+      ... on BlockQuote {
+        ...CmsBlockQuote
+      }
+      ... on BlockFaq {
+        ...CmsBlockFaq
+      }
+      ... on BlockNavigationButton {
+        ...CmsBlockNavigationButtons
+      }
+      ... on BlockBrand {
+        ...CmsBlockBrands
+      }
+      ... on BlockStoresMap {
+        ...CmsBlockStoresMap
+      }
+      ... on BlockPressRoom {
+        ...CmsBlockPressRoom
+      }
+      ... on BlockFlowbox {
         ...CmsBlockFlowbox
+      }
+      ... on BlockCatalog {
         ...CmsBlockCatalog
+      }
+      ... on BlockHtmlCode {
         ...CmsBlockHTMLCode
+      }
+      ... on BlockStoreElement {
         ...CmsStoreElement
       }
     }
@@ -137,6 +205,7 @@ export const CmsImageFragment = graphql(`
   fragment CmsImage on Image {
     ... on Image {
       __typename
+      id
       label
       caption
       image {
@@ -283,6 +352,7 @@ export const CmsBlockStoresMapFragment = graphql(`
   fragment CmsBlockStoresMap on BlockStoresMap {
     ... on BlockStoresMap {
       __typename
+      id
       title
       blockConfig {
         ...CmsBlockConfig
@@ -306,6 +376,7 @@ export const CmsBlockPressRoomFragment = graphql(`
   fragment CmsBlockPressRoom on BlockPressRoom {
     ... on BlockPressRoom {
       __typename
+      id
       title
       blockConfig {
         ...CmsBlockConfig
@@ -318,6 +389,7 @@ export const CmsBlockCatalogFragment = graphql(`
   fragment CmsBlockCatalog on BlockCatalog {
     ... on BlockCatalog {
       __typename
+      id
       title
       blockConfig {
         ...CmsBlockConfig
@@ -342,6 +414,7 @@ export const CmsBlockHTMLCodeFragment = graphql(`
   fragment CmsBlockHTMLCode on BlockHtmlCode {
     ... on BlockHtmlCode {
       __typename
+      id
       title
       markup
       blockConfig {
@@ -354,6 +427,7 @@ export const CmsBlockHTMLCodeFragment = graphql(`
 export const CmsStoreElement = graphql(`
   fragment CmsStoreElement on BlockStoreElement {
     __typename
+    id
     title
     content {
       ...CmsMultipleTextBlock

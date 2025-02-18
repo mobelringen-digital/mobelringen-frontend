@@ -20,13 +20,9 @@ import { BlockRow } from "@/components/cms/block-row";
 import { CmsSimilarPagesRow } from "@/components/cms/block-similar-pages-row/CmsSimilarPagesRow";
 import { BlockStoreElement } from "@/components/cms/block-store-element/BlockStoreElement";
 import { BlockStoresMap } from "@/components/cms/block-stores-map/BlockStoresMap";
-import { CmsPagesQuery } from "@/types";
-import { ArrayElement } from "@/utils/ts-utils";
 
 interface CmsContentProps {
-  data: ArrayElement<
-    NonNullable<NonNullable<CmsPagesQuery["pages"]>[0]>["content"]
-  >;
+  data: any;
 }
 
 export const CmsContentLoader: React.FC<CmsContentProps> = ({ data }) => {
