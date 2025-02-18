@@ -90,7 +90,11 @@ export default async function Category({ url }: Props) {
         href={`${process.env.NEXT_PUBLIC_APP_URL}/${currentCategory.url_path}`}
       />
       {subCategoriesData ? (
-        <SubCategoriesSelect category={subCategoriesData} url={url} />
+        <SubCategoriesSelect
+          title={currentCategory.name}
+          category={subCategoriesData}
+          url={url}
+        />
       ) : null}
 
       {isLastCategoryWithChildren(currentCategory) ? (

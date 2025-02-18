@@ -9,11 +9,16 @@ import { CategoryBreadcrumbs } from "@/modules/category/CategoryBreadcrumbs";
 import { CategoryItemEntity } from "@/modules/category/types";
 
 interface Props {
+  title?: string | null;
   category: CategoryItemEntity;
   url: string;
 }
 
-export const SubCategoriesSelect: React.FC<Props> = ({ category, url }) => {
+export const SubCategoriesSelect: React.FC<Props> = ({
+  category,
+  url,
+  title,
+}) => {
   const isCategoryActive = (c: CategoryItemEntity) => {
     return c?.url_path === url;
   };
@@ -26,12 +31,7 @@ export const SubCategoriesSelect: React.FC<Props> = ({ category, url }) => {
     <div className="bg-cream py-[40px] border-b border-b-beige w-full">
       <ContainerLayout>
         <CategoryBreadcrumbs />
-        <Link
-          href={`/${category?.url_path}`}
-          className="text-5xl font-medium font-feature hover:underline"
-        >
-          <h3>{category?.name}</h3>
-        </Link>
+        <h1 className="text-5xl font-medium font-feature">{title ?? category?.name}</h1>
         {hasChildren(category) ? (
           <div className="flex gap-2 lg:gap-3 mt-8 flex-wrap">
             {category?.children
