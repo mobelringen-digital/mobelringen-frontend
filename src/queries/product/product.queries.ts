@@ -124,11 +124,11 @@ export const BaseProductFragment = graphql(`
     stocks {
       online {
         availability
-        message
+        stock_info
       }
       cac {
         availability
-        message
+        stock_info
       }
     }
     gift_message_available
@@ -324,7 +324,10 @@ export const ProductAvailabilityFragment = graphql(`
   fragment ProductAvailability on ProductAvailability {
     availability
     max
-    message
+    stock_info
+    cart_message
+    cart_message_show
+    cart_stock_info
     min
     step
   }

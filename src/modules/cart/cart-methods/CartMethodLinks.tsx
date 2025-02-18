@@ -4,6 +4,8 @@ import React from "react";
 
 import { useCookies } from "react-cookie";
 
+import Link from "next/link";
+
 import { LocalShippingIcon } from "@/components/_ui/icons/LocalShippingIcon";
 import { StorefrontIcon } from "@/components/_ui/icons/StorefrontIcon";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
@@ -47,15 +49,22 @@ export const CartMethodLinks: React.FC<Props> = ({ selectedStore, cart }) => {
       <CartMethodLink
         icon={<LocalShippingIcon width={24} height={24} />}
         setPreferredMethod={() => setPreferredMethod(DeliveryType.Online)}
-        label="Hjemlevering"
-        description="Til fortauskant eller utleveringssted"
+        label="Nettbutikk"
+        description="Med hjemlevering eller til utleveringssted"
         isActive={activeMethod === DeliveryType.Online}
         disabled={isLoading}
       />
       <CartMethodLink
         icon={<StorefrontIcon width={24} height={24} />}
         setPreferredMethod={() => setPreferredMethod(DeliveryType.Cac)}
-        label="Klikk og hent"
+        label={
+          <div className="flex justify-between w-full">
+            <span>Klikk og hent</span>
+            <Link className="underline font-normal text-sm" href="/cart?store=select">
+              Endre butikk
+            </Link>
+          </div>
+        }
         description={
           selectedStore
             ? `Hentes hos: ${selectedStore?.name}`

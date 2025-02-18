@@ -12,11 +12,11 @@ export const BaseProductDataForCarFragment = graphql(`
     stocks {
       online {
         availability
-        message
+        stock_info
       }
       cac {
         availability
-        message
+        stock_info
       }
     }
     productBrand {

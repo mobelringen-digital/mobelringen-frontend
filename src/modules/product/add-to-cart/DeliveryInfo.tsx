@@ -112,7 +112,7 @@ export const DeliveryInfo: React.FC<Props> = ({ product }) => {
 
           <div className="flex flex-col">
             <span className="text-sm lg:text-base">
-              {stockData?.online?.message}
+              {stockData?.online?.stock_info}
             </span>
             {canBuyOnline && product.delivery_promise ? (
               <span className="text-xs lg:text-sm text-dark-grey">
@@ -138,7 +138,7 @@ export const DeliveryInfo: React.FC<Props> = ({ product }) => {
 
           <div className="flex flex-col">
             <span className="text-sm lg:text-base">
-              {stockData?.cac?.message}
+              {stockData?.cac?.stock_info}
             </span>
             {storesWithStock?.length && storesWithStock.length > 0 ? (
               <button
