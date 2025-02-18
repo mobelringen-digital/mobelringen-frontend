@@ -1,4 +1,4 @@
-name: Production Tag Deployment
+name: Staging Deployment
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
@@ -8,7 +8,7 @@ on:
       - main
 
 jobs:
-  Deploy-Production:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -28,6 +28,8 @@ jobs:
         run: rm -f .env
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=integration --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Rename Vercel Env file
+        run: .vercel/.env.integration.local .env
       - name: Build Project Artifacts
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
