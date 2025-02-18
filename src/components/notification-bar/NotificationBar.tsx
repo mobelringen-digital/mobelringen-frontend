@@ -2,8 +2,6 @@
 
 import React from "react";
 
-import Link from "next/link";
-
 import { hideNotification } from "@/components/notification-bar/actions";
 import { Notification } from "@/components/notification-bar/Notification";
 import { NotificationBarPosition, NotificationBarQuery } from "@/types";
@@ -51,24 +49,6 @@ export const NotificationBar: React.FC<Props> = ({ data, position, id }) => {
     return hideNotification(notificationId);
   };
 
-  if (content?.link) {
-    return (
-      <Link
-        id={id}
-        href={content?.link ?? ""}
-        target={content?.openLinkInNewWindow ? "_blank" : ""}
-      >
-        <Notification
-          id={id}
-          content={content.content.html}
-          backgroundColor={backgroundColor}
-          color={textColor}
-          onClose={() => onClose(content.id)}
-        />
-      </Link>
-    );
-  }
-
   return (
     <Notification
       id={id}
@@ -76,6 +56,8 @@ export const NotificationBar: React.FC<Props> = ({ data, position, id }) => {
       backgroundColor={backgroundColor}
       color={textColor}
       onClose={() => onClose(content.id)}
+      href={content?.link}
+      target={content?.openLinkInNewWindow ? "_blank" : ""}
     />
   );
 };
