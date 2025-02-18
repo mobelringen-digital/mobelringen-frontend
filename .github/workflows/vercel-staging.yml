@@ -8,19 +8,23 @@ on:
       - main
 
 jobs:
-  Deploy-Staging:
+  Stage-Deployment:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
+      - name: Install Codegen CLI
+        run: npm install --global @graphql-codegen/cli
+      - name: Install Mesh CLI
+        run: npm install --global @graphql-mesh/cli
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=integration --token=${{ secrets.VERCEL_TOKEN }}
-      - name: Renamed vercel env file
+      - name: Rename vercel env file
         run: mv .vercel/.env.integration.local .vercel/.env
       - name: Install dependencies
         run: yarn install
       - name: Build Project Artifacts
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --target=staging --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --target=integration --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
