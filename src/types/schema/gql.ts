@@ -67,6 +67,8 @@ const documents = {
     "\n  fragment CmsBrand on Brand {\n    ... on Brand {\n      __typename\n      brandName\n      url\n      image {\n        url\n        width\n        height\n      }\n    }\n  }\n": types.CmsBrandFragmentDoc,
     "\n  fragment CmsBlockBrandsList on BlockBrandsList {\n    ... on BlockBrandsList {\n      __typename\n      title\n      brands(first: 100) {\n        ...CmsBrand\n      }\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsBlockBrandsListFragmentDoc,
     "\n  fragment CmsBlockFlowbox on BlockFlowbox {\n    ... on BlockFlowbox {\n      __typename\n      flowKey\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n": types.CmsBlockFlowboxFragmentDoc,
+    "\n  fragment CmsButton on Button {\n    title\n    backgroundColor\n    textColor\n    action\n    link\n  }\n": types.CmsButtonFragmentDoc,
+    "\n  query CmsModal($modalType: ModalType) {\n    modal(where: { modalType: $modalType }) {\n      title\n      modalSize\n      content {\n        ...CmsImage\n        ...CmsTextBlock\n      }\n      actions {\n        ...CmsButton\n      }\n    }\n  }\n": types.CmsModalDocument,
     "\n  fragment CmsLink on Link {\n    ... on Link {\n      __typename\n      label\n      url\n      icon {\n        url\n      }\n    }\n  }\n": types.CmsLinkFragmentDoc,
     "\n  fragment CmsMegamenuDropdown on MegaMenuDropdown {\n    __typename\n    label\n    items {\n      ...CmsLink\n      ...CmsImageLink\n    }\n  }\n": types.CmsMegamenuDropdownFragmentDoc,
     "\n  fragment CmsMegaMenuCategoriesDropdown on MegaMenuCategoriesDropdown {\n    __typename\n    label\n  }\n": types.CmsMegaMenuCategoriesDropdownFragmentDoc,
@@ -384,6 +386,14 @@ export function graphql(source: "\n  fragment CmsBlockBrandsList on BlockBrandsL
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  fragment CmsBlockFlowbox on BlockFlowbox {\n    ... on BlockFlowbox {\n      __typename\n      flowKey\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"): (typeof documents)["\n  fragment CmsBlockFlowbox on BlockFlowbox {\n    ... on BlockFlowbox {\n      __typename\n      flowKey\n      blockConfig {\n        ...CmsBlockConfig\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  fragment CmsButton on Button {\n    title\n    backgroundColor\n    textColor\n    action\n    link\n  }\n"): (typeof documents)["\n  fragment CmsButton on Button {\n    title\n    backgroundColor\n    textColor\n    action\n    link\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query CmsModal($modalType: ModalType) {\n    modal(where: { modalType: $modalType }) {\n      title\n      modalSize\n      content {\n        ...CmsImage\n        ...CmsTextBlock\n      }\n      actions {\n        ...CmsButton\n      }\n    }\n  }\n"): (typeof documents)["\n  query CmsModal($modalType: ModalType) {\n    modal(where: { modalType: $modalType }) {\n      title\n      modalSize\n      content {\n        ...CmsImage\n        ...CmsTextBlock\n      }\n      actions {\n        ...CmsButton\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
