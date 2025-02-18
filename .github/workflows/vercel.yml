@@ -13,7 +13,7 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
       - name: Install mesh
-        run: yarn install @graphql-mesh/cli
+        run: yarn add @graphql-mesh/cli
       - name: Create temp env file
         run:
           echo "NEXT_PUBLIC_MAGENTO_URL=https://mcstaging.mobelringen.no/graphql" >> .env &&
