@@ -2,12 +2,9 @@ name: Production Tag Deployment
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-  HYGRAPH_URL: ${{ secrets.HYGRAPH_URL }}
-  MAGENTO_URL: ${{ secrets.MAGENTO_URL }}
-  HYGRAPH_API_KEY: ${{ secrets.HYGRAPH_API_KEY }}
 on:
   release:
-    type: [released]
+    type: [published]
 jobs:
   Deploy-Production:
     runs-on: ubuntu-latest
@@ -19,6 +16,14 @@ jobs:
         run: npm install --global @graphql-codegen/cli
       - name: Install Mesh CLI
         run: npm install --global @graphql-mesh/cli
+      - name: Create .env file
+        run:
+          echo "NEXT_PUBLIC_HYGRAPH_URL=${{ secrets.HYGRAPH_URL }}" >> .env &&
+          echo "NEXT_PUBLIC_MAGENTO_URL=${{ secrets.MAGENTO_URL }}" >> .env &&
+          echo "NEXT_PUBLIC_VERCEL_URL=${{ secrets.HYGRAPH_API_KEY }}" >> .env &&
+          echo "VERCEL_TOKEN=${{ secrets.VERCEL_TOKEN }}" >> .env &&
+          echo "VERCEL_ORG_ID=${{ secrets.VERCEL_ORG_ID }}" >> .env &&
+          echo "VERCEL_PROJECT_ID=${{ secrets.VERCEL_PROJECT_ID }}" >> .env
       - name: Install dependencies
         run: yarn install
       - name: Pull Vercel Environment Information
