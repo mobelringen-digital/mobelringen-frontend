@@ -23,6 +23,12 @@ export default async function RootLayout({
         name="viewport"
         content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"
       />
+      {/*begin Convert Experiences code*/}
+      <Script
+        strategy="beforeInteractive"
+        src="//cdn-4.convertexperiments.com/v1/js/100413175-100414211.js?environment=live"
+      />
+      {/*end Convert Experiences code*/}
 
       <body className="bg-sand font-suisse">
         <Script
