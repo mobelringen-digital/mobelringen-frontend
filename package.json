@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "mesh-dev": "mesh dev",
-    "build": "next build",
+    "build": "yarn codegen && next build",
     "start": "next start",
     "lint": "next lint",
     "codegen": "mesh build && graphql-codegen --config codegen.ts",
