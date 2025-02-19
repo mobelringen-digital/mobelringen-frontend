@@ -140,7 +140,7 @@ const StoreSelectModal: React.FC<Props> = ({
                         storeData?.street,
                         storeData?.postcode,
                         storeData?.city,
-                      ].join(", ")}
+                      ].join(" ")}
                     </span>
                   </div>
                 </RadioBlock>
