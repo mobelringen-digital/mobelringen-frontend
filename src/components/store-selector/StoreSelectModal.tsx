@@ -129,10 +129,20 @@ const StoreSelectModal: React.FC<Props> = ({
             <RadioGroup value={store} onValueChange={setStore} color="primary">
               {stores?.map((storeData) => (
                 <RadioBlock
+                  className="p-2 lg:p-2"
                   key={storeData?.external_id}
                   value={storeData?.external_id ?? ""}
                 >
-                  {storeData?.name}
+                  <div className="flex flex-col">
+                    <span>{storeData?.name}</span>
+                    <span className="text-sm font-light text-dark-grey">
+                      {[
+                        storeData?.street,
+                        storeData?.postcode,
+                        storeData?.city,
+                      ].join(", ")}
+                    </span>
+                  </div>
                 </RadioBlock>
               ))}
             </RadioGroup>
