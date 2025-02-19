@@ -32,7 +32,7 @@ export const PRODUCT_STOCK_STATUS_COLOR: Record<
   ONLINE_BACKORDER_CAC_OUT_OF_STOCK: "green-circle",
 };
 
-export const DeliveryInfo: React.FC<Props> = ({ product }) => {
+export const DeliveryInfo: React.FC<Props> = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -114,9 +114,9 @@ export const DeliveryInfo: React.FC<Props> = ({ product }) => {
             <span className="text-sm lg:text-base">
               {stockData?.online?.stock_info}
             </span>
-            {canBuyOnline && product.delivery_promise ? (
+            {canBuyOnline && stockData?.online?.delivery_promise ? (
               <span className="text-xs lg:text-sm text-dark-grey">
-                {product.delivery_promise}
+                {stockData.online.delivery_promise}
               </span>
             ) : null}
           </div>
