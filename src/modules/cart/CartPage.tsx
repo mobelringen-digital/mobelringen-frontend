@@ -10,7 +10,6 @@ import { CartPrice } from "@/modules/cart/cart-price/CartPrice";
 import { CartBreadcrumbs } from "@/modules/cart/CartBreadcrumbs";
 import { CartEvents } from "@/modules/cart/CartEvents";
 import { CartItems } from "@/modules/cart/CartItems";
-import { CartWarnings } from "@/modules/cart/CartWarnings";
 import { BaseCartFragment } from "@/types";
 
 interface Props {
@@ -43,7 +42,6 @@ export async function CartPage({ data }: Props) {
               <div className="bg-white flex flex-col gap-6 rounded-2xl p-4 lg:p-8">
                 <div className="flex flex-col gap-4">
                   <CartMethodLinks cart={data} selectedStore={selectedStore} />
-                  <CartWarnings cart={data} />
                 </div>
                 <div className="border-t border-t-cold-grey-dark border-opacity-80" />
                 {data.items ? <CartItems cart={data} /> : null}

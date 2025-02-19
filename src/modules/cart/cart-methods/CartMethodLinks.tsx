@@ -49,8 +49,8 @@ export const CartMethodLinks: React.FC<Props> = ({ selectedStore, cart }) => {
       <CartMethodLink
         icon={<LocalShippingIcon width={24} height={24} />}
         setPreferredMethod={() => setPreferredMethod(DeliveryType.Online)}
-        label="Hjemlevering"
-        description="Til fortauskant eller utleveringssted"
+        label="Nettbutikk"
+        description="Med hjemlevering eller til utleveringssted"
         isActive={activeMethod === DeliveryType.Online}
         disabled={isLoading}
       />
@@ -60,8 +60,11 @@ export const CartMethodLinks: React.FC<Props> = ({ selectedStore, cart }) => {
         label={
           <div className="flex justify-between w-full">
             <span>Klikk og hent</span>
-            <Link className="underline font-normal text-sm" href="/cart?store=select">
-              Endre butikk
+            <Link
+              className="underline font-normal text-sm"
+              href="/cart?store=select"
+            >
+              {selectedStore ? "Endre butikk" : "Velg butikk"}
             </Link>
           </div>
         }
@@ -72,6 +75,7 @@ export const CartMethodLinks: React.FC<Props> = ({ selectedStore, cart }) => {
         }
         isActive={activeMethod === DeliveryType.Cac}
         disabled={isLoading}
+        error={!selectedStore}
       />
     </div>
   );

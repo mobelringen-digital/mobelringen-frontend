@@ -2,6 +2,7 @@ import { graphql } from "@/types/schema";
 
 export const SalesBubbleFragment = graphql(`
   fragment CmsSalesBubble on SaleBubble {
+    id
     url
     middleLine
     position
@@ -14,6 +15,7 @@ export const SalesBubbleFragment = graphql(`
 
 export const TacticalBubbleFragment = graphql(`
   fragment CmsTacticalBubble on TacticalBubble {
+    id
     position
     mainBubbleTopLine
     mainBubbleMiddleLine
@@ -30,6 +32,7 @@ export const TacticalBubbleFragment = graphql(`
 
 export const PromotionBubbleFragment = graphql(`
   fragment CmsPromotionBubble on PromotionBubble {
+    id
     middleLine
     position
     topLine
@@ -43,6 +46,7 @@ export const PromotionBubbleFragment = graphql(`
 
 export const HotspotFragment = graphql(`
   fragment Hotspot on ProductHotspot {
+    id
     productSku
     verticalPosition
     horizontalPosition
@@ -54,6 +58,7 @@ export const BannerFragment = graphql(`
     ... on Banner {
       __typename
       alt
+      id
       linkUrl
       identify
       variant
@@ -79,6 +84,7 @@ export const BannerFragment = graphql(`
 export const CmsBannerPromo = graphql(`
   fragment CmsBannerPromo on BannerPromo {
     ... on BannerPromo {
+      id
       __typename
       topLine
       bottomLine
@@ -99,6 +105,7 @@ export const CmsProductSliderFragment = graphql(`
   fragment CmsProductSlider on ProductSlider {
     ... on ProductSlider {
       __typename
+      id
       categoryId
       specificProductsSku
       type
@@ -133,6 +140,7 @@ export const CmsPagesListFragment = graphql(`
   fragment CmsPagesList on BlockPagesList {
     ... on BlockPagesList {
       __typename
+      id
       pageType
       title
       displayCategories
@@ -150,6 +158,7 @@ export const CmsSimilarPagesRowFragment = graphql(`
   fragment CmsSimilarPagesRow on BlockSimilarPagesRow {
     ... on BlockSimilarPagesRow {
       __typename
+      id
       title
       page {
         ...CmsPageNode
@@ -165,6 +174,7 @@ export const CmsImagesGalleryFragment = graphql(`
   fragment CmsImagesGallery on BlockImageGallery {
     ... on BlockImageGallery {
       __typename
+      id
       title
       description {
         html
@@ -186,6 +196,7 @@ export const BlockFaqFragment = graphql(`
   fragment CmsBlockFaq on BlockFaq {
     ... on BlockFaq {
       __typename
+      id
       title
       questions {
         question
@@ -204,6 +215,7 @@ export const BlockNavigationButtonsFragment = graphql(`
   fragment CmsBlockNavigationButtons on BlockNavigationButton {
     ... on BlockNavigationButton {
       __typename
+      id
       title
       links {
         ...CmsLink
@@ -219,6 +231,7 @@ export const BlockImageLinksSliderFragment = graphql(`
   fragment CmsBlockImageLinksSlider on BlockImageLinksSlider {
     ... on BlockImageLinksSlider {
       __typename
+      id
       title
       images {
         ...CmsImageLink
@@ -234,6 +247,7 @@ export const BlockBrandsFragment = graphql(`
   fragment CmsBlockBrands on BlockBrand {
     ... on BlockBrand {
       __typename
+      id
       title
       viewMoreLink {
         ...CmsLink
@@ -252,6 +266,7 @@ export const BlockProductsListFragment = graphql(`
   fragment CmsBlockProductsList on BlockProductsList {
     ... on BlockProductsList {
       __typename
+      id
       title
       brand
       categoryId
@@ -267,6 +282,7 @@ export const BrandFragment = graphql(`
   fragment CmsBrand on Brand {
     ... on Brand {
       __typename
+      id
       brandName
       url
       image {
@@ -282,6 +298,7 @@ export const BlockBrandsListFragment = graphql(`
   fragment CmsBlockBrandsList on BlockBrandsList {
     ... on BlockBrandsList {
       __typename
+      id
       title
       brands(first: 100) {
         ...CmsBrand
@@ -297,6 +314,7 @@ export const BlockFlowboxFragment = graphql(`
   fragment CmsBlockFlowbox on BlockFlowbox {
     ... on BlockFlowbox {
       __typename
+      id
       flowKey
       blockConfig {
         ...CmsBlockConfig

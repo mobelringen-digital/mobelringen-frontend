@@ -3,24 +3,19 @@ import React, { Suspense } from "react";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { CmsContentLoader } from "@/components/cms/cms-content-loader";
 import { MetaData } from "@/components/meta/MetaData";
-import { CmsPagesQuery } from "@/types";
+import { CmsPageDetailsFragment, Entity } from "@/types";
 
 interface Props {
-  data: CmsPagesQuery;
+  data: CmsPageDetailsFragment & { content: Entity[] } | null;
 }
 
 export const Page: React.FC<Props> = ({ data }) => {
   return (
     <Suspense fallback={<PageTopLoader />}>
-      <MetaData data={data.pages[0].seo} />
+      <MetaData data={data?.seo} />
 
-      {data.pages[0]?.content.map((content, index) => {
-        return (
-          <CmsContentLoader
-            key={`${content.__typename}=${index}`}
-            data={content}
-          />
-        );
+      {data?.content.map((content, index: number) => {
+        return <CmsContentLoader key={index} data={content} />;
       })}
     </Suspense>
   );
