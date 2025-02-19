@@ -2,7 +2,12 @@ import React from "react";
 
 import { StatusCircle } from "@/components/_ui/status-circle/StatusCircle";
 import { PRODUCT_STOCK_STATUS_COLOR } from "@/modules/product/add-to-cart/DeliveryInfo";
-import { BaseCartFragment, CartItemFragment, DeliveryType } from "@/types";
+import {
+  Availability,
+  BaseCartFragment,
+  CartItemFragment,
+  DeliveryType,
+} from "@/types";
 
 interface Props {
   item: CartItemFragment;
@@ -12,6 +17,10 @@ interface Props {
 export const CartItemDeliveryInfo: React.FC<Props> = ({ item, cart }) => {
   const isOnline = cart?.delivery_type === DeliveryType.Online;
   const isClickAndCollect = cart?.delivery_type === DeliveryType.Cac;
+
+  const showCacStatus =
+    item.is_in_store ||
+    item?.availability?.cac?.availability === Availability.CartNoStoreSelected;
 
   return (
     <div className="w-full">
@@ -38,7 +47,7 @@ export const CartItemDeliveryInfo: React.FC<Props> = ({ item, cart }) => {
           {item.availability?.cac?.availability ? (
             <StatusCircle
               variant={
-                item.is_in_store
+                showCacStatus
                   ? PRODUCT_STOCK_STATUS_COLOR[
                     item.availability?.cac?.availability
                   ]

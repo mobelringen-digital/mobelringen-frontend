@@ -24,12 +24,13 @@ interface Props {
 
 export const PRODUCT_STOCK_STATUS_COLOR: Record<
   Availability,
-  "green" | "yellow" | "red" | "green-circle"
+  "green" | "yellow" | "red" | "green-circle" | "gray"
 > = {
   IN_STOCK: "green",
   BACKORDER: "yellow",
   OUT_OF_STOCK: "red",
   ONLINE_BACKORDER_CAC_OUT_OF_STOCK: "green-circle",
+  CART_NO_STORE_SELECTED: "gray",
 };
 
 export const DeliveryInfo: React.FC<Props> = () => {
