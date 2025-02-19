@@ -9,6 +9,7 @@ interface Props {
   description: React.ReactNode;
   disabled?: boolean;
   isActive?: boolean;
+  error?: boolean;
 }
 
 export const CartMethodLink: React.FC<Props> = ({
@@ -26,6 +27,7 @@ export const CartMethodLink: React.FC<Props> = ({
         "relative text-left w-full px-4 py-1.5 lg:py-3 flex items-center gap-3 rounded-xl transition-all border hover:border-black",
         {
           "border-2 border-black shadow": isActive,
+          "border-grey border-opacity-50": !isActive,
         },
         {
           "border-dark-grey border-opacity-50": !isActive,
