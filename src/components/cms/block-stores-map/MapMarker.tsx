@@ -8,7 +8,7 @@ export const MapMarker = () => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <rect width="56" height="56" rx="28" fill="#FF3E3E" />
-      <g clip-path="url(#clip0_2178_27719)">
+      <g clipPath="url(#clip0_2178_27719)">
         <mask
           id="mask0_2178_27719"
           maskUnits="userSpaceOnUse"

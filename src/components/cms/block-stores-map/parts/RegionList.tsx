@@ -7,6 +7,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { ArrowLeftAlt } from "@/components/_ui/icons/ArrowLeftAlt";
 import { ChevronRight } from "@/components/_ui/icons/ChevronRight";
+import { LocationIcon } from "@/components/cms/block-store-element/LocationIcon";
 import { Store } from "@/components/cms/block-stores-map/Store";
 import { SearchInput } from "@/components/search/SearchInput";
 import { BaseStoreFragment } from "@/types";
@@ -16,6 +17,7 @@ interface Props {
   isLoading: boolean;
   selectedStore: BaseStoreFragment | null;
   setSelectedStore: (store: BaseStoreFragment | null) => void;
+  onLocationClick?: () => void;
 }
 
 export const RegionList: React.FC<Props> = ({
@@ -23,6 +25,7 @@ export const RegionList: React.FC<Props> = ({
   selectedStore,
   setSelectedStore,
   isLoading,
+  onLocationClick,
 }) => {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -35,6 +38,11 @@ export const RegionList: React.FC<Props> = ({
 
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setSearch(e.target.value);
+
+  const handleLocationButtonClick = () => {
+    setSearch("");
+    return onLocationClick?.();
+  };
 
   React.useEffect(() => {
     if (value) {
@@ -53,13 +61,22 @@ export const RegionList: React.FC<Props> = ({
 
   return (
     <>
-      <div className="mb-8 flex flex-col gap-2 w-full">
-        <SearchInput
-          onChange={onSearchChange}
-          value={search}
-          variant="bordered"
-          placeholder="Postnummer eller butikknavn"
-        />
+      <div className="mb-8 flex flex-col gap-4 w-full">
+        <div className="flex gap-4">
+          <SearchInput
+            onChange={onSearchChange}
+            value={search}
+            variant="bordered"
+            placeholder="Postnummer eller butikknavn"
+          />
+          <button
+            onClick={handleLocationButtonClick}
+            className="bg-red p-4 rounded-xl w-[58px] flex-shrink-0 flex items-center justify-center"
+            type="button"
+          >
+            <LocationIcon />
+          </button>
+        </div>
         <div className="flex w-full justify-end">
           {searchParams.get("searchInput") ? (
             <button

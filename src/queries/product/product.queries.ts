@@ -328,6 +328,7 @@ export const ProductAvailabilityFragment = graphql(`
     cart_message
     cart_message_show
     cart_stock_info
+    delivery_promise
     min
     step
   }

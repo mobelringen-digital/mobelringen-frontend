@@ -24,15 +24,16 @@ interface Props {
 
 export const PRODUCT_STOCK_STATUS_COLOR: Record<
   Availability,
-  "green" | "yellow" | "red" | "green-circle"
+  "green" | "yellow" | "red" | "green-circle" | "gray"
 > = {
   IN_STOCK: "green",
   BACKORDER: "yellow",
   OUT_OF_STOCK: "red",
   ONLINE_BACKORDER_CAC_OUT_OF_STOCK: "green-circle",
+  CART_NO_STORE_SELECTED: "gray",
 };
 
-export const DeliveryInfo: React.FC<Props> = ({ product }) => {
+export const DeliveryInfo: React.FC<Props> = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -114,9 +115,9 @@ export const DeliveryInfo: React.FC<Props> = ({ product }) => {
             <span className="text-sm lg:text-base">
               {stockData?.online?.stock_info}
             </span>
-            {canBuyOnline && product.delivery_promise ? (
+            {canBuyOnline && stockData?.online?.delivery_promise ? (
               <span className="text-xs lg:text-sm text-dark-grey">
-                {product.delivery_promise}
+                {stockData.online.delivery_promise}
               </span>
             ) : null}
           </div>

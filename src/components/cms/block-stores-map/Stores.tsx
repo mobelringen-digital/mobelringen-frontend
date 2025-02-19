@@ -12,7 +12,7 @@ import { RegionList } from "@/components/cms/block-stores-map/parts/RegionList";
 import { useStoresList } from "@/components/cms/block-stores-map/useStoresList";
 import { ContainerLayout } from "@/components/layouts/ContainerLayout";
 import { PageTitle } from "@/components/typography/PageTitle";
-import { BaseStoreFragment } from "@/types";
+import { BaseStoreFragment, CoordinatesInput } from "@/types";
 
 const Map = dynamic(() => import("./Map"), { ssr: false });
 
@@ -21,6 +21,8 @@ interface Props {
 }
 
 export const Stores: React.FC<Props> = ({ title }) => {
+  const [isPending, startTransition] = React.useTransition();
+  const [coordinates, setCoordinates] = React.useState<CoordinatesInput>();
   const searchParams = useSearchParams();
   const {
     data: stores,
@@ -28,10 +30,24 @@ export const Stores: React.FC<Props> = ({ title }) => {
     isFetching,
   } = useStoresList({
     searchInput: searchParams.get("searchInput") || undefined,
+    coordinates,
   });
   const [selectedStore, setSelectedStore] =
     React.useState<BaseStoreFragment | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
+
+  const handleLocationClick = () => {
+    startTransition(() => {
+      if (navigator.geolocation) {
+        return navigator.geolocation.getCurrentPosition((position) => {
+          setCoordinates({
+            lat: String(position.coords.latitude),
+            lng: String(position.coords.longitude),
+          });
+        });
+      }
+    });
+  };
 
   const groupedByRegions = stores
     ?.reduce(
@@ -65,16 +81,23 @@ export const Stores: React.FC<Props> = ({ title }) => {
 
   return (
     <ContainerLayout className="mb-16">
-      {isLoading || isFetching ? <PageTopLoader /> : null}
+      {isLoading || isFetching || isPending ? <PageTopLoader /> : null}
       {title ? <PageTitle>{title}</PageTitle> : null}
       <div className="lg:hidden">
-        <Tabs size="lg" fullWidth={true} className="flex" aria-label="Alle fylker" variant="underlined">
+        <Tabs
+          size="lg"
+          fullWidth={true}
+          className="flex"
+          aria-label="Alle fylker"
+          variant="underlined"
+        >
           <Tab key="photos" title="Fylker">
             <RegionList
               groupedByRegions={groupedByRegions}
               isLoading={isLoading}
               selectedStore={selectedStore}
               setSelectedStore={setSelectedStore}
+              onLocationClick={handleLocationClick}
             />
           </Tab>
           <Tab key="music" title="Kart">
@@ -89,6 +112,7 @@ export const Stores: React.FC<Props> = ({ title }) => {
             isLoading={isLoading}
             selectedStore={selectedStore}
             setSelectedStore={setSelectedStore}
+            onLocationClick={handleLocationClick}
           />
         </div>
         <div className="col-span-12 lg:col-span-8">
