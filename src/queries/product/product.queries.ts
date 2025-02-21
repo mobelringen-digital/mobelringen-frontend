@@ -415,3 +415,25 @@ export const getProductCrossSellDocument = graphql(`
     }
   }
 `);
+
+export const ShowroomStockFragment = graphql(`
+  fragment ShowroomStock on Showrooms {
+    items {
+      store {
+        name
+        external_id
+      }
+      qty
+    }
+  }
+`);
+
+export const ProductShowroomStockDocument = graphql(`
+  query ProductShowroomStock($productId: String!) {
+    getProductShowroomStock(input: { productId: $productId }) {
+      showrooms {
+        ...ShowroomStock
+      }
+    }
+  }
+`);

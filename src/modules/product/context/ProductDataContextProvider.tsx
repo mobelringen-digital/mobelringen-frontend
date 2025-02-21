@@ -9,6 +9,7 @@ import {
   BaseStoreFragment,
   GetProductStockQuery,
   ProductsStoresQuery,
+  ShowroomStockFragment,
 } from "@/types";
 
 export interface ProductDataContextType {
@@ -18,6 +19,7 @@ export interface ProductDataContextType {
   stock?: GetProductStockQuery;
   cart?: BaseCartFragment | null;
   canBuyOnline: boolean;
+  showroomStocks?: ShowroomStockFragment | null;
 }
 
 export const ProductDataContext = React.createContext<ProductDataContextType>(
@@ -30,8 +32,17 @@ const ProductDataContextProvider: React.FC<{
   selectedStore?: BaseStoreFragment | null;
   stock?: GetProductStockQuery;
   cart?: BaseCartFragment | null;
+  showroomStocks?: ShowroomStockFragment | null;
   children: React.ReactNode;
-}> = ({ children, product, stores, selectedStore, stock, cart }) => {
+}> = ({
+  children,
+  product,
+  stores,
+  selectedStore,
+  stock,
+  cart,
+  showroomStocks,
+}) => {
   const stockData = stock?.getProductStock;
   const canBuyOnline =
     stockData?.online?.availability !== Availability.OutOfStock;
@@ -45,6 +56,7 @@ const ProductDataContextProvider: React.FC<{
         stock,
         cart,
         canBuyOnline,
+        showroomStocks,
       }}
     >
       {children}

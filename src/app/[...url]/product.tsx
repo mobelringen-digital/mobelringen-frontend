@@ -22,7 +22,11 @@ import { GetProductStockDocument } from "@/queries/product/product.queries";
 import { isTypename } from "@/types/graphql-helpers";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
-import { getProduct, getProductStores } from "./actions";
+import {
+  getProduct,
+  getProductShowroomStock,
+  getProductStores,
+} from "./actions";
 
 type Props = {
   sku: string;
@@ -66,6 +70,11 @@ export default async function Product({ sku }: Props) {
     selectedStore?.external_id ?? "",
   );
 
+  const showroomStocks = await getProductShowroomStock(
+    // @ts-expect-error - productData is not null
+    currentProductData.id,
+  );
+
   // Prefetch product Reviews
   const queryClient = new QueryClient();
   if (
@@ -85,6 +94,7 @@ export default async function Product({ sku }: Props) {
       <Suspense fallback={<ProductPageSkeleton />}>
         <HydrationBoundary state={dehydrate(queryClient)}>
           <ProductDataContextProvider
+            showroomStocks={showroomStocks}
             product={currentProductData}
             stores={stores}
             selectedStore={selectedStore}
@@ -110,6 +120,7 @@ export default async function Product({ sku }: Props) {
               href={`${process.env.NEXT_PUBLIC_APP_URL}/${currentProductData.canonical_url}`}
             />
             <ProductDataContextProvider
+              showroomStocks={showroomStocks}
               product={currentProductData}
               stores={stores}
               selectedStore={selectedStore}

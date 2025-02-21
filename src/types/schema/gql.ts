@@ -142,6 +142,8 @@ const documents = {
     "\n  query GetProductReviews($productId: String!) {\n    getReviewsByProductId(product_id: $productId) {\n      ...ProductReviews\n    }\n  }\n": types.GetProductReviewsDocument,
     "\n  mutation VoteForReview(\n    $productId: String!\n    $reviewId: String!\n    $type: ReviewType\n  ) {\n    voteForReview(product_id: $productId, review_id: $reviewId, type: $type) {\n      message\n      success\n    }\n  }\n": types.VoteForReviewDocument,
     "\n  query CrossSellStockProducts(\n    $product_id: Int!\n    $pos_type: DeliveryType!\n    $pos_id: String\n  ) {\n    crossSellStockProducts(\n      product_id: $product_id\n      pos_type: $pos_type\n      pos_id: $pos_id\n    ) {\n      ...BaseProduct\n    }\n  }\n": types.CrossSellStockProductsDocument,
+    "\n  fragment ShowroomStock on Showrooms {\n    items {\n      store {\n        name\n        external_id\n      }\n      qty\n    }\n  }\n": types.ShowroomStockFragmentDoc,
+    "\n  query ProductShowroomStock($productId: String!) {\n    getProductShowroomStock(input: { productId: $productId }) {\n      showrooms {\n        ...ShowroomStock\n      }\n    }\n  }\n": types.ProductShowroomStockDocument,
     "\n  fragment SimpleProduct on SimpleProduct {\n    ...BaseProduct\n  }\n": types.SimpleProductFragmentDoc,
     "\n  mutation AddProductsToWishlist($wishlistId: ID!, $sku: String!) {\n    addProductsToWishlist(\n      wishlistId: $wishlistId\n      wishlistItems: { sku: $sku, quantity: 1 }\n    ) {\n      wishlist {\n        id\n        items_count\n      }\n    }\n  }\n": types.AddProductsToWishlistDocument,
     "\n  mutation RemoveProductsFromWishlist(\n    $wishlistId: ID!\n    $wishlistItemsIds: [ID!]!\n  ) {\n    removeProductsFromWishlist(\n      wishlistId: $wishlistId\n      wishlistItemsIds: $wishlistItemsIds\n    ) {\n      user_errors {\n        code\n        message\n      }\n      wishlist {\n        id\n        items_count\n      }\n    }\n  }\n": types.RemoveProductsFromWishlistDocument,
@@ -689,6 +691,14 @@ export function graphql(source: "\n  mutation VoteForReview(\n    $productId: St
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query CrossSellStockProducts(\n    $product_id: Int!\n    $pos_type: DeliveryType!\n    $pos_id: String\n  ) {\n    crossSellStockProducts(\n      product_id: $product_id\n      pos_type: $pos_type\n      pos_id: $pos_id\n    ) {\n      ...BaseProduct\n    }\n  }\n"): (typeof documents)["\n  query CrossSellStockProducts(\n    $product_id: Int!\n    $pos_type: DeliveryType!\n    $pos_id: String\n  ) {\n    crossSellStockProducts(\n      product_id: $product_id\n      pos_type: $pos_type\n      pos_id: $pos_id\n    ) {\n      ...BaseProduct\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  fragment ShowroomStock on Showrooms {\n    items {\n      store {\n        name\n        external_id\n      }\n      qty\n    }\n  }\n"): (typeof documents)["\n  fragment ShowroomStock on Showrooms {\n    items {\n      store {\n        name\n        external_id\n      }\n      qty\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query ProductShowroomStock($productId: String!) {\n    getProductShowroomStock(input: { productId: $productId }) {\n      showrooms {\n        ...ShowroomStock\n      }\n    }\n  }\n"): (typeof documents)["\n  query ProductShowroomStock($productId: String!) {\n    getProductShowroomStock(input: { productId: $productId }) {\n      showrooms {\n        ...ShowroomStock\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

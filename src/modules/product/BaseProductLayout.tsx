@@ -23,6 +23,7 @@ import { MoreInformation } from "@/modules/product/MoreInformation";
 import { ProductGallery } from "@/modules/product/product-gallery/ProductGallery";
 import { ProductPricing } from "@/modules/product/product-pricing/ProductPricing";
 import { ProductTopInfo } from "@/modules/product/ProductTopInfo";
+import { ShowroomStocks } from "@/modules/product/showroom-stocks/ShowroomStocks";
 import {
   BaseProductFragment as BaseProductFragmentType,
   GetProductStockQuery,
@@ -81,7 +82,7 @@ export const BaseProductLayout: React.FC<Props> = ({
   const params = searchParams.entries();
   const pathname = usePathname();
 
-  const { stock } = useProductData();
+  const { stock, showroomStocks } = useProductData();
 
   const product = baseProductData;
   const { data: productSliderData, isLoading: isSlidersDataLoading } =
@@ -158,6 +159,8 @@ export const BaseProductLayout: React.FC<Props> = ({
             <FixedLowPrice product={product} />
 
             <PurchaseBlock product={product} />
+            {showroomStocks?.items?.length ? <ShowroomStocks /> : null}
+
             <div className="block lg:hidden">
               <InformationAccordion product={product} />
             </div>
