@@ -49,12 +49,12 @@ export const ShowroomStocks: React.FC = () => {
           :
         </div>
 
-        <div className="flex flex-col my-4">
+        <div className="flex flex-col mt-2">
           {items
             ?.slice(0, showAll ? items?.length : INITIAL_SHOW)
             .map((item, idx) => (
               <div key={idx} className="flex justify-between items-center">
-                <div className="flex gap-2 items-center text-md min-w-2/5">
+                <div className="flex gap-2 items-center text-md min-w-1/3">
                   <StatusCircle
                     variant={item?.qty && item.qty > 0 ? "green" : "red"}
                   />
@@ -72,7 +72,7 @@ export const ShowroomStocks: React.FC = () => {
         </div>
 
         {items.length > INITIAL_SHOW ? (
-          <button className="text-xs text-left underline mt-1" onClick={handleLoad}>
+          <button className="text-xs text-left underline mt-1 mb-2" onClick={handleLoad}>
             {showAll ? (
               <>Vis færre</>
             ) : (
@@ -81,7 +81,7 @@ export const ShowroomStocks: React.FC = () => {
           </button>
         ) : null}
 
-        <div className="text-sm">
+        <div className="text-sm mt-2">
           Merk: Produktet kan ha noen andre spesifikasjoner enn vist her.
         </div>
       </div>
