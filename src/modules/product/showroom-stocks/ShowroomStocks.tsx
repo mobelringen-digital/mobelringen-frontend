@@ -49,30 +49,35 @@ export const ShowroomStocks: React.FC = () => {
           :
         </div>
 
-        <div className="flex flex-col mt-2">
+        <table className="mt-2">
           {items
             ?.slice(0, showAll ? items?.length : INITIAL_SHOW)
             .map((item, idx) => (
-              <div key={idx} className="flex justify-between items-center">
-                <div className="flex gap-2 items-center text-md min-w-1/3">
+              <tr key={idx}>
+                <td className="flex gap-2 items-center text-md break-keep">
                   <StatusCircle
                     variant={item?.qty && item.qty > 0 ? "green" : "red"}
                   />
                   <span>{item?.store?.name}</span>
-                </div>
-                <span className="text-sm">{item?.qty} stk utstilt</span>
-                <Link
-                  className="flex gap-1 items-center text-sm underline"
-                  href={`/store/${item?.store?.external_id}/${stringToUrl(item?.store?.name)}`}
-                >
-                  Vis butikkinfo <LinkArrow />
-                </Link>
-              </div>
+                </td>
+                <td className="text-sm">{item?.qty} stk utstilt</td>
+                <td>
+                  <Link
+                    className="flex gap-1 items-center text-sm underline"
+                    href={`/store/${item?.store?.external_id}/${stringToUrl(item?.store?.name)}`}
+                  >
+                    Vis butikkinfo <LinkArrow />
+                  </Link>
+                </td>
+              </tr>
             ))}
-        </div>
+        </table>
 
         {items.length > INITIAL_SHOW ? (
-          <button className="text-xs text-left underline mt-1 mb-2" onClick={handleLoad}>
+          <button
+            className="text-xs text-left underline mt-1 mb-2"
+            onClick={handleLoad}
+          >
             {showAll ? (
               <>Vis færre</>
             ) : (
