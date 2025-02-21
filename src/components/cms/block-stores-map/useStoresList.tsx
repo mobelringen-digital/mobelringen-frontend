@@ -1,18 +1,28 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { StoresListDocument } from "@/queries/stores.queries";
-import { StoresListQuery } from "@/types";
+import { CoordinatesInput, StoresListQuery } from "@/types";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
 const STORES_LIST_QUERY_KEY = ["stores"];
 
-export const useStoresList = ({ searchInput }: { searchInput?: string }) => {
+export const useStoresList = ({
+  searchInput,
+  coordinates,
+  ipLocate,
+}: {
+  searchInput?: string;
+  coordinates?: CoordinatesInput;
+  ipLocate?: boolean;
+}) => {
   const fetchStores = async () => {
     try {
       const data = await baseMagentoClient("GET").request<StoresListQuery>(
         StoresListDocument,
         {
           searchInput,
+          coordinates,
+          ip_locate: !coordinates && ipLocate,
         },
       );
 
@@ -23,7 +33,7 @@ export const useStoresList = ({ searchInput }: { searchInput?: string }) => {
   };
 
   return useQuery({
-    queryKey: [...STORES_LIST_QUERY_KEY, searchInput],
+    queryKey: [...STORES_LIST_QUERY_KEY, searchInput, coordinates, ipLocate],
     queryFn: fetchStores,
     staleTime: 3600,
   });

@@ -7,11 +7,12 @@ import { useDebounce } from "use-debounce";
 import { Button } from "@/components/_ui/button/Button";
 import { PageTopLoader } from "@/components/_ui/loader/PageTopLoader";
 import { RadioBlock } from "@/components/_ui/radio/RadioBlock";
+import { LocationIcon } from "@/components/cms/block-store-element/LocationIcon";
 import { useStoresList } from "@/components/cms/block-stores-map/useStoresList";
 import { Modal, ModalActions, ModalContent } from "@/components/modal";
 import { SearchInput } from "@/components/search/SearchInput";
 import { setFavoriteStoreId } from "@/components/store-selector/actions";
-import { BaseStoreFragment } from "@/types";
+import { BaseStoreFragment, CoordinatesInput } from "@/types";
 
 interface Props {
   isOpen: boolean;
@@ -24,6 +25,8 @@ const StoreSelectModal: React.FC<Props> = ({
   onClose,
   selectedStore,
 }) => {
+  const [coordinates, setCoordinates] = React.useState<CoordinatesInput>();
+  const [locateByIp, setLocateByIp] = React.useState<boolean>(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const [store, setStore] = React.useState<string | undefined>(
     selectedStore?.external_id ?? undefined,
@@ -36,9 +39,13 @@ const StoreSelectModal: React.FC<Props> = ({
     isFetching,
   } = useStoresList({
     searchInput: value || "",
+    coordinates: coordinates,
+    ipLocate: locateByIp,
   });
 
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCoordinates(undefined);
+    setLocateByIp(false);
     setSearchValue(e.target.value);
   };
 
@@ -53,8 +60,26 @@ const StoreSelectModal: React.FC<Props> = ({
     });
   };
 
+  const handleLocationClick = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setCoordinates({
+          lat: String(position.coords.latitude),
+          lng: String(position.coords.longitude),
+        });
+      });
+    } else {
+      setLocateByIp(true);
+    }
+  };
+
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="Velg butikk" className="h-[650px]">
+    <Modal
+      isOpen={isOpen}
+      onClose={onClose}
+      title="Velg butikk"
+      className="h-[650px]"
+    >
       {isLoading ? <PageTopLoader /> : null}
       <form className="flex justify-between flex-col h-full">
         <ModalContent>
@@ -79,12 +104,20 @@ const StoreSelectModal: React.FC<Props> = ({
             </div>
           ) : null}
 
-          <div className="border-b pt-2 pb-4 border-cold-grey-dark">
+          <div className="border-b pt-2 pb-4 flex gap-2 border-cold-grey-dark">
             <SearchInput
               onChange={onSearchChange}
               variant="bordered"
               placeholder="Postnummer eller butikknavn"
+              className="h-[50px]"
             />
+            <button
+              onClick={handleLocationClick}
+              className="bg-red p-4 rounded-xl w-[50px] h-[50px] flex-shrink-0 flex items-center justify-center "
+              type="button"
+            >
+              <LocationIcon />
+            </button>
           </div>
 
           <div className="max-h-64 overflow-y-auto">
@@ -101,10 +134,20 @@ const StoreSelectModal: React.FC<Props> = ({
             <RadioGroup value={store} onValueChange={setStore} color="primary">
               {stores?.map((storeData) => (
                 <RadioBlock
+                  className="p-2 lg:p-2"
                   key={storeData?.external_id}
                   value={storeData?.external_id ?? ""}
                 >
-                  {storeData?.name}
+                  <div className="flex flex-col">
+                    <span>{storeData?.name}</span>
+                    <span className="text-sm font-light text-dark-grey">
+                      {[
+                        storeData?.street,
+                        storeData?.postcode,
+                        storeData?.city,
+                      ].join(" ")}
+                    </span>
+                  </div>
                 </RadioBlock>
               ))}
             </RadioGroup>
