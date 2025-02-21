@@ -159,7 +159,7 @@ export const BaseProductLayout: React.FC<Props> = ({
             <FixedLowPrice product={product} />
 
             <PurchaseBlock product={product} />
-            {showroomStocks?.items?.length ? <ShowroomStocks /> : null}
+            {!!showroomStocks?.items?.length ? <ShowroomStocks /> : null}
 
             <div className="block lg:hidden">
               <InformationAccordion product={product} />
