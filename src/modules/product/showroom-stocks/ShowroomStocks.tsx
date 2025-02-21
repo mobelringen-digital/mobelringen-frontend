@@ -54,7 +54,9 @@ export const ShowroomStocks: React.FC = () => {
           .map((item, idx) => (
             <div key={idx} className="flex justify-between items-center my-3">
               <div className="flex gap-2 items-center text-md">
-                <StatusCircle variant="green" />
+                <StatusCircle
+                  variant={item?.qty && item.qty > 0 ? "green" : "red"}
+                />
                 <span>{item?.store?.name}</span>
               </div>
               <span className="text-sm">{item?.qty} stk utstilt</span>
