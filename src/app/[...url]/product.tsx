@@ -1,3 +1,5 @@
+import * as console from "node:console";
+
 import React, { Suspense } from "react";
 
 import {
@@ -18,7 +20,10 @@ import {
 } from "@/modules/product/information-accordion/reviews/useProductReviewsQuery";
 import { ProductPageSkeleton } from "@/modules/product/ProductPageSkeleton";
 import { SimpleProductPage } from "@/modules/product/SimpleProduct";
-import { GetProductStockDocument } from "@/queries/product/product.queries";
+import {
+  GetProductStockDocument,
+  ProductShowroomStockDocument,
+} from "@/queries/product/product.queries";
 import { isTypename } from "@/types/graphql-helpers";
 import { baseMagentoClient } from "@/utils/lib/graphql";
 
@@ -39,11 +44,23 @@ async function getProductStock(productId: string, storeId: string) {
   });
 }
 
+async function getProductShowroomStock(productId: string) {
+  const data = await baseMagentoClient("GET", {
+    revalidate: 600,
+    tags: ["product", "showroom-stock", String(productId)],
+  }).request(ProductShowroomStockDocument, {
+    productId,
+  });
+
+  return data.getProductShowroomStock.showrooms;
+}
+
 export default async function Product({ sku }: Props) {
   const product = await getProduct(sku);
   const cart = await getCart();
 
   const products = product.products?.items;
+  console.log(products);
   const configurableProductData =
     products?.[0] && isTypename(products[0], ["ConfigurableProduct"])
       ? products[0]
@@ -66,6 +83,11 @@ export default async function Product({ sku }: Props) {
     selectedStore?.external_id ?? "",
   );
 
+  const showroomStocks = await getProductShowroomStock(
+    // @ts-expect-error - productData is not null
+    currentProductData.id,
+  );
+
   // Prefetch product Reviews
   const queryClient = new QueryClient();
   if (
@@ -85,6 +107,7 @@ export default async function Product({ sku }: Props) {
       <Suspense fallback={<ProductPageSkeleton />}>
         <HydrationBoundary state={dehydrate(queryClient)}>
           <ProductDataContextProvider
+            showroomStocks={showroomStocks}
             product={currentProductData}
             stores={stores}
             selectedStore={selectedStore}
@@ -110,6 +133,7 @@ export default async function Product({ sku }: Props) {
               href={`${process.env.NEXT_PUBLIC_APP_URL}/${currentProductData.canonical_url}`}
             />
             <ProductDataContextProvider
+              showroomStocks={showroomStocks}
               product={currentProductData}
               stores={stores}
               selectedStore={selectedStore}
