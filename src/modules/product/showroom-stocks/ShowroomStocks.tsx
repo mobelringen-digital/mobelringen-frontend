@@ -49,27 +49,30 @@ export const ShowroomStocks: React.FC = () => {
           :
         </div>
 
-        {items
-          ?.slice(0, showAll ? items?.length : INITIAL_SHOW)
-          .map((item, idx) => (
-            <div key={idx} className="flex justify-between items-center my-3">
-              <div className="flex gap-2 items-center text-md">
-                <StatusCircle
-                  variant={item?.qty && item.qty > 0 ? "green" : "red"}
-                />
-                <span>{item?.store?.name}</span>
+        <div className="flex flex-col my-4">
+          {items
+            ?.slice(0, showAll ? items?.length : INITIAL_SHOW)
+            .map((item, idx) => (
+              <div key={idx} className="flex justify-between items-center">
+                <div className="flex gap-2 items-center text-md min-w-2/5">
+                  <StatusCircle
+                    variant={item?.qty && item.qty > 0 ? "green" : "red"}
+                  />
+                  <span>{item?.store?.name}</span>
+                </div>
+                <span className="text-sm">{item?.qty} stk utstilt</span>
+                <Link
+                  className="flex gap-1 items-center text-sm underline"
+                  href={`/store/${item?.store?.external_id}/${stringToUrl(item?.store?.name)}`}
+                >
+                  Vis butikkinfo <LinkArrow />
+                </Link>
               </div>
-              <span className="text-sm">{item?.qty} stk utstilt</span>
-              <Link
-                className="flex gap-1 items-center text-sm underline"
-                href={`/store/${item?.store?.external_id}/${stringToUrl(item?.store?.name)}`}
-              >
-                Vis butikkinfo <LinkArrow />
-              </Link>
-            </div>
-          ))}
+            ))}
+        </div>
+
         {items.length > INITIAL_SHOW ? (
-          <button className="text-xs underline mt-1" onClick={handleLoad}>
+          <button className="text-xs text-left underline mt-1" onClick={handleLoad}>
             {showAll ? (
               <>Vis færre</>
             ) : (
