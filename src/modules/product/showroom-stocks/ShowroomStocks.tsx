@@ -61,9 +61,9 @@ export const ShowroomStocks: React.FC = () => {
                   <span>{item?.store?.name}</span>
                 </td>
                 <td className="text-sm">{item?.qty} stk utstilt</td>
-                <td>
+                <td className="text-right">
                   <Link
-                    className="flex gap-1 items-center text-sm underline"
+                    className="flex gap-1 items-center text-sm underline break-keep"
                     href={`/store/${item?.store?.external_id}/${stringToUrl(item?.store?.name)}`}
                   >
                     Vis butikkinfo <LinkArrow />
