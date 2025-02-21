@@ -8,11 +8,13 @@ export const RouteDocument = graphql(`
       type
       ... on SimpleProduct {
         __typename
+        id
         name
         sku
       }
       ... on ConfigurableProduct {
         __typename
+        id
         name
         sku
       }

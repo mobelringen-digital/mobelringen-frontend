@@ -7,7 +7,6 @@ import {
   CmsPagesQueryDocument,
 } from "@/queries/page.queries";
 import {
-  ProductShowroomStockDocument,
   ProductsQueryDocument,
   ProductsStoresDocument,
 } from "@/queries/product/product.queries";
@@ -171,15 +170,4 @@ export async function getRoute(url: string) {
   >(RouteDocument, {
     url,
   });
-}
-
-export async function getProductShowroomStock(productId: string) {
-  const data = await baseMagentoClient("GET").request(
-    ProductShowroomStockDocument,
-    {
-      productId,
-    },
-  );
-
-  return data.getProductShowroomStock.showrooms;
 }
