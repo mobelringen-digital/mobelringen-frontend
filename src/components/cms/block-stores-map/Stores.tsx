@@ -22,6 +22,7 @@ interface Props {
 
 export const Stores: React.FC<Props> = ({ title }) => {
   const [isPending, startTransition] = React.useTransition();
+  const [locateByIp, setLocateByIp] = React.useState<boolean>(false);
   const [coordinates, setCoordinates] = React.useState<CoordinatesInput>();
   const searchParams = useSearchParams();
   const {
@@ -31,10 +32,18 @@ export const Stores: React.FC<Props> = ({ title }) => {
   } = useStoresList({
     searchInput: searchParams.get("searchInput") || undefined,
     coordinates,
+    ipLocate: locateByIp,
   });
   const [selectedStore, setSelectedStore] =
     React.useState<BaseStoreFragment | null>(null);
   const [isMounted, setIsMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    if (searchParams.get("searchInput")) {
+      setCoordinates(undefined);
+      setLocateByIp(false);
+    }
+  }, [searchParams]);
 
   const handleLocationClick = () => {
     startTransition(() => {
@@ -45,6 +54,8 @@ export const Stores: React.FC<Props> = ({ title }) => {
             lng: String(position.coords.longitude),
           });
         });
+      } else {
+        setLocateByIp(true);
       }
     });
   };

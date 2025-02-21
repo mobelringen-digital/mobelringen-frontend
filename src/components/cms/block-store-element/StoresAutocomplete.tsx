@@ -21,6 +21,7 @@ export const StoresAutocomplete: React.FC<Props> = () => {
   const [isPending, startTransition] = React.useTransition();
   const [searchInput, setSearchInput] = React.useState<string>("");
   const [coordinates, setCoordinates] = React.useState<CoordinatesInput>();
+  const [locateByIp, setLocateByIp] = React.useState<boolean>(false);
   const [selectedStoreId, setSelectedStoreId] = React.useState<string | null>(
     null,
   );
@@ -29,10 +30,12 @@ export const StoresAutocomplete: React.FC<Props> = () => {
   const { data: stores, isLoading: isFetchingStores } = useStoresList({
     searchInput,
     coordinates,
+    ipLocate: locateByIp,
   });
 
   const handleSearchChange = debounce((value: string) => {
     setCoordinates(undefined);
+    setLocateByIp(false);
     setSearchInput(value);
   }, 300);
 
@@ -59,6 +62,8 @@ export const StoresAutocomplete: React.FC<Props> = () => {
             lng: String(position.coords.longitude),
           });
         });
+      } else {
+        return setLocateByIp(true);
       }
     });
   };

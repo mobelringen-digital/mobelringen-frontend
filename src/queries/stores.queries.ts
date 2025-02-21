@@ -31,8 +31,8 @@ export const BaseStoreFragment = graphql(`
 `);
 
 export const StoresListDocument = graphql(`
-  query StoresList($searchInput: String, $coordinates: CoordinatesInput, $geolocation: Boolean) {
-    getStores(searchInput: $searchInput, coordinates: $coordinates, geolocation: $geolocation) {
+  query StoresList($searchInput: String, $coordinates: CoordinatesInput, $ip_locate: Boolean) {
+    getStores(searchInput: $searchInput, coordinates: $coordinates, ip_locate: $ip_locate) {
       ...BaseStore
     }
   }
