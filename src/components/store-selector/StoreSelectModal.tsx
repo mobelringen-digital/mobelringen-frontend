@@ -26,6 +26,7 @@ const StoreSelectModal: React.FC<Props> = ({
   selectedStore,
 }) => {
   const [coordinates, setCoordinates] = React.useState<CoordinatesInput>();
+  const [locateByIp, setLocateByIp] = React.useState<boolean>(false);
   const [isLoading, setIsLoading] = React.useState(false);
   const [store, setStore] = React.useState<string | undefined>(
     selectedStore?.external_id ?? undefined,
@@ -39,10 +40,12 @@ const StoreSelectModal: React.FC<Props> = ({
   } = useStoresList({
     searchInput: value || "",
     coordinates: coordinates,
+    ipLocate: locateByIp,
   });
 
   const onSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCoordinates(undefined);
+    setLocateByIp(false);
     setSearchValue(e.target.value);
   };
 
@@ -65,6 +68,8 @@ const StoreSelectModal: React.FC<Props> = ({
           lng: String(position.coords.longitude),
         });
       });
+    } else {
+      setLocateByIp(true);
     }
   };
 

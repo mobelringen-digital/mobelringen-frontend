@@ -9,9 +9,11 @@ const STORES_LIST_QUERY_KEY = ["stores"];
 export const useStoresList = ({
   searchInput,
   coordinates,
+  ipLocate,
 }: {
   searchInput?: string;
   coordinates?: CoordinatesInput;
+  ipLocate?: boolean;
 }) => {
   const fetchStores = async () => {
     try {
@@ -20,7 +22,7 @@ export const useStoresList = ({
         {
           searchInput,
           coordinates,
-          geolocation: !!coordinates,
+          ip_locate: !coordinates && ipLocate,
         },
       );
 
@@ -31,7 +33,7 @@ export const useStoresList = ({
   };
 
   return useQuery({
-    queryKey: [...STORES_LIST_QUERY_KEY, searchInput, coordinates],
+    queryKey: [...STORES_LIST_QUERY_KEY, searchInput, coordinates, ipLocate],
     queryFn: fetchStores,
     staleTime: 3600,
   });
